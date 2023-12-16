@@ -1,0 +1,8 @@
+<players nameimageroot="gfx/ui/boss/" portraitroot="gfx/ui/stage/" root="gfx/characters/players/">
+	<player hp="6" armor="0" birthright="-" name="Milcom"
+	nameimage="milcom_name.png" portrait="milcom_portrait.png" skin="milcom_a.png" costumeSuffix="milcom_a"
+	/>
+	<player hp="6" armor="0" birthright="-" name="Milcom" bSkinParent="Milcom"
+	nameimage="milcom_name.png" portrait="milcom_portrait.png" skin="milcom_a.png" costumeSuffix="milcom_b"
+	/>
+</players>
