@@ -10,7 +10,10 @@ end
 
 ---@param player EntityPlayer
 local function hoppingLogic(_, player, offset)
-    if(player:GetPlayerType()~=mod.MILCOM_A_ID) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
+    local renderMode = Game():GetRoom():GetRenderMode()
+    if(not (renderMode==RenderMode.RENDER_NORMAL or renderMode==RenderMode.RENDER_WATER_ABOVE)) then return end
+
     local dataTable = mod:getMilcomATable(player)
 
     if(dataTable.RENDERING_PLAYER==true) then return end
@@ -22,27 +25,33 @@ local function hoppingLogic(_, player, offset)
     
     if((isMoving or (not isMoving and dataTable.CURRENT_JUMPHEIGHT>1e-6)) and player:GetFlyingOffset():Length()==0) then
         dataTable.CURRENT_JUMPHEIGHT = dataTable.MAX_JUMPHEIGHT*math.abs(math.sin(dataTable.JUMP_FRAMES*math.pi/dataTable.MAX_JUMPDURATION))
-
+        
         if(not Game():IsPaused()) then dataTable.JUMP_FRAMES = (dataTable.JUMP_FRAMES+1)%(dataTable.MAX_JUMPDURATION*2) end
     else
         dataTable.CURRENT_JUMPHEIGHT = 0
     end
 
-    print(Game():GetRoom():GetRenderScrollOffset())
-
     local renderPos = Isaac.WorldToScreen(player.Position+Vector(0,-dataTable.CURRENT_JUMPHEIGHT))+offset-Game():GetRoom():GetRenderScrollOffset()
-    renderPos = renderPos+player:GetFlyingOffset()
 
-    if(player:IsFullSpriteRendering()) then
+    if(player:IsCoopGhost() or player:IsFullSpriteRendering()) then
         player.PositionOffset = Vector.Zero
         local pos = renderPos-Isaac.WorldToScreen(player.Position)+Game():GetRoom():GetRenderScrollOffset()
         player:Render(pos)
         
         player.PositionOffset = dataTable.POS_OFFSET
     else
-        renderPlayer(player, renderPos)
-    end    
+        local c = player.Color
+        player.Color = Color(1,1,1,0)
+        player.PositionOffset = Vector.Zero
+        
+        player:Render(renderPos-Isaac.WorldToScreen(player.Position)+Game():GetRoom():GetRenderScrollOffset())
+        
+        player.PositionOffset = dataTable.POS_OFFSET
+        player.Color = c
+
+        renderPlayer(player, renderPos+player:GetFlyingOffset())
+    end
 
     dataTable.RENDERING_PLAYER=false
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, hoppingLogic, 0)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, hoppingLogic)

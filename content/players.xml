@@ -1,8 +1,10 @@
 <players nameimageroot="gfx/ui/boss/" portraitroot="gfx/ui/stage/" root="gfx/characters/players/">
-	<player hp="6" armor="0" birthright="-" name="Milcom"
-	nameimage="milcom_name.png" portrait="milcom_portrait.png" skin="milcom_a.png" costumeSuffix="milcom_a"
+	<player birthright="-" name="Milcom"
+		nameimage="milcom_name.png" portrait="milcom_portrait.png" skin="milcom_a.png" costumeSuffix="milcom_a" skinColor="-1"
+		damagemodifier="-0.7"
 	/>
-	<player hp="6" armor="0" birthright="-" name="Milcom" bSkinParent="Milcom"
-	nameimage="milcom_name.png" portrait="milcom_portrait.png" skin="milcom_a.png" costumeSuffix="milcom_b"
+	<player birthright="-" name="Milcom" bSkinParent="Milcom"
+		nameimage="milcom_name.png" portrait="milcom_portrait.png" skin="milcom_a.png" costumeSuffix="milcom_b" skinColor="-1"
+		achievement="Tainted Milcom"
 	/>
 </players>
