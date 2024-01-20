@@ -77,10 +77,11 @@ function mod:isMilcom(player)
     if(player:GetPlayerType()==mod.PLAYER_MILCOM_B) then return true end
     return false
 end
-function mod:isAnyPlayerMilcomA()
-    for _, player in ipairs(Isaac.FindByType(1,0)) do
-        if(player:ToPlayer():GetPlayerType()==mod.PLAYER_MILCOM_A) then return true end
-    end
+
+---@param player EntityPlayer
+function mod:isAtlas(player)
+    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then return true end
+    if(player:GetPlayerType()==mod.PLAYER_ATLAS_B) then return true end
     return false
 end
 
@@ -188,3 +189,116 @@ function mod:closestPlayer(pos)
 	end
 	return closestEnt
 end
+
+function mod:toTps(n)
+    return 30/(n+1)
+end
+function mod:toFireDelay(n)
+    return (30/n)-1
+end
+function mod:getTps(player)
+    return 30/(player.MaxFireDelay+1)
+end
+
+function mod:addTps(player, n)
+    return (30/(30/(player.MaxFireDelay+1)+n))-1
+end
+
+function mod:renderingAboveWater()
+    return Game():GetRoom():GetRenderMode()==RenderMode.RENDER_NORMAL or Game():GetRoom():GetRenderMode()==RenderMode.RENDER_WATER_ABOVE
+end
+
+function mod:setBaited(e, s, d)
+    e:AddBaited(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_BAITED)
+    e:SetBaitedCountdown(d)
+end
+function mod:getBaitedFrames(e) return e:GetBaitedCountdown() end
+function mod:setBleeding(e, s, d)
+    e:AddBleeding(EntityRef(s), 1)
+    e:AddEntityFlags(EntityFlag.FLAG_BLEED_OUT)
+    e:SetBleedingCountdown(d)
+end
+function mod:getBleedingFrames(e) return e:GetBaitedCountdown() end
+function mod:setBrimstoneMark(e, s, d)
+    e:AddBrimstoneMark(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_BRIMSTONE_MARKED)
+    e:SetBrimstoneMarkCountdown(d)
+end
+function mod:getBrimstoneMarkFrames(e) return e:GetBaitedCountdown() end
+function mod:setBurn(e, s, d, dmg)
+    e:AddBurn(EntityRef(s),1, dmg)
+    e:AddEntityFlags(EntityFlag.FLAG_BURN)
+    e:SetBurnCountdown(d)
+end
+function mod:getBurnFrames(e) return e:GetBleedingCountdown() end
+function mod:setCharmed(e, s, d)
+    e:AddCharmed(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_CHARM)
+    e:SetCharmedCountdown(d)
+end
+function mod:getCharmedFrames(e) return e:GetCharmedCountdown() end
+function mod:setConfusion(e, s, d, ignoreBoss)
+    e:AddConfusion(EntityRef(s),1,ignoreBoss or false)
+    e:AddEntityFlags(EntityFlag.FLAG_CONFUSION)
+    e:SetConfusionCountdown(d)
+end
+function mod:getConfusionFrames(e) return e:GetConfusionCountdown() end
+function mod:setFear(e, s, d)
+    e:AddFear(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_FEAR)
+    e:SetFearCountdown(d)
+end
+function mod:getFearFrames(e) return e:GetFearCountdown() end
+function mod:setFreeze(e, s, d)
+    e:AddFreeze(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_FREEZE)
+    e:SetFreezeCountdown(d)
+end
+function mod:getFreezeFrames(e) return e:GetFreezeCountdown() end
+function mod:setIce(e, s, d)
+    e:AddIce(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_ICE)
+    e:SetIceCountdown(d)
+end
+function mod:getIceFrames(e) return e:GetIceCountdown() end
+function mod:setKnockback(e, s, d, direction, takeImpact)
+    e:AddKnockback(s,direction,1,takeImpact)
+    e:SetKnockbackCountdown(d)
+end
+function mod:getKnockbackFrames(e) return e:GetKnockbackCountdown() end
+function mod:setMagnetized(e, s, d)
+    e:AddMagnetized(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_MAGNETIZED)
+    e:SetMagnetizedCountdown(d)
+end
+function mod:getMagnetizedFrames(e) return e:GetMagnetizedCountdown() end
+function mod:setMidasFreeze(e, s, d)
+    e:AddMidasFreeze(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_MIDAS_FREEZE)
+    e:SetMidasFreezeCountdown(d)
+end
+function mod:getMidasFreezeFrames(e) return e:GetMidasFreezeCountdown() end
+function mod:setPoison(e, s, d, dmg)
+    e:AddPoison(EntityRef(s), 1, dmg)
+    e:AddEntityFlags(EntityFlag.FLAG_POISON)
+    e:SetPoisonCountdown(d)
+end
+function mod:getPoisonFrames(e) return e:GetPoisonCountdown() end
+function mod:setShrink(e, s, d)
+    e:AddShrink(EntityRef(s),1)
+    e:AddEntityFlags(EntityFlag.FLAG_SHRINK)
+    e:SetShrinkCountdown(d)
+end
+function mod:getShrinkFrames(e) return e:GetShrinkCountdown() end
+function mod:setSlowing(e, s, d, val, color)
+    e:AddSlowing(EntityRef(s), 1, val, color)
+    e:SetSlowingCountdown(d)
+end
+function mod:getSlowingFrames(e) return e:GetSlowingCountdown() end
+function mod:setWeakness(e, s, d)
+    e:AddWeakness(EntityRef(s), 1)
+    e:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
+    e:SetWeaknessCountdown(d)
+end
+function mod:getWeaknessFrames(e) return e:GetWeaknessCountdown() end

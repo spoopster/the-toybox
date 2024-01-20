@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="12/21/2023 4:40:42 PM" Version="180" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/19/2024 7:36:41 PM" Version="181" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="milcom_a.png" Id="0"/>
@@ -30,7 +30,6 @@
 			<Null Name="MomsEye" Id="5" ShowRect="false"/>
 			<Null Name="Tractor" Id="6" ShowRect="false"/>
 			<Null Name="ItemWalk" Id="7" ShowRect="false"/>
-			<Null Name="*" Id="8" ShowRect="false"/>
 		</Nulls>
 		<Events>
 			<Event Name="FX" Id="0"/>
@@ -100,9 +99,6 @@
 					<Frame XPosition="0" YPosition="1" XScale="94" YScale="106" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
 					<Frame XPosition="0" YPosition="1" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -152,9 +148,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="0" AtFrame="1"/>
@@ -197,9 +190,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="0" AtFrame="22"/>
@@ -252,9 +242,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="2" AtFrame="8"/>
@@ -313,9 +300,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -366,9 +350,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="255" GreenOffset="255" BlueOffset="255" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -412,9 +393,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -458,9 +436,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -496,9 +471,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -534,9 +506,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -572,9 +541,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -610,9 +576,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -667,7 +630,6 @@
 					<Frame XPosition="-13" YPosition="-11" XScale="100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true"/>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -722,7 +684,6 @@
 					<Frame XPosition="0" YPosition="-19" XScale="100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true"/>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -777,7 +738,6 @@
 					<Frame XPosition="13" YPosition="-11" XScale="100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true"/>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -832,7 +792,6 @@
 					<Frame XPosition="0" YPosition="-11" XScale="100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true"/>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -877,9 +836,6 @@
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
 				<NullAnimation NullId="0" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="1" AtFrame="14"/>
@@ -927,9 +883,6 @@
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
 				<NullAnimation NullId="0" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="1" AtFrame="16"/>
@@ -984,9 +937,6 @@
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
 				<NullAnimation NullId="0" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1031,9 +981,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1085,9 +1032,6 @@
 					<Frame XPosition="0" YPosition="1" XScale="90" YScale="110" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
 					<Frame XPosition="0" YPosition="1" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1138,9 +1082,6 @@
 					<Frame XPosition="0" YPosition="2" XScale="110" YScale="90" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
 					<Frame XPosition="0" YPosition="1" XScale="94" YScale="106" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
 					<Frame XPosition="0" YPosition="1" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
@@ -1196,9 +1137,6 @@
 					<Frame XPosition="0" YPosition="1" XScale="94" YScale="106" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
 					<Frame XPosition="0" YPosition="1" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1235,9 +1173,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="2" AtFrame="8"/>
@@ -1281,9 +1216,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="1" AtFrame="10"/>
@@ -1319,9 +1251,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="2" AtFrame="8"/>
@@ -1366,9 +1295,6 @@
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
 				<NullAnimation NullId="0" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1408,9 +1334,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1450,9 +1373,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1492,9 +1412,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1534,9 +1451,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1588,9 +1502,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers/>
 		</Animation>
@@ -1638,9 +1549,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="1" AtFrame="7"/>
@@ -1708,9 +1616,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="1" AtFrame="17"/>
@@ -1787,9 +1692,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="1" AtFrame="7"/>
@@ -1879,9 +1781,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="1" AtFrame="7"/>
@@ -1931,9 +1830,6 @@
 				<NullAnimation NullId="5" Visible="true"/>
 				<NullAnimation NullId="6" Visible="true"/>
 				<NullAnimation NullId="7" Visible="true"/>
-				<NullAnimation NullId="8" Visible="true">
-					<Frame XPosition="0" YPosition="0" XScale="400" YScale="400" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-				</NullAnimation>
 			</NullAnimations>
 			<Triggers>
 				<Trigger EventId="2" AtFrame="1"/>

@@ -13,8 +13,9 @@ local MILCOM_A_BASEDATA = {
     JUMP_FRAMES = 0,
     MAX_JUMPDURATION = 15,
     
-    POS_OFFSET = Vector(1e6, 1e6),
+    POS_OFFSET = Vector(1,1)*1e2,
     RENDERING_PLAYER = false,
+    LIGHT_RENDERER = nil, 
 
     --CRAFTING STUFF
     MENU_OPEN_FRAMES = 0,
@@ -81,37 +82,20 @@ local function postMilcomUpdate(_, player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postMilcomUpdate)
 
----@param effect EntityEffect
-local function postEffectUpdate(_, effect)
-    if((effect.Parent and effect.Parent:ToPlayer() and effect.Parent:ToPlayer():GetPlayerType()==mod.PLAYER_MILCOM_A)) then
-        if(effect.IsFollowing) then
-            if(mod:getData(effect, "HAS_BEEN_OFFSET")~=true) then
-                effect.ParentOffset = effect.ParentOffset-mod:getMilcomAData(effect.Parent:ToPlayer(), "POS_OFFSET")
-                mod:setData(effect, "HAS_BEEN_OFFSET", true)
-            end
-        elseif(mod:getData(effect, "HAS_BEEN_OFFSET")==true) then
-            effect.ParentOffset = effect.ParentOffset+mod:getMilcomAData(effect.Parent:ToPlayer(), "POS_OFFSET")
-            mod:setData(effect, "HAS_BEEN_OFFSET", false)
-        end
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, postEffectUpdate)
-
 ---@param player EntityPlayer
 local function postMilcomRender(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
     --! FOR TESTING PURPOSES, DELETE ON RELEASE
     if(mod.MILCOM_A_DATA[player.InitSeed]==nil) then mod.MILCOM_A_DATA[player.InitSeed] = mod:cloneTable(mod.MILCOM_A_BASEDATA) end
-
-    local data = mod:getMilcomATable(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postMilcomRender)
 
+--[[
 ---@param player EntityPlayer
 local function postCacheEval(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
 
-    player:CheckFamiliar(LIGHT_FAM_ID, 1, player:GetDropRNG())
+    player:CheckFamiliar(LIGHT_FAM_ID, 0, player:GetDropRNG())
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, postCacheEval, CacheFlag.CACHE_FAMILIARS)
 
@@ -129,3 +113,4 @@ local function lightFamUpdate(_, familiar)
     familiar.Position = familiar.Player.Position
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, lightFamUpdate, LIGHT_FAM_ID)
+--]]

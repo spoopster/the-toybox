@@ -64,6 +64,13 @@ end
 
 --#endregion
 
+function mod:isAnyPlayerMilcomA()
+    for _, player in ipairs(Isaac.FindByType(1,0)) do
+        if(player:ToPlayer():GetPlayerType()==mod.PLAYER_MILCOM_A) then return true end
+    end
+    return false
+end
+
 function mod:getFirstMilcomA()
     for _, player in ipairs(Isaac.FindByType(1,0,mod.PLAYER_MILCOM_A)) do
         return player

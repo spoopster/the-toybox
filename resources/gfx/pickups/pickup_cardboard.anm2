@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="12/17/2023 2:52:53 PM" Version="119" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/15/2024 8:06:34 PM" Version="120" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="..\milcom_a_pickups.png" Id="0"/>
+			<Spritesheet Path="milcom_a_pickups.png" Id="0"/>
 			<Spritesheet Path="..\milcom_customshadow.png" Id="1"/>
 		</Spritesheets>
 		<Layers>

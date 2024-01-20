@@ -1,6 +1,8 @@
 local mod = MilcomMOD
 local json = require("json")
 
+local rngItem = CollectibleType.COLLECTIBLE_BOX --* milcom uses box's rng just in case !
+
 ---@param t table
 local function convertTableToSaveData(t)
     local data = {}
@@ -53,17 +55,30 @@ local function convertSaveDataToTable(t)
 end
 
 local isDataLoaded = false
+local itemBaseData = include("scripts.savedata.items_basedata")
 
 function mod:saveProgress()
     local save = {}
+
     save.milcomData = {}
+    save.atlasData = {}
+    save.itemData = {}
     for _, player in ipairs(Isaac.FindByType(1,0)) do
         player=player:ToPlayer()
+        local pData = mod:getDataTable(player)
+        local seed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
         if(player:GetPlayerType()==mod.PLAYER_MILCOM_A) then
-            local seed = ""..player:GetCollectibleRNG(198):GetSeed() --* milcom uses box's rng just in case !
-
             save.milcomData[seed] = convertTableToSaveData(mod:getMilcomATable(player))
+        elseif(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+            save.atlasData[seed] = convertTableToSaveData(mod:getAtlasATable(player))
         end
+
+        save.itemData[seed] = {}
+        for key, val in pairs(itemBaseData) do
+            save.itemData[seed][key] = pData[key] or val
+        end
+
+        save.itemData[seed] = convertTableToSaveData(save.itemData[seed])
     end
     save.pickupDataA = mod.MILCOM_A_PICKUPS or {CARDBOARD = 0, DUCT_TAPE = 0, NAILS = 0}
 
@@ -80,28 +95,43 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.saveGameExit)
 
 function mod:dataSaveInit(player)
+    local pData = mod:getDataTable(player)
+    mod:cloneTableWithoutDeleteing(pData, itemBaseData)
+
     if(Game():GetFrameCount()==0) then
         if(player:GetPlayerType()==mod.PLAYER_MILCOM_A) then
             mod.MILCOM_A_DATA[player.InitSeed] = mod:cloneTable(mod.MILCOM_A_BASEDATA)
             mod.MILCOM_A_PICKUPS = {CARDBOARD = 0, DUCT_TAPE = 0, NAILS = 0}
-        elseif(player:GetPlayerType()==mod.PLAYER_MILCOM_B) then end
+        elseif(player:GetPlayerType()==mod.PLAYER_MILCOM_B) then
+
+        elseif(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+            mod.ATLAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.ATLAS_A_BASEDATA)
+        elseif(player:GetPlayerType()==mod.PLAYER_ATLAS_B) then
+        end
     else
         if(mod:HasData()) then
             local save = json.decode(mod:LoadData())
-            local iData = save.milcomData[""..player:GetCollectibleRNG(198):GetSeed()]
-            if(iData) then
-                if(player:GetPlayerType()==mod.PLAYER_MILCOM_A and iData["CHARACTER_SIDE"]=="A") then
-                    mod.MILCOM_A_DATA[player.InitSeed] = convertSaveDataToTable(iData)
-                elseif(player:GetPlayerType()==mod.PLAYER_MILCOM_B) then end
-            else
-                if(player:GetPlayerType()==mod.PLAYER_MILCOM_A) then
-                    mod.MILCOM_A_DATA[player.InitSeed] = mod:cloneTable(mod.MILCOM_A_BASEDATA)
-                elseif(player:GetPlayerType()==mod.PLAYER_MILCOM_B) then end
+            local pSeed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
+
+            local milcomData = save.milcomData[pSeed]
+            local atlasData = save.atlasData[pSeed]
+            if(player:GetPlayerType()==mod.PLAYER_MILCOM_A and milcomData["CHARACTER_SIDE"]=="A") then
+                if(milcomData) then mod.MILCOM_A_DATA[player.InitSeed] = convertSaveDataToTable(milcomData)
+                else mod.MILCOM_A_DATA[player.InitSeed] = mod:cloneTable(mod.MILCOM_A_BASEDATA) end
+            elseif(player:GetPlayerType()==mod.PLAYER_ATLAS_A and atlasData["CHARACTER_SIDE"]=="A") then
+                if(atlasData) then mod.ATLAS_A_DATA[player.InitSeed] = convertSaveDataToTable(atlasData)
+                else mod.ATLAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.ATLAS_A_BASEDATA) end
             end
 
             if(#Isaac.FindByType(1)==0) then
                 if(save.pickupDataA) then mod.MILCOM_A_PICKUPS = save.pickupDataA
                 else mod.MILCOM_A_PICKUPS = {CARDBOARD = 0, DUCT_TAPE = 0, NAILS = 0} end
+            end
+
+            local iData = save.itemData[pSeed]
+            if(iData) then
+                iData = convertSaveDataToTable(iData)
+                mod:cloneTableWithoutDeleteing(pData, iData)
             end
         end
     end
@@ -222,5 +252,4 @@ function mod:replaceLockedTrinkets(player)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.replaceLockedTrinkets)
---#endregion
 --#endregion
