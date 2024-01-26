@@ -3,18 +3,49 @@ local mod = MilcomMOD
 ---@param player EntityPlayer
 local function atlasAInit(_, player)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
-        player:AddSoulHearts(1)
+        player:AddMaxHearts(1)
+        player:AddHearts(1)
         player:AddCacheFlags(CacheFlag.CACHE_ALL)
         player:EvaluateItems()
     end
 end
 mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, atlasAInit)
 
-local function changeAtlasHealthType(_, player)
-    return HealthType.NO_HEALTH
+---@param player EntityPlayer
+---@param flag CacheFlag
+local function evalCache(_, player, flag)
+    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    
+    if(flag==CacheFlag.CACHE_TEARCOLOR) then
+        player.TearColor = Color(0.15,0.15,0.15,1,0,0,0)
+    end
 end
-mod:AddCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, changeAtlasHealthType, mod.PLAYER_ATLAS_A)
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+
+local function changeAtlasHealthType(_, player)
+    return HealthType.DEFAULT
+end
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, 1e6+1, changeAtlasHealthType, mod.PLAYER_ATLAS_A)
 local function changeAtlasHealthLimit(_, player)
     return 1
 end
-mod:AddCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, changeAtlasHealthLimit, mod.PLAYER_ATLAS_A)
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, 1e6+1, changeAtlasHealthLimit, mod.PLAYER_ATLAS_A)
+
+local function forceHealth(_, player)
+    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+
+    if(player:GetMaxHearts()==0 and (player:GetSoulHearts()+player:GetBlackHearts()~=0)) then
+        player:AddMaxHearts(1)
+        player:AddHearts(1)
+    end
+
+    if(player:GetGoldenHearts()>0) then player:AddGoldenHearts(-100) end
+    if(player:GetRottenHearts()>0) then
+        player:AddRottenHearts(-100)
+        player:AddHearts(100)
+    end
+    if(player:GetBoneHearts()>0) then player:AddBoneHearts(-100) end
+    if(player:GetEternalHearts()>0) then player:AddEternalHearts(-100) end
+    if(player:GetBrokenHearts()>0) then player:AddBrokenHearts(-100) end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, forceHealth, 0)

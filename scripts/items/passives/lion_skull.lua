@@ -18,10 +18,9 @@ local function evalCache(_, player, flag)
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
         local dmgIncrease = 0
-        if(bonus<0 or bonus>=5) then
-            if(bonus<0) then dmgIncrease = bonus*ENUM_DMG_DECREASE
-            else dmgIncrease = bonus*ENUM_DMG_INCREASE end
-        end
+        
+        if(bonus<0) then dmgIncrease = bonus*ENUM_DMG_DECREASE
+        else dmgIncrease = bonus*ENUM_DMG_INCREASE end
 
         player.Damage = player.Damage*(1+dmgIncrease)
     end
@@ -61,6 +60,6 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, applyMarkPenalties, EntityType.
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER,
 function(_)
-    Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"LION_SKULL_MARKS")), 100, 100,1,1,1,1)
+    --Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"LION_SKULL_MARKS")), 100, 30,1,1,1,1)
 end
 )

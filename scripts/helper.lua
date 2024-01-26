@@ -103,7 +103,7 @@ end
 ---Counts the number of elements in a table
 function mod:countElements(t)
     local count = 0
-    for key, val in pairs(t) do count = count+1 end
+    for _, _ in pairs(t) do count = count+1 end
 
     return count
 end
@@ -138,12 +138,30 @@ function mod:addCustomStrawman(playerType, cIndex)
 end
 
 ---true players just means they're not strawman-like characters
+function mod:isTruePlayer(player)
+    return (player.Parent==nil)
+end
+
 function mod:getNumberOfTruePlayers()
     local c = 0
     for _, player in ipairs(Isaac.FindByType(1)) do
-        if(player.Parent~=nil) then c=c+1 end
+        if(mod:isTruePlayer(player)) then c=c+1 end
     end
     return c
+end
+
+function mod:getTruePlayers()
+    local idx = 0
+    local p = {}
+    for i=0, Game():GetNumPlayers()-1 do
+        local player = Isaac.GetPlayer(i)
+        if(mod:isTruePlayer(player)) then
+            p[idx] = player
+            idx=idx+1
+        end
+    end
+
+    return p
 end
 
 ---@param f Font
@@ -206,6 +224,13 @@ end
 
 function mod:renderingAboveWater()
     return Game():GetRoom():GetRenderMode()==RenderMode.RENDER_NORMAL or Game():GetRoom():GetRenderMode()==RenderMode.RENDER_WATER_ABOVE
+end
+
+function mod:getKeyFromVal(table, val)
+    for key, v in pairs(table) do
+        if(v==val) then return key end
+    end
+    return nil
 end
 
 function mod:setBaited(e, s, d)
@@ -274,9 +299,7 @@ function mod:setMagnetized(e, s, d)
 end
 function mod:getMagnetizedFrames(e) return e:GetMagnetizedCountdown() end
 function mod:setMidasFreeze(e, s, d)
-    e:AddMidasFreeze(EntityRef(s),1)
-    e:AddEntityFlags(EntityFlag.FLAG_MIDAS_FREEZE)
-    e:SetMidasFreezeCountdown(d)
+    e:AddMidasFreeze(EntityRef(s),d-e:GetMidasFreezeCountdown())
 end
 function mod:getMidasFreezeFrames(e) return e:GetMidasFreezeCountdown() end
 function mod:setPoison(e, s, d, dmg)
@@ -302,3 +325,55 @@ function mod:setWeakness(e, s, d)
     e:SetWeaknessCountdown(d)
 end
 function mod:getWeaknessFrames(e) return e:GetWeaknessCountdown() end
+
+function mod:getHeartHudPosition(playerNum)
+    if(playerNum==0) then
+        return Vector(48,11)+Vector(20,12)*Options.HUDOffset
+    elseif(playerNum==1) then
+        return Vector(-111+Isaac.GetScreenWidth(), 11)+Vector(-24,12)*Options.HUDOffset
+    elseif(playerNum==2) then
+        return Vector(58,-28+Isaac.GetScreenHeight())+Vector(22,-6)*Options.HUDOffset
+    elseif(playerNum==3) then
+        return Vector(-111+Isaac.GetScreenWidth(),-28+Isaac.GetScreenHeight())+Vector(-24,-6)*Options.HUDOffset
+    end
+    return Vector(-100,-100)
+end
+
+---@param entity Entity
+function mod:isValidEnemy(entity)
+    return (entity:IsEnemy() and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))
+end
+
+function mod:closestEnemy(pos)
+	local entities = Isaac.GetRoomEntities()
+	local closestEnt = nil
+	local closestDist = 2^32
+
+	for i = 1, #entities do
+		if mod:isValidEnemy(entities[i]) then
+			local dist = (entities[i].Position - pos):LengthSquared()
+			if dist < closestDist then
+				closestDist = dist
+				closestEnt = entities[i]
+			end
+		end
+	end
+	return closestEnt
+end
+
+function mod:closestVisibleEnemy(pos)
+	local entities = Isaac.GetRoomEntities()
+	local closestEnt = nil
+	local closestDist = 2^32
+
+	for i = 1, #entities do
+		if(mod:isValidEnemy(entities[i]) and Game():GetRoom():CheckLine(pos, entities[i].Position, 1)) then
+			local dist = (entities[i].Position - pos):LengthSquared()
+			if dist < closestDist then
+				closestDist = dist
+				closestEnt = entities[i]
+			end
+		end
+	end
+	return closestEnt
+end

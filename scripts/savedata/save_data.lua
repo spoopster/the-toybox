@@ -80,6 +80,7 @@ function mod:saveProgress()
 
         save.itemData[seed] = convertTableToSaveData(save.itemData[seed])
     end
+    save.configData =mod:cloneTable(mod.CONFIG)
     save.pickupDataA = mod.MILCOM_A_PICKUPS or {CARDBOARD = 0, DUCT_TAPE = 0, NAILS = 0}
 
 	mod:SaveData(json.encode(save))
@@ -93,6 +94,17 @@ function mod:saveGameExit(save)
     mod:saveProgress()
 end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.saveGameExit)
+
+local function loadImportantData(_, slot)
+    if(mod:HasData()) then
+        local sd = json.decode(Isaac.LoadModData(mod))
+
+        if(sd.configData) then
+            mod.CONFIG = mod:cloneTable(sd.configData)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, loadImportantData)
 
 function mod:dataSaveInit(player)
     local pData = mod:getDataTable(player)

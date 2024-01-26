@@ -1,0 +1,11 @@
+<pocketitems>
+	<card   description="Rock and roll"         hud="Rock Mantle"       name="Mantle (ROCK)"        type="object"   pickup="2837"/>
+	<card   description="You stink"             hud="Poop Mantle"       name="Mantle (POOP)"        type="object"   pickup="2838"/>
+    <card   description="Sticks and stones"     hud="Bone Mantle"       name="Mantle (BONE)"        type="object"   pickup="2839"/>
+    <card   description="Darkness falls"        hud="Dark Mantle"       name="Mantle (DARK)"        type="object"   pickup="2840"/>
+    <card   description="Bless your soul"       hud="Holy Mantle"       name="Mantle (HOLY)"        type="object"   pickup="2841"/>
+    <card   description="Seems familiar"        hud="Salt Mantle"       name="Mantle (SALT)"        type="object"   pickup="2842"/>
+    <card   description="Brittle protection"    hud="Glass Mantle"      name="Mantle (GLASS)"       type="object"   pickup="2843"/>
+    <card   description="Tough skin"            hud="Metal Mantle"      name="Mantle (METAL)"       type="object"   pickup="2844"/>
+    <card   description="Dapper defence"        hud="Gold Mantle"       name="Mantle (GOLD)"        type="object"   pickup="2845"/>
+</pocketitems>

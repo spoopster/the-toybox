@@ -4,6 +4,7 @@ local mod = MilcomMOD
 local mod_files = {
     "scripts.enums",
     "scripts.custom_data",
+    "scripts.config",
     "scripts.helper",
     "scripts.savedata.save_data",
 
@@ -13,6 +14,8 @@ local mod_files = {
     "scripts.items.toinclude",
 
     "scripts.modcompat.eid.eid",
+
+    "scripts.toybox_imgui",
 
     --"scripts.test",
 }

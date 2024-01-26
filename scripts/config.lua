@@ -1,0 +1,6 @@
+MilcomMOD.CONFIG = {
+    ATLAS_PERSISTENT_TRANSFORMATIONS = false,
+    ATLAS_BASE_STRONGER_TAR = false,
+    ATLAS_TEMP_STRONGER_TAR = false,
+    ATLAS_TAR_CREEP = false,
+}
