@@ -34,8 +34,8 @@ local function preMantleCollision(_, pickup, collider, low)
     if(anim~="Idle") then return true end
     if(not collider:ToPlayer():IsExtraAnimationFinished()) then return nil end
 
-    sprite:Play("Collect", true)
-    pickup.SpriteScale = Vector.Zero
+    --sprite:Play("Collect", true)
+    --pickup.SpriteScale = Vector.Zero
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preMantleCollision, 300)
 

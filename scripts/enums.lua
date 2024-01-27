@@ -325,6 +325,7 @@ mod.TRANSFORMATION_TO_COSTUME = {
 }
 mod.TAR_COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_tar.anm2")
 
+-- PICKING MANTLES ENUMS
 mod.SAME_MANTLE_BIAS = {
     [0]=1,
     [1]=7.5,
@@ -343,6 +344,22 @@ mod.MANTLE_PICKER = {
     {OUTCOME=mod.MANTLES.GOLD, WEIGHT=1},
 }
 
+-- MANTLE HP RENDER ENUMS
+mod.MANTLE_SHARD_GRAVITY = 7
+mod.MANTLE_TYPE_TO_SHARD_COLOR = {
+    [mod.MANTLES.DEFAULT] = Color(153/255,139/255,136/255,1),
+    [mod.MANTLES.POOP] = Color(124/255,86/255,52/255,1),
+    [mod.MANTLES.BONE] = Color(95/255,112/255,121/255,1),
+    [mod.MANTLES.DARK] = Color(59/255,59/255,59/255,1),
+    [mod.MANTLES.HOLY] = Color(190/255,190/255,190/255,1),
+    [mod.MANTLES.SALT] = Color(1,1,1,1),
+    [mod.MANTLES.GLASS] = Color(1,1,1,1),
+    [mod.MANTLES.METAL] = Color(147/255,147/255,147/255,1),
+    [mod.MANTLES.GOLD] = Color(205/255,181/255,60/255,1),
+    [mod.MANTLES.NONE] = Color(0,0,0,0),
+    [mod.MANTLES.TAR] = Color(0,0,0,1),
+}
+
 mod.MANTLE_TYPE_TO_ANM = {
     [mod.MANTLES.DEFAULT] = "RockMantle",
     [mod.MANTLES.POOP] = "PoopMantle",
@@ -354,6 +371,7 @@ mod.MANTLE_TYPE_TO_ANM = {
     [mod.MANTLES.METAL] = "MetalMantle",
     [mod.MANTLES.GOLD] = "GoldMantle",
     [mod.MANTLES.NONE] = "Empty",
+    [mod.MANTLES.TAR] = "TarMantle",
     [1000] = "Unknown",
 }
 

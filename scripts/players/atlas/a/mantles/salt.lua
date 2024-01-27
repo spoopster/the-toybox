@@ -19,7 +19,7 @@ local ENUM_TPS_BONUS = 1/3
 local function evalCache(_, player, flag)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
 
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLES.GLASS)
+    local numMantles = mod:getNumMantlesByType(player, mod.MANTLES.SALT)
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
         player.MaxFireDelay = mod:addTps(player, ENUM_TPS_BONUS*numMantles)

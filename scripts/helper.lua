@@ -164,6 +164,14 @@ function mod:getTruePlayers()
     return p
 end
 
+function mod:getTruePlayerNumFromPlayerEnt(player)
+    for pIdx, p in pairs(mod:getTruePlayers()) do
+        if(GetPtrHash(player)==GetPtrHash(p)) then return pIdx end
+    end
+
+    return -1
+end
+
 ---@param f Font
 ---@param str string
 ---@param maxlength number

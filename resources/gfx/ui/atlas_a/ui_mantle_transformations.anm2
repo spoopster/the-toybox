@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="1/27/2024 3:09:49 PM" Version="7" Fps="30"/>
+	<Info CreatedBy="Unknown" CreatedOn="1/27/2024 3:51:47 PM" Version="7" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="..\..\ui\atlas_a\ui_mantle_health.png" Id="0"/>

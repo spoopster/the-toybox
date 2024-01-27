@@ -7,6 +7,7 @@ local HEART_REPLACEMENT_CHANCES = {
     [3]=0.65,
 }
 
+---@param pickup EntityPickup
 local function postHeartInit(_, pickup)
     local allAtlasA = mod:getAllAtlasA()
     if(#allAtlasA==0) then return end
@@ -23,7 +24,7 @@ local function postHeartInit(_, pickup)
     if(rng:RandomFloat()<chance) then
         local mantle = mod:getRandomMantle(rng)
 
-        pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, mod.MANTLE_TO_SUBTYPE[mantle])
+        pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, mod.MANTLE_TO_SUBTYPE[mantle], true)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postHeartInit, PickupVariant.PICKUP_HEART)

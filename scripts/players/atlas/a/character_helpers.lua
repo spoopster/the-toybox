@@ -1,4 +1,5 @@
 local mod = MilcomMOD
+local sfx = SFXManager()
 
 --#region DATA
 
@@ -98,6 +99,17 @@ function mod:addMantleHp(player, hpToAdd)
     if(hpToAdd<0) then
         local rIdx = mod:getRightmostMantleIdx(player)
         data.MANTLES[rIdx].HP = data.MANTLES[rIdx].HP+hpToAdd
+
+        local selMType = data.MANTLES[rIdx].TYPE
+        local rng = player:GetCardRNG(mod.MANTLES.DEFAULT)
+        local pos = mod:getMantleHeartPosition(player, rIdx)
+        local c = mod.MANTLE_TYPE_TO_SHARD_COLOR[selMType] or mod.MANTLE_TYPE_TO_SHARD_COLOR[mod.MANTLES.DEFAULT]
+        for _=1, 5 do
+            local v = Vector(rng:RandomFloat()*2+3, 0):Rotated(-90+(rng:RandomFloat()-0.5)*180)
+            local p = pos+Vector(rng:RandomFloat()-0.5, rng:RandomFloat()-0.5)*7
+
+            mod:spawnShard(player, p, v, nil, nil, c)
+        end
     else
         data.MANTLES[1].HP = data.MANTLES[1].HP+hpToAdd
     end
@@ -137,7 +149,7 @@ function mod:getSelMantleIdToDestroy(player, type)
         if(data.MANTLES[i].TYPE~=type) then return i end
     end
 
-    return 0
+    return 1
 end
 
 function mod:giveMantle(player, type)
@@ -151,6 +163,21 @@ function mod:giveMantle(player, type)
     if(rIdx==data.HP_CAP) then
         local idx = mod:getSelMantleIdToDestroy(player, type)
         if(type==mod.MANTLES.NONE) then idx=1 end
+        local selMType = data.MANTLES[idx].TYPE
+
+        local rng = player:GetCardRNG(mod.MANTLES.DEFAULT)
+        local pos = mod:getMantleHeartPosition(player, idx)
+        local c = mod.MANTLE_TYPE_TO_SHARD_COLOR[selMType] or mod.MANTLE_TYPE_TO_SHARD_COLOR[mod.MANTLES.DEFAULT]
+        for _=1, 10 do
+            local v = Vector(rng:RandomFloat()*2+3, 0):Rotated(-90+(rng:RandomFloat()-0.5)*180)
+            local p = pos+Vector(rng:RandomFloat()-0.5, rng:RandomFloat()-0.5)*7
+
+            mod:spawnShard(player, p, v, nil, nil, c)
+        end
+
+        if(selMType==mod.MANTLES.METAL or selMType==mod.MANTLES.GOLD) then sfx:Play(mod.SFX_ATLASA_METALBREAK, 0.4)
+        elseif(selMType==mod.MANTLES.GLASS) then sfx:Play(mod.SFX_ATLASA_GLASSBREAK, 0.4)
+        else sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.4) end
 
         for i=idx+1, rIdx do
             data.MANTLES[i-1] = mod:cloneTable(data.MANTLES[i])
@@ -161,6 +188,8 @@ function mod:giveMantle(player, type)
 
     mod:setMantleType(player, rIdx+1, nil, type)
     mod:updateMantles(player)
+
+    sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.3)
 end
 
 function mod:isBadMantle(mantle)
@@ -180,7 +209,7 @@ end
 
 function mod:getRandomMantle(rng)
     local ownedMantles = {}
-    for key, val in pairs(mod.MANTLES) do
+    for _, val in pairs(mod.MANTLES) do
         ownedMantles[val] = 0
     end
     for _, p in ipairs(Isaac.FindByType(1,0,mod.PLAYER_ATLAS_A)) do
@@ -192,7 +221,7 @@ function mod:getRandomMantle(rng)
         end
     end
     local numAtlasA = #mod:getAllAtlasA()
-    for key, val in pairs(mod.MANTLES) do
+    for _, val in pairs(mod.MANTLES) do
         ownedMantles[val] = ownedMantles[val]/numAtlasA
     end
 
@@ -241,4 +270,30 @@ function mod:anyAtlasAHasTransformation(type, isReal)
     end
 
     return false
+end
+
+function mod:spawnShard(player, pos, vel, lifespan, rotation, color, frame)
+    if(frame==nil) then frame=player:GetCardRNG(mod.MANTLES.DEFAULT):RandomInt(4) end
+    if(lifespan==nil) then lifespan=60 end
+    if(color==nil) then color = Color(1,1,1,1) end
+    if(rotation==nil) then rotation=0 end
+
+    local data = mod:getAtlasATable(player)
+
+    data.MANTLE_SHARDS[#data.MANTLE_SHARDS+1] = {
+        Position = pos,
+        Velocity = vel or Vector.Zero,
+        Lifespan = lifespan,
+        Lifeframes= 0,
+        Color = color,
+        Frame = frame,
+        Rotation = rotation,
+    }
+end
+
+function mod:getMantleHeartPosition(player, idx)
+    local pNum = mod:getTruePlayerNumFromPlayerEnt(player)
+    if(pNum==-1 or pNum>=4) then return Vector(-100, -100) end
+
+    return mod:getHeartHudPosition(pNum)+(idx-1)*Vector(19,0)
 end

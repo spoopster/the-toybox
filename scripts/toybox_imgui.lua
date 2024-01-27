@@ -81,7 +81,7 @@ end
 		ImGui.LinkWindowToElement('remixWindowOptions', 'remixMenuOptions')
 
 		ImGui.AddElement('remixWindowOptions', '', ImGuiElement.SeparatorText, "Cosmetic")
-
+		
 		ImGui.AddElement('remixWindowOptions', '', ImGuiElement.Separator)
 		do -- apple streaks
 			local id = 'remixMenuOptionsAppleStreaks'
