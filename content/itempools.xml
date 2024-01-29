@@ -1,0 +1,48 @@
+<ItemPools>
+    <Pool Name="treasure">
+        <Item Name="Bloody Needle"/>
+        <Item Name="Condensed Milk"/>
+        <Item Name="Goat Milk"/>
+        <Item Name="Slickwater"/>
+    </Pool>
+    <Pool Name="greedTreasure">
+        <Item Name="Bloody Needle"/>
+        <Item Name="Condensed Milk"/>
+        <Item Name="Goat Milk"/>
+        <Item Name="Slickwater"/>
+    </Pool>
+
+    <Pool Name="shop">
+        
+    </Pool>
+    <Pool Name="greedShop">
+        
+    </Pool>
+
+    <Pool Name="devil">
+        
+    </Pool>
+    <Pool Name="greedDevil">
+
+    </Pool>
+
+    <Pool Name="curse">
+        <Item Name="Bloody Needle"/>
+        <Item Name="Lion Skull"/>
+    </Pool>
+    <Pool Name="greedCurse">
+        <Item Name="Bloody Needle"/>
+        <Item Name="Lion Skull"/>
+    </Pool>
+
+    <Pool Name="secret">
+
+    </Pool>
+    <Pool Name="greedSecret">
+
+    </Pool>
+
+    <Pool Name="demonBeggar">
+        <Item Name="Bloody Needle"/>
+    </Pool>
+</ItemPools>

@@ -2,7 +2,7 @@ local mod = MilcomMOD
 
 --* TODO:
 -- polish mantle effects a bit
--- actually render his hp
+-- add functionality for healing items
 
 --#region DATA
 local ATLAS_A_BASEDATA = {

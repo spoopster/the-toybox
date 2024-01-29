@@ -30,15 +30,6 @@ local function addPoopFlies(_, player)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, addPoopFlies)
 
----@param gridEnt GridEntity
----@param player Entity
-local function healFromPoop(_, gridEnt, player, dmg, flags, u1, u2)
-    if(not (player and player:ToPlayer() and player:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
-    player = player:ToPlayer()
-    if(not (mod:atlasHasTransformation(player, mod.MANTLES.POOP))) then return end
-end
---mod:AddCallback(ModCallbacks.MC_GRID_HURT_DAMAGE, healFromPoop, GridEntityType.GRID_ROCK_SPIKED)
-
 local function poopUpdate(_, poop)
     if(Game():IsPaused()) then return end
     if(poop:GetVariant()==GridPoopVariant.RED) then return end

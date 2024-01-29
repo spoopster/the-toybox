@@ -1,7 +1,7 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2" >
 
 <passive    id="0"  name="Slickwater"           description="Speed down + firedelay down + slippery"    gfx="m_placeholder.png"         quality="2" tags="offensive summonable tearsup"     cache="speed firedelay"         />
-<passive    id="1"  name="Condensed Milk"       description="Tears + damage down?"                      gfx="m_placeholder.png"         quality="3" tags="offensive summonable"             cache="firedelay damage"        />
+<passive    id="1"  name="Condensed Milk"       description="Tears + damage down?"                      gfx="m_condensed_milk.png"      quality="3" tags="offensive summonable"             cache="firedelay damage"        />
 <passive    id="2"  name="Eyestrain"            description="MY EYES"                                   gfx="m_eyestrain.png"           quality="2" tags="offensive tearsup"                cache="firedelay damage"        />
 <passive    id="3"  name="Pile of Sand"         description="Itchy and painful"                         gfx="m_pile_of_sand.png"        quality="2" tags="offensive summonable"             cache=""                        />
 <passive    id="4"  name="Obsidian Shard"       description="Cutting edge + &quot;tinted&quot; rocks"   gfx="m_obsidian_shard.png"      quality="3" tags="offensive"                        cache=""                        />
@@ -12,5 +12,8 @@
 <passive    id="9"  name="Lion Skull"           description="You shall know discipline"                 gfx="m_lion_skull.png"          quality="2" tags="offensive summonable"             cache="damage"                  />
 <passive    id="10" name="Cursed Chains"        description="You shall know restraint"                  gfx="m_cursed_chains.png"       quality="1" tags="offensive summonable"             cache="all"                     />
 <passive    id="11" name="Mammon's Offering"    description="You shall know charity"                    gfx="m_mammons_offering.png"    quality="2" tags="offensive summonable"             cache="damage"                  />
+<familiar   id="12" name="Wooden Doll"          description="He's a real boy!"                          gfx="m_wooden_doll.png"         quality="2" tags="offensive summonable"             cache=""                        />
+<passive    id="13" name="Caramel Apple"        description="HP up + better hearts"                     gfx="m_caramel_apple.png"       quality="1" tags="nolostbr"                         cache=""                        maxhearts="2" hearts="2"/>
+<active     id="14" name="Blood Ritual"         description="Call upon him and he shall answer"         gfx="m_blood_ritual.png"        quality="2" tags="offensive"                        cache="familiars"               maxcharges="4"/>
 
 </items>

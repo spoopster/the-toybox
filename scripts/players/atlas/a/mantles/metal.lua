@@ -13,9 +13,9 @@ end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_METAL)
 
 local ENUM_SPEED_BONUS = -0.1
-local ENUM_BLOCKCHANCE = 1/12 --1/4 for all 3
+local ENUM_BLOCKCHANCE = 1/15 --1/4 for all 3
 local ENUM_DAMAGECOOLDOWN = 60
-local ENUM_TRANSF_BLOCKCHANCE = 1/2
+local ENUM_TRANSF_BLOCKCHANCE = 1/3
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
