@@ -7,6 +7,7 @@ HP_SPRITE:Play("RockMantle", true)
 local TRANSF_SPRITE = Sprite()
 TRANSF_SPRITE:Load("gfx/ui/atlas_a/ui_mantle_transformations.anm2", true)
 TRANSF_SPRITE:Play("RockMantle", true)
+TRANSF_SPRITE.Offset = Vector(0,-1)
 
 local f = Font()
 f:Load("font/pftempestasevencondensed.fnt")
@@ -20,7 +21,7 @@ local function renderTest(_, offset, sprite, pos, u)
 
     return true
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_HEARTS, renderTest)
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_HEARTS, -1e6, renderTest)
 
 local function renderMantleShards(player, hasUnknown)
     local data = mod:getAtlasATable(player)

@@ -13,9 +13,9 @@ end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_METAL)
 
 local ENUM_SPEED_BONUS = -0.1
-local ENUM_BLOCKCHANCE = 1/15 --1/4 for all 3
+local ENUM_BLOCKCHANCE = 1/15 --1/5 for all 3
 local ENUM_DAMAGECOOLDOWN = 60
-local ENUM_TRANSF_BLOCKCHANCE = 1/3
+local ENUM_TRANSF_BLOCKCHANCE = 1/4
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
@@ -31,7 +31,7 @@ end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player Entity
-local function cancelMetalDamage(_, player, dmg, flags, _, frames)
+local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
     local data = mod:getAtlasATable(player)
@@ -48,7 +48,7 @@ local function cancelMetalDamage(_, player, dmg, flags, _, frames)
         end
 
         if(rng:RandomFloat()<blockChance) then
-            player:SetMinDamageCooldown(ENUM_DAMAGECOOLDOWN)
+            player:SetMinDamageCooldown(ENUM_DAMAGECOOLDOWN*(player:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
             player:SetColor(Color(0,0,0.5,1,0.9,0.9,1),10,0,true,false)
 
             sfx:Play(mod.SFX_ATLASA_METALBLOCK)
@@ -57,7 +57,8 @@ local function cancelMetalDamage(_, player, dmg, flags, _, frames)
         end
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e6, cancelMetalDamage, EntityType.ENTITY_PLAYER)
+if(CustomHealthAPI) then mod:addCallbackMantleDamage(cancelAtlasAMetalMantleDamage)
+else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12, cancelAtlasAMetalMantleDamage, EntityType.ENTITY_PLAYER) end
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)

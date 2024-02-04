@@ -1,5 +1,22 @@
 local mod = MilcomMOD
 
+local HP_SPRITE = Sprite()
+HP_SPRITE:Load("gfx/ui/atlas_a/ui_mantle_hp.anm2", true)
+HP_SPRITE:Play("RockMantle", true)
+
+local TRANSF_SPRITE = Sprite()
+TRANSF_SPRITE:Load("gfx/ui/atlas_a/ui_mantle_transformations.anm2", true)
+TRANSF_SPRITE.Color = Color(1,1,1,0.75)
+TRANSF_SPRITE:Play("RockMantle", true)
+TRANSF_SPRITE.Offset = Vector(0,-1)
+
+local PRICE_WIDTH = 12
+
+local function getMantleDealPrice(pickup)
+    if(pickup.Variant==PickupVariant.PICKUP_COLLECTIBLE) then return Isaac.GetItemConfig():GetCollectible(pickup.SubType).DevilPrice end
+    return 1
+end
+
 ---@param pickup EntityPickup
 ---@param player EntityPlayer
 local function forceDevilDealPickup(_, pickup, player)
@@ -9,8 +26,11 @@ local function forceDevilDealPickup(_, pickup, player)
     if(not player:IsExtraAnimationFinished()) then return end
     if(not pickup:IsShopItem()) then return end
     if(not (pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE)) then return end
+    if(pickup.Wait>0) then return end
 
-    local price = (pickup.Variant==PickupVariant.PICKUP_COLLECTIBLE and Isaac.GetItemConfig():GetCollectible(pickup.SubType).DevilPrice) or 1
+    print(pickup.Wait)
+
+    local price = getMantleDealPrice(pickup)
 
     local data = mod:getAtlasATable(player)
 
@@ -28,5 +48,26 @@ local function forceDevilDealPickup(_, pickup, player)
     return true
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, forceDevilDealPickup)
+
+---@param pickup EntityPickup
+local function pickupRenderAtlasPrice(_, pickup, offset)
+    if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)) then return end
+    if(not pickup:IsShopItem()) then return end
+    if(not (pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE)) then return end
+
+    local mantlesToRender = getMantleDealPrice(pickup)
+    local renderPos = Isaac.WorldToScreen(pickup.Position)+Vector(0,28)
+
+    for i=0, mantlesToRender do
+        local o = Vector(PRICE_WIDTH*(i-(mantlesToRender+1)/2)+1,0)
+
+        if(i==0) then
+            TRANSF_SPRITE:Render(renderPos+o)
+        else
+            HP_SPRITE:Render(renderPos+o)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, pickupRenderAtlasPrice, PickupVariant.PICKUP_COLLECTIBLE)
 
 --! TODO: RENDER ATLAS MANTLE COST INSTEAD OF HEART COST IF ATLAS

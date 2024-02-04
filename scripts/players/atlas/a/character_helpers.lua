@@ -297,3 +297,9 @@ function mod:getMantleHeartPosition(player, idx)
 
     return mod:getHeartHudPosition(pNum)+(idx-1)*Vector(19,0)
 end
+
+function mod:addCallbackMantleDamage(func, priority)
+    table.insert(mod.ATLAS_A_MANTLE_DMGCALLBACKS, {Function=func, Priority=(priority or 0)})
+
+    table.sort(mod.ATLAS_A_MANTLE_DMGCALLBACKS, function(a,b) return a.Priority<=b.Priority end)
+end

@@ -15,7 +15,6 @@ local MILCOM_A_BASEDATA = {
     
     POS_OFFSET = Vector(1,1)*1e2,
     RENDERING_PLAYER = false,
-    LIGHT_RENDERER = nil, 
 
     --CRAFTING STUFF
     MENU_OPEN_FRAMES = 0,

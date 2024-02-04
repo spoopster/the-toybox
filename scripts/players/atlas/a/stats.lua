@@ -9,7 +9,7 @@ local function atlasAInit(_, player)
         player:EvaluateItems()
     end
 end
-mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, atlasAInit)
+--mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, atlasAInit)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag

@@ -13,7 +13,7 @@
 <passive    id="10" name="Cursed Chains"        description="You shall know restraint"                  gfx="m_cursed_chains.png"       quality="1" tags="offensive summonable"             cache="all"                     />
 <passive    id="11" name="Mammon's Offering"    description="You shall know charity"                    gfx="m_mammons_offering.png"    quality="2" tags="offensive summonable"             cache="damage"                  />
 <familiar   id="12" name="Wooden Doll"          description="He's a real boy!"                          gfx="m_wooden_doll.png"         quality="2" tags="offensive summonable"             cache=""                        />
-<passive    id="13" name="Caramel Apple"        description="HP up + better hearts"                     gfx="m_caramel_apple.png"       quality="1" tags="nolostbr"                         cache=""                        maxhearts="2" hearts="2"/>
-<active     id="14" name="Blood Ritual"         description="Call upon him and he shall answer"         gfx="m_blood_ritual.png"        quality="2" tags="offensive"                        cache="familiars"               maxcharges="4"/>
+<passive    id="13" name="Caramel Apple"        description="HP up + better hearts"                     gfx="m_caramel_apple.png"       quality="2" tags="nolostbr"                         cache=""                        maxhearts="2" hearts="2"/>
+<active     id="14" name="Blood Ritual"         description="Call upon him and he shall answer"         gfx="m_blood_ritual.png"        quality="2" tags="offensive"                        cache="familiars"               maxcharges="3" devilprice="1"/>
 
 </items>

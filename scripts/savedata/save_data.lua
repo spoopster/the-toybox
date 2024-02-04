@@ -127,11 +127,11 @@ function mod:dataSaveInit(player)
 
             local milcomData = save.milcomData[pSeed]
             local atlasData = save.atlasData[pSeed]
-            if(player:GetPlayerType()==mod.PLAYER_MILCOM_A and milcomData["CHARACTER_SIDE"]=="A") then
-                if(milcomData) then mod.MILCOM_A_DATA[player.InitSeed] = convertSaveDataToTable(milcomData)
+            if(player:GetPlayerType()==mod.PLAYER_MILCOM_A) then
+                if(milcomData and milcomData["CHARACTER_SIDE"]=="A") then mod.MILCOM_A_DATA[player.InitSeed] = convertSaveDataToTable(milcomData)
                 else mod.MILCOM_A_DATA[player.InitSeed] = mod:cloneTable(mod.MILCOM_A_BASEDATA) end
-            elseif(player:GetPlayerType()==mod.PLAYER_ATLAS_A and atlasData["CHARACTER_SIDE"]=="A") then
-                if(atlasData) then mod.ATLAS_A_DATA[player.InitSeed] = convertSaveDataToTable(atlasData)
+            elseif(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+                if(atlasData and atlasData["CHARACTER_SIDE"]=="A") then mod.ATLAS_A_DATA[player.InitSeed] = convertSaveDataToTable(atlasData)
                 else mod.ATLAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.ATLAS_A_BASEDATA) end
             end
 

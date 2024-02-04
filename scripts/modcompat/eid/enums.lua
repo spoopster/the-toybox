@@ -10,7 +10,48 @@ local ITEMS = {
             "\1 Every floor, you get a small stat-up to a non-speed stat",
             "\2 Every floor, you get a small stat-down to a non-speed stat",
         },
-    }
+    },
+    [mod.COLLECTIBLE_CARAMEL_APPLE] = {
+        Name = "Caramel Apple",
+        Description = {
+            "\1 +1 Health",
+            "\1 Picking up a heart has a 25% chance to give an additional unit of the same heart type, if possible",
+        },
+        --[[  exampel
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_ISAAC)
+                end,
+                DescriptionToAdd = {
+                    "\1 Test Any Player Is Isaac (ADD TO BOTTOM)",
+                },
+            },
+            {
+                AddToTop=true,
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SAD_ONION)
+                end,
+                DescriptionToAdd = {
+                    "\1 Test Any Player Has Sad Onion (ADD TO TOP)",
+                },
+            },
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_ISAAC)
+                end,
+                TextToModify = {
+                    {--↑
+                        Old = "\1 %+1 Health",
+                        New = "{{ColorLime}}+20000 health (this is green bc player is isaac){{CR}}"
+                    }
+                },
+            },
+        },
+        --]]
+    },
 }
 
 local TRINKETS = {}

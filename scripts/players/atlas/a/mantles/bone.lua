@@ -27,7 +27,7 @@ local ENUM_VALID_HEARTSUBTYPES = {
     [HeartSubType.HEART_ROTTEN] = Color(0.4,0,0,1,0.2,0,0),
 }
 
-local function mantleDamage(_, player, dmg, flags, _, frames)
+local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLES.BONE)) then return end
@@ -40,12 +40,13 @@ local function mantleDamage(_, player, dmg, flags, _, frames)
         boneTear.CollisionDamage = ENUM_BONES_DMG
     end
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mantleDamage, EntityType.ENTITY_PLAYER)
+if(CustomHealthAPI) then mod:addCallbackMantleDamage(mantleDamage, -1e6)
+else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12-1, mantleDamage, EntityType.ENTITY_PLAYER) end
 
 local function mantleKill(_, entity)
     if(entity.MaxHitPoints<1) then return end
     if(not entity:IsEnemy()) then return end
-    if(not mod:isAnyPlayerAtlasA()) then return end
+    if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)) then return end
 
     local rng = entity:GetDropRNG()
     local numTransformations = 0
@@ -88,7 +89,7 @@ local function healWithHearts(_, pickup, player)
         return false
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, healWithHearts, PickupVariant.PICKUP_HEART)
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, 1e12, healWithHearts, PickupVariant.PICKUP_HEART)
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)

@@ -32,8 +32,18 @@ mod.COLLECTIBLE_NOSE_CANDY = Isaac.GetItemIdByName("Nose Candy") --
 mod.COLLECTIBLE_LION_SKULL = Isaac.GetItemIdByName("Lion Skull") --
 mod.COLLECTIBLE_CURSED_CHAINS = Isaac.GetItemIdByName("Cursed Chains")
 mod.COLLECTIBLE_MAMMONS_OFFERING = Isaac.GetItemIdByName("Mammon's Offering")
+mod.COLLECTIBLE_WOODEN_DOLL = Isaac.GetItemIdByName("Wooden Doll")
+mod.COLLECTIBLE_CARAMEL_APPLE = Isaac.GetItemIdByName("Caramel Apple")
+mod.COLLECTIBLE_BLOOD_RITUAL = Isaac.GetItemIdByName("Blood Ritual") --
 
 --#region
+
+--#region ENTITIES
+
+--EFFECTS
+mod.EFFECT_BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram")
+
+--#endregion
 
 --#endregion
 --#region MILCOM_A
@@ -254,6 +264,7 @@ mod.CONSUMABLE_MANTLE_GLASS = Isaac.GetCardIdByName("Glass Mantle")
 mod.CONSUMABLE_MANTLE_METAL = Isaac.GetCardIdByName("Metal Mantle")
 mod.CONSUMABLE_MANTLE_GOLD = Isaac.GetCardIdByName("Gold Mantle")
 
+mod.EFFECT_ATLAS_BOOKOFSHADOWS_BUBBLE = Isaac.GetEntityVariantByName("ATLAS BOOK OF SHADOWS BUBBLE")
 mod.EFFECT_GOLDMANTLE_BREAK = Isaac.GetEntityVariantByName("Gold Mantle Shatter")
 
 mod.SFX_ATLASA_ROCKHURT = Isaac.GetSoundIdByName("AtlasA_RockHurt")

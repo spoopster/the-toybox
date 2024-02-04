@@ -12,6 +12,8 @@ local BASEDATA = {
     },
     MAMMONS_OFFERING_BONUS = 0,
     LION_SKULL_MARKS = 0,
+    BLOOD_RITUAL_DATA = {},
+    CARAMEL_APPLE_DATA = {},
 }
 
 return BASEDATA

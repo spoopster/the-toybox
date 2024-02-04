@@ -36,7 +36,7 @@ end
 local function modifyEIDDescValues(desc, values)
     local newDesc = desc
     for i, tab in ipairs(values) do
-        newDesc = newDesc:gsub(tab.Old, tab.New)
+        newDesc = string.gsub(newDesc, tab.Old, tab.New)
     end
 
     return newDesc
@@ -72,8 +72,118 @@ local function atlasMantleDescription(descData, id)
     )
 end
 
+local function addExtraDescriptionStuff(entData)
+    local desc = {}
+    if(entData[1]==5 and entData[2]==100) then desc = descs.ITEMS[entData[3]]
+    elseif(entData[1]==5 and entData[2]==300) then desc = descs.CARDS[entData[3]]
+    elseif(entData[1]==5 and entData[2]==350) then desc = descs.TRINKETS[entData[3]]
+    else return end
+
+    if(desc==nil) then return end
+
+    if(desc.DescriptionAppend) then
+        EID:addDescriptionModifier(
+            "TOYBOX-"..tostring(entData[1]).."."..tostring(entData[2]).."."..tostring(entData[3]).."-".."AppendDesc",
+            function(descObj)
+                if(not (descObj.ObjType==entData[1] and descObj.ObjVariant==entData[2] and descObj.ObjSubType==entData[3])) then return false end
+                local ok = false
+                for _, mData in ipairs(desc.DescriptionAppend) do
+                    if(ok~=false) then break end
+                    ok = ok or mData.Condition(descObj)
+                end
+
+                return ok
+            end,
+            function(descObj)
+                for _, mData in ipairs(desc.DescriptionAppend) do
+                    if(mData.Condition(descObj)) then
+                        if(mData.AddToTop==true) then
+                            descObj.Description = turnStringTableToEIDDesc(mData.DescriptionToAdd).."#"..descObj.Description
+                        else
+                            descObj.Description = descObj.Description.."#"..turnStringTableToEIDDesc(mData.DescriptionToAdd)
+                        end
+                    end
+                end
+    
+                return descObj
+            end
+        )
+    end
+    if(desc.DescriptionModifiers) then
+        EID:addDescriptionModifier(
+            "TOYBOX-"..tostring(entData[1]).."."..tostring(entData[2]).."."..tostring(entData[3]).."-".."ModifyDesc",
+            function(descObj)
+                if(not (descObj.ObjType==entData[1] and descObj.ObjVariant==entData[2] and descObj.ObjSubType==entData[3])) then return false end
+                local ok = false
+                for _, mData in ipairs(desc.DescriptionModifiers) do
+                    if(ok~=false) then break end
+                    ok = ok or mData.Condition(descObj)
+                end
+
+                return ok
+            end,
+            function(descObj)
+                for _, mData in ipairs(desc.DescriptionModifiers) do
+                    if(mData.Condition(descObj)) then
+                        descObj.Description = modifyEIDDescValues(descObj.Description, mData.TextToModify)
+                    end
+                end
+    
+                
+
+                return descObj
+            end
+        )
+    end
+end
+
 for key, data in pairs(descs.ITEMS) do
     EID:addCollectible(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
+
+    addExtraDescriptionStuff({5,100,key})
+    --[[
+    if(data.DescriptionAppend) then
+        EID:addDescriptionModifier(
+            tostring(data.Name).."AddToBottom",
+            function(descObj)
+                if(not (descObj.ObjType==5 and descObj.ObjVariant==100 and descObj.ObjSubType==key)) then return false end
+                local ok = false
+                for _, mData in ipairs(descs.ITEMS[descObj.ObjSubType].DescriptionAppend) do
+                    if(ok~=false) then break end
+                    ok = ok or mData.Condition(descObj)
+                end
+
+                return ok
+            end,
+            function(descObj)
+                for _, mData in ipairs(descs.ITEMS[descObj.ObjSubType].DescriptionAppend) do
+                    if(mData.Condition(descObj)) then
+                        descObj.Description = descObj.Description.."#"..turnStringTableToEIDDesc(mData.DescriptionToAdd)
+                    end
+                end
+    
+                return descObj
+            end
+        )
+        --[[
+        for i, mData in ipairs(data.DescriptionAppend) do
+        
+            EID:addDescriptionModifier(
+                tostring(data.Name).."AddToBottom"..tostring(i),
+                mData.Condition,
+                function(entity)
+                    local extraDesc = turnStringTableToEIDDesc(mData.DescriptionToAdd)
+        
+                    entity.Description = entity.Description.."#"..extraDesc
+        
+                    return entity
+                end
+            )
+
+        end
+        --] ]
+    end
+    --]]
 end
 
 local cardSprite = Sprite()

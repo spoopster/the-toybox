@@ -4,12 +4,7 @@ local mod = MilcomMOD
 local function milcomBInit(_, player)
     if(player:GetPlayerType()==mod.PLAYER_MILCOM_B) then
         local pgd = Isaac.GetPersistentGameData()
-        if(pgd:Unlocked(mod.ACH_MILCOM_B)) then
-            player:AddMaxHearts(6)
-            player:AddHearts(6)
-            player:AddCacheFlags(CacheFlag.CACHE_ALL)
-            player:EvaluateItems()
-        else
+        if(not pgd:Unlocked(mod.ACH_MILCOM_B)) then
             player:ChangePlayerType(0)
             player:AddMaxHearts(6)
             player:AddHearts(6)

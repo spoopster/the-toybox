@@ -39,7 +39,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 ---@param player EntityPlayer
 local function mantleDestroyed(_, player, mantle)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLES.GOLD)) then return end
+    if(not (mod:atlasHasTransformation(player, mod.MANTLES.GOLD) or mantle==mod.MANTLES.GOLD)) then return end
 
     for _, ent in ipairs(Isaac.FindInRadius(player.Position, ENUM_LOSTMANTLE_FREEZE_DIST, EntityPartition.ENEMY)) do
         if(ent:IsVulnerableEnemy() and not ent:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then

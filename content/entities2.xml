@@ -1,4 +1,13 @@
 <entities anm2root="gfx/" version="5">
+    <!-- EFFECTS A -->
+    <entity name="Blood Ritual Pentagram"
+        id="1000" variant="2948" anm2path="effects/blood_ritual_effect.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <!-- MILCOM A -->
     <entity name="MATERIAL - Cardboard"
         id="5" variant="24871" subtype="0" anm2path="pickups/pickup_cardboard.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
@@ -18,13 +27,7 @@
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
-    <entity name="MILCOM LIGHT FAMILIAR"
-        id="3" variant="8374" subtype="0" anm2path="milcom_customlight.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
-        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-
+    <!-- ATLAS A -->
     <entity name="Mantle (ROCK)"
         id="5" variant="300" subtype="2837" anm2path="pickups/consumable_mantle_rock.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
@@ -80,6 +83,12 @@
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
+    <entity name="ATLAS BOOK OF SHADOWS BUBBLE"
+        id="1000" variant="28471" anm2path="effects/atlas_a_goldbreak.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
     <entity name="Gold Mantle Shatter"
         id="1000" variant="2841" anm2path="effects/atlas_a_goldbreak.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"

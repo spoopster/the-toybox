@@ -12,6 +12,13 @@
         <Item Name="Slickwater"/>
     </Pool>
 
+    <Pool Name="boss">
+        <Item Name="Caramel Apple"/>
+    </Pool>
+    <Pool Name="greedBoss">
+        <Item Name="Caramel Apple"/>
+    </Pool>
+
     <Pool Name="shop">
         
     </Pool>
@@ -20,10 +27,10 @@
     </Pool>
 
     <Pool Name="devil">
-        
+        <Item Name="Blood Ritual"/>
     </Pool>
     <Pool Name="greedDevil">
-
+        <Item Name="Blood Ritual"/>
     </Pool>
 
     <Pool Name="curse">

@@ -113,7 +113,7 @@ local function timeInTransfUpdate(_, player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, timeInTransfUpdate)
 
-local function mantleDamage(_, player, dmg, flags, _, frames)
+local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
     local data = mod:getAtlasATable(player)
@@ -132,7 +132,46 @@ local function mantleDamage(_, player, dmg, flags, _, frames)
         }
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e6+1, mantleDamage, EntityType.ENTITY_PLAYER)
+if(CustomHealthAPI) then mod:addCallbackMantleDamage(mantleDamage, 1e6)
+else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12+1, mantleDamage, EntityType.ENTITY_PLAYER) end
+
+if(CustomHealthAPI) then
+
+local function applyCHAPIDamage(_, player, dmg, flags, source, frames)
+    player = player:ToPlayer()
+    if(mod:getData(player, "CANCEL_CHAPI_DMG")~=true) then return end
+
+    for _, d in ipairs(mod.ATLAS_A_MANTLE_DMGCALLBACKS) do
+        local r = d.Function(mod, player, dmg, flags, source, frames)
+        if(r~=nil) then
+            mod:setData(player, "CANCEL_CHAPI_DMG", nil)
+            return r
+        end
+    end
+
+    mod:setData(player, "CANCEL_CHAPI_DMG", nil)
+
+    return false
+end
+mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -math.huge, applyCHAPIDamage, EntityType.ENTITY_PLAYER)
+
+local function cancelCHAPIDmg(player, dmg, flags, source, frames)
+    player = player:ToPlayer()
+    if(mod:getData(player, "CANCEL_CHAPI_DMG")==true) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    local data = mod:getAtlasATable(player)
+    if(not (data and data.TRANSFORMATION~=mod.MANTLES.TAR)) then return end
+
+    if(dmg>0) then
+        mod:setData(player, "CANCEL_CHAPI_DMG", true)
+        player:TakeDamage(dmg, flags, source, frames)
+
+        return true
+    end
+end
+CustomHealthAPI.Library.AddCallback(mod, CustomHealthAPI.Enums.Callbacks.PRE_PLAYER_DAMAGE, 1e12, cancelCHAPIDmg)
+
+end
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
@@ -151,4 +190,4 @@ local function changeFlightCostume(_, player, flag)
         end
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 1e6, changeFlightCostume)
+mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 1e12, changeFlightCostume)
