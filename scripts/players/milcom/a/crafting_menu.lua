@@ -68,6 +68,27 @@ heldCraftableSprite:Play("Main", true)
 
 local menuSprite = Sprite()
 menuSprite:Load("gfx/ui/milcom_a/crafting/milcom_a_crafting.anm2", true)
+
+local menuBackgroundSprite = Sprite()
+menuBackgroundSprite:Load("gfx/ui/milcom_a/crafting/milcom_a_crafting.anm2", true)
+menuBackgroundSprite:Play("Background", true)
+
+local menuCraftableSprite = Sprite()
+menuCraftableSprite:Load("gfx/ui/milcom_a/crafting/milcom_a_crafting.anm2", true)
+menuCraftableSprite:Play("Craftable", true)
+
+local menuTierSprite = Sprite()
+menuTierSprite:Load("gfx/ui/milcom_a/crafting/milcom_a_crafting.anm2", true)
+menuTierSprite:Play("Tier", true)
+
+local menuMaxCrossSprite = Sprite()
+menuMaxCrossSprite:Load("gfx/ui/milcom_a/crafting/milcom_a_crafting.anm2", true)
+menuMaxCrossSprite:Play("MaxedCross", true)
+
+local menuSelectionSprite = Sprite()
+menuSelectionSprite:Load("gfx/ui/milcom_a/crafting/milcom_a_crafting.anm2", true)
+menuSelectionSprite:Play("Selection", true)
+
 --[[
 layers:
     - 0 = the item (frames are diff items)
@@ -381,81 +402,94 @@ local function renderCraftingMenuNOCOOP(_)
     end
 
     --RENDERING EVERYTHING
+    local menuColor = Color(1,1,1,a)
     local selectedItem = nil
 
-    menuSprite:Play("Background", true)
-    menuSprite:SetLayerFrame(6, 0)
-    menuSprite:SetLayerFrame(5, 0)
-    menuSprite:SetLayerFrame(4, 0)
-    menuSprite:SetLayerFrame(3, 0)
+    --BACKGROUND+ARROWS
+    menuBackgroundSprite.Color = menuColor
+    menuBackgroundSprite:SetLayerFrame(6, 0)
+    menuBackgroundSprite:SetLayerFrame(5, 0)
+    menuBackgroundSprite:SetLayerFrame(4, 0)
+    menuBackgroundSprite:SetLayerFrame(3, 0)
     if(data.SHIFT_INPUTFRAMES_RIGHT>0) then
-        menuSprite:SetLayerFrame(4, 1)
+        menuBackgroundSprite:SetLayerFrame(4, 1)
     elseif(data.SHIFT_INPUTFRAMES_LEFT>0) then
-        menuSprite:SetLayerFrame(3, 1)
+        menuBackgroundSprite:SetLayerFrame(3, 1)
     end
     if(data.SHIFT_INPUTFRAMES_UP>0) then
-        menuSprite:SetLayerFrame(5, 1)
+        menuBackgroundSprite:SetLayerFrame(5, 1)
     elseif(data.SHIFT_INPUTFRAMES_DOWN>0) then
-        menuSprite:SetLayerFrame(6, 1)
+        menuBackgroundSprite:SetLayerFrame(6, 1)
     end
+    menuBackgroundSprite:Render(renderPos)
 
-    menuSprite:Render(renderPos)
-
+    --[[
     local function sortFunction(x,y) return math.abs(x.Position.X)>math.abs(y.Position.X) end
 
     table.sort(DISPLAYED_ITEMS, sortFunction)
     table.sort(DISPLAYED_INVITEMS, sortFunction)
+    --]]
 
+    --CRAFTABLES
     for _, iData in ipairs(DISPLAYED_ITEMS) do
         local itemPos = renderPos+iData.Position
-
-        menuSprite:Play("Main", true)
-
-        menuSprite.Color = iData.Color
-        menuSprite.Scale = iData.Scale
         
-        menuSprite:SetLayerFrame(0, mod.CRAFTABLES_A[iData.Item.NAME].FRAME)
-        menuSprite:SetLayerFrame(1, iData.Item.LEVEL)
+        menuTierSprite.Color = iData.Color
+        menuTierSprite.Scale = iData.Scale
+        menuTierSprite:SetFrame(iData.Item.LEVEL)
+        menuTierSprite:Render(itemPos)
 
-        menuSprite:Render(itemPos)
+        menuCraftableSprite.Color = iData.Color
+        menuCraftableSprite.Scale = iData.Scale
+        menuCraftableSprite:SetFrame(mod.CRAFTABLES_A[iData.Item.NAME].FRAME)
+        menuCraftableSprite:Render(itemPos)
 
         if(iData.Item.ISMAXED==true) then
-            menuSprite:Play("MaxedCross", true)
-            menuSprite:Render(itemPos)
+            menuMaxCrossSprite.Color = iData.Color
+            menuMaxCrossSprite.Scale = iData.Scale
+            menuMaxCrossSprite:Render(itemPos)
         end
-        if(iData.IsSelected) then
-            selectedItem = iData.Item
-        end
+        if(iData.IsSelected) then selectedItem = iData.Item end
     end
     for _, iData in ipairs(DISPLAYED_INVITEMS) do
         if(iData.Exists~=false) then
-            menuSprite:Play("Main", true)
-
-            menuSprite.Color = iData.Color
-            menuSprite.Scale = iData.Scale
+            local itemPos = renderPos+iData.Position+data.INV_CRAFTABLE_OFFSET
             
-            menuSprite:SetLayerFrame(0, mod.CRAFTABLES_A[iData.Item.NAME].FRAME)
-            menuSprite:SetLayerFrame(1, iData.Item.LEVEL)
+            menuTierSprite.Color = iData.Color
+            menuTierSprite.Scale = iData.Scale
+            menuTierSprite:SetFrame(iData.Item.LEVEL)
+            menuTierSprite:Render(itemPos)
 
-            menuSprite:Render(renderPos+data.INV_CRAFTABLE_OFFSET+iData.Position)
+            menuCraftableSprite.Color = iData.Color
+            menuCraftableSprite.Scale = iData.Scale
+            menuCraftableSprite:SetFrame(mod.CRAFTABLES_A[iData.Item.NAME].FRAME)
+            menuCraftableSprite:Render(itemPos)
 
-            if(iData.IsSelected) then
-                selectedItem = iData.Item
-            end
+            if(iData.IsSelected) then selectedItem = iData.Item end
         end
     end
 
-    menuSprite:Play("Selection", true)
-    if(data.SELECTED_MENU==1) then menuSprite:Render(renderPos)
-    elseif(data.SELECTED_MENU==2) then menuSprite:Render(renderPos+data.INV_CRAFTABLE_OFFSET) end
+    -- SELECTION
+    menuSelectionSprite.Color = menuColor
+    if(data.SELECTED_MENU==1) then
+        menuSelectionSprite:Render(renderPos)
+    elseif(data.SELECTED_MENU==2) then
+        menuSelectionSprite:Render(renderPos+data.INV_CRAFTABLE_OFFSET)
+    end
 
     if(selectedItem) then
         local enumData = mod.CRAFTABLES_A[selectedItem.NAME]
+
+        local PRICE_PICKUPS = {enumData.COST.CARDBOARD,enumData.COST.TAPE,enumData.COST.NAILS}
+        local OWNED_PICKUPS = {mod.MILCOM_A_PICKUPS.CARDBOARD,mod.MILCOM_A_PICKUPS.DUCT_TAPE,mod.MILCOM_A_PICKUPS.NAILS}
+        local CAN_AFFORD = {PRICE_PICKUPS[1]<=OWNED_PICKUPS[1],PRICE_PICKUPS[2]<=OWNED_PICKUPS[2],PRICE_PICKUPS[3]<=OWNED_PICKUPS[3]}
+
         local textColor = KColor(1,1,1,a)
+        local evilTextColor = KColor(1,0.25,0.25,a)
 
         if(data.SELECTED_MENU==1 and (not selectedItem.ISMAXED)) then
             if(Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex)) then
-                if(enumData.COST.CARDBOARD<=mod.MILCOM_A_PICKUPS.CARDBOARD and enumData.COST.TAPE<=mod.MILCOM_A_PICKUPS.DUCT_TAPE and enumData.COST.NAILS<=mod.MILCOM_A_PICKUPS.NAILS) then
+                if(CAN_AFFORD[1] and CAN_AFFORD[2] and CAN_AFFORD[3]) then
                     mod:addCraftable(player, selectedItem.NAME)
 
                     mod:addCardboard(-enumData.COST.CARDBOARD, enumData.NAME=="CREDIT CARDBOARD")
@@ -474,11 +508,15 @@ local function renderCraftingMenuNOCOOP(_)
 
         local itemPos = renderPos+data.DATA_CRAFTABLE_OFFSET
 
-        menuSprite:Play("Main", true)
-        menuSprite:SetLayerFrame(0, enumData.FRAME)
-        menuSprite:SetLayerFrame(1, selectedItem.LEVEL)
-        menuSprite:Render(itemPos)
+        menuTierSprite.Color = menuColor
+        menuTierSprite:SetFrame(enumData.LEVEL)
+        menuTierSprite:Render(itemPos)
 
+        menuCraftableSprite.Color = menuColor
+        menuCraftableSprite:SetFrame(enumData.FRAME)
+        menuCraftableSprite:Render(itemPos)
+
+        --CRAFTABLE TITLE+DESCRIPTION
         local formattedTitle = mod:separateStringIntoLines(f, enumData.NAME, data.DATA_TITLESIZE.X)
         local titleTotalHeight = 0
         local titleLineHeight = f:GetLineHeight()-2
@@ -491,16 +529,17 @@ local function renderCraftingMenuNOCOOP(_)
             f:DrawStringScaled(titleLine, itemPos.X+20, itemPos.Y-20+baseHeight+(i-1)*titleLineHeight-3, 1,1, textColor, data.DATA_TITLESIZE.X, true)
         end
 
+        --CRAFTABLE PRICE
         priceHudSprite:Play("Pickups", true)
-        local PRICEORDER = {"CARDBOARD", "TAPE", "NAILS"}
+        --local PRICEORDER = {"CARDBOARD", "TAPE", "NAILS"}
         for i=0,2 do
             local pricePos = Vector(itemPos.X-19+(i/3)*data.DATA_DESCRIPTIONSIZE.X, itemPos.Y+19)
-            local price = enumData.COST[PRICEORDER[i+1]]
+            local price = PRICE_PICKUPS[i+1]--enumData.COST[PRICEORDER[i+1]]
 
             priceHudSprite:SetFrame(i)
             priceHudSprite:Render(pricePos)
 
-            f:DrawStringScaled(tostring(math.floor((price%100-price%10)/10))..tostring(price%10), pricePos.X+18, pricePos.Y, 1,1, textColor)
+            f:DrawStringScaled(tostring(math.floor((price%100-price%10)/10))..tostring(price%10), pricePos.X+18, pricePos.Y, 1,1, (CAN_AFFORD[i+1] and textColor or evilTextColor))
         end
 
         local formattedDesc = mod:formatMilcomDescription(f, enumData.DESCRIPTION, data.DATA_DESCRIPTIONSIZE.X)
@@ -511,8 +550,6 @@ local function renderCraftingMenuNOCOOP(_)
     end
 
     priceHudSprite.Color = Color(1,1,1,a)
-    menuSprite.Color = Color(1,1,1,a)
-    menuSprite.Scale = Vector(1,1)
 end
 mod:AddPriorityCallback(ModCallbacks.MC_POST_HUD_RENDER, 1e6, renderCraftingMenuNOCOOP)
 

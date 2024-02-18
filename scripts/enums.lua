@@ -20,30 +20,48 @@ mod.ACH_ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas")
 --#region ITEMS
 
 -- mod.COLLECTIBLE_ = Isaac.GetItemIdByName("")
-mod.COLLECTIBLE_SLICKWATER = Isaac.GetItemIdByName("Slickwater") --
-mod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk") --
+mod.COLLECTIBLE_SLICKWATER = Isaac.GetItemIdByName("Slickwater")                    --!DONE
+mod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")            --!DONE
 mod.COLLECTIBLE_EYESTRAIN = Isaac.GetItemIdByName("Eyestrain")
 mod.COLLECTIBLE_PILE_OF_SAND = Isaac.GetItemIdByName("Pile of Sand")
 mod.COLLECTIBLE_OBSIDIAN_SHARD = Isaac.GetItemIdByName("Obsidian Shard")
-mod.COLLECTIBLE_GOAT_MILK = Isaac.GetItemIdByName("Goat Milk") --
+mod.COLLECTIBLE_GOAT_MILK = Isaac.GetItemIdByName("Goat Milk")                      --!DONE
 mod.COLLECTIBLE_BRONZE_BULL = Isaac.GetItemIdByName("Bronze Bull")
-mod.COLLECTIBLE_BLOODY_NEEDLE = Isaac.GetItemIdByName("Bloody Needle") --
-mod.COLLECTIBLE_NOSE_CANDY = Isaac.GetItemIdByName("Nose Candy") --
-mod.COLLECTIBLE_LION_SKULL = Isaac.GetItemIdByName("Lion Skull") --
+mod.COLLECTIBLE_BLOODY_NEEDLE = Isaac.GetItemIdByName("Bloody Needle")              --!DONE
+mod.COLLECTIBLE_NOSE_CANDY = Isaac.GetItemIdByName("Nose Candy")                    --!DONE
+mod.COLLECTIBLE_LION_SKULL = Isaac.GetItemIdByName("Lion Skull")                    --!DONE
 mod.COLLECTIBLE_CURSED_CHAINS = Isaac.GetItemIdByName("Cursed Chains")
-mod.COLLECTIBLE_MAMMONS_OFFERING = Isaac.GetItemIdByName("Mammon's Offering")
+mod.COLLECTIBLE_MAMMONS_OFFERING = Isaac.GetItemIdByName("Mammon's Offering")       --!DONE
 mod.COLLECTIBLE_WOODEN_DOLL = Isaac.GetItemIdByName("Wooden Doll")
-mod.COLLECTIBLE_CARAMEL_APPLE = Isaac.GetItemIdByName("Caramel Apple")
-mod.COLLECTIBLE_BLOOD_RITUAL = Isaac.GetItemIdByName("Blood Ritual") --
-
---#region
+mod.COLLECTIBLE_CARAMEL_APPLE = Isaac.GetItemIdByName("Caramel Apple")              --!DONE
+mod.COLLECTIBLE_BLOOD_RITUAL = Isaac.GetItemIdByName("Blood Ritual")                --!DONE
+mod.COLLECTIBLE_TECH_IX = Isaac.GetItemIdByName("Tech IX")                          --!DONE
+mod.COLLECTIBLE_CRICKETS_JAW = Isaac.GetItemIdByName("Cricket's Jaw")
+mod.COLLECTIBLE_PAINKILLERS = Isaac.GetItemIdByName("Painkillers")                  --!DONE
 
 --#region ENTITIES
 
 --EFFECTS
 mod.EFFECT_BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram")
 
+--PICKUPS
+mod.PICKUP_MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny")
+
 --#endregion
+
+--#region CUSTOM_ENUMS
+
+mod.CUSTOM_CALLBACKS = {
+    PRE_ATLAS_LOSE_MANTLE = "TOYBOX_PRE_ATLAS_LOSE_MANTLE",
+    POST_ATLAS_LOSE_MANTLE = "TOYBOX_POST_ATLAS_LOSE_MANTLE",
+    POST_PLAYER_BOMB_DETONATE = "TOYBOX_POST_PLAYER_BOMB_DETONATE",
+    POST_PLAYER_KILL_NPC = "TOYBOX_POST_PLAYER_KILL_NPC",
+}
+
+mod.CUSTOM_BOMBFLAGS = {
+    FLAG_MAKESHIFT_BOMB1 = 1<<0,
+    FLAG_MAKESHIFT_BOMB2 = 1<<1,
+}
 
 --#endregion
 --#region MILCOM_A

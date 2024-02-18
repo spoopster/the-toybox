@@ -4,12 +4,16 @@
         <Item Name="Condensed Milk"/>
         <Item Name="Goat Milk"/>
         <Item Name="Slickwater"/>
+        <Item Name="Painkillers" Weight="0.2" DecreaseBy="0.2"/>
+        <Item Name="Tech IX"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Bloody Needle"/>
         <Item Name="Condensed Milk"/>
         <Item Name="Goat Milk"/>
         <Item Name="Slickwater"/>
+        <Item Name="Painkillers" Weight="0.2" DecreaseBy="0.2"/>
+        <Item Name="Tech IX"/>
     </Pool>
 
     <Pool Name="boss">
@@ -28,6 +32,8 @@
 
     <Pool Name="devil">
         <Item Name="Blood Ritual"/>
+        <Item Name="Mammon's Offering" Weight="0.1" DecreaseBy="0.1"/>
+        <Item Name="Lion Skull" Weight="0.1" DecreaseBy="0.1"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -36,10 +42,14 @@
     <Pool Name="curse">
         <Item Name="Bloody Needle"/>
         <Item Name="Lion Skull"/>
+        <Item Name="Painkillers"/>
+        <Item Name="Mammon's Offering"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Bloody Needle"/>
         <Item Name="Lion Skull"/>
+        <Item Name="Painkillers"/>
+        <Item Name="Mammon's Offering"/>
     </Pool>
 
     <Pool Name="secret">

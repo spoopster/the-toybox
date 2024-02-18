@@ -385,3 +385,31 @@ function mod:closestVisibleEnemy(pos)
 	end
 	return closestEnt
 end
+
+function mod:getEntFromPtrHash(entity)
+	if entity then
+		if entity.Entity then entity = entity.Entity end
+		for _, e in pairs(Isaac.FindByType(entity.Type, entity.Variant, entity.SubType)) do
+			if GetPtrHash(entity) == GetPtrHash(e) then
+				return e
+			end
+		end
+	end
+	return nil
+end
+
+function mod:getPlayerFromTear(tear)
+	local pEnt = tear.Parent or tear.SpawnerEntity
+	if(pEnt) then
+		if(pEnt.Type==EntityType.ENTITY_PLAYER) then
+			return mod:getEntFromPtrHash(pEnt):ToPlayer(), false
+		elseif(pEnt.Type==EntityType.ENTITY_FAMILIAR and pEnt.Variant==FamiliarVariant.INCUBUS) then
+            if(pEnt.Variant==FamiliarVariant.INCUBUS) then
+                return pEnt:ToFamiliar().Player:ToPlayer(), true
+            elseif(pEnt.Variant==FamiliarVariant.TWISTED_BABY) then
+                return pEnt:ToFamiliar().Player:ToPlayer(), true
+            end
+		end
+	end
+	return nil, false
+end

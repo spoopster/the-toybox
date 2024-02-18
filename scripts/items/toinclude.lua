@@ -7,6 +7,9 @@ local t = {
     "scripts.items.passives.nose_candy",
     "scripts.items.passives.lion_skull",
     "scripts.items.passives.caramel_apple",
+    "scripts.items.passives.painkillers",
+    "scripts.items.passives.tech_ix",
+    "scripts.items.passives.mammons_offering",
 
     --ACTIVES
     -- "scripts.items.actives.",

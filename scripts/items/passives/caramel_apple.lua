@@ -1,9 +1,7 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
---! HOPEFULLY fix this when RGON1.0.6 comes out (if it adds the healing hook callback)
-
-local ENUM_BONUSHEALTH_CHANCE = 1/4
+local ENUM_BONUSHEALTH_CHANCE = 1
 
 local ENUM_REDHEART_COL = Color(1,1,1,1)
 local ENUM_SOULHEART_COL = Color(1,1,1,1)
@@ -124,7 +122,7 @@ local ENUM_HEARTS = {
             return player:CanPickRottenHearts()
         end,
         AddFunc = function(player)
-            player:AddRottenHearts(1)
+            player:AddRottenHearts(2)
         end,
     },
 }
@@ -228,6 +226,7 @@ local function postAddItem(_, item, _, firstTime, _, _, player)
         addedHearts[#addedHearts+1] = ENUM_REDHEART_COL
     end
     if(config.AddSoulHearts>0 and player:CanPickSoulHearts() and rng:RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then
+        player:AddSoulHearts(1)
         addedHearts[#addedHearts+1] = ENUM_SOULHEART_COL
     end
     if(config.AddBlackHearts>0 and player:CanPickBlackHearts() and rng:RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then

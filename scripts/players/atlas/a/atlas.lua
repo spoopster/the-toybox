@@ -2,7 +2,7 @@ local mod = MilcomMOD
 
 --* TODO:
 -- polish mantle effects a bit
--- add functionality for healing items
+-- hopefully wait for 1.0.6 to add player healing hook
 
 --#region DATA
 local ATLAS_A_BASEDATA = {
@@ -26,8 +26,6 @@ local ATLAS_A_BASEDATA = {
 
 mod.ATLAS_A_BASEDATA = ATLAS_A_BASEDATA
 mod.ATLAS_A_DATA = {}
-
-mod.ATLAS_A_MANTLE_DMGCALLBACKS = {}
 
 ---@param player EntityPlayer
 local function postAtlasInit(_, player)
@@ -96,7 +94,6 @@ mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, -1e12+1, cancelHea
 
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT,
 function(_, effect)
-    print("gabadah")
     local s = effect:GetSprite()
 
     s:Load("gfx/characters/058_book of shadows.anm2", true)

@@ -16,6 +16,7 @@ f:Load("font/pftempestasevencondensed.fnt")
 ---@param pos Vector
 local function renderTest(_, offset, sprite, pos, u)
     if(offset.X==1) then return end
+    if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)) then return end
 
     --print(pos)
 
@@ -95,31 +96,35 @@ local function renderHearts(_)
 
             HP_SPRITE.Color = Color(1,1,1,1)
 
-            heartRenderPos = heartRenderPos+Vector(19,0)
+            heartRenderPos = heartRenderPos+Vector(18,0)
         end
 
         local hasCollar = player:HasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)
         
+        local extraLivesString = ""
         if(player:GetExtraLives()>0) then
-            f:DrawString("x"..player:GetExtraLives()..(hasCollar and "?" or ""), heartRenderPos.X-5, heartRenderPos.Y-8,KColor(1,1,1,1))
+            extraLivesString = "x"..player:GetExtraLives()..(hasCollar and "?" or "")
+            f:DrawString(extraLivesString, heartRenderPos.X-5, heartRenderPos.Y-9,KColor(1,1,1,1))
         end
 
-        TRANSF_SPRITE.Color = Color(1,1,1,1)
-        TRANSF_SPRITE.Rotation = 0
+        TRANSF_SPRITE.Scale = Vector(1,1)
 
         TRANSF_SPRITE:Play(mod.MANTLE_TYPE_TO_ANM[data.TRANSFORMATION or mod.MANTLES.NONE] or "Empty", true)
         if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_TYPE_TO_ANM[1000]) end
-        TRANSF_SPRITE:Render(heartRenderPos+Vector(32,0))
+
+        local trfRenderPos = heartRenderPos+Vector(12+f:GetStringWidth(extraLivesString),0)
+        --if(not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then trfRenderPos = renderPos+Vector(17,21) end
+
+        TRANSF_SPRITE:Render(trfRenderPos)
 
         if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
             TRANSF_SPRITE:Play(mod.MANTLE_TYPE_TO_ANM[data.BIRTHRIGHT_TRANSFORMATION or mod.MANTLES.NONE] or "Empty", true)
             if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_TYPE_TO_ANM[1000]) end
-            TRANSF_SPRITE:Render(heartRenderPos+Vector(56,0))
+            TRANSF_SPRITE:Render(trfRenderPos+Vector(24,0))
 
             TRANSF_SPRITE:Play("BirthrightOverlay", true)
             TRANSF_SPRITE.Scale = Vector(1,1)*0.5
-            TRANSF_SPRITE:Render(heartRenderPos+Vector(66,4))
-            TRANSF_SPRITE.Scale = Vector(1,1)
+            TRANSF_SPRITE:Render(trfRenderPos+Vector(34,4))
         end
 
         renderMantleShards(player, hasCurseOfTheUnknown)
@@ -130,30 +135,3 @@ local function renderHearts(_)
     end
 end
 mod:AddPriorityCallback(ModCallbacks.MC_POST_HUD_RENDER, 1e6, renderHearts)
-
-local function postRender(_)
-    local player = Isaac.GetPlayer()
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    local data = mod:getAtlasATable(player)
-
-    --local mantles = data.MANTLES
-    local xPos = 60
-    local yPos = 40
-
-    --[[
-    Isaac.RenderText("1, "..mod:getMantleNameFromType(mantles[1].TYPE)..", "..mantles[1].HP.."  |  "..
-    "2, "..mod:getMantleNameFromType(mantles[2].TYPE)..", "..mantles[2].HP.."  |  "..
-    "3, "..mod:getMantleNameFromType(mantles[3].TYPE)..", "..mantles[3].HP
-    , xPos, yPos, 1,1,1,1)
-    --] ]
-
-    Isaac.RenderText("CURRENT TRANSF", xPos, yPos, 1,1,1,0.5)
-    Isaac.RenderText(mod:getMantleNameFromType(data.TRANSFORMATION), xPos, yPos+13, 1,1,1,0.5)
-
-    Isaac.RenderText("OLD TRANSF", xPos, yPos+30, 1,1,1,0.5)
-    Isaac.RenderText(mod:getMantleNameFromType(data.BIRTHRIGHT_TRANSFORMATION), xPos, yPos+43, 1,1,1,0.5)
-
-    Isaac.RenderText(tostring(data.SALT_AUTOTARGET_ENABLED), xPos, yPos+77, 1,1,1,0.5)
-    --]]
-end
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, postRender)

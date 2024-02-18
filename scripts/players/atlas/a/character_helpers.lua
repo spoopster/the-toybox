@@ -104,7 +104,9 @@ function mod:addMantleHp(player, hpToAdd)
         local rng = player:GetCardRNG(mod.MANTLES.DEFAULT)
         local pos = mod:getMantleHeartPosition(player, rIdx)
         local c = mod.MANTLE_TYPE_TO_SHARD_COLOR[selMType] or mod.MANTLE_TYPE_TO_SHARD_COLOR[mod.MANTLES.DEFAULT]
-        for _=1, 5 do
+
+        local shardsToSpawn = 5
+        for _=1, shardsToSpawn do
             local v = Vector(rng:RandomFloat()*2+3, 0):Rotated(-90+(rng:RandomFloat()-0.5)*180)
             local p = pos+Vector(rng:RandomFloat()-0.5, rng:RandomFloat()-0.5)*7
 
@@ -168,7 +170,9 @@ function mod:giveMantle(player, type)
         local rng = player:GetCardRNG(mod.MANTLES.DEFAULT)
         local pos = mod:getMantleHeartPosition(player, idx)
         local c = mod.MANTLE_TYPE_TO_SHARD_COLOR[selMType] or mod.MANTLE_TYPE_TO_SHARD_COLOR[mod.MANTLES.DEFAULT]
-        for _=1, 10 do
+
+        local shardsToSpawn = 10
+        for _=1, shardsToSpawn do
             local v = Vector(rng:RandomFloat()*2+3, 0):Rotated(-90+(rng:RandomFloat()-0.5)*180)
             local p = pos+Vector(rng:RandomFloat()-0.5, rng:RandomFloat()-0.5)*7
 
@@ -296,10 +300,4 @@ function mod:getMantleHeartPosition(player, idx)
     if(pNum==-1 or pNum>=4) then return Vector(-100, -100) end
 
     return mod:getHeartHudPosition(pNum)+(idx-1)*Vector(19,0)
-end
-
-function mod:addCallbackMantleDamage(func, priority)
-    table.insert(mod.ATLAS_A_MANTLE_DMGCALLBACKS, {Function=func, Priority=(priority or 0)})
-
-    table.sort(mod.ATLAS_A_MANTLE_DMGCALLBACKS, function(a,b) return a.Priority<=b.Priority end)
 end

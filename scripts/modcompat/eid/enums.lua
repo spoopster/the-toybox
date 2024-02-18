@@ -1,7 +1,6 @@
 local mod = MilcomMOD
 
 local ITEMS = {
-    -- add descs for bloody needle, condensed milk, goat milk and slickwater lol
     [mod.COLLECTIBLE_NOSE_CANDY] = {
         Name = "Nose Candy",
         Description = {
@@ -9,6 +8,33 @@ local ITEMS = {
             "{{Blank}}  \7 If this bonus would make your speed higher than 2, the overflowing speed becomes a bonus to a non-speed stat",
             "\1 Every floor, you get a small stat-up to a non-speed stat",
             "\2 Every floor, you get a small stat-down to a non-speed stat",
+        },
+    },
+    [mod.COLLECTIBLE_BLOOD_RITUAL] = {
+        Name = "Blood Ritual",
+        Description = {
+            "Spawns 3 {{DevilChanceSmall}} evil familiars for the room that orbit around you",
+            "Additional uses in a room only spawn 1 familiar",
+        },
+    },
+    [mod.COLLECTIBLE_CONDENSED_MILK] = {
+        Name = "Condensed Milk",
+        Description = {
+            "\2 x1.15 Firedelay",
+            "\2 x0.85 Damage",
+            "\1 While shooting, your tears and damage stats gradually increase",
+            "The stat increase has diminishing returns",
+            "The stat increase rapidly goes down while not shooting",
+        },
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_LILITH)
+                end,
+                DescriptionToAdd = {
+                    "{{Player13}} This has no effect as Lilith because she cannot fire",
+                },
+            },
         },
     },
     [mod.COLLECTIBLE_CARAMEL_APPLE] = {
@@ -51,6 +77,40 @@ local ITEMS = {
             },
         },
         --]]
+    },
+    [mod.COLLECTIBLE_PAINKILLERS] = {
+        Name = "Painkillers",
+        Description = {
+            "\1 Taking damage delays it with a 1 second timer which resets every time you take damage",
+            "\2 While this timer is active, you have no immunity frames and all damage taken is added to a counter",
+            "When the time is up, you take an amount of damage proportional to the damage counter",
+        },
+    },
+    [mod.COLLECTIBLE_TECH_IX] = {
+        Name = "Tech IX",
+        Description = {
+            "While firing, you get a {{Collectible395}} Tech X ring around you",
+            "This ring grows in size as you fire, and slowly shrinks while not firing"
+        },
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_LILITH)
+                end,
+                DescriptionToAdd = {
+                    "{{Player13}} This has no effect as Lilith because she cannot fire",
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_MAMMONS_OFFERING] = {
+        Name = "Mammon's Offering",
+        Description = {
+            "On death, enemies have a 1/3 chance to spawn a special obol worth 2 coins",
+            "\2 On pickup, obols grant a small damage down",
+            "\1 On new floors, all obols that weren't picked up grant a damage up",
+            "!!! Obols can't be picked up by Bums or Ultra Greed",
+        },
     },
 }
 

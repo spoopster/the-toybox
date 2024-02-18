@@ -1,7 +1,9 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_GLASS] = true
+if(mod.ATLAS_A_MANTLESUBTYPES) then
+    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_GLASS] = true
+end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
@@ -54,7 +56,7 @@ local function destroyGlassMantles(_, player, mantle)
     poof.Color = Color(1,1,1,1,0.5,0.5,0.5)
     poof.SpriteScale = Vector(1,1)*0.75
 end
-mod:AddCallback("ATLAS_POST_LOSE_MANTLE", destroyGlassMantles, mod.MANTLES.GLASS)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, destroyGlassMantles, mod.MANTLES.GLASS)
 
 ---@param player EntityPlayer
 local function destroyAllMantles(_, player, mantle)
@@ -78,4 +80,4 @@ local function destroyAllMantles(_, player, mantle)
     poof.Color = Color(1,1,1,1,0.5,0.5,0.5)
     poof.SpriteScale = Vector(1,1)*0.75
 end
-mod:AddCallback("ATLAS_POST_LOSE_MANTLE", destroyAllMantles)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, destroyAllMantles)

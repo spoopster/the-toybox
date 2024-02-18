@@ -39,13 +39,13 @@ local function forceHealth(_, player)
         player:AddHearts(1)
     end
 
-    if(player:GetGoldenHearts()>0) then player:AddGoldenHearts(-100) end
+    if(player:GetGoldenHearts()>0) then player:AddGoldenHearts(-player:GetGoldenHearts()) end
     if(player:GetRottenHearts()>0) then
-        player:AddRottenHearts(-100)
-        player:AddHearts(100)
+        player:AddRottenHearts(-player:GetRottenHearts())
+        player:AddHearts(player:GetRottenHearts())
     end
-    if(player:GetBoneHearts()>0) then player:AddBoneHearts(-100) end
-    if(player:GetEternalHearts()>0) then player:AddEternalHearts(-100) end
-    if(player:GetBrokenHearts()>0) then player:AddBrokenHearts(-100) end
+    if(player:GetBoneHearts()>0) then player:AddBoneHearts(-player:GetBoneHearts()) end
+    if(player:GetEternalHearts()>0) then player:AddEternalHearts(-player:GetEternalHearts()) end
+    if(player:GetBrokenHearts()>0) then player:AddBrokenHearts(-player:GetBrokenHearts()) end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, forceHealth, 0)

@@ -28,15 +28,13 @@ local function forceDevilDealPickup(_, pickup, player)
     if(not (pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE)) then return end
     if(pickup.Wait>0) then return end
 
-    print(pickup.Wait)
-
     local price = getMantleDealPrice(pickup)
 
     local data = mod:getAtlasATable(player)
 
     local rIdx = mod:getRightmostMantleIdx(player)
     local dmgToAdd = 0
-    for i=rIdx, (rIdx-price+1) or 1, -1 do
+    for i=rIdx, math.max(1,(rIdx-price+1) or 1), -1 do
         dmgToAdd = dmgToAdd+data.MANTLES[i].HP
     end
 
@@ -69,5 +67,3 @@ local function pickupRenderAtlasPrice(_, pickup, offset)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, pickupRenderAtlasPrice, PickupVariant.PICKUP_COLLECTIBLE)
-
---! TODO: RENDER ATLAS MANTLE COST INSTEAD OF HEART COST IF ATLAS

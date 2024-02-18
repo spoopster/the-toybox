@@ -11,14 +11,14 @@ function mod:updateMantles(player)
         if(mantles[i].HP<=0 and mantles[i].TYPE~=mod.MANTLES.NONE) then
             if(i>1) then mantles[i-1].HP = mantles[i-1].HP+mantles[i].HP end
 
-            Isaac.RunCallbackWithParam("ATLAS_PRE_LOSE_MANTLE", mantles[i].TYPE, player, mantles[i].TYPE)
+            Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.PRE_ATLAS_LOSE_MANTLE, mantles[i].TYPE, player, mantles[i].TYPE)
             local oldType = mantles[i].TYPE
             mantles[i] = {
                 TYPE = mod.MANTLES.NONE,
                 HP = mod.MANTLES_HP.NONE,
                 MAXHP = mod.MANTLES_HP.NONE,
             }
-            Isaac.RunCallbackWithParam("ATLAS_POST_LOSE_MANTLE", oldType, player, oldType)
+            Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, oldType, player, oldType)
         end
     end
     rIdx = mod:getRightmostMantleIdx(player)
@@ -117,7 +117,7 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
     local data = mod:getAtlasATable(player)
-    if(data.TRANSFORMATION==mod.MANTLES.TAR) then return end
+    if(not (data and data.TRANSFORMATION~=mod.MANTLES.TAR)) then return end
 
     if(dmg>0) then
         mod:addMantleHp(player, -dmg)
@@ -128,50 +128,12 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
         return {
             Damage=0,
             DamageFlags=flags,
-            DamageCountdown=frames,
+            DamageCountdown=frames
         }
     end
 end
-if(CustomHealthAPI) then mod:addCallbackMantleDamage(mantleDamage, 1e6)
+if(CustomHealthAPI) then mod:addChapiDamageCallback(mantleDamage, 1e6)
 else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12+1, mantleDamage, EntityType.ENTITY_PLAYER) end
-
-if(CustomHealthAPI) then
-
-local function applyCHAPIDamage(_, player, dmg, flags, source, frames)
-    player = player:ToPlayer()
-    if(mod:getData(player, "CANCEL_CHAPI_DMG")~=true) then return end
-
-    for _, d in ipairs(mod.ATLAS_A_MANTLE_DMGCALLBACKS) do
-        local r = d.Function(mod, player, dmg, flags, source, frames)
-        if(r~=nil) then
-            mod:setData(player, "CANCEL_CHAPI_DMG", nil)
-            return r
-        end
-    end
-
-    mod:setData(player, "CANCEL_CHAPI_DMG", nil)
-
-    return false
-end
-mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -math.huge, applyCHAPIDamage, EntityType.ENTITY_PLAYER)
-
-local function cancelCHAPIDmg(player, dmg, flags, source, frames)
-    player = player:ToPlayer()
-    if(mod:getData(player, "CANCEL_CHAPI_DMG")==true) then return end
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    local data = mod:getAtlasATable(player)
-    if(not (data and data.TRANSFORMATION~=mod.MANTLES.TAR)) then return end
-
-    if(dmg>0) then
-        mod:setData(player, "CANCEL_CHAPI_DMG", true)
-        player:TakeDamage(dmg, flags, source, frames)
-
-        return true
-    end
-end
-CustomHealthAPI.Library.AddCallback(mod, CustomHealthAPI.Enums.Callbacks.PRE_PLAYER_DAMAGE, 1e12, cancelCHAPIDmg)
-
-end
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag

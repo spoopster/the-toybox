@@ -3,7 +3,9 @@ local sfx = SFXManager()
 
 --* needs some polish
 
-mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_DARK] = true
+if(mod.ATLAS_A_MANTLESUBTYPES) then
+    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_DARK] = true
+end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
@@ -44,7 +46,7 @@ local function mantleDestroyed(_, player, mantle)
     local poof = Isaac.Spawn(1000,16,1,player.Position,Vector.Zero,nil):ToEffect()
     poof.Color = Color(0.1,0.1,0.1,1)
 end
-mod:AddCallback("ATLAS_POST_LOSE_MANTLE", mantleDestroyed)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
@@ -52,4 +54,4 @@ local function playMantleSFX(_, player, mantle)
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end
-mod:AddCallback("ATLAS_POST_LOSE_MANTLE", playMantleSFX, mod.MANTLES.DARK)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLES.DARK)

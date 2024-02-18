@@ -1,12 +1,21 @@
 MilcomMOD = RegisterMod("milcomMod", 1)
 local mod = MilcomMOD
 
+--! INCLUDE SHIT
 local mod_files = {
     "scripts.enums",
-    "scripts.custom_data",
-    "scripts.config",
+
+    "scripts.custom.data",
+    "scripts.custom.callbacks",
+    "scripts.custom.bombflags",
+    "scripts.custom.ludo_trigger",
+
     "scripts.helper",
+
+    "scripts.config",
     "scripts.savedata.save_data",
+
+    "scripts.chapi_compat",
 
     "scripts.players.milcom.toinclude",
     "scripts.players.atlas.toinclude",

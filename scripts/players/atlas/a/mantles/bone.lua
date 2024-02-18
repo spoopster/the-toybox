@@ -3,7 +3,9 @@ local sfx = SFXManager()
 
 --* needs some polish
 
-mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_BONE] = true
+if(mod.ATLAS_A_MANTLESUBTYPES) then
+    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_BONE] = true
+end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
@@ -40,7 +42,7 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
         boneTear.CollisionDamage = ENUM_BONES_DMG
     end
 end
-if(CustomHealthAPI) then mod:addCallbackMantleDamage(mantleDamage, -1e6)
+if(CustomHealthAPI) then mod:addChapiDamageCallback(mantleDamage, -1e6)
 else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12-1, mantleDamage, EntityType.ENTITY_PLAYER) end
 
 local function mantleKill(_, entity)
@@ -97,4 +99,4 @@ local function playMantleSFX(_, player, mantle)
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end
-mod:AddCallback("ATLAS_POST_LOSE_MANTLE", playMantleSFX, mod.MANTLES.BONE)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLES.BONE)

@@ -1,9 +1,11 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
---* needs some polish
+--! add the funny sparkles (both transf and mantle)
 
-mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_GOLD] = true
+if(mod.ATLAS_A_MANTLESUBTYPES) then
+    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_GOLD] = true
+end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
@@ -69,7 +71,7 @@ local function mantleDestroyed(_, player, mantle)
     sfx:Play(SoundEffect.SOUND_METAL_BLOCKBREAK)
     sfx:Play(mod.SFX_ATLASA_METALBREAK)
 end
-mod:AddCallback("ATLAS_POST_LOSE_MANTLE", mantleDestroyed)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 
 ---@param player EntityPlayer
 ---@param collider Entity

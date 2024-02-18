@@ -1,7 +1,11 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_METAL] = true
+--* maybe make sfx better
+
+if(mod.ATLAS_A_MANTLESUBTYPES) then
+    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_METAL] = true
+end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
@@ -57,7 +61,7 @@ local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, fram
         end
     end
 end
-if(CustomHealthAPI) then mod:addCallbackMantleDamage(cancelAtlasAMetalMantleDamage)
+if(CustomHealthAPI) then mod:addChapiDamageCallback(cancelAtlasAMetalMantleDamage)
 else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12, cancelAtlasAMetalMantleDamage, EntityType.ENTITY_PLAYER) end
 
 ---@param player EntityPlayer
@@ -66,4 +70,4 @@ local function playMantleSFX(_, player, mantle)
 
     sfx:Play(mod.SFX_ATLASA_METALBREAK)
 end
-mod:AddCallback("ATLAS_POST_LOSE_MANTLE", playMantleSFX, mod.MANTLES.METAL)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLES.METAL)

@@ -1,14 +1,18 @@
 local t = {
     --ATLAS A
+    -- [[
     "scripts.players.atlas.a.atlas",
     "scripts.players.atlas.a.stats",
     "scripts.players.atlas.a.character_helpers",
     "scripts.players.atlas.a.mantle_logic",
-    "scripts.players.atlas.a.mantle_pickup_logic",
+    --"scripts.players.atlas.a.mantle_pickup_logic",
     "scripts.players.atlas.a.mantle_spawn_logic",
     "scripts.players.atlas.a.mantle_devildeal_logic",
+    "scripts.players.atlas.a.mantle_health_items_logic",
     "scripts.players.atlas.a.render_health",
+    --]]
 
+    -- [[
     "scripts.players.atlas.a.mantles.tar",
     "scripts.players.atlas.a.mantles.rock",
     "scripts.players.atlas.a.mantles.poop",
@@ -19,6 +23,7 @@ local t = {
     "scripts.players.atlas.a.mantles.glass",
     "scripts.players.atlas.a.mantles.metal",
     "scripts.players.atlas.a.mantles.gold",
+    --]]
 
     --ATLAS B
     "scripts.players.atlas.b.atlas",

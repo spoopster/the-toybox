@@ -4,11 +4,8 @@ mod.ATLAS_A_MANTLESUBTYPES = {}
 
 local function postMantleInit(_, pickup)
     if(mod.ATLAS_A_MANTLESUBTYPES[pickup.SubType]~=true) then return end
-
-    local sprite = pickup:GetSprite()
-    sprite:Play("Appear", true)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postMantleInit, 300)
+--mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postMantleInit, 300)
 
 local function postMantleUpdate(_, pickup)
     if(mod.ATLAS_A_MANTLESUBTYPES[pickup.SubType]~=true) then return end
@@ -21,7 +18,7 @@ local function postMantleUpdate(_, pickup)
         pickup:Remove()
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postMantleUpdate, 300)
+--mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postMantleUpdate, 300)
 
 local function preMantleCollision(_, pickup, collider, low)
     if(mod.ATLAS_A_MANTLESUBTYPES[pickup.SubType]~=true) then return end
@@ -34,19 +31,8 @@ local function preMantleCollision(_, pickup, collider, low)
     if(anim~="Idle") then return true end
     if(not collider:ToPlayer():IsExtraAnimationFinished()) then return nil end
 
-    --sprite:Play("Collect", true)
-    --pickup.SpriteScale = Vector.Zero
+    sprite:Play("Collect", true)
+    --
+    pickup:Die()
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preMantleCollision, 300)
-
-local function postMantleRender(_, pickup, offset)
-    if(mod.ATLAS_A_MANTLESUBTYPES[pickup.SubType]~=true) then return end
-    local sprite = pickup:GetSprite()
-
-    if(sprite:GetAnimation()=="Collect") then
-        pickup.SpriteScale = Vector(1,1)
-        sprite:Render(Isaac.WorldToRenderPosition(pickup.Position)+offset)
-        pickup.SpriteScale = Vector.Zero
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, postMantleRender, 300)
+--mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preMantleCollision, 300)
