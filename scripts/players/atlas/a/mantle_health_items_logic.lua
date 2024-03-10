@@ -81,6 +81,7 @@ end
 
 local function postCollectibleRender(_, pickup, offset)
     if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)) then return end
+    if(Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND ~= 0) then return end
 
     local config = Isaac.GetItemConfig():GetCollectible(pickup.SubType)
     if(config==nil) then return end

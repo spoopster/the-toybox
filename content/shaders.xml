@@ -1,5 +1,5 @@
 <shaders>
-    <shader name="MilcomEmptyShader">
+    <shader name="ToyboxEmptyShader">
         <parameters></parameters>
         <vertex>
         <![CDATA[
@@ -24,6 +24,90 @@
             void main(void) {
                 vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
                 gl_FragColor = Color;
+            }
+        ]]>
+        </fragment>
+    </shader>
+
+    <shader name="ToyboxBloomShader">
+        <parameters>
+            <param name="ShouldActivateIn" type="float"/>
+        </parameters>
+        <vertex>
+        <![CDATA[
+            attribute vec3 Position;
+                varying vec3 Position0;
+            attribute vec4 Color;
+                varying vec4 Color0;
+            attribute vec2 TexCoord;
+                varying vec2 TexCoord0;
+            attribute vec4 RenderData;
+                varying vec4 RenderData0;
+            
+            attribute float ShouldActivateIn;
+                varying float ShouldActivate;
+            
+
+            uniform mat4 Transform;
+            void main(void) {
+                Position0 = Position;
+                Color0 = Color;
+                TexCoord0 = TexCoord;
+                RenderData0 = RenderData;
+
+                ShouldActivate = ShouldActivateIn;
+
+                gl_Position = Transform * vec4(Position.xyz, 1.0);
+            }
+        ]]>
+        </vertex>
+        <fragment>
+        <![CDATA[
+            varying lowp vec3 Position0;
+            varying lowp vec4 Color0;
+            varying mediump vec2 TexCoord0;
+            varying lowp vec4 RenderData0;
+            
+            varying float ShouldActivate;
+            
+            uniform sampler2D Texture0;
+            void main(void) {
+                vec4 Result = vec4(0.0,0.0,0.0,0.0);
+
+                if(ShouldActivate>0.5)
+                {
+                    float Pi = 6.28318530718; // Pi*2
+                    
+                    float Directions = 22.0;
+                    float Quality = 6.0;
+                    float Size = 12.0;
+                
+                    vec2 Radius = Size/RenderData0.zw;
+                    float InverseQuality = 1.0/Quality;
+                    float PiFrac = Pi/Directions;
+
+                    vec4 Color = vec4(0.0,0.0,0.0,0.0);
+
+                    float Value = 0.0;
+                    float Intensity = 2.0;
+                    float InvIntensity = 1.0/Intensity;
+                    
+                    for( float d=0.0; d<Pi; d+=PiFrac)
+                    {
+                        for(float i=InverseQuality; i<=1.0; i+=InverseQuality)
+                        {
+                            Color = texture2D(Texture0, TexCoord0+vec2(cos(d),sin(d))*Radius*i);
+                            Value = Color.r*0.299+Color.g*0.587+Color.b*0.114;
+                            Color = Color*pow(Value, InvIntensity);
+
+                            Result += Color;
+                        }
+                    }
+                    Result /= Quality * Directions;
+                    Result *= 2.0;
+                }
+
+                gl_FragColor = Color0 * ( texture2D(Texture0,TexCoord0) + Result*0.5);
             }
         ]]>
         </fragment>

@@ -141,49 +141,12 @@ for key, data in pairs(descs.ITEMS) do
     EID:addCollectible(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
 
     addExtraDescriptionStuff({5,100,key})
-    --[[
-    if(data.DescriptionAppend) then
-        EID:addDescriptionModifier(
-            tostring(data.Name).."AddToBottom",
-            function(descObj)
-                if(not (descObj.ObjType==5 and descObj.ObjVariant==100 and descObj.ObjSubType==key)) then return false end
-                local ok = false
-                for _, mData in ipairs(descs.ITEMS[descObj.ObjSubType].DescriptionAppend) do
-                    if(ok~=false) then break end
-                    ok = ok or mData.Condition(descObj)
-                end
+end
 
-                return ok
-            end,
-            function(descObj)
-                for _, mData in ipairs(descs.ITEMS[descObj.ObjSubType].DescriptionAppend) do
-                    if(mData.Condition(descObj)) then
-                        descObj.Description = descObj.Description.."#"..turnStringTableToEIDDesc(mData.DescriptionToAdd)
-                    end
-                end
-    
-                return descObj
-            end
-        )
-        --[[
-        for i, mData in ipairs(data.DescriptionAppend) do
-        
-            EID:addDescriptionModifier(
-                tostring(data.Name).."AddToBottom"..tostring(i),
-                mData.Condition,
-                function(entity)
-                    local extraDesc = turnStringTableToEIDDesc(mData.DescriptionToAdd)
-        
-                    entity.Description = entity.Description.."#"..extraDesc
-        
-                    return entity
-                end
-            )
+for key, data in pairs(descs.TRINKETS) do
+    EID:addTrinket(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
 
-        end
-        --] ]
-    end
-    --]]
+    addExtraDescriptionStuff({5,350,key})
 end
 
 local cardSprite = Sprite()

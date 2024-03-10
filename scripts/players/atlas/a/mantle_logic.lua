@@ -125,6 +125,8 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
         sfx:Play(mod.SFX_ATLASA_ROCKHURT, 2)
         sfx:Play(SoundEffect.SOUND_ISAAC_HURT_GRUNT,0,2)
 
+        --print("hi")
+
         return {
             Damage=0,
             DamageFlags=flags,
@@ -132,8 +134,7 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
         }
     end
 end
-if(CustomHealthAPI) then mod:addChapiDamageCallback(mantleDamage, 1e6)
-else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12+1, mantleDamage, EntityType.ENTITY_PLAYER) end
+mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12+1, mantleDamage, EntityType.ENTITY_PLAYER)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag

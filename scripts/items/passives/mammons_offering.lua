@@ -1,8 +1,9 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-local SPAWN_PENNY_CHANCE = 1/3
+local SPAWN_PENNY_CHANCE = 1/4
 local DMG_INCREASE = 0.05
+local OBOL_VAL = 3
 
 local function incrementMammonsOfferingCounter(player, amount, incrementPermaBonus)
     if(incrementPermaBonus==true) then
@@ -53,9 +54,10 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_KILL_NPC, npcDeath)
 ---@param pickup EntityPickup
 local function postPennyInit(_, pickup)
     if(not (pickup:GetSprite():GetAnimation()=="Appear")) then return end
-    if(not (pickup.SpawnerEntity and pickup.SpawnerEntity:ToPlayer())) then return end
-    local p = pickup.SpawnerEntity:ToPlayer()
-    incrementMammonsOfferingCounter(p, 1)
+    
+    for _, p in ipairs(Isaac.FindByType(1)) do
+        incrementMammonsOfferingCounter(p, 1)
+    end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postPennyInit, mod.PICKUP_MAMMONS_OFFERING_PENNY)
 
@@ -78,11 +80,12 @@ local function prePennyCollision(_, pickup, collider, low)
     if(sprite:GetAnimation()~="Idle") then return true end
 
     local player = collider:ToPlayer()
-    player:AddCoins(2)
-    --if(player:HasCollectible(mod.COLLECTIBLE_MAMMONS_OFFERING)) then
-        incrementMammonsOfferingCounter(player, -1)
-        incrementMammonsOfferingCounter(player, -0.5, true)
-    --end
+    player:AddCoins(OBOL_VAL)
+
+    for _, p in ipairs(Isaac.FindByType(1)) do
+        incrementMammonsOfferingCounter(p, -1)
+    end
+    incrementMammonsOfferingCounter(player, -0.5, true)
 
     pickup:Die()
     sprite:Play("Collect", true)
@@ -126,10 +129,12 @@ local function prePennyCollision(_, pickup, collider, low)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, prePennyCollision, mod.PICKUP_MAMMONS_OFFERING_PENNY)
 
+--[[
 mod:AddCallback(ModCallbacks.MC_POST_RENDER,
 function(_)
-    --Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"MAMMONS_OFFERING_BONUS")), 100, 30,1,1,1,1)
+    Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"MAMMONS_OFFERING_BONUS")), 100, 30,1,1,1,1)
 
-    --Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"MAMMONS_OFFERING_PERMABONUS")), 100, 40,1,1,1,1)
+    Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"MAMMONS_OFFERING_PERMABONUS")), 100, 40,1,1,1,1)
 end
 )
+--]]

@@ -22,8 +22,6 @@ local function painkillersTimerUpdate(_, player)
     local data = mod:getDataTable(player)
     data.PAINKILLERS_DAMAGE_TIMER = data.PAINKILLERS_DAMAGE_TIMER or 0
 
-    --print(data.PAINKILLERS_DAMAGE_TIMER)
-
     if(data.PAINKILLERS_DAMAGE_TIMER>0) then
         data.PAINKILLERS_DAMAGE_TIMER = data.PAINKILLERS_DAMAGE_TIMER-1
 
@@ -71,8 +69,7 @@ local function painkillersCancelDamage(_, player, dmg, flags, source, frames)
         }
     end
 end
-if(CustomHealthAPI) then mod:addChapiDamageCallback(painkillersCancelDamage, -1e12)
-else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12, painkillersCancelDamage, EntityType.ENTITY_PLAYER) end
+mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -math.huge, painkillersCancelDamage, EntityType.ENTITY_PLAYER)
 
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER,
 function(_,p,offset)

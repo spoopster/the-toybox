@@ -413,3 +413,60 @@ function mod:getPlayerFromTear(tear)
 	end
 	return nil, false
 end
+
+function mod:addInvincibility(player, amount)
+    player:SetMinDamageCooldown(player:GetDamageCooldown()+amount)
+end
+
+function mod:generateRng(seed)
+    seed = seed or Random()
+    if(seed<=0) then seed=1 end
+
+    local rng = RNG()
+    rng:SetSeed(seed)
+
+    return rng
+end
+
+function mod:getLuckAffectedChance(luck, baseChance, maxLuck, maxChance)
+    local f = luck/maxLuck
+    f = mod:clamp(f, 1, -1)
+
+    if(f==0) then return baseChance;
+    elseif(f<0) then return mod:lerp(baseChance,0,-f)
+    else return mod:lerp(baseChance,maxChance or 1,f) end
+end
+
+function mod:getTearPoofVariantFromTear(tear)
+    local s = tear:ToTear().Scale
+    local h = tear:ToTear().Height
+
+	if(s > 0.8) then
+		if(h < -5) then
+			return EffectVariant.TEAR_POOF_A    -- Wall impact
+		else
+			return EffectVariant.TEAR_POOF_B    -- Floor impact
+		end
+	elseif(s > 0.4) then
+		return EffectVariant.TEAR_POOF_SMALL
+	else
+		return EffectVariant.TEAR_POOF_VERYSMALL
+	end
+end
+
+function mod:getRandomFreePos()
+    local r = Game():GetRoom()
+    local p
+    local failsafe = 1000
+
+    repeat
+        p = r:GetRandomPosition(30)
+        failsafe = failsafe-1
+    until(failsafe<=0 or r:GetGridCollisionAtPos(p)==GridCollisionClass.COLLISION_NONE)
+
+    return p
+end
+
+function mod:isRoomClear()
+    return (Game():GetRoom():IsClear() and not Game():GetRoom():IsAmbushActive())
+end

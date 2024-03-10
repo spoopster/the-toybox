@@ -1,20 +1,13 @@
 local mod = MilcomMOD
 
 local ITEMS = {
-    [mod.COLLECTIBLE_NOSE_CANDY] = {
-        Name = "Nose Candy",
+    --PASSIVES
+    [mod.COLLECTIBLE_COCONUT_OIL] = {
+        Name = "Coconut Oil",
         Description = {
-            "\1 Every floor, you get +0.2 speed",
-            "{{Blank}}  \7 If this bonus would make your speed higher than 2, the overflowing speed becomes a bonus to a non-speed stat",
-            "\1 Every floor, you get a small stat-up to a non-speed stat",
-            "\2 Every floor, you get a small stat-down to a non-speed stat",
-        },
-    },
-    [mod.COLLECTIBLE_BLOOD_RITUAL] = {
-        Name = "Blood Ritual",
-        Description = {
-            "Spawns 3 {{DevilChanceSmall}} evil familiars for the room that orbit around you",
-            "Additional uses in a room only spawn 1 familiar",
+            "\1 +0.5 Tears",
+            "\2 -0.25 Speed",
+            "Your friction is increased, effectively increasing your movespeed",
         },
     },
     [mod.COLLECTIBLE_CONDENSED_MILK] = {
@@ -32,9 +25,65 @@ local ITEMS = {
                     return PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_LILITH)
                 end,
                 DescriptionToAdd = {
-                    "{{Player13}} This has no effect as Lilith because she cannot fire",
+                    "{{Player13}} Lilith's Incubus gives a small increase to stats while firing",
                 },
             },
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_LILITH_B)
+                end,
+                DescriptionToAdd = {
+                    "{{Player32}} Tainted Lilith's Gello gives a small increase to stats while firing",
+                },
+            },
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_INCUBUS)
+                end,
+                DescriptionToAdd = {
+                    "{{Collectible360}} Incubus gives a small increase to stats while firing",
+                },
+            },
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_TWISTED_PAIR)
+                end,
+                DescriptionToAdd = {
+                    "{{Collectible698}} Twisted Pair babies give a small increase to stats while firing",
+                },
+            },
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_GELLO)
+                end,
+                DescriptionToAdd = {
+                    "{{Collectible728}} Gello gives a small increase to stats while firing",
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_GOAT_MILK] = {
+        Name = "Goat Milk",
+        Description = {
+            "\1 x0.8 Firedelay",
+            "Everytime you fire, your firedelay will instead be randomly multiplied by anywhere from x0.45 to x1.35",
+        },
+    },
+    [mod.COLLECTIBLE_NOSE_CANDY] = {
+        Name = "Nose Candy",
+        Description = {
+            "\1 Every floor, you get +0.2 speed",
+            "{{Blank}}  \7 If this bonus would make your speed higher than 2, the overflowing speed becomes a bonus to a non-speed stat",
+            "\1 Every floor, you get a small stat-up to a non-speed stat",
+            "\2 Every floor, you get a small stat-down to a non-speed stat",
+        },
+    },
+    [mod.COLLECTIBLE_LION_SKULL] = {
+        Name = "Lion Skull",
+        Description = {
+            "\1 Every room cleared gives a stacking x1.04 damage multiplier",
+            "\2 When you take damage, lose the multiplier and get a damage down proportional to rooms cleared damageless",
+            "{{Blank}} The damage down will slowly wear off as you clear rooms",
         },
     },
     [mod.COLLECTIBLE_CARAMEL_APPLE] = {
@@ -92,29 +141,80 @@ local ITEMS = {
             "While firing, you get a {{Collectible395}} Tech X ring around you",
             "This ring grows in size as you fire, and slowly shrinks while not firing"
         },
-        DescriptionAppend = {
-            {
-                Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_LILITH)
-                end,
-                DescriptionToAdd = {
-                    "{{Player13}} This has no effect as Lilith because she cannot fire",
-                },
-            },
-        },
     },
     [mod.COLLECTIBLE_MAMMONS_OFFERING] = {
         Name = "Mammon's Offering",
         Description = {
-            "On death, enemies have a 1/3 chance to spawn a special obol worth 2 coins",
+            "On death, enemies have a 1/3 chance to spawn a special obol worth 3 coins",
             "\2 On pickup, obols grant a small damage down",
             "\1 On new floors, all obols that weren't picked up grant a damage up",
             "!!! Obols can't be picked up by Bums or Ultra Greed",
         },
     },
+    [mod.COLLECTIBLE_PAINT_BUCKET] = {
+        Name = "Paint Bucket",
+        Description = {
+            " ",
+        },
+    },
+    [mod.COLLECTIBLE_FATAL_SIGNAL] = {
+        Name = "Fatal Signal",
+        Description = {
+            "\1 +1 Health",
+            "Gives a passive {{Collectible721}} glitched item on pickup"
+        },
+    },
+    [mod.COLLECTIBLE_PEPPER_X] = {
+        Name = "Pepper X",
+        Description = {
+            "9% chance to shoot a meteor tear that spawns fire upon contact",
+            "{{Luck}} 50% chance at 13 luck",
+            "The fire deals contact damage and blocks shots, disappears after 5 seconds",
+        },
+    },
+    [mod.COLLECTIBLE_METEOR_SHOWER] = {
+        Name = "Meteor Shower",
+        Description = {
+            "In active rooms, every 4 seconds spawns a meteor that falls from the sky",
+            "When landing, it spawns a fire and a cross stream of fire jets",
+            "The fire deals contact damage and blocks shots, disappears after 4 seconds",
+        },
+    },
+
+    --ACTIVES
+    [mod.COLLECTIBLE_BLOODY_NEEDLE] = {
+        Name = "Bloody Needle",
+        Description = {
+            "\1 +0.5 Tears for the room",
+            "!!! Deals half a heart of damage to Isaac",
+            "{{Heart}} Removes Red Hearts first"
+        },
+    },
+    [mod.COLLECTIBLE_BLOOD_RITUAL] = {
+        Name = "Blood Ritual",
+        Description = {
+            "Spawns 3 {{DevilChanceSmall}} evil familiars for the room that orbit around you",
+            "Additional uses in a room only spawn 1 familiar",
+        },
+    },
+    [mod.COLLECTIBLE_SILK_BAG] = {
+        Name = "Silk Bag",
+        Description = {
+            "\1 Gives 0.5 seconds of invincibility",
+            "!!! Has a limited number of uses, at 0 uses the item gets removed",
+            "Starts with 8 uses, gets 4 every floor (up to 8)"
+        },
+    },
 }
 
-local TRINKETS = {}
+local TRINKETS = {
+    [mod.TRINKET_PLASMA_GLOBE] = {
+        Name = "Plasma Globe",
+        Description = {
+            "On new rooms, enemies have a 15% chance to be electrified",
+        },
+    },
+}
 
 local CARDS = {
     [mod.CONSUMABLE_MANTLE_ROCK] = {

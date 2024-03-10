@@ -1,6 +1,6 @@
 local mod = MilcomMOD
 
-local LIGHT_FAM_ID = Isaac.GetEntityVariantByName("MILCOM LIGHT FAMILIAR")
+--local LIGHT_FAM_ID = Isaac.GetEntityVariantByName("MILCOM LIGHT FAMILIAR")
 
 --#region DATA
 local MILCOM_A_BASEDATA = {
@@ -24,6 +24,9 @@ local MILCOM_A_BASEDATA = {
     SELECTED_CRAFT_INDEX = 1,
     SELECTED_INV_INDEX = 1,
     OWNED_CRAFTABLES = {
+        "CREDIT CARDBOARD",
+        "MAKESHIFT BOMB",
+        "MAKESHIFT KEY",
     },
 
     INV_CRAFTABLE_OFFSET = Vector(-120,-44),

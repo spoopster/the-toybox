@@ -33,7 +33,7 @@ local function mapFramesLogic(_)
     --if(IS_MENU_ACTIVE and MAP_TIMER<18) then MAP_TIMER=MAP_TIMER+1
     --elseif(not IS_MENU_ACTIVE and MAP_TIMER>0) then MAP_TIMER=MAP_TIMER-1 end
 end
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, mapFramesLogic)
+--mod:AddCallback(ModCallbacks.MC_POST_RENDER, mapFramesLogic)
 
 ---@param player EntityPlayer
 local function postPlayerRender(_, player)
@@ -51,10 +51,8 @@ local function postPlayerRender(_, player)
     else data.MENU_OPEN_FRAMES=0 end
 
 
-    if(data.MENU_OPEN_FRAMES==1) then
-        if(data.SHOULD_RENDER_MENU==true) then data.SHOULD_RENDER_MENU=false
-        else data.SHOULD_RENDER_MENU = true end
-    end
+    if(data.MENU_OPEN_FRAMES>0) then data.SHOULD_RENDER_MENU=true
+    else data.SHOULD_RENDER_MENU=false end
 
     local toAdd = -1
     if(data.SHOULD_RENDER_MENU==true) then toAdd = 1 end
@@ -151,6 +149,19 @@ local INV_GRID_DATA = {
     [6] = {ALPHA=0},
 }
 
+local VALID_CRAFTABLE_IDS = {}
+local function updateValidCraftables(player)
+    VALID_CRAFTABLE_IDS = {}
+    for i, d in ipairs(mod.CRAFTABLES_A) do
+        local isValid = true
+        if(isValid and (mod:hasNextLevel(d.NAME) and mod:playerHasCraftable(player, d.NAME))) then isValid=false end
+        if(isValid and (d.PREV_CRAFTABLE and not mod:playerHasCraftable(player, d.PREV_CRAFTABLE))) then isValid=false end
+        if(isValid and (d.APPEAR_CONDITION and not d.APPEAR_CONDITION(player))) then isValid = false end
+
+        if(isValid) then VALID_CRAFTABLE_IDS[#VALID_CRAFTABLE_IDS+1] = i end
+    end
+end
+
 local function renderCraftingMenuNOCOOP(_)
     --if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
     if(mod:getNumberOfTruePlayers()>1) then return end
@@ -158,6 +169,8 @@ local function renderCraftingMenuNOCOOP(_)
     if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
     local data = mod:getMilcomATable(player)
     if(data.RENDER_FRAMES==0) then return end
+
+    updateValidCraftables(player)
 
     local renderPos = Vector(mod:getScreenCenter().X, mod:getScreenBottomRight().Y-90)
 
@@ -240,8 +253,15 @@ local function renderCraftingMenuNOCOOP(_)
 
         local xPos = (i+indexOffset)*40
 
+        local vIdx = VALID_CRAFTABLE_IDS[((data.SELECTED_CRAFT_INDEX+i)-1)%(#VALID_CRAFTABLE_IDS)+1]
+        local name = mod.CRAFTABLES_A[vIdx].NAME
         DISPLAYED_ITEMS[#DISPLAYED_ITEMS+1] = {
-            Item = mod:getCraftableFromCategory(player, mod:getValidCraftingIndex(data.SELECTED_CRAFT_INDEX+i)),
+            Item = {
+                ID = vIdx,
+                NAME = name,
+                LEVEL = mod.CRAFTABLES_A[vIdx].LEVEL,
+                IS_PURCHASEABLE = (mod:playerHasCraftable(player, name) and not mod:hasNextLevel(name)),
+            },
             Color = Color(1,1,1,aMult*a),
             Scale = Vector(1,1),
             Position = Vector(xPos,0),
@@ -320,10 +340,13 @@ local function renderCraftingMenuNOCOOP(_)
         local xPos = (i+indexOffset)*40
 
         if(data.OWNED_CRAFTABLES[data.SELECTED_INV_INDEX+i]) then
+            local name = data.OWNED_CRAFTABLES[data.SELECTED_INV_INDEX+i]
+            local id = mod:getCraftableIdByName(name)
             DISPLAYED_INVITEMS[#DISPLAYED_INVITEMS+1] = {
                 Item = {
-                    NAME=data.OWNED_CRAFTABLES[data.SELECTED_INV_INDEX+i],
-                    LEVEL=mod.CRAFTABLES_A[ data.OWNED_CRAFTABLES[data.SELECTED_INV_INDEX+i] ].LEVEL or 1,
+                    ID = id,
+                    NAME = name,
+                    LEVEL = mod.CRAFTABLES_A[id].LEVEL or 1,
                 },
                 Color = Color(1,1,1,aMult*a),
                 Scale = Vector(1,1),
@@ -369,7 +392,7 @@ local function renderCraftingMenuNOCOOP(_)
             if(data.SELECTED_MENU==1) then
                 data.SHIFTING_FRAMES_CRAFT = 0
                 data.SHIFTING_DIRECTION_CRAFT = change
-                data.SELECTED_CRAFT_INDEX = mod:getValidCraftingIndex(data.SELECTED_CRAFT_INDEX+change)
+                data.SELECTED_CRAFT_INDEX = ((data.SELECTED_CRAFT_INDEX+change)-1)%#VALID_CRAFTABLE_IDS+1
 
                 sfx:Play(SFXMENU_CHANGEPOS, 0.8)
             elseif(data.SELECTED_MENU==2) then
@@ -441,10 +464,10 @@ local function renderCraftingMenuNOCOOP(_)
 
         menuCraftableSprite.Color = iData.Color
         menuCraftableSprite.Scale = iData.Scale
-        menuCraftableSprite:SetFrame(mod.CRAFTABLES_A[iData.Item.NAME].FRAME)
+        menuCraftableSprite:SetFrame(mod.CRAFTABLES_A[iData.Item.ID].FRAME)
         menuCraftableSprite:Render(itemPos)
 
-        if(iData.Item.ISMAXED==true) then
+        if(iData.Item.IS_PURCHASEABLE==true) then
             menuMaxCrossSprite.Color = iData.Color
             menuMaxCrossSprite.Scale = iData.Scale
             menuMaxCrossSprite:Render(itemPos)
@@ -462,7 +485,7 @@ local function renderCraftingMenuNOCOOP(_)
 
             menuCraftableSprite.Color = iData.Color
             menuCraftableSprite.Scale = iData.Scale
-            menuCraftableSprite:SetFrame(mod.CRAFTABLES_A[iData.Item.NAME].FRAME)
+            menuCraftableSprite:SetFrame(mod.CRAFTABLES_A[iData.Item.ID].FRAME)
             menuCraftableSprite:Render(itemPos)
 
             if(iData.IsSelected) then selectedItem = iData.Item end
@@ -478,7 +501,7 @@ local function renderCraftingMenuNOCOOP(_)
     end
 
     if(selectedItem) then
-        local enumData = mod.CRAFTABLES_A[selectedItem.NAME]
+        local enumData = mod.CRAFTABLES_A[selectedItem.ID]
 
         local PRICE_PICKUPS = {enumData.COST.CARDBOARD,enumData.COST.TAPE,enumData.COST.NAILS}
         local OWNED_PICKUPS = {mod.MILCOM_A_PICKUPS.CARDBOARD,mod.MILCOM_A_PICKUPS.DUCT_TAPE,mod.MILCOM_A_PICKUPS.NAILS}
@@ -487,14 +510,15 @@ local function renderCraftingMenuNOCOOP(_)
         local textColor = KColor(1,1,1,a)
         local evilTextColor = KColor(1,0.25,0.25,a)
 
-        if(data.SELECTED_MENU==1 and (not selectedItem.ISMAXED)) then
+        if(data.SELECTED_MENU==1 and (not selectedItem.IS_PURCHASEABLE)) then
             if(Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex)) then
                 if(CAN_AFFORD[1] and CAN_AFFORD[2] and CAN_AFFORD[3]) then
                     mod:addCraftable(player, selectedItem.NAME)
+                    Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_MILCOM_CRAFT_CRAFTABLE, selectedItem.NAME, player, enumData)
 
-                    mod:addCardboard(-enumData.COST.CARDBOARD, enumData.NAME=="CREDIT CARDBOARD")
-                    mod:addDuctTape(-enumData.COST.TAPE, enumData.NAME=="MAKESHIFT BOMB")
-                    mod:addNails(-enumData.COST.NAILS, enumData.NAME=="MAKESHIFT KEY")
+                    mod:addCardboard(-enumData.COST.CARDBOARD)
+                    mod:addDuctTape(-enumData.COST.TAPE)
+                    mod:addNails(-enumData.COST.NAILS)
 
                     sfx:Play(SFXMENU_ITEMCRAFTED, 1.25)
 
@@ -539,7 +563,10 @@ local function renderCraftingMenuNOCOOP(_)
             priceHudSprite:SetFrame(i)
             priceHudSprite:Render(pricePos)
 
-            f:DrawStringScaled(tostring(math.floor((price%100-price%10)/10))..tostring(price%10), pricePos.X+18, pricePos.Y, 1,1, (CAN_AFFORD[i+1] and textColor or evilTextColor))
+
+            local col = evilTextColor
+            if(CAN_AFFORD[i+1] or data.SELECTED_MENU==2) then col = textColor end
+            f:DrawStringScaled(tostring(math.floor((price%100-price%10)/10))..tostring(price%10), pricePos.X+18, pricePos.Y, 1,1, col)
         end
 
         local formattedDesc = mod:formatMilcomDescription(f, enumData.DESCRIPTION, data.DATA_DESCRIPTIONSIZE.X)

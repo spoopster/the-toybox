@@ -42,8 +42,7 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
         boneTear.CollisionDamage = ENUM_BONES_DMG
     end
 end
-if(CustomHealthAPI) then mod:addChapiDamageCallback(mantleDamage, -1e6)
-else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12-1, mantleDamage, EntityType.ENTITY_PLAYER) end
+mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12-1, mantleDamage, EntityType.ENTITY_PLAYER)
 
 local function mantleKill(_, entity)
     if(entity.MaxHitPoints<1) then return end

@@ -22,7 +22,7 @@ local function evalCache(_, player, flag)
         if(bonus<0) then dmgIncrease = bonus*ENUM_DMG_DECREASE
         else dmgIncrease = bonus*ENUM_DMG_INCREASE end
 
-        player.Damage = player.Damage*(1+dmgIncrease)
+        player.Damage = player.Damage*(1+dmgIncrease)*mult
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

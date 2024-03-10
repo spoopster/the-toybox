@@ -8,9 +8,12 @@ local t = {
     "scripts.players.milcom.a.crafting_menu",
 
     --"scripts.players.milcom.a.craftables.",
-    --"scripts.players.milcom.a.craftables.makeshift_bomb", -- THIS FILE DOES NOTHING, AS ITS EFFECT IS DONE IN "pickups_logic.lua"
-    --"scripts.players.milcom.a.craftables.makeshift_key", -- THIS FILE DOES NOTHING, AS ITS EFFECT IS DONE IN "pickups_logic.lua"
-    --"scripts.players.milcom.a.craftables.credit_cardboard", -- THIS FILE DOES NOTHING, AS ITS EFFECT IS DONE IN "pickups_logic.lua"
+    "scripts.players.milcom.a.craftables.makeshift_bomb",
+    "scripts.players.milcom.a.craftables.makeshift_key",
+    "scripts.players.milcom.a.craftables.credit_cardboard",
+    
+    "scripts.players.milcom.a.craftables.nailgun",
+    "scripts.players.milcom.a.craftables.nailrifle",
 
     --MILCOM B
     "scripts.players.milcom.b.milcom",

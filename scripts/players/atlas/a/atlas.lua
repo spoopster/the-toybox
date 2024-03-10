@@ -87,7 +87,6 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, replaceAtlasPeeStain, Effect
 
 local function cancelHeartCollision(_, pickup, player)
     if(not (player and player:ToPlayer() and player:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
-    
     return false
 end
 mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, -1e12+1, cancelHeartCollision, PickupVariant.PICKUP_HEART)

@@ -34,29 +34,36 @@ function mod:getNumNails()
     return mod.MILCOM_A_PICKUPS.NAILS
 end
 
-function mod:addCardboard(val, willUnlockUpgrade)
-    if(mod:anyPlayerHasCraftable("CREDIT_CARDBOARD")) then
-        Isaac.GetPlayer():AddCoins(val)
+function mod:canMilcomUseCoins()
+    if(mod:anyPlayerHasCraftable("CREDIT CARDBOARD")) then return true end
+    return false
+end
+function mod:canMilcomUseBombs()
+    if(mod:anyPlayerHasCraftable("MAKESHIFT BOMB")) then return true end
+    return false
+end
+function mod:canMilcomUseKeys()
+    if(mod:anyPlayerHasCraftable("MAKESHIFT KEY")) then return true end
+    return false
+end
 
-        if(willUnlockUpgrade) then mod.MILCOM_A_PICKUPS.CARDBOARD_NOUPGRADE = mod.MILCOM_A_PICKUPS.CARDBOARD+val end
+function mod:addCardboard(val)
+    if(mod:canMilcomUseCoins()) then
+        Isaac.GetPlayer():AddCoins(val)
     else
         mod.MILCOM_A_PICKUPS.CARDBOARD = mod:clamp(mod.MILCOM_A_PICKUPS.CARDBOARD+val, 99, 0)
     end
 end
-function mod:addDuctTape(val, willUnlockUpgrade)
-    if(mod:anyPlayerHasCraftable("MAKESHIFT_BOMB")) then
+function mod:addDuctTape(val)
+    if(mod:canMilcomUseBombs()) then
         Isaac.GetPlayer():AddBombs(val)
-
-        if(willUnlockUpgrade) then mod.MILCOM_A_PICKUPS.DUCT_TAPE_NOUPGRADE = mod.MILCOM_A_PICKUPS.DUCT_TAPE+val end
     else
         mod.MILCOM_A_PICKUPS.DUCT_TAPE = mod:clamp(mod.MILCOM_A_PICKUPS.DUCT_TAPE+val, 99, 0)
     end
 end
-function mod:addNails(val, willUnlockUpgrade)
-    if(mod:anyPlayerHasCraftable("MAKESHIFT_KEY")) then
+function mod:addNails(val)
+    if(mod:canMilcomUseKeys()) then
         Isaac.GetPlayer():AddKeys(val)
-
-        if(willUnlockUpgrade) then mod.MILCOM_A_PICKUPS.NAILS_NOUPGRADE = mod.MILCOM_A_PICKUPS.NAILS+val end
     else
         mod.MILCOM_A_PICKUPS.NAILS = mod:clamp(mod.MILCOM_A_PICKUPS.NAILS+val, 99, 0)
     end
@@ -130,14 +137,17 @@ function mod:addCraftable(player, craftable)
     local data = mod:getMilcomATable(player)
     data.OWNED_CRAFTABLES[#data.OWNED_CRAFTABLES+1] = craftable
 end
-function mod:getCraftableFromCategory(player, category)
-    local cTable = mod.CRAFTABLE_A_CATEGORIES[category]
-    for i, val in ipairs(cTable) do
-        if(not mod:playerHasCraftable(player, val)) then
-            return {LEVEL=i, NAME=val, ISMAXED=false}
-        end
+function mod:hasNextLevel(name)
+    for i, d in ipairs(mod.CRAFTABLES_A) do
+        if(d.PREV_CRAFTABLE==name) then return true end
     end
-    return {LEVEL=#cTable, NAME=cTable[#cTable], ISMAXED=true}
+    return false
+end
+function mod:getCraftableIdByName(name)
+    for i, d in ipairs(mod.CRAFTABLES_A) do
+        if(d.NAME==name) then return i end
+    end
+    return 1
 end
 
 function mod:formatMilcomDescription(f, descTable, maxwidth)

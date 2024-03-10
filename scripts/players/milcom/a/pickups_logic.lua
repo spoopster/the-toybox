@@ -49,11 +49,7 @@ local function replacePickupsWithMaterials(_)
     ---@type EntityPlayer
     player = player:ToPlayer()
 
-    local cantUseCoins = not mod:anyPlayerHasCraftable("CREDIT_CARDBOARD")
-    local cantUseBombs = not mod:anyPlayerHasCraftable("MAKESHIFT_BOMB")
-    local cantUseKeys = not mod:anyPlayerHasCraftable("MAKESHIFT_KEY")
-
-    if(cantUseCoins) then
+    if(not mod:canMilcomUseCoins()) then
         if(player:GetNumCoins()>0) then
             mod.MILCOM_A_PICKUPS.CARDBOARD = mod:clamp(mod.MILCOM_A_PICKUPS.CARDBOARD+player:GetNumCoins(), 99, 0)
             player:AddCoins(-player:GetNumCoins())
@@ -62,7 +58,7 @@ local function replacePickupsWithMaterials(_)
         mod.MILCOM_A_PICKUPS.CARDBOARD_NOUPGRADE = mod.MILCOM_A_PICKUPS.CARDBOARD
     else
         if(mod.MILCOM_A_PICKUPS.CARDBOARD_NOUPGRADE~=-1) then
-            player:AddCoins(mod.MILCOM_A_PICKUPS.CARDBOARD_NOUPGRADE)
+            player:AddCoins(mod.MILCOM_A_PICKUPS.CARDBOARD_NOUPGRADE or 0)
             mod.MILCOM_A_PICKUPS.CARDBOARD_NOUPGRADE = -1
         end
 
@@ -73,7 +69,7 @@ local function replacePickupsWithMaterials(_)
         player:AddBombs(5)
         player:RemoveGoldenBomb()
     end
-    if(cantUseBombs) then
+    if(not mod:canMilcomUseBombs()) then
         if(player:GetNumBombs()>0) then
             mod.MILCOM_A_PICKUPS.DUCT_TAPE = mod:clamp(mod.MILCOM_A_PICKUPS.DUCT_TAPE+player:GetNumBombs(), 99, 0)
             player:AddBombs(-player:GetNumBombs())
@@ -82,7 +78,7 @@ local function replacePickupsWithMaterials(_)
         mod.MILCOM_A_PICKUPS.DUCT_TAPE_NOUPGRADE = mod.MILCOM_A_PICKUPS.DUCT_TAPE
     else
         if(mod.MILCOM_A_PICKUPS.DUCT_TAPE_NOUPGRADE~=-1) then
-            player:AddBombs(mod.MILCOM_A_PICKUPS.DUCT_TAPE_NOUPGRADE)
+            player:AddBombs(mod.MILCOM_A_PICKUPS.DUCT_TAPE_NOUPGRADE or 0)
             mod.MILCOM_A_PICKUPS.DUCT_TAPE_NOUPGRADE = -1
         end
 
@@ -93,7 +89,7 @@ local function replacePickupsWithMaterials(_)
         player:AddKeys(5)
         player:RemoveGoldenKey()
     end
-    if(cantUseKeys) then
+    if(not mod:canMilcomUseKeys()) then
         if(player:GetNumKeys()>0) then
             mod.MILCOM_A_PICKUPS.NAILS = mod:clamp(mod.MILCOM_A_PICKUPS.NAILS+player:GetNumKeys(), 99, 0)
             player:AddKeys(-player:GetNumKeys())
@@ -102,7 +98,7 @@ local function replacePickupsWithMaterials(_)
         mod.MILCOM_A_PICKUPS.NAILS_NOUPGRADE = mod.MILCOM_A_PICKUPS.NAILS
     else
         if(mod.MILCOM_A_PICKUPS.NAILS_NOUPGRADE~=-1) then
-            player:AddKeys(mod.MILCOM_A_PICKUPS.NAILS_NOUPGRADE)
+            player:AddKeys(mod.MILCOM_A_PICKUPS.NAILS_NOUPGRADE or 0)
             mod.MILCOM_A_PICKUPS.NAILS_NOUPGRADE = -1
         end
 

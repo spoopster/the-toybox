@@ -1,7 +1,7 @@
 local t = {
     --PASSIVES
     -- "scripts.items.passives.",
-    "scripts.items.passives.slickwater",
+    "scripts.items.passives.coconut_oil",
     "scripts.items.passives.goat_milk",
     "scripts.items.passives.condensed_milk",
     "scripts.items.passives.nose_candy",
@@ -10,15 +10,25 @@ local t = {
     "scripts.items.passives.painkillers",
     "scripts.items.passives.tech_ix",
     "scripts.items.passives.mammons_offering",
+    --"scripts.items.passives.paint_bucket",
+    "scripts.items.passives.fatal_signal",
+    "scripts.items.passives.pepper_x",
+    "scripts.items.passives.meteor_shower",
+
+    "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 
     --ACTIVES
     -- "scripts.items.actives.",
     "scripts.items.actives.bloody_needle",
     "scripts.items.actives.blood_ritual",
+    "scripts.items.actives.silk_bag",
 
     --TRINKETS
     -- "scripts.items.trinkets.",
+    "scripts.items.trinkets.plasma_globe",
 
+    --UNUSED
+    -- "scripts.items.unused.laser_pointer",
 }
 for _, path in ipairs(t) do
     include(path)

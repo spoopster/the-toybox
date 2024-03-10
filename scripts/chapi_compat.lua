@@ -1,5 +1,7 @@
 local mod = MilcomMOD
 
+-- i hate it here
+
 mod.CHAPI_DAMAGE_CALLBACKS = {}
 
 function mod:addChapiDamageCallback(func, priority)
@@ -31,13 +33,14 @@ if(CustomHealthAPI) then
                         dmg1=r.Damage
                         flags1=r.DamageFlags
                         frames1=r.DamageCountdown
-                    else
+                    elseif(r==false) then
                         return r
                     end
                 end
             end
         end
         
+
         if(not (dmg==dmg1 and flags==flags1 and frames==frames1)) then
             return {
                 Damage=dmg1,
@@ -58,8 +61,7 @@ if(CustomHealthAPI) then
         player:TakeDamage(dmg,flags,source,frames)
         data.CANCEL_CHAPI_DMG=nil
 
-        return true
+        --return true
     end
     CustomHealthAPI.Library.AddCallback(mod, CustomHealthAPI.Enums.Callbacks.PRE_PLAYER_DAMAGE, 1e12, cancelCHAPIDmg)
-    
 end

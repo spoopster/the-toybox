@@ -9,13 +9,17 @@ local mod_files = {
     "scripts.custom.callbacks",
     "scripts.custom.bombflags",
     "scripts.custom.ludo_trigger",
+    "scripts.custom.statuseffects",
+    "scripts.custom.tearvariants",
 
     "scripts.helper",
+
+    "scripts.libraries.firejet",
 
     "scripts.config",
     "scripts.savedata.save_data",
 
-    "scripts.chapi_compat",
+    "scripts.statuseffects.electrified",
 
     "scripts.players.milcom.toinclude",
     "scripts.players.atlas.toinclude",
@@ -25,6 +29,8 @@ local mod_files = {
     "scripts.modcompat.eid.eid",
 
     "scripts.toybox_imgui",
+
+    "scripts.funny_shaders",
 
     --"scripts.test",
 }

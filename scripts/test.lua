@@ -1,5 +1,6 @@
 local mod = MilcomMOD
 
+--[[
 local isSpawningShit = false
 local shitSpawningCounter = 0
 
@@ -17,7 +18,7 @@ function(_)
     if(isSpawningShit) then
         if(shitSpawningCounter<=10 and shitSpawningCounter%2==0) then
             local pos = Vector((shitSpawningCounter-6)*15, -80)
-            print(pos)
+            --print(pos)
 
             local pickup = Isaac.Spawn(5,PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_NORMAL, room:GetCenterPos()+pos, Vector.Zero, nil)
         end
@@ -25,3 +26,18 @@ function(_)
         shitSpawningCounter = shitSpawningCounter+1
     end
 end)
+--]]
+
+local function evalCache(_, p, f)
+    p.Damage = p.Damage + 0.06*(p.Luck/0.1)
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_DAMAGE)
+
+local function postPlayerUpdate(_, p)
+    if(p.Luck~=p:GetData().PreviousLuck) then
+        p:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true)
+    end
+
+    p:GetData().MilkshakePreviousLuck = p.Luck
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate)

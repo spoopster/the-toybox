@@ -3,7 +3,7 @@
     "runtime.version": "Lua 5.3",
     "workspace.library": [
         "c:\\Users\\2023\\.vscode\\extensions\\syntaxsculptor.isaac-lua-api-vscode-repentogon-1.5.6\\out\\emmylua",
-        "c:\\Users\\2023\\.vscode\\extensions\\filloax.isaac-lua-api-vscode-1.7.0\\out\\emmylua\\repentogon"
+        "c:\\Users\\2023\\.vscode\\extensions\\filloax.isaac-lua-api-vscode-1.7.3\\out\\emmylua\\repentogon"
     ],
     "diagnostics.globals": [
         "ActionTriggers",
@@ -246,13 +246,15 @@
         "VanityPCTypes",
         "WispSubType",
         "XMLData",
-        "XMLNode"
+        "XMLNode",
+        "PauseMenu"
     ],
     "diagnostics.disable": [
         "undefined-field",
         "undefined-global",
         "undefined-doc-name",
         "param-type-mismatch",
-        "assign-type-mismatch"
+        "assign-type-mismatch",
+        "need-check-nil"
     ]
 }

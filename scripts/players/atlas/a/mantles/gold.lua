@@ -49,16 +49,10 @@ local function mantleDestroyed(_, player, mantle)
         end
     end
 
-    --[[
-    local dink = Isaac.Spawn(1000,EffectVariant.CRACKED_ORB_POOF,0,player.Position,Vector.Zero,player):ToEffect()
-    dink.SpriteOffset = Vector(0,45)
-    dink.Color=Color(1,1,1,1,1,1,0)
-    dink.SpriteScale = Vector(3,3)
-    dink:GetSprite().PlaybackSpeed = 1.4
-    --]]
     local shatter = Isaac.Spawn(1000, mod.EFFECT_GOLDMANTLE_BREAK, 0, player.Position, Vector.Zero, player):ToEffect()
     shatter.DepthOffset = 100
     shatter:GetSprite().PlaybackSpeed = 1.4
+    shatter.SpriteOffset = Vector(0,-10)
 
     local crater = Isaac.Spawn(1000,EffectVariant.BOMB_CRATER,0,player.Position,Vector.Zero,player):ToEffect()
     crater.Color = Color(1,1,1,1,0.87,0.87)
@@ -69,7 +63,7 @@ local function mantleDestroyed(_, player, mantle)
     end
 
     sfx:Play(SoundEffect.SOUND_METAL_BLOCKBREAK)
-    sfx:Play(mod.SFX_ATLASA_METALBREAK)
+    sfx:Play(mod.SFX_ATLASA_METALBREAK, 1.4)
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 

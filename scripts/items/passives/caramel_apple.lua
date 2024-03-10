@@ -1,7 +1,7 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-local ENUM_BONUSHEALTH_CHANCE = 1
+local ENUM_BONUSHEALTH_CHANCE = 0.25
 
 local ENUM_REDHEART_COL = Color(1,1,1,1)
 local ENUM_SOULHEART_COL = Color(1,1,1,1)

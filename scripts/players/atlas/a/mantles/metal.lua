@@ -61,13 +61,12 @@ local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, fram
         end
     end
 end
-if(CustomHealthAPI) then mod:addChapiDamageCallback(cancelAtlasAMetalMantleDamage)
-else mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12, cancelAtlasAMetalMantleDamage, EntityType.ENTITY_PLAYER) end
+mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12, cancelAtlasAMetalMantleDamage, EntityType.ENTITY_PLAYER)
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
 
-    sfx:Play(mod.SFX_ATLASA_METALBREAK)
+    sfx:Play(mod.SFX_ATLASA_METALBREAK, 1.4)
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLES.METAL)
