@@ -33,10 +33,12 @@ mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, 1e6+1, changeAtl
 local function forceHealth(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
 
-    print(player:GetHearts())
+    --print(player:GetHearts())
+    if(player:GetMaxHearts()<2) then
+        player:AddMaxHearts(2,true)
+    end
     if(player:GetHearts()<2) then
-        print("Hi")
-        player:AddHearts(0.5)
+        player:AddHearts(2)
     end
 end
---mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, forceHealth, 0)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, forceHealth, 0)

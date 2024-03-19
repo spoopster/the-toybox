@@ -47,9 +47,11 @@
 
     <Pool Name="angel">
         <Item Name="Silk Bag"/>
+        <Item Name="Blessed Ring"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
+        <Item Name="Blessed Ring"/>
     </Pool>
 
     <Pool Name="curse">

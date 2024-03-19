@@ -1,4 +1,5 @@
 - NEW:
-    
+    - Added Blessed Ring to Angel and GreedAngel pools
 - CHANGES:
-    - oops Plasma Globe didn't work
+    - Blessed Ring quality upgraded to Q2
+    - Meteor Shower quality downgraded to Q1

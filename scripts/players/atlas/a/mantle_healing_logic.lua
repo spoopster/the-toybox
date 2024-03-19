@@ -11,9 +11,9 @@ local HEARTS_TO_MANTLETYPE = {
     [AddHealthType.ROTTEN] =    mod.MANTLES.POOP,
 }
 
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, function() end)
-
 if(CustomHealthAPI==nil) then
+    mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, function() end) --poopy
+
     ---@param player EntityPlayer
     local function atlasAddMantles(_, player, num, type, arg)
         if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
