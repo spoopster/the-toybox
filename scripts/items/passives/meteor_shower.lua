@@ -121,8 +121,3 @@ local function explosionUpdate(_, effect)
     if(effect:GetSprite():IsFinished("Explosion")) then effect:Remove() end
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, explosionUpdate, mod.EFFECT_METEOR_TEAR_EXPLOSION)
-
-local function isdbjfksdjfdiosjfisoifsdof(_, effect)
-    print(effect.Type, ".", effect.Variant, ".", effect.SubType)
-end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, isdbjfksdjfdiosjfisoifsdof)

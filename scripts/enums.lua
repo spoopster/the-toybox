@@ -44,15 +44,16 @@ mod.COLLECTIBLE_SILK_BAG = Isaac.GetItemIdByName("Silk Bag")                    
 mod.COLLECTIBLE_PAINT_BUCKET = Isaac.GetItemIdByName("Paint Bucket")
 mod.COLLECTIBLE_FATAL_SIGNAL = Isaac.GetItemIdByName("Fatal Signal")                --!DONE
 mod.COLLECTIBLE_METEOR_SHOWER = Isaac.GetItemIdByName("Meteor Shower")              --!DONE
-mod.COLLECTIBLE_BLESSED_RING = Isaac.GetItemIdByName("Blessed Ring")
+mod.COLLECTIBLE_BLESSED_RING = Isaac.GetItemIdByName("Blessed Ring")                --!DONE
 mod.COLLECTIBLE_SIGIL_OF_GREED = Isaac.GetItemIdByName("Sigil of Greed")
 mod.COLLECTIBLE_PEPPER_X = Isaac.GetItemIdByName("Pepper X")                        --!DONE
 mod.COLLECTIBLE_SCATTERED_TOME = Isaac.GetItemIdByName("Scattered Tome")
-
+mod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")                          --!DONE
 --mod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")            --*UNUSED (i dont like the item)
 
 --*TRINKETS
-mod.TRINKET_PLASMA_GLOBE = Isaac.GetTrinketIdByName("Plasma Globe")
+mod.TRINKET_PLASMA_GLOBE = Isaac.GetTrinketIdByName("Plasma Globe")                 --!DONE
+mod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")                   --!DONE
 
 --*CONSUMABLES
 mod.CONSUMABLE_MANTLE_ROCK = Isaac.GetCardIdByName("Rock Mantle")
@@ -80,6 +81,7 @@ mod.PICKUP_MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offer
 
 --*TEARS
 mod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear")
+mod.TEAR_BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear")
 
 --#endregion
 --#region --!SFX
@@ -108,6 +110,7 @@ mod.CUSTOM_CALLBACKS = {
     POST_PLAYER_KILL_NPC = "TOYBOX_POST_PLAYER_KILL_NPC",
     POST_MILCOM_CRAFT_CRAFTABLE = "TOYBOX_POST_MILCOM_CRAFT_CRAFTABLE",
     POST_PLAYER_ATTACK = "TOYBOX_POST_PLAYER_ATTACK",
+    USE_THROWABLE_ACTIVE = "TOYBOX_USE_THROWABLE_ACTIVE",
 }
 
 mod.CUSTOM_BOMBFLAGS = {

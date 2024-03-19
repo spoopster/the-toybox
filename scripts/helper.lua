@@ -351,6 +351,13 @@ end
 function mod:isValidEnemy(entity)
     return (entity:IsEnemy() and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))
 end
+function mod:getAllValidEnemies()
+    local t = {}
+    for i, e in ipairs(Isaac.GetRoomEntities()) do
+        if(mod:isValidEnemy(e)) then table.insert(t, e:ToNPC()) end
+    end
+    return t
+end
 
 function mod:closestEnemy(pos)
 	local entities = Isaac.GetRoomEntities()
@@ -469,4 +476,21 @@ end
 
 function mod:isRoomClear()
     return (Game():GetRoom():IsClear() and not Game():GetRoom():IsAmbushActive())
+end
+
+function mod:isTearCopyingFamiliar(fam)
+    local copyFam = {
+        [FamiliarVariant.INCUBUS]=true,
+        [FamiliarVariant.SPRINKLER]=true,
+        [FamiliarVariant.TWISTED_BABY]=true,
+        [FamiliarVariant.BLOOD_BABY]=true, --clot
+        [FamiliarVariant.UMBILICAL_BABY]=true, --gello
+        [FamiliarVariant.CAINS_OTHER_EYE]=true,
+    }
+
+    return (copyFam[fam.Variant]==true)
+end
+
+function mod:trinketIsTrinketType(pickup, trinkettype)
+    return (pickup.SubType==trinkettype) or (pickup.SubType==trinkettype+TrinketType.TRINKET_GOLDEN_FLAG)
 end

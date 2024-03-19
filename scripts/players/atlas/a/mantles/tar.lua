@@ -47,6 +47,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 local function updateTar(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLES.TAR)) then return end
+
     local data = mod:getAtlasATable(player)
     
     if(mod.CONFIG.ATLAS_TEMP_STRONGER_TAR and data.TIME_HAS_BEEN_IN_TRANSFORMATION%30==0 and data.TIME_HAS_BEEN_IN_TRANSFORMATION<=ENUM_TEMP_BONUS_DURATION) then

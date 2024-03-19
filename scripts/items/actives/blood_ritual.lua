@@ -7,6 +7,9 @@ local sfx = SFXManager()
 local ENUM_NUMFAMILIARS = 3
 local ENUM_NUMFAMILIARS_EXTRA = 1
 
+local CARBATTERY_NUMFAMILIARS = 5
+local CARBATTERY_NUMFAMILIARS_EXTRA = 2
+
 local ENUM_PICKER_WEIGHTFACT = 1000
 local ENUM_EVILFAM_PICKER = WeightedOutcomePicker()
 ENUM_EVILFAM_PICKER:AddOutcomeFloat(CollectibleType.COLLECTIBLE_BROTHER_BOBBY, 0.5, ENUM_PICKER_WEIGHTFACT)
@@ -42,19 +45,23 @@ local ENUM_ORBIT_EASING = 3
 
 ---@param player EntityPlayer
 local function useBloodRitual(_, _, rng, player, flags)
-    local ritualData = mod:getDataTable(player).BLOOD_RITUAL_DATA or {}
-    local numFam = ENUM_NUMFAMILIARS
-    if(#ritualData>0) then numFam = ENUM_NUMFAMILIARS_EXTRA end
+    if(flags & UseFlag.USE_CARBATTERY == 0) then
+        local isCarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
 
-    for _=1, numFam do
-        table.insert(ritualData, #ritualData+1, ENUM_EVILFAM_PICKER:PickOutcome(rng))
+        local ritualData = mod:getDataTable(player).BLOOD_RITUAL_DATA or {}
+        local numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS or ENUM_NUMFAMILIARS)
+        if(#ritualData>0) then numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS_EXTRA or ENUM_NUMFAMILIARS_EXTRA) end
+
+        for _=1, numFam do
+            table.insert(ritualData, #ritualData+1, ENUM_EVILFAM_PICKER:PickOutcome(rng))
+        end
+        mod:setData(player, "BLOOD_RITUAL_DATA", ritualData)
+
+        local pentagram = Isaac.Spawn(1000, mod.EFFECT_BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
+        pentagram.DepthOffset = -1000
+
+        sfx:Play(SoundEffect.SOUND_DEVIL_CARD)
     end
-    mod:setData(player, "BLOOD_RITUAL_DATA", ritualData)
-
-    local pentagram = Isaac.Spawn(1000, mod.EFFECT_BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
-    pentagram.DepthOffset = -1000
-
-    sfx:Play(SoundEffect.SOUND_DEVIL_CARD)
 
     return {
         Discharge = true,

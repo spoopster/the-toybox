@@ -21,6 +21,7 @@ local function evalCache(_, player, flag)
     if(not player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_BLOODY_NEEDLE)) then return end
 
     local mult = player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_BLOODY_NEEDLE).Count
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)) then mult=mult*1.5 end
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
         player.MaxFireDelay = mod:addTps(player, ENUM_TEARSTOADD*mult)

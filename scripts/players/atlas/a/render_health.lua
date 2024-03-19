@@ -14,11 +14,11 @@ f:Load("font/pftempestasevencondensed.fnt")
 
 ---@param sprite Sprite
 ---@param pos Vector
-local function renderTest(_, offset, sprite, pos, u)
+local function renderTest(_, offset, sprite, pos, u, player)
     if(offset.X==1) then return end
     if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)) then return end
 
-    --print(pos)
+    --print(player, pos)
 
     return true
 end
@@ -85,16 +85,20 @@ local function renderHearts(_)
 
             HP_SPRITE:SetFrame(spriteToRender, hpToRender)
 
+            local updatedColor=false
             if(selHealthIndex==i and not hasCurseOfTheUnknown) then
+                updatedColor=true
+
                 local sinColor = math.sin(math.rad(player.FrameCount*10))*0.25+0.5
 
-                if(data.MANTLES[i].TYPE==mod.MANTLES.NONE) then HP_SPRITE.Color = Color(1,1,1,1,sinColor,sinColor,sinColor)
-                else HP_SPRITE.Color = Color(1,1,1,1,sinColor,0,sinColor*0.1) end
+                if(data.MANTLES[i].TYPE==mod.MANTLES.NONE) then data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1,sinColor,sinColor,sinColor), 0.5)
+                else data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1,sinColor,0,sinColor*0.1), 0.5) end
             end
-            
-            HP_SPRITE:Render(heartRenderPos)
 
-            HP_SPRITE.Color = Color(1,1,1,1)
+            if(not updatedColor) then data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1), 0.15) end
+            
+            HP_SPRITE.Color = data.MANTLES[i].COLOR or Color(1,1,1,1)
+            HP_SPRITE:Render(heartRenderPos)
 
             heartRenderPos = heartRenderPos+Vector(18,0)
         end

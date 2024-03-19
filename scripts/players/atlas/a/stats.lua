@@ -3,13 +3,11 @@ local mod = MilcomMOD
 ---@param player EntityPlayer
 local function atlasAInit(_, player)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
-        player:AddMaxHearts(1)
-        player:AddHearts(1)
         player:AddCacheFlags(CacheFlag.CACHE_ALL)
         player:EvaluateItems()
     end
 end
---mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, atlasAInit)
+mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, atlasAInit)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
@@ -27,25 +25,18 @@ local function changeAtlasHealthType(_, player)
 end
 mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, 1e6+1, changeAtlasHealthType, mod.PLAYER_ATLAS_A)
 local function changeAtlasHealthLimit(_, player)
-    return 1
+    return 2
 end
 mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, 1e6+1, changeAtlasHealthLimit, mod.PLAYER_ATLAS_A)
 
+---@param player EntityPlayer
 local function forceHealth(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
 
-    if(player:GetMaxHearts()==0 and (player:GetSoulHearts()+player:GetBlackHearts()~=0)) then
-        player:AddMaxHearts(1)
-        player:AddHearts(1)
+    print(player:GetHearts())
+    if(player:GetHearts()<2) then
+        print("Hi")
+        player:AddHearts(0.5)
     end
-
-    if(player:GetGoldenHearts()>0) then player:AddGoldenHearts(-player:GetGoldenHearts()) end
-    if(player:GetRottenHearts()>0) then
-        player:AddRottenHearts(-player:GetRottenHearts())
-        player:AddHearts(player:GetRottenHearts())
-    end
-    if(player:GetBoneHearts()>0) then player:AddBoneHearts(-player:GetBoneHearts()) end
-    if(player:GetEternalHearts()>0) then player:AddEternalHearts(-player:GetEternalHearts()) end
-    if(player:GetBrokenHearts()>0) then player:AddBrokenHearts(-player:GetBrokenHearts()) end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, forceHealth, 0)
+--mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, forceHealth, 0)

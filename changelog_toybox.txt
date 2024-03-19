@@ -1,0 +1,10 @@
+- NEW:
+    - Added an actual changelog so I can write more than 5 words (I hate you commit text)
+    - Added Foam Bullet (trinket)
+    - Added Toy Gun (item)
+    - Added Blessed Ring (item)
+    - Atlas can now heal from all sources (CHAPI support+)
+    - Added sprites for Coconut Oil, Pepper X
+- CHANGES:
+    - Slightly nerfed Condensed Milk
+    - Atlas has more visual red flashes on his UI for taking damage, healing, gaining new mantles

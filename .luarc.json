@@ -255,6 +255,7 @@
         "undefined-doc-name",
         "param-type-mismatch",
         "assign-type-mismatch",
-        "need-check-nil"
+        "need-check-nil",
+        "cast-local-type"
     ]
 }

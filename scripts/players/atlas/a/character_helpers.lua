@@ -82,10 +82,12 @@ end
 function mod:setMantleType(player, idx, hpOverride, type)
     local data = mod:getAtlasATable(player)
 
+    local oldD = data.MANTLES[idx]
     data.MANTLES[idx] = {
         TYPE = type or mod.MANTLES["DEFAULT"],
         HP = hpOverride or (mod.MANTLES_HP[mod:getMantleNameFromType(type or 1)] or mod.MANTLES_HP["DEFAULT"]),
         MAXHP = (mod.MANTLES_HP[mod:getMantleNameFromType(type or 1)] or mod.MANTLES_HP["DEFAULT"]),
+        COLOR = oldD.COLOR or Color(1,1,1,1),
     }
     mod:updateMantles(player)
 end
@@ -104,6 +106,8 @@ function mod:addMantleHp(player, hpToAdd)
         local rng = player:GetCardRNG(mod.MANTLES.DEFAULT)
         local pos = mod:getMantleHeartPosition(player, rIdx)
         local c = mod.MANTLE_TYPE_TO_SHARD_COLOR[selMType] or mod.MANTLE_TYPE_TO_SHARD_COLOR[mod.MANTLES.DEFAULT]
+
+        data.MANTLES[rIdx].COLOR = Color(1,1,1,1,1)
 
         local shardsToSpawn = 5
         for _=1, shardsToSpawn do
@@ -191,6 +195,9 @@ function mod:giveMantle(player, type)
     end
 
     mod:setMantleType(player, rIdx+1, nil, type)
+    
+    data.MANTLES[rIdx+1].COLOR = Color(1,1,1,1,1,0,0)
+
     mod:updateMantles(player)
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.3)

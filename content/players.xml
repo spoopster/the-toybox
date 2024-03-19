@@ -1,5 +1,5 @@
 <players nameimageroot="gfx/ui/boss/" portraitroot="gfx/ui/stage/" root="gfx/characters/players/">
-	<player birthright="-" name="Milcom"
+	<player birthright="idk" name="Milcom"
 		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="character_milcom_a.png" costumeSuffix="milcom_a" skinColor="-1"
 		damagemodifier="-0.7"
 	/>
@@ -8,13 +8,13 @@
 		achievement="Tainted Milcom"
 	/>
 
-	<player birthright="-" name="Atlas"
+	<player birthright="Mantle stratification" name="Atlas"
 		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="character_atlas_a.png" costumeSuffix="atlas_a" skinColor="-1"
-		heartcontainers="1" redhearts="1" healthlimit="1" modcostume="999"
+		modcostume="999" heartcontainers="2" redhearts="2"
 	/>
 	<player birthright="-" name="Atlas" bSkinParent="Atlas"
 		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="character_atlas_b.png" costumeSuffix="atlas_b" skinColor="-1"
-		heartcontainers="1" redhearts="1" healthlimit="1" modcostume="999"
+		heartcontainers="3" redhearts="3" healthlimit="3" modcostume="999"
 		achievement="Tainted Atlas"
 	/>
 </players>

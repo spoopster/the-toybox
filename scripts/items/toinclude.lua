@@ -14,6 +14,7 @@ local t = {
     "scripts.items.passives.fatal_signal",
     "scripts.items.passives.pepper_x",
     "scripts.items.passives.meteor_shower",
+    "scripts.items.passives.blessed_ring",
 
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 
@@ -22,10 +23,12 @@ local t = {
     "scripts.items.actives.bloody_needle",
     "scripts.items.actives.blood_ritual",
     "scripts.items.actives.silk_bag",
+    "scripts.items.actives.toy_gun",
 
     --TRINKETS
     -- "scripts.items.trinkets.",
     "scripts.items.trinkets.plasma_globe",
+    "scripts.items.trinkets.foam_bullet",
 
     --UNUSED
     -- "scripts.items.unused.laser_pointer",

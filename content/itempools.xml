@@ -7,6 +7,7 @@
         <Item Name="Painkillers"/>
         <Item Name="Tech IX"/>
         <Item Name="Pepper X"/>
+        <Item Name="Meteor Shower"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Bloody Needle"/>
@@ -16,6 +17,7 @@
         <Item Name="Painkillers"/>
         <Item Name="Tech IX"/>
         <Item Name="Pepper X"/>
+        <Item Name="Meteor Shower"/>
     </Pool>
 
     <Pool Name="boss">
@@ -41,6 +43,13 @@
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
+    </Pool>
+
+    <Pool Name="angel">
+        <Item Name="Silk Bag"/>
+    </Pool>
+    <Pool Name="greedAngel">
+        <Item Name="Silk Bag"/>
     </Pool>
 
     <Pool Name="curse">

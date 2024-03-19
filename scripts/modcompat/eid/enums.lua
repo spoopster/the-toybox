@@ -1,5 +1,12 @@
 local mod = MilcomMOD
 
+local function isDoubleTrinketMultiplier(descObj)
+    return not(not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) == not (descObj.ObjSubType>=TrinketType.TRINKET_GOLDEN_FLAG))
+end
+local function isTripleTrinketMultiplier(descObj)
+    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) and descObj.ObjSubType>=TrinketType.TRINKET_GOLDEN_FLAG
+end
+
 local ITEMS = {
     --PASSIVES
     [mod.COLLECTIBLE_COCONUT_OIL] = {
@@ -180,6 +187,13 @@ local ITEMS = {
             "The fire deals contact damage and blocks shots, disappears after 4 seconds",
         },
     },
+    [mod.COLLECTIBLE_BLESSED_RING] = {
+        Name = "Blessed Ring",
+        Description = {
+            "In active rooms, every 7 seconds spawns a beam of light at the position of 3 random enemies which loosely follow them around",
+            "After a short delay, the light beams turn into a divine smite that deals 7 total damage",
+        },
+    },
 
     --ACTIVES
     [mod.COLLECTIBLE_BLOODY_NEEDLE] = {
@@ -187,7 +201,20 @@ local ITEMS = {
         Description = {
             "\1 +0.5 Tears for the room",
             "!!! Deals half a heart of damage to Isaac",
-            "{{Heart}} Removes Red Hearts first"
+            "{{Heart}} Removes Red Hearts first",
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "+0.5 Tears",
+                        New = "+0.5/{{Collectible356}}{{ColorYellow}}0.75{{CR}} Tears"
+                    },
+                },
+            },
         },
     },
     [mod.COLLECTIBLE_BLOOD_RITUAL] = {
@@ -196,13 +223,108 @@ local ITEMS = {
             "Spawns 3 {{DevilChanceSmall}} evil familiars for the room that orbit around you",
             "Additional uses in a room only spawn 1 familiar",
         },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "Spawns 3",
+                        New = "Spawns 3/{{Collectible356}}{{ColorYellow}}5{{CR}}"
+                    },
+                    {
+                        Old = "spawn 1",
+                        New = "spawn 1/{{Collectible356}}{{ColorYellow}}2{{CR}}"
+                    },
+                },
+            },
+        },
     },
     [mod.COLLECTIBLE_SILK_BAG] = {
         Name = "Silk Bag",
         Description = {
             "\1 Gives 0.5 seconds of invincibility",
             "!!! Has a limited number of uses, at 0 uses the item gets removed",
-            "Starts with 8 uses, gets 4 every floor (up to 8)"
+            "Starts with 8 uses, gets 4 uses every floor (up to 8)"
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "0.5 seconds",
+                        New = "0.5/{{Collectible356}}{{ColorYellow}}1{{CR}} second(s)"
+                    },
+                },
+            },
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_9_VOLT)
+                end,
+                TextToModify = {
+                    {
+                        Old = "4 uses every floor",
+                        New = "4/{{Collectible116}}{{ColorYellow}}5{{CR}} uses every floor"
+                    },
+                },
+            },
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "up to 8",
+                        New = "up to 8/{{Collectible63}}{{ColorYellow}}12{{CR}}"
+                    },
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_TOY_GUN] = {
+        Name = "Toy Gun",
+        Description = {
+            "When used, fires a foam bullet in the chosen direction that deals 15 damage",
+            "Can be used as long as it has bullets in the magazine, which reloads a bullet every 10 seconds, up to 5",
+            "Trinkets have a 20% chance to be replaced by {{Trinket"..mod.TRINKET_FOAM_BULLET.."}}Foam Bullets, which are automatically smelted",
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "fires a foam bullet",
+                        New = "fires 1 bullet/{{Collectible356}}{{ColorYellow}}3 inaccurate{{CR}} bullets"
+                    },
+                },
+            },
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_9_VOLT)
+                end,
+                TextToModify = {
+                    {
+                        Old = "every 10 seconds",
+                        New = "every 10/{{Collectible116}}{{ColorYellow}}5{{CR}} seconds"
+                    },
+                },
+            },
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "up to 5",
+                        New = "up to 5/{{Collectible63}}{{ColorYellow}}10{{CR}}"
+                    },
+                },
+            },
         },
     },
 }
@@ -211,7 +333,67 @@ local TRINKETS = {
     [mod.TRINKET_PLASMA_GLOBE] = {
         Name = "Plasma Globe",
         Description = {
-            "On new rooms, enemies have a 15% chance to be electrified",
+            "On new rooms, enemies have a 15% chance to be electrified for 4 seconds",
+            "{{Luck}} 50% chance at 20 luck",
+        },
+        DescriptionModifiers = {
+            {
+                Condition = isDoubleTrinketMultiplier,
+                TextToModify = {
+                    {
+                        Old = "4 seconds",
+                        New = "{{ColorYellow}}6{{CR}} seconds",
+                    },
+                },
+            },
+            {
+                Condition = isTripleTrinketMultiplier,
+                TextToModify = {
+                    {
+                        Old = "4 seconds",
+                        New = "{{ColorRainbow}}9{{CR}} seconds",
+                    },
+                },
+            },
+        },
+    },
+    [mod.TRINKET_FOAM_BULLET] = {
+        Name = "Foam Bullet",
+        Description = {
+            "When you deal damage, 2.5% chance to double the damage",
+            "{{Luck}} 50% chance at 30 luck",
+        },
+        DescriptionModifiers = {
+            {
+                Condition = isDoubleTrinketMultiplier,
+                TextToModify = {
+                    {
+                        Old = "2.5%% chance",
+                        New = "{{ColorYellow}}5%%{{CR}} chance",
+                    },
+                },
+            },
+            {
+                Condition = isTripleTrinketMultiplier,
+                TextToModify = {
+                    {
+                        Old = "2.5%% chance",
+                        New = "{{ColorRainbow}}7.5%%{{CR}} chance",
+                    },
+                },
+            },
+        },
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_TOY_GUN)
+                end,
+                DescriptionToAdd = {
+                    "{{Collectible"..mod.COLLECTIBLE_TOY_GUN.."}} Trinket is automatically smelted",
+                    "{{Collectible"..mod.COLLECTIBLE_TOY_GUN.."}} +1 Toy Gun magazine size",
+                    "{{Collectible"..mod.COLLECTIBLE_TOY_GUN.."}} +1.5 Toy Gun bullet damage",
+                },
+            },
         },
     },
 }

@@ -11,6 +11,7 @@ local mod_files = {
     "scripts.custom.ludo_trigger",
     "scripts.custom.statuseffects",
     "scripts.custom.tearvariants",
+    "scripts.custom.throwables",
 
     "scripts.helper",
 

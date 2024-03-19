@@ -2,7 +2,10 @@ local mod = MilcomMOD
 local sfx = SFXManager()
 
 local MAX_USES = 8
+local BATTERY_MAX_USES = 16
+
 local USES_PER_FLOOR = 4
+local NINEVOLT_USES_PER_FLOOR = 5
 
 local INVINCIBILITY_DURATION = 30 -- 0.5 seconds
 local USE_COLOR = Color(1,1,1,1,1,0.5)
@@ -25,7 +28,7 @@ local function useSilkBag(_, _, rng, player, flags, slot, vData)
         end
         local isRemoved = (player:GetActiveItemDesc(slot).VarData<=0)
 
-        mod:addInvincibility(player, INVINCIBILITY_DURATION*(1+player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CAR_BATTERY)))
+        mod:addInvincibility(player, INVINCIBILITY_DURATION*(player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) and 2 or 1))
         player:SetColor(USE_COLOR, 5, 1, true, false)
         sfx:Play(mod.SFX_SILK_BAG_SHIELD, 0.6)
 
@@ -54,7 +57,10 @@ local function addChargesToItem(_, player)
     if(not player:HasCollectible(mod.COLLECTIBLE_SILK_BAG)) then return end
     for _, i in pairs(ActiveSlot) do
         if(player:GetActiveItem(i)==mod.COLLECTIBLE_SILK_BAG) then
-            player:GetActiveItemDesc(i).VarData = math.min(player:GetActiveItemDesc(i).VarData+USES_PER_FLOOR, MAX_USES)
+            local toAdd = (player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) and NINEVOLT_USES_PER_FLOOR or USES_PER_FLOOR)
+            local maxUses = (player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY) and BATTERY_MAX_USES or MAX_USES)
+
+            player:GetActiveItemDesc(i).VarData = math.min(player:GetActiveItemDesc(i).VarData+toAdd, maxUses)
         end
     end
 end

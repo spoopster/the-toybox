@@ -7,7 +7,18 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
     ImGui.CreateWindow("ToyboxOptionsWindow", "Options")
     ImGui.LinkWindowToElement("ToyboxOptionsWindow", "ToyboxOptionsTab")
 
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "GENERAL OPTIONS")
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+
+
+
+	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
+	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
+
     ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "ATLAS OPTIONS")
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 
     --ATLAS ALT TRANSFORMATION
     ImGui.AddCheckbox("ToyboxOptionsWindow", "ToyboxOptionsAtlasPersistentTransformation", "Persistent Mantles", nil, false)

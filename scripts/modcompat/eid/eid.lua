@@ -83,9 +83,9 @@ local function addExtraDescriptionStuff(entData)
 
     if(desc.DescriptionAppend) then
         EID:addDescriptionModifier(
-            "TOYBOX-"..tostring(entData[1]).."."..tostring(entData[2]).."."..tostring(entData[3]).."-".."AppendDesc",
+            "TOYBOX-1"..tostring(entData[1]).."."..tostring(entData[2]).."."..tostring(entData[3]).."-".."AppendDesc",
             function(descObj)
-                if(not (descObj.ObjType==entData[1] and descObj.ObjVariant==entData[2] and descObj.ObjSubType==entData[3])) then return false end
+                if(not (descObj.ObjType==entData[1] and descObj.ObjVariant==entData[2] and (descObj.ObjSubType==entData[3] or (entData[2]==350 and descObj.ObjSubType==entData[3]+TrinketType.TRINKET_GOLDEN_FLAG)))) then return false end
                 local ok = false
                 for _, mData in ipairs(desc.DescriptionAppend) do
                     if(ok~=false) then break end
@@ -111,9 +111,9 @@ local function addExtraDescriptionStuff(entData)
     end
     if(desc.DescriptionModifiers) then
         EID:addDescriptionModifier(
-            "TOYBOX-"..tostring(entData[1]).."."..tostring(entData[2]).."."..tostring(entData[3]).."-".."ModifyDesc",
+            "TOYBOX-2"..tostring(entData[1]).."."..tostring(entData[2]).."."..tostring(entData[3]).."-".."ModifyDesc",
             function(descObj)
-                if(not (descObj.ObjType==entData[1] and descObj.ObjVariant==entData[2] and descObj.ObjSubType==entData[3])) then return false end
+                if(not (descObj.ObjType==entData[1] and descObj.ObjVariant==entData[2] and (descObj.ObjSubType==entData[3] or (entData[2]==350 and descObj.ObjSubType==entData[3]+TrinketType.TRINKET_GOLDEN_FLAG)))) then return false end
                 local ok = false
                 for _, mData in ipairs(desc.DescriptionModifiers) do
                     if(ok~=false) then break end
@@ -128,8 +128,6 @@ local function addExtraDescriptionStuff(entData)
                         descObj.Description = modifyEIDDescValues(descObj.Description, mData.TextToModify)
                     end
                 end
-    
-                
 
                 return descObj
             end
