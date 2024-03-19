@@ -1,9 +1,9 @@
 local mod = MilcomMOD
 
-local ELECTRIFIED_LASER_FREQ = 10
+local ELECTRIFIED_LASER_FREQ = 7
 local ELECTRIFIED_LASER_LENGTH = {Min=70, Max=130}
 local ELECTRIFIED_LASER_TIMEOUT = 2
-local ELECTRIFIED_LASER_DAMAGE = 0.7
+local ELECTRIFIED_LASER_DAMAGE = 0.5
 
 local ELECTRIFIED_LASER_VAR = LaserVariant.ELECTRIC
 
@@ -36,7 +36,8 @@ local function postNpcUpdate(_, npc)
     if(d==nil) then return end
 
     if(npc.FrameCount%ELECTRIFIED_LASER_FREQ==0) then
-        local laser = EntityLaser.ShootAngle(ELECTRIFIED_LASER_VAR, npc.Position, d.RNG:RandomInt(360), ELECTRIFIED_LASER_TIMEOUT, Vector(0, -10), d.PLAYER)
+        local angl = d.RNG:RandomInt(360)
+        local laser = EntityLaser.ShootAngle(ELECTRIFIED_LASER_VAR, npc.Position, angl, ELECTRIFIED_LASER_TIMEOUT, Vector(0, -10), d.PLAYER)
         laser.Parent = d.PLAYER
         laser.CollisionDamage = d.DAMAGE
         laser.MaxDistance = npc.Size+(ELECTRIFIED_LASER_LENGTH.Min+d.RNG:RandomInt(ELECTRIFIED_LASER_LENGTH.Max-ELECTRIFIED_LASER_LENGTH.Min))

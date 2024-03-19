@@ -1,7 +1,7 @@
 local mod = MilcomMOD
 
 local ELECTRIFIED_DURATION = 120
-local ELECTRIFIED_DMG = 0.7
+local ELECTRIFIED_DMG = 0.5
 
 local TMULT_DURATION_MOD = 1.5
 
@@ -25,7 +25,7 @@ local function postNewRoom(_)
             end
 
             if(willElectrify) then
-                mod:addElectrified(ent, willElectrify[1], math.floor(ELECTRIFIED_DURATION*(TMULT_DURATION_MOD^(willElectrify[2]-1)))*(p:GetTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND)+1), ELECTRIFIED_DMG)
+                mod:addElectrified(ent, willElectrify[1], math.floor(ELECTRIFIED_DURATION*(TMULT_DURATION_MOD^(willElectrify[2]-1)))*(willElectrify[1]:GetTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND)+1), ELECTRIFIED_DMG)
             end
         end
     end

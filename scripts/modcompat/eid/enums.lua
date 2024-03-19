@@ -335,6 +335,7 @@ local TRINKETS = {
         Description = {
             "On new rooms, enemies have a 15% chance to be electrified for 4 seconds",
             "{{Luck}} 50% chance at 20 luck",
+            "Electrified makes enemies arc weak electricity beams in random directions, hurting them in the process",
         },
         DescriptionModifiers = {
             {
