@@ -77,7 +77,8 @@ local function bulletTearSplat(_, tear)
     if(tear.Variant==mod.TEAR_BULLET) then
         tear = tear:ToTear()
 
-        sfx:Play(SoundEffect.SOUND_PLOP, 0.2, 0, false, 1)
+        sfx:Play(SoundEffect.SOUND_PLOP, 0.1, 0, false, 1)
+        sfx:Play(mod.SFX_BULLET_HIT, 0.5, 0, false, 1)
         for _=1, math.floor(2*tear.Scale) do
             local particle = Isaac.Spawn(1000, EffectVariant.TOOTH_PARTICLE, 1, tear.Position, Vector.FromAngle(math.random(360)), nil)
             particle:Update()

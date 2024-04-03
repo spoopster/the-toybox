@@ -1,5 +1,7 @@
 - NEW:
-    - Added Blessed Ring to Angel and GreedAngel pools
+    - Added SFX for Toy Gun and Foam Bullet
+    - Added Sunk Costs (item)
 - CHANGES:
-    - Blessed Ring quality upgraded to Q2
-    - Meteor Shower quality downgraded to Q1
+    - Bloody Needle now gives a tear multiplier instead of a flat tears up (i fucking hate soylent milk)
+    - Changed quality of Bloody Needle: Q2->Q0
+    - Atlas' health functions with Debug 3

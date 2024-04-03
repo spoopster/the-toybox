@@ -199,7 +199,7 @@ local ITEMS = {
     [mod.COLLECTIBLE_BLOODY_NEEDLE] = {
         Name = "Bloody Needle",
         Description = {
-            "\1 +0.5 Tears for the room",
+            "\1 x1.3 Tears for the room",
             "!!! Deals half a heart of damage to Isaac",
             "{{Heart}} Removes Red Hearts first",
         },
@@ -210,8 +210,8 @@ local ITEMS = {
                 end,
                 TextToModify = {
                     {
-                        Old = "+0.5 Tears",
-                        New = "+0.5/{{Collectible356}}{{ColorYellow}}0.75{{CR}} Tears"
+                        Old = "x1.3 Tears",
+                        New = "x1.3/{{Collectible356}}{{ColorYellow}}x1.45{{CR}} Tears"
                     },
                 },
             },
@@ -322,6 +322,26 @@ local ITEMS = {
                     {
                         Old = "up to 5",
                         New = "up to 5/{{Collectible63}}{{ColorYellow}}10{{CR}}"
+                    },
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_SUNK_COSTS] = {
+        Name = "Sunk Costs",
+        Description = {
+            "\1 x1.3 Tears for the room",
+            "{{Coin}} Consumes 5 coins, only activates if you have 5 or more coins",
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "x1.3 Tears",
+                        New = "x1.3/{{Collectible356}}{{ColorYellow}}x1.45{{CR}} Tears"
                     },
                 },
             },

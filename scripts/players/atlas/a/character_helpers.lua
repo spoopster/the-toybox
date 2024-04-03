@@ -98,7 +98,7 @@ function mod:addMantleHp(player, hpToAdd)
 
     local oldMantles = mod:cloneTable(data.MANTLES)
 
-    if(hpToAdd<0) then
+    if(hpToAdd<0 and Game():GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
         local rIdx = mod:getRightmostMantleIdx(player)
         data.MANTLES[rIdx].HP = data.MANTLES[rIdx].HP+hpToAdd
 
@@ -116,7 +116,7 @@ function mod:addMantleHp(player, hpToAdd)
 
             mod:spawnShard(player, p, v, nil, nil, c)
         end
-    else
+    elseif(hpToAdd>0) then
         data.MANTLES[1].HP = data.MANTLES[1].HP+hpToAdd
     end
 

@@ -8,6 +8,7 @@
         <Item Name="Tech IX"/>
         <Item Name="Pepper X"/>
         <Item Name="Meteor Shower"/>
+        <Item Name="Sunk Costs"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Bloody Needle"/>
@@ -18,6 +19,7 @@
         <Item Name="Tech IX"/>
         <Item Name="Pepper X"/>
         <Item Name="Meteor Shower"/>
+        <Item Name="Sunk Costs"/>
     </Pool>
 
     <Pool Name="boss">

@@ -20,7 +20,7 @@ local function renderTest(_, offset, sprite, pos, u, player)
 
     --print(player, pos)
 
-    --return true
+    return true
 end
 mod:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_HEARTS, -1e6, renderTest)
 
@@ -61,7 +61,7 @@ local function renderHearts(_)
 
     do
         player = player:ToPlayer()
-        local renderPos = mod:getHeartHudPosition(pIdx)+Vector(4,30)
+        local renderPos = mod:getHeartHudPosition(pIdx)+Vector(4,0)
         local data = mod:getAtlasATable(player)
 
         local hasCurseOfTheUnknown = false

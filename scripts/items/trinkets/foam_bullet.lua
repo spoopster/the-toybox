@@ -23,6 +23,9 @@ local function postFireBulletTear(_, tear)
 
         tear.CollisionDamage = tear.CollisionDamage*DMG_MULT
         tear.SpriteScale = tear.SpriteScale*(1/tear.Scale)
+
+        sfx:Stop(SoundEffect.SOUND_TEARS_FIRE)
+        sfx:Play(mod.SFX_BULLET_FIRE, 0.3)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, postFireBulletTear)
@@ -35,7 +38,8 @@ local function postFireBulletBomb(_, bomb)
 
     if(p:GetTrinketMultiplier(mod.TRINKET_FOAM_BULLET)>0 and p:GetTrinketRNG(mod.TRINKET_FOAM_BULLET):RandomFloat()<getBulletChance(p)) then
         bomb.ExplosionDamage = bomb.ExplosionDamage*DMG_MULT
-        sfx:Play(SoundEffect.SOUND_PLOP, 0.4, 0, false, 1)
+        sfx:Play(SoundEffect.SOUND_PLOP, 0.2, 0, false, 1)
+        sfx:Play(mod.SFX_BULLET_HIT, 1, 0, false, 1)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB, postFireBulletBomb)
@@ -78,7 +82,8 @@ local function postDealBulletDamage(_, ent, amount, flags, source, frames)
         end
 
         if(triggerEffect) then
-            sfx:Play(SoundEffect.SOUND_PLOP, 0.4, 0, false, 1)
+            sfx:Play(SoundEffect.SOUND_PLOP, 0.2, 0, false, 1)
+            sfx:Play(mod.SFX_BULLET_HIT, 1, 0, false, 1)
             return {
                 Damage = amount*DMG_MULT,
                 DamageFlags = flags,

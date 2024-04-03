@@ -1,4 +1,5 @@
 local mod = MilcomMOD
+local sfx = SFXManager()
 
 local MAXCHARGES = 5
 local BATTERY_MAXCHARGES = 10
@@ -40,7 +41,12 @@ local function useToyGun(_, item, player, rng, flags, slot)
             bullet.SpriteScale = bullet.SpriteScale*(1/bullet.Scale)
             bullet:AddTearFlags(TearFlags.TEAR_KNOCKBACK | TearFlags.TEAR_PUNCH)
             bullet.KnockbackMultiplier=3
+
+            sfx:Stop(SoundEffect.SOUND_TEARS_FIRE)
+            sfx:Play(mod.SFX_BULLET_FIRE)
         end
+    else
+        sfx:Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
     end
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.USE_THROWABLE_ACTIVE, useToyGun, mod.COLLECTIBLE_TOY_GUN)
@@ -76,9 +82,10 @@ local function toyGunLogic(_, player)
 
                 data.Charge = math.min(mCharge, data.Charge+toAdd)
             end
-            if(data.VarData<maxCharges and data.Charge==mCharge) then
-                data.Charge=0
+            if(data.VarData<maxCharges and data.Charge>=mCharge) then
+                data.Charge=data.Charge-mCharge
                 data.VarData = data.VarData+1
+                sfx:Play(mod.SFX_TOY_GUN_RELOAD)
             end
         end
     end

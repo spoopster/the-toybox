@@ -133,13 +133,15 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
                 DamageCountdown=frames
             }
         else
-            player:Die()
+            if(Game():GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
+                player:Die()
 
-            return {
-                Damage=0,
-                DamageFlags=flags,
-                DamageCountdown=frames
-            }
+                return {
+                    Damage=0,
+                    DamageFlags=flags,
+                    DamageCountdown=frames
+                }
+            end
         end
     end
 end

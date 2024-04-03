@@ -2,6 +2,17 @@
     <sound name="Toybox_SilkBag_Shield">
 		<sample weight="1" path="toybox_silk_bag_shield.wav" />  
 	</sound>
+	<sound name="Toybox_ToyGun_Reload">
+		<sample weight="1" path="toybox_toy_gun_reload1.wav" />
+		<sample weight="1" path="toybox_toy_gun_reload2.wav" />
+		<sample weight="1" path="toybox_toy_gun_reload3.wav" />
+	</sound>
+	<sound name="Toybox_Bullet_Shoot">
+		<sample weight="1" path="toybox_bullet_shoot.wav" />  
+	</sound>
+	<sound name="Toybox_Bullet_Hit">
+		<sample weight="1" path="toybox_bullet_hit.wav" />  
+	</sound>
 
 	<sound name="Toybox_AtlasA_RockHurt">
 		<sample weight="1" path="toybox_atlas_a_rockhurt1.wav" />  
