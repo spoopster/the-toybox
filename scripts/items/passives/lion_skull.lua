@@ -14,7 +14,7 @@ local function evalCache(_, player, flag)
     if(not player:HasCollectible(mod.COLLECTIBLE_LION_SKULL)) then return end
 
     local mult = player:GetCollectibleNum(mod.COLLECTIBLE_LION_SKULL)
-    local bonus = mod:getData(player, "LION_SKULL_MARKS") or 0
+    local bonus = mod:getEntityData(player, "LION_SKULL_MARKS") or 0
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
         local dmgIncrease = 0
@@ -32,14 +32,14 @@ local function increaseLionMark(_, player)
     if(not player:HasCollectible(mod.COLLECTIBLE_LION_SKULL)) then return end
 
     local mult = player:GetCollectibleNum(mod.COLLECTIBLE_LION_SKULL)
-    local bonus = mod:getData(player, "LION_SKULL_MARKS") or 0
+    local bonus = mod:getEntityData(player, "LION_SKULL_MARKS") or 0
 
     if(bonus<0) then bonus = bonus+ENUM_MARKS_INCREASE_CATCHUP*mult
     else bonus = bonus+ENUM_MARKS_INCREASE*mult end
 
     bonus = math.min(bonus, ENUM_MARKS_MAX*mult)
 
-    mod:setData(player, "LION_SKULL_MARKS", bonus)
+    mod:setEntityData(player, "LION_SKULL_MARKS", bonus)
     player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, increaseLionMark)
@@ -49,17 +49,17 @@ local function applyMarkPenalties(_, player, _, flags)
     player = player:ToPlayer()
     if(flags & (DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_FAKE ) ~= 0) then return end
 
-    local bonus = mod:getData(player, "LION_SKULL_MARKS") or 0
+    local bonus = mod:getEntityData(player, "LION_SKULL_MARKS") or 0
 
     if(bonus>0) then bonus = -bonus end
 
-    mod:setData(player, "LION_SKULL_MARKS", bonus)
+    mod:setEntityData(player, "LION_SKULL_MARKS", bonus)
     player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true)
 end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, applyMarkPenalties, EntityType.ENTITY_PLAYER)
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER,
 function(_)
-    --Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"LION_SKULL_MARKS")), 100, 30,1,1,1,1)
+    --Isaac.RenderText(tostring(mod:getEntityData(Isaac.GetPlayer(),"LION_SKULL_MARKS")), 100, 30,1,1,1,1)
 end
 )

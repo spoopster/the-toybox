@@ -14,7 +14,7 @@ if(CustomHealthAPI) then
 
     local function applyCHAPIDamage(_, player, dmg, flags, source, frames)
         player = player:ToPlayer()
-        local data = mod:getDataTable(player)
+        local data = mod:getEntityDataTable(player)
 
         if(data.CANCEL_CHAPI_DMG==nil) then return end
 
@@ -54,7 +54,7 @@ if(CustomHealthAPI) then
     ---@param player Entity
     local function cancelCHAPIDmg(player, dmg, flags, source, frames)
         player = player:ToPlayer()
-        local data = mod:getDataTable(player)
+        local data = mod:getEntityDataTable(player)
         if(data.CANCEL_CHAPI_DMG~=nil) then return end
 
         data.CANCEL_CHAPI_DMG=true

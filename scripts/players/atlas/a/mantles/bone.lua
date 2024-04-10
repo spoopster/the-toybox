@@ -9,7 +9,7 @@ end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
-        mod:giveMantle(player, mod.MANTLES.BONE)
+        mod:giveMantle(player, mod.MANTLE_DATA.BONE.ID)
     else
 
     end
@@ -32,7 +32,7 @@ local ENUM_VALID_HEARTSUBTYPES = {
 local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLES.BONE)) then return end
+    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.BONE.ID)) then return end
 
     local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_BONE)
     local bones = ENUM_BONES_SHOT*dmg
@@ -55,7 +55,7 @@ local function mantleKill(_, entity)
 
     local randAtlas = allAtlas[rng:RandomInt(#allAtlas)+1]:ToPlayer()
     for _, p in ipairs(allAtlas) do
-        numTransformations = numTransformations+mod:getNumMantlesByType(p:ToPlayer(), mod.MANTLES.BONE)/mod:getAtlasAData(p:ToPlayer(), "HP_CAP")
+        numTransformations = numTransformations+mod:getNumMantlesByType(p:ToPlayer(), mod.MANTLE_DATA.BONE.ID)/mod:getAtlasAData(p:ToPlayer(), "HP_CAP")
     end
 
     if(rng:RandomFloat()<ENUM_BOTD_FAM_SPAWNCHANCE*numTransformations/Game():GetNumPlayers()) then
@@ -67,7 +67,7 @@ mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mantleKill)
 local function healWithHearts(_, pickup, player)
     if(not (player and player:ToPlayer() and player:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
     player = player:ToPlayer()
-    if(not mod:atlasHasTransformation(player, mod.MANTLES.BONE)) then return end
+    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.BONE.ID)) then return end
 
     if(not mod:hasMaxMantleHp(player)) then
         mod:addMantleHp(player, 1)
@@ -98,4 +98,4 @@ local function playMantleSFX(_, player, mantle)
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLES.BONE)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.BONE.ID)

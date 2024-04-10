@@ -194,6 +194,23 @@ local ITEMS = {
             "After a short delay, the light beams turn into a divine smite that deals 7 total damage",
         },
     },
+    [mod.COLLECTIBLE_4_4] = {
+        Name = "4 4",
+        Description = {
+            "Double tap to shoot out a spread of spectral piercing sound waves that confuse enemies",
+            "1% chance to inflict non-boss enemies with Overflowing",
+            "{{Luck}} 10% chance at 100 luck",
+            "{{ToyboxOverflowingStatus}} Overflowing makes enemies have no AI and slide around with no friction",
+        },
+    },
+    [mod.COLLECTIBLE_EYESTRAIN] = {
+        Name = "Eyestrain",
+        Description = {
+            "\1 x0.7 Firedelay",
+            "\1 x1.075 Damage",
+            "\2 The colors on the screen constantly shift between hues and get more saturated in active rooms",
+        },
+    },
 
     --ACTIVES
     [mod.COLLECTIBLE_BLOODY_NEEDLE] = {
@@ -347,6 +364,106 @@ local ITEMS = {
             },
         },
     },
+
+
+
+    --! SPECIAL ATLAS STUFF
+    [CollectibleType.COLLECTIBLE_YUM_HEART] = {
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                end,
+                DescriptionToAdd = {
+                    "{{AtlasATransformationRock}} +1 Rock mantle",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_YUCK_HEART] = {
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                end,
+                DescriptionToAdd = {
+                    "{{AtlasATransformationRock}} +1 Poop mantle",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_PRAYER_CARD] = {
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                end,
+                DescriptionToAdd = {
+                    "{{AtlasATransformationRock}} +1 Holy mantle",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_GUPPYS_PAW] = {
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                end,
+                DescriptionToAdd = {
+                    "{{AtlasATransformationRock}} Your leftmost mantle is destroyed and replaced with a Metal mantle that has 1 HP",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_CONVERTER] = {
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                end,
+                DescriptionToAdd = {
+                    "{{AtlasATransformationRock}} Your leftmost mantle is destroyed and replaced with a random mantle",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = {
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                end,
+                DescriptionToAdd = {
+                    "{{AtlasATransformationRock}} +1 Dark mantle",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_THE_NAIL] = {
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                end,
+                DescriptionToAdd = {
+                    "{{AtlasATransformationRock}} +1 Dark mantle",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = {
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                end,
+                DescriptionToAdd = {
+                    "{{AtlasATransformationRock}} +1 Metal mantle",
+                },
+            },
+        },
+    },
 }
 
 local TRINKETS = {
@@ -355,7 +472,7 @@ local TRINKETS = {
         Description = {
             "On new rooms, enemies have a 15% chance to be electrified for 4 seconds",
             "{{Luck}} 50% chance at 20 luck",
-            "Electrified makes enemies arc weak electricity beams in random directions, hurting them in the process",
+            "{{ToyboxElectrifiedStatus}} Electrified makes enemies arc weak electricity beams in random directions, hurting them in the process",
         },
         DescriptionModifiers = {
             {
@@ -516,9 +633,9 @@ local CARDS = {
         Description = {
             "\1 3 HP",
             "\2 -0.1 speed down",
-            "Chance to block damage",
+            "6.6% chance to block damage",
             "{{AtlasATransformationMetal}} {{ColorGray}}Transformation{{CR}}",
-            "Fixed 40% chance to block damage",
+            "Fixed 25% chance to block damage",
             "Spike damage is always blocked",
         },
         NonAtlasDescription = {

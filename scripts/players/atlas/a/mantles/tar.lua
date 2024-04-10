@@ -15,7 +15,7 @@ local ENUM_TAR_DURATION = 30*5
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLES.TAR)) then return end
+    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.TAR.ID)) then return end
 
     if(mod.CONFIG.ATLAS_BASE_STRONGER_TAR) then
         if(flag==CacheFlag.CACHE_SPEED) then
@@ -46,7 +46,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 ---@param player EntityPlayer
 local function updateTar(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLES.TAR)) then return end
+    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.TAR.ID)) then return end
 
     local data = mod:getAtlasATable(player)
     
@@ -56,13 +56,13 @@ local function updateTar(_, player)
 
     if(mod.CONFIG.ATLAS_TAR_CREEP) then
         if(player.FrameCount%ENUM_TAR_FREQ==0) then
-            if(mod:getData(player, "ATLAS_SPAWNED_TAR_CREEP")==nil) then
+            if(mod:getEntityData(player, "ATLAS_SPAWNED_TAR_CREEP")==nil) then
                 local tar = Isaac.Spawn(1000, EffectVariant.PLAYER_CREEP_BLACK, 0, player.Position, Vector.Zero, player):ToEffect()
                 tar.Timeout = ENUM_TAR_DURATION
                 tar:Update()
-                mod:setData(player, "ATLAS_SPAWNED_TAR_CREEP", true)
+                mod:setEntityData(player, "ATLAS_SPAWNED_TAR_CREEP", true)
             else
-                mod:setData(player, "ATLAS_SPAWNED_TAR_CREEP", nil)
+                mod:setEntityData(player, "ATLAS_SPAWNED_TAR_CREEP", nil)
             end
         end
     end

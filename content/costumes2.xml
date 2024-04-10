@@ -1,21 +1,13 @@
 <costumes anm2root="gfx/characters/">
     <costume id="999" anm2path="costume_atlasa_tar.anm2" type="none" priority="99"/>
 	<costume id="1000" anm2path="costume_atlasa_rock.anm2" type="none" priority="1000"/>
-	<costume id="1001" anm2path="costume_atlasa_rock_wings.anm2" type="none" priority="1000" isFlying="true"/>
-    <costume id="1002" anm2path="costume_atlasa_poop.anm2" type="none" priority="1000"/>
-    <costume id="1003" anm2path="costume_atlasa_poop_wings.anm2" type="none" priority="1000" isFlying="true"/>
-    <costume id="1004" anm2path="costume_atlasa_bone.anm2" type="none" priority="1000"/>
-    <costume id="1005" anm2path="costume_atlasa_bone_wings.anm2" type="none" priority="1000" isFlying="true"/>
-    <costume id="1006" anm2path="costume_atlasa_dark.anm2" type="none" priority="1000"/>
-    <costume id="1007" anm2path="costume_atlasa_dark_wings.anm2" type="none" priority="1000" isFlying="true"/>
-    <costume id="1008" anm2path="costume_atlasa_holy.anm2" type="none" priority="1000"/>
-    <costume id="1009" anm2path="costume_atlasa_holy_wings.anm2" type="none" priority="1000" isFlying="true"/>
-    <costume id="1010" anm2path="costume_atlasa_salt.anm2" type="none" priority="1000"/>
-    <costume id="1011" anm2path="costume_atlasa_salt_wings.anm2" type="none" priority="1000" isFlying="true"/>
-    <costume id="1012" anm2path="costume_atlasa_glass.anm2" type="none" priority="1000"/>
-    <costume id="1013" anm2path="costume_atlasa_glass_wings.anm2" type="none" priority="1000" isFlying="true"/>
-    <costume id="1014" anm2path="costume_atlasa_metal.anm2" type="none" priority="1000"/>
-    <costume id="1015" anm2path="costume_atlasa_metal_wings.anm2" type="none" priority="1000" isFlying="true"/>
-    <costume id="1016" anm2path="costume_atlasa_gold.anm2" type="none" priority="1000"/>
-    <costume id="1017" anm2path="costume_atlasa_gold_wings.anm2" type="none" priority="1000" isFlying="true"/>
+    <costume id="1001" anm2path="costume_atlasa_poop.anm2" type="none" priority="1000"/>
+    <costume id="1002" anm2path="costume_atlasa_bone.anm2" type="none" priority="1000"/>
+    <costume id="1003" anm2path="costume_atlasa_dark.anm2" type="none" priority="1000"/>
+    <costume id="1004" anm2path="costume_atlasa_holy.anm2" type="none" priority="1000"/>
+        <costume id="1005" anm2path="costume_atlasa_holy_wings.anm2" type="none" priority="1000" isFlying="true"/>
+    <costume id="1006" anm2path="costume_atlasa_salt.anm2" type="none" priority="1000"/>
+    <costume id="1007" anm2path="costume_atlasa_glass.anm2" type="none" priority="1000"/>
+    <costume id="1008" anm2path="costume_atlasa_metal.anm2" type="none" priority="1000"/>
+    <costume id="1009" anm2path="costume_atlasa_gold.anm2" type="none" priority="1000"/>
 </costumes>

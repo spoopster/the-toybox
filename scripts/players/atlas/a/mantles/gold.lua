@@ -9,7 +9,7 @@ end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
-        mod:giveMantle(player, mod.MANTLES.GOLD)
+        mod:giveMantle(player, mod.MANTLE_DATA.GOLD.ID)
     else
 
     end
@@ -25,12 +25,12 @@ local ENUM_LOSTMANTLE_FREEZE_DIST = 100
 local function evalCache(_, player, flag)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
 
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLES.GOLD)
+    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.GOLD.ID)
 
     if(flag==CacheFlag.CACHE_LUCK) then
         player.Luck = player.Luck+ENUM_LUCK_BONUS*numMantles
     end
-    if(mod:atlasHasTransformation(player, mod.MANTLES.GOLD)) then
+    if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID)) then
         if(flag==CacheFlag.CACHE_TEARFLAG) then
             player.TearFlags = player.TearFlags | TearFlags.TEAR_GREED_COIN
         end
@@ -41,7 +41,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 ---@param player EntityPlayer
 local function mantleDestroyed(_, player, mantle)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    if(not (mod:atlasHasTransformation(player, mod.MANTLES.GOLD) or mantle==mod.MANTLES.GOLD)) then return end
+    if(not (mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID) or mantle==mod.MANTLE_DATA.GOLD.ID)) then return end
 
     for _, ent in ipairs(Isaac.FindInRadius(player.Position, ENUM_LOSTMANTLE_FREEZE_DIST, EntityPartition.ENEMY)) do
         if(ent:IsVulnerableEnemy() and not ent:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
@@ -71,7 +71,7 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 ---@param collider Entity
 local function freezeOnCollision(_, player, collider)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLES.GOLD)) then return end
+    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID)) then return end
     if(not (collider:IsVulnerableEnemy() and not collider:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))) then return end
 
     if(not collider:HasEntityFlags(EntityFlag.FLAG_MIDAS_FREEZE)) then

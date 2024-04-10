@@ -8,15 +8,15 @@ function mod:updateMantles(player)
 
     local rIdx = mod:getRightmostMantleIdx(player)
     for i=rIdx, 1, -1 do
-        if(mantles[i].HP<=0 and mantles[i].TYPE~=mod.MANTLES.NONE) then
+        if(mantles[i].HP<=0 and mantles[i].TYPE~=mod.MANTLE_DATA.NONE.ID) then
             if(i>1) then mantles[i-1].HP = mantles[i-1].HP+mantles[i].HP end
 
             Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.PRE_ATLAS_LOSE_MANTLE, mantles[i].TYPE, player, mantles[i].TYPE)
             local oldType = mantles[i].TYPE
             mantles[i] = {
-                TYPE = mod.MANTLES.NONE,
-                HP = mod.MANTLES_HP.NONE,
-                MAXHP = mod.MANTLES_HP.NONE,
+                TYPE = mod.MANTLE_DATA.NONE.ID,
+                HP = mod.MANTLE_DATA.NONE.HP,
+                MAXHP = mod.MANTLE_DATA.NONE.HP,
                 COLOR = mantles[i].COLOR or Color(1,1,1,1),
             }
             Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, oldType, player, oldType)
@@ -33,7 +33,7 @@ function mod:updateMantles(player)
 
     -- [[
     for i=1, data.HP_CAP-1 do
-        if(mantles[i].TYPE==mod.MANTLES.NONE and mantles[i+1].TYPE~=mod.MANTLES.NONE) then
+        if(mantles[i].TYPE==mod.MANTLE_DATA.NONE.ID and mantles[i+1].TYPE~=mod.MANTLE_DATA.NONE.ID) then
             local temp = mod:cloneTable(mantles[i])
             mantles[i] = mod:cloneTable(mantles[i+1])
             mantles[i+1] = mod:cloneTable(temp)
@@ -43,39 +43,42 @@ function mod:updateMantles(player)
 
     if(mod.CONFIG.ATLAS_PERSISTENT_TRANSFORMATIONS) then
         local trf = mod:getCurrentTransformationType(player)
-        local hasFlight = (player.CanFly and 1 or 0)+1
+        local trf1Costume = mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION)].COSTUME
+        local trf2Costume = mod.MANTLE_DATA[mod:getMantleKeyFromId(trf)].COSTUME
 
         if(data.TRANSFORMATION~=trf) then
-            if(data.TRANSFORMATION==mod.MANTLES.TAR or not mod:isBadMantle(trf)) then
+            if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID or not mod:isBadMantle(trf)) then
                 if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
                     if(not mod:isBadMantle(data.TRANSFORMATION)) then
                         data.BIRTHRIGHT_TRANSFORMATION = data.TRANSFORMATION
                     end
                 else
-                    data.BIRTHRIGHT_TRANSFORMATION = mod.MANTLES.NONE
+                    data.BIRTHRIGHT_TRANSFORMATION = mod.MANTLE_DATA.NONE.ID
                 end
 
-                if(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION]) then
-                    player:TryRemoveNullCostume(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION][hasFlight])
+                if(trf1Costume) then
+                    player:TryRemoveNullCostume(trf1Costume)
                 end
-                if(mod.TRANSFORMATION_TO_COSTUME[trf]) then
-                    player:AddNullCostume(mod.TRANSFORMATION_TO_COSTUME[trf][hasFlight])
+                if(trf2Costume) then
+                    player:AddNullCostume(trf2Costume)
                 end
 
                 data.TRANSFORMATION = trf
                 data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
-            elseif(trf==mod.MANTLES.TAR) then
-                if(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION]) then
-                    player:TryRemoveNullCostume(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION][hasFlight])
+            elseif(trf==mod.MANTLE_DATA.TAR.ID) then
+                if(trf1Costume) then
+                    player:TryRemoveNullCostume(trf1Costume)
                 end
 
-                data.TRANSFORMATION = mod.MANTLES.TAR
-                data.BIRTHRIGHT_TRANSFORMATION=mod.MANTLES.NONE
+                data.TRANSFORMATION = mod.MANTLE_DATA.TAR.ID
+                data.BIRTHRIGHT_TRANSFORMATION=mod.MANTLE_DATA.NONE.ID
                 data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
             end
         end
     else
         local trf = mod:getCurrentTransformationType(player)
+        local trf1Costume = mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION)].COSTUME
+        local trf2Costume = mod.MANTLE_DATA[mod:getMantleKeyFromId(trf)].COSTUME
 
         if(data.TRANSFORMATION~=trf) then
             if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
@@ -83,28 +86,27 @@ function mod:updateMantles(player)
                     data.BIRTHRIGHT_TRANSFORMATION = data.TRANSFORMATION
                 end
             else
-                data.BIRTHRIGHT_TRANSFORMATION = mod.MANTLES.NONE
+                data.BIRTHRIGHT_TRANSFORMATION = mod.MANTLE_DATA.NONE.ID
             end
 
-            local hasFlight = (player.CanFly and 1 or 0)+1
-            if(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION]) then
-                player:TryRemoveNullCostume(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION][hasFlight])
+            if(trf1Costume) then
+                player:TryRemoveNullCostume(trf1Costume)
             end
-            if(mod.TRANSFORMATION_TO_COSTUME[trf]) then
-                player:AddNullCostume(mod.TRANSFORMATION_TO_COSTUME[trf][hasFlight])
+            if(trf2Costume) then
+                player:AddNullCostume(trf2Costume)
             end
 
             data.TRANSFORMATION = trf
             data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
-            if(trf==mod.MANTLES.TAR) then data.BIRTHRIGHT_TRANSFORMATION=mod.MANTLES.NONE end
+            if(trf==mod.MANTLE_DATA.TAR.ID) then data.BIRTHRIGHT_TRANSFORMATION=mod.MANTLE_DATA.NONE.ID end
         end
     end
 
-    if(not mod:atlasHasTransformation(player, mod.MANTLES.SALT)) then
+    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.SALT.ID)) then
         data.SALT_AUTOTARGET_ENABLED = false
     end
 
-    player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
+    player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY | CacheFlag.CACHE_LUCK | CacheFlag.CACHE_RANGE | CacheFlag.CACHE_SHOTSPEED | CacheFlag.CACHE_SPEED | CacheFlag.CACHE_FLYING, true)
 end
 
 ---@param player EntityPlayer
@@ -121,7 +123,7 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
     if(dmg>0) then
         local data = mod:getAtlasATable(player)
 
-        if(data.TRANSFORMATION~=mod.MANTLES.TAR) then
+        if(data.TRANSFORMATION~=mod.MANTLE_DATA.TAR.ID) then
             mod:addMantleHp(player, -dmg)
 
             sfx:Play(mod.SFX_ATLASA_ROCKHURT, 1)
@@ -152,15 +154,13 @@ mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12+1, mantleDamage, 
 local function changeFlightCostume(_, player, flag)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
     local data = mod:getAtlasATable(player)
-    if(data.TRANSFORMATION==mod.MANTLES.TAR) then return end
+    if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID) then return end
 
-    if(flag==CacheFlag.CACHE_FLYING and mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION]) then
-        player:TryRemoveNullCostume(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION][1])
-        player:TryRemoveNullCostume(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION][2])
-        if(player.CanFly) then
-            player:AddNullCostume(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION][2])
+    if(flag==CacheFlag.CACHE_FLYING) then
+        if(player.CanFly and data.TRANSFORMATION==mod.MANTLE_DATA.HOLY.ID) then
+            player:AddNullCostume(mod.MANTLE_DATA.HOLY.FLIGHT_COSTUME)
         else
-            player:AddNullCostume(mod.TRANSFORMATION_TO_COSTUME[data.TRANSFORMATION][1])
+            player:TryRemoveNullCostume(mod.MANTLE_DATA.HOLY.FLIGHT_COSTUME)
         end
     end
 end

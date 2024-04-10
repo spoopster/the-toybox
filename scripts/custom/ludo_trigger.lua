@@ -5,7 +5,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, math.huge,
 ---@param w Weapon
 function(_, fd, fa, e, w)
     if(not (e and e:ToPlayer())) then return end
-    mod:setData(e, "LAST_LUDO_POS", fd)
+    mod:setEntityData(e, "LAST_LUDO_POS", fd)
 end,
 WeaponType.WEAPON_LUDOVICO_TECHNIQUE)
 function mod:shouldTriggerLudoMove(p)

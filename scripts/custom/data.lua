@@ -1,34 +1,58 @@
 local mod = MilcomMOD
-local MilcomMODData = {}
+local MODEntityData = {}
+local MODExtraData = {}             --! ONE=RUN ONLY, NOT ENTITY DEPENDENT
+local MODPersistentData = {}        --! PERSISTS ACROSS RUNS
 
-function mod:getDataTable(entity)
-    if(not MilcomMODData[GetPtrHash(entity)]) then MilcomMODData[GetPtrHash(entity)]={} end
+function mod:getEntityDataTable(entity)
+    if(not MODEntityData[GetPtrHash(entity)]) then MODEntityData[GetPtrHash(entity)]={} end
 
-    return MilcomMODData[GetPtrHash(entity)]
+    return MODEntityData[GetPtrHash(entity)]
 end
-function mod:getData(entity, key)
-    if(not MilcomMODData[GetPtrHash(entity)]) then MilcomMODData[GetPtrHash(entity)]={} end
+function mod:getEntityData(entity, key)
+    if(not MODEntityData[GetPtrHash(entity)]) then MODEntityData[GetPtrHash(entity)]={} end
 
-    return MilcomMODData[GetPtrHash(entity)][key]
+    return MODEntityData[GetPtrHash(entity)][key]
 end
-function mod:setData(entity, key, val)
+function mod:setEntityData(entity, key, val)
     local exists = true
-    if(not MilcomMODData[GetPtrHash(entity)]) then
-        MilcomMODData[GetPtrHash(entity)]={}
+    if(not MODEntityData[GetPtrHash(entity)]) then
+        MODEntityData[GetPtrHash(entity)]={}
         exists=false
     end
 
-    MilcomMODData[GetPtrHash(entity)][key]=val
+    MODEntityData[GetPtrHash(entity)][key]=val
 
     return exists
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, CallbackPriority.LATE+1,
+mod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, math.huge,
     function(_, entity)
-        MilcomMODData[GetPtrHash(entity)] = nil
+        MODEntityData[GetPtrHash(entity)] = nil
     end
 )
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.LATE+1,
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, math.huge,
     function()
-        MilcomMODData = {}
+        MODEntityData = {}
     end
 )
+
+function mod:getExtraDataTable()
+    return MODExtraData or {}
+end
+function mod:getExtraData(key)
+    return (MODExtraData or {})[key]
+end
+function mod:setExtraData(key, val)
+    MODExtraData = MODExtraData or {}
+    MODExtraData[key] = val
+end
+
+function mod:getPersistentDataTable()
+    return MODPersistentData or {}
+end
+function mod:getPersistentData(key)
+    return (MODPersistentData or {})[key]
+end
+function mod:setPersistentData(key, val)
+    MODPersistentData = MODPersistentData or {}
+    MODPersistentData[key] = val
+end

@@ -19,7 +19,7 @@ function mod:spawnFireJet(spawner, damage, position, amount, delay, distance, an
         fireJet.Timeout = (delay or 5)
         fireJet.Color = (color or Color(1,1,1,1))
 
-        local data = mod:getDataTable(fireJet)
+        local data = mod:getEntityDataTable(fireJet)
 
         data.FIREJET_IS_CUSTOM_FIREJET = true
         data.FIREJET_SPAWN_DELAY = fireJet.Timeout
@@ -38,7 +38,7 @@ end
 
 ---@param effect EntityEffect
 local function customFireJetUpdate(_, effect)
-    local data = mod:getDataTable(effect)
+    local data = mod:getEntityDataTable(effect)
     if(not data.FIREJET_IS_CUSTOM_FIREJET) then return end
 
     if(effect.Timeout==0 and data.FIREJET_SPAWNS_LEFT>0) then
@@ -70,7 +70,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, customFireJetUpdate, EffectV
 local function customFireJetOnDMG(_, tookDmg, _, _, source)
     if(not (source.Entity and source.Entity:ToEffect() and source.Entity.Variant==EffectVariant.FIRE_JET)) then return end
     local e = source.Entity:ToEffect()
-    local data = mod:getDataTable(e)
+    local data = mod:getEntityDataTable(e)
 
     if(data.FIREJET_IS_CUSTOM_FIREJET) then
         if(e.SpawnerEntity and GetPtrHash(e.SpawnerEntity)==GetPtrHash(tookDmg)) then return false end
@@ -82,7 +82,7 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, customFireJetOnDMG)
 local function customFireJetOnPlayerDMG(_, tookDmg, _, _, source)
     if(not (source.Entity and source.Entity:ToEffect() and source.Entity.Variant==EffectVariant.FIRE_JET)) then return end
     local e = source.Entity:ToEffect()
-    local data = mod:getDataTable(e)
+    local data = mod:getEntityDataTable(e)
 
     if(data.FIREJET_IS_CUSTOM_FIREJET) then
         if(e.SpawnerEntity and GetPtrHash(e.SpawnerEntity)==GetPtrHash(tookDmg)) then return false end

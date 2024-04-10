@@ -91,3 +91,39 @@ local function bulletTearSplat(_, tear)
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, bulletTearSplat, EntityType.ENTITY_TEAR)
 --#endregion
+
+--#region --! SOUNDWAVE TEAR
+local SOUNDWAVE_TEAR_LIFESPAN = 330
+local SOUNDWAVE_TEAR_FADEOUT = 30
+
+---@param tear EntityTear
+local function soundwaveTearUpdate(_, tear)
+    local s = tear:GetSprite()
+    if(s:GetAnimation()~="RegularTear6") then s:Play("RegularTear6", true) end
+
+    tear.Rotation = mod:getEntityData(tear, "EVIL_WAVE_ROTATION") or tear.Velocity:GetAngleDegrees()%360
+    s.Rotation = tear.Rotation
+
+    if(tear.FrameCount>=SOUNDWAVE_TEAR_LIFESPAN-SOUNDWAVE_TEAR_FADEOUT) then
+        local a = (SOUNDWAVE_TEAR_LIFESPAN-tear.FrameCount)/SOUNDWAVE_TEAR_FADEOUT
+        tear.Color = Color(tear.Color.R, tear.Color.G, tear.Color.B, a, tear.Color.RO, tear.Color.GO, tear.Color.BO)
+
+        if(tear.FrameCount==SOUNDWAVE_TEAR_LIFESPAN) then tear:Remove() end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, soundwaveTearUpdate, mod.TEAR_SOUNDWAVE)
+
+local SOUNDWAVE_TEAR_LIFESPAN = 330
+local SOUNDWAVE_TEAR_FADEOUT = 30
+
+---@param tear EntityTear
+local function soundwaveTearRender(_, tear, offset)
+    local s = tear:GetSprite()
+    local rng = tear:GetDropRNG()
+
+    for i=1,1 do
+        s:Render(Isaac.WorldToScreen(tear.Position+Vector(rng:RandomFloat()-0.5,rng:RandomFloat()-0.5)*13+offset+Vector(0,tear.Height)-Game():GetRoom():GetRenderScrollOffset()))
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_RENDER, soundwaveTearRender, mod.TEAR_SOUNDWAVE)
+--#endregion

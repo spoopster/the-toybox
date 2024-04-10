@@ -32,14 +32,14 @@ local function postUpdate(_)
         local beam = Isaac.Spawn(1000, 19, 2, npc.Position, Vector.Zero, p):ToEffect()
         beam.SpriteScale = Vector(0.65,0.65)
         beam.Scale = 0.65
-        mod:setData(beam, "IS_BLESSED_RING_BEAM", true)
-        mod:setData(beam, "HOLYBEAM_FOLLOW_NEARBY_ENEMY", npc:ToNPC())
+        mod:setEntityData(beam, "IS_BLESSED_RING_BEAM", true)
+        mod:setEntityData(beam, "HOLYBEAM_FOLLOW_NEARBY_ENEMY", npc:ToNPC())
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)
 
 local function trackEnemyWithBeam(_, effect)
-    local enemy = mod:getData(effect, "HOLYBEAM_FOLLOW_NEARBY_ENEMY")
+    local enemy = mod:getEntityData(effect, "HOLYBEAM_FOLLOW_NEARBY_ENEMY")
 
     if(enemy and enemy:Exists() and not enemy:IsDead()) then
         local newVl = (enemy.Position-effect.Position)
@@ -56,7 +56,7 @@ local function entTakeDamage(_, ent, amount, flags, source, cnt)
     if(not (source.Type==1000 and source.Variant==19 and source.Entity)) then return end
     local s = source.Entity:ToEffect()
 
-    if(mod:getData(s, "IS_BLESSED_RING_BEAM")) then
+    if(mod:getEntityData(s, "IS_BLESSED_RING_BEAM")) then
         return {
             Damage=BEAM_DAMAGE/6,
             DamageFlags=flags,

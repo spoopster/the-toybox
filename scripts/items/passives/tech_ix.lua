@@ -8,7 +8,7 @@ local LASER_SPARK_COOLDOWN = 10
 
 ---@param player Entity
 local function increaseLaserRing(player, increaseMod, decreaseMod)
-    local data = mod:getDataTable(player)
+    local data = mod:getEntityDataTable(player)
 
     if(not (data.TECH_IX_LASER_RING and data.TECH_IX_LASER_RING:Exists())) then
         data.TECH_IX_LASER_RING = Isaac.Spawn(7,2,3,player.Position,player.Velocity,player):ToLaser()
@@ -16,7 +16,7 @@ local function increaseLaserRing(player, increaseMod, decreaseMod)
         data.TECH_IX_LASER_RING.CollisionDamage = 0.8
         data.TECH_IX_LASER_RING.Parent = player
 
-        mod:setData(data.TECH_IX_LASER_RING, "IS_TECH_IX_LASER", decreaseMod or 1)
+        mod:setEntityData(data.TECH_IX_LASER_RING, "IS_TECH_IX_LASER", decreaseMod or 1)
     end
 
     local tearsMod = 0
@@ -30,20 +30,20 @@ local function increaseLaserRing(player, increaseMod, decreaseMod)
 end
 
 local function updateLaserRing(_, laser)
-    if(not mod:getData(laser, "IS_TECH_IX_LASER")) then return end
+    if(not mod:getEntityData(laser, "IS_TECH_IX_LASER")) then return end
 
-    laser.Radius = math.max(0, laser.Radius-LASER_RING_DECREASEBY*mod:getData(laser, "IS_TECH_IX_LASER"))
+    laser.Radius = math.max(0, laser.Radius-LASER_RING_DECREASEBY*mod:getEntityData(laser, "IS_TECH_IX_LASER"))
     if(laser.Radius==0) then laser:Die() end
 
-    mod:setData(laser, "TECHIX_RING_SPARK_COOLDOWN", math.max(0, (mod:getData(laser, "TECHIX_RING_SPARK_COOLDOWN") or 0)-1))
+    mod:setEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN", math.max(0, (mod:getEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN") or 0)-1))
 end
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, updateLaserRing, LaserVariant.THIN_RED)
 
 local function laserRingCollision(_, laser, coll)
-    if(not (laser and mod:getData(laser, "IS_TECH_IX_LASER"))) then return end
+    if(not (laser and mod:getEntityData(laser, "IS_TECH_IX_LASER"))) then return end
     if(not (mod:isValidEnemy(coll))) then return end
 
-    if(mod:getData(laser, "TECHIX_RING_SPARK_COOLDOWN")==0) then
+    if(mod:getEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN")==0) then
         local p = Isaac.GetPlayer()
         if(laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()) then p = laser.SpawnerEntity:ToPlayer() end
 
@@ -58,7 +58,7 @@ local function laserRingCollision(_, laser, coll)
 
         coll:TakeDamage(laser2.CollisionDamage, 0, EntityRef(p), 0)
 
-        mod:setData(laser, "TECHIX_RING_SPARK_COOLDOWN", LASER_SPARK_COOLDOWN)
+        mod:setEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN", LASER_SPARK_COOLDOWN)
     end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_LASER_COLLISION, laserRingCollision)

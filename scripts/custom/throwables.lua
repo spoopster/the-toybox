@@ -13,7 +13,7 @@ end
 
 local function useThrowable(_, item, rng, player, flags, slot)
     if(flags & UseFlag.USE_CARBATTERY ~= 0) then return end
-    local pData = mod:getDataTable(player)
+    local pData = mod:getEntityDataTable(player)
 
     if(pData.THROWABLE_DATA and item==pData.THROWABLE_DATA.ITEM) then
         player:AnimateCollectible(item, "HideItem", "PlayerPickup")
@@ -51,7 +51,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.LATE, useThro
 
 ---@param player EntityPlayer
 local function updateThrowable(_, player)
-    local pData = mod:getDataTable(player)
+    local pData = mod:getEntityDataTable(player)
 
     if(pData.THROWABLE_DATA) then
         if(player:GetItemState()==pData.THROWABLE_DATA.ITEM) then
@@ -76,7 +76,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateThrowable)
 
 local function cancelThrowableOnDmg(_, p)
     p=p:ToPlayer()
-    local pData = mod:getDataTable(p)
+    local pData = mod:getEntityDataTable(p)
     if(pData.THROWABLE_DATA and p:GetItemState()==pData.THROWABLE_DATA.ITEM) then
         p:AnimateCollectible(pData.THROWABLE_DATA.ITEM, "HideItem", "PlayerPickup")
         p:SetItemState(0)
@@ -88,7 +88,7 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, cancelThrowableOnDmg, EntityTyp
 local function cancelThrowableOnNewRoom(_)
     for i=0, Game():GetNumPlayers()-1 do
         local p = Isaac.GetPlayer(i)
-        local pData = mod:getDataTable(p)
+        local pData = mod:getEntityDataTable(p)
         if(pData.THROWABLE_DATA) then
             p:AnimateCollectible(pData.THROWABLE_DATA.ITEM, "HideItem", "PlayerPickup")
             p:SetItemState(0)

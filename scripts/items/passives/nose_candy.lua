@@ -17,7 +17,7 @@ local ENUM_LEVEL_STATDOWNBONUS = -0.05
 local function evalCache(_, player, flag)
     if(not player:HasCollectible(mod.COLLECTIBLE_NOSE_CANDY)) then return end
 
-    local statTable = mod:getData(player, "NOSE_CANDY_STATBONUSES")
+    local statTable = mod:getEntityData(player, "NOSE_CANDY_STATBONUSES")
 
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+statTable.SPEED
@@ -40,7 +40,7 @@ local function addNoseCandyBonuses(_, player)
     if(not player:HasCollectible(mod.COLLECTIBLE_NOSE_CANDY)) then return end
 
     local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_NOSE_CANDY)
-    local statTable = mod:getDataTable(player).NOSE_CANDY_STATBONUSES
+    local statTable = mod:getEntityDataTable(player).NOSE_CANDY_STATBONUSES
 
     local statToUp = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
     local statToDown = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]

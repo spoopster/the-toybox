@@ -1,7 +1,12 @@
 - NEW:
-    - Added SFX for Toy Gun and Foam Bullet
-    - Added Sunk Costs (item)
+    - Added a spritesheet for Atlas' Dark Mantle costume
+    - Added 4 4 (item)
+    - Added Eyestrain (item)
+    - Added Overflowing (status effects)
 - CHANGES:
-    - Bloody Needle now gives a tear multiplier instead of a flat tears up (i fucking hate soylent milk)
-    - Changed quality of Bloody Needle: Q2->Q0
-    - Atlas' health functions with Debug 3
+    - Changed the VFX for Atlas losing a Gold Mantle
+    - Updated the item sprite for Painkillers
+    - Made hearts only roll to be replaced with Mantles when first spawned (as Atlas)
+    - Made technical changes to Atlas' mantle system (hope theres no buges)
+    - Updated the mod's save data system to allow for persistent data throughout runs
+    - Changed Atlas to no longer have unique bodies for his mantles

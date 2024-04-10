@@ -255,7 +255,7 @@ local function collideWithHearts(_, pickup, player)
     if(not (player and player:ToPlayer() and player:ToPlayer():HasCollectible(mod.COLLECTIBLE_CARAMEL_APPLE))) then return end
     player = player:ToPlayer()
 
-    local data = mod:getDataTable(player)
+    local data = mod:getEntityDataTable(player)
 
     if((pickup.Variant==10 and ENUM_HEARTS[pickup.SubType]) or (pickup.Variant>12 and ENUM_HEARTS[pickup.Variant])) then
         data.CARAMEL_APPLE_DATA = data.CARAMEL_APPLE_DATA or {}
@@ -267,7 +267,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.E
 ---@param player EntityPlayer
 local function addHeartEffects(_, player)
     if(not player:HasCollectible(mod.COLLECTIBLE_CARAMEL_APPLE)) then return end
-    local hpData = mod:getData(player, "CARAMEL_APPLE_DATA") or {}
+    local hpData = mod:getEntityData(player, "CARAMEL_APPLE_DATA") or {}
 
     local addedHearts = {}
 
@@ -288,7 +288,7 @@ local function addHeartEffects(_, player)
         hpData[k] = nil
     end
 
-    mod:setData(player, "CARAMEL_APPLE_DATA", hpData)
+    mod:setEntityData(player, "CARAMEL_APPLE_DATA", hpData)
 
     for i, c in ipairs(addedHearts) do
         local offset = ((i-1/2)-(#addedHearts/2))

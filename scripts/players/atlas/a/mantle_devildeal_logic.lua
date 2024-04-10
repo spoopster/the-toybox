@@ -22,7 +22,7 @@ end
 local function forceDevilDealPickup(_, pickup, player)
     if(not (player and player:ToPlayer() and player:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
     player = player:ToPlayer()
-    if(mod:atlasHasTransformation(player, mod.MANTLES.TAR)) then return end
+    if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.TAR.ID)) then return end
     if(not player:IsExtraAnimationFinished()) then return end
     if(not pickup:IsShopItem()) then return end
     if(not (pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE)) then return end

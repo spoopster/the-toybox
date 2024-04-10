@@ -7,7 +7,7 @@ end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
-        mod:giveMantle(player, mod.MANTLES.DEFAULT)
+        mod:giveMantle(player, mod.MANTLE_DATA.DEFAULT.ID)
     else
 
     end
@@ -20,4 +20,4 @@ local function playMantleSFX(_, player, mantle)
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLES.DEFAULT)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.DEFAULT.ID)

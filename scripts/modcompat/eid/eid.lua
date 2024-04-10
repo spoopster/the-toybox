@@ -4,6 +4,8 @@ if(not EID) then return end
 
 local transformationSprites = Sprite()
 transformationSprites:Load("gfx/eid/eid_atlasa_transformations.anm2", true)
+local statuseffectSprites = Sprite()
+statuseffectSprites:Load("gfx/eid/eid_toybox_statuseffects.anm2", true)
 
 EID:addIcon("AtlasATransformationRock", "RockMantle", 0, 16, 16, 5, 6, transformationSprites)
 EID:addIcon("AtlasATransformationPoop", "PoopMantle", 0, 16, 16, 5, 6, transformationSprites)
@@ -14,11 +16,12 @@ EID:addIcon("AtlasATransformationSalt", "SaltMantle", 0, 16, 16, 5, 6, transform
 EID:addIcon("AtlasATransformationGlass", "GlassMantle", 0, 16, 16, 5, 6, transformationSprites)
 EID:addIcon("AtlasATransformationMetal", "MetalMantle", 0, 16, 16, 5, 6, transformationSprites)
 EID:addIcon("AtlasATransformationGold", "GoldMantle", 0, 16, 16, 5, 6, transformationSprites)
-
 EID:addIcon("AtlasATransformationEmpty", "Empty", 0, 16, 16, 5, 6, transformationSprites)
 EID:addIcon("AtlasATransformationTar", "TarMantle", 0, 16, 16, 5, 6, transformationSprites)
-
 EID:addColor("AtlasBlankColor", KColor(0,0,0,0))
+
+EID:addIcon("ToyboxElectrifiedStatus", "Electrified", 0, 12, 11, -1, 0, statuseffectSprites)
+EID:addIcon("ToyboxOverflowingStatus", "Overflowing", 0, 16, 13, -3, 0, statuseffectSprites)
 
 local descs = include("scripts.modcompat.eid.enums")
 
@@ -136,13 +139,17 @@ local function addExtraDescriptionStuff(entData)
 end
 
 for key, data in pairs(descs.ITEMS) do
-    EID:addCollectible(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
+    if(data.Description) then
+        EID:addCollectible(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
+    end
 
     addExtraDescriptionStuff({5,100,key})
 end
 
 for key, data in pairs(descs.TRINKETS) do
-    EID:addTrinket(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
+    if(data.Description) then
+        EID:addTrinket(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
+    end
 
     addExtraDescriptionStuff({5,350,key})
 end
@@ -153,7 +160,9 @@ for key, data in pairs(descs.CARDS) do
     EID:addIcon("Card"..key, data.Name, -1, 16, 16, 5, 7, cardSprite)
 end
 for key, data in pairs(descs.CARDS) do
-    EID:addCard(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
+    if(data.Description) then
+        EID:addCard(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
+    end
 
     if(data.NonAtlasDescription) then
         atlasMantleDescription(data, key)

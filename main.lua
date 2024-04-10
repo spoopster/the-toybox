@@ -21,6 +21,7 @@ local mod_files = {
     "scripts.savedata.save_data",
 
     "scripts.statuseffects.electrified",
+    "scripts.statuseffects.overflowing",
 
     "scripts.players.milcom.toinclude",
     "scripts.players.atlas.toinclude",

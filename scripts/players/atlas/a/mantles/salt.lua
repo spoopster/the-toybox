@@ -7,7 +7,7 @@ end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
-        mod:giveMantle(player, mod.MANTLES.SALT)
+        mod:giveMantle(player, mod.MANTLE_DATA.SALT.ID)
     else
 
     end
@@ -21,7 +21,7 @@ local ENUM_TPS_BONUS = 1/3
 local function evalCache(_, player, flag)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
 
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLES.SALT)
+    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.SALT.ID)
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
         player.MaxFireDelay = mod:addTps(player, ENUM_TPS_BONUS*numMantles)
@@ -32,7 +32,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 ---@param player EntityPlayer
 local function toggleAutofire(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLES.SALT)) then return end
+    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.SALT.ID)) then return end
     local data = mod:getAtlasATable(player)
 
     if(Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex)) then
@@ -113,4 +113,4 @@ local function playMantleSFX(_, player, mantle)
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLES.DEFAULT)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.DEFAULT.ID)

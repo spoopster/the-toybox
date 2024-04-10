@@ -7,7 +7,7 @@ local f = Font()
 f:Load("font/pftempestasevencondensed.fnt")
 
 local function calcPainkillerDamage(player)
-    local dmg = mod:getData(player, "PAINKILLERS_DAMAGE_COUNTER") or 0
+    local dmg = mod:getEntityData(player, "PAINKILLERS_DAMAGE_COUNTER") or 0
 
     return math.floor(dmg^(1/DAMAGE_COUNTER_ROOT_POWER))
 end
@@ -19,7 +19,7 @@ end
 local function painkillersTimerUpdate(_, player)
     if(not player:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
 
-    local data = mod:getDataTable(player)
+    local data = mod:getEntityDataTable(player)
     data.PAINKILLERS_DAMAGE_TIMER = data.PAINKILLERS_DAMAGE_TIMER or 0
 
     if(data.PAINKILLERS_DAMAGE_TIMER>0) then
@@ -37,7 +37,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, painkillersTimerUpdate)
 local function painkillersCancelDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
     if(not player:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
-    local data = mod:getDataTable(player)
+    local data = mod:getEntityDataTable(player)
 
     if(source.Type==6) then return end
     if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
@@ -74,7 +74,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -math.huge, painkillers
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER,
 function(_,p,offset)
     if(not p:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
-    local dmg = mod:getData(p, "PAINKILLERS_DAMAGE_COUNTER") or 0
+    local dmg = mod:getEntityData(p, "PAINKILLERS_DAMAGE_COUNTER") or 0
     if(dmg<1) then return end
 
     local counter = calcPainkillerDamage(p)*0.5
@@ -91,7 +91,7 @@ function(_,p,offset)
     local rPos = Isaac.WorldToScreen(p.Position)+Vector(0,10)
     f:DrawString(st, rPos.X-200, rPos.Y, KColor(1,1,1,1), 400, true)
 
-    local timeLeft = mod:getData(p, "PAINKILLERS_DAMAGE_TIMER")/calcPainkillerTimer(p)
+    local timeLeft = mod:getEntityData(p, "PAINKILLERS_DAMAGE_TIMER")/calcPainkillerTimer(p)
     local timeSt = ""
     for i=0,1,0.1 do
         if(i<=timeLeft) then timeSt=timeSt.."|"

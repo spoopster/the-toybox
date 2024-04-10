@@ -7,10 +7,10 @@ local OBOL_VAL = 3
 
 local function incrementMammonsOfferingCounter(player, amount, incrementPermaBonus)
     if(incrementPermaBonus==true) then
-        mod:setData(player, "MAMMONS_OFFERING_PERMABONUS", (mod:getData(player, "MAMMONS_OFFERING_PERMABONUS") or 0)+amount )
+        mod:setEntityData(player, "MAMMONS_OFFERING_PERMABONUS", (mod:getEntityData(player, "MAMMONS_OFFERING_PERMABONUS") or 0)+amount )
         player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true)
     else
-        mod:setData(player, "MAMMONS_OFFERING_BONUS", (mod:getData(player, "MAMMONS_OFFERING_BONUS") or 0)+amount )
+        mod:setEntityData(player, "MAMMONS_OFFERING_BONUS", (mod:getEntityData(player, "MAMMONS_OFFERING_BONUS") or 0)+amount )
     end
 end
 
@@ -18,15 +18,15 @@ end
 local function setPermaBonus(_, player)
     if(not player:HasCollectible(mod.COLLECTIBLE_MAMMONS_OFFERING)) then return end
 
-    incrementMammonsOfferingCounter(player, mod:getData(player, "MAMMONS_OFFERING_BONUS") or 0, true)
-    mod:setData(player, "MAMMONS_OFFERING_BONUS", 0)
+    incrementMammonsOfferingCounter(player, mod:getEntityData(player, "MAMMONS_OFFERING_BONUS") or 0, true)
+    mod:setEntityData(player, "MAMMONS_OFFERING_BONUS", 0)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, setPermaBonus)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    local bonus = mod:getData(player, "MAMMONS_OFFERING_PERMABONUS") or 0
+    local bonus = mod:getEntityData(player, "MAMMONS_OFFERING_PERMABONUS") or 0
 
     if(bonus~=0 and flag==CacheFlag.CACHE_DAMAGE) then
         local dmgIncrease = bonus*DMG_INCREASE
@@ -132,9 +132,9 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, prePennyCollision, mod.PIC
 --[[
 mod:AddCallback(ModCallbacks.MC_POST_RENDER,
 function(_)
-    Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"MAMMONS_OFFERING_BONUS")), 100, 30,1,1,1,1)
+    Isaac.RenderText(tostring(mod:getEntityData(Isaac.GetPlayer(),"MAMMONS_OFFERING_BONUS")), 100, 30,1,1,1,1)
 
-    Isaac.RenderText(tostring(mod:getData(Isaac.GetPlayer(),"MAMMONS_OFFERING_PERMABONUS")), 100, 40,1,1,1,1)
+    Isaac.RenderText(tostring(mod:getEntityData(Isaac.GetPlayer(),"MAMMONS_OFFERING_PERMABONUS")), 100, 40,1,1,1,1)
 end
 )
 --]]

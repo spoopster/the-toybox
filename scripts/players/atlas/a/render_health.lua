@@ -73,17 +73,26 @@ local function renderHearts(_)
 
         local heartRenderPos = renderPos
         for i=1, data.HP_CAP do
-            local spriteToRender = mod.MANTLE_TYPE_TO_ANM[data.MANTLES[i].TYPE or mod.MANTLES.NONE] or "Empty"
+            local spriteToRender = mod.MANTLE_DATA[mod:getMantleKeyFromId(data.MANTLES[i].TYPE) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM
             local hpToRender = data.MANTLES[i].MAXHP-data.MANTLES[i].HP
             if(hpToRender<0) then hpToRender=0 end
 
             if(hasCurseOfTheUnknown) then
-                spriteToRender = mod.MANTLE_TYPE_TO_ANM[1000]
+                spriteToRender = mod.MANTLE_DATA.UNKNOWN.ANIM
                 hpToRender=0
                 if(i>1) then break end
             end
 
             HP_SPRITE:SetFrame(spriteToRender, hpToRender)
+
+            if(data.MANTLES[i].COLOR and i==1) then
+                local s = ""
+                if(type(data.MANTLES[i].COLOR)=="table") then 
+                    for key, val in pairs(data.MANTLES[i].COLOR) do s=s..tostring(key)..": "..tostring(val).." | " end
+                else s=(data.MANTLES[i].COLOR) end
+
+                --print(s)
+            end
 
             local updatedColor=false
             if(selHealthIndex==i and not hasCurseOfTheUnknown) then
@@ -91,7 +100,7 @@ local function renderHearts(_)
 
                 local sinColor = math.sin(math.rad(player.FrameCount*10))*0.25+0.5
 
-                if(data.MANTLES[i].TYPE==mod.MANTLES.NONE) then data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1,sinColor,sinColor,sinColor), 0.5)
+                if(data.MANTLES[i].TYPE==mod.MANTLE_DATA.NONE.ID) then data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1,sinColor,sinColor,sinColor), 0.5)
                 else data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1,sinColor,0,sinColor*0.1), 0.5) end
             end
 
@@ -113,8 +122,9 @@ local function renderHearts(_)
 
         TRANSF_SPRITE.Scale = Vector(1,1)
 
-        TRANSF_SPRITE:Play(mod.MANTLE_TYPE_TO_ANM[data.TRANSFORMATION or mod.MANTLES.NONE] or "Empty", true)
-        if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_TYPE_TO_ANM[1000]) end
+        --print(data.TRANSFORMATION, mod:getMantleKeyFromId(data.TRANSFORMATION), mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION) or "NONE"].ANIM)
+        TRANSF_SPRITE:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM, true)
+        if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_DATA.UNKNOWN.ANIM) end
 
         local trfRenderPos = heartRenderPos+Vector(12+f:GetStringWidth(extraLivesString),0)
         --if(not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then trfRenderPos = renderPos+Vector(17,21) end
@@ -122,8 +132,8 @@ local function renderHearts(_)
         TRANSF_SPRITE:Render(trfRenderPos)
 
         if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
-            TRANSF_SPRITE:Play(mod.MANTLE_TYPE_TO_ANM[data.BIRTHRIGHT_TRANSFORMATION or mod.MANTLES.NONE] or "Empty", true)
-            if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_TYPE_TO_ANM[1000]) end
+            TRANSF_SPRITE:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.BIRTHRIGHT_TRANSFORMATION) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM, true)
+            if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_DATA.UNKNOWN.ANIM) end
             TRANSF_SPRITE:Render(trfRenderPos+Vector(24,0))
 
             TRANSF_SPRITE:Play("BirthrightOverlay", true)

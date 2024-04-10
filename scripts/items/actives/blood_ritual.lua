@@ -48,14 +48,14 @@ local function useBloodRitual(_, _, rng, player, flags)
     if(flags & UseFlag.USE_CARBATTERY == 0) then
         local isCarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
 
-        local ritualData = mod:getDataTable(player).BLOOD_RITUAL_DATA or {}
+        local ritualData = mod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
         local numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS or ENUM_NUMFAMILIARS)
         if(#ritualData>0) then numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS_EXTRA or ENUM_NUMFAMILIARS_EXTRA) end
 
         for _=1, numFam do
             table.insert(ritualData, #ritualData+1, ENUM_EVILFAM_PICKER:PickOutcome(rng))
         end
-        mod:setData(player, "BLOOD_RITUAL_DATA", ritualData)
+        mod:setEntityData(player, "BLOOD_RITUAL_DATA", ritualData)
 
         local pentagram = Isaac.Spawn(1000, mod.EFFECT_BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
         pentagram.DepthOffset = -1000
@@ -73,7 +73,7 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodRitual, mod.COLLECTIBLE_BLOOD_
 
 ---@param player EntityPlayer
 local function removeBloodRitualEffect(_, player)
-    mod:setData(player, "BLOOD_RITUAL_DATA", {})
+    mod:setEntityData(player, "BLOOD_RITUAL_DATA", {})
     player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, removeBloodRitualEffect)
@@ -96,7 +96,7 @@ end
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    local ritualData = mod:getDataTable(player).BLOOD_RITUAL_DATA or {}
+    local ritualData = mod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
     if(#ritualData==0) then return end
     local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_BLOOD_RITUAL)
 
@@ -122,7 +122,7 @@ local function evalCache(_, player, flag)
                     if(fidx<=num) then
                         fIndex = getBloodRitualIndex(rng, numFamiliars, invalidFIndex)
                         invalidFIndex[fIndex] = true
-                        mod:setData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
+                        mod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
                     end
                 end
             end
@@ -132,7 +132,7 @@ local function evalCache(_, player, flag)
                 if(fidx<=num) then
                     fIndex = getBloodRitualIndex(rng, numFamiliars, invalidFIndex)
                     invalidFIndex[fIndex] = true
-                    mod:setData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
+                    mod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
                 end
             end
         end
@@ -142,9 +142,9 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMIL
 
 ---@param familiar EntityFamiliar
 local function bloodRitualOrbit(_, familiar)
-    if(not mod:getData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
+    if(not mod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
     local p = familiar.Player
-    local offset = #(mod:getData(p, "BLOOD_RITUAL_DATA") or {})
+    local offset = #(mod:getEntityData(p, "BLOOD_RITUAL_DATA") or {})
 
     if(familiar.OrbitLayer~=ENUM_ORBIT_LAYER) then
         familiar:AddToOrbit(ENUM_ORBIT_LAYER)
@@ -153,7 +153,7 @@ local function bloodRitualOrbit(_, familiar)
     familiar.OrbitDistance = ENUM_ORBIT_DIST
     familiar.OrbitSpeed = ENUM_ORBIT_SPEED
 
-    local orbPos = p.Position+p.Velocity+Vector.FromAngle(familiar.FrameCount*familiar.OrbitSpeed+mod:getData(familiar, "IS_BLOOD_RITUAL_ORBITAL")*360)*familiar.OrbitDistance
+    local orbPos = p.Position+p.Velocity+Vector.FromAngle(familiar.FrameCount*familiar.OrbitSpeed+mod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")*360)*familiar.OrbitDistance
 
     familiar.Velocity = (orbPos-familiar.Position)/ENUM_ORBIT_EASING
 end
@@ -161,7 +161,7 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bloodRitualOrbit)
 
 ---@param familiar EntityFamiliar
 local function bloodRitualPriority(_, familiar)
-    if(not mod:getData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
+    if(not mod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
 
     return -100
 end

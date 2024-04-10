@@ -5,13 +5,12 @@ local t = {
     "scripts.players.atlas.a.stats",
     "scripts.players.atlas.a.character_helpers",
     "scripts.players.atlas.a.mantle_logic",
-    --"scripts.players.atlas.a.mantle_pickup_logic",
     "scripts.players.atlas.a.mantle_spawn_logic",
     "scripts.players.atlas.a.mantle_devildeal_logic",
-    --"scripts.players.atlas.a.mantle_health_items_logic",
     "scripts.players.atlas.a.mantle_healing_logic",
         "scripts.players.atlas.a.chapi.mantle_healing_logic",
     "scripts.players.atlas.a.render_health",
+    "scripts.players.atlas.a.item_remakes",
     --]]
 
     -- [[
@@ -26,8 +25,6 @@ local t = {
     "scripts.players.atlas.a.mantles.metal",
     "scripts.players.atlas.a.mantles.gold",
     --]]
-
-    --"scripts.players.atlas.a.chapi_warning", --nvm i made it work
 
     --ATLAS B
     "scripts.players.atlas.b.atlas",

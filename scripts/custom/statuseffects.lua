@@ -14,7 +14,6 @@ function mod:addCustomStatusEffect(animName, overlayColor, applyCondition)
     )
 end
 
---mod:addCustomStatusEffect("Test1", function(npc) return true end)
 --mod:addCustomStatusEffect("Test2", function(npc) return true end)
 
 local function npcRender(_, npc, offset)
@@ -35,7 +34,7 @@ local function npcRender(_, npc, offset)
         statusSprite:Play(toRender[i],true)
         statusSprite:SetFrame(npc.FrameCount%statusSprite:GetCurrentAnimationData():GetLength())
 
-        local rPos = statusOverlayPos+Vector((i-#toRender/2-1/2)*17, -24)+Isaac.WorldToScreen(npc.Position)+offset
+        local rPos = statusOverlayPos+Vector((i-#toRender/2-1/2)*17, -24)+Isaac.WorldToScreen(npc.Position)+offset-Game():GetRoom():GetRenderScrollOffset()
         statusSprite:Render(rPos)
     end
 end

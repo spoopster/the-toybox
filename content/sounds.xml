@@ -1,5 +1,11 @@
 <sounds root="sfx/">
-    <sound name="Toybox_SilkBag_Shield">
+	<sound name="Toybox_4_4_Scream">
+		<sample weight="1" path="toybox_4_4_scream_1.wav" />
+        <sample weight="1" path="toybox_4_4_scream_2.wav" />
+        <sample weight="1" path="toybox_4_4_scream_3.wav" />
+	</sound>
+	
+	<sound name="Toybox_SilkBag_Shield">
 		<sample weight="1" path="toybox_silk_bag_shield.wav" />  
 	</sound>
 	<sound name="Toybox_ToyGun_Reload">

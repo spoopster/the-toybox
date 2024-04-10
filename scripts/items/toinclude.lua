@@ -16,6 +16,7 @@ local t = {
     "scripts.items.passives.meteor_shower",
     "scripts.items.passives.blessed_ring",
     "scripts.items.passives.eyestrain",
+    "scripts.items.passives.4_4",
 
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 

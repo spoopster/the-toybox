@@ -3,6 +3,8 @@ local mod = MilcomMOD
 ---@param player EntityPlayer
 local function atlasAInit(_, player)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+        player:AddMaxHearts(2)
+        player:AddHearts(2)
         player:AddCacheFlags(CacheFlag.CACHE_ALL)
         player:EvaluateItems()
     end
@@ -33,7 +35,6 @@ mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, 1e6+1, changeAtl
 local function forceHealth(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
 
-    --print(player:GetHearts())
     if(player:GetMaxHearts()<2) then
         player:AddMaxHearts(2,true)
     end
@@ -41,4 +42,4 @@ local function forceHealth(_, player)
         player:AddHearts(2)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, forceHealth, 0)
+mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, math.huge, forceHealth, 0)

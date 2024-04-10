@@ -9,7 +9,7 @@ end
 
 local function useMantle(_, _, player, _)
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
-        mod:giveMantle(player, mod.MANTLES.POOP)
+        mod:giveMantle(player, mod.MANTLE_DATA.POOP.ID)
     else
 
     end
@@ -25,7 +25,7 @@ local function addPoopFlies(_, player)
 
     local data = mod:getAtlasATable(player)
 
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLES.POOP)
+    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.POOP.ID)
     local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_POOP)
 
     for _=1, numMantles do
@@ -38,11 +38,11 @@ local function poopUpdate(_, poop)
     if(Game():IsPaused()) then return end
     if(poop:GetVariant()==GridPoopVariant.RED) then return end
     
-    if(poop.State==1000 and poop.State~=mod:getData(poop, "POOP_DMG") and mod:getData(poop, "POOP_DMG")) then
+    if(poop.State==1000 and poop.State~=mod:getEntityData(poop, "POOP_DMG") and mod:getEntityData(poop, "POOP_DMG")) then
         local shouldDoTransfEffect = false
         for _, player in ipairs(mod:getAllAtlasA()) do
             player = player:ToPlayer()
-            if(mod:atlasHasTransformation(player, mod.MANTLES.POOP)) then
+            if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
                 local didHeal = mod:addMantleHp(player, 1)
                 shouldDoTransfEffect = true
 
@@ -70,7 +70,7 @@ local function poopUpdate(_, poop)
         end
     end
 
-    mod:setData(poop, "POOP_DMG", poop.State)
+    mod:setEntityData(poop, "POOP_DMG", poop.State)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_POOP_UPDATE, poopUpdate)
 
@@ -80,4 +80,4 @@ local function playMantleSFX(_, player, mantle)
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLES.POOP)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.POOP.ID)

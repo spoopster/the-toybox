@@ -50,6 +50,8 @@ mod.COLLECTIBLE_PEPPER_X = Isaac.GetItemIdByName("Pepper X")                    
 mod.COLLECTIBLE_SCATTERED_TOME = Isaac.GetItemIdByName("Scattered Tome")
 mod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")                          --!DONE
 mod.COLLECTIBLE_SUNK_COSTS = Isaac.GetItemIdByName("Sunk Costs")                    --!DONE
+
+mod.COLLECTIBLE_4_4 = Isaac.GetItemIdByName("4 4")                                  --!DONE
 --mod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")            --*UNUSED (i dont like the item)
 
 --*TRINKETS
@@ -83,12 +85,13 @@ mod.PICKUP_MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offer
 --*TEARS
 mod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear")
 mod.TEAR_BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear")
+mod.TEAR_SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear")
 
 --#endregion
 --#region --!SFX
 
+mod.SFX_4_4_SCREAM = Isaac.GetSoundIdByName("Toybox_4_4_Scream"); sfx:Preload(mod.SFX_4_4_SCREAM)
 mod.SFX_SILK_BAG_SHIELD = Isaac.GetSoundIdByName("Toybox_SilkBag_Shield"); sfx:Preload(mod.SFX_SILK_BAG_SHIELD)
-
 mod.SFX_TOY_GUN_RELOAD = Isaac.GetSoundIdByName("Toybox_ToyGun_Reload"); sfx:Preload(mod.SFX_TOY_GUN_RELOAD)
 mod.SFX_BULLET_FIRE = Isaac.GetSoundIdByName("Toybox_Bullet_Shoot"); sfx:Preload(mod.SFX_BULLET_FIRE)
 mod.SFX_BULLET_HIT = Isaac.GetSoundIdByName("Toybox_Bullet_Hit"); sfx:Preload(mod.SFX_BULLET_HIT)
@@ -117,6 +120,7 @@ mod.CUSTOM_CALLBACKS = {
     POST_MILCOM_CRAFT_CRAFTABLE = "TOYBOX_POST_MILCOM_CRAFT_CRAFTABLE",
     POST_PLAYER_ATTACK = "TOYBOX_POST_PLAYER_ATTACK",
     USE_THROWABLE_ACTIVE = "TOYBOX_USE_THROWABLE_ACTIVE",
+    POST_PLAYER_DOUBLE_TAP = "TOYBOX_POST_PLAYER_DOUBLE_TAP",
 }
 
 mod.CUSTOM_BOMBFLAGS = {
@@ -343,68 +347,122 @@ mod.CRAFTABLE_A_CATEGORIES = {
 
 --#endregion
 --#region --!ATLAS_A
-mod.MANTLES = {
-    NONE = 0,
-    DEFAULT = 1,
-    POOP = 2,
-    BONE = 3,
-    DARK = 4,
-    HOLY = 5,
-    SALT = 6,
-    GLASS = 7,
-    METAL = 8,
-    GOLD = 9,
 
-    TAR = 1024,
-}
-mod.MANTLES_HP = {
-    NONE = 0,
-    DEFAULT = 2,
-    POOP = 2,
-    BONE = 3,
-    DARK = 2,
-    HOLY = 2,
-    SALT = 2,
-    GLASS = 1,
-    METAL = 3,
-    GOLD = 2,
+mod.MANTLE_DATA = {
+    NONE = {
+        ID = 0,
+        HP = 0,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_rock.anm2"),
+        SHARD_COLOR = Color(0,0,0,0),
+        ANIM = "Empty",
+    },
+    DEFAULT = {
+        ID = 1,
+        HP = 2,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_rock.anm2"),
+        SHARD_COLOR = Color(153/255,139/255,136/255,1),
+        ANIM = "RockMantle",
+    },
+    POOP = {
+        ID = 2,
+        HP = 2,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_POOP,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_poop.anm2"),
+        SHARD_COLOR = Color(124/255,86/255,52/255,1),
+        ANIM = "PoopMantle",
+    },
+    BONE = {
+        ID = 3,
+        HP = 3,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_BONE,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_bone.anm2"),
+        SHARD_COLOR = Color(95/255,112/255,121/255,1),
+        ANIM = "BoneMantle",
+    },
+    DARK = {
+        ID = 4,
+        HP = 2,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_DARK,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_dark.anm2"),
+        SHARD_COLOR = Color(59/255,59/255,59/255,1),
+        ANIM = "DarkMantle",
+    },
+    HOLY = {
+        ID = 5,
+        HP = 2,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_HOLY,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_holy.anm2"),
+        FLIGHT_COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_holy_wings.anm2"),
+        SHARD_COLOR = Color(190/255,190/255,190/255,1),
+        ANIM = "HolyMantle",
+    },
+    SALT = {
+        ID = 6,
+        HP = 2,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_SALT,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_salt.anm2"),
+        SHARD_COLOR = Color(1,1,1,1),
+        ANIM = "SaltMantle",
+    },
+    GLASS = {
+        ID = 7,
+        HP = 1,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_GLASS,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_glass.anm2"),
+        SHARD_COLOR = Color(1,1,1,1),
+        ANIM = "GlassMantle",
+    },
+    METAL = {
+        ID = 8,
+        HP = 3,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_METAL,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_metal.anm2"),
+        SHARD_COLOR = Color(147/255,147/255,147/255,1),
+        ANIM = "MetalMantle",
+    },
+    GOLD = {
+        ID = 9,
+        HP = 2,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_GOLD,
+        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_gold.anm2"),
+        SHARD_COLOR = Color(205/255,181/255,60/255,1),
+        ANIM = "GoldMantle",
+    },
 
-    TAR = 0,
+    TAR = {
+        ID = 1024,
+        HP = 0,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
+        --COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_tar.anm2"),
+        SHARD_COLOR = Color(0,0,0,1),
+        ANIM = "TarMantle",
+    },
+
+    UNKNOWN = {
+        ID = 1000,
+        HP = 0,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
+        --COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_tar.anm2"),
+        SHARD_COLOR = Color(0,0,0,0),
+        ANIM = "Unknown",
+    }
 }
-mod.MANTLE_TO_SUBTYPE = {
-    [mod.MANTLES.DEFAULT] = mod.CONSUMABLE_MANTLE_ROCK,
-    [mod.MANTLES.POOP] = mod.CONSUMABLE_MANTLE_POOP,
-    [mod.MANTLES.BONE] = mod.CONSUMABLE_MANTLE_BONE,
-    [mod.MANTLES.DARK] = mod.CONSUMABLE_MANTLE_DARK,
-    [mod.MANTLES.HOLY] = mod.CONSUMABLE_MANTLE_HOLY,
-    [mod.MANTLES.SALT] = mod.CONSUMABLE_MANTLE_SALT,
-    [mod.MANTLES.GLASS] = mod.CONSUMABLE_MANTLE_GLASS,
-    [mod.MANTLES.METAL] = mod.CONSUMABLE_MANTLE_METAL,
-    [mod.MANTLES.GOLD] = mod.CONSUMABLE_MANTLE_GOLD,
+
+mod.MANTLE_ID_TO_NAME = {
+    [mod.MANTLE_DATA.NONE.ID] = "NONE",
+    [mod.MANTLE_DATA.DEFAULT.ID] = "DEFAULT",
+    [mod.MANTLE_DATA.POOP.ID] = "POOP",
+    [mod.MANTLE_DATA.BONE.ID] = "BONE",
+    [mod.MANTLE_DATA.DARK.ID] = "DARK",
+    [mod.MANTLE_DATA.HOLY.ID] = "HOLY",
+    [mod.MANTLE_DATA.SALT.ID] = "SALT",
+    [mod.MANTLE_DATA.GLASS.ID] = "GLASS",
+    [mod.MANTLE_DATA.METAL.ID] = "METAL",
+    [mod.MANTLE_DATA.GOLD.ID] = "GOLD",
+    [mod.MANTLE_DATA.TAR.ID] = "TAR",
 }
-mod.SUBTYPE_TO_MANTLE = {
-    [mod.CONSUMABLE_MANTLE_ROCK] = mod.MANTLES.DEFAULT,
-    [mod.CONSUMABLE_MANTLE_POOP] = mod.MANTLES.POOP,
-    [mod.CONSUMABLE_MANTLE_BONE] = mod.MANTLES.BONE,
-    [mod.CONSUMABLE_MANTLE_DARK] = mod.MANTLES.DARK,
-    [mod.CONSUMABLE_MANTLE_HOLY] = mod.MANTLES.HOLY,
-    [mod.CONSUMABLE_MANTLE_SALT] = mod.MANTLES.SALT,
-    [mod.CONSUMABLE_MANTLE_GLASS] = mod.MANTLES.GLASS,
-    [mod.CONSUMABLE_MANTLE_METAL] = mod.MANTLES.METAL,
-    [mod.CONSUMABLE_MANTLE_GOLD] = mod.MANTLES.GOLD,
-}
-mod.TRANSFORMATION_TO_COSTUME = {
-    [mod.MANTLES.DEFAULT] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_rock.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_rock_wings.anm2")},
-    [mod.MANTLES.POOP] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_poop.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_poop_wings.anm2")},
-    [mod.MANTLES.BONE] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_bone.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_bone_wings.anm2")},
-    [mod.MANTLES.DARK] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_dark.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_dark_wings.anm2")},
-    [mod.MANTLES.HOLY] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_holy.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_holy_wings.anm2")},
-    [mod.MANTLES.SALT] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_salt.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_salt_wings.anm2")},
-    [mod.MANTLES.GLASS] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_glass.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_glass_wings.anm2")},
-    [mod.MANTLES.METAL] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_metal.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_metal_wings.anm2")},
-    [mod.MANTLES.GOLD] = {Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_gold.anm2"), Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_gold_wings.anm2")},
-}
-mod.TAR_COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_tar.anm2")
 
 -- PICKING MANTLES ENUMS
 mod.SAME_MANTLE_BIAS = {
@@ -414,46 +472,18 @@ mod.SAME_MANTLE_BIAS = {
     [3]=1,
 }
 mod.MANTLE_PICKER = {
-    {OUTCOME=mod.MANTLES.DEFAULT, WEIGHT=1},
-    {OUTCOME=mod.MANTLES.POOP, WEIGHT=1},
-    {OUTCOME=mod.MANTLES.BONE, WEIGHT=1},
-    {OUTCOME=mod.MANTLES.DARK, WEIGHT=1},
-    {OUTCOME=mod.MANTLES.HOLY, WEIGHT=1},
-    {OUTCOME=mod.MANTLES.SALT, WEIGHT=1},
-    {OUTCOME=mod.MANTLES.GLASS, WEIGHT=1},
-    {OUTCOME=mod.MANTLES.METAL, WEIGHT=1},
-    {OUTCOME=mod.MANTLES.GOLD, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.DEFAULT.ID, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.POOP.ID, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.BONE.ID, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.DARK.ID, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.HOLY.ID, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.SALT.ID, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.GLASS.ID, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.METAL.ID, WEIGHT=1},
+    {OUTCOME=mod.MANTLE_DATA.GOLD.ID, WEIGHT=1},
 }
 
 -- MANTLE HP RENDER ENUMS
 mod.MANTLE_SHARD_GRAVITY = 7
-mod.MANTLE_TYPE_TO_SHARD_COLOR = {
-    [mod.MANTLES.DEFAULT] = Color(153/255,139/255,136/255,1),
-    [mod.MANTLES.POOP] = Color(124/255,86/255,52/255,1),
-    [mod.MANTLES.BONE] = Color(95/255,112/255,121/255,1),
-    [mod.MANTLES.DARK] = Color(59/255,59/255,59/255,1),
-    [mod.MANTLES.HOLY] = Color(190/255,190/255,190/255,1),
-    [mod.MANTLES.SALT] = Color(1,1,1,1),
-    [mod.MANTLES.GLASS] = Color(1,1,1,1),
-    [mod.MANTLES.METAL] = Color(147/255,147/255,147/255,1),
-    [mod.MANTLES.GOLD] = Color(205/255,181/255,60/255,1),
-    [mod.MANTLES.NONE] = Color(0,0,0,0),
-    [mod.MANTLES.TAR] = Color(0,0,0,1),
-}
-
-mod.MANTLE_TYPE_TO_ANM = {
-    [mod.MANTLES.DEFAULT] = "RockMantle",
-    [mod.MANTLES.POOP] = "PoopMantle",
-    [mod.MANTLES.BONE] = "BoneMantle",
-    [mod.MANTLES.DARK] = "DarkMantle",
-    [mod.MANTLES.HOLY] = "HolyMantle",
-    [mod.MANTLES.SALT] = "SaltMantle",
-    [mod.MANTLES.GLASS] = "GlassMantle",
-    [mod.MANTLES.METAL] = "MetalMantle",
-    [mod.MANTLES.GOLD] = "GoldMantle",
-    [mod.MANTLES.NONE] = "Empty",
-    [mod.MANTLES.TAR] = "TarMantle",
-    [1000] = "Unknown",
-}
 
 --#endregion

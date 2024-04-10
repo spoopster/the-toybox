@@ -52,7 +52,7 @@ function mod:getRightmostMantleIdx(player)
     local mantles = mod:getAtlasAData(player, "MANTLES")
 
     for i=mod:getAtlasAData(player, "HP_CAP"), 1, -1 do
-        if(mantles[i].TYPE~=mod.MANTLES.NONE) then return i end
+        if(mantles[i].TYPE~=mod.MANTLE_DATA.NONE.ID) then return i end
     end
 
     return 0
@@ -69,14 +69,10 @@ function mod:getCurrentTransformationType(player)
     end
 
     if(isSameMantle) then
-        if(mantles[1].TYPE==mod.MANTLES.NONE) then return mod.MANTLES.TAR end
+        if(mantles[1].TYPE==mod.MANTLE_DATA.NONE.ID) then return mod.MANTLE_DATA.TAR.ID end
         return mantles[1].TYPE
     end
-    return mod.MANTLES.DEFAULT
-end
-
-function mod:getMantleNameFromType(type)
-    return mod:getKeyFromVal(mod.MANTLES, type)
+    return mod.MANTLE_DATA.DEFAULT.ID
 end
 
 function mod:setMantleType(player, idx, hpOverride, type)
@@ -84,9 +80,9 @@ function mod:setMantleType(player, idx, hpOverride, type)
 
     local oldD = data.MANTLES[idx]
     data.MANTLES[idx] = {
-        TYPE = type or mod.MANTLES["DEFAULT"],
-        HP = hpOverride or (mod.MANTLES_HP[mod:getMantleNameFromType(type or 1)] or mod.MANTLES_HP["DEFAULT"]),
-        MAXHP = (mod.MANTLES_HP[mod:getMantleNameFromType(type or 1)] or mod.MANTLES_HP["DEFAULT"]),
+        TYPE = type or mod.MANTLE_DATA.DEFAULT.ID,
+        HP = hpOverride or (mod.MANTLE_DATA[mod:getMantleKeyFromId(type or mod.MANTLE_DATA.DEFAULT.ID)].HP or mod.MANTLE_DATA.DEFAULT.HP),
+        MAXHP = (mod.MANTLE_DATA[mod:getMantleKeyFromId(type or mod.MANTLE_DATA.DEFAULT.ID)].HP or mod.MANTLE_DATA.DEFAULT.HP),
         COLOR = oldD.COLOR or Color(1,1,1,1),
     }
     mod:updateMantles(player)
@@ -96,26 +92,14 @@ end
 function mod:addMantleHp(player, hpToAdd)
     local data = mod:getAtlasATable(player)
 
+    print("here")
+
     local oldMantles = mod:cloneTable(data.MANTLES)
 
     if(hpToAdd<0 and Game():GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
         local rIdx = mod:getRightmostMantleIdx(player)
         data.MANTLES[rIdx].HP = data.MANTLES[rIdx].HP+hpToAdd
-
-        local selMType = data.MANTLES[rIdx].TYPE
-        local rng = player:GetCardRNG(mod.MANTLES.DEFAULT)
-        local pos = mod:getMantleHeartPosition(player, rIdx)
-        local c = mod.MANTLE_TYPE_TO_SHARD_COLOR[selMType] or mod.MANTLE_TYPE_TO_SHARD_COLOR[mod.MANTLES.DEFAULT]
-
-        data.MANTLES[rIdx].COLOR = Color(1,1,1,1,1)
-
-        local shardsToSpawn = 5
-        for _=1, shardsToSpawn do
-            local v = Vector(rng:RandomFloat()*2+3, 0):Rotated(-90+(rng:RandomFloat()-0.5)*180)
-            local p = pos+Vector(rng:RandomFloat()-0.5, rng:RandomFloat()-0.5)*7
-
-            mod:spawnShard(player, p, v, nil, nil, c)
-        end
+        mod:spawnShardsForMantle(player, rIdx, 5)
     elseif(hpToAdd>0) then
         data.MANTLES[1].HP = data.MANTLES[1].HP+hpToAdd
     end
@@ -140,12 +124,16 @@ end
 
 function mod:getHeldMantle(player)
     local card = player:GetCard(0)
-    if(mod.SUBTYPE_TO_MANTLE[card]) then return mod.SUBTYPE_TO_MANTLE[card] end
-    return mod.MANTLES.NONE
+    for _, dt in pairs(mod.MANTLE_DATA) do
+        if(dt.CONSUMABLE_SUBTYPE==card) then
+            return dt.ID
+        end
+    end
+    return mod.MANTLE_DATA.NONE.ID
 end
 
 function mod:getSelMantleIdToDestroy(player, type)
-    if(type==mod.MANTLES.NONE) then return 0 end
+    if(type==mod.MANTLE_DATA.NONE.ID) then return 0 end
     local data = mod:getAtlasATable(player)
     local rIdx = mod:getRightmostMantleIdx(player)
 
@@ -162,29 +150,19 @@ function mod:giveMantle(player, type)
     local rIdx = mod:getRightmostMantleIdx(player)
     local data = mod:getAtlasATable(player)
 
-    if(type==nil or type==mod.MANTLES.NONE) then
+    if(type==nil or type==mod.MANTLE_DATA.NONE.ID) then
         type = mod:getHeldMantle(player)
     end
 
     if(rIdx==data.HP_CAP) then
         local idx = mod:getSelMantleIdToDestroy(player, type)
-        if(type==mod.MANTLES.NONE) then idx=1 end
+        if(type==mod.MANTLE_DATA.NONE.ID) then idx=1 end
         local selMType = data.MANTLES[idx].TYPE
+        
+        mod:spawnShardsForMantle(player, idx, 10)
 
-        local rng = player:GetCardRNG(mod.MANTLES.DEFAULT)
-        local pos = mod:getMantleHeartPosition(player, idx)
-        local c = mod.MANTLE_TYPE_TO_SHARD_COLOR[selMType] or mod.MANTLE_TYPE_TO_SHARD_COLOR[mod.MANTLES.DEFAULT]
-
-        local shardsToSpawn = 10
-        for _=1, shardsToSpawn do
-            local v = Vector(rng:RandomFloat()*2+3, 0):Rotated(-90+(rng:RandomFloat()-0.5)*180)
-            local p = pos+Vector(rng:RandomFloat()-0.5, rng:RandomFloat()-0.5)*7
-
-            mod:spawnShard(player, p, v, nil, nil, c)
-        end
-
-        if(selMType==mod.MANTLES.METAL or selMType==mod.MANTLES.GOLD) then sfx:Play(mod.SFX_ATLASA_METALBREAK, 0.4)
-        elseif(selMType==mod.MANTLES.GLASS) then sfx:Play(mod.SFX_ATLASA_GLASSBREAK, 0.4)
+        if(selMType==mod.MANTLE_DATA.METAL.ID or selMType==mod.MANTLE_DATA.GOLD.ID) then sfx:Play(mod.SFX_ATLASA_METALBREAK, 0.4)
+        elseif(selMType==mod.MANTLE_DATA.GLASS.ID) then sfx:Play(mod.SFX_ATLASA_GLASSBREAK, 0.4)
         else sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.4) end
 
         for i=idx+1, rIdx do
@@ -204,44 +182,49 @@ function mod:giveMantle(player, type)
 end
 
 function mod:isBadMantle(mantle)
-    if(mantle==mod.MANTLES.DEFAULT) then return true end
-    if(mantle==mod.MANTLES.NONE) then return true end
-    if(mantle==mod.MANTLES.TAR) then return true end
+    if(mantle==mod.MANTLE_DATA.DEFAULT.ID) then return true end
+    if(mantle==mod.MANTLE_DATA.NONE.ID) then return true end
+    if(mantle==mod.MANTLE_DATA.TAR.ID) then return true end
 
     return false
 end
 
 local function getBiasWeight(f)
+    f = f or 0
     if(f>=3) then return mod.SAME_MANTLE_BIAS[3] end
     if(f<=0) then return mod.SAME_MANTLE_BIAS[0] end
 
     return mod:lerp(mod.SAME_MANTLE_BIAS[math.floor(f)], mod.SAME_MANTLE_BIAS[math.floor(f)+1], f-math.floor(f))
 end
 
-function mod:getRandomMantle(rng)
+function mod:getRandomMantle(rng, ignoreBias)
     local ownedMantles = {}
-    for _, val in pairs(mod.MANTLES) do
-        ownedMantles[val] = 0
-    end
-    for _, p in ipairs(Isaac.FindByType(1,0,mod.PLAYER_ATLAS_A)) do
-        local data = mod:getAtlasATable(p:ToPlayer())
-        local transf = data.TRANSFORMATION
-        ownedMantles[transf] = (ownedMantles[transf] or 0)+data.HP_CAP
-        for _, mantle in ipairs(data.MANTLES) do
-            if(mantle.TYPE~=transf) then ownedMantles[mantle.TYPE] = (ownedMantles[mantle.TYPE] or 0)+1 end
+    if(ignoreBias~=true) then
+        for _, val in pairs(mod.MANTLE_DATA) do
+            ownedMantles[val.ID] = 0
         end
-    end
-    local numAtlasA = #mod:getAllAtlasA()
-    for _, val in pairs(mod.MANTLES) do
-        ownedMantles[val] = ownedMantles[val]/numAtlasA
+        for _, p in ipairs(Isaac.FindByType(1,0,mod.PLAYER_ATLAS_A)) do
+            local data = mod:getAtlasATable(p:ToPlayer())
+            local transf = data.TRANSFORMATION
+            ownedMantles[transf] = (ownedMantles[transf] or 0)+data.HP_CAP
+            for _, mantle in ipairs(data.MANTLES) do
+                if(mantle.TYPE~=transf) then ownedMantles[mantle.TYPE] = (ownedMantles[mantle.TYPE] or 0)+1 end
+            end
+        end
+        local numAtlasA = #mod:getAllAtlasA()
+        for _, val in pairs(mod.MANTLE_DATA) do
+            ownedMantles[val.ID] = ownedMantles[val.ID]/numAtlasA
+        end
     end
 
     local maxWeight = 0
     for _, mData in ipairs(mod.MANTLE_PICKER) do
-        local outcome = mData.OUTCOME or mod.MANTLES.DEFAULT
+        local outcome = mData.OUTCOME or mod.MANTLE_DATA.DEFAULT.ID
 
-        if(not mod:isBadMantle(outcome)) then
+        if(ignoreBias~=true and not mod:isBadMantle(outcome)) then
             maxWeight = maxWeight+mData.WEIGHT*(getBiasWeight(ownedMantles[outcome]))
+        else
+            maxWeight = maxWeight+mData.WEIGHT
         end
     end
 
@@ -249,18 +232,20 @@ function mod:getRandomMantle(rng)
     local curWeight = 0
 
     for _, mData in ipairs(mod.MANTLE_PICKER) do
-        local outcome = mData.OUTCOME or mod.MANTLES.DEFAULT
+        local outcome = mData.OUTCOME or mod.MANTLE_DATA.DEFAULT.ID
 
-        if(not mod:isBadMantle(outcome)) then
-            curWeight = curWeight+mData.WEIGHT*(getBiasWeight(ownedMantles[mData.OUTCOME or mod.MANTLES.DEFAULT]))
+        if(ignoreBias~=true and not mod:isBadMantle(outcome)) then
+            curWeight = curWeight+mData.WEIGHT*(getBiasWeight(ownedMantles[mData.OUTCOME or mod.MANTLE_DATA.DEFAULT.ID]))
+        else
+            curWeight = curWeight+mData.WEIGHT
+        end
 
-            if(selWeight<curWeight) then
-                return mData.OUTCOME
-            end
+        if(selWeight<curWeight) then
+            return mData.OUTCOME
         end
     end
 
-    return mod.MANTLES.DEFAULT
+    return mod.MANTLE_DATA.DEFAULT.ID
 end
 
 function mod:getNumMantlesByType(player, type)
@@ -283,8 +268,25 @@ function mod:anyAtlasAHasTransformation(type, isReal)
     return false
 end
 
+function mod:spawnShardsForMantle(player, idx, amount)
+    local data = mod:getAtlasATable(player)
+
+    local selMType = data.MANTLES[idx].TYPE
+    local rng = player:GetCardRNG(mod.MANTLE_DATA.DEFAULT.ID)
+    local pos = mod:getMantleHeartPosition(player, idx)
+    local c = mod.MANTLE_DATA[mod:getMantleKeyFromId(selMType)].SHARD_COLOR or mod.MANTLE_DATA.DEFAULT.SHARD_COLOR
+    data.MANTLES[idx].COLOR = Color(1,1,1,1,1)
+
+    for _=1, amount do
+        local v = Vector(rng:RandomFloat()*2+3, 0):Rotated(-90+(rng:RandomFloat()-0.5)*180)
+        local p = pos+Vector(rng:RandomFloat()-0.5, rng:RandomFloat()-0.5)*7
+
+        mod:spawnShard(player, p, v, nil, nil, c)
+    end
+end
+
 function mod:spawnShard(player, pos, vel, lifespan, rotation, color, frame)
-    if(frame==nil) then frame=player:GetCardRNG(mod.MANTLES.DEFAULT):RandomInt(4) end
+    if(frame==nil) then frame=player:GetCardRNG(mod.MANTLE_DATA.DEFAULT.ID):RandomInt(4) end
     if(lifespan==nil) then lifespan=60 end
     if(color==nil) then color = Color(1,1,1,1) end
     if(rotation==nil) then rotation=0 end
@@ -307,4 +309,8 @@ function mod:getMantleHeartPosition(player, idx)
     if(pNum==-1 or pNum>=4) then return Vector(-100, -100) end
 
     return mod:getHeartHudPosition(pNum)+(idx-1)*Vector(19,0)
+end
+
+function mod:getMantleKeyFromId(idx)
+    return mod.MANTLE_ID_TO_NAME[idx] or "DEFAULT"
 end

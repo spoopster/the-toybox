@@ -43,7 +43,7 @@ local function postUpdate(_)
             m.SpriteScale = m.SpriteScale*(1/m.Scale)
 
             local cross = Isaac.Spawn(EntityType.ENTITY_EFFECT, 30, 0, pos, Vector.Zero, p):ToEffect()
-            cross.Timeout = (mod:getData(m, "METEOR_TEAR_LIFESPAN") or METEOR_FALLING_FRAMES)+2
+            cross.Timeout = (mod:getEntityData(m, "METEOR_TEAR_LIFESPAN") or METEOR_FALLING_FRAMES)+2
 
             local c = Color(1,1,1,1)
             c:SetColorize(1.2,0.7,0,1)
@@ -61,7 +61,7 @@ local function meteorTearInit(_, tear)
     tear.FallingSpeed = 0
 
     local tL = (METEOR_FALLING_FRAMES+2)+tear:GetDropRNG():RandomInt(FALLING_FRAME_RANDOMNESS*2)-FALLING_FRAME_RANDOMNESS
-    mod:setData(tear, "METEOR_TEAR_LIFESPAN", tL)
+    mod:setEntityData(tear, "METEOR_TEAR_LIFESPAN", tL)
 
     local dist = tL*METEOR_SPEED
     tear.Position = tear.Position+Vector(-dist, 0)
@@ -85,7 +85,7 @@ local function meteorTearUpdate(_, tear)
     tear.Rotation = 45
     tear:GetSprite().Rotation = 45
 
-    if(tear.FrameCount==(mod:getData(tear, "METEOR_TEAR_LIFESPAN") or METEOR_FALLING_FRAMES)+2) then tear:Die() end
+    if(tear.FrameCount==(mod:getEntityData(tear, "METEOR_TEAR_LIFESPAN") or METEOR_FALLING_FRAMES)+2) then tear:Die() end
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, meteorTearUpdate, mod.TEAR_METEOR)
 

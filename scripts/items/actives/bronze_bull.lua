@@ -7,7 +7,7 @@ local REWIND_INTERVAL = 3
 local function useItem(_, _, rng, player, flags)
     for _, npc in ipairs(Isaac.GetRoomEntities()) do
         if(npc:IsActiveEnemy(false)) then
-            mod:setData(npc, "IS_REWINDING", 1)
+            mod:setEntityData(npc, "IS_REWINDING", 1)
         end
     end
 
@@ -21,7 +21,7 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, useItem, mod.COLLECTIBLE_BRONZE_BULL)
 
 ---@param npc EntityNPC
 local function npcUpdate(_, npc)
-    local data = mod:getDataTable(npc)
+    local data = mod:getEntityDataTable(npc)
     if(data.IS_REWINDING) then
         --npc.Velocity = Vector(0,0)
 
@@ -56,7 +56,7 @@ local function npcUpdate(_, npc)
             Position = npc.Position,
             Velocity = npc.Velocity,
             Data = npc:GetData(),
-            ModData = mod:getDataTable(npc),
+            ModData = mod:getEntityDataTable(npc),
             Anim = sp:GetAnimation(),
             Frame = sp:GetFrame(),
             State = npc.State,

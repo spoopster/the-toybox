@@ -72,7 +72,7 @@ local function postDealBulletDamage(_, ent, amount, flags, source, frames)
             [KnifeVariant.BERSERK_CLUB]=true,
         }
 
-        if( (s and mod:getData(s, "HAS_FOAM_BULLET_EFFECT")==true)
+        if( (s and mod:getEntityData(s, "HAS_FOAM_BULLET_EFFECT")==true)
         or  (s.Type==EntityType.ENTITY_PLAYER) -- ALL MISC PLAYER DMG (Aries, bone club/spirit sword, moms heels)
         --or  (s.Type==EntityType.ENTITY_PLAYER and flags & DamageFlag.DAMAGE_LASER ~= 0)  --LASER
         or  (s and s.Type==EntityType.ENTITY_KNIFE and validKnifeSubtypes[s.Variant])  --KNIFE
@@ -99,7 +99,7 @@ local function postSpawnBulletAquariusCreep(_, effect)
     local p = effect.SpawnerEntity:ToPlayer()
 
     if(p and p:GetTrinketMultiplier(mod.TRINKET_FOAM_BULLET)>0 and p:GetTrinketRNG(mod.TRINKET_FOAM_BULLET):RandomFloat()<getBulletChance(p)) then
-        mod:setData(effect, "HAS_FOAM_BULLET_EFFECT", true)
+        mod:setEntityData(effect, "HAS_FOAM_BULLET_EFFECT", true)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postSpawnBulletAquariusCreep, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL)
@@ -120,7 +120,7 @@ local function postSpawnBulletRocket(_, effect)
 
     if(effect.Parent and effect.Parent.Type==EntityType.ENTITY_EFFECT and effect.Parent.Variant==EffectVariant.TARGET) then
         if(p and p:GetTrinketMultiplier(mod.TRINKET_FOAM_BULLET)>0 and p:GetTrinketRNG(mod.TRINKET_FOAM_BULLET):RandomFloat()<getBulletChance(p)) then
-            mod:setData(effect, "HAS_FOAM_BULLET_EFFECT", true)
+            mod:setEntityData(effect, "HAS_FOAM_BULLET_EFFECT", true)
         end
     end
 end

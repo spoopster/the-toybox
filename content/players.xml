@@ -10,7 +10,7 @@
 
 	<player birthright="Mantle stratification" name="Atlas"
 		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="character_atlas_a.png" costumeSuffix="atlas_a" skinColor="-1"
-		modcostume="999" heartcontainers="2" redhearts="2"
+		modcostume="999"
 	/>
 	<player birthright="-" name="Atlas" bSkinParent="Atlas"
 		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="character_atlas_b.png" costumeSuffix="atlas_b" skinColor="-1"
