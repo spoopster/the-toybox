@@ -92,7 +92,7 @@ end
 function mod:addMantleHp(player, hpToAdd)
     local data = mod:getAtlasATable(player)
 
-    print("here")
+    --print("here")
 
     local oldMantles = mod:cloneTable(data.MANTLES)
 

@@ -29,6 +29,8 @@ if(CustomHealthAPI==nil) then
             end
             --]]
 
+            --print(type,num)
+
             local amount = num
             if(HEARTS_TO_MANTLETYPE[type] and amount>0) then
                 local data = mod:getAtlasATable(player)
@@ -45,9 +47,7 @@ if(CustomHealthAPI==nil) then
                     end
                 end
             end
-
-            return 0
         end
     end
-    mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, atlasAddMantles)
+    mod:AddCallback(ModCallbacks.MC_POST_PLAYER_ADD_HEARTS, atlasAddMantles)
 end

@@ -87,6 +87,10 @@ mod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear")
 mod.TEAR_BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear")
 mod.TEAR_SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear")
 
+--*NPCS
+mod.NPC_MAIN = Isaac.GetEntityTypeByName("Shygals")
+mod.BOSS_SHYGALS = Isaac.GetEntityVariantByName("Shygals")
+
 --#endregion
 --#region --!SFX
 

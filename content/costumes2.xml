@@ -1,5 +1,5 @@
 <costumes anm2root="gfx/characters/">
-    <costume id="999" anm2path="costume_atlasa_tar.anm2" type="none" priority="99"/>
+    <costume id="999" anm2path="costume_atlasa_tar.anm2" type="none"/>
 	<costume id="1000" anm2path="costume_atlasa_rock.anm2" type="none" priority="1000"/>
     <costume id="1001" anm2path="costume_atlasa_poop.anm2" type="none" priority="1000"/>
     <costume id="1002" anm2path="costume_atlasa_bone.anm2" type="none" priority="1000"/>

@@ -1,0 +1,29 @@
+<data>
+    <tab Name="Toybox" />
+	<group Name="Toybox">
+		<group Name="Toybox Bosses" Label="Bosses" />
+	</group>
+
+    <entity ID="782" Variant="1" Image="icons/boss_shygals.png" Kind="Toybox" Name="Shy Gal">
+        <bitfield Key="Subtype">
+            <checkbox Length="1" Name="Is clone?">
+                <tooltip>If set, Shy Gal will be a clone</tooltip>
+            </checkbox>
+            <checkbox Length="1" Name="Has mask?">
+                <tooltip>If set, Shy Gal will have a mask</tooltip>
+            </checkbox>
+            <spinner Length="3" Name="Number of clones">
+                <tooltip>How many clones should it spawn? (Only applies when not a clone)</tooltip>
+            </spinner>
+        </bitfield>
+    </entity>
+
+    <group Name="Toybox Bosses">
+        <entity Name="Shy Gal" />
+    </group>
+
+    <group Name="Caves Bosses">
+        <entity Name="Shy Gal" />
+    </group>
+
+</data>

@@ -1,12 +1,6 @@
 - NEW:
-    - Added a spritesheet for Atlas' Dark Mantle costume
-    - Added 4 4 (item)
-    - Added Eyestrain (item)
-    - Added Overflowing (status effects)
+    - Added costume for Atlas Book of Belial
+    - Added Shygals (boss) in Caves
 - CHANGES:
-    - Changed the VFX for Atlas losing a Gold Mantle
-    - Updated the item sprite for Painkillers
-    - Made hearts only roll to be replaced with Mantles when first spawned (as Atlas)
-    - Made technical changes to Atlas' mantle system (hope theres no buges)
-    - Updated the mod's save data system to allow for persistent data throughout runs
-    - Changed Atlas to no longer have unique bodies for his mantles
+    - Made Atlas not spawn tar footsteps while not moving
+    - Made Coconut Oil affected by a vanilla tear multiplier function so it doesn't just add flat tears

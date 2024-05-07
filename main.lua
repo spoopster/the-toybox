@@ -23,6 +23,8 @@ local mod_files = {
     "scripts.statuseffects.electrified",
     "scripts.statuseffects.overflowing",
 
+    "scripts.bosses.toinclude",
+
     "scripts.players.milcom.toinclude",
     "scripts.players.atlas.toinclude",
 

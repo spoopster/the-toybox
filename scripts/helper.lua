@@ -467,7 +467,7 @@ function mod:getRandomFreePos()
     local failsafe = 1000
 
     repeat
-        p = r:GetRandomPosition(30)
+        p = r:GetRandomPosition(80)
         failsafe = failsafe-1
     until(failsafe<=0 or r:GetGridCollisionAtPos(p)==GridCollisionClass.COLLISION_NONE)
 
@@ -493,4 +493,270 @@ end
 
 function mod:trinketIsTrinketType(pickup, trinkettype)
     return (pickup.SubType==trinkettype) or (pickup.SubType==trinkettype+TrinketType.TRINKET_GOLDEN_FLAG)
+end
+
+---@param player EntityPlayer
+function mod:isInHallowedAura(player)
+    local hallowedAuraNums = 0
+    local starAuraNums = 0
+
+    for _, effect in pairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.HALLOWED_GROUND)) do
+        if(effect.Parent and (effect.Parent.Type == EntityType.ENTITY_POOP or (effect.Parent.Type == EntityType.ENTITY_FAMILIAR and effect.Parent.Variant == FamiliarVariant.DIP))) then
+            local scale = ((effect.SpriteScale.X + effect.SpriteScale.Y) * 70 / 2) + player.Size
+            if(player.Position:Distance(effect.Position) < scale) then
+                hallowedAuraNums = hallowedAuraNums+1
+            end
+        elseif(effect.Parent and effect.Parent.Type == EntityType.ENTITY_FAMILIAR and effect.Parent.Variant == FamiliarVariant.STAR_OF_BETHLEHEM) then
+            local scale = 70 + player.Size
+            if(player.Position:Distance(effect.Position) < scale) then
+                starAuraNums = starAuraNums + 1
+            end
+        end
+    end
+
+    return {hallowedAuraNums,starAuraNums}
+end
+---@param player EntityPlayer
+function mod:isInHallowedCreep(player)
+    local auranum = 0
+    for _, effect in pairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_LIQUID_POOP)) do
+        effect = effect:ToEffect()
+        local scale = ((effect.SpriteScale.X + effect.SpriteScale.Y) * 36 / 2)
+        if effect.State == 64 and player.Position:Distance(effect.Position) <= scale then
+            auranum = auranum + 1
+        end
+    end
+    return auranum
+end
+
+function mod:getVanillaDamageMultAtPriority(player, priority)
+    local mult = 1
+    local auraData = mod:isInHallowedAura(player)
+    if(priority<=1) then
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_ODD_MUSHROOM_THIN)) then mult = mult*0.9 end
+    end
+    if(priority<=4) then
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) and not (player:HasCollectible(CollectibleType.COLLECTIBLE_20_20) or player:HasCollectible(CollectibleType.COLLECTIBLE_INNER_EYE) or player:HasCollectible(CollectibleType.COLLECTIBLE_MUTANT_SPIDER))) then mult = mult*2 end
+        if(player:GetPlayerType()==PlayerType.PLAYER_EVE and not player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON)) then mult = mult*0.75 end
+        local playerMults = {
+            [PlayerType.PLAYER_MAGDALENE_B] = 0.75,
+            [PlayerType.PLAYER_BLUEBABY] = 1.05,
+            [PlayerType.PLAYER_KEEPER] = 1.2,
+            [PlayerType.PLAYER_CAIN] = 1.2,
+            [PlayerType.PLAYER_CAIN_B] = 1.2,
+            [PlayerType.PLAYER_EVE_B] = 1.2,
+            [PlayerType.PLAYER_JUDAS] = 1.35,
+            [PlayerType.PLAYER_AZAZEL] = 1.5,
+            [PlayerType.PLAYER_THEFORGOTTEN] = 1.5,
+            [PlayerType.PLAYER_AZAZEL_B] = 1.5,
+            [PlayerType.PLAYER_THEFORGOTTEN_B] = 1.5,
+            [PlayerType.PLAYER_LAZARUS2_B] = 1.5,
+            [PlayerType.PLAYER_LAZARUS2] = 1.4,
+            [PlayerType.PLAYER_THELOST_B] = 1.3,
+            [PlayerType.PLAYER_BLACKJUDAS] = 2,
+        }
+        mult = mult*(playerMults[player:GetPlayerType()] or 1)
+    end
+    if(priority<=6) then
+        if(player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH)) then mult = mult*4 end
+    end
+    if(priority<=8) then
+        if((player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BRIMSTONE)>=2 and not player:HasCollectible(CollectibleType.COLLECTIBLE_HAEMOLACRIA))) then mult=mult*1.2 end
+        if((player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT))) then mult=mult*2 end
+        if((player:HasCollectible(CollectibleType.COLLECTIBLE_SACRED_HEART))) then mult=mult*2.3 end
+    end
+    if(priority<=10) then
+        if((player:GetPlayerType()==PlayerType.PLAYER_JUDAS or player:GetPlayerType()==PlayerType.PLAYER_BLACKJUDAS) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:HasCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)) then mult=mult*1.4 end
+    end
+    if(priority<=12) then
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_IMMACULATE_HEART) or auraData[1]>0 or auraData[2]>0) then mult=mult*1.2 end
+    end
+    if(priority<=14) then
+        if((player:GetPlayerType()==PlayerType.PLAYER_AZAZEL or player:GetPlayerType()==PlayerType.PLAYER_AZAZEL_B) and player:HasCollectible(CollectibleType.COLLECTIBLE_LUDOVICO_TECHNIQUE)) then mult=mult*0.5 end
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_HAEMOLACRIA) or (player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BRIMSTONE)==1 and player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY))) then mult = mult*1.5 end
+    end
+    if(priority<=16) then
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_20_20)) then mult = mult*0.8 end
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_ALMOND_MILK)) then mult=mult*0.3 end
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_CRICKETS_HEAD) or (player:HasCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) or player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM)) or (player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL) and player:HasCollectible(CollectibleType.COLLECTIBLE_BLOOD_OF_THE_MARTYR))) then mult=mult*1.5 end
+        mult = mult*player:GetD8DamageModifier()*(1+0.125*player:GetDeadEyeCharge())
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_EVES_MASCARA)) then mult = mult*2 end
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_SOY_MILK) and not player:HasCollectible(CollectibleType.COLLECTIBLE_ALMOND_MILK)) then mult=mult*0.2 end
+        if(auraData[2]>0) then mult=mult*1.5 end
+        local counter = 0
+        for _, fam in ipairs(Isaac.FindByType(3, FamiliarVariant.SUCCUBUS)) do
+            if(fam.Position:Distance(player.Position)<=97.5) then counter = counter+1 end
+        end
+        mult = mult*(1.5^counter)
+    end
+    if(priority<=17) then
+        if(player.Damage>3.5) then
+            local crownMult = player:GetTrinketMultiplier(TrinketType.TRINKET_CRACKED_CROWN)*0.2
+            if(crownMult>0) then
+                mult = mult*(1+crownMult)*(player.Damage/(player.Damage+crownMult*3.5))
+            end
+        end
+    end
+    return mult
+end
+function mod:addBasicDamageUp(player, dmg)
+    player.Damage = player.Damage+dmg*mod:getVanillaDamageMultAtPriority(player,0)
+end
+
+--thank you rat rat rat rat rat rat rat rat!!!!
+---@param player EntityPlayer
+function mod:getVanillaTearMultiplier(player)
+    local mult = 1.0
+
+    if player:HasWeaponType(2) then
+        if(player:GetPlayerType() == PlayerType.PLAYER_AZAZEL and not player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE)) then mult = mult*0.267
+        else mult = mult*0.33 end
+    end
+    if(player:HasWeaponType(5)) then mult = mult*0.4 end
+    if(player:HasWeaponType(7)) then mult = mult*0.23 end
+    if(player:HasWeaponType(9) and player:HasCollectible(CollectibleType.COLLECTIBLE_MONSTROS_LUNG)) then mult = mult*0.32 end
+    if player:HasWeaponType(10) then mult = mult*0.5 end
+    if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_IPECAC) > 0 then
+        if not player:HasWeaponType(2) and
+        not player:HasWeaponType(4) and
+        not player:HasWeaponType(5) and
+        not player:HasWeaponType(6) and
+        not player:HasWeaponType(8) and
+        not player:HasWeaponType(9) and
+        not player:HasWeaponType(10) and
+        not player:HasWeaponType(13) and
+        not player:HasWeaponType(14) then
+            mult = mult/3
+        end
+    end
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_ALMOND_MILK)) then mult = mult*4
+    elseif(player:HasCollectible(CollectibleType.COLLECTIBLE_SOY_MILK)) then mult = mult*5.5 end
+    if(player:GetPlayerType() == PlayerType.PLAYER_EVE_B) then mult=mult*0.66 end
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_EVES_MASCARA)) then mult = mult*0.66 end
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2)) then mult = mult*0.66 end
+    if(not player:HasCollectible(CollectibleType.COLLECTIBLE_20_20)) then
+        if(player:HasCollectible(CollectibleType.COLLECTIBLE_INNER_EYE) or player:GetEffects():HasNullEffect(NullItemID.ID_REVERSE_HANGED_MAN)) then mult = mult*0.51
+        elseif(player:HasCollectible(CollectibleType.COLLECTIBLE_MUTANT_SPIDER)) then mult = mult*0.42
+        elseif(player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) and not player:HasWeaponType(14)) then mult = mult*0.42 end
+    end
+    if(player:GetEffects():HasNullEffect(NullItemID.ID_REVERSE_CHARIOT)) then mult = mult*4 end
+    if(player:GetPlayerType() == PlayerType.PLAYER_JUDAS and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT) > 0 and player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_DECAP_ATTACK)) then mult = mult*3 end
+    local epiphora = player:GetEpiphoraCharge()
+    if(epiphora>=270) then mult = mult*2
+    elseif(epiphora>=180) then mult = mult*(5/3)
+    elseif(epiphora>=90) then mult = mult*(4/3) end
+    mult = mult*player:GetD8FireDelayModifier()
+
+    local creepdata = mod:isInHallowedCreep(player)
+    local auraData = mod:isInHallowedAura(player)
+    if(auraData[1]>0 or auraData[2]>0 or creepdata>0) then mult = mult*2.5 end
+
+    return mult
+end
+
+local SPEED_MULT = 10
+
+---@param entity Entity
+function mod:isScared(entity)
+    return (entity:HasEntityFlags(EntityFlag.FLAG_FEAR) or entity:HasEntityFlags(EntityFlag.FLAG_SHRINK))
+end
+
+---@param entity Entity
+function mod:isConfused(entity)
+    return (entity:HasEntityFlags(EntityFlag.FLAG_CONFUSION))
+end
+
+function mod:getWalkAnimPlaybackSpeed(entity, speed, isMoving)
+    if(not isMoving) then return 1 end
+
+    return entity.Velocity:Length()/(speed)
+end
+
+---@param entity EntityNPC
+---@param speed number
+function mod:walkAnimLogic(entity, speed, walkAnimTb)
+    local isWalking = mod:isNpcWalking(entity)
+    if(isWalking and entity.Velocity:LengthSquared()>0.01) then
+        local currAnim = entity:GetSprite():GetAnimation()
+
+        local selAnim = ""
+
+        if(math.abs(entity.Velocity.Y)>math.abs(entity.Velocity.X)) then
+            if(entity.Velocity.Y>0) then selAnim=(walkAnimTb[1] or walkAnimTb)
+            else selAnim=(walkAnimTb[3] or walkAnimTb[1] or walkAnimTb) end
+        else
+            if(entity.Velocity.X>0) then selAnim=(walkAnimTb[2] or walkAnimTb[1] or walkAnimTb)
+            else selAnim=(walkAnimTb[4] or walkAnimTb[2] or walkAnimTb[1] or walkAnimTb) end
+        end
+
+        if(selAnim~=currAnim) then
+            entity:GetSprite():Play(selAnim,true)
+        end
+    end
+
+    entity:GetSprite().PlaybackSpeed = mod:getWalkAnimPlaybackSpeed(entity, speed, isWalking)
+end
+
+---@param entity EntityNPC
+function mod:isNpcWalking(entity)
+    local anim = entity:GetSprite():GetAnimation()
+
+    if(string.sub(anim,1,4)~="Walk" or entity.FrameCount==1) then return false end
+    return true
+end
+
+---@param entity EntityNPC
+---@param target Entity|Vector
+---@param speed number
+function mod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldCheckDist, isConstantlyAfraid)
+    if(mod:isNpcWalking(entity)) then
+        local targetPos = ((target.X~=nil) and target) or target.Position
+        local newPos = mod:getEntityData(entity, "targetPos")
+
+        local isScared = mod:isScared(entity)
+        local isConfused = mod:isConfused(entity)
+
+        if(isConstantlyAfraid) then
+            if(shouldCheckDist) then
+                if(targetPos:Distance(entity.Position)<60) then
+                    isScared=true
+                else
+                    isConfused=true
+                    speed=speed*0.5
+                end
+            else
+                isScared=true
+            end
+        end
+
+        local gridCountdown = mod:getEntityData(entity, "gridCountdown") or 0
+
+        if(isScared) then
+            newPos = entity.Position+(entity.Position-targetPos)
+        elseif(isConfused) then
+            if(not newPos or entity:IsFrame(25, 0)) then
+                newPos = Game():GetRoom():GetRandomPosition(0)
+            end
+        else
+            newPos = target.Position
+        end
+
+        mod:setEntityData(entity, "targetPos", newPos)
+
+        if(entity.Pathfinder:HasPathToPos(newPos, false) or (isScared or isConfused)) then
+            local distCheck = true
+            if(shouldCheckDist) then
+                local dist = newPos:Distance(entity.Position)
+                distCheck=((dist>=100) or (dist<100 and not Game():GetRoom():CheckLine(entity.Position, newPos, 0, 0, false, false)))
+            end
+
+            if((entity:CollidesWithGrid() or gridCountdown>0) and distCheck) then
+
+                entity.Pathfinder:FindGridPath(newPos, speed, 1, false)
+                mod:setEntityData(entity, "gridCountdown", gridCountdown)
+            else return mod:lerp(entity.Velocity, (newPos - entity.Position):Resized(speed*SPEED_MULT), lerpVal) end
+        else return entity.Velocity*0.5 end
+    end
+
+    mod:walkAnimLogic(entity, speed)
 end

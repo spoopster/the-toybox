@@ -1,0 +1,8 @@
+<data>
+    <version Name="Toybox">
+        <entities File="EntitiesMod.xml"/>
+    </version>
+    <version Name="Repentance">
+        <version Name="Toybox"/>
+    </version>
+</data>

@@ -2,7 +2,7 @@
 	<Info CreatedBy="Unknown" CreatedOn="4/8/2024 11:12:26 PM" Version="22" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="costumes\costumes_atlas_a_holybody.png" Id="0"/>
+			<Spritesheet Path="costumes\costumes_atlasa_holybody.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="body" Id="0" SpritesheetId="0"/>
