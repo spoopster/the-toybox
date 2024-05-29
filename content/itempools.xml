@@ -9,6 +9,7 @@
         <Item Name="Pepper X"/>
         <Item Name="Meteor Shower"/>
         <Item Name="Sunk Costs"/>
+        <Item Name="Scattered Tome"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Bloody Needle"/>
@@ -20,15 +21,18 @@
         <Item Name="Pepper X"/>
         <Item Name="Meteor Shower"/>
         <Item Name="Sunk Costs"/>
+        <Item Name="Scattered Tome"/>
     </Pool>
 
     <Pool Name="boss">
         <Item Name="Caramel Apple"/>
         <Item Name="Fatal Signal"/>
+        <Item Name="Eyestrain"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
         <Item Name="Fatal Signal"/>
+        <Item Name="Eyestrain"/>
     </Pool>
 
     <Pool Name="shop">
@@ -70,10 +74,10 @@
     </Pool>
 
     <Pool Name="secret">
-
+        <Item Name="4 4"/>
     </Pool>
     <Pool Name="greedSecret">
-
+        <Item Name="4 4"/>
     </Pool>
 
     <Pool Name="demonBeggar">

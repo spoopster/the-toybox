@@ -6,6 +6,10 @@ local transformationSprites = Sprite()
 transformationSprites:Load("gfx/eid/eid_atlasa_transformations.anm2", true)
 local statuseffectSprites = Sprite()
 statuseffectSprites:Load("gfx/eid/eid_toybox_statuseffects.anm2", true)
+local goldenPillSprite = Sprite()
+goldenPillSprite:Load("gfx/eid/eid_toybox_goldenpill.anm2", true)
+local playerIconSprites = Sprite()
+playerIconSprites:Load("gfx/eid/eid_toybox_playericons.anm2", true)
 
 EID:addIcon("AtlasATransformationRock", "RockMantle", 0, 16, 16, 5, 6, transformationSprites)
 EID:addIcon("AtlasATransformationPoop", "PoopMantle", 0, 16, 16, 5, 6, transformationSprites)
@@ -22,6 +26,11 @@ EID:addColor("AtlasBlankColor", KColor(0,0,0,0))
 
 EID:addIcon("ToyboxElectrifiedStatus", "Electrified", 0, 12, 11, -1, 0, statuseffectSprites)
 EID:addIcon("ToyboxOverflowingStatus", "Overflowing", 0, 16, 13, -3, 0, statuseffectSprites)
+
+EID:addIcon("ToyboxGoldenPill", "Golden Pill", 0, 12, 11, -1, 0, goldenPillSprite)
+
+EID:addIcon("Player"..mod.PLAYER_ATLAS_A, "AtlasA", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..mod.PLAYER_JONAS_A, "JonasA", 0, 16, 16, 5, 6, playerIconSprites)
 
 local descs = include("scripts.modcompat.eid.enums")
 
@@ -167,4 +176,8 @@ for key, data in pairs(descs.CARDS) do
     if(data.NonAtlasDescription) then
         atlasMantleDescription(data, key)
     end
+end
+
+for key, data in pairs(descs.BIRTHRIGHTS) do
+    EID:addBirthright(key, turnStringTableToEIDDesc(data))
 end

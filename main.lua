@@ -27,6 +27,7 @@ local mod_files = {
 
     "scripts.players.milcom.toinclude",
     "scripts.players.atlas.toinclude",
+    "scripts.players.jonas.toinclude",
 
     "scripts.items.toinclude",
 

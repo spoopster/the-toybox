@@ -58,6 +58,7 @@ end
 local function convertDataToSaveData(data, basedata)
     local saveDat = {}
     for key, val in pairs(basedata) do
+        print(key, val, data[key])
         saveDat[key] = data[key] or val
     end
     saveDat = convertTableToSaveData(saveDat)
@@ -74,6 +75,7 @@ function mod:saveProgress()
 
     save.milcomData = {}
     save.atlasData = {}
+    save.jonasData = {}
     save.playerData = {}
     for _, player in ipairs(Isaac.FindByType(1,0)) do
         player=player:ToPlayer()
@@ -82,10 +84,15 @@ function mod:saveProgress()
 
         if(pt==mod.PLAYER_MILCOM_A) then save.milcomData[seed] = convertTableToSaveData(mod:getMilcomATable(player)) end
         if(pt==mod.PLAYER_ATLAS_A) then save.atlasData[seed] = convertTableToSaveData(mod:getAtlasATable(player)) end
+        if(pt==mod.PLAYER_JONAS_A) then save.jonasData[seed] = convertTableToSaveData(mod:getJonasATable(player)) end
 
         save.playerData[seed] = convertDataToSaveData(mod:getEntityDataTable(player), playerBaseData)
     end
+    print("-")
+    print(mod:getExtraDataTable().CUSTOM_PILL_POOL)
     save.extraData = convertDataToSaveData(mod:getExtraDataTable(), extraBaseData)
+    print(save.extraData.CUSTOM_PILL_POOL)
+
     save.persistentData = convertDataToSaveData(mod:getPersistentDataTable(), persistentBaseData)
 
     save.configData = mod:cloneTable(mod.CONFIG)
@@ -129,6 +136,10 @@ function mod:dataSaveInit(player)
         mod.MILCOM_A_DATA[player.InitSeed] = {}
         mod:cloneTableWithoutDeleteing(mod:getMilcomATable(player), mod.MILCOM_A_BASEDATA)
     end
+    if(pt==mod.PLAYER_JONAS_A) then
+        mod.JONAS_A_DATA[player.InitSeed] = {}
+        mod:cloneTableWithoutDeleteing(mod:getJonasATable(player), mod.JONAS_A_BASEDATA)
+    end
 
     if(Game():GetFrameCount()~=0 and mod:HasData()) then
         local save = json.decode(mod:LoadData())
@@ -136,11 +147,14 @@ function mod:dataSaveInit(player)
 
         if(pt==mod.PLAYER_ATLAS_A and save.atlasData and save.atlasData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getAtlasATable(player), convertSaveDataToTable(save.atlasData[pSeed])) end
         if(pt==mod.PLAYER_MILCOM_A and save.milcomData and save.milcomData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getMilcomATable(player), convertSaveDataToTable(save.milcomData[pSeed])) end
+        if(pt==mod.PLAYER_JONAS_A and save.jonasData and save.jonasData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getJonasATable(player), convertSaveDataToTable(save.jonasData[pSeed])) end
 
         if(save.playerData[seed]) then mod:cloneTableWithoutDeleteing(mod:getEntityDataTable(player), convertSaveDataToTable(save.playerData[pSeed])) end
         
         if(#Isaac.FindByType(1)==0) then
-            if(save.extraData) then mod:cloneTableWithoutDeleteing(mod:getExtraDataTable(), convertSaveDataToTable(save.extraData)) end
+            if(save.extraData) then
+                mod:cloneTableWithoutDeleteing(mod:getExtraDataTable(), convertSaveDataToTable(save.extraData))
+            end
             if(save.persistentData) then mod:cloneTableWithoutDeleteing(mod:getPersistentDataTable(), convertSaveDataToTable(save.persistentData)) end
         end
     else

@@ -33,6 +33,7 @@ local ATLAS_A_BASEDATA = {
 
 mod.ATLAS_A_BASEDATA = ATLAS_A_BASEDATA
 mod.ATLAS_A_DATA = {}
+--#endregion
 
 ---@param player EntityPlayer
 local function postAtlasInit(_, player)

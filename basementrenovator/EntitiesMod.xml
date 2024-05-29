@@ -1,14 +1,12 @@
 <data>
     <tab Name="Toybox" />
 	<group Name="Toybox">
+        <group Name="Toybox Enemies" Label="Enemies" />
 		<group Name="Toybox Bosses" Label="Bosses" />
 	</group>
 
-    <entity ID="782" Variant="1" Image="icons/boss_shygals.png" Kind="Toybox" Name="Shy Gal">
+    <entity ID="782" Variant="1" Image="icons/boss_shygal.png" Kind="Toybox" Name="Shy Gal">
         <bitfield Key="Subtype">
-            <checkbox Length="1" Name="Is clone?">
-                <tooltip>If set, Shy Gal will be a clone</tooltip>
-            </checkbox>
             <checkbox Length="1" Name="Has mask?">
                 <tooltip>If set, Shy Gal will have a mask</tooltip>
             </checkbox>
@@ -17,6 +15,19 @@
             </spinner>
         </bitfield>
     </entity>
+    <entity ID="782" Variant="2" Image="icons/npc_shygal_clone.png" Kind="Toybox" Name="Shy Gal Clone">
+        <bitfield Key="Subtype">
+            <checkbox Length="1" Name="Has mask?">
+                <tooltip>If set, Shy Gal will have a mask</tooltip>
+            </checkbox>
+        </bitfield>
+    </entity>
+    <entity ID="782" Variant="3" Image="icons/npc_shygal_mask.png" Kind="Toybox" Name="Shy Gal Mask" />
+
+    <group Name="Toybox Enemies">
+        <entity Name="Shy Gal Clone"/>
+        <entity Name="Shy Gal Mask"/>
+    </group>
 
     <group Name="Toybox Bosses">
         <entity Name="Shy Gal" />

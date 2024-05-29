@@ -27,7 +27,7 @@ local function fireSonicWaves(_, player)
             DIRECTION = player:GetShootingJoystick():GetAngleDegrees(),
         }
 
-        sfx:Play(mod.SFX_4_4_SCREAM, 0.44)
+        sfx:Play(mod.SFX_4_4_SCREAM, 0.22)
     end
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_DOUBLE_TAP, fireSonicWaves)

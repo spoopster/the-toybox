@@ -760,3 +760,11 @@ function mod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldCheckDi
 
     mod:walkAnimLogic(entity, speed)
 end
+
+function mod:lerpAngle(a1, a2, f)
+    local newA1, newA2 = a1,a2
+    newA1 = math.rad(newA1)
+    newA2 = math.rad(newA2)
+
+    return (mod:lerp( Vector(math.cos(newA1), math.sin(newA1)), Vector(math.cos(newA2), math.sin(newA2)), f)):GetAngleDegrees()
+end

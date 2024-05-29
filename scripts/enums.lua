@@ -11,6 +11,9 @@ mod.PLAYER_MILCOM_B = Isaac.GetPlayerTypeByName("Milcom", true)
 mod.PLAYER_ATLAS_A = Isaac.GetPlayerTypeByName("Atlas", false)
 mod.PLAYER_ATLAS_B = Isaac.GetPlayerTypeByName("Atlas", true)
 
+mod.PLAYER_JONAS_A = Isaac.GetPlayerTypeByName("Jonas", false)
+mod.PLAYER_JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true)
+
 --#endregion
 --#region --!ACHIEVEMENTS
 
@@ -24,7 +27,7 @@ mod.ACH_ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas")
 -- mod.COLLECTIBLE_ = Isaac.GetItemIdByName("")
 mod.COLLECTIBLE_COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil")                  --!DONE
 mod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")            --!DONE
-mod.COLLECTIBLE_EYESTRAIN = Isaac.GetItemIdByName("Eyestrain")
+mod.COLLECTIBLE_EYESTRAIN = Isaac.GetItemIdByName("Eyestrain")                      --!DONE
 mod.COLLECTIBLE_PILE_OF_SAND = Isaac.GetItemIdByName("Pile of Sand")
 mod.COLLECTIBLE_OBSIDIAN_SHARD = Isaac.GetItemIdByName("Obsidian Shard")
 mod.COLLECTIBLE_GOAT_MILK = Isaac.GetItemIdByName("Goat Milk")                      --!DONE
@@ -47,9 +50,10 @@ mod.COLLECTIBLE_METEOR_SHOWER = Isaac.GetItemIdByName("Meteor Shower")          
 mod.COLLECTIBLE_BLESSED_RING = Isaac.GetItemIdByName("Blessed Ring")                --!DONE
 mod.COLLECTIBLE_SIGIL_OF_GREED = Isaac.GetItemIdByName("Sigil of Greed")
 mod.COLLECTIBLE_PEPPER_X = Isaac.GetItemIdByName("Pepper X")                        --!DONE
-mod.COLLECTIBLE_SCATTERED_TOME = Isaac.GetItemIdByName("Scattered Tome")
+mod.COLLECTIBLE_SCATTERED_TOME = Isaac.GetItemIdByName("Scattered Tome")            --!DONE
 mod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")                          --!DONE
 mod.COLLECTIBLE_SUNK_COSTS = Isaac.GetItemIdByName("Sunk Costs")                    --!DONE
+mod.COLLECTIBLE_MALICIOUS_BRAIN = Isaac.GetItemIdByName("Malicious Brain")
 
 mod.COLLECTIBLE_4_4 = Isaac.GetItemIdByName("4 4")                                  --!DONE
 --mod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")            --*UNUSED (i dont like the item)
@@ -72,11 +76,13 @@ mod.CONSUMABLE_MANTLE_GOLD = Isaac.GetCardIdByName("Gold Mantle")
 --#endregion
 --#region --!ENTITIES
 
+--*FAMILIARS
+mod.FAMILIAR_TOME = Isaac.GetEntityVariantByName("Scattered Tome")
+mod.FAMILIAR_HYPNOS = Isaac.GetEntityVariantByName("Malicious Brain")
+
 --*EFFECTS
 mod.EFFECT_BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram")
 mod.EFFECT_METEOR_TEAR_EXPLOSION = Isaac.GetEntityVariantByName("Meteor Tear Explosion")
-
-mod.EFFECT_ATLAS_BOOKOFSHADOWS_BUBBLE = Isaac.GetEntityVariantByName("ATLAS BOOK OF SHADOWS BUBBLE")
 mod.EFFECT_GOLDMANTLE_BREAK = Isaac.GetEntityVariantByName("Gold Mantle Shatter")
 
 --*PICKUPS
@@ -86,10 +92,13 @@ mod.PICKUP_MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offer
 mod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear")
 mod.TEAR_BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear")
 mod.TEAR_SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear")
+mod.TEAR_PAPER = Isaac.GetEntityVariantByName("Tome Paper Tear")
 
 --*NPCS
-mod.NPC_MAIN = Isaac.GetEntityTypeByName("Shygals")
-mod.BOSS_SHYGALS = Isaac.GetEntityVariantByName("Shygals")
+mod.NPC_MAIN = Isaac.GetEntityTypeByName("Shy Gal")
+mod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")
+mod.NPC_SHYGAL_CLONE = Isaac.GetEntityVariantByName("Shy Gal Clone")
+mod.NPC_SHYGAL_MASK = Isaac.GetEntityVariantByName("Shy Gal Mask")
 
 --#endregion
 --#region --!SFX
@@ -112,8 +121,6 @@ mod.SFX_ATLASA_GLASSBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_GlassBreak"); 
 mod.SHADERS = {
     EMPTY = "ToyboxEmptyShader",
     BLOOM = "ToyboxBloomShader",
-    EYESTRAIN = "ToyboxEyestrainShader",
-    FIND_MY_PAGES = "ToyboxStaticShader",
 }
 
 mod.CUSTOM_CALLBACKS = {
@@ -130,6 +137,12 @@ mod.CUSTOM_CALLBACKS = {
 mod.CUSTOM_BOMBFLAGS = {
     FLAG_MAKESHIFT_BOMB1 = 1<<0,
     FLAG_MAKESHIFT_BOMB2 = 1<<1,
+}
+
+mod.PILL_SUBCLASS = {
+    NEUTRAL = 0,
+    GOOD = 1,
+    BAD = 2,
 }
 
 --#endregion

@@ -1,13 +1,33 @@
 <entities anm2root="gfx/" version="5">
+    <!-- FAMILIARS -->
+    <entity name="Scattered Tome"
+        id="3" variant="5328" anm2path="familiars/tb_familiar_tome.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" collisionInterval="4"
+        numGridCollisionPoints="6" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Malicious Brain"
+        id="3" variant="8479" anm2path="familiars/tb_familiar_hypnos.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" collisionInterval="0"
+        numGridCollisionPoints="6" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
     <!-- EFFECTS -->
     <entity name="Blood Ritual Pentagram"
-        id="1000" variant="2948" anm2path="effects/blood_ritual_effect.anm2" friction="1"
+        id="1000" variant="2948" anm2path="effects/tb_effect_ritual_pentagram.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
         numGridCollisionPoints="0" shadowSize="0" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Meteor Tear Explosion"
-        id="1000" variant="12424" anm2path="effects/meteor_tear_explosion.anm2" friction="1"
+        id="1000" variant="12424" anm2path="effects/tb_effect_meteor_explosion.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Gold Mantle Shatter"
+        id="1000" variant="2841" anm2path="effects/tb_effect_goldmantle_shatter.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
         numGridCollisionPoints="0" shadowSize="0" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -15,7 +35,7 @@
 
     <!-- PICKUPS -->
     <entity name="Mammon's Offering Penny"
-        id="5" variant="5748" subtype="0" anm2path="pickups/pickup_mammons_offering_penny.anm2" friction="1"
+        id="5" variant="5748" subtype="0" anm2path="pickups/tb_pickup_mammons_offering.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -23,55 +43,61 @@
 
     <!-- TEAR VARIANTS -->
     <entity name="Meteor Tear"
-        id="2" variant="12894" subtype="0" anm2path="tears/meteor_tear.anm2" friction="1"
+        id="2" variant="12894" subtype="0" anm2path="tears/tb_tear_meteor.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="7"
         numGridCollisionPoints="8" shadowSize="8" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
         <entity name="Pepper X Tear"
-            id="2" variant="12894" subtype="1" anm2path="tears/meteor_tear.anm2" friction="1"
+            id="2" variant="12894" subtype="1" anm2path="tears/tb_tear_meteor.anm2" friction="1"
             baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="7"
             numGridCollisionPoints="8" shadowSize="8" stageHP="0">
             <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         </entity>
         <entity name="Falling Meteor Tear"
-            id="2" variant="12894" subtype="2" anm2path="tears/meteor_tear.anm2" friction="1"
+            id="2" variant="12894" subtype="2" anm2path="tears/tb_tear_meteor.anm2" friction="1"
             baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="7"
             numGridCollisionPoints="8" shadowSize="8" stageHP="0">
             <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         </entity>
     <entity name="Foam Bullet Tear"
-        id="2" variant="12487" subtype="0" anm2path="tears/foam_bullet_tear.anm2" friction="1"
+        id="2" variant="12487" subtype="0" anm2path="tears/tb_tear_foambullet.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="7"
         numGridCollisionPoints="8" shadowSize="8" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Soundwave Tear"
-        id="2" variant="12948" subtype="0" anm2path="tears/soundwave_tear.anm2" friction="1"
+        id="2" variant="12948" subtype="0" anm2path="tears/tb_tear_soundwave.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="7"
         numGridCollisionPoints="8" shadowSize="8" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
+    <entity name="Tome Paper Tear"
+        id="2" variant="12839" subtype="0" anm2path="tears/tb_tear_paper.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="10"
+        numGridCollisionPoints="8" shadowSize="12" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
 
     <!-- NPCS -->
-    <entity name="Shygals"
+    <entity name="Shy Gal"
         id="782" variant="1" subtype="0" anm2path="bosses/shygals/boss_shygal.anm2" friction="1"
-        baseHP="200" boss="1" champion="0" collisionDamage="1" collisionMass="25" collisionRadius="15"
+        baseHP="200" boss="1" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="15"
         numGridCollisionPoints="8" shadowSize="20" stageHP="0">
 		<gibs amount="10" blood="1" bone="1" eye="0" gut="0" large="0" />
     </entity>
-        <entity name="Shygals Clone"
-            id="782" variant="1" subtype="1" anm2path="bosses/shygals/boss_shygal.anm2" friction="1"
-            baseHP="30" boss="0" champion="0" collisionDamage="1" collisionMass="25" collisionRadius="15"
-            numGridCollisionPoints="8" shadowSize="20" stageHP="0">
-            <gibs amount="5" blood="1" bone="1" eye="0" gut="0" large="0" />
-        </entity>
-        <entity name="Shygals Mask"
-            id="782" variant="1" subtype="10000" anm2path="bosses/shygals/shygal_mask.anm2" friction="1"
-            baseHP="1" boss="0" champion="0" collisionDamage="1" collisionMass="35" collisionRadius="12"
-            numGridCollisionPoints="8" shadowSize="12" stageHP="0">
-            <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-        </entity>
+    <entity name="Shy Gal Clone"
+        id="782" variant="2" subtype="0" anm2path="bosses/shygals/boss_shygal.anm2" friction="1"
+        baseHP="9" boss="0" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="15"
+        numGridCollisionPoints="8" shadowSize="20" stageHP="3">
+        <gibs amount="25" blood="1" bone="1" eye="1" gut="1" large="0" />
+    </entity>
+    <entity name="Shy Gal Mask"
+        id="782" variant="3" subtype="0" anm2path="bosses/shygals/shygal_mask.anm2" friction="1"
+        baseHP="1" boss="0" champion="0" collisionDamage="1" collisionMass="80" collisionRadius="12"
+        numGridCollisionPoints="8" shadowSize="12" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
 
     <!-- MILCOM A -->
     <entity name="MATERIAL - Cardboard"
@@ -95,70 +121,57 @@
 
     <!-- ATLAS A -->
     <entity name="Mantle (ROCK)"
-        id="5" variant="300" subtype="2837" anm2path="pickups/consumable_mantle_rock.anm2" friction="1"
+        id="5" variant="300" subtype="2837" anm2path="pickups/tb_pickup_mantle_rock.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Mantle (POOP)"
-        id="5" variant="300" subtype="2838" anm2path="pickups/consumable_mantle_poop.anm2" friction="1"
+        id="5" variant="300" subtype="2838" anm2path="pickups/tb_pickup_mantle_poop.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Mantle (BONE)"
-        id="5" variant="300" subtype="2839" anm2path="pickups/consumable_mantle_bone.anm2" friction="1"
+        id="5" variant="300" subtype="2839" anm2path="pickups/tb_pickup_mantle_bone.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Mantle (DARK)"
-        id="5" variant="300" subtype="2840" anm2path="pickups/consumable_mantle_dark.anm2" friction="1"
+        id="5" variant="300" subtype="2840" anm2path="pickups/tb_pickup_mantle_dark.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Mantle (HOLY)"
-        id="5" variant="300" subtype="2841" anm2path="pickups/consumable_mantle_holy.anm2" friction="1"
+        id="5" variant="300" subtype="2841" anm2path="pickups/tb_pickup_mantle_holy.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Mantle (SALT)"
-        id="5" variant="300" subtype="2842" anm2path="pickups/consumable_mantle_salt.anm2" friction="1"
+        id="5" variant="300" subtype="2842" anm2path="pickups/tb_pickup_mantle_salt.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Mantle (GLASS)"
-        id="5" variant="300" subtype="2843" anm2path="pickups/consumable_mantle_glass.anm2" friction="1"
+        id="5" variant="300" subtype="2843" anm2path="pickups/tb_pickup_mantle_glass.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Mantle (METAL)"
-        id="5" variant="300" subtype="2844" anm2path="pickups/consumable_mantle_metal.anm2" friction="1"
+        id="5" variant="300" subtype="2844" anm2path="pickups/tb_pickup_mantle_metal.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Mantle (GOLD)"
-        id="5" variant="300" subtype="2845" anm2path="pickups/consumable_mantle_gold.anm2" friction="1"
+        id="5" variant="300" subtype="2845" anm2path="pickups/tb_pickup_mantle_gold.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-
-    <entity name="ATLAS BOOK OF SHADOWS BUBBLE"
-        id="1000" variant="28471" anm2path="effects/atlas_a_goldbreak.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
-        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Gold Mantle Shatter"
-        id="1000" variant="2841" anm2path="effects/atlas_a_goldbreak.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
-        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 </entities>

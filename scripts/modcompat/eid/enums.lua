@@ -206,9 +206,15 @@ local ITEMS = {
     [mod.COLLECTIBLE_EYESTRAIN] = {
         Name = "Eyestrain",
         Description = {
-            "\1 x0.7 Firedelay",
-            "\1 x1.075 Damage",
-            "\2 The colors on the screen constantly shift between hues and get more saturated in active rooms",
+            "\1 +0.75 Luck",
+            "\1 +1 Damage",
+        },
+    },
+    [mod.COLLECTIBLE_SCATTERED_TOME] = {
+        Name = "Scattered Tome",
+        Description = {
+            "Slow orbital that occasionally fires out a paper tear that targets the nearest enemy",
+            "The paper tear deals 5 damage",
         },
     },
 
@@ -657,9 +663,22 @@ local CARDS = {
         },
     },
 }
+local BIRTHRIGHTS = {
+    [mod.PLAYER_ATLAS_A] = {
+        "You can now have 2 mantle transformations at once",
+        "When you lose a transformation, it gets transferred into the second transformation slot where it functions alongside the current transformation",
+        "Turning into {{AtlasATransformationTar}}Tar form removes both transformations",
+    },
+    [mod.PLAYER_JONAS_A] = {
+        "Rerolls the pill pool",
+        "Pill pool will only contain positive effects",
+        "Spawns a {{ToyboxGoldenPill}}Golden Pill",
+    },
+}
 
 return {
     ["ITEMS"] = ITEMS,
     ["TRINKETS"] = TRINKETS,
     ["CARDS"] = CARDS,
+    ["BIRTHRIGHTS"] = BIRTHRIGHTS,
 }

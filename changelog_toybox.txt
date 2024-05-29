@@ -1,6 +1,11 @@
 - NEW:
-    - Added costume for Atlas Book of Belial
-    - Added Shygals (boss) in Caves
+    - Added Scattered Tome (familiar) - very wip graphics
+    - Added Jonas! (character)
+    - Added Freakygals
+    - WIP! Added Malicious Brain (not in any pools)
+    - 4 4 added to secret pool
+    - Eyestrain added to boss pool
 - CHANGES:
-    - Made Atlas not spawn tar footsteps while not moving
-    - Made Coconut Oil affected by a vanilla tear multiplier function so it doesn't just add flat tears
+    - Changed Shygals functionality a bit
+    - Changed Eyestrain item effect
+    - Renamed some files

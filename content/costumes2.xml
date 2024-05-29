@@ -10,4 +10,6 @@
     <costume id="1007" anm2path="costume_atlasa_glass.anm2" type="none" priority="1000"/>
     <costume id="1008" anm2path="costume_atlasa_metal.anm2" type="none" priority="1000"/>
     <costume id="1009" anm2path="costume_atlasa_gold.anm2" type="none" priority="1000"/>
+
+    <costume id="1100" anm2path="costume_jonasa_head.anm2" type="none" priority="99"/>
 </costumes>
