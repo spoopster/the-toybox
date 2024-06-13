@@ -1,11 +1,18 @@
 - NEW:
-    - Added Scattered Tome (familiar) - very wip graphics
-    - Added Jonas! (character)
-    - Added Freakygals
-    - WIP! Added Malicious Brain (not in any pools)
-    - 4 4 added to secret pool
-    - Eyestrain added to boss pool
+    - Added Jonas control sprite
+    - Jonas visibly shakes when close to losing the pill boosts
+    - Exposed a function to add Caramel Apple custom hearts
+    - Added LIMIT BREAK (trinket), WIP trinket
 - CHANGES:
-    - Changed Shygals functionality a bit
-    - Changed Eyestrain item effect
-    - Renamed some files
+    - Changed Jonas' pill boost requirement to increase by 1 every 2 boosts received
+    - Made Golden Pill uses add 0.2 to Jonas' pill counter
+    - Made Horsepill uses add 2 to Jonas' pill counter
+    - Fixed Blood Ritual not properly spawning Twisted Pair babies
+    - Changed Fatal Signal to only appear in Secret Pool
+    - Renamed+reskinned Bloody Needle into Pliers
+    - Renamed+reskinned Sunk Costs into Golden Tweezers
+
+    - MAJOR CHANGE:
+        - Atlas A no longer has costumes for his different mantles, only Rock and Tar forms
+        - Atlas A's Tar form is separated into a different PlayerType, allowing for 2 separate sets of costumes for both forms
+        - Expect some bugs relating to this change!

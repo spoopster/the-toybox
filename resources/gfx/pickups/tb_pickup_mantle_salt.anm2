@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="1/20/2024 10:53:28 PM" Version="114" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="6/13/2024 8:15:53 PM" Version="116" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="tb_pickup_mantles.png" Id="0"/>

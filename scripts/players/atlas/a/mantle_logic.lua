@@ -2,7 +2,7 @@ local mod = MilcomMOD
 local sfx = SFXManager()
 
 function mod:updateMantles(player)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
     local mantles = data.MANTLES
 
@@ -41,46 +41,11 @@ function mod:updateMantles(player)
     end
     --]]
 
-    if(mod.CONFIG.ATLAS_PERSISTENT_TRANSFORMATIONS) then
-        local trf = mod:getCurrentTransformationType(player)
-        local trf1Costume = mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION)].COSTUME
-        local trf2Costume = mod.MANTLE_DATA[mod:getMantleKeyFromId(trf)].COSTUME
-
-        if(data.TRANSFORMATION~=trf) then
-            if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID or not mod:isBadMantle(trf)) then
-                if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
-                    if(not mod:isBadMantle(data.TRANSFORMATION)) then
-                        data.BIRTHRIGHT_TRANSFORMATION = data.TRANSFORMATION
-                    end
-                else
-                    data.BIRTHRIGHT_TRANSFORMATION = mod.MANTLE_DATA.NONE.ID
-                end
-
-                if(trf1Costume) then
-                    player:TryRemoveNullCostume(trf1Costume)
-                end
-                if(trf2Costume) then
-                    player:AddNullCostume(trf2Costume)
-                end
-
-                data.TRANSFORMATION = trf
-                data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
-            elseif(trf==mod.MANTLE_DATA.TAR.ID) then
-                if(trf1Costume) then
-                    player:TryRemoveNullCostume(trf1Costume)
-                end
-
-                data.TRANSFORMATION = mod.MANTLE_DATA.TAR.ID
-                data.BIRTHRIGHT_TRANSFORMATION=mod.MANTLE_DATA.NONE.ID
-                data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
-            end
-        end
-    else
-        local trf = mod:getCurrentTransformationType(player)
-        local trf1Costume = mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION)].COSTUME
-        local trf2Costume = mod.MANTLE_DATA[mod:getMantleKeyFromId(trf)].COSTUME
-
-        if(data.TRANSFORMATION~=trf) then
+    local trf = mod:getCurrentTransformationType(player)
+    if(data.TRANSFORMATION~=trf) then
+        print(mod.MANTLE_DATA[mod:getMantleKeyFromId(mod.MANTLE_DATA.DEFAULT.ID)].COSTUME)
+        print(mod.MANTLE_DATA[mod:getMantleKeyFromId(mod.MANTLE_DATA.TAR.ID)].COSTUME)
+        if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID or not mod:isBadMantle(trf)) then
             if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
                 if(not mod:isBadMantle(data.TRANSFORMATION)) then
                     data.BIRTHRIGHT_TRANSFORMATION = data.TRANSFORMATION
@@ -89,16 +54,16 @@ function mod:updateMantles(player)
                 data.BIRTHRIGHT_TRANSFORMATION = mod.MANTLE_DATA.NONE.ID
             end
 
-            if(trf1Costume) then
-                player:TryRemoveNullCostume(trf1Costume)
-            end
-            if(trf2Costume) then
-                player:AddNullCostume(trf2Costume)
-            end
+            if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID) then player:ChangePlayerType(mod.PLAYER_ATLAS_A) end
 
             data.TRANSFORMATION = trf
             data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
-            if(trf==mod.MANTLE_DATA.TAR.ID) then data.BIRTHRIGHT_TRANSFORMATION=mod.MANTLE_DATA.NONE.ID end
+        elseif(trf==mod.MANTLE_DATA.TAR.ID) then
+            player:ChangePlayerType(mod.PLAYER_ATLAS_A_TAR)
+
+            data.TRANSFORMATION = mod.MANTLE_DATA.TAR.ID
+            data.BIRTHRIGHT_TRANSFORMATION=mod.MANTLE_DATA.NONE.ID
+            data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
         end
     end
 
@@ -111,14 +76,14 @@ end
 
 ---@param player EntityPlayer
 local function timeInTransfUpdate(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     mod:setAtlasAData(player, "TIME_HAS_BEEN_IN_TRANSFORMATION", (mod:getAtlasAData(player, "TIME_HAS_BEEN_IN_TRANSFORMATION") or 0)+1)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, timeInTransfUpdate)
 
 local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     if(dmg>0) then
         local data = mod:getAtlasATable(player)
@@ -152,7 +117,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12+1, mantleDamage, 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function changeFlightCostume(_, player, flag)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
     if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID) then return end
 

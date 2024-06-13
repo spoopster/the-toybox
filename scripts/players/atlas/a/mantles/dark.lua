@@ -8,7 +8,7 @@ if(mod.ATLAS_A_MANTLESUBTYPES) then
 end
 
 local function useMantle(_, _, player, _)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+    if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.DARK.ID)
     else
 
@@ -22,7 +22,7 @@ local ENUM_LOSEMANTLE_DMG = 60
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.DARK.ID)
 
@@ -34,7 +34,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function mantleDestroyed(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.DARK.ID)) then return end
 
     for _, enemy in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 800, EntityPartition.ENEMY)) do
@@ -50,7 +50,7 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end

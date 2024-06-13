@@ -19,26 +19,23 @@ function mod:setAtlasAData(player, key, val)
 end
 
 --#endregion
-
+function mod:isAtlasA(player)
+    local pt = player:GetPlayerType()
+    return (pt==mod.PLAYER_ATLAS_A or pt==mod.PLAYER_ATLAS_A_TAR)
+end
 function mod:isAnyPlayerAtlasA()
     for _, player in ipairs(Isaac.FindByType(1,0)) do
-        if(player:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A) then return true end
+        print("1", player)
+        if(mod:isAtlasA(player:ToPlayer())) then return true end
     end
     return false
-end
-
-function mod:getFirstAtlasA()
-    for _, player in ipairs(Isaac.FindByType(1,0,mod.PLAYER_ATLAS_A)) do
-        return player
-    end
-    return nil
 end
 
 function mod:getAllAtlasA()
     local t = {}
     for i=0, Game():GetNumPlayers()-1 do
-        local p = Isaac.GetPlayer():ToPlayer()
-        if(p:GetPlayerType()==mod.PLAYER_ATLAS_A) then t[#t+1] = p end
+        local p = Isaac.GetPlayer(i):ToPlayer()
+        if(mod:isAtlasA(p)) then t[#t+1] = p end
     end
 
     return t
@@ -203,7 +200,8 @@ function mod:getRandomMantle(rng, ignoreBias)
         for _, val in pairs(mod.MANTLE_DATA) do
             ownedMantles[val.ID] = 0
         end
-        for _, p in ipairs(Isaac.FindByType(1,0,mod.PLAYER_ATLAS_A)) do
+        local atlases = mod:getAllAtlasA()
+        for _, p in ipairs(atlases) do
             local data = mod:getAtlasATable(p:ToPlayer())
             local transf = data.TRANSFORMATION
             ownedMantles[transf] = (ownedMantles[transf] or 0)+data.HP_CAP
@@ -211,7 +209,7 @@ function mod:getRandomMantle(rng, ignoreBias)
                 if(mantle.TYPE~=transf) then ownedMantles[mantle.TYPE] = (ownedMantles[mantle.TYPE] or 0)+1 end
             end
         end
-        local numAtlasA = #mod:getAllAtlasA()
+        local numAtlasA = #atlases
         for _, val in pairs(mod.MANTLE_DATA) do
             ownedMantles[val.ID] = ownedMantles[val.ID]/numAtlasA
         end

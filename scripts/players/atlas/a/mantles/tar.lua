@@ -14,7 +14,7 @@ local ENUM_TAR_DURATION = 30*5
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.TAR.ID)) then return end
 
     if(mod.CONFIG.ATLAS_BASE_STRONGER_TAR) then
@@ -37,7 +37,7 @@ local function evalCache(_, player, flag)
             player.Damage = player.Damage*(1+intensity*ENUM_TEMP_DMG_BONUS)
         end
         if(flag==CacheFlag.CACHE_FIREDELAY) then
-            player.MaxFireDelay = mod:addTps(player, ENUM_TEMP_TPS_BONUS*intensity)
+            mod:addBasicTearsUp(player, ENUM_TEMP_TPS_BONUS*intensity)
         end
     end
 end
@@ -45,7 +45,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function updateTar(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.TAR.ID)) then return end
 
     local data = mod:getAtlasATable(player)

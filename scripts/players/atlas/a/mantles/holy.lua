@@ -6,7 +6,7 @@ if(mod.ATLAS_A_MANTLESUBTYPES) then
 end
 
 local function useMantle(_, _, player, _)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+    if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.HOLY.ID)
     else
 
@@ -20,7 +20,7 @@ local ENUM_RANGE_BONUS = 0.5
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.HOLY.ID)
 
@@ -41,7 +41,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 --ADDING THE HOMING TEARFLAG + DMG BONUS ON DIFFERENT WEAPONS
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     local chance = ENUM_SACRED_CHANCE*mod:getNumMantlesByType(p, mod.MANTLE_DATA.HOLY.ID)
     if(e:GetDropRNG():RandomFloat()<chance) then
@@ -53,7 +53,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     local chance = ENUM_SACRED_CHANCE*mod:getNumMantlesByType(p, mod.MANTLE_DATA.HOLY.ID)
     if(e:GetDropRNG():RandomFloat()<chance) then
@@ -65,7 +65,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_LASER,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     local chance = ENUM_SACRED_CHANCE*mod:getNumMantlesByType(p, mod.MANTLE_DATA.HOLY.ID)
     if(e:GetDropRNG():RandomFloat()<chance) then
@@ -77,7 +77,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     local chance = ENUM_SACRED_CHANCE*mod:getNumMantlesByType(p, mod.MANTLE_DATA.HOLY.ID)
     if(e:GetDropRNG():RandomFloat()<chance) then
@@ -89,7 +89,7 @@ end
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end

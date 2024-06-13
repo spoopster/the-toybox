@@ -1,5 +1,7 @@
 local mod = MilcomMOD
 
+--! make a fucking graphic for this loser
+
 local DAMAGE_COUNTER_ROOT_POWER = 3.5
 local DAMAGE_TIMER = 60*1
 

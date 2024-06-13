@@ -6,7 +6,7 @@ if(mod.ATLAS_A_MANTLESUBTYPES) then
 end
 
 local function useMantle(_, _, player, _)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+    if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.SALT.ID)
     else
 
@@ -19,19 +19,19 @@ local ENUM_TPS_BONUS = 1/3
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.SALT.ID)
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
-        player.MaxFireDelay = mod:addTps(player, ENUM_TPS_BONUS*numMantles)
+        mod:addBasicTearsUp(player, ENUM_TPS_BONUS*numMantles)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function toggleAutofire(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.SALT.ID)) then return end
     local data = mod:getAtlasATable(player)
 
@@ -44,7 +44,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, toggleAutofire)
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     if(mod:getAtlasAData(p, "SALT_AUTOTARGET_ENABLED")~=true) then return end
     local n = mod:closestEnemy(p.Position)
@@ -57,7 +57,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     if(mod:getAtlasAData(p, "SALT_AUTOTARGET_ENABLED")~=true) then return end
     local n = mod:closestEnemy(p.Position)
@@ -70,7 +70,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_LASER,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     if(mod:getAtlasAData(p, "SALT_AUTOTARGET_ENABLED")~=true) then return end
     local n = mod:closestEnemy(p.Position)
@@ -83,7 +83,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_X_LASER,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     if(mod:getAtlasAData(p, "SALT_AUTOTARGET_ENABLED")~=true) then return end
     local n = mod:closestEnemy(p.Position)
@@ -96,7 +96,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_BRIMSTONE,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and e.SpawnerEntity:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
     if(mod:getAtlasAData(p, "SALT_AUTOTARGET_ENABLED")~=true) then return end
     local n = mod:closestEnemy(p.Position)
@@ -109,7 +109,7 @@ end
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end

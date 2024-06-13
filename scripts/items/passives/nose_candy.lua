@@ -22,7 +22,7 @@ local function evalCache(_, player, flag)
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+statTable.SPEED
     elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        player.MaxFireDelay = mod:addTps(player, statTable.FIREDELAY)
+        mod:addBasicTearsUp(player, statTable.FIREDELAY)
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
         player.Damage = player.Damage*(1+statTable.DAMAGE/2)
     elseif(flag==CacheFlag.CACHE_RANGE) then

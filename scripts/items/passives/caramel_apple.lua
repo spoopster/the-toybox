@@ -127,86 +127,102 @@ local ENUM_HEARTS = {
     },
 }
 
+function mod:addCaramelAppleHeart(heartSubType, color, testFunc, addFunc)
+    ENUM_HEARTS[heartSubType] = {
+        Color = color,
+        TestFunc = testFunc,
+        AddFunc = addFunc,
+    }
+end
+
 if(FiendFolio) then
     local ENUM_IMMORALHEART_COL = Color(1,1,1,1)
     ENUM_IMMORALHEART_COL:SetColorize(5,0.7,5,1)
     local ENUM_MORBIDHEART_COL = Color(1,1,1,1)
     ENUM_MORBIDHEART_COL:SetColorize(0.8,1.2,0.8,1)
 
-    ENUM_HEARTS[FiendFolio.PICKUP.VARIANT.HALF_BLACK_HEART] = {
-        Color = ENUM_BLACKHEART_COL,
-        TestFunc = function(player)
+    mod:addCaramelAppleHeart(
+        FiendFolio.PICKUP.VARIANT.HALF_BLACK_HEART,
+        ENUM_BLACKHEART_COL,
+        function(player)
             return player:CanPickBlackHearts()
         end,
-        AddFunc = function(player)
+        function(player)
             player:AddBlackHearts(1)
-        end,
-    }
-    ENUM_HEARTS[FiendFolio.PICKUP.VARIANT.BLENDED_BLACK_HEART] = {
-        Color = {ENUM_REDHEART_COL, ENUM_BLACKHEART_COL},
-        TestFunc = function(player)
+        end
+    )
+    mod:addCaramelAppleHeart(
+        FiendFolio.PICKUP.VARIANT.BLENDED_BLACK_HEART,
+        {ENUM_REDHEART_COL, ENUM_BLACKHEART_COL},
+        function(player)
             return (player:CanPickRedHearts() or player:CanPickBlackHearts())
         end,
-        AddFunc = function(player)
+        function(player)
             player:AddHearts(1)
             player:AddBlackHearts(1)
-        end,
-    }
-    ENUM_HEARTS[FiendFolio.PICKUP.VARIANT.IMMORAL_HEART] = {
-        Color = ENUM_IMMORALHEART_COL,
-        TestFunc = function(player)
+        end
+    )
+    mod:addCaramelAppleHeart(
+        FiendFolio.PICKUP.VARIANT.IMMORAL_HEART,
+        ENUM_IMMORALHEART_COL,
+        function(player)
             return player:CanPickSoulHearts()
         end,
-        AddFunc = function(player)
+        function(player)
             FiendFolio:AddImmoralHearts(player, 1)
-        end,
-    }
-    ENUM_HEARTS[FiendFolio.PICKUP.VARIANT.HALF_IMMORAL_HEART] = {
-        Color = ENUM_IMMORALHEART_COL,
-        TestFunc = function(player)
+        end
+    )
+    mod:addCaramelAppleHeart(
+        FiendFolio.PICKUP.VARIANT.HALF_IMMORAL_HEART,
+        ENUM_IMMORALHEART_COL,
+        function(player)
             return player:CanPickSoulHearts()
         end,
-        AddFunc = function(player)
+        function(player)
             FiendFolio:AddImmoralHearts(player, 1)
-        end,
-    }
-    ENUM_HEARTS[FiendFolio.PICKUP.VARIANT.BLENDED_IMMORAL_HEART] = {
-        Color = ENUM_IMMORALHEART_COL,
-        TestFunc = function(player)
+        end
+    )
+    mod:addCaramelAppleHeart(
+        FiendFolio.PICKUP.VARIANT.BLENDED_IMMORAL_HEART,
+        ENUM_IMMORALHEART_COL,
+        function(player)
             return (player:CanPickRedHearts() or player:CanPickSoulHearts())
         end,
-        AddFunc = function(player)
+        function(player)
             player:AddHearts(1)
             FiendFolio:AddImmoralHearts(player, 1)
-        end,
-    }
-    ENUM_HEARTS[FiendFolio.PICKUP.VARIANT.MORBID_HEART] = {
-        Color = ENUM_MORBIDHEART_COL,
-        TestFunc = function(player)
+        end
+    )
+    mod:addCaramelAppleHeart(
+        FiendFolio.PICKUP.VARIANT.MORBID_HEART,
+        ENUM_MORBIDHEART_COL,
+        function(player)
             return player:CanPickRottenHearts()
         end,
-        AddFunc = function(player)
+        function(player)
             FiendFolio:AddMorbidHearts(player, 1)
-        end,
-    }
-    ENUM_HEARTS[FiendFolio.PICKUP.VARIANT.TWOTHIRDS_MORBID_HEART] = {
-        Color = ENUM_MORBIDHEART_COL,
-        TestFunc = function(player)
+        end
+    )
+    mod:addCaramelAppleHeart(
+        FiendFolio.PICKUP.VARIANT.TWOTHIRDS_MORBID_HEART,
+        ENUM_MORBIDHEART_COL,
+        function(player)
             return player:CanPickRottenHearts()
         end,
-        AddFunc = function(player)
+        function(player)
             FiendFolio:AddMorbidHearts(player, 1)
-        end,
-    }
-    ENUM_HEARTS[FiendFolio.PICKUP.VARIANT.THIRD_MORBID_HEART] = {
-        Color = ENUM_MORBIDHEART_COL,
-        TestFunc = function(player)
+        end
+    )
+    mod:addCaramelAppleHeart(
+        FiendFolio.PICKUP.VARIANT.THIRD_MORBID_HEART,
+        ENUM_MORBIDHEART_COL,
+        function(player)
             return player:CanPickRottenHearts()
         end,
-        AddFunc = function(player)
+        function(player)
             FiendFolio:AddMorbidHearts(player, 1)
-        end,
-    }
+        end
+    )
 end
 
 ---@param player EntityPlayer

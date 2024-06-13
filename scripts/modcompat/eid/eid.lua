@@ -148,15 +148,14 @@ local function addExtraDescriptionStuff(entData)
 end
 
 for key, data in pairs(descs.ITEMS) do
-    if(data.Description) then
+    if(data.Description and not data.VanillaItem) then
         EID:addCollectible(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
     end
 
     addExtraDescriptionStuff({5,100,key})
 end
-
 for key, data in pairs(descs.TRINKETS) do
-    if(data.Description) then
+    if(data.Description and not data.VanillaItem) then
         EID:addTrinket(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
     end
 

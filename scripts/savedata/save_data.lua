@@ -58,7 +58,7 @@ end
 local function convertDataToSaveData(data, basedata)
     local saveDat = {}
     for key, val in pairs(basedata) do
-        print(key, val, data[key])
+        --print(key, val, data[key])
         saveDat[key] = data[key] or val
     end
     saveDat = convertTableToSaveData(saveDat)
@@ -83,15 +83,15 @@ function mod:saveProgress()
         local pt = player:GetPlayerType()
 
         if(pt==mod.PLAYER_MILCOM_A) then save.milcomData[seed] = convertTableToSaveData(mod:getMilcomATable(player)) end
-        if(pt==mod.PLAYER_ATLAS_A) then save.atlasData[seed] = convertTableToSaveData(mod:getAtlasATable(player)) end
+        if(pt==mod.PLAYER_ATLAS_A or pt==mod.PLAYER_ATLAS_A_TAR) then save.atlasData[seed] = convertTableToSaveData(mod:getAtlasATable(player)) end
         if(pt==mod.PLAYER_JONAS_A) then save.jonasData[seed] = convertTableToSaveData(mod:getJonasATable(player)) end
 
         save.playerData[seed] = convertDataToSaveData(mod:getEntityDataTable(player), playerBaseData)
     end
-    print("-")
-    print(mod:getExtraDataTable().CUSTOM_PILL_POOL)
+    --print("-")
+    --print(mod:getExtraDataTable().CUSTOM_PILL_POOL)
     save.extraData = convertDataToSaveData(mod:getExtraDataTable(), extraBaseData)
-    print(save.extraData.CUSTOM_PILL_POOL)
+    --print(save.extraData.CUSTOM_PILL_POOL)
 
     save.persistentData = convertDataToSaveData(mod:getPersistentDataTable(), persistentBaseData)
 
@@ -128,7 +128,7 @@ function mod:dataSaveInit(player)
         mod:cloneTableWithoutDeleteing(mod:getExtraDataTable(), extraBaseData)
         mod:cloneTableWithoutDeleteing(mod:getPersistentDataTable(), persistentBaseData)
     end
-    if(pt==mod.PLAYER_ATLAS_A) then
+    if(pt==mod.PLAYER_ATLAS_A or pt==mod.PLAYER_ATLAS_A_TAR) then
         mod.ATLAS_A_DATA[player.InitSeed] = {}
         mod:cloneTableWithoutDeleteing(mod:getAtlasATable(player), mod.ATLAS_A_BASEDATA)
     end
@@ -145,7 +145,7 @@ function mod:dataSaveInit(player)
         local save = json.decode(mod:LoadData())
         local pSeed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
 
-        if(pt==mod.PLAYER_ATLAS_A and save.atlasData and save.atlasData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getAtlasATable(player), convertSaveDataToTable(save.atlasData[pSeed])) end
+        if((pt==mod.PLAYER_ATLAS_A or pt==mod.PLAYER_ATLAS_A_TAR) and save.atlasData and save.atlasData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getAtlasATable(player), convertSaveDataToTable(save.atlasData[pSeed])) end
         if(pt==mod.PLAYER_MILCOM_A and save.milcomData and save.milcomData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getMilcomATable(player), convertSaveDataToTable(save.milcomData[pSeed])) end
         if(pt==mod.PLAYER_JONAS_A and save.jonasData and save.jonasData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getJonasATable(player), convertSaveDataToTable(save.jonasData[pSeed])) end
 

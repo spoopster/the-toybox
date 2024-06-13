@@ -6,7 +6,7 @@ if(mod.ATLAS_A_MANTLESUBTYPES) then
 end
 
 local function useMantle(_, _, player, _)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+    if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.GLASS.ID)
     else
 
@@ -21,7 +21,7 @@ local ENUM_SHOTSPEED_BONUS = 0.1
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.GLASS.ID)
 
@@ -36,7 +36,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function destroyGlassMantles(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
     if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.GLASS.ID)) then return end
 
@@ -60,7 +60,7 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, destroyGlassMantles
 
 ---@param player EntityPlayer
 local function destroyAllMantles(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.GLASS.ID)) then return end
 

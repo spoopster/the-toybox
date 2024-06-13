@@ -8,7 +8,7 @@ if(mod.ATLAS_A_MANTLESUBTYPES) then
 end
 
 local function useMantle(_, _, player, _)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+    if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.GOLD.ID)
     else
 
@@ -23,7 +23,7 @@ local ENUM_LOSTMANTLE_FREEZE_DIST = 100
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.GOLD.ID)
 
@@ -40,7 +40,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function mantleDestroyed(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     if(not (mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID) or mantle==mod.MANTLE_DATA.GOLD.ID)) then return end
 
     for _, ent in ipairs(Isaac.FindInRadius(player.Position, ENUM_LOSTMANTLE_FREEZE_DIST, EntityPartition.ENEMY)) do
@@ -70,7 +70,7 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 ---@param player EntityPlayer
 ---@param collider Entity
 local function freezeOnCollision(_, player, collider)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID)) then return end
     if(not (collider:IsVulnerableEnemy() and not collider:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))) then return end
 

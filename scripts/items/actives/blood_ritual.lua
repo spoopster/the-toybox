@@ -3,6 +3,7 @@ local sfx = SFXManager()
 
 --! Make thi shit work daamn!
 --? made thi shit work damn!
+--* fixed this shi damb!
 
 local ENUM_NUMFAMILIARS = 3
 local ENUM_NUMFAMILIARS_EXTRA = 1
@@ -110,32 +111,24 @@ local function evalCache(_, player, flag)
         numFamiliars = numFamiliars+(col==CollectibleType.COLLECTIBLE_TWISTED_PAIR and 2 or 1)
     end
 
-    local fIndex = 0
+    local function addFam(var, i, cNum, num, c, isTwisted)
+        local numf = cNum+num
+        if(isTwisted) then numf = numf*2 end
+        local fams = player:CheckFamiliarEx(var, numf, rng, Isaac.GetItemConfig():GetCollectible(c), -1)
+        for fidx, fam in pairs(fams) do
+            if(fidx<=numf) then
+                local fIndex = getBloodRitualIndex(rng, numFamiliars, invalidFIndex)
+                invalidFIndex[fIndex] = true
+                mod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
+            end
+        end
+    end
+
     for c, num in pairs(itemCounts) do
         local famVar = ENUM_EVILFAM_ITEM_TO_VAR[c] or FamiliarVariant.BROTHER_BOBBY
         local cNum = player:GetCollectibleNum(c)
 
-        if(famVar==FamiliarVariant.TWISTED_BABY) then
-            for i=0,1 do
-                local fams = player:CheckFamiliarEx(famVar, cNum+num, rng, Isaac.GetItemConfig():GetCollectible(c), i)
-                for fidx, fam in ipairs(fams) do
-                    if(fidx<=num) then
-                        fIndex = getBloodRitualIndex(rng, numFamiliars, invalidFIndex)
-                        invalidFIndex[fIndex] = true
-                        mod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
-                    end
-                end
-            end
-        else
-            local fams = player:CheckFamiliarEx(famVar, cNum+num, rng, Isaac.GetItemConfig():GetCollectible(c), -1)
-            for fidx, fam in ipairs(fams) do
-                if(fidx<=num) then
-                    fIndex = getBloodRitualIndex(rng, numFamiliars, invalidFIndex)
-                    invalidFIndex[fIndex] = true
-                    mod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
-                end
-            end
-        end
+        addFam(famVar,-1, cNum, num, c, famVar==FamiliarVariant.TWISTED_BABY)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)

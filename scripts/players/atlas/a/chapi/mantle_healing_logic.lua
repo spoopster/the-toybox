@@ -16,7 +16,7 @@ if(CustomHealthAPI) then
     end
 
     local function addHealth(p, k, n)
-        if(p:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+        if(not mod:isAtlasA(p)) then return end
         if(p.FrameCount==0) then return end
         if(mod:getAtlasATable(p)==nil) then return end
 

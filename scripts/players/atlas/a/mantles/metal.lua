@@ -8,7 +8,7 @@ if(mod.ATLAS_A_MANTLESUBTYPES) then
 end
 
 local function useMantle(_, _, player, _)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+    if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.METAL.ID)
     else
 
@@ -24,7 +24,7 @@ local ENUM_TRANSF_BLOCKCHANCE = 1/4
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.METAL.ID)
 
@@ -37,7 +37,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 ---@param player Entity
 local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
     
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.METAL.ID)
@@ -65,7 +65,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12, cancelAtlasAMeta
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     sfx:Play(mod.SFX_ATLASA_METALBREAK, 1.4)
 end

@@ -16,7 +16,7 @@ if(CustomHealthAPI==nil) then
 
     ---@param player EntityPlayer
     local function atlasAddMantles(_, player, num, type, arg)
-        if(player:GetPlayerType()==mod.PLAYER_ATLAS_A and mod.IS_DATA_LOADED and player.FrameCount>0) then
+        if(mod:isAtlasA(player) and mod.IS_DATA_LOADED and player.FrameCount>0) then
 
             --! this is just funny dotn add it in!!!
             --[[

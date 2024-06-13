@@ -8,7 +8,7 @@ if(mod.ATLAS_A_MANTLESUBTYPES) then
 end
 
 local function useMantle(_, _, player, _)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+    if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.POOP.ID)
     else
 
@@ -21,7 +21,7 @@ local ENUM_POOPFLIES_CHANCE = 0.5
 
 ---@param player EntityPlayer
 local function addPoopFlies(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     local data = mod:getAtlasATable(player)
 
@@ -76,7 +76,7 @@ mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_POOP_UPDATE, poopUpdate)
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end

@@ -44,7 +44,7 @@ end
 ---@param sprite Sprite
 ---@param pos Vector
 local function renderMantles(_, offset, sprite, pos, u, player)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     player = player:ToPlayer()
     local renderPos = pos+Vector(4,0)
@@ -135,7 +135,7 @@ local function renderHearts(_)
     for pIdx, player in pairs(mod:getTruePlayers()) do
 
     if(pIdx>=4) then goto invalidPlayer end
-    if(not (player and player:ToPlayer() and player:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (player and player:ToPlayer() and mod:isAtlasA(player:ToPlayer()))) then return end
 
     do
         player = player:ToPlayer()

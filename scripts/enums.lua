@@ -9,6 +9,7 @@ mod.PLAYER_MILCOM_A = Isaac.GetPlayerTypeByName("Milcom", false)
 mod.PLAYER_MILCOM_B = Isaac.GetPlayerTypeByName("Milcom", true)
 
 mod.PLAYER_ATLAS_A = Isaac.GetPlayerTypeByName("Atlas", false)
+mod.PLAYER_ATLAS_A_TAR = Isaac.GetPlayerTypeByName("The Tar", false)
 mod.PLAYER_ATLAS_B = Isaac.GetPlayerTypeByName("Atlas", true)
 
 mod.PLAYER_JONAS_A = Isaac.GetPlayerTypeByName("Jonas", false)
@@ -32,7 +33,7 @@ mod.COLLECTIBLE_PILE_OF_SAND = Isaac.GetItemIdByName("Pile of Sand")
 mod.COLLECTIBLE_OBSIDIAN_SHARD = Isaac.GetItemIdByName("Obsidian Shard")
 mod.COLLECTIBLE_GOAT_MILK = Isaac.GetItemIdByName("Goat Milk")                      --!DONE
 mod.COLLECTIBLE_BRONZE_BULL = Isaac.GetItemIdByName("Bronze Bull")
-mod.COLLECTIBLE_BLOODY_NEEDLE = Isaac.GetItemIdByName("Bloody Needle")              --!DONE
+mod.COLLECTIBLE_PLIERS = Isaac.GetItemIdByName("Pliers")              --!DONE
 mod.COLLECTIBLE_NOSE_CANDY = Isaac.GetItemIdByName("Nose Candy")                    --!DONE
 mod.COLLECTIBLE_LION_SKULL = Isaac.GetItemIdByName("Lion Skull")                    --!DONE
 mod.COLLECTIBLE_CURSED_CHAINS = Isaac.GetItemIdByName("Cursed Chains")
@@ -52,13 +53,14 @@ mod.COLLECTIBLE_SIGIL_OF_GREED = Isaac.GetItemIdByName("Sigil of Greed")
 mod.COLLECTIBLE_PEPPER_X = Isaac.GetItemIdByName("Pepper X")                        --!DONE
 mod.COLLECTIBLE_SCATTERED_TOME = Isaac.GetItemIdByName("Scattered Tome")            --!DONE
 mod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")                          --!DONE
-mod.COLLECTIBLE_SUNK_COSTS = Isaac.GetItemIdByName("Sunk Costs")                    --!DONE
+mod.COLLECTIBLE_GOLDEN_TWEEZERS = Isaac.GetItemIdByName("Golden Tweezers")                    --!DONE
 mod.COLLECTIBLE_MALICIOUS_BRAIN = Isaac.GetItemIdByName("Malicious Brain")
 
 mod.COLLECTIBLE_4_4 = Isaac.GetItemIdByName("4 4")                                  --!DONE
 --mod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")            --*UNUSED (i dont like the item)
 
 --*TRINKETS
+mod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")
 mod.TRINKET_PLASMA_GLOBE = Isaac.GetTrinketIdByName("Plasma Globe")                 --!DONE
 mod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")                   --!DONE
 
@@ -132,6 +134,7 @@ mod.CUSTOM_CALLBACKS = {
     POST_PLAYER_ATTACK = "TOYBOX_POST_PLAYER_ATTACK",
     USE_THROWABLE_ACTIVE = "TOYBOX_USE_THROWABLE_ACTIVE",
     POST_PLAYER_DOUBLE_TAP = "TOYBOX_POST_PLAYER_DOUBLE_TAP",
+    USE_ACTIVE_ITEM = "TOYBOX_USE_ACTIVE_ITEM",
 }
 
 mod.CUSTOM_BOMBFLAGS = {
@@ -370,7 +373,6 @@ mod.MANTLE_DATA = {
         ID = 0,
         HP = 0,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_rock.anm2"),
         SHARD_COLOR = Color(0,0,0,0),
         ANIM = "Empty",
     },
@@ -378,7 +380,6 @@ mod.MANTLE_DATA = {
         ID = 1,
         HP = 2,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_rock.anm2"),
         SHARD_COLOR = Color(153/255,139/255,136/255,1),
         ANIM = "RockMantle",
     },
@@ -386,7 +387,6 @@ mod.MANTLE_DATA = {
         ID = 2,
         HP = 2,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_POOP,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_poop.anm2"),
         SHARD_COLOR = Color(124/255,86/255,52/255,1),
         ANIM = "PoopMantle",
     },
@@ -394,7 +394,6 @@ mod.MANTLE_DATA = {
         ID = 3,
         HP = 3,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_BONE,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_bone.anm2"),
         SHARD_COLOR = Color(95/255,112/255,121/255,1),
         ANIM = "BoneMantle",
     },
@@ -402,7 +401,6 @@ mod.MANTLE_DATA = {
         ID = 4,
         HP = 2,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_DARK,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_dark.anm2"),
         SHARD_COLOR = Color(59/255,59/255,59/255,1),
         ANIM = "DarkMantle",
     },
@@ -410,7 +408,6 @@ mod.MANTLE_DATA = {
         ID = 5,
         HP = 2,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_HOLY,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_holy.anm2"),
         FLIGHT_COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_holy_wings.anm2"),
         SHARD_COLOR = Color(190/255,190/255,190/255,1),
         ANIM = "HolyMantle",
@@ -419,7 +416,6 @@ mod.MANTLE_DATA = {
         ID = 6,
         HP = 2,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_SALT,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_salt.anm2"),
         SHARD_COLOR = Color(1,1,1,1),
         ANIM = "SaltMantle",
     },
@@ -427,7 +423,6 @@ mod.MANTLE_DATA = {
         ID = 7,
         HP = 1,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_GLASS,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_glass.anm2"),
         SHARD_COLOR = Color(1,1,1,1),
         ANIM = "GlassMantle",
     },
@@ -435,7 +430,6 @@ mod.MANTLE_DATA = {
         ID = 8,
         HP = 3,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_METAL,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_metal.anm2"),
         SHARD_COLOR = Color(147/255,147/255,147/255,1),
         ANIM = "MetalMantle",
     },
@@ -443,7 +437,6 @@ mod.MANTLE_DATA = {
         ID = 9,
         HP = 2,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_GOLD,
-        COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_gold.anm2"),
         SHARD_COLOR = Color(205/255,181/255,60/255,1),
         ANIM = "GoldMantle",
     },
@@ -452,7 +445,6 @@ mod.MANTLE_DATA = {
         ID = 1024,
         HP = 0,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
-        --COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_tar.anm2"),
         SHARD_COLOR = Color(0,0,0,1),
         ANIM = "TarMantle",
     },
@@ -461,7 +453,6 @@ mod.MANTLE_DATA = {
         ID = 1000,
         HP = 0,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
-        --COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/costume_atlasa_tar.anm2"),
         SHARD_COLOR = Color(0,0,0,0),
         ANIM = "Unknown",
     }

@@ -14,7 +14,7 @@ local function evalCache(_, player, flag)
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+ENUM_SPEEDTOADD*mult
     elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        player.MaxFireDelay = mod:addTps(player, ENUM_TEARSTOADD*mult*mod:getVanillaTearMultiplier(player))
+        mod:addBasicTearsUp(player, ENUM_TEARSTOADD*mult)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

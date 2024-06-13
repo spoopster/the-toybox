@@ -219,10 +219,10 @@ local ITEMS = {
     },
 
     --ACTIVES
-    [mod.COLLECTIBLE_BLOODY_NEEDLE] = {
-        Name = "Bloody Needle",
+    [mod.COLLECTIBLE_PLIERS] = {
+        Name = "Pliers",
         Description = {
-            "\1 x1.3 Tears for the room",
+            "\1 +0.7 Tears for the room",
             "!!! Deals half a heart of damage to Isaac",
             "{{Heart}} Removes Red Hearts first",
         },
@@ -233,8 +233,8 @@ local ITEMS = {
                 end,
                 TextToModify = {
                     {
-                        Old = "x1.3 Tears",
-                        New = "x1.3/{{Collectible356}}{{ColorYellow}}x1.45{{CR}} Tears"
+                        Old = "+0.7 Tears",
+                        New = "+0.7/{{Collectible356}}{{ColorYellow}}+1.0{{CR}} Tears"
                     },
                 },
             },
@@ -350,11 +350,11 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_SUNK_COSTS] = {
-        Name = "Sunk Costs",
+    [mod.COLLECTIBLE_GOLDEN_TWEEZERS] = {
+        Name = "Golden Tweezers",
         Description = {
-            "\1 x1.3 Tears for the room",
-            "{{Coin}} Consumes 5 coins, only activates if you have 5 or more coins",
+            "{{Coin}} +5 coins",
+            "\1 Pay 5 {{Coin}} coins and get +0.7 Tears for the room",
         },
         DescriptionModifiers = {
             {
@@ -363,8 +363,8 @@ local ITEMS = {
                 end,
                 TextToModify = {
                     {
-                        Old = "x1.3 Tears",
-                        New = "x1.3/{{Collectible356}}{{ColorYellow}}x1.45{{CR}} Tears"
+                        Old = "+0.7 Tears",
+                        New = "+0.7/{{Collectible356}}{{ColorYellow}}+1.0{{CR}} Tears"
                     },
                 },
             },
@@ -373,12 +373,14 @@ local ITEMS = {
 
 
 
-    --! SPECIAL ATLAS STUFF
+    --! SPECIAL VANILLA STUFF
+    --/ atlas
     [CollectibleType.COLLECTIBLE_YUM_HEART] = {
+        VanillaItem = true,
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                    return mod:isAnyPlayerAtlasA()
                 end,
                 DescriptionToAdd = {
                     "{{AtlasATransformationRock}} +1 Rock mantle",
@@ -387,10 +389,11 @@ local ITEMS = {
         },
     },
     [CollectibleType.COLLECTIBLE_YUCK_HEART] = {
+        VanillaItem = true,
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                    return mod:isAnyPlayerAtlasA()
                 end,
                 DescriptionToAdd = {
                     "{{AtlasATransformationRock}} +1 Poop mantle",
@@ -399,10 +402,11 @@ local ITEMS = {
         },
     },
     [CollectibleType.COLLECTIBLE_PRAYER_CARD] = {
+        VanillaItem = true,
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                    return mod:isAnyPlayerAtlasA()
                 end,
                 DescriptionToAdd = {
                     "{{AtlasATransformationRock}} +1 Holy mantle",
@@ -411,10 +415,11 @@ local ITEMS = {
         },
     },
     [CollectibleType.COLLECTIBLE_GUPPYS_PAW] = {
+        VanillaItem = true,
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                    return mod:isAnyPlayerAtlasA()
                 end,
                 DescriptionToAdd = {
                     "{{AtlasATransformationRock}} Your leftmost mantle is destroyed and replaced with a Metal mantle that has 1 HP",
@@ -423,10 +428,11 @@ local ITEMS = {
         },
     },
     [CollectibleType.COLLECTIBLE_CONVERTER] = {
+        VanillaItem = true,
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                    return mod:isAnyPlayerAtlasA()
                 end,
                 DescriptionToAdd = {
                     "{{AtlasATransformationRock}} Your leftmost mantle is destroyed and replaced with a random mantle",
@@ -435,10 +441,11 @@ local ITEMS = {
         },
     },
     [CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = {
+        VanillaItem = true,
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                    return mod:isAnyPlayerAtlasA()
                 end,
                 DescriptionToAdd = {
                     "{{AtlasATransformationRock}} +1 Dark mantle",
@@ -447,10 +454,11 @@ local ITEMS = {
         },
     },
     [CollectibleType.COLLECTIBLE_THE_NAIL] = {
+        VanillaItem = true,
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                    return mod:isAnyPlayerAtlasA()
                 end,
                 DescriptionToAdd = {
                     "{{AtlasATransformationRock}} +1 Dark mantle",
@@ -459,13 +467,150 @@ local ITEMS = {
         },
     },
     [CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = {
+        VanillaItem = true,
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)
+                    return mod:isAnyPlayerAtlasA()
                 end,
                 DescriptionToAdd = {
                     "{{AtlasATransformationRock}} +1 Metal mantle",
+                },
+            },
+        },
+    },
+
+    --/ limit break
+    [CollectibleType.COLLECTIBLE_CURSE_OF_THE_TOWER] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Troll bombs spawned deal no damage to the player",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Troll bombs spawned deal no damage to the player",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_LITTLE_CHAD] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Spawns a {{Heart}} full Red Heart instead",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_THE_WIZ] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Reduced spread",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_BOOM] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Megatroll bombs devolve into normal troll bombs",
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Troll bombs have a 15% chance to become duds and never explode",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_KAMIKAZE] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} The explosion inherits your bomb modifiers",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_SHADE] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Shade has a chance to {{Fear}} Fear enemies it hits",
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} When killing an enemy, Shade has a chance to spawn a friendly black charger for the rest of the room",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_THE_JAR] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} When used with 4 full hearts inside it, consume the hearts and get a filled heart container",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_OBSESSED_FAN] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Shade has a chance to {{Charm}} Charm enemies it hits",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_MISSING_PAGE_2] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Using active items has a chance to trigger {{Collectible35}} Necronomicon",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_BUM_FRIEND] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Picked up coins have doubled value",
+                },
+            },
+        },
+    },
+    [CollectibleType.COLLECTIBLE_BUMBO] = {
+        VanillaItem = true,
+        DescriptionAppend = {
+            {
+                Condition = mod.anyPlayerHasLimitBreak,
+                DescriptionToAdd = {
+                    "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}} Picked up coins have doubled value",
                 },
             },
         },
@@ -538,6 +683,12 @@ local TRINKETS = {
                     "{{Collectible"..mod.COLLECTIBLE_TOY_GUN.."}} +1.5 Toy Gun bullet damage",
                 },
             },
+        },
+    },
+    [mod.TRINKET_LIMIT_BREAK] = {
+        Name = "LIMIT BREAK",
+        Description = {
+            "\1 Certain \"bad\" items are buffed",
         },
     },
 }
@@ -665,6 +816,11 @@ local CARDS = {
 }
 local BIRTHRIGHTS = {
     [mod.PLAYER_ATLAS_A] = {
+        "You can now have 2 mantle transformations at once",
+        "When you lose a transformation, it gets transferred into the second transformation slot where it functions alongside the current transformation",
+        "Turning into {{AtlasATransformationTar}}Tar form removes both transformations",
+    },
+    [mod.PLAYER_ATLAS_A_TAR] = {
         "You can now have 2 mantle transformations at once",
         "When you lose a transformation, it gets transferred into the second transformation slot where it functions alongside the current transformation",
         "Turning into {{AtlasATransformationTar}}Tar form removes both transformations",

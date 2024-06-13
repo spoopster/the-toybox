@@ -80,7 +80,7 @@ end
 
 ---@param player EntityPlayer
 function mod:isAtlas(player)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then return true end
+    if(mod:isAtlasA(player)) then return true end
     if(player:GetPlayerType()==mod.PLAYER_ATLAS_B) then return true end
     return false
 end
@@ -652,6 +652,9 @@ function mod:getVanillaTearMultiplier(player)
     if(auraData[1]>0 or auraData[2]>0 or creepdata>0) then mult = mult*2.5 end
 
     return mult
+end
+function mod:addBasicTearsUp(player, tears)
+    player.MaxFireDelay = mod:addTps(player, tears*mod:getVanillaTearMultiplier(player))
 end
 
 local SPEED_MULT = 10

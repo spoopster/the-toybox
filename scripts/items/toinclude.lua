@@ -24,17 +24,18 @@ local t = {
 
     --ACTIVES
     -- "scripts.items.actives.",
-    "scripts.items.actives.bloody_needle",
+    "scripts.items.actives.pliers",
     "scripts.items.actives.blood_ritual",
     "scripts.items.actives.silk_bag",
     "scripts.items.actives.toy_gun",
-    "scripts.items.actives.sunk_costs",
+    "scripts.items.actives.golden_tweezers",
     "scripts.items.actives.bronze_bull",
 
     --TRINKETS
     -- "scripts.items.trinkets.",
     "scripts.items.trinkets.plasma_globe",
     "scripts.items.trinkets.foam_bullet",
+    "scripts.items.trinkets.limit_break",
 
     --UNUSED
     -- "scripts.items.unused.laser_pointer",

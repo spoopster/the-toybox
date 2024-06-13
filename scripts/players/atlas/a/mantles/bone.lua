@@ -8,7 +8,7 @@ if(mod.ATLAS_A_MANTLESUBTYPES) then
 end
 
 local function useMantle(_, _, player, _)
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_A) then
+    if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.BONE.ID)
     else
 
@@ -31,7 +31,7 @@ local ENUM_VALID_HEARTSUBTYPES = {
 
 local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.BONE.ID)) then return end
 
     local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_BONE)
@@ -47,7 +47,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12-1, mantleDamage, 
 local function mantleKill(_, entity)
     if(entity.MaxHitPoints<1) then return end
     if(not entity:IsEnemy()) then return end
-    if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_ATLAS_A)) then return end
+    if(not mod:isAnyPlayerAtlasA()) then return end
 
     local rng = entity:GetDropRNG()
     local numTransformations = 0
@@ -65,7 +65,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mantleKill)
 
 local function healWithHearts(_, pickup, player)
-    if(not (player and player:ToPlayer() and player:ToPlayer():GetPlayerType()==mod.PLAYER_ATLAS_A)) then return end
+    if(not (player and player:ToPlayer() and mod:isAtlasA(player:ToPlayer()))) then return end
     player = player:ToPlayer()
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.BONE.ID)) then return end
 
@@ -94,7 +94,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, 1e12, healWithHear
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
 end

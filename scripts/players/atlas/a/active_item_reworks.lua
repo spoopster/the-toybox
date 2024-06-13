@@ -5,7 +5,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_PRE_USE_ITEM, CallbackPriority.IMPORTANT
 ---@param rng RNG
 ---@param player EntityPlayer
 function(_, _, rng, player, flags, slot)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
 
     if(data.MANTLES[1].TYPE~=mod.MANTLE_DATA.NONE.ID) then
@@ -28,7 +28,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_PRE_USE_ITEM, CallbackPriority.IMPORTANT
 ---@param rng RNG
 ---@param player EntityPlayer
 function(_, _, rng, player, flags, slot)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
 
     if(data.MANTLES[1].TYPE~=mod.MANTLE_DATA.NONE.ID) then
