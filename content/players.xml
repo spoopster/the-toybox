@@ -14,7 +14,7 @@
 	/>
 	<player birthright="Mantle stratification" name="The Tar"
 		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="character_atlas_a_tar.png" costumeSuffix="atlas_a_tar" skinColor="-1"
-		modcostume="999"
+		modcostume="999" hidden="true"
 	/>
 	<player birthright="-" name="Atlas" bSkinParent="Atlas"
 		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="character_atlas_b.png" costumeSuffix="atlas_b" skinColor="-1"
