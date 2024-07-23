@@ -67,9 +67,7 @@
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
-        <Item Name="Lion Skull"/>
         <Item Name="Painkillers"/>
-        <Item Name="Mammon's Offering"/>
     </Pool>
 
     <Pool Name="redChest">
