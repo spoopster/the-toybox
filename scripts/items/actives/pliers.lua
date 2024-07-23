@@ -1,7 +1,7 @@
 local mod = MilcomMOD
 
 local TEARSTOADD = 0.7
-local ENUM_TEARSTOADD_BATTERY = 1
+local TEARSTOADD_BATTERY = 1
 
 ---@param player EntityPlayer
 local function usePliers(_, _, rng, player, flags)

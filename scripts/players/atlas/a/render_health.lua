@@ -1,11 +1,11 @@
 local mod = MilcomMOD
 
 local HP_SPRITE = Sprite()
-HP_SPRITE:Load("gfx/ui/atlas_a/ui_mantle_hp.anm2", true)
+HP_SPRITE:Load("gfx/ui/tb_ui_mantlehearts.anm2", true)
 HP_SPRITE:Play("RockMantle", true)
 
 local TRANSF_SPRITE = Sprite()
-TRANSF_SPRITE:Load("gfx/ui/atlas_a/ui_mantle_transformations.anm2", true)
+TRANSF_SPRITE:Load("gfx/ui/tb_ui_mantleicons.anm2", true)
 TRANSF_SPRITE:Play("RockMantle", true)
 TRANSF_SPRITE.Offset = Vector(0,-1)
 
@@ -28,7 +28,7 @@ local function renderMantleShards(player, hasUnknown)
             HP_SPRITE:SetFrame(sData.Frame)
             HP_SPRITE.Rotation = sData.Rotation
 
-            local a = mod:clamp(1-sData.Lifeframes/sData.Lifespan, 1, 0)
+            local a = mod:clamp(1-sData.Lifeframes/sData.Lifespan, 0,1)
             HP_SPRITE.Color = Color(sData.Color.R, sData.Color.G, sData.Color.B, sData.Color.A*a, sData.Color.RO, sData.Color.GO, sData.Color.BO)
 
             HP_SPRITE:Render(sData.Position)
@@ -47,7 +47,7 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     if(not mod:isAtlasA(player)) then return end
 
     player = player:ToPlayer()
-    local renderPos = pos+Vector(4,0)
+    local renderPos = pos+Vector(14,4)
     local data = mod:getAtlasATable(player)
 
     local hasCurseOfTheUnknown = false
@@ -59,6 +59,26 @@ local function renderMantles(_, offset, sprite, pos, u, player)
 
     local heartPosOffsets = Vector(18,0)
     local heartRenderPos = renderPos-heartPosOffsets
+
+    TRANSF_SPRITE.Scale = Vector(1,1)
+    TRANSF_SPRITE.Color = Color(0.75,0.75,0.75,1)
+    TRANSF_SPRITE:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM, true)
+    if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_DATA.UNKNOWN.ANIM) end
+    local trfRenderPos = renderPos+(heartRenderPos-renderPos)/2+Vector(-5,0)
+    local shouldRender2Transformations = player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and not (hasCurseOfTheUnknown or data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID)
+    if(shouldRender2Transformations) then trfRenderPos = trfRenderPos-Vector(0,8) end
+
+    TRANSF_SPRITE:Render(trfRenderPos)
+
+    if(shouldRender2Transformations) then
+        TRANSF_SPRITE:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.BIRTHRIGHT_TRANSFORMATION) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM, true)
+        if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_DATA.UNKNOWN.ANIM) end
+        TRANSF_SPRITE:Render(trfRenderPos+Vector(0,16))
+
+        TRANSF_SPRITE:Play("BirthrightOverlay", true)
+        TRANSF_SPRITE.Scale = Vector(1,1)*0.5
+        TRANSF_SPRITE:Render(trfRenderPos+Vector(10,20))
+    end
     for i=1, data.HP_CAP do
         heartRenderPos = heartRenderPos+heartPosOffsets
 
@@ -103,26 +123,8 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     
     local extraLivesString = ""
     if(player:GetExtraLives()>0) then
-        extraLivesString = "x"..player:GetExtraLives()..(hasCollar and "?" or "")
-        f:DrawString(extraLivesString, heartRenderPos.X-5, heartRenderPos.Y-9,KColor(1,1,1,1))
-    end
-
-    TRANSF_SPRITE.Scale = Vector(1,1)
-
-    TRANSF_SPRITE:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM, true)
-    if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_DATA.UNKNOWN.ANIM) end
-
-    local trfRenderPos = renderPos+(heartRenderPos-renderPos)/2+Vector((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and -12 or 0)-1,20)
-    TRANSF_SPRITE:Render(trfRenderPos)
-
-    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
-        TRANSF_SPRITE:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.BIRTHRIGHT_TRANSFORMATION) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM, true)
-        if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_DATA.UNKNOWN.ANIM) end
-        TRANSF_SPRITE:Render(trfRenderPos+Vector(24,0))
-
-        TRANSF_SPRITE:Play("BirthrightOverlay", true)
-        TRANSF_SPRITE.Scale = Vector(1,1)*0.5
-        TRANSF_SPRITE:Render(trfRenderPos+Vector(34,4))
+        extraLivesString = "x"..player:GetExtraLives()..(player:HasChanceRevive() and "?" or "")
+        f:DrawString(extraLivesString, heartRenderPos.X+12, heartRenderPos.Y-9,KColor(1,1,1,1))
     end
 
     renderMantleShards(player, hasCurseOfTheUnknown)
@@ -199,13 +201,7 @@ local function renderHearts(_)
             f:DrawString(extraLivesString, heartRenderPos.X-5, heartRenderPos.Y-9,KColor(1,1,1,1))
         end
 
-        TRANSF_SPRITE.Scale = Vector(1,1)
 
-        TRANSF_SPRITE:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.TRANSFORMATION) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM, true)
-        if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(mod.MANTLE_DATA.UNKNOWN.ANIM) end
-
-        local trfRenderPos = renderPos+(heartRenderPos-renderPos)/2+Vector((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and -12 or 0)-1,20)
-        TRANSF_SPRITE:Render(trfRenderPos)
 
         if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
             TRANSF_SPRITE:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.BIRTHRIGHT_TRANSFORMATION) or "NONE"].ANIM or mod.MANTLE_DATA.NONE.ANIM, true)

@@ -5,17 +5,20 @@ local sfx = SFXManager()
 
 ---@param player EntityPlayer
 function mod:getJonasATable(player)
-    return mod.JONAS_A_DATA[player.InitSeed]
+    local tb = mod:getEntityDataTable(player).JONAS_A_DATA
+    if(tb==nil) then mod:setEntityData(player, "JONAS_A_DATA", mod:cloneTable(mod.JONAS_A_BASEDATA)) end
+
+    return mod:getEntityDataTable(player).JONAS_A_DATA or {}
 end
 ---@param player EntityPlayer
 ---@param key string
 function mod:getJonasAData(player, key)
-    return mod.JONAS_A_DATA[player.InitSeed][key]
+    return mod:getJonasATable(player)[key]
 end
 ---@param player EntityPlayer
 ---@param key string
 function mod:setJonasAData(player, key, val)
-    mod.JONAS_A_DATA[player.InitSeed][key] = val
+    mod:getJonasATable(player)[key] = val
 end
 
 --#endregion

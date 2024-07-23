@@ -43,8 +43,6 @@ function mod:updateMantles(player)
 
     local trf = mod:getCurrentTransformationType(player)
     if(data.TRANSFORMATION~=trf) then
-        print(mod.MANTLE_DATA[mod:getMantleKeyFromId(mod.MANTLE_DATA.DEFAULT.ID)].COSTUME)
-        print(mod.MANTLE_DATA[mod:getMantleKeyFromId(mod.MANTLE_DATA.TAR.ID)].COSTUME)
         if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID or not mod:isBadMantle(trf)) then
             if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
                 if(not mod:isBadMantle(data.TRANSFORMATION)) then

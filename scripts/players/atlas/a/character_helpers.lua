@@ -5,17 +5,22 @@ local sfx = SFXManager()
 
 ---@param player EntityPlayer
 function mod:getAtlasATable(player)
-    return mod.ATLAS_A_DATA[player.InitSeed]
+    local tb = mod:getEntityDataTable(player).ATLAS_A_DATA
+    if(tb==nil) then
+        mod:setEntityData(player, "ATLAS_A_DATA", mod:cloneTable(mod.ATLAS_A_BASEDATA))
+    end
+
+    return mod:getEntityDataTable(player).ATLAS_A_DATA or {}
 end
 ---@param player EntityPlayer
 ---@param key string
 function mod:getAtlasAData(player, key)
-    return mod.ATLAS_A_DATA[player.InitSeed][key]
+    return mod:getAtlasATable(player)[key]
 end
 ---@param player EntityPlayer
 ---@param key string
 function mod:setAtlasAData(player, key, val)
-    mod.ATLAS_A_DATA[player.InitSeed][key] = val
+    mod:getAtlasATable(player)[key] = val
 end
 
 --#endregion
@@ -25,7 +30,6 @@ function mod:isAtlasA(player)
 end
 function mod:isAnyPlayerAtlasA()
     for _, player in ipairs(Isaac.FindByType(1,0)) do
-        print("1", player)
         if(mod:isAtlasA(player:ToPlayer())) then return true end
     end
     return false
@@ -304,9 +308,9 @@ end
 
 function mod:getMantleHeartPosition(player, idx)
     local pNum = mod:getTruePlayerNumFromPlayerEnt(player)
-    if(pNum==-1 or pNum>=4) then return Vector(-100, -100) end
+    if(pNum==-1 or pNum>=4) then return Vector(-1000, -1000) end
 
-    return mod:getHeartHudPosition(pNum)+(idx-1)*Vector(19,0)
+    return mod:getHeartHudPosition(pNum)+Vector(14,4)+(idx-1)*Vector(18,0)
 end
 
 function mod:getMantleKeyFromId(idx)

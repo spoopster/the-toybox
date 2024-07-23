@@ -37,8 +37,6 @@ local function addPillBonus(_, pillEffect, player, flags, pillColor)
     data.PILLS_POPPED = (data.PILLS_POPPED or 0)+bonusInc
     data.RESET_BOOST_ROOMS = 0
 
-    print(data.PILLS_POPPED, data.PILLS_FOR_BONUS, data.PILLS_FOR_NEXT_BONUS, data.PILL_BONUS_COUNT)
-
     if(data.PILLS_POPPED>=(data.PILLS_FOR_NEXT_BONUS or data.PILLS_FOR_BONUS or data.PILLS_FOR_BONUS_BASE or 3)) then
         data.PILL_BONUS_COUNT = (data.PILL_BONUS_COUNT or 0)+1
         data.PILLS_FOR_BONUS = (data.PILLS_FOR_BONUS_BASE or 3)+data.PILLBONUS_INCREMENT*math.floor(data.PILL_BONUS_COUNT/(data.PILLBONUS_INCREMENT_BONUSES or 2))

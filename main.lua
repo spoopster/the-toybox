@@ -6,7 +6,7 @@ local mod_files = {
     "scripts.enums",
 
     "scripts.custom.data",
-    "scripts.custom.callbacks",
+    "scripts.custom.callback_includes",
     "scripts.custom.bombflags",
     "scripts.custom.ludo_trigger",
     "scripts.custom.statuseffects",
@@ -15,7 +15,7 @@ local mod_files = {
 
     "scripts.helper",
 
-    "scripts.libraries.firejet",
+    "scripts.libraries.custom_object_spawn",
 
     "scripts.config",
     "scripts.savedata.save_data",
@@ -42,9 +42,3 @@ local mod_files = {
 for _, path in ipairs(mod_files) do
     include(path)
 end
-
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function()
-    if #Isaac.FindByType(EntityType.ENTITY_PLAYER) == 0 then
-        Isaac.ExecuteCommand("reloadshaders")
-    end
-end)

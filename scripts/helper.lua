@@ -90,7 +90,7 @@ end
 ---@param lower number Lower bound of the range
 ---@return number clampedVal The clamped value
 ---Clamps a given value into a range
-function mod:clamp(val, upper, lower)
+function mod:clamp(val, lower, upper)
     return math.min(upper, math.max(val, lower))
 end
 
@@ -437,7 +437,7 @@ end
 
 function mod:getLuckAffectedChance(luck, baseChance, maxLuck, maxChance)
     local f = luck/maxLuck
-    f = mod:clamp(f, 1, -1)
+    f = mod:clamp(f, -1, 1)
 
     if(f==0) then return baseChance;
     elseif(f<0) then return mod:lerp(baseChance,0,-f)
@@ -764,10 +764,8 @@ function mod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldCheckDi
     mod:walkAnimLogic(entity, speed)
 end
 
-function mod:lerpAngle(a1, a2, f)
-    local newA1, newA2 = a1,a2
-    newA1 = math.rad(newA1)
-    newA2 = math.rad(newA2)
-
-    return (mod:lerp( Vector(math.cos(newA1), math.sin(newA1)), Vector(math.cos(newA2), math.sin(newA2)), f)):GetAngleDegrees()
+function mod:angleDifference(a1, a2)
+    local dif = (a2-a1)%360
+    if(dif>180) then return dif-360 end
+    return dif
 end

@@ -1,13 +1,13 @@
 local mod = MilcomMOD
 
 local HP_SPRITE = Sprite()
-HP_SPRITE:Load("gfx/ui/atlas_a/ui_mantle_hp.anm2", true)
+HP_SPRITE:Load("gfx/ui/tb_ui_mantlehearts.anm2", true)
 HP_SPRITE:Play("RockMantle", true)
 
 local TRANSF_SPRITE = Sprite()
-TRANSF_SPRITE:Load("gfx/ui/atlas_a/ui_mantle_transformations.anm2", true)
+TRANSF_SPRITE:Load("gfx/ui/tb_ui_mantleicons.anm2", true)
 TRANSF_SPRITE.Color = Color(1,1,1,0.75)
-TRANSF_SPRITE:Play("RockMantle", true)
+TRANSF_SPRITE:Play("RockIcon", true)
 TRANSF_SPRITE.Offset = Vector(0,-1)
 
 local PRICE_WIDTH = 12
@@ -22,11 +22,12 @@ end
 local function forceDevilDealPickup(_, pickup, player)
     if(not (player and player:ToPlayer() and mod:isAtlasA(player:ToPlayer()))) then return end
     player = player:ToPlayer()
-    if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.TAR.ID)) then return end
     if(not player:IsExtraAnimationFinished()) then return end
     if(not pickup:IsShopItem()) then return end
     if(not (pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE)) then return end
     if(pickup.Wait>0) then return end
+    if(player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)) then return end
+    if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.TAR.ID)) then return true end
 
     local price = getMantleDealPrice(pickup)
 

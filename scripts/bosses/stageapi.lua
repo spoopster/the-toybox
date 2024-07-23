@@ -13,4 +13,4 @@ local bosses = {
     }),
 }
 
-StageAPI.AddBossToBaseFloorPool({BossID = "Shy Gal", Weight = 100.2}, LevelStage.STAGE2_1, StageType.STAGETYPE_ORIGINAL)
+StageAPI.AddBossToBaseFloorPool({BossID = "Shy Gal", Weight = 1.1}, LevelStage.STAGE2_1, StageType.STAGETYPE_ORIGINAL)

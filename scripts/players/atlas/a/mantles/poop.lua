@@ -18,6 +18,27 @@ mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_POOP)
 
 local ENUM_POOPFLIES_NUM = 2
 local ENUM_POOPFLIES_CHANCE = 0.5
+local ENUM_POOPDROP_CHANCE = 0.1
+local ENUM_POOPDROP_PICKER = WeightedOutcomePicker()
+local ENUM_POOPDROPS = {
+    {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, 0},
+    {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 0},
+    {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, 0},
+    {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, 0},
+    {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0},
+    {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0},
+    {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, 0},
+    {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0},
+}
+ENUM_POOPDROP_PICKER:AddOutcomeFloat(1, 0.25, 100)
+ENUM_POOPDROP_PICKER:AddOutcomeFloat(2, 0.25, 100)
+ENUM_POOPDROP_PICKER:AddOutcomeFloat(3, 0.15, 100)
+ENUM_POOPDROP_PICKER:AddOutcomeFloat(4, 0.15, 100)
+ENUM_POOPDROP_PICKER:AddOutcomeFloat(5, 0.06, 100)
+ENUM_POOPDROP_PICKER:AddOutcomeFloat(6, 0.06, 100)
+ENUM_POOPDROP_PICKER:AddOutcomeFloat(7, 0.06, 100)
+ENUM_POOPDROP_PICKER:AddOutcomeFloat(8, 0.02, 100)
+
 
 ---@param player EntityPlayer
 local function addPoopFlies(_, player)
@@ -34,11 +55,16 @@ local function addPoopFlies(_, player)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, addPoopFlies)
 
+---@param poop GridEntityPoop
 local function poopUpdate(_, poop)
     if(Game():IsPaused()) then return end
     if(poop:GetVariant()==GridPoopVariant.RED) then return end
+    local data = mod:getGridEntityDataTable(poop)
+
+    if(data.POOP_DMG==nil) then data.POOP_DMG = poop:GetSaveState().State end
+    if(data.POOP_SPAWNEDPICKUP==nil) then data.POOP_SPAWNEDPICKUP = -1 end
     
-    if(poop.State==1000 and poop.State~=mod:getEntityData(poop, "POOP_DMG") and mod:getEntityData(poop, "POOP_DMG")) then
+    if(data.POOP_DMG and poop.State==1000 and poop.State~=data.POOP_DMG) then
         local shouldDoTransfEffect = false
         for _, player in ipairs(mod:getAllAtlasA()) do
             player = player:ToPlayer()
@@ -67,10 +93,45 @@ local function poopUpdate(_, poop)
             poof.SpriteScale = Vector(1,1)*0.75
 
             sfx:Play(SoundEffect.SOUND_FART)
+            data.POOP_SPAWNEDPICKUP = 0
         end
     end
 
-    mod:setEntityData(poop, "POOP_DMG", poop.State)
+    if(data.POOP_SPAWNEDPICKUP>0) then data.POOP_SPAWNEDPICKUP = data.POOP_SPAWNEDPICKUP-1 end
+    if(poop.State==1000 and data.POOP_SPAWNEDPICKUP==0) then
+        data.POOP_SPAWNEDPICKUP = -100
+
+        local isAtlasPoop = false
+        for _, player in ipairs(mod:getAllAtlasA()) do
+            player = player:ToPlayer()
+            if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
+                isAtlasPoop = true
+            end
+        end
+
+        local pickupSpawned = false
+        local selPickup
+        for _, pickup in ipairs(Isaac.FindByType(5)) do
+            if(pickup.Position:Distance(poop.Position)<2) then
+                if(pickup.FrameCount==1) then
+                    pickupSpawned = true
+                    selPickup = pickup:ToPickup()
+                    break
+                end
+            end
+        end
+        
+        local rng = mod:generateRng(poop.Desc.SpawnSeed)
+        local selPickupData = ENUM_POOPDROPS[ENUM_POOPDROP_PICKER:PickOutcome(rng)]
+
+        if(isAtlasPoop and (not pickupSpawned) and rng:RandomFloat()<ENUM_POOPDROP_CHANCE) then
+            local pickup = Isaac.Spawn(selPickupData[1], selPickupData[2], selPickupData[3], poop.Position, Vector.Zero, nil)
+        elseif(isAtlasPoop and pickupSpawned) then
+            selPickup:ToPickup():Morph(selPickupData[1], selPickupData[2], selPickupData[3])
+        end
+    end
+
+    data.POOP_DMG = poop.State
 end
 mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_POOP_UPDATE, poopUpdate)
 

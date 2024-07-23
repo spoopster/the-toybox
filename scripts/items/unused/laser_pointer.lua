@@ -12,6 +12,7 @@ local function postProjectileRender(_, p)
     local a = dir:GetAngleDegrees()
 
     local alpha = 0
+    -- [[
     for _, player in ipairs(Isaac.FindByType(1)) do
         player = player:ToPlayer() or Isaac.GetPlayer()
         if(player:HasCollectible(mod.COLLECTIBLE_LASER_POINTER)) then
@@ -22,6 +23,7 @@ local function postProjectileRender(_, p)
         end
     end
     if(alpha==0) then return end
+    --]]
 
     local room = Game():GetRoom()
 

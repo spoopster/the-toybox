@@ -1,4 +1,19 @@
 - NEW:
-
+    - Added coop icons for Atlas and Jonas
+    - Added Sigil of Greed (ITEM)
+    - Added Obsidian Shard (ITEM)
+    - Added Obsidian Chunk (ITEM)
+    - Finished Malicious Brain and added him to treasure room pool
+    - Added proper sprite rendering for Painkillers' damage effect
+    - Atlas now uses more abstract icons for his transformations
+    - Condensed Milk now has a completely different effect
 - CHANGES:
-    - Made The Tar hidden on main menu
+    - Nerfed Shy Gals and some of their rooms
+    - Cool firejet api
+    - Completely changed the logic for Jonas' custom pill pools (major change)
+    - Buffed Caramel Apple's extra health chance from 1/4 to 1/3
+    - Resprited Malicious Brain familiar
+    - Fixed Atlas not getting free devil deals with Curse of the Lost active
+    - Milcom is now hidden on the main menu
+    - Painkillers gives a small damage multiplier as an upside
+    - Buffed Atlas' poop mantle - now gives a higher chance for poops to spawn pickups, the poop drop pool has better pickups like bombs and keys

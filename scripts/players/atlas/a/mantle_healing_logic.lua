@@ -30,13 +30,12 @@ if(CustomHealthAPI==nil) then
             --]]
 
             --print(type,num)
-
+            
             local amount = num
             if(HEARTS_TO_MANTLETYPE[type] and amount>0) then
                 local data = mod:getAtlasATable(player)
 
                 while(data.MANTLES[data.HP_CAP].TYPE==mod.MANTLE_DATA.NONE.ID and amount>0) do
-                    --print("ADDING_MANTLE", type, amount)
                     mod:giveMantle(player, HEARTS_TO_MANTLETYPE[type])
                     amount = amount-2
                 end

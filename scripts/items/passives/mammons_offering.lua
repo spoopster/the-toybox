@@ -38,16 +38,24 @@ end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param npc EntityNPC
----@param player EntityPlayer
-local function npcDeath(_, npc, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_MAMMONS_OFFERING)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_MAMMONS_OFFERING)
+local function enemyDie(_, npc)
+    if(not npc:IsEnemy()) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_MAMMONS_OFFERING)) then return end
 
-    if(rng:RandomFloat()<SPAWN_PENNY_CHANCE) then
+    local chance = 0
+    local rng
+    for _, player in ipairs(Isaac.FindByType(1,0)) do
+        if(player:ToPlayer():HasCollectible(mod.COLLECTIBLE_MAMMONS_OFFERING)) then
+            chance = chance+SPAWN_PENNY_CHANCE
+            rng = player:ToPlayer():GetCollectibleRNG(mod.COLLECTIBLE_MAMMONS_OFFERING)
+        end
+    end
+
+    if(rng:RandomFloat()<chance) then
         local penny = Isaac.Spawn(5, mod.PICKUP_MAMMONS_OFFERING_PENNY, 0, npc.Position, Vector.Zero, player)
     end
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_KILL_NPC, npcDeath)
+mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, enemyDie)
 
 --! PICKUP LOGIC
 

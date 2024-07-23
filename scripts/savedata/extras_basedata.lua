@@ -2,7 +2,14 @@ local mod = MilcomMOD
 
 local BASEDATA = {
     RAINBOW_KEY_ACTIVE = 0,
-    CUSTOM_PILL_POOL = {},
+
+    CUSTOM_PILL_POOL = 0,
+    PILLS_TOTAL = 0,
+    PILLS_GOOD = 0,
+    PILLS_NEUTRAL = 0,
+    PILLS_BAD = 0,
+    PILL_COLORS = 0,
+    PILL_TABLES_CALCULATED = 0,
 }
 
 return BASEDATA

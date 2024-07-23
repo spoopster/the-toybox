@@ -47,8 +47,7 @@ local function spawnOnDeath(_, tear)
         local p = Isaac.GetPlayer()
         if(tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()) then p = tear.SpawnerEntity:ToPlayer() end
 
-        local c = Color(1,1,1,1)
-        c:SetColorize(1.2,0.7,0,1)
+        local c = Color(1,1,0,1,0.1,0.1,0)
 
         local d = mod:lerp(3.5, p.Damage, 0.5)*2
 

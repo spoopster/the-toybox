@@ -51,7 +51,7 @@ local function updateTar(_, player)
     local data = mod:getAtlasATable(player)
     
     if(mod.CONFIG.ATLAS_TEMP_STRONGER_TAR and data.TIME_HAS_BEEN_IN_TRANSFORMATION%30==0 and data.TIME_HAS_BEEN_IN_TRANSFORMATION<=ENUM_TEMP_BONUS_DURATION) then
-        player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
+        player:AddCacheFlags(CacheFlag.CACHE_SPEED | CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY, true)
     end
 
     if(mod.CONFIG.ATLAS_TAR_CREEP) then

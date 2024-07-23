@@ -8,11 +8,11 @@ local PAPER_TEAR_HOMESPEED = 10
 local PAPER_TEAR_SPAWNSPEED = 4
 
 local BLOCK_PROJ_PAPERNUM = 1
-local BLOCK_PROJ_PAPERNUM_BFFS = 3
+local BLOCK_PROJ_PAPERNUM_BFFS = 2
 local PAPER_TEAR_BLOCKSPEED = 8
 local PAPER_TEAR_BLOCKARC = 40
 
-local ANGLE_SPEED = 1
+local ANGLE_SPEED = 2.3
 local ORBIT_DIST = Vector(60,45)
 
 local function spawnPaper(fam, vel)
@@ -76,11 +76,9 @@ local function postTomeUpdate(_, familiar)
     local hasSpin2Win = player:GetEffects():GetNullEffectNum(NullItemID.ID_SPIN_TO_WIN)>0
 
     if(hasSpin2Win) then
-        local shouldTint = (math.sin(math.rad(familiar.FrameCount*20))+1)/2
-        local tint = 0.1+0.2*shouldTint
-        familiar.Color = Color(1,1,1,1,tint,tint,tint)
-    else
-        familiar.Color = Color(1,1,1,1,0,0,0)
+        local shouldTint = (math.sin(math.rad(familiar.FrameCount*40))+1)/2
+        local tint = 0.4*shouldTint
+        familiar:SetColor(Color(1,1,1,1,tint,tint,tint),2,1,false,false)
     end
 
     if(data.STUPID_POS) then
@@ -88,7 +86,7 @@ local function postTomeUpdate(_, familiar)
         familiar.Position = Vector.FromAngle(data.TOME_ANGLE+(data.TOME_ANGLE_OFFSET or 0))*ORBIT_DIST+player.Position+player.Velocity
         data.STUPID_POS = false
     else
-        data.TOME_ANGLE = (data.TOME_ANGLE or 0)+ANGLE_SPEED*(hasSpin2Win and 3 or 1)
+        data.TOME_ANGLE = (data.TOME_ANGLE or 0)+ANGLE_SPEED*(hasSpin2Win and 5 or 1)
         local pos = Vector.FromAngle(data.TOME_ANGLE+(data.TOME_ANGLE_OFFSET or 0))*ORBIT_DIST+player.Position+player.Velocity
         familiar.Velocity = mod:lerp(familiar.Velocity, pos-familiar.Position, 0.75)
     end

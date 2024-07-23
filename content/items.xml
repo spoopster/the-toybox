@@ -1,45 +1,314 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2" >
 
-<passive    id="0"  name="Coconut Oil"          description="Speed down + firedelay down + slippery"    gfx="tb_coconut_oil.png"        quality="2" tags="offensive summonable tearsup"     cache="speed firedelay"         />
-<passive    id="1"  name="Condensed Milk"       description="Tears + damage down?"                      gfx="tb_condensed_milk.png"     quality="3" tags="offensive summonable"             cache="firedelay damage"        />
-<passive    id="2"  name="Eyestrain"            description="MY EYES"                                   gfx="tb_eyestrain.png"          quality="3" tags="offensive"                        cache="luck damage"             />
-<passive    id="3"  name="Pile of Sand"         description="Itchy and painful"                         gfx="tb_pile_of_sand.png"       quality="2" tags="offensive summonable"             cache=""                        />
-<passive    id="4"  name="Obsidian Shard"       description="Cutting edge + &quot;tinted&quot; rocks"   gfx="tb_obsidian_shard.png"     quality="3" tags="offensive"                        cache=""                        />
-<passive    id="5"  name="Goat Milk"            description="Tears up? Tears down?"                     gfx="tb_goat_milk.png"          quality="1" tags="offensive summonable tearsup"     cache="firedelay"               />
-<active     id="6"  name="Bronze Bull"          description="Feel the heat"                             gfx="tb_bronze_bull.png"        quality="2" tags="offensive"                        cache=""                        maxcharges="2"/>
-<active     id="7"  name="Pliers"               description="No pain no gain"                           gfx="tb_pliers.png"             quality="0" tags="tearsup nolostbr"                 cache="firedelay"               maxcharges="0"/>
-<passive    id="8"  name="Nose Candy"           description="Sugar rush!"                               gfx="tb_nose_candy.png"         quality="3" tags="offensive"                        cache="all"                     />
-<passive    id="9"  name="Lion Skull"           description="You shall know discipline"                 gfx="tb_lion_skull.png"         quality="2" tags="offensive summonable"             cache="damage"                  devilprice="1"/>
-<passive    id="10" name="Cursed Chains"        description="You shall know restraint"                  gfx="tb_cursed_chains.png"      quality="1" tags="offensive summonable"             cache="all"                     devilprice="1"/>
-<passive    id="11" name="Mammon's Offering"    description="You shall know charity"                    gfx="tb_mammons_offering.png"   quality="2" tags="offensive summonable"             cache="damage"                  devilprice="1"/>
-<familiar   id="12" name="Wooden Doll"          description="He's a real boy!"                          gfx="tb_wooden_doll.png"        quality="2" tags="offensive summonable"             cache=""                        />
-<passive    id="13" name="Caramel Apple"        description="HP up + better hearts"                     gfx="tb_caramel_apple.png"      quality="2" tags="nolostbr"                         cache=""                        maxhearts="2" hearts="2"/>
-<active     id="14" name="Blood Ritual"         description="Call upon him and he shall answer"         gfx="tb_blood_ritual.png"       quality="2" tags="offensive"                        cache="familiars"               maxcharges="3" devilprice="1"/>
-<passive    id="15" name="Tech IX"              description="Failed prototype"                          gfx="tb_tech_ix.png"            quality="2" tags="offensive summonable"             cache=""                        />
-<passive    id="16" name="Cricket's Jaw"        description="Death begets death"                        gfx="tb_crickets_jaw.png"       quality="4" tags="offensive summonable"             cache="damage"                  />
-<passive    id="17" name="Painkillers"          description="Delayed damage + immunity WAY down"        gfx="tb_painkillers.png"        quality="1" tags="summonable nolostbr"              cache=""                        />
-<active     id="18" name="Silk Bag"             description="Limited use invincibility"                 gfx="tb_silk_bag.png"           quality="3" tags="nolostbr"                         cache=""                        maxcharges="0"/>
-<passive    id="19" name="Paint Bucket"         description="Paint the basement red"                    gfx="tb_paint_bucket.png"       quality="3" tags="summonable offensive"             cache=""                        />
-<passive    id="20" name="Fatal Signal"         description="HP up + out of memory"                     gfx="tb_fatal_signal.png"       quality="0" tags="nolostbr"                         cache=""                        maxhearts="2" hearts="2"/>
-<passive    id="21" name="Meteor Shower"        description="Falling fireballs"                         gfx="tb_meteor_shower.png"      quality="1" tags="summonable offensive"             cache=""                        />
-<familiar   id="22" name="Malicious Brain"      description="He makes you mad"                          gfx="tb_malicious_brain.png"    quality="4" tags="summonable offensive"             cache=""                        />
-<passive    id="23" name="Blessed Ring"         description="Random holy blasts"                        gfx="tb_blessed_ring.png"       quality="2" tags="summonable offensive"             cache=""                        />
-<passive    id="24" name="Sigil of Greed"       description="Turn foes to $$$"                          gfx="tb_sigil_of_greed.png"     quality="3" tags="summonable offensive"             cache=""                        devilprice="1"/>
-<passive    id="25" name="Pepper X"             description="Infinite hot"                              gfx="tb_pepper_x.png"           quality="3" tags="summonable offensive"             cache=""                        />
-<familiar   id="26" name="Scattered Tome"       description="Pages in the wind"                         gfx="tb_scattered_tome.png"     quality="2" tags="summonable offensive"             cache=""                        />
-<active     id="27" name="Toy Gun"              description="Packs a punch"                             gfx="tb_toy_gun.png"            quality="2" tags="nolostbr"                         cache=""                        maxcharges="600" chargetype="special" initcharge="0"/>
-<active     id="28" name="Golden Tweezers"      description="No pluck no luck + 5 coins"                gfx="tb_golden_tweezers.png"    quality="1" tags="tearsup"                          cache="firedelay"               maxcharges="0" coins="5"/>
+<!-- ITEMS -->
 
-<passive    id="44" name="4 4"                  description="Hear its cry"                              gfx="tb_4_4.png"                quality="3" tags="summonable offensive"             cache=""                        />
+<passive id="0" name="Coconut Oil"
+    description="Speed down + tears up + slippery"
+    gfx="tb_coconut_oil.png"
+    quality="2"
+    tags="offensive summonable tearsup"
+    cache="speed firedelay"
+/>
+<passive id="1" name="Condensed Milk"
+    description="Tear funnel"
+    gfx="tb_condensed_milk.png"
+    quality="3"
+    tags="offensive summonable tearsup"
+    cache="firedelay"
+/>
+<passive id="2" name="Eyestrain"
+    description="MY EYES"
+    gfx="tb_eyestrain.png"
+    quality="3"
+    tags="offensive"
+    cache="luck damage"
+/>
+<!--! not implemented -->
+<passive id="3" name="Pile of Sand"
+    description="Itchy and painful"
+    gfx="tb_pile_of_sand.png"
+    quality="2"
+    tags="offensive summonable    noeden"
+    cache=""
 
+    hidden="true"
+/>
+<passive id="4" name="Obsidian Shard"
+    description="Cutting edge + &quot;tinted&quot; rocks"
+    gfx="tb_obsidian_shard.png"
+    quality="3"
+    tags="offensive"
+    cache=""
+/>
+<passive id="5" name="Goat Milk"
+    description="Tears up? Tears down?"
+    gfx="tb_goat_milk.png"
+    quality="1"
+    tags="offensive summonable tearsup"
+    cache="firedelay"
+/>
+<!--! not implemented -->
+<active id="6" name="Bronze Bull"
+    description="Feel the heat"
+    gfx="tb_bronze_bull.png"
+    quality="2"
+    tags="offensive    noeden"           
+    cache=""
 
-<trinket    id="0"  name="LIMIT BREAK"          description="Their true potential"                      gfx="tb_limit_break.png"                                                            cache=""                        />
-<trinket    id="1"  name="Plasma Globe"         description="High voltage"                              gfx="tb_placeholder.png"                                                            cache=""                        />
-<trinket    id="2"  name="Foam Bullet"          description="Lethal force"                              gfx="tb_foam_bullet.png"                                                            cache=""                        />
+    maxcharges="2"
+    hidden="true"
+/>
+<active id="7" name="Pliers"
+    description="No pain no gain"
+    gfx="tb_pliers.png"
+    quality="0"
+    tags="tearsup nolostbr"
+    cache="firedelay"
+
+    maxcharges="0"
+/>
+<passive id="8" name="Nose Candy"
+    description="Sugar rush!"
+    gfx="tb_nose_candy.png"
+    quality="3"
+    tags="offensive"
+    cache="all"
+/>
+<passive id="9" name="Lion Skull"
+    description="You shall know discipline"
+    gfx="tb_lion_skull.png"
+    quality="2"
+    tags="offensive summonable"
+    cache="damage"
+
+    devilprice="1"
+/>
+<!--! not implemented -->
+<passive id="10" name="Cursed Chains"
+    description="You shall know restraint"
+    gfx="tb_cursed_chains.png"
+    quality="1"
+    tags="offensive summonable    noeden"
+    cache="all"
+
+    devilprice="1"
+    hidden="true"
+/>
+<!--? unused -->
+<passive id="11" name="Mammon's Offering"
+    description="You shall know charity"
+    gfx="tb_mammons_offering.png"
+    quality="2"
+    tags="offensive summonable    noeden"
+    cache="damage"
+
+    devilprice="1"
+    hidden="true"
+/>
+<!--! not implemented -->
+<familiar id="12" name="Wooden Doll"
+    description="He's a real boy!"
+    gfx="tb_wooden_doll.png"
+    quality="2"
+    tags="offensive summonable noeden"
+    cache=""
+
+    hidden="true"
+/>
+<passive id="13" name="Caramel Apple"
+    description="HP up + better hearts"
+    gfx="tb_caramel_apple.png"
+    quality="2"
+    tags="nolostbr"
+    cache=""
+
+    maxhearts="2"
+    hearts="2"
+/>
+<active id="14" name="Blood Ritual"
+    description="Call upon him and he shall answer"
+    gfx="tb_blood_ritual.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+    
+    maxcharges="3"
+    devilprice="1"
+/>
+<passive id="15" name="Tech IX"
+    description="Failed prototype"
+    gfx="tb_tech_ix.png"
+    quality="2"
+    tags="offensive summonable"
+    cache=""
+/>
+<!--! not implemented -->
+<passive id="16" name="Cricket's Jaw"
+    description="Death begets death"
+    gfx="tb_crickets_jaw.png"
+    quality="4"
+    tags="offensive summonable    noeden"
+    cache="damage"
+
+    hidden="true"
+/>
+<passive id="17" name="Painkillers"
+    description="Delayed damage + immunity WAY down"
+    gfx="tb_painkillers.png"
+    quality="1"
+    tags="summonable nolostbr"
+    cache="damage"
+/>
+<active id="18" name="Silk Bag"
+    description="Limited use invincibility"
+    gfx="tb_silk_bag.png"
+    quality="3"
+    tags="nolostbr"
+    cache=""
+
+    maxcharges="0"
+/>
+<!--! not implemented -->
+<passive id="19" name="Paint Bucket"
+    description="Paint the basement red"
+    gfx="tb_paint_bucket.png"
+    quality="3"
+    tags="summonable offensive    noeden"
+    cache=""
+    
+    hidden="true"
+/>
+<passive id="20" name="Fatal Signal"
+    description="HP up + out of memory"
+    gfx="tb_fatal_signal.png"
+    quality="0"
+    tags="nolostbr"
+    cache=""
+    
+    maxhearts="2"
+    hearts="2"
+/>
+<passive id="21" name="Meteor Shower"
+    description="Falling fireballs"
+    gfx="tb_meteor_shower.png"
+    quality="1"
+    tags="summonable offensive"
+    cache=""
+/>
+<familiar id="22" name="Malicious Brain"
+    description="He hates you"
+    gfx="tb_malicious_brain.png"
+    quality="4"
+    tags="summonable offensive"
+    cache=""
+/>
+<passive id="23" name="Blessed Ring"
+    description="Random holy blasts"
+    gfx="tb_blessed_ring.png"
+    quality="2"
+    tags="summonable offensive"
+    cache=""
+/>
+<passive id="24" name="Sigil of Greed"
+    description="Turn foes to $$$"
+    gfx="tb_sigil_of_greed.png"
+    quality="3"
+    tags="summonable offensive"
+    cache=""
+
+    devilprice="2" 
+/>
+<passive id="25" name="Pepper X"
+    description="Infinite hot"
+    gfx="tb_pepper_x.png"
+    quality="3"
+    tags="summonable offensive"
+    cache=""
+/>
+<familiar id="26" name="Scattered Tome"
+    description="Pages in the wind"
+    gfx="tb_scattered_tome.png"
+    quality="2"
+    tags="monstermanual summonable offensive"
+    cache=""
+/>
+<active id="27" name="Toy Gun"
+    description="Packs a punch"
+    gfx="tb_toy_gun.png"
+    quality="2"
+    tags="nolostbr"
+    cache=""
+    
+    maxcharges="600"
+    chargetype="special"
+    initcharge="0"
+/>
+<active id="28" name="Golden Tweezers"
+    description="No pluck no luck + 5 coins"
+    gfx="tb_golden_tweezers.png"
+    quality="1"
+    tags="tearsup"
+    cache="firedelay"
+    
+    maxcharges="0"
+    coins="5"
+/>
+<!--! not implemented -->
+<active id="29" name="Gilded Apple"
+    description="Golden aura"
+    gfx="tb_golden_apple.png"
+    quality="3"
+    tags="offensive    noeden"
+    cache=""
+    
+    maxcharges="4"
+    hidden="true"
+/>
+<passive id="30" name="Obsidian Chunk"
+    description="Harder than steel"
+    gfx="tb_obsidian_chunk.png"
+    quality="3"
+    tags="offensive"
+    cache="shotspeed damage"
+
+    blackhearts="2"
+/>
+
+<passive id="44" name="4 4"
+    description="Hear its cry"
+    gfx="tb_4_4.png"
+    quality="3"
+    tags="summonable offensive"
+    cache=""
+/>
+
+<!-- TRINKETS -->
+
+<trinket id="0" name="LIMIT BREAK"
+    description="Their true potential"
+    gfx="tb_limit_break.png"
+    cache=""
+/>
+<trinket id="1" name="Plasma Globe"
+    description="High voltage"
+    gfx="tb_placeholder.png"
+    cache=""
+/>
+<trinket id="2" name="Foam Bullet"
+    description="Lethal force"
+    gfx="tb_foam_bullet.png"
+    cache=""
+/>
 
 <!-- UNUSED ITEMS
 
-<passive  id="1000" name="Laser Pointer"        description="Predictive paths"                          gfx="tb_placeholder.png"        quality="0" tags="summonable"                       cache=""                        />
+<passive id="1000" name="Laser Pointer"
+    description="Predictive paths"
+    gfx="tb_placeholder.png"
+    quality="0"
+    tags="summonable"
+    cache=""
+/>
 
 -->
 

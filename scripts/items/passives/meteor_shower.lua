@@ -5,8 +5,8 @@ local METEOR_COOLDOWN = 4*30
 local METEOR_COOLDOWN_BIGROOM = 2*30
 local METEORS_NUM = 1
 
-local METEOR_SPEED = 14
-local METEOR_FALLING_FRAMES = 3*30
+local METEOR_SPEED = 30
+local METEOR_FALLING_FRAMES = 2*30
 local FALLING_FRAME_RANDOMNESS = 15
 
 local METEOR_SCALE_MULT = 2
@@ -37,7 +37,7 @@ local function postUpdate(_)
         for _= 1, p:GetCollectibleNum(mod.COLLECTIBLE_METEOR_SHOWER)*METEORS_NUM do
             local pos = mod:getRandomFreePos()
 
-            local m = Isaac.Spawn(EntityType.ENTITY_TEAR, mod.TEAR_METEOR, 2, pos, Vector.Zero, p):ToTear()
+            local m = Isaac.Spawn(EntityType.ENTITY_TEAR, mod.TEAR_METEOR, 2, pos-Vector(50,0), Vector.Zero, p):ToTear()
             m.CollisionDamage = 0
             m.Scale = mod:lerp(3.5, p.Damage, 0.4)*METEOR_SCALE_MULT/3.5
             m.SpriteScale = m.SpriteScale*(1/m.Scale)
@@ -73,7 +73,7 @@ local function meteorTearInit(_, tear)
 
     tear.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
 
-    tear:AddTearFlags(TearFlags.TEAR_PIERCING)
+    tear:AddTearFlags(TearFlags.TEAR_PIERCING | TearFlags.TEAR_SPECTRAL)
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, meteorTearInit, mod.TEAR_METEOR)
 
@@ -104,15 +104,18 @@ local function spawnOnDeath(_, tear)
 
         for i=1,4 do
             local v = Vector.FromAngle(i*90)*35
-            local fj = mod:spawnFireJet(tear, d, tear.Position+v, 4, 2, v, 10, nil, true)
+            local fj = mod:spawnFireJet(tear, d, tear.Position+v, 4, 2, v, 10, Color(1,1,0,1,1,0.1,0), true)
         end
 
-        local s = math.sqrt(tear.Scale/METEOR_SCALE_MULT)
-        local fire = Isaac.Spawn(1000,52,0, tear.Position, Vector.Zero, p):ToEffect()
-        fire.SpriteScale = Vector(1,1)*s
-        fire.Scale = s
-        fire.CollisionDamage = d
-        fire.Timeout = 4*30
+        local NUM_FIRES = 3
+        for i=1,NUM_FIRES do
+            local s = math.sqrt(tear.Scale/METEOR_SCALE_MULT)
+            local fire = Isaac.Spawn(1000,52,0, tear.Position+Vector.FromAngle(360*i/NUM_FIRES+30):Resized(15), Vector.Zero, p):ToEffect()
+            fire.SpriteScale = Vector(1,1)*s
+            fire.Scale = s
+            fire.CollisionDamage = d
+            fire.Timeout = 4*30
+        end
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, spawnOnDeath, EntityType.ENTITY_TEAR)

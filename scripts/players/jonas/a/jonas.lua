@@ -40,7 +40,7 @@ local JONAS_A_BASEDATA = {
 }
 
 mod.JONAS_A_BASEDATA = JONAS_A_BASEDATA
-mod.JONAS_A_DATA = {}
+--mod.JONAS_A_DATA = {}
 --#endregion
 
 local canRerollPool = true
@@ -65,21 +65,6 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postJonasInit)
 
 ---@param player EntityPlayer
-local function postJonasUpdate(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
-
-    local data = mod:getJonasATable(player)
-    local phdmask = mod:getTotalPhdMask()
-    if(phdmask~=data.LAST_PHD_VAL) then
-        if(data.LAST_PHD_VAL~=nil) then
-            mod:calcPillPool(mod:generateRng(),data.BAD_PILLNUM,data.NEUTRAL_PILLNUM,data.GOOD_PILLNUM,phdmask)
-        end
-        data.LAST_PHD_VAL = phdmask
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postJonasUpdate)
-
----@param player EntityPlayer
 local function rerollPillPoolNewLevel(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
     if(player.FrameCount==0) then return end
@@ -96,22 +81,29 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, rerollPillPoolNewLevel)
 local function postJonasRender(_, player)
     if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
     --! FOR TESTING PURPOSES, DELETE ON RELEASE
-    if(mod.JONAS_A_DATA[player.InitSeed]==nil) then mod.JONAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.JONAS_A_BASEDATA) end
+    --if(mod.JONAS_A_DATA[player.InitSeed]==nil) then mod.JONAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.JONAS_A_BASEDATA) end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postJonasRender)
 
----@param player EntityPlayer
-local function preUseGoldPill(_, id, color, player, flags)
-    if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
-    if(not (color==PillColor.PILL_GOLD and color==PillColor.PILL_GOLD|PillColor.PILL_GIANT_FLAG)) then return end
+local strokinMyShit = false
 
-    local rng = player:GetPillRNG(id)
-    local totalEffects = mod:getAllPillEffects(mod:getTotalPhdMask())
-    player:UsePill(totalEffects[rng:RandomInt(#totalEffects)+1].ID, PillColor.PILL_GOLD, flags)
+local function replaceGoldPillEffect(_, pilleffect, color)
+    if(strokinMyShit) then return end
 
-    return true
+    local dataTable = mod:getExtraDataTable()
+    local pillpool = dataTable.CUSTOM_PILL_POOL
+    if(pillpool and pillpool~=0 and (color==PillColor.PILL_GOLD or color==PillColor.PILL_GOLD|PillColor.PILL_GIANT_FLAG)) then
+        local chosenPlayer = Isaac.GetPlayer()
+        local phdVal = mod:getTotalPhdMask()
+
+        if(chosenPlayer:GetPlayerType()==mod.PLAYER_JONAS_A) then
+            --print("y")
+            local rng = mod:generateRng()
+            return mod:getRandomPillEffect(rng, chosenPlayer, phdVal, {})
+        end
+    end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_USE_PILL, preUseGoldPill)
+mod:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, CallbackPriority.LATE-1, replaceGoldPillEffect)
 
 ---@param player EntityPlayer
 local function getBirthright(_, _, _, firstTime, slot, vData, player)

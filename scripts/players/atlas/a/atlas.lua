@@ -9,20 +9,11 @@ local ATLAS_A_BASEDATA = {
     CHARACTER_SIDE = "A",
 
     HP_CAP = 3,
-    -- [[
     MANTLES = {
         { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
         { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
         { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
     },
-    --]]
-    --[[
-    MANTLES = {
-        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=0, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
-        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=0, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
-        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=0, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
-    },
-    --]]
     TRANSFORMATION = mod.MANTLE_DATA.DEFAULT.ID,
     BIRTHRIGHT_TRANSFORMATION = mod.MANTLE_DATA.NONE.ID,
     TIME_HAS_BEEN_IN_TRANSFORMATION = 0,
@@ -32,7 +23,7 @@ local ATLAS_A_BASEDATA = {
 }
 
 mod.ATLAS_A_BASEDATA = ATLAS_A_BASEDATA
-mod.ATLAS_A_DATA = {}
+--mod.ATLAS_A_DATA = {}
 --#endregion
 
 ---@param player EntityPlayer
@@ -59,7 +50,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postAtlasUpdate)
 local function postAtlasRender(_, player)
     if(not mod:isAtlasA(player)) then return end
     --! FOR TESTING PURPOSES, DELETE ON RELEASE
-    if(mod.ATLAS_A_DATA[player.InitSeed]==nil) then mod.ATLAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.ATLAS_A_BASEDATA) end
+    --if(mod.ATLAS_A_DATA[player.InitSeed]==nil) then mod.ATLAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.ATLAS_A_BASEDATA) end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postAtlasRender)
 

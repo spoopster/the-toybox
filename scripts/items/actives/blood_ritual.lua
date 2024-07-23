@@ -49,6 +49,8 @@ local function useBloodRitual(_, _, rng, player, flags)
     if(flags & UseFlag.USE_CARBATTERY == 0) then
         local isCarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
 
+        mod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #(mod:getEntityData(player, "BLOOD_RITUAL_DATA") or {}))
+
         local ritualData = mod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
         local numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS or ENUM_NUMFAMILIARS)
         if(#ritualData>0) then numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS_EXTRA or ENUM_NUMFAMILIARS_EXTRA) end
@@ -62,6 +64,8 @@ local function useBloodRitual(_, _, rng, player, flags)
         pentagram.DepthOffset = -1000
 
         sfx:Play(SoundEffect.SOUND_DEVIL_CARD)
+
+        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     end
 
     return {
@@ -98,7 +102,7 @@ end
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
     local ritualData = mod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
-    if(#ritualData==0) then return end
+    if(#ritualData==0 or #ritualData==(mod:getEntityData(player, "BLOOD_RITUAL_PREVNUM") or 0)) then return end
     local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_BLOOD_RITUAL)
 
     local itemCounts = {}
@@ -130,6 +134,8 @@ local function evalCache(_, player, flag)
 
         addFam(famVar,-1, cNum, num, c, famVar==FamiliarVariant.TWISTED_BABY)
     end
+
+    mod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #ritualData)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
 

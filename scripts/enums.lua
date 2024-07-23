@@ -31,6 +31,7 @@ mod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")        
 mod.COLLECTIBLE_EYESTRAIN = Isaac.GetItemIdByName("Eyestrain")                      --!DONE
 mod.COLLECTIBLE_PILE_OF_SAND = Isaac.GetItemIdByName("Pile of Sand")
 mod.COLLECTIBLE_OBSIDIAN_SHARD = Isaac.GetItemIdByName("Obsidian Shard")
+mod.COLLECTIBLE_OBSIDIAN_CHUNK = Isaac.GetItemIdByName("Obsidian Chunk")
 mod.COLLECTIBLE_GOAT_MILK = Isaac.GetItemIdByName("Goat Milk")                      --!DONE
 mod.COLLECTIBLE_BRONZE_BULL = Isaac.GetItemIdByName("Bronze Bull")
 mod.COLLECTIBLE_PLIERS = Isaac.GetItemIdByName("Pliers")              --!DONE
@@ -86,6 +87,7 @@ mod.FAMILIAR_HYPNOS = Isaac.GetEntityVariantByName("Malicious Brain")
 mod.EFFECT_BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram")
 mod.EFFECT_METEOR_TEAR_EXPLOSION = Isaac.GetEntityVariantByName("Meteor Tear Explosion")
 mod.EFFECT_GOLDMANTLE_BREAK = Isaac.GetEntityVariantByName("Gold Mantle Shatter")
+mod.EFFECT_GREED_SIGIL_CHARGEBAR = Isaac.GetEntityVariantByName("Greed Sigil Chargebar")
 
 --*PICKUPS
 mod.PICKUP_MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny")
@@ -125,16 +127,33 @@ mod.SHADERS = {
     BLOOM = "ToyboxBloomShader",
 }
 
+mod.COPYING_FAMILIARS = {
+    [FamiliarVariant.INCUBUS] = true,
+    [FamiliarVariant.SPRINKLER] = true,
+    [FamiliarVariant.TWISTED_BABY] = true,
+    [FamiliarVariant.BLOOD_BABY] = true,
+    [FamiliarVariant.UMBILICAL_BABY] = true,
+    [FamiliarVariant.CAINS_OTHER_EYE] = true,
+    --[FamiliarVariant.FATES_REWARD] = true,
+}
+
 mod.CUSTOM_CALLBACKS = {
     PRE_ATLAS_LOSE_MANTLE = "TOYBOX_PRE_ATLAS_LOSE_MANTLE",
     POST_ATLAS_LOSE_MANTLE = "TOYBOX_POST_ATLAS_LOSE_MANTLE",
     POST_PLAYER_BOMB_DETONATE = "TOYBOX_POST_PLAYER_BOMB_DETONATE",
-    POST_PLAYER_KILL_NPC = "TOYBOX_POST_PLAYER_KILL_NPC",
-    POST_MILCOM_CRAFT_CRAFTABLE = "TOYBOX_POST_MILCOM_CRAFT_CRAFTABLE",
     POST_PLAYER_ATTACK = "TOYBOX_POST_PLAYER_ATTACK",
     USE_THROWABLE_ACTIVE = "TOYBOX_USE_THROWABLE_ACTIVE",
     POST_PLAYER_DOUBLE_TAP = "TOYBOX_POST_PLAYER_DOUBLE_TAP",
     USE_ACTIVE_ITEM = "TOYBOX_USE_ACTIVE_ITEM",
+    POST_FIRE_TEAR = "TOYBOX_POST_FIRE_TEAR",
+    RESET_LUDOVICO_DATA = "TOYBOX_RESET_LUDOVICO_DATA",
+    POST_FIRE_BOMB = "TOYBOX_POST_FIRE_BOMB",
+    COPY_SCATTER_BOMB_DATA = "TOYBOX_COPY_SCATTER_BOMB_DATA",
+    POST_PLAYER_EXTRA_DMG = "TOYBOX_POST_PLAYER_EXTRA_DMG",
+    POST_FIRE_AQUARIUS = "TOYBOX_POST_FIRE_AQUARIUS",
+    POST_FIRE_ROCKET = "TOYBOX_POST_FIRE_ROCKET",
+    ROCKET_COPY_TARGET_DATA = "TOYBOX_ROCKET_COPY_TARGET_DATA",
+    POST_ROCKET_EXPLODE = "TOYBOX_POST_ROCKET_EXPLODE",
 }
 
 mod.CUSTOM_BOMBFLAGS = {
@@ -142,10 +161,15 @@ mod.CUSTOM_BOMBFLAGS = {
     FLAG_MAKESHIFT_BOMB2 = 1<<1,
 }
 
-mod.PILL_SUBCLASS = {
-    NEUTRAL = 0,
-    GOOD = 1,
-    BAD = 2,
+mod.DAMAGE_TYPE = {
+    KNIFE = 1<<0,
+    LASER = 1<<1,
+    DARK_ARTS = 1<<2,
+    ABYSS_LOCUST = 1<<3,
+    BOMB = 1<<4,
+    AQUARIUS = 1<<5,
+    ROCKET = 1<<6,
+    TEAR = 1<<7,
 }
 
 --#endregion

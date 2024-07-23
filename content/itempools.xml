@@ -10,6 +10,7 @@
         <Item Name="Meteor Shower"/>
         <Item Name="Golden Tweezers"/>
         <Item Name="Scattered Tome"/>
+        <Item Name="Malicious Brain"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -22,6 +23,7 @@
         <Item Name="Meteor Shower"/>
         <Item Name="Golden Tweezers"/>
         <Item Name="Scattered Tome"/>
+        <Item Name="Malicious Brain"/>
     </Pool>
 
     <Pool Name="boss">
@@ -42,11 +44,11 @@
 
     <Pool Name="devil">
         <Item Name="Blood Ritual"/>
-        <Item Name="Mammon's Offering" Weight="0.1" DecreaseBy="0.1"/>
-        <Item Name="Lion Skull" Weight="0.1" DecreaseBy="0.1"/>
+        <Item Name="Sigil of Greed"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
+        <Item Name="Sigil of Greed" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="angel">
@@ -62,7 +64,6 @@
         <Item Name="Pliers"/>
         <Item Name="Lion Skull"/>
         <Item Name="Painkillers"/>
-        <Item Name="Mammon's Offering"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>

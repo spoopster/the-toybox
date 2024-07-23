@@ -30,7 +30,7 @@ local CHASE_CLONECREEPTHRESHOLD = 30*30
 local CHASE_WALLSLAMPROJNUM = 8
 local CHASE_WALLSLAMPROJSPEED = 9
 
-local UNMASK_DMGREQUIRE = 18
+local UNMASK_DMGREQUIRE = 15
 local BLOCK_COLOR = Color(1,1,1,1,0.3,0.3,0.5)
 
 local function changeStates(npc, state)
@@ -96,8 +96,9 @@ local function getDistributedRandomPos(centerpos, amount)
 
     return positions
 end
-local function calcAngerValue(npc, start, final, anger)
-    return math.floor(mod:lerp(start, final, math.min(1,mod:getEntityData(npc, "SHYGAL_AGGRESSION")/anger)))
+local function calcAngerValue(npc, start, final, anger) --* currently just returns start because anger mechanic is unnecessary
+    return start
+    --return math.floor(mod:lerp(start, final, math.min(1,mod:getEntityData(npc, "SHYGAL_AGGRESSION")/anger)))
 end
 ---@param npc EntityNPC
 local function updateMaskState(npc, isMasked, doEffects)

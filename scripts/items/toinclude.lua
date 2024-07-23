@@ -19,6 +19,9 @@ local t = {
     "scripts.items.passives.4_4",
     "scripts.items.passives.scattered_tome",
     "scripts.items.passives.malicious_brain",
+    "scripts.items.passives.obsidian_shard",
+    "scripts.items.passives.obsidian_chunk",
+    "scripts.items.passives.sigil_of_greed",
 
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 
@@ -38,7 +41,7 @@ local t = {
     "scripts.items.trinkets.limit_break",
 
     --UNUSED
-    -- "scripts.items.unused.laser_pointer",
+    --"scripts.items.unused.laser_pointer",
 }
 for _, path in ipairs(t) do
     include(path)

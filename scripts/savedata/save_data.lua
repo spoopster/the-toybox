@@ -73,25 +73,17 @@ local persistentBaseData = include("scripts.savedata.persistent_basedata")      
 function mod:saveProgress()
     local save = {}
 
-    save.milcomData = {}
-    save.atlasData = {}
-    save.jonasData = {}
+    --save.milcomData = {}
+    --save.atlasData = {}
+    --save.jonasData = {}
     save.playerData = {}
     for _, player in ipairs(Isaac.FindByType(1,0)) do
         player=player:ToPlayer()
         local seed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
-        local pt = player:GetPlayerType()
-
-        if(pt==mod.PLAYER_MILCOM_A) then save.milcomData[seed] = convertTableToSaveData(mod:getMilcomATable(player)) end
-        if(pt==mod.PLAYER_ATLAS_A or pt==mod.PLAYER_ATLAS_A_TAR) then save.atlasData[seed] = convertTableToSaveData(mod:getAtlasATable(player)) end
-        if(pt==mod.PLAYER_JONAS_A) then save.jonasData[seed] = convertTableToSaveData(mod:getJonasATable(player)) end
 
         save.playerData[seed] = convertDataToSaveData(mod:getEntityDataTable(player), playerBaseData)
     end
-    --print("-")
-    --print(mod:getExtraDataTable().CUSTOM_PILL_POOL)
     save.extraData = convertDataToSaveData(mod:getExtraDataTable(), extraBaseData)
-    --print(save.extraData.CUSTOM_PILL_POOL)
 
     save.persistentData = convertDataToSaveData(mod:getPersistentDataTable(), persistentBaseData)
 
@@ -110,6 +102,7 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.saveGameExit)
 
 local function loadImportantData(_, slot)
+    mod.IS_DATA_LOADED = false
     if(mod:HasData()) then
         local sd = json.decode(Isaac.LoadModData(mod))
 
@@ -121,33 +114,17 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, loadImportantData)
 
 function mod:dataSaveInit(player)
-    local pt = player:GetPlayerType()
-
+    --print(mod:getEntityData(player, "ATLAS_A_DATA"))
+    mod.IS_DATA_LOADED = false
     mod:cloneTableWithoutDeleteing(mod:getEntityDataTable(player), playerBaseData)
     if(#Isaac.FindByType(1)==0) then
         mod:cloneTableWithoutDeleteing(mod:getExtraDataTable(), extraBaseData)
         mod:cloneTableWithoutDeleteing(mod:getPersistentDataTable(), persistentBaseData)
     end
-    if(pt==mod.PLAYER_ATLAS_A or pt==mod.PLAYER_ATLAS_A_TAR) then
-        mod.ATLAS_A_DATA[player.InitSeed] = {}
-        mod:cloneTableWithoutDeleteing(mod:getAtlasATable(player), mod.ATLAS_A_BASEDATA)
-    end
-    if(pt==mod.PLAYER_MILCOM_A) then
-        mod.MILCOM_A_DATA[player.InitSeed] = {}
-        mod:cloneTableWithoutDeleteing(mod:getMilcomATable(player), mod.MILCOM_A_BASEDATA)
-    end
-    if(pt==mod.PLAYER_JONAS_A) then
-        mod.JONAS_A_DATA[player.InitSeed] = {}
-        mod:cloneTableWithoutDeleteing(mod:getJonasATable(player), mod.JONAS_A_BASEDATA)
-    end
 
     if(Game():GetFrameCount()~=0 and mod:HasData()) then
         local save = json.decode(mod:LoadData())
         local pSeed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
-
-        if((pt==mod.PLAYER_ATLAS_A or pt==mod.PLAYER_ATLAS_A_TAR) and save.atlasData and save.atlasData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getAtlasATable(player), convertSaveDataToTable(save.atlasData[pSeed])) end
-        if(pt==mod.PLAYER_MILCOM_A and save.milcomData and save.milcomData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getMilcomATable(player), convertSaveDataToTable(save.milcomData[pSeed])) end
-        if(pt==mod.PLAYER_JONAS_A and save.jonasData and save.jonasData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getJonasATable(player), convertSaveDataToTable(save.jonasData[pSeed])) end
 
         if(save.playerData[seed]) then mod:cloneTableWithoutDeleteing(mod:getEntityDataTable(player), convertSaveDataToTable(save.playerData[pSeed])) end
         
@@ -166,4 +143,4 @@ function mod:dataSaveInit(player)
 
     mod.IS_DATA_LOADED = true
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_INIT, CallbackPriority.IMPORTANT, mod.dataSaveInit)
+mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_INIT, -math.huge, mod.dataSaveInit)

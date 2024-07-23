@@ -8,7 +8,7 @@
     </entity>
     <entity name="Malicious Brain"
         id="3" variant="8479" anm2path="familiars/tb_familiar_hypnos.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" collisionInterval="0"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" collisionInterval="4"
         numGridCollisionPoints="6" shadowSize="11" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
@@ -28,6 +28,12 @@
     </entity>
     <entity name="Gold Mantle Shatter"
         id="1000" variant="2841" anm2path="effects/tb_effect_goldmantle_shatter.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Greed Sigil Chargebar"
+        id="1000" variant="21471" anm2path="effects/tb_effect_greed_chargebar.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
         numGridCollisionPoints="0" shadowSize="0" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -82,19 +88,19 @@
     <!-- NPCS -->
     <entity name="Shy Gal"
         id="782" variant="1" subtype="0" anm2path="bosses/shygals/boss_shygal.anm2" friction="1"
-        baseHP="200" boss="1" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="15"
+        baseHP="180" boss="1" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="15"
         numGridCollisionPoints="8" shadowSize="20" stageHP="0">
 		<gibs amount="10" blood="1" bone="1" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Shy Gal Clone"
         id="782" variant="2" subtype="0" anm2path="bosses/shygals/boss_shygal.anm2" friction="1"
-        baseHP="9" boss="0" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="15"
+        baseHP="18" boss="0" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="15"
         numGridCollisionPoints="8" shadowSize="20" stageHP="3">
         <gibs amount="25" blood="1" bone="1" eye="1" gut="1" large="0" />
     </entity>
     <entity name="Shy Gal Mask"
         id="782" variant="3" subtype="0" anm2path="bosses/shygals/shygal_mask.anm2" friction="1"
-        baseHP="1" boss="0" champion="0" collisionDamage="1" collisionMass="80" collisionRadius="12"
+        baseHP="1" boss="0" champion="0" collisionDamage="1" collisionMass="80" collisionRadius="8"
         numGridCollisionPoints="8" shadowSize="12" stageHP="0">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
