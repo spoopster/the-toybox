@@ -68,6 +68,11 @@ local function chunkFireTear(_, tear, player, isLudo)
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, chunkFireTear)
 
+local function resetLudoData(_, tear)
+    mod:setEntityData(tear, "OBSIDIAN_CHUNK_TEAR", false)
+end
+mod:AddCallback(mod.CUSTOM_CALLBACKS.RESET_LUDOVICO_DATA, resetLudoData)
+
 --#endregion
 
 --#region --! BOMBS
@@ -210,7 +215,7 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ROCKET_EXPLODE, chunkRocketExplode)
 
 --#endregion
 
---#region --! LASER
+--#region --! LASER/KNIFE
 
 ---@param player EntityPlayer
 ---@param ent Entity

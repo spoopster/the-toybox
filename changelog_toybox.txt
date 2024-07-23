@@ -1,4 +1,5 @@
 - NEW:
-
+    - Obsidian Shard gives a chance to shoot bleeding tears
+    - Added EID for Obsidian Shard
 - CHANGES:
-    - Removed Mammon's Offering and Lion Skull from greed curse pool
+    - Added Obsidian Shard to Red Chest and Treasure Room pools (oops)

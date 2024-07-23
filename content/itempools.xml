@@ -11,6 +11,7 @@
         <Item Name="Golden Tweezers"/>
         <Item Name="Scattered Tome"/>
         <Item Name="Malicious Brain"/>
+        <Item Name="Obsidian Shard"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -71,6 +72,7 @@
     </Pool>
 
     <Pool Name="redChest">
+        <Item Name="Obsidian Shard"/>
         <Item Name="Painkillers" Weight="0.75" DecreaseBy="0.75"/>
     </Pool>
 

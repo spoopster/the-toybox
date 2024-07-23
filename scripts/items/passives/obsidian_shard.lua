@@ -22,6 +22,16 @@ local TINTED_MORPHS = {
     },
 }
 
+local BLEED_DURATION = math.floor(30*3)
+
+local BLEED_CHANCE = 0.075
+local BLEED_MAXCHANCE = 0.2
+local BLEED_MAXLUCK = 18
+
+local SHARD_TEARCOLOR = Color(0.9,0.8,0.9,1)
+SHARD_TEARCOLOR:SetColorize(0.6,0.49,0.72,0.6)
+
+--#region  The tinted rock part
 local function getMorph(ent, rng)
     for _, data in ipairs(TINTED_MORPHS) do
         local passThis = true
@@ -115,3 +125,79 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preTintedSpiderUpdate, EntityType.ENTITY_ROCK_SPIDER)
 
 --#endregion
+
+--#endregion
+
+local function getTriggerChance(luckval, chancemult)
+    return mod:getLuckAffectedChance(luckval, BLEED_CHANCE*chancemult, BLEED_MAXLUCK/chancemult, BLEED_MAXCHANCE)
+end
+
+---@param ent Entity
+local function applyShardBleed(_, ent, amount, flags, ref, frames)
+    if(not (ref.Entity and mod:getEntityData(ref.Entity, "OBSIDIAN_SHARD_TEAR"))) then return end
+
+    ent:AddBleeding(ref, math.max(0, BLEED_DURATION-ent:GetBleedingCountdown()))
+end
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, applyShardBleed)
+
+---@param tear EntityTear
+---@param player EntityPlayer
+local function shardFireTear(_, tear, player, isLudo)
+    if(not player:HasCollectible(mod.COLLECTIBLE_OBSIDIAN_SHARD)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_OBSIDIAN_SHARD)
+
+    if(rng:RandomFloat()>=getTriggerChance(player.Luck, (isLudo and 0.75 or 1))) then return end
+
+    tear.Color = SHARD_TEARCOLOR
+    mod:setEntityData(tear, "OBSIDIAN_SHARD_TEAR", true)
+end
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, shardFireTear)
+local function resetLudoData(_, tear)
+    mod:setEntityData(tear, "OBSIDIAN_SHARD_TEAR", false)
+end
+mod:AddCallback(mod.CUSTOM_CALLBACKS.RESET_LUDOVICO_DATA, resetLudoData)
+
+---@param bomb EntityBomb
+---@param player EntityPlayer
+local function shardFireBomb(_, bomb, player)
+    if(not player:HasCollectible(mod.COLLECTIBLE_OBSIDIAN_SHARD)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_OBSIDIAN_SHARD)
+
+    if(rng:RandomFloat()>=getTriggerChance(player.Luck, 1.5)) then return end
+
+    bomb.Color = SHARD_TEARCOLOR
+    mod:setEntityData(bomb, "OBSIDIAN_SHARD_TEAR", true)
+end
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_BOMB, shardFireBomb)
+
+---@param rocket EntityEffect
+---@param player EntityPlayer
+local function shardFireRocket(_, rocket, player)
+    if(not player:HasCollectible(mod.COLLECTIBLE_OBSIDIAN_SHARD)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_OBSIDIAN_SHARD)
+
+    if(rng:RandomFloat()>=getTriggerChance(player.Luck, 1.5)) then return end
+
+    mod:setEntityData(rocket, "OBSIDIAN_SHARD_TEAR", true)
+    mod:setEntityData(rocket, "EXPLOSION_COLOR", SHARD_TEARCOLOR)
+end
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_ROCKET, shardFireRocket)
+---@param rocket EntityEffect
+---@param target EntityEffect
+local function shardCopyTargetData(_, rocket, target)
+    mod:setEntityData(rocket, "OBSIDIAN_SHARD_TEAR", mod:getEntityData(target, "OBSIDIAN_SHARD_TEAR"))
+end
+mod:AddCallback(mod.CUSTOM_CALLBACKS.ROCKET_COPY_TARGET_DATA, shardCopyTargetData)
+
+---@param player EntityPlayer
+---@param ent Entity
+local function laserKnifeDamage(_, dmgtype, player, ent)
+    if(not (dmgtype==mod.DAMAGE_TYPE.LASER or dmgtype==mod.DAMAGE_TYPE.KNIFE)) then return end
+
+    if(not player:HasCollectible(mod.COLLECTIBLE_OBSIDIAN_SHARD)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_OBSIDIAN_SHARD)
+    if(rng:RandomFloat()>=getTriggerChance(player.Luck, 0.8)) then return end
+
+    ent:AddBleeding(EntityRef(player), math.max(0, BLEED_DURATION-ent:GetBleedingCountdown()))
+end
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_EXTRA_DMG, laserKnifeDamage)

@@ -208,6 +208,15 @@ local ITEMS = {
             "{{Coin}} Killing a golden enemy spawns coins"
         },
     },
+    [mod.COLLECTIBLE_OBSIDIAN_SHARD] = {
+        Name = "Obsidian Shard",
+        Description = {
+            "Tinted rocks are colored purple, making them easier to see",
+            "Tinted rocks drop an assortment of \"evil\" pickups",
+            "{{BleedingOut}} 7.5% chance to shoot tears that inflict bleeding",
+            "{{Luck}} 20% chance at 18 luck"
+        },
+    },
     [mod.COLLECTIBLE_OBSIDIAN_CHUNK] = {
         Name = "Obsidian Chunk",
         Description = {
@@ -215,7 +224,7 @@ local ITEMS = {
             "\2 -0.2 Shotspeed",
             "{{BlackHeart}} +1 Black Heart",
             "5% chance to shoot a hunk of obsidian that deals 2x damage, along with a few smaller chunks that deal 2 damage each",
-            "{{Luck}} 20% chance at 50 luck"
+            "{{Luck}} 20% chance at 25 luck"
         },
     },
     --#endregion
