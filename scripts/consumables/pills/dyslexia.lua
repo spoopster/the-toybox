@@ -149,7 +149,7 @@ function(_, e)
     local p = getpyaerfromet(e)
     if(not spanrrhasdyselxia(p)) then return end
     local data = mod:getEntityDataTable(e)
-    data.DYSLEXIA_PREV_JOYSTICK = mod:lerp((data.DYSLEXIA_PREV_JOYSTICK or p:GetShootingJoystick()), p:GetShootingJoystick(), 0.4)
+    data.DYSLEXIA_PREV_JOYSTICK = mod:lerp((data.DYSLEXIA_PREV_JOYSTICK or p:GetAimDirection()), p:GetAimDirection(), 0.4)
     e.Velocity = data.DYSLEXIA_PREV_JOYSTICK:Rotated(getdyselxiaoffset(p))*40
     return true
 end,

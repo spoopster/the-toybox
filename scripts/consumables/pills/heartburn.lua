@@ -34,7 +34,7 @@ if(CustomHealthAPI==nil) then
     mod:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, -math.huge, reduceHealing)
 else
     local function addHealth(p, k, n)
-        print(k)
+        --print(k)
 
         local heartburn = mod:getEntityData(p, "HEARTBURN_MODE")
         if(heartburn==0 or (heartburn==1 and k=="EMPTY_HEART")) then return end

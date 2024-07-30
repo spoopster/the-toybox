@@ -846,6 +846,7 @@ local PILLS = {
         Name = "Your Soul is Mine",
         Description = {
             "Turns all of your Soul Hearts into {{BlackHeart}} Black Hearts",
+            "If you have no Soul Hearts, gives 1 {{BlackHeart}} Black Heart"
         }
     },
     [mod.PILL_FOOD_POISONING] = {

@@ -55,7 +55,7 @@ local function updateThrowable(_, player)
 
     if(pData.THROWABLE_DATA) then
         if(player:GetItemState()==pData.THROWABLE_DATA.ITEM) then
-            local joystick = player:GetShootingJoystick()
+            local joystick = player:GetAimDirection()
 
             if(joystick:Length()>0.05) then
                 if(pData.THROWABLE_DATA.DISCHARGE) then player:DischargeActiveItem(pData.THROWABLE_DATA.SLOT) end

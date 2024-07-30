@@ -12,7 +12,7 @@ local function usePill(_, effect, player, flags, color)
         if(isHorse) then numToRemove = player:GetMaxHearts() end
     end
 
-    print(numToRemove)
+    --print(numToRemove)
     player:AddHearts(-numToRemove)
     player:AddMaxHearts(-numToRemove)
     player:AddBoneHearts(math.ceil(numToRemove/2))

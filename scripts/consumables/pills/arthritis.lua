@@ -68,8 +68,8 @@ local function reduceDuration(_, player)
         if(data.ARTHRITIS_CHOSEN_ANGLE~=-1) then
             data.ARTHRITIS_DURATION = data.ARTHRITIS_DURATION-1
             if(data.ARTHRITIS_DURATION==0) then player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY, true) end
-        elseif(player:GetShootingJoystick():Length()>0.01) then
-            data.ARTHRITIS_CHOSEN_ANGLE = player:GetShootingJoystick():GetAngleDegrees()
+        elseif(player:GetAimDirection():Length()>0.01) then
+            data.ARTHRITIS_CHOSEN_ANGLE = player:GetAimDirection():GetAngleDegrees()
         end
     end
 end

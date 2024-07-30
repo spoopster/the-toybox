@@ -15,6 +15,8 @@ local function usePill(_, effect, player, flags, color)
         player:SetBlackHeart(i*2)
     end
 
+    if(numConverted==0) then player:AddBlackHearts(2) end
+
     if(isHorse) then
         numConverted = numConverted+1
         player:AddBlackHearts(2)

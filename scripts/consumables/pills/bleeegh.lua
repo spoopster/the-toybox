@@ -29,7 +29,7 @@ local function bleeeghUpdate(_, player)
         if(data.BLEEEGH_ENT and data.BLEEEGH_ENT:Exists() and not data.BLEEEGH_ENT:IsDead()) then data.BLEEEGH_ENT:Die() end
     else
         if(not (data.BLEEEGH_ENT and data.BLEEEGH_ENT:Exists())) then
-            local laser = EntityLaser.ShootAngle(LaserVariant.THICK_BROWN, player.Position, player:GetShootingJoystick():GetAngleDegrees(), math.ceil(data.BLEEEGH_DURATION/2), Vector(0,-15), player)
+            local laser = EntityLaser.ShootAngle(LaserVariant.THICK_BROWN, player.Position, player:GetAimDirection():GetAngleDegrees(), math.ceil(data.BLEEEGH_DURATION/2), Vector(0,-15), player)
             laser.Parent = player
             laser.CollisionDamage = (data.BLEEEGH_HORSE and DMG_HORSE or DMG)
             mod:setEntityData(laser, "BLEEEGH_LASER", true)
@@ -37,8 +37,8 @@ local function bleeeghUpdate(_, player)
 
             data.BLEEEGH_ENT = laser
         else
-            if(player:GetShootingJoystick():Length()>0.01) then
-                local angleDif = mod:angleDifference(data.BLEEEGH_ENT.AngleDegrees, player:GetShootingJoystick():GetAngleDegrees())
+            if(player:GetAimDirection():Length()>0.01) then
+                local angleDif = mod:angleDifference(data.BLEEEGH_ENT.AngleDegrees, player:GetAimDirection():GetAngleDegrees())
                 data.BLEEEGH_ENT.AngleDegrees = data.BLEEEGH_ENT.AngleDegrees+angleDif*0.07
             end
 

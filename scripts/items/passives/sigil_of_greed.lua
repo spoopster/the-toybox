@@ -16,7 +16,7 @@ local function playerUpdate(_, p)
 
     local data = mod:getEntityDataTable(p)
 
-    if(p:GetFireDirection()~=Direction.NO_DIRECTION or p:GetShootingJoystick():Length()>0.01) then
+    if(p:GetFireDirection()~=Direction.NO_DIRECTION or p:GetAimDirection():Length()>0.01) then
         data.SIGIL_OF_GREED_CHARGE = math.min((data.SIGIL_OF_GREED_CHARGE or 0)+1, CHARGE_DURATION)
 
         local eff = data.SIGIL_OF_GREED_EFFECTENTITY

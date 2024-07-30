@@ -33,7 +33,7 @@ local function useToyGun(_, item, player, rng, flags, slot)
 
         local spr = (hasCarBattery and CARBATTERY_BULLETSPREAD or BASE_BULLET_SPREAD)
         for i=1, (hasCarBattery and CARBATTERY_BULLETS or 1) do
-            local v = Vector.FromAngle(player:GetShootingJoystick():GetAngleDegrees()+(rng:RandomFloat()-0.5)*spr)*BULLET_SPEED
+            local v = Vector.FromAngle(player:GetAimDirection():GetAngleDegrees()+(rng:RandomFloat()-0.5)*spr)*BULLET_SPEED
             local bullet = Isaac.Spawn(2, mod.TEAR_BULLET, 0, player.Position, v, nil):ToTear()
 
             bullet.CollisionDamage = BASE_BULLET_DMG+FOAMBULLET_DMGMOD*bStacks

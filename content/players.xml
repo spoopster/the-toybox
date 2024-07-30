@@ -24,7 +24,7 @@
 
 	<player birthright="Better drugs" name="Jonas"
 		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="character_jonas_a.png" costumeSuffix="jonas_a" skinColor="-1"
-		damagemodifier="0.7" luckmodifier="-2" trinket="44" modcostume="1100"
+		luckmodifier="-2" trinket="44" modcostume="1100"
 	/>
 	<player birthright="-" name="Jonas" bSkinParent="Jonas"
 		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="character_jonas_a.png" costumeSuffix="jonas_b" skinColor="-1"

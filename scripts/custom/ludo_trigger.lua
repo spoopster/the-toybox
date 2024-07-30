@@ -10,9 +10,9 @@ end,
 WeaponType.WEAPON_LUDOVICO_TECHNIQUE)
 function mod:shouldTriggerLudoMove(p)
     if(p.Type==EntityType.ENTITY_PLAYER) then
-        if(p:ToPlayer():GetShootingJoystick():Length()>0.01) then return true end
+        if(p:ToPlayer():GetAimDirection():Length()>0.01) then return true end
     elseif(p.Type==EntityType.ENTITY_FAMILIAR) then
-        if(p:ToFamiliar().Player:GetShootingJoystick():Length()>0.01) then return true end
+        if(p:ToFamiliar().Player:GetAimDirection():Length()>0.01) then return true end
     end
 
     return false

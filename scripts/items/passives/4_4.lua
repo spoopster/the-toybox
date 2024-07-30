@@ -24,7 +24,7 @@ local function fireSonicWaves(_, player)
         data.FOURFOUR_COOLDOWN = SONIC_WAVE_COOLDOWN
         data.FOURFOUR_FIRE_DATA = {
             DURATION = SONIC_WAVE_FREQ*SONIC_WAVES*2,
-            DIRECTION = player:GetShootingJoystick():GetAngleDegrees(),
+            DIRECTION = player:GetAimDirection():GetAngleDegrees(),
         }
 
         sfx:Play(mod.SFX_4_4_SCREAM, 0.22)
