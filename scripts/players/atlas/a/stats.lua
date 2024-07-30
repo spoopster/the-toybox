@@ -42,4 +42,4 @@ local function forceHealth(_, player)
         player:AddHearts(2)
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, math.huge, forceHealth, 0)
+--mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, math.huge, forceHealth, 0)

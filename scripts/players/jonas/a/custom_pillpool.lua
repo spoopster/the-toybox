@@ -30,6 +30,13 @@ mod.PHD_PILLCONVERSION = {
     [PillEffect.PILLEFFECT_WIZARD] = PillEffect.PILLEFFECT_POWER,
     [PillEffect.PILLEFFECT_X_LAX] = PillEffect.PILLEFFECT_SOMETHINGS_WRONG,
     [PillEffect.PILLEFFECT_BAD_TRIP] = PillEffect.PILLEFFECT_BALLS_OF_STEEL,
+
+    [mod.PILL_DMG_DOWN] = mod.PILL_DMG_UP,
+    [mod.PILL_OSSIFICATION] = mod.PILL_YOUR_SOUL_IS_MINE,
+    [mod.PILL_FOOD_POISONING] = mod.PILL_VITAMINS,
+    [mod.PILL_HEARTBURN] = mod.PILL_COAGULANT,
+    [mod.PILL_DYSLEXIA] = mod.PILL_FENT,
+    [mod.PILL_MUSCLE_ATROPHY] = mod.PILL_VITAMINS,
 }
 mod.FALSEPHD_PILLCONVERSION = {
     [PillEffect.PILLEFFECT_TEARS_UP] = PillEffect.PILLEFFECT_TEARS_DOWN,
@@ -55,6 +62,15 @@ mod.FALSEPHD_PILLCONVERSION = {
     [PillEffect.PILLEFFECT_SMALLER] = PillEffect.PILLEFFECT_SPEED_DOWN,
     [PillEffect.PILLEFFECT_PRETTY_FLY] = PillEffect.PILLEFFECT_LUCK_DOWN,
     [PillEffect.PILLEFFECT_INFESTED_QUESTION] = PillEffect.PILLEFFECT_LUCK_DOWN,
+
+    [mod.PILL_VITAMINS] = mod.PILL_MUSCLE_ATROPHY,
+    [mod.PILL_DMG_UP] = mod.PILL_DMG_DOWN,
+    [mod.PILL_YOUR_SOUL_IS_MINE] = mod.PILL_OSSIFICATION,
+    [mod.PILL_PARASITE] = mod.PILL_FOOD_POISONING,
+    [mod.PILL_CAPSULE] = mod.PILL_FOOD_POISONING,
+    [mod.PILL_COAGULANT] = mod.PILL_HEARTBURN,
+    [mod.PILL_FENT] = mod.PILL_DYSLEXIA,
+    [mod.PILL_I_BELIEVE] = mod.PILL_ARTHRITIS,
 }
 mod.PILL_ACHIEVEMENTS = {
     [PillEffect.PILLEFFECT_GULP] = Achievement.GULP_PILL,
@@ -62,6 +78,18 @@ mod.PILL_ACHIEVEMENTS = {
     [PillEffect.PILLEFFECT_SUNSHINE] = Achievement.SUNSHINE_PILL,
     [PillEffect.PILLEFFECT_VURP] = Achievement.VURP,
 }
+
+--! ff pill conversions
+if(FiendFolio) then
+    mod.PHD_PILLCONVERSION[FiendFolio.ITEM.PILL.HAEMORRHOIDS] = FiendFolio.ITEM.PILL.HOLY_SHIT
+    mod.PHD_PILLCONVERSION[FiendFolio.ITEM.PILL.EPIDERMOLYSIS] = PillEffect.PILLEFFECT_PERCS
+    mod.PHD_PILLCONVERSION[FiendFolio.ITEM.PILL.LEMON_JUICE] = FiendFolio.ITEM.PILL.FISH_OIL
+
+    mod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.HOLY_SHIT] = FiendFolio.ITEM.PILL.HAEMORRHOIDS
+    mod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.CLAIRVOYANCE] = PillEffect.PILLEFFECT_AMNESIA
+    mod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.MELATONIN] = PillEffect.PILLEFFECT_PARALYSIS
+    mod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.FISH_OIL] = FiendFolio.ITEM.PILL.LEMON_JUICE
+end
 
 function mod:getAllPillEffects(phdEffect)
     local itemConf = Isaac.GetItemConfig()
@@ -112,6 +140,41 @@ function mod:getPillColorsInRun()
 
     return pillColorsInPool
 end
+function mod:calcBasePillPool()
+    local pool = {}
+    local colors = mod:getPillColorsInRun()
+
+    local invalidTb = {[mod.PILL_SUBCLASS.GOOD]={},[mod.PILL_SUBCLASS.NEUTRAL]={},[mod.PILL_SUBCLASS.BAD]={}}
+    
+    for _, cData in ipairs(colors) do
+        pool[cData.COLOR] = {DEFAULT=cData.BASE_EFFECT_ID}
+        for key, _ in pairs(invalidTb) do
+            invalidTb[key][cData.BASE_EFFECT_ID] = 0
+        end
+    end
+
+    for color, dat in pairs(pool) do
+        dat.NEUTRAL = mod:convertPhdPillEffect(nil, dat.DEFAULT, mod.PILL_PHDTYPE.NEUTRAL, rng, invalidTb[mod.PILL_SUBCLASS.NEUTRAL])
+        invalidTb[mod.PILL_SUBCLASS.NEUTRAL][dat.NEUTRAL] = 0
+
+        dat.GOOD = mod:convertPhdPillEffect(nil, dat.DEFAULT, mod.PILL_PHDTYPE.GOOD, rng, invalidTb[mod.PILL_SUBCLASS.GOOD])
+        invalidTb[mod.PILL_SUBCLASS.GOOD][dat.GOOD] = 0
+
+        dat.BAD = mod:convertPhdPillEffect(nil, dat.DEFAULT, mod.PILL_PHDTYPE.BAD, rng, invalidTb[mod.PILL_SUBCLASS.BAD])
+        invalidTb[mod.PILL_SUBCLASS.BAD][dat.BAD] = 0
+    end
+
+    return pool
+end
+function mod:getNumPillsOfSubClass(pool, subclass)
+    local itemConf = Isaac.GetItemConfig()
+    local count = 0
+    for color, dat in pairs(pool) do
+        local eff = itemConf:GetPillEffect(dat.DEFAULT)
+        if(eff and eff.EffectSubClass==subclass) then count = count+1 end
+    end
+    return count
+end
 function mod:createPillTables()
     local dataTable = mod:getExtraDataTable()
     dataTable.PILL_TABLES_CALCULATED = 1
@@ -120,6 +183,11 @@ function mod:createPillTables()
     dataTable.PILLS_NEUTRAL = mod:getAllPillEffects(mod.PILL_PHDTYPE.NEUTRAL)
     dataTable.PILLS_BAD = mod:getAllPillEffects(mod.PILL_PHDTYPE.BAD)
     dataTable.PILL_COLORS = mod:getPillColorsInRun()
+
+    dataTable.CUSTOM_PILL_POOL = mod:calcBasePillPool()
+    dataTable.PILLS_BAD_NUM = mod:getNumPillsOfSubClass(dataTable.CUSTOM_PILL_POOL, mod.PILL_SUBCLASS.BAD)
+    dataTable.PILLS_NEUTRAL_NUM = mod:getNumPillsOfSubClass(dataTable.CUSTOM_PILL_POOL, mod.PILL_SUBCLASS.NEUTRAL)
+    dataTable.PILLS_GOOD_NUM = mod:getNumPillsOfSubClass(dataTable.CUSTOM_PILL_POOL, mod.PILL_SUBCLASS.GOOD)
 end
 
 --! really fucking hacky and i wanna kms
@@ -131,13 +199,18 @@ function mod:convertPhdPillEffect(player, pilleffect, phdMask, rng, invalidPills
 
     local dTable = mod:getExtraDataTable()
     if(phdMask == mod.PILL_PHDTYPE.NONE) then
+        --return pilleffect
+        -- [[
         if(player) then
             if(pilleffect==PillEffect.PILLEFFECT_BAD_TRIP and not player:CanUsePill(pilleffect)) then return PillEffect.PILLEFFECT_FULL_HEALTH end
             if(pilleffect==PillEffect.PILLEFFECT_HEALTH_DOWN and not player:CanUsePill(pilleffect)) then return PillEffect.PILLEFFECT_HEALTH_UP end
             return pilleffect
         end
         return pilleffect
+        --]]
     elseif(phdMask == mod.PILL_PHDTYPE.NEUTRAL) then
+        --return pilleffect
+        -- [[
         if(player) then return pilleffect end
 
         local config = Isaac.GetItemConfig():GetPillEffect(pilleffect)
@@ -156,7 +229,9 @@ function mod:convertPhdPillEffect(player, pilleffect, phdMask, rng, invalidPills
             chosenPill = dTable.PILLS_NEUTRAL[rng:RandomInt(#dTable.PILLS_NEUTRAL)+1].ID
         end
         return chosenPill
+        --]]
     elseif(phdMask == mod.PILL_PHDTYPE.GOOD) then
+        -- [[
         if(player) then return pilleffect end
 
         local config = Isaac.GetItemConfig():GetPillEffect(pilleffect)
@@ -164,7 +239,8 @@ function mod:convertPhdPillEffect(player, pilleffect, phdMask, rng, invalidPills
             return pilleffect
         end
         if(mod.PHD_PILLCONVERSION[pilleffect]) then return mod.PHD_PILLCONVERSION[pilleffect] end
-
+        return pilleffect
+        --[[
         if(config.EffectSubClass~=mod.PILL_SUBCLASS.BAD) then return pilleffect end
 
         --* count number of valid good pills to see if theres any valid ones to pull from
@@ -179,7 +255,10 @@ function mod:convertPhdPillEffect(player, pilleffect, phdMask, rng, invalidPills
             chosenPill = dTable.PILLS_GOOD[rng:RandomInt(#dTable.PILLS_GOOD)+1].ID
         end
         return chosenPill
+        --]]
     elseif(phdMask == mod.PILL_PHDTYPE.BAD) then
+        --return pilleffect
+        -- [[
         if(player) then
             if(pilleffect==PillEffect.PILLEFFECT_BAD_TRIP and not player:CanUsePill(pilleffect)) then return PillEffect.PILLEFFECT_I_FOUND_PILLS end
             if(pilleffect==PillEffect.PILLEFFECT_HEALTH_DOWN and not player:CanUsePill(pilleffect)) then return PillEffect.PILLEFFECT_I_FOUND_PILLS end
@@ -191,7 +270,8 @@ function mod:convertPhdPillEffect(player, pilleffect, phdMask, rng, invalidPills
             return pilleffect
         end
         if(mod.FALSEPHD_PILLCONVERSION[pilleffect]) then return mod.FALSEPHD_PILLCONVERSION[pilleffect] end
-
+        return pilleffect
+        --[[
         if(config.EffectSubClass~=mod.PILL_SUBCLASS.GOOD) then return pilleffect end
 
         local canGetBadPill = 0
@@ -205,6 +285,7 @@ function mod:convertPhdPillEffect(player, pilleffect, phdMask, rng, invalidPills
             chosenPill = dTable.PILLS_BAD[rng:RandomInt(#dTable.PILLS_BAD)+1].ID
         end
         return chosenPill
+        --]]
     end
 
     return pilleffect
@@ -216,15 +297,29 @@ function mod:getRandomPillEffect(rng, player, phdVal, baseBlacklist)
     phdVal = phdVal or mod.PILL_PHDTYPE.NONE
     if(dataTable.PILLS_TOTAL==nil or dataTable.PILLS_TOTAL==0) then mod:createPillTables() end
 
+    local pillTable = dataTable.PILLS_TOTAL
+    if(phdVal~=mod.PILL_PHDTYPE.NONE) then pillTable = mod:getAllPillEffects(phdVal) end
+
     local chosenPill
     while(not (chosenPill and baseBlacklist[chosenPill]~=0)) do
-        chosenPill = dataTable.PILLS_TOTAL[rng:RandomInt(#dataTable.PILLS_TOTAL)+1].ID
+        chosenPill = pillTable[rng:RandomInt(#pillTable)+1].ID
         --print(chosenPill)
     end
     chosenPill = mod:convertPhdPillEffect(nil, chosenPill, phdVal, rng, {})
-    chosenPill = mod:convertPhdPillEffect(player, chosenPill, phdVal)
+    if(player) then chosenPill = mod:convertPhdPillEffect(player, chosenPill, phdVal) end
 
     return chosenPill
+end
+
+function mod:unidentifyPill(color)
+    Game():GetItemPool():UnidentifyPill(color)
+    if(EID) then EID.UsedPillColors[tostring(color)] = nil end
+end
+function mod:unidentifyPillPool()
+    local dataTable = mod:getExtraDataTable()
+    if(not dataTable.PILL_COLORS) then dataTable.PILL_COLORS = mod:getPillColorsInRun() end
+
+    for _, val in ipairs(dataTable.PILL_COLORS) do mod:unidentifyPill(val.COLOR) end
 end
 
 --#region --! PHD MASK FUNCTIONS
@@ -270,7 +365,7 @@ end
 --#endregion
 
 -- base game is approx bad=4-5, neutral=2-3, good=6-7, 
-function mod:calcPillPool(rng, numBadPills, numNeutralPills, numGoodPills, phdEffect)
+function mod:calcPillPool(rng, numBadPills, numNeutralPills, numGoodPills)
     local dataTable = mod:getExtraDataTable()
 
     rng = rng or mod:generateRng()
@@ -278,9 +373,9 @@ function mod:calcPillPool(rng, numBadPills, numNeutralPills, numGoodPills, phdEf
     --print(#dataTable.PILL_COLORS, #dataTable.PILLS_GOOD, #dataTable.PILLS_NEUTRAL, #dataTable.PILLS_BAD)
 
     local pillQualityData = {
-        [mod.PILL_SUBCLASS.GOOD]={NUM=(numGoodPills or 4), TB=dataTable.PILLS_GOOD, INVTB={}},
-        [mod.PILL_SUBCLASS.NEUTRAL]={NUM=(numNeutralPills or 3), TB=dataTable.PILLS_NEUTRAL, INVTB={}},
-        [mod.PILL_SUBCLASS.BAD]={NUM=(numBadPills or 6), TB=dataTable.PILLS_BAD, INVTB={}},
+        [mod.PILL_SUBCLASS.GOOD]={NUM=(numGoodPills or dataTable.PILLS_BAD_NUM), TB=dataTable.PILLS_GOOD, INVTB={}},
+        [mod.PILL_SUBCLASS.NEUTRAL]={NUM=(numNeutralPills or dataTable.PILLS_NEUTRAL_NUM), TB=dataTable.PILLS_NEUTRAL, INVTB={}},
+        [mod.PILL_SUBCLASS.BAD]={NUM=(numBadPills or dataTable.PILLS_GOOD_NUM), TB=dataTable.PILLS_BAD, INVTB={}},
     }
     local numPillsTotal = 0
     for _, d in pairs(pillQualityData) do
@@ -345,12 +440,20 @@ local function replacePillEffect(_, pilleffect, color)
             elseif(phdVal==mod.PILL_PHDTYPE.BAD) then cKey="BAD" end
 
             local effect = pillpool[color][cKey]
+            --print(effect, phdVal)
 
             return mod:convertPhdPillEffect(chosenPlayer, effect, phdVal)
         end
     end
 end
 mod:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, CallbackPriority.LATE, replacePillEffect)
+
+local function makeBaseDatas(_, player)
+    if(#Isaac.FindByType(1)==0 and Game():GetFrameCount()==0) then
+        mod:createPillTables()
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, makeBaseDatas)
 
 --! RENDER TEST STUFF
 --[[

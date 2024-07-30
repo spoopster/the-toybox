@@ -12,7 +12,12 @@ local HEARTS_TO_MANTLETYPE = {
 }
 
 if(CustomHealthAPI==nil) then
-    mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, function() end) --poopy
+    local function cancelNegAddition(_, player, num, type, arg)
+        if(mod:isAtlasA(player) and mod.IS_DATA_LOADED and player.FrameCount>0) then
+            if(num<0) then return 0 end
+        end
+    end
+    mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, cancelNegAddition) --poopy
 
     ---@param player EntityPlayer
     local function atlasAddMantles(_, player, num, type, arg)

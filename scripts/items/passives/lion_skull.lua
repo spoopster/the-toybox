@@ -27,7 +27,6 @@ local function evalCache(_, player, flag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
----@param player EntityPlayer
 local function increaseLionMark(_, player)
     if(not player:HasCollectible(mod.COLLECTIBLE_LION_SKULL)) then return end
 

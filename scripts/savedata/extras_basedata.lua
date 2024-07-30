@@ -10,6 +10,10 @@ local BASEDATA = {
     PILLS_BAD = 0,
     PILL_COLORS = 0,
     PILL_TABLES_CALCULATED = 0,
+
+    PILLS_BAD_NUM = 0,
+    PILLS_GOOD_NUM = 0,
+    PILLS_NEUTRAL_NUM = 0,
 }
 
 return BASEDATA

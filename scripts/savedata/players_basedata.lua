@@ -18,6 +18,24 @@ local BASEDATA = {
     PAINKILLERS_DAMAGE_COUNTER = 0,
     PAINKILLERS_DAMAGE_TIMER = 0,
     SIGIL_OF_GREED_CHARGE = 0,
+    
+    --! all the stupid pill shits i could've probably done with null items
+    DYSLEXIA_DURATION = 0,
+    DYSLEXIA_HORSE = false,
+    BLEEEGH_HORSE = false,
+    BLEEEGH_DURATION = 0,
+    HEARTBURN_MODE = 0,
+    COAGULANT_MODE = 0,
+    ARTHRITIS_DURATION = 0,
+    ARTHRITIS_HORSE = false,
+    ARTHRITIS_CHOSEN_ANGLE = -1,
+    ATROPHY_DURATION = 0,
+    ATROPHY_MAXDURATION = 0,
+    ATROPHY_HORSESTACKS = 0,
+    VITAMINS_DURATION = 0,
+    VITAMINS_HORSE = false,
+    DAMAGE_UP_STACKS = 0,
+    DAMAGE_DOWN_STACKS = 0,
 }
 
 return BASEDATA

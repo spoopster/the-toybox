@@ -1,7 +1,6 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2" >
 
 <!-- ITEMS -->
-
 <passive id="0" name="Coconut Oil"
     description="Speed down + tears up + slippery"
     gfx="tb_coconut_oil.png"
@@ -283,7 +282,6 @@
 />
 
 <!-- TRINKETS -->
-
 <trinket id="0" name="LIMIT BREAK"
     description="Their true potential"
     gfx="tb_limit_break.png"

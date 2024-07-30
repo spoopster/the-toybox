@@ -148,36 +148,42 @@ function mod:getSelMantleIdToDestroy(player, type)
 end
 
 function mod:giveMantle(player, type)
-    local rIdx = mod:getRightmostMantleIdx(player)
-    local data = mod:getAtlasATable(player)
+    local heartburnMode = mod:getEntityData(player, "HEARTBURN_MODE")
+    if(heartburnMode~=2) then
+        local rIdx = mod:getRightmostMantleIdx(player)
+        local data = mod:getAtlasATable(player)
 
-    if(type==nil or type==mod.MANTLE_DATA.NONE.ID) then
-        type = mod:getHeldMantle(player)
-    end
-
-    if(rIdx==data.HP_CAP) then
-        local idx = mod:getSelMantleIdToDestroy(player, type)
-        if(type==mod.MANTLE_DATA.NONE.ID) then idx=1 end
-        local selMType = data.MANTLES[idx].TYPE
-        
-        mod:spawnShardsForMantle(player, idx, 10)
-
-        if(selMType==mod.MANTLE_DATA.METAL.ID or selMType==mod.MANTLE_DATA.GOLD.ID) then sfx:Play(mod.SFX_ATLASA_METALBREAK, 0.4)
-        elseif(selMType==mod.MANTLE_DATA.GLASS.ID) then sfx:Play(mod.SFX_ATLASA_GLASSBREAK, 0.4)
-        else sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.4) end
-
-        for i=idx+1, rIdx do
-            data.MANTLES[i-1] = mod:cloneTable(data.MANTLES[i])
+        if(type==nil or type==mod.MANTLE_DATA.NONE.ID) then
+            type = mod:getHeldMantle(player)
         end
 
-        rIdx=rIdx-1
+        if(rIdx==data.HP_CAP) then
+            local idx = mod:getSelMantleIdToDestroy(player, type)
+            if(type==mod.MANTLE_DATA.NONE.ID) then idx=1 end
+            local selMType = data.MANTLES[idx].TYPE
+            
+            mod:spawnShardsForMantle(player, idx, 10)
+
+            if(selMType==mod.MANTLE_DATA.METAL.ID or selMType==mod.MANTLE_DATA.GOLD.ID) then sfx:Play(mod.SFX_ATLASA_METALBREAK, 0.4)
+            elseif(selMType==mod.MANTLE_DATA.GLASS.ID) then sfx:Play(mod.SFX_ATLASA_GLASSBREAK, 0.4)
+            else sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.4) end
+
+            for i=idx+1, rIdx do
+                data.MANTLES[i-1] = mod:cloneTable(data.MANTLES[i])
+            end
+
+            rIdx=rIdx-1
+        end
+
+        mod:setMantleType(player, rIdx+1, nil, type)
+        if(heartburnMode==1) then
+            data.MANTLES[rIdx+1].HP = math.max(0,data.MANTLES[rIdx+1].HP-1)
+        end
+        
+        data.MANTLES[rIdx+1].COLOR = Color(1,1,1,1,1,0,0)
+
+        mod:updateMantles(player)
     end
-
-    mod:setMantleType(player, rIdx+1, nil, type)
-    
-    data.MANTLES[rIdx+1].COLOR = Color(1,1,1,1,1,0,0)
-
-    mod:updateMantles(player)
 
     sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.3)
 end

@@ -46,5 +46,5 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, ent, damage, flags,
 
     if(dmgType==-1) then return end
 
-    Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_PLAYER_EXTRA_DMG, dmgType, dmgType, player, ent)
+    Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_PLAYER_EXTRA_DMG, dmgType, dmgType, player, ent, damage, flags)
 end)

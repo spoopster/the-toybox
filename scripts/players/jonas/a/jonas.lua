@@ -7,36 +7,41 @@ local JONAS_A_BASEDATA = {
     PILLS_POPPED = 0,
     PILL_BONUS_COUNT = 0,
 
-    PILLS_FOR_BONUS = 3,
-    PILLS_FOR_NEXT_BONUS = 3,
-    PILLS_FOR_BONUS_BASE = 3,
-    PILLBONUS_INCREMENT = 1,--3,
+    PILLS_FOR_BONUS = 1,
+    PILLS_FOR_NEXT_BONUS = 1,
+    PILLS_FOR_BONUS_BASE = 1,
+    PILLBONUS_INCREMENT = 0,--3,
     --PILLBONUS_INCREMENT_EXTRA = 5,
     --PILLBONUS_EXTRA_REQ = 3,
-    PILLBONUS_INCREMENT_BONUSES = 2,
+    PILLBONUS_INCREMENT_BONUSES = 1,
 
     PILBONUS_GOLD_MULT = 0.2,
     PILBONUS_HORSE_MULT = 2,
 
-    PILLBONUS_SPEED = 0.1,
-    PILLBONUS_TEARS = 0.3,
-    PILLBONUS_DMG = 0.5,
-    PILLBONUS_RANGE = 0.4,
+    PILLBONUS_SPEED = 0.05,
+    PILLBONUS_TEARS = 0.2,
+    PILLBONUS_DMG = 0.3,
+    PILLBONUS_RANGE = 0.3,
     PILLBONUS_SHOTSPEED = 0.05,
-    PILLBONUS_LUCK = 1.0,
+    PILLBONUS_LUCK = 0.5,
+
+    PILLBONUS_DIMINISHING_POW = 0.65,
 
     RESET_BOOST_ROOMS = 0,
-    RESET_BOOST_ROOMSREQ = 5,
+    RESET_BOOST_ROOMSREQ = 4,
+    RESET_BOOST_ROOMSREQ_GREED = 5,
     RESET_BOOST_SHAKEINTENSITY = 0.25,
-    RESET_BOOST_SHAKECLOSENESS = 2,
+    RESET_BOOST_SHAKECLOSENESS = 1,
 
-    MONSTER_PILLDROP_CHANCE = 0.0777,
+    NEWFLOOR_MULT = 1/3,
 
-    BAD_PILLNUM = 3,
-    NEUTRAL_PILLNUM = 4,
-    GOOD_PILLNUM = 6,
+    MONSTER_PILLDROP_CHANCE = 0.0777, -- 7.77%
 
-    LAST_PHD_VAL = nil,
+    --BAD_PILLNUM = 3,
+    --NEUTRAL_PILLNUM = 4,
+    --GOOD_PILLNUM = 6,
+
+    --LAST_PHD_VAL = nil,
 }
 
 mod.JONAS_A_BASEDATA = JONAS_A_BASEDATA
@@ -57,7 +62,7 @@ local function postJonasInit(_, player)
     if(Game():GetFrameCount()==0 or not mod:getExtraData("CUSTOM_PILL_POOL")) then
         local data = mod:getJonasATable(player)
         if(canRerollPool) then
-            mod:calcPillPool(mod:generateRng(),data.BAD_PILLNUM,data.NEUTRAL_PILLNUM,data.GOOD_PILLNUM,mod:getTotalPhdMask())
+            mod:calcPillPool(mod:generateRng())
             canRerollPool = false
         end
     end
@@ -71,7 +76,8 @@ local function rerollPillPoolNewLevel(_, player)
 
     local data = mod:getJonasATable(player)
     if(canRerollPool) then
-        mod:calcPillPool(mod:generateRng(),data.BAD_PILLNUM,data.NEUTRAL_PILLNUM,data.GOOD_PILLNUM,mod:getPlayerPhdMask(player))
+        mod:calcPillPool(mod:generateRng())
+        mod:unidentifyPillPool()
         canRerollPool = false
     end
 end

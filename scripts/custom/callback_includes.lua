@@ -13,6 +13,8 @@ local t = {
     "scripts.custom.callbacks.post_player_extra_dmg",
     "scripts.custom.callbacks.post_fire_aquarius",
     "scripts.custom.callbacks.post_fire_rocket",
+    "scripts.custom.callbacks.post_new_room",
+    "scripts.custom.callbacks.post_room_clear",
 }
 for _, path in ipairs(t) do
     include(path)

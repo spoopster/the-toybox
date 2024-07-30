@@ -1,5 +1,12 @@
 - NEW:
-    - Obsidian Shard gives a chance to shoot bleeding tears
-    - Added EID for Obsidian Shard
+    - Added all the pill effects (too lazy to list them off)
 - CHANGES:
-    - Added Obsidian Shard to Red Chest and Treasure Room pools (oops)
+    - Made Mom's Knife stuff work with Atlas' Salt auto-fire
+    - Lion Skull's effect now triggers on Greed wave clear as well.
+    - Fixed Mom's Knife and tech/brim lasers not dealing extra damage when Obsidian Chunk's effect procs.
+    - Fixed EID conditional descriptions not appearing.
+    - Made some balance changes to Jonas:
+        - Pill pool is unidentified each floor.
+        - Pill bonuses are given on every pill use but are smaller and give diminishing returns
+        - Reduced pill bonus reset to 4 rooms (5 waves in greed)
+        - You keep 1/3rd of your pill bonuses at the start of a new floor instead of losing them all.

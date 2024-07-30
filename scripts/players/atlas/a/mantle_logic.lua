@@ -83,7 +83,7 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
     if(not mod:isAtlasA(player)) then return end
 
-    if(dmg>0) then
+    if(dmg>0 and Game():GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
         local data = mod:getAtlasATable(player)
 
         if(data.TRANSFORMATION~=mod.MANTLE_DATA.TAR.ID) then
@@ -98,19 +98,17 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
                 DamageCountdown=frames
             }
         else
-            if(Game():GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
-                player:Die()
+            player:Die()
 
-                return {
-                    Damage=0,
-                    DamageFlags=flags,
-                    DamageCountdown=frames
-                }
-            end
+            return {
+                Damage=0,
+                DamageFlags=flags,
+                DamageCountdown=frames
+            }
         end
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12+1, mantleDamage, EntityType.ENTITY_PLAYER)
+mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12-1, mantleDamage, EntityType.ENTITY_PLAYER)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag

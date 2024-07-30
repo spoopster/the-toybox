@@ -1,11 +1,125 @@
 <pocketitems>
-	<card   description="Rock and roll"         hud="Rock Mantle"       name="Mantle (ROCK)"        type="object"   pickup="2837"/>
-	<card   description="You stink"             hud="Poop Mantle"       name="Mantle (POOP)"        type="object"   pickup="2838"/>
-    <card   description="Sticks and stones"     hud="Bone Mantle"       name="Mantle (BONE)"        type="object"   pickup="2839"/>
-    <card   description="Darkness falls"        hud="Dark Mantle"       name="Mantle (DARK)"        type="object"   pickup="2840"/>
-    <card   description="Bless your soul"       hud="Holy Mantle"       name="Mantle (HOLY)"        type="object"   pickup="2841"/>
-    <card   description="Seems familiar"        hud="Salt Mantle"       name="Mantle (SALT)"        type="object"   pickup="2842"/>
-    <card   description="Brittle protection"    hud="Glass Mantle"      name="Mantle (GLASS)"       type="object"   pickup="2843"/>
-    <card   description="Tough skin"            hud="Metal Mantle"      name="Mantle (METAL)"       type="object"   pickup="2844"/>
-    <card   description="Dapper defence"        hud="Gold Mantle"       name="Mantle (GOLD)"        type="object"   pickup="2845"/>
+<!-- CARDS -->
+
+<!-- OBJECTS -->
+	<card id="0" name="Mantle (ROCK)"
+        description="Rock and roll"
+        hud="Rock Mantle"
+        type="object"
+        pickup="2837"
+    />
+	<card id="1" name="Mantle (POOP)"
+        description="You stink"
+        hud="Poop Mantle"
+        type="object"
+        pickup="2838"
+    />
+    <card id="2" name="Mantle (BONE)"
+        description="Sticks and stones"
+        hud="Bone Mantle"
+        type="object"
+        pickup="2839"
+    />
+    <card id="3" name="Mantle (DARK)"
+        description="Darkness falls"
+        hud="Dark Mantle"
+        type="object"
+        pickup="2840"
+    />
+    <card id="4" name="Mantle (HOLY)"
+        description="Bless your soul"
+        hud="Holy Mantle"
+        type="object"
+        pickup="2841"
+    />
+    <card id="5" name="Mantle (SALT)"
+        description="Seems familiar"
+        hud="Salt Mantle"
+        type="object"
+        pickup="2842"
+    />
+    <card id="6" name="Mantle (GLASS)"
+        description="Brittle protection"
+        hud="Glass Mantle"
+        type="object"
+        pickup="2843"
+    />
+    <card id="7" name="Mantle (METAL)"
+        description="Tough skin"
+        hud="Metal Mantle"
+        type="object"
+        pickup="2844"
+    />
+    <card id="8" name="Mantle (GOLD)"
+        description="Dapper defence"
+        hud="Gold Mantle"
+        type="object"
+        pickup="2845"
+    />
+
+<!-- PILLS -->
+    <pilleffect id="0" name="I Believe I Can Fly!"
+        class="1+"
+        mimiccharge="3"
+    />
+    <pilleffect id="1" name="Damage Up"
+        class="3+"
+        mimiccharge="6"
+    />
+    <pilleffect id="2" name="Damage Down"
+        class="3-"
+        mimiccharge="4"
+    />
+    <pilleffect id="3" name="Dementia"
+        class="3"
+        mimiccharge="3"
+    />
+    <pilleffect id="4" name="Parasite!"
+        class="1+"
+        mimiccharge="2"
+    />
+    <pilleffect id="5" name="Fent"
+        class="2+"
+        mimiccharge="6"
+    />
+    <pilleffect id="6" name="Dyslexia"
+        class="1-"
+        mimiccharge="6"
+    />
+    <pilleffect id="7" name="Your Soul is Mine"
+        class="2+"
+        mimiccharge="6"
+    />
+    <pilleffect id="8" name="Arthritis"
+        class="2"
+        mimiccharge="4"
+    />
+    <pilleffect id="9" name="Ossification"
+        class="3-"
+        mimiccharge="4"
+    />
+    <pilleffect id="10" name="Muscle Atrophy"
+        class="2-"
+        mimiccharge="3"
+    />
+    <pilleffect id="11" name="Vitamins!"
+        class="2+"
+        mimiccharge="6"
+    />
+    <pilleffect id="12" name="Coagulant"
+        class="2+"
+        mimiccharge="12"
+    />
+    <pilleffect id="13" name="Food Poisoning"
+        class="1-"
+        mimiccharge="3"
+    />
+    <pilleffect id="14" name="Heartburn"
+        class="2-"
+        mimiccharge="4"
+    />
+    <pilleffect id="15" name="Capsule"
+        class="3"
+        mimiccharge="12"
+    />
 </pocketitems>

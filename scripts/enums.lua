@@ -76,6 +76,28 @@ mod.CONSUMABLE_MANTLE_GLASS = Isaac.GetCardIdByName("Glass Mantle")
 mod.CONSUMABLE_MANTLE_METAL = Isaac.GetCardIdByName("Metal Mantle")
 mod.CONSUMABLE_MANTLE_GOLD = Isaac.GetCardIdByName("Gold Mantle")
 
+mod.PILL_I_BELIEVE = Isaac.GetPillEffectByName("I Believe I Can Fly!")
+mod.PILL_DYSLEXIA = Isaac.GetPillEffectByName("Dyslexia")
+mod.PILL_DMG_UP = Isaac.GetPillEffectByName("Damage Up")
+mod.PILL_DMG_DOWN = Isaac.GetPillEffectByName("Damage Down")
+mod.PILL_DEMENTIA = Isaac.GetPillEffectByName("Dementia")
+mod.PILL_PARASITE = Isaac.GetPillEffectByName("Parasite!")
+mod.PILL_FENT = Isaac.GetPillEffectByName("Fent")
+mod.PILL_YOUR_SOUL_IS_MINE = Isaac.GetPillEffectByName("Your Soul is Mine")
+mod.PILL_ARTHRITIS = Isaac.GetPillEffectByName("Arthritis")
+mod.PILL_OSSIFICATION = Isaac.GetPillEffectByName("Ossification")
+--mod.PILL_BLEEEGH = Isaac.GetPillEffectByName("Bleeegh!")
+mod.PILL_VITAMINS = Isaac.GetPillEffectByName("Vitamins!")
+mod.PILL_COAGULANT = Isaac.GetPillEffectByName("Coagulant")
+mod.PILL_FOOD_POISONING = Isaac.GetPillEffectByName("Food Poisoning")
+mod.PILL_HEARTBURN = Isaac.GetPillEffectByName("Heartburn")
+mod.PILL_MUSCLE_ATROPHY = Isaac.GetPillEffectByName("Muscle Atrophy")
+mod.PILL_CAPSULE = Isaac.GetPillEffectByName("Capsule")
+
+--*NULL
+mod.NULL_DYSLEXIA_NORMAL = Isaac.GetNullItemIdByName("dyslexia normal")
+mod.NULL_DYSLEXIA_HORSE = Isaac.GetNullItemIdByName("dyslexia horse")
+
 --#endregion
 --#region --!ENTITIES
 
@@ -154,6 +176,8 @@ mod.CUSTOM_CALLBACKS = {
     POST_FIRE_ROCKET = "TOYBOX_POST_FIRE_ROCKET",
     ROCKET_COPY_TARGET_DATA = "TOYBOX_ROCKET_COPY_TARGET_DATA",
     POST_ROCKET_EXPLODE = "TOYBOX_POST_ROCKET_EXPLODE",
+    POST_NEW_ROOM = "TOYBOX_POST_NEW_ROOM",
+    POST_ROOM_CLEAR = "TOYBOX_POST_ROOM_CLEAR",
 }
 
 mod.CUSTOM_BOMBFLAGS = {

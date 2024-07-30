@@ -51,6 +51,7 @@ function(_, e)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
 
+    e.Position = e.Position-e.Velocity
     e.Velocity = e.Velocity:Rotated(a-e.Velocity:GetAngleDegrees())
 end
 )
@@ -64,6 +65,7 @@ function(_, e)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
 
+    e.Position = e.Position-e.Velocity
     e.Velocity = e.Velocity:Rotated(a-e.Velocity:GetAngleDegrees())
 end
 )
@@ -90,6 +92,7 @@ function(_, e)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
 
+    e.Position = e.Position-e.Velocity
     e.Velocity = e.Velocity:Rotated(a-e.Velocity:GetAngleDegrees())
 end
 )
@@ -104,6 +107,19 @@ function(_, e)
     local a = (n.Position-p.Position):GetAngleDegrees()
 
     e.AngleDegrees = a
+end
+)
+
+mod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE,
+function(_, e)
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    local p = e.SpawnerEntity:ToPlayer()
+    if(mod:getAtlasAData(p, "SALT_AUTOTARGET_ENABLED")~=true) then return end
+    local n = mod:closestEnemy(p.Position)
+    if(not n) then return end
+    local a = (n.Position-p.Position):GetAngleDegrees()
+    
+    e.Rotation = a
 end
 )
 

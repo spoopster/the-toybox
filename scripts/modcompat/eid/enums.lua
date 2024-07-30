@@ -1,7 +1,9 @@
 local mod = MilcomMOD
 
 local function isDoubleTrinketMultiplier(descObj)
-    return not(not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) == not (descObj.ObjSubType>=TrinketType.TRINKET_GOLDEN_FLAG))
+    if(PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX)) then return true end
+    if((descObj.ObjSubType>=TrinketType.TRINKET_GOLDEN_FLAG)) then return true end
+    return false
 end
 local function isTripleTrinketMultiplier(descObj)
     return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) and descObj.ObjSubType>=TrinketType.TRINKET_GOLDEN_FLAG
@@ -383,7 +385,7 @@ local ITEMS = {
     },
     --#endregion
 }
-local EXTRA_ITEM_MODIFERS = {
+local EXTRA_ITEM_MODIFIERS = {
     { --! ATLAS
         --* special condition to apply to all of them
         [0] = {
@@ -584,7 +586,25 @@ local EXTRA_ITEM_MODIFERS = {
                 },
             },
         },
-    }
+    },
+    { --! JONAS
+        [0] = {
+            BaseCondition = function(descObj)
+                return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_JONAS_A)
+            end,
+            Icon = "{{Player"..mod.PLAYER_JONAS_A.."}}",
+            Color = "{{ColorJonas}}",
+        },
+        [CollectibleType.COLLECTIBLE_URANUS] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Frozen enemies can only drop pills when shattered",
+                    },
+                },
+            },
+        },
+    },
 }
 
 local TRINKETS = {
@@ -662,6 +682,8 @@ local TRINKETS = {
         },
     },
 }
+--! for double and triple
+local EXTRA_TRINKET_MODIFIERS = {}
 
 local CARDS = {
     [mod.CONSUMABLE_MANTLE_ROCK] = {
@@ -786,6 +808,485 @@ local CARDS = {
         },
     },
 }
+--! for tarot cloth
+local EXTRA_CARD_MODIFIERS = {}
+
+local PILLS = {
+    [mod.PILL_DYSLEXIA] = {
+        Name = "Dsylxeia",
+        Description = {
+            "{{Timer}} You fire backwards for 30 seconds"
+        },
+    },
+    [mod.PILL_I_BELIEVE] = {
+        Name = "I Believe I Can Fly!",
+        Description = {
+            "{{Timer}} Flight for the room"
+        },
+    },
+    [mod.PILL_DEMENTIA] = {
+        Name = "Dementia",
+        Description = {
+            "Rerolls the current pill pool"
+        }
+    },
+    [mod.PILL_PARASITE] = {
+        Name = "Parasite!",
+        Description = {
+            "Spawns 1 blue fly for every enemy in the room, along with 2 additional blue flies"
+        }
+    },
+    [mod.PILL_OSSIFICATION] = {
+        Name = "Ossification",
+        Description = {
+            "Turns 1 heart container into an {{EmptyBoneHeart}} empty bone heart"
+        }
+    },
+    [mod.PILL_YOUR_SOUL_IS_MINE] = {
+        Name = "Your Soul is Mine",
+        Description = {
+            "Turns all of your Soul Hearts into {{BlackHeart}} Black Hearts",
+        }
+    },
+    [mod.PILL_FOOD_POISONING] = {
+        Name = "Food Poisoning",
+        Description = {
+            "Spawns a poisonous cloud at your position",
+            "The cloud hurts you if you stand in it for too long",
+        }
+    },
+    [mod.PILL_CAPSULE] = {
+        Name = "Capsule",
+        Description = {
+            "Gives a random smelted trinket",
+        }
+    },
+    [mod.PILL_HEARTBURN] = {
+        Name = "Heartburn",
+        Description = {
+            "{{Timer}} Reduces all healing by half a heart for the room",
+        }
+    },
+    [mod.PILL_COAGULANT] = {
+        Name = "Coagulant",
+        Description = {
+            "The next hit you take is reduced by half a heart",
+        }
+    },
+    [mod.PILL_FENT] = {
+        Name = "Fent",
+        Description = {
+            "{{Collectible582}} Uses Wavy Cap once",
+            "{{Timer}} For the next 10 seconds, you are invincible and have a 0.7x damage multiplier"
+        }
+    },
+    [mod.PILL_ARTHRITIS] = {
+        Name = "Arthritis",
+        Description = {
+            "{{Timer}} For the next 10 seconds, you gain a 3x tears multiplier but you can only fire in 1 direction",
+        }
+    },
+    [mod.PILL_MUSCLE_ATROPHY] = {
+        Name = "Muscle Atrophy",
+        Description = {
+            "\2 Your damage is lowered to 0.5 and slowly recovers over the next 18 seconds",
+        }
+    },
+    [mod.PILL_VITAMINS] = {
+        Name = "Vitamins!",
+        Description = {
+            "{{Timer}} Gives temporary stats that fade over the next 24 seconds:",
+            "{{Blank}} \7 +0.3 speed",
+            "{{Blank}} \7 +1 range",
+            "{{Blank}} \7 +0.3 shotspeed",
+        }
+    },
+    [mod.PILL_DMG_UP] = {
+        Name = "Damage Up",
+        Description = {
+            "+0.45 damage",
+        }
+    },
+    [mod.PILL_DMG_DOWN] = {
+        Name = "Damage Down",
+        Description = {
+            "-0.35 damage",
+        }
+    },
+}
+--! for horse pills
+local EXTRA_PILL_MODIFIERS = {
+    { --! HORSE
+        [0] = {
+            BaseCondition = function(descObj)
+                return (descObj.ObjSubType & PillColor.PILL_GIANT_FLAG ~= 0)
+            end,
+            Icon = "{{ToyboxHorsePill}}",
+            Color = "{{ColorToyboxHorsePill}}",
+        },
+        [mod.PILL_DYSLEXIA] = {
+            DescriptionModifiers = {
+                {
+                    TextToModify = {
+                        {
+                            Old = "backwards",
+                            New = "{{ColorToyboxHorsePill}}in random directions{{CR}}"
+                        }
+                    },
+                },
+            },
+        },
+        [mod.PILL_I_BELIEVE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Invincibility for 7 seconds",
+                    },
+                },
+            },
+        },
+        [mod.PILL_DEMENTIA] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Unidentifies all pills",
+                        "The resulting pill pool doesn't contain any neutral effects"
+                    },
+                },
+            },
+        },
+        [mod.PILL_PARASITE] = {
+            DescriptionModifiers = {
+                {
+                    TextToModify = {
+                        {
+                            Old = "1 blue fly",
+                            New = "{{ColorToyboxHorsePill}}2{{CR}} blue flies"
+                        }
+                    },
+                },
+            },
+        },
+        [mod.PILL_OSSIFICATION] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Turns all of your heart containers into {{EmptyBoneHeart}} empty bone hearts",
+                    },
+                },
+            },
+        },
+        [mod.PILL_YOUR_SOUL_IS_MINE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "+1 {{BlackHeart}} Black Heart",
+                        "For every Soul Heart converted, spawns a {{Collectible576}} friendly black dip"
+                    },
+                },
+            },
+        },
+        [mod.PILL_FOOD_POISONING] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "The poisonous cloud is larger and lasts for the rest of the room",
+                        "Spawns a puddle of green creep that hurts enemies"
+                    },
+                },
+            },
+        },
+        [mod.PILL_CAPSULE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "The trinket is golden",
+                    },
+                },
+            },
+        },
+        [mod.PILL_HEARTBURN] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "You cannot gain any health or heart containers this room",
+                    },
+                },
+            },
+        },
+        [mod.PILL_COAGULANT] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "The next time you take damage, gain 3 seconds of invincibility",
+                    },
+                },
+            },
+            DescriptionModifiers = {
+                {
+                    TextToModify = {
+                        {
+                            Old = "reduced by half a heart",
+                            New = "{{ColorToyboxHorsePill}}completely negated{{CR}}"
+                        }
+                    },
+                },
+            },
+        },
+        [mod.PILL_FENT] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Negates the damage multiplier",
+                    },
+                },
+            },
+            DescriptionModifiers = {
+                {
+                    TextToModify = {
+                        {
+                            Old = "once",
+                            New = "{{ColorToyboxHorsePill}}twice{{CR}}"
+                        }
+                    },
+                },
+            },
+        },
+        [mod.PILL_ARTHRITIS] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Also get +1.5 damage",
+                    },
+                },
+            },
+        },
+        [mod.PILL_MUSCLE_ATROPHY] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Permanent -0.1 damage",
+                    },
+                },
+            },
+            DescriptionModifiers = {
+                {
+                    TextToModify = {
+                        {
+                            Old = "18 seconds",
+                            New = "{{ColorToyboxHorsePill}}27{{CR}} seconds"
+                        }
+                    },
+                },
+            },
+        },
+        [mod.PILL_VITAMINS] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Additionally gives a temporary +1 damage",
+                    },
+                },
+            },
+            DescriptionModifiers = {
+                {
+                    TextToModify = {
+                        {
+                            Old = "+0.3 speed",
+                            New = "{{ColorToyboxHorsePill}}+0.45{{CR}} speed"
+                        },
+                        {
+                            Old = "+1 range",
+                            New = "{{ColorToyboxHorsePill}}+1.5{{CR}} range"
+                        },
+                        {
+                            Old = "+0.3 shotspeed",
+                            New = "{{ColorToyboxHorsePill}}+0.45{{CR}} shotspeed"
+                        },
+                    },
+                },
+            },
+        },
+        [mod.PILL_DMG_UP] = {
+            DescriptionModifiers = {
+                {
+                    TextToModify = {
+                        {
+                            Old = "+0.45 damage",
+                            New = "{{ColorToyboxHorsePill}}+0.9{{CR}} damage"
+                        },
+                    },
+                },
+            },
+        },
+        [mod.PILL_DMG_DOWN] = {
+            DescriptionModifiers = {
+                {
+                    TextToModify = {
+                        {
+                            Old = "-0.35 damage",
+                            New = "{{ColorToyboxHorsePill}}-0.7{{CR}} damage"
+                        },
+                    },
+                },
+            },
+        },
+    },
+    { --! PLACEBO
+        [0] = {
+            BaseCondition = function(descObj)
+                return (PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_PLACEBO))
+            end,
+            Icon = "{{Collectible348}}",
+            Color = "{{ColorSilver}}",
+        },
+        [mod.PILL_DYSLEXIA] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "6 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_I_BELIEVE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "3 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_DEMENTIA] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "3 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_PARASITE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "2 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_OSSIFICATION] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "4 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_YOUR_SOUL_IS_MINE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "6 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_FOOD_POISONING] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "3 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_CAPSULE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "12 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_HEARTBURN] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "4 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_COAGULANT] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "12 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_FENT] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "6 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_ARTHRITIS] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "4 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_MUSCLE_ATROPHY] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "3 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_VITAMINS] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "6 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_DMG_UP] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "6 charges",
+                    },
+                },
+            },
+        },
+        [mod.PILL_DMG_DOWN] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "4 charges",
+                    },
+                },
+            },
+        },
+    },
+}
+
 local PLAYERS = {
     [mod.PLAYER_ATLAS_A] = {
         Name="Atlas",
@@ -817,9 +1318,10 @@ local PLAYERS = {
         Name="Jonas",
         Description = {
             "Enemies may drop pills on death",
-            "Using multiple pills grants a stat bonus",
-            "Stat bonus is lost on new floor or by clearing rooms without using a pill",
-            "Pill pool gets rerolled every floor",
+            "Using a pill grants a small all stats up with diminishing returns",
+            "The stat bonus from pills is reset if you clear too many rooms without using a pill",
+            "You lose 2/3rds of the stat bonus at the start every floor",
+            "Pill pool gets rerolled and unidentified at the start of every floor",
         },
         Birthright = {
             "{{Pill}} Bad and neutral pills become good pills",
@@ -830,8 +1332,14 @@ local PLAYERS = {
 
 return {
     ["ITEMS"] = ITEMS,
-    ["EXTRA_ITEM_MODIFIERS"] = EXTRA_ITEM_MODIFERS,
     ["TRINKETS"] = TRINKETS,
     ["CARDS"] = CARDS,
+    ["PILLS"] = PILLS,
+
+    ["EXTRA_ITEM_MODIFIERS"] = EXTRA_ITEM_MODIFIERS,
+    ["EXTRA_TRINKET_MODIFIERS"] = EXTRA_TRINKET_MODIFIERS,
+    ["EXTRA_CARD_MODIFIERS"] = EXTRA_CARD_MODIFIERS,
+    ["EXTRA_PILL_MODIFIERS"] = EXTRA_PILL_MODIFIERS,
+
     ["PLAYERS"] = PLAYERS,
 }

@@ -219,7 +219,7 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ROCKET_EXPLODE, chunkRocketExplode)
 
 ---@param player EntityPlayer
 ---@param ent Entity
-local function postLaserDamage(_, dmgtype, player, ent)
+local function postLaserDamage(_, dmgtype, player, ent, dmg, flags)
     if(not (dmgtype==mod.DAMAGE_TYPE.LASER or dmgtype==mod.DAMAGE_TYPE.KNIFE)) then return end
 
     if(not player:HasCollectible(mod.COLLECTIBLE_OBSIDIAN_CHUNK)) then return end
@@ -235,6 +235,7 @@ local function postLaserDamage(_, dmgtype, player, ent)
 
         local pebble = firePebbleTear(ent.Position, v, player, rng)
     end
+    ent:TakeDamage(dmg*(CHUNK_DMGMULT-1), flags | DamageFlag.DAMAGE_CLONES, EntityRef(player), 0)
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_EXTRA_DMG, postLaserDamage)
 

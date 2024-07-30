@@ -1,5 +1,6 @@
 local mod = MilcomMOD
 
+-- [[
 ---@param player EntityPlayer
 local function jumpOffset(_, player, offset)
     if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
@@ -20,3 +21,4 @@ local function jumpOffset(_, player, offset)
     return Vector(0, jumpHeight)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_RENDER, jumpOffset)
+--]]
