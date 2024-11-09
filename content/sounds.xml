@@ -20,27 +20,50 @@
 		<sample weight="1" path="toybox_bullet_hit.wav" />  
 	</sound>
 
-	<sound name="Toybox_AtlasA_RockHurt">
-		<sample weight="1" path="toybox_atlas_a_rockhurt1.wav" />  
-        <sample weight="1" path="toybox_atlas_a_rockhurt2.wav" />
+	<sound name="Toybox_PowerUp">
+		<sample weight="1" path="toybox_mario_powerup.wav" />
+	</sound>
+	<sound name="Toybox_PowerDown">
+		<sample weight="1" path="toybox_mario_powerdown.wav" />
+	</sound>
+
+	<sound name="Toybox_Virus_Spawn">
+		<sample weight="1" path="toybox_drmario_spawn.wav" />
+	</sound>
+	<sound name="Toybox_Virus_Shoot">
+		<sample weight="1" path="toybox_drmario_shoot.wav" />
+	</sound>
+	<sound name="Toybox_Virus_Die">
+		<sample weight="1" path="toybox_drmario_death.wav" />
+	</sound>
+
+	<sound name="Toybox_Shadow_Scream">
+		<sample weight="1" path="toybox_shadow_scream.wav" />
+		<sample weight="1" path="toybox_shadow_scream2.wav" />
+	</sound>
+
+	<sound name="Toybox_AtlasA_RockCrack">
+		<sample weight="1" path="toybox_atlas_rockcrack1.wav" />
+        <sample weight="1" path="toybox_atlas_rockcrack2.wav" />
+		<sample weight="1" path="toybox_atlas_rockcrack3.wav" />
 	</sound>
 	<sound name="Toybox_AtlasA_RockBreak">
-		<sample weight="1" path="toybox_atlas_a_rockbreak1.wav" />
-        <sample weight="1" path="toybox_atlas_a_rockbreak2.wav" />
+		<sample weight="1" path="toybox_atlas_rockbreak1.wav" />
+        <sample weight="1" path="toybox_atlas_rockbreak2.wav" />
 	</sound>
     <sound name="Toybox_AtlasA_MetalBlock">
-		<sample weight="1" path="toybox_atlas_a_metalblock1.wav" />
-        <sample weight="1" path="toybox_atlas_a_metalblock2.wav" />
-        <sample weight="1" path="toybox_atlas_a_metalblock3.wav" />
+		<sample weight="1" path="toybox_atlas_metalblock1.wav" />
+        <sample weight="1" path="toybox_atlas_metalblock2.wav" />
+        <sample weight="1" path="toybox_atlas_metalblock3.wav" />
 	</sound>
     <sound name="Toybox_AtlasA_MetalBreak">
-		<sample weight="1" path="toybox_atlas_a_metalbreak1.wav" />
-        <sample weight="1" path="toybox_atlas_a_metalbreak2.wav" />
+		<sample weight="1" path="toybox_atlas_metalbreak1.wav" />
+        <sample weight="1" path="toybox_atlas_metalbreak2.wav" />
 	</sound>
     <sound name="Toybox_AtlasA_GlassBreak">
-		<sample weight="1" path="toybox_atlas_a_glassbreak1.wav" />
-        <sample weight="1" path="toybox_atlas_a_glassbreak2.wav" />
-        <sample weight="1" path="toybox_atlas_a_glassbreak3.wav" />
-        <sample weight="1" path="toybox_atlas_a_glassbreak4.wav" />
+		<sample weight="1" path="toybox_atlas_glassbreak1.wav" />
+        <sample weight="1" path="toybox_atlas_glassbreak2.wav" />
+        <sample weight="1" path="toybox_atlas_glassbreak3.wav" />
+        <sample weight="1" path="toybox_atlas_glassbreak4.wav" />
 	</sound>
 </sounds>

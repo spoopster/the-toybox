@@ -1,11 +1,35 @@
 <achievements gfxroot="gfx/ui/achievements/">
 
 	<!-- characters -->
-	<achievement name="Tainted Milcom" text='' gfx="achievement_milcom_placeholder.png" />
-	<achievement name="Tainted Atlas" text='' gfx="achievement_milcom_placeholder.png" />
+	<achievement name="Tainted Atlas" text="" gfx="achievement_milcom_placeholder.png" />
+	<achievement name="Tainted Jonas" text="" gfx="achievement_milcom_placeholder.png" />
 
-	<achievement name="SkibidiDopDop" text="" gfx="achievement_milcom_placeholder.png" >
-		<condition conditiontype="completionmark" conditionvalue="ISAAC" conditioncharacter="Milcom" />
-	</achievement>
+	<achievement name="Prismstone Card" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Glass Vessel" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Steel Soul" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Hostile Takeover" text="" gfx="tb_ach_hostile_takeover.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Rock Candy" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Missing Page 3" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Gilded Apple" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Sculptor's Chisel" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Mantles" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Amber Fossil" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Bone Boy!" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Ascension" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Miracle Mantle" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
+
+	<achievement name="Giant Capsule" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Wonder Drug" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Dad's Prescription" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Candy Dispenser" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Dr. Bum" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Jonas' Mask" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Antibiotics" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Foil Card" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Horse Tranquilizer" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Clown PHD" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Jonas' Lock" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Pill Diversity!" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Drill" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_jonas.png" />
 	
 </achievements>

@@ -13,12 +13,8 @@ function mod:updateMantles(player)
 
             Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.PRE_ATLAS_LOSE_MANTLE, mantles[i].TYPE, player, mantles[i].TYPE)
             local oldType = mantles[i].TYPE
-            mantles[i] = {
-                TYPE = mod.MANTLE_DATA.NONE.ID,
-                HP = mod.MANTLE_DATA.NONE.HP,
-                MAXHP = mod.MANTLE_DATA.NONE.HP,
-                COLOR = mantles[i].COLOR or Color(1,1,1,1),
-            }
+            mod:setMantleType(player, i, nil, mod.MANTLE_DATA.NONE.ID)
+            sfx:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(oldType)].BREAK_SFX)
             Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, oldType, player, oldType)
         end
     end
@@ -69,7 +65,7 @@ function mod:updateMantles(player)
         data.SALT_AUTOTARGET_ENABLED = false
     end
 
-    player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY | CacheFlag.CACHE_LUCK | CacheFlag.CACHE_RANGE | CacheFlag.CACHE_SHOTSPEED | CacheFlag.CACHE_SPEED | CacheFlag.CACHE_FLYING, true)
+    player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 end
 
 ---@param player EntityPlayer
@@ -82,33 +78,29 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, timeInTransfUpdate)
 local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
     if(not mod:isAtlasA(player)) then return end
+    local data = mod:getAtlasATable(player)
+    local ridx = mod:getRightmostMantleIdx(player)
+
+    if(data.TRANSFORMATION~=mod.MANTLE_DATA.TAR.ID) then
+        sfx:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(data.MANTLES[ridx].TYPE)].HURT_SFX, 1)
+    end
+    --]]
 
     if(dmg>0 and Game():GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
-        local data = mod:getAtlasATable(player)
-
         if(data.TRANSFORMATION~=mod.MANTLE_DATA.TAR.ID) then
             mod:addMantleHp(player, -dmg)
-
-            sfx:Play(mod.SFX_ATLASA_ROCKHURT, 1)
-            sfx:Play(SoundEffect.SOUND_ISAAC_HURT_GRUNT,0,2)
-
-            return {
-                Damage=0,
-                DamageFlags=flags,
-                DamageCountdown=frames
-            }
         else
             player:Die()
-
-            return {
-                Damage=0,
-                DamageFlags=flags,
-                DamageCountdown=frames
-            }
         end
+
+        return {
+            Damage=0,
+            DamageFlags=flags,
+            DamageCountdown=frames
+        }
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12-1, mantleDamage, EntityType.ENTITY_PLAYER)
+mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 1e12-1+(CustomHealthAPI and (-1e12-1e3) or 0), mantleDamage, EntityType.ENTITY_PLAYER)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag

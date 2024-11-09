@@ -225,46 +225,6 @@ if(FiendFolio) then
     )
 end
 
----@param player EntityPlayer
-local function postAddItem(_, item, _, firstTime, _, _, player)
-    if(firstTime~=true) then return end
-    if(not player:HasCollectible(mod.COLLECTIBLE_CARAMEL_APPLE)) then return end
-
-    local config = Isaac.GetItemConfig():GetCollectible(item)
-    if(config==nil) then return end
-
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_CARAMEL_APPLE)
-
-    local addedHearts = {}
-    
-    if(config.AddHearts>0 and player:CanPickRedHearts() and rng:RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then
-        player:AddHearts(1)
-        addedHearts[#addedHearts+1] = ENUM_REDHEART_COL
-    end
-    if(config.AddSoulHearts>0 and player:CanPickSoulHearts() and rng:RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then
-        player:AddSoulHearts(1)
-        addedHearts[#addedHearts+1] = ENUM_SOULHEART_COL
-    end
-    if(config.AddBlackHearts>0 and player:CanPickBlackHearts() and rng:RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then
-        player:AddBlackHearts(1)
-        addedHearts[#addedHearts+1] = ENUM_BLACKHEART_COL
-    end
-
-    for i, c in ipairs(addedHearts) do
-        local offset = ((i-1/2)-(#addedHearts/2))
-
-        local gulpEffect = Isaac.Spawn(1000, 49, 0, player.Position, Vector.Zero, nil):ToEffect()
-        gulpEffect.Color = c
-        gulpEffect.SpriteOffset = Vector(19*offset, -35+3*math.abs(offset))
-        gulpEffect.DepthOffset = 1000
-        gulpEffect:FollowParent(player)
-    end
-    if(#addedHearts~=0) then
-        sfx:Play(SoundEffect.SOUND_VAMP_GULP)
-    end
-end
---mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddItem)
-
 ---@param pickup EntityPickup
 ---@param player EntityPlayer?
 local function collideWithHearts(_, pickup, player)

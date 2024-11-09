@@ -13,7 +13,7 @@
     gfx="tb_condensed_milk.png"
     quality="3"
     tags="offensive summonable tearsup"
-    cache="firedelay"
+    cache="firedelay damage"
 />
 <passive id="2" name="Eyestrain"
     description="MY EYES"
@@ -22,15 +22,12 @@
     tags="offensive"
     cache="luck damage"
 />
-<!--! not implemented -->
-<passive id="3" name="Pile of Sand"
-    description="Itchy and painful"
-    gfx="tb_pile_of_sand.png"
-    quality="2"
-    tags="offensive summonable    noeden"
-    cache=""
-
-    hidden="true"
+<passive id="3" name="Snowcone"
+    description="Yummy!"
+    gfx="tb_snowcone.png"
+    quality="4"
+    tags="offensive summonable"
+    cache="all"
 />
 <passive id="4" name="Obsidian Shard"
     description="Cutting edge + &quot;tinted&quot; rocks"
@@ -46,16 +43,12 @@
     tags="offensive summonable tearsup"
     cache="firedelay"
 />
-<!--! not implemented -->
-<active id="6" name="Bronze Bull"
-    description="Feel the heat"
-    gfx="tb_bronze_bull.png"
-    quality="2"
-    tags="offensive    noeden"           
-    cache=""
-
-    maxcharges="2"
-    hidden="true"
+<passive id="6" name="Loose Bowels"
+    description="Can't control it..."
+    gfx="tb_loose_bowels.png"
+    quality="3"
+    tags="offensive summonable tearsup"           
+    cache="speed firedelay"
 />
 <active id="7" name="Pliers"
     description="No pain no gain"
@@ -82,37 +75,26 @@
 
     devilprice="1"
 />
-<!--! not implemented -->
-<passive id="10" name="Cursed Chains"
-    description="You shall know restraint"
-    gfx="tb_cursed_chains.png"
+<passive id="10" name="Dad's Slipper"
+    description="Shotspeed up"
+    gfx="tb_dads_slipper.png"
     quality="1"
-    tags="offensive summonable    noeden"
+    tags="offensive summonable"
+    cache="shotspeed"
+/>
+<passive id="11" name="Good Job"
+    description="Your did it!"
+    gfx="tb_goodjod.png"
+    quality="2"
+    tags="offensive summonable"
     cache="all"
-
-    devilprice="1"
-    hidden="true"
 />
-<!--? unused -->
-<passive id="11" name="Mammon's Offering"
-    description="You shall know charity"
-    gfx="tb_mammons_offering.png"
+<passive id="12" name="Odd Onion"
+    description="Defective tears"
+    gfx="tb_odd_onion.png"
     quality="2"
-    tags="offensive summonable    noeden"
-    cache="damage"
-
-    devilprice="1"
-    hidden="true"
-/>
-<!--! not implemented -->
-<familiar id="12" name="Wooden Doll"
-    description="He's a real boy!"
-    gfx="tb_wooden_doll.png"
-    quality="2"
-    tags="offensive summonable noeden"
-    cache=""
-
-    hidden="true"
+    tags="offensive summonable"
+    cache="all"
 />
 <passive id="13" name="Caramel Apple"
     description="HP up + better hearts"
@@ -138,44 +120,38 @@
     description="Failed prototype"
     gfx="tb_tech_ix.png"
     quality="2"
-    tags="offensive summonable"
+    tags="offensive summonable tech"
     cache=""
 />
-<!--! not implemented -->
-<passive id="16" name="Cricket's Jaw"
-    description="Death begets death"
-    gfx="tb_crickets_jaw.png"
+<passive id="16" name="Dried Placenta"
+    description="Regeneration?"
+    gfx="tb_dried_placenta.png"
     quality="4"
-    tags="offensive summonable    noeden"
-    cache="damage"
-
-    hidden="true"
+    tags="summonable nolostbr"
+    cache=""
 />
 <passive id="17" name="Painkillers"
-    description="Delayed damage + immunity WAY down"
+    description="Immunity WAY down"
     gfx="tb_painkillers.png"
-    quality="1"
+    quality="0"
     tags="summonable nolostbr"
-    cache="damage"
+    cache=""
 />
-<active id="18" name="Silk Bag"
-    description="Limited use invincibility"
+<familiar id="18" name="Silk Bag"
+    description="Gives invincibility"
     gfx="tb_silk_bag.png"
     quality="3"
-    tags="nolostbr"
+    tags="offensive"
     cache=""
-
-    maxcharges="0"
 />
-<!--! not implemented -->
-<passive id="19" name="Paint Bucket"
-    description="Paint the basement red"
-    gfx="tb_paint_bucket.png"
+<active id="19" name="Brainfreeze"
+    description="Chill aura"
+    gfx="tb_brainfreeze.png"
     quality="3"
-    tags="summonable offensive    noeden"
+    tags="offensive"
     cache=""
     
-    hidden="true"
+    maxcharges="3"
 />
 <passive id="20" name="Fatal Signal"
     description="HP up + out of memory"
@@ -197,7 +173,7 @@
 <familiar id="22" name="Malicious Brain"
     description="He hates you"
     gfx="tb_malicious_brain.png"
-    quality="4"
+    quality="3"
     tags="summonable offensive"
     cache=""
 />
@@ -224,12 +200,15 @@
     tags="summonable offensive"
     cache=""
 />
-<familiar id="26" name="Scattered Tome"
-    description="Pages in the wind"
-    gfx="tb_scattered_tome.png"
-    quality="2"
-    tags="monstermanual summonable offensive"
+<active id="26" name="D"
+    description="Reroll your... uhh..."
+    gfx="tb_d.png"
+    quality="0"
+    tags="offensive"
     cache=""
+
+    maxcharges="1"
+    shopprice="6"
 />
 <active id="27" name="Toy Gun"
     description="Packs a punch"
@@ -252,16 +231,14 @@
     maxcharges="0"
     coins="5"
 />
-<!--! not implemented -->
 <active id="29" name="Gilded Apple"
     description="Golden aura"
     gfx="tb_golden_apple.png"
     quality="3"
-    tags="offensive    noeden"
+    tags="nolostbr"
     cache=""
     
-    maxcharges="4"
-    hidden="true"
+    maxcharges="6"
 />
 <passive id="30" name="Obsidian Chunk"
     description="Harder than steel"
@@ -272,13 +249,174 @@
 
     blackhearts="2"
 />
+<passive id="31" name="Dad's Prescription"
+    description="Dispense as written"
+    gfx="tb_dads_prescription.png"
+    quality="2"
+    tags="offensive"
+    cache=""
 
+    shopprice="10"
+/>
+<passive id="32" name="Horse Tranquilizer"
+    description="Horse up!"
+    gfx="tb_horse_tranquilizer.png"
+    quality="2"
+    tags="offensive syringe"
+    cache=""
+/>
+<passive id="33" name="Bob's Heart"
+    description="Nitroglycerin blood"
+    gfx="tb_bobs_heart.png"
+    quality="3"
+    tags="offensive bob"
+    cache=""
+/>
+<passive id="34" name="Glass Vessel"
+    description="Frail protection"
+    gfx="tb_glass_vessel.png"
+    quality="3"
+    tags="nolostbr"
+    cache=""
+/>
+<passive id="35" name="Sculptor's Chisel"
+    description="Immortalized"
+    gfx="tb_sculptors_chisel.png"
+    quality="3"
+    tags="nolostbr nokeeper"
+    cache=""
+/>
+<familiar id="36" name="Bone Boy"
+    description="Life of the party"
+    gfx="tb_bone_boy.png"
+    quality="4"
+    tags="monstermanual summonable offensive"
+    cache=""
+/>
+<active id="37" name="Hostile Takeover"
+    description="We are One"
+    gfx="tb_hostile_takeover.png"
+    quality="3"
+    tags="offensive"
+    cache="all"
+
+    maxcharges="6"
+/>
+<passive id="38" name="Steel Soul"
+    description="Unbreakable spirit"
+    gfx="tb_steel_soul.png"
+    quality="3"
+    tags="summonable nolostbr"
+    cache=""
+
+    soulhearts="2"
+/>
+<passive id="39" name="Rock Candy"
+    description="Crunchy!"
+    gfx="tb_rock_candy.png"
+    quality="3"
+    tags="summonable offensive tearsup"
+    cache="firedelay shotspeed"
+/>
+<passive id="40" name="Giant Capsule"
+    description="The doctor is in!"
+    gfx="tb_giant_capsule.png"
+    quality="2"
+    tags="summonable offensive"
+    cache="familiars"
+/>
+<active id="41" name="Candy Dispenser"
+    description="Safe keepings"
+    gfx="tb_pez_dispenser.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+
+    maxcharges="0"
+/>
+<passive id="42" name="Missing Page 3"
+    description="Zonked state"
+    gfx="tb_missing_page_3.png"
+    quality="2"
+    tags="summonable offensive"
+    cache=""
+
+    devilprice="1"
+/>
+<active id="43" name="Ascension"
+    description="Follow the light"
+    gfx="tb_ascension.png"
+    quality="3"
+    tags="nolostbr"
+    cache="flying tearflag"
+
+    chargetype="timed"
+    maxcharges="300"
+/>
 <passive id="44" name="4 4"
     description="Hear its cry"
     gfx="tb_4_4.png"
     quality="3"
     tags="summonable offensive"
     cache=""
+/>
+<familiar id="45" name="Dr. Bum"
+    description="Still homeless"
+    gfx="tb_dr_bum.png"
+    quality="2"
+    tags="summonable offensive"
+    cache=""
+/>
+<familiar id="46" name="Jonas' Mask"
+    description="Shadow buddies"
+    gfx="tb_jonas_mask.png"
+    quality="2"
+    tags="summonable offensive"
+    cache=""
+/>
+<passive id="47" name="Clown PHD"
+    description="True chaos!"
+    gfx="tb_clown_phd.png"
+    quality="1"
+    tags="summonable offensive"
+    cache=""
+/>
+<active id="48" name="Drill"
+    description="Jailbreaker"
+    gfx="tb_drill.png"
+    quality="3"
+    tags="offensive"
+    cache=""
+
+    chargetype="timed"
+    maxcharges="300"
+/>
+<active id="49" name="Alphabet Box"
+    description="Learn your ABCs"
+    gfx="tb_alphabet_box.png"
+    quality="2"
+    tags="offensive nocantrip"
+    cache=""
+
+    maxcharges="4"
+/>
+<passive id="50" name="Love Letter"
+    description="Isaac from Hell"
+    gfx="tb_love_letter.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+/>
+
+<active id="500" name="Portable Teller"
+    description="Fate 24/7"
+    gfx="tb_portable_teller.png"
+    quality="0"
+    tags="offensive noeden"
+    cache=""
+
+    maxcharges="0"
+    hidden="true"
 />
 
 <!-- TRINKETS -->
@@ -289,12 +427,42 @@
 />
 <trinket id="1" name="Plasma Globe"
     description="High voltage"
-    gfx="tb_placeholder.png"
+    gfx="tb_plasma_globe.png"
     cache=""
 />
 <trinket id="2" name="Foam Bullet"
     description="Lethal force"
     gfx="tb_foam_bullet.png"
+    cache=""
+/>
+<trinket id="3" name="Antibiotics"
+    description="Double mystery"
+    gfx="tb_antibiotics.png"
+    cache=""
+/>
+<trinket id="4" name="Wonder Drug"
+    description="Better pills"
+    gfx="tb_wonder_drug.png"
+    cache=""
+/>
+<trinket id="5" name="Amber Fossil"
+    description="Ancient plague"
+    gfx="tb_amber_fossil.png"
+    cache=""
+/>
+<trinket id="6" name="Jonas' Lock"
+    description="I love drugs!"
+    gfx="tb_jonas_lock.png"
+    cache=""
+/>
+<trinket id="7" name="Sine Worm"
+    description="Bwoeowoeow!"
+    gfx="tb_sine_worm.png"
+    cache="firedelay range"
+/>
+<trinket id="8" name="Big Blind"
+    description="Ante up!"
+    gfx="tb_big_blind.png"
     cache=""
 />
 
@@ -305,6 +473,13 @@
     gfx="tb_placeholder.png"
     quality="0"
     tags="summonable"
+    cache=""
+/>
+<familiar id="26" name="Scattered Tome"
+    description="Pages in the wind"
+    gfx="tb_scattered_tome.png"
+    quality="2"
+    tags="monstermanual summonable offensive book"
     cache=""
 />
 

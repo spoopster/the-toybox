@@ -18,8 +18,35 @@ local BASEDATA = {
     PAINKILLERS_DAMAGE_COUNTER = 0,
     PAINKILLERS_DAMAGE_TIMER = 0,
     SIGIL_OF_GREED_CHARGE = 0,
+    JONAS_LOCK_STATBONUSES = {
+        SPEED = 0,
+        FIREDELAY = 0,
+        DAMAGE = 0,
+        RANGE = 0,
+        SHOTSPEED = 0,
+        LUCK = 0,
+    },
+    GLASS_VESSEL_MANTLESTATE = 0,
+    ASCENSION_ISACTIVE = 0,
+    ASCENSION_LENGTH = 0,
+    ASCENSION_ORIGINALPOS = 0,
+    BIG_BLIND_COUNTER = 0,
+    BIG_BLIND_COUNTERS_FINISHED = 0,
+    BLACKSOUL_COUNTER = 0,
+    BLACKSOUL_GOTHIT = 0,
+    PILLCRUSHER_HELD_CONS = {
+        [1] = {-1,false, {}, {}},
+        [2] = {-1,false, {}, {}},
+        [3] = {-1,false, {}, {}},
+    },
+    PILLCRUSHER_OFFSET = Vector(0,0),
+    PILLCRUSHER_DROP_FRAMES = 0,
+    PILLCRUSHER_MAP_FRAMES = 0,
+    PILLCRUSHER_STORED_NAME = "",
+    PILLCRUSHER_RENDER_POS = Vector(0,0),
+    GIANT_CAPSULE_VIRUSCOUNT = {},
     
-    --! all the stupid pill shits i could've probably done with null items
+    --! STUPID CONSUMABLE SHIT
     DYSLEXIA_DURATION = 0,
     DYSLEXIA_HORSE = false,
     BLEEEGH_HORSE = false,
@@ -36,6 +63,10 @@ local BASEDATA = {
     VITAMINS_HORSE = false,
     DAMAGE_UP_STACKS = 0,
     DAMAGE_DOWN_STACKS = 0,
+
+    MANTLEROCK_ACTIVE = 0,
+    MANTLEBONE_ACTIVE = 0,
+    MANTLEHOLY_ACTIVE = 0,
 }
 
 return BASEDATA

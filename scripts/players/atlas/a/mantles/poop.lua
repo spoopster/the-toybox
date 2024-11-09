@@ -1,26 +1,16 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
---* polish
+--* better visual for heal pls
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then
-    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_POOP] = true
-end
+local MANTLE_FLY_NUM = 2
+local MANTLE_FLY_CHANCE = 0.5
+local MANTLE_POOP_CHANCE = 0.1*1/3
+local MANTLE_POOP_RNG = mod:generateRng()
 
-local function useMantle(_, _, player, _)
-    if(mod:isAtlasA(player)) then
-        mod:giveMantle(player, mod.MANTLE_DATA.POOP.ID)
-    else
-
-    end
-end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_POOP)
-
-local ENUM_POOPFLIES_NUM = 2
-local ENUM_POOPFLIES_CHANCE = 0.5
-local ENUM_POOPDROP_CHANCE = 0.1
-local ENUM_POOPDROP_PICKER = WeightedOutcomePicker()
-local ENUM_POOPDROPS = {
+local TRANSF_EXTRADROP_CHANCE = 0.1
+local TRANSF_DROP_PICKER = WeightedOutcomePicker()
+local TRANSF_DROPS = {
     {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, 0},
     {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 0},
     {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, 0},
@@ -30,31 +20,50 @@ local ENUM_POOPDROPS = {
     {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, 0},
     {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0},
 }
-ENUM_POOPDROP_PICKER:AddOutcomeFloat(1, 0.25, 100)
-ENUM_POOPDROP_PICKER:AddOutcomeFloat(2, 0.25, 100)
-ENUM_POOPDROP_PICKER:AddOutcomeFloat(3, 0.15, 100)
-ENUM_POOPDROP_PICKER:AddOutcomeFloat(4, 0.15, 100)
-ENUM_POOPDROP_PICKER:AddOutcomeFloat(5, 0.06, 100)
-ENUM_POOPDROP_PICKER:AddOutcomeFloat(6, 0.06, 100)
-ENUM_POOPDROP_PICKER:AddOutcomeFloat(7, 0.06, 100)
-ENUM_POOPDROP_PICKER:AddOutcomeFloat(8, 0.02, 100)
+TRANSF_DROP_PICKER:AddOutcomeFloat(1, 0.25, 100)
+TRANSF_DROP_PICKER:AddOutcomeFloat(2, 0.25, 100)
+TRANSF_DROP_PICKER:AddOutcomeFloat(3, 0.15, 100)
+TRANSF_DROP_PICKER:AddOutcomeFloat(4, 0.15, 100)
+TRANSF_DROP_PICKER:AddOutcomeFloat(5, 0.06, 100)
+TRANSF_DROP_PICKER:AddOutcomeFloat(6, 0.06, 100)
+TRANSF_DROP_PICKER:AddOutcomeFloat(7, 0.06, 100)
+TRANSF_DROP_PICKER:AddOutcomeFloat(8, 0.02, 100)
 
-
+--! MANTLE
 ---@param player EntityPlayer
 local function addPoopFlies(_, player)
     if(not mod:isAtlasA(player)) then return end
-
     local data = mod:getAtlasATable(player)
-
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.POOP.ID)
     local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_POOP)
 
     for _=1, numMantles do
-        if(rng:RandomFloat()<ENUM_POOPFLIES_CHANCE) then player:AddBlueFlies(ENUM_POOPFLIES_NUM, player.Position, nil) end
+        if(rng:RandomFloat()<MANTLE_FLY_CHANCE) then player:AddBlueFlies(MANTLE_FLY_NUM, player.Position, nil) end
     end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, addPoopFlies)
 
+local function replaceRockSpawn(_, t,v,vardata,idx,seed)
+    local finalChance = 0
+    for i=0, Game():GetNumPlayers()-1 do
+        local pl = Isaac.GetPlayer(i)
+        if(mod:isAtlasA(pl)) then finalChance = finalChance+mod:getNumMantlesByType(pl, mod.MANTLE_DATA.POOP.ID) end
+    end
+    finalChance = finalChance*MANTLE_POOP_CHANCE
+
+    MANTLE_POOP_RNG = MANTLE_POOP_RNG or mod:generateRng()
+    if(MANTLE_POOP_RNG:RandomFloat()<finalChance) then
+        return {
+            GridEntityType.GRID_POOP,
+            0,
+            0,
+            seed
+        }
+    end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_ROOM_GRID_ENTITY_SPAWN, replaceRockSpawn, GridEntityType.GRID_ROCK)
+
+--! TRANSF
 ---@param poop GridEntityPoop
 local function poopUpdate(_, poop)
     if(Game():IsPaused()) then return end
@@ -65,12 +74,12 @@ local function poopUpdate(_, poop)
     if(data.POOP_SPAWNEDPICKUP==nil) then data.POOP_SPAWNEDPICKUP = -1 end
     
     if(data.POOP_DMG and poop.State==1000 and poop.State~=data.POOP_DMG) then
-        local shouldDoTransfEffect = false
+        local shouldDoTransfEffect = nil
         for _, player in ipairs(mod:getAllAtlasA()) do
             player = player:ToPlayer()
             if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
                 local didHeal = mod:addMantleHp(player, 1)
-                shouldDoTransfEffect = true
+                shouldDoTransfEffect = {player, didHeal}
 
                 if(didHeal) then
                     local gulpEffect = Isaac.Spawn(1000, 49, 0, player.Position, Vector.Zero, nil):ToEffect()
@@ -83,17 +92,10 @@ local function poopUpdate(_, poop)
             end
         end
         if(shouldDoTransfEffect) then
-            local poof = Isaac.Spawn(1000,16,1,poop.Position,Vector.Zero,nil):ToEffect()
-            local col = Color(1,1,1,1)
-            col:SetColorize(0,0,0,1)
-            col:SetColorize(124/255, 86/255, 52/255,1)
-
-            poof.Color = col
-
-            poof.SpriteScale = Vector(1,1)*0.75
-
-            sfx:Play(SoundEffect.SOUND_FART)
             data.POOP_SPAWNEDPICKUP = 0
+            if(shouldDoTransfEffect[2]) then
+                Game():Fart(poop.Position, nil, shouldDoTransfEffect[1], 0.8)
+            end
         end
     end
 
@@ -122,9 +124,9 @@ local function poopUpdate(_, poop)
         end
         
         local rng = mod:generateRng(poop.Desc.SpawnSeed)
-        local selPickupData = ENUM_POOPDROPS[ENUM_POOPDROP_PICKER:PickOutcome(rng)]
+        local selPickupData = TRANSF_DROPS[TRANSF_DROP_PICKER:PickOutcome(rng)]
 
-        if(isAtlasPoop and (not pickupSpawned) and rng:RandomFloat()<ENUM_POOPDROP_CHANCE) then
+        if(isAtlasPoop and (not pickupSpawned) and rng:RandomFloat()<TRANSF_EXTRADROP_CHANCE) then
             local pickup = Isaac.Spawn(selPickupData[1], selPickupData[2], selPickupData[3], poop.Position, Vector.Zero, nil)
         elseif(isAtlasPoop and pickupSpawned) then
             selPickup:ToPickup():Morph(selPickupData[1], selPickupData[2], selPickupData[3])
@@ -134,11 +136,3 @@ local function poopUpdate(_, poop)
     data.POOP_DMG = poop.State
 end
 mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_POOP_UPDATE, poopUpdate)
-
----@param player EntityPlayer
-local function playMantleSFX(_, player, mantle)
-    if(not mod:isAtlasA(player)) then return end
-
-    sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
-end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.POOP.ID)

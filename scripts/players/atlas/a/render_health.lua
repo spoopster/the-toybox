@@ -9,6 +9,10 @@ TRANSF_SPRITE:Load("gfx/ui/tb_ui_mantleicons.anm2", true)
 TRANSF_SPRITE:Play("RockMantle", true)
 TRANSF_SPRITE.Offset = Vector(0,-1)
 
+local VANILLA_HP_SPRITE = Sprite()
+VANILLA_HP_SPRITE:Load("gfx/ui/ui_hearts.anm2", true)
+VANILLA_HP_SPRITE:Play("HolyMantle", true)
+
 local f = Font()
 f:Load("font/pftempestasevencondensed.fnt")
 
@@ -43,6 +47,7 @@ end
 
 ---@param sprite Sprite
 ---@param pos Vector
+---@param player EntityPlayer
 local function renderMantles(_, offset, sprite, pos, u, player)
     if(not mod:isAtlasA(player)) then return end
 
@@ -107,7 +112,8 @@ local function renderMantles(_, offset, sprite, pos, u, player)
         if(selHealthIndex==i and not hasCurseOfTheUnknown) then
             updatedColor=true
 
-            local sinColor = math.sin(math.rad(player.FrameCount*10))*0.25+0.5
+            local curSin = (math.sin(math.rad(player.FrameCount*10))+1)*0.5
+            local sinColor = curSin*0.3+0.1
 
             if(data.MANTLES[i].TYPE==mod.MANTLE_DATA.NONE.ID) then data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1,sinColor,sinColor,sinColor), 0.5)
             else data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1,sinColor,0,sinColor*0.1), 0.5) end
@@ -117,17 +123,44 @@ local function renderMantles(_, offset, sprite, pos, u, player)
         
         HP_SPRITE.Color = data.MANTLES[i].COLOR or Color(1,1,1,1)
         HP_SPRITE:Render(heartRenderPos)
+
+        if(mod:getMantleHeartData(player, i, "SOUL_SHIELD")==1 and not hasCurseOfTheUnknown) then
+            mod:renderSteelSoulSprite(player, heartRenderPos)
+        end
     end
 
-    local hasCollar = player:HasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)
-    
-    local extraLivesString = ""
-    if(player:GetExtraLives()>0) then
-        extraLivesString = "x"..player:GetExtraLives()..(player:HasChanceRevive() and "?" or "")
-        f:DrawString(extraLivesString, heartRenderPos.X+12, heartRenderPos.Y-9,KColor(1,1,1,1))
-    end
+    if(not hasCurseOfTheUnknown) then    
+        local extraLivesString = ""
+        if(player:GetExtraLives()>0) then
+            extraLivesString = "x"..player:GetExtraLives()..(player:HasChanceRevive() and "?" or "")
+            f:DrawString(extraLivesString, heartRenderPos.X+12, heartRenderPos.Y-9,KColor(1,1,1,1))
+        end
 
-    renderMantleShards(player, hasCurseOfTheUnknown)
+        local lowerPos = renderPos+heartPosOffsets*((data.HP_CAP-1)/2)+heartPosOffsets:Rotated(90)*0.75
+        local lowerEffectsOffsets = Vector(12,0)
+
+        local queuedRenders = {}
+        if(player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)) then
+            table.insert(
+                queuedRenders,
+                function(_, pl, position)
+                    VANILLA_HP_SPRITE:Render(position)
+                end
+            )
+        end
+        if(player:HasCollectible(mod.COLLECTIBLE_GLASS_VESSEL)) then table.insert(queuedRenders, mod.renderGlassVesselSprite) end
+
+        if(#queuedRenders>0) then
+            lowerPos = lowerPos-lowerEffectsOffsets*((#queuedRenders-1)/2)
+            for _, renderF in ipairs(queuedRenders) do
+                renderF(_, player, lowerPos)
+
+                lowerPos = lowerPos+lowerEffectsOffsets
+            end
+        end
+
+        renderMantleShards(player, hasCurseOfTheUnknown)
+    end
 
     return true
 end

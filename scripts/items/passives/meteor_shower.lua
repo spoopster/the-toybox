@@ -104,7 +104,20 @@ local function spawnOnDeath(_, tear)
 
         for i=1,4 do
             local v = Vector.FromAngle(i*90)*35
-            local fj = mod:spawnFireJet(tear, d, tear.Position+v, 4, 2, v, 10, Color(1,1,0,1,1,0.1,0), true)
+            local spawnData = {
+                SpawnType = "LINE",
+                SpawnData = {EntityType.ENTITY_EFFECT,EffectVariant.FIRE_JET,0},
+                SpawnerEntity = player,
+                Position = tear.Position+v,
+                Damage = d,
+                PlayerFriendly = true,
+                AngleVariation = 3,
+                Color = Color(1,1,0,1,1,0.1,0),
+                Distance = v,
+                Delay = 4,
+                Amount = 2,
+            }
+            mod:spawnCustomObjects(spawnData)
         end
 
         local NUM_FIRES = 3

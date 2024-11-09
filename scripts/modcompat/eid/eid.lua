@@ -24,9 +24,9 @@ EID:addIcon("AtlasATransformationEmpty", "Empty", 0, 16, 16, 5, 6, transformatio
 EID:addIcon("AtlasATransformationTar", "TarMantle", 0, 16, 16, 5, 6, transformationSprites)
 EID:addColor("AtlasBlankColor", KColor(0,0,0,0))
 
-EID:addIcon("ToyboxElectrifiedStatus", "Icons", 0, 16, 16, -1, 0, miscIconSprites)
-EID:addIcon("ToyboxOverflowingStatus", "Icons", 1, 16, 16, -3, 0, miscIconSprites)
-EID:addIcon("ToyboxGoldenPill", "Icons", 2, 16, 16, -1, 0, miscIconSprites)
+EID:addIcon("ToyboxElectrifiedStatus", "Icons", 0, 16, 16, 5, 6, miscIconSprites)
+EID:addIcon("ToyboxOverflowingStatus", "Icons", 1, 16, 16, 5, 6, miscIconSprites)
+EID:addIcon("ToyboxGoldenPill", "Icons", 2, 16, 16, 5, 6, miscIconSprites)
 EID:addIcon("ToyboxHorsePill", "Icons", 3, 16, 16, 5, 6, miscIconSprites)
 EID:addIcon("ToyboxGoldenHorsePill", "Icons", 4, 16, 16, 5, 6, miscIconSprites)
 
@@ -61,6 +61,7 @@ EID:addColor("ColorToyboxHorsePill", nil, function()
     return SwagColors({KColor(184/255, 169/255, 163/255, 1), KColor(111/255,134/255,192/255,1)}, 80)
 end)
 EID:addColor("ColorJonas", KColor(173/255, 189/255, 228/255, 1))
+EID:addColor("ColorItemStack", KColor(196/255,167/255,196/255,1))
 
 --#endregion
 
@@ -226,14 +227,50 @@ local bundleModifiers = {
 }
 for og, md in pairs(bundleModifiers) do
     for _, modData in ipairs(descs[md]) do
-        local baseData = modData[0]
+        local baseData = modData["0"]
         for key, data in pairs(modData) do
-            if(key==0) then goto continue end
-            --print(key)
-    
             if((data.DescriptionAppend or data.DescriptionModifiers) and (descs[og][key]==nil)) then
                 descs[og][key] = {}
             end
+
+            if(key=="0") then
+                if(data.DescriptionAppend) then
+                    if(descs[og][key].DescriptionAppend==nil) then descs[og][key].DescriptionAppend={} end
+                    for _, appendData in ipairs(data.DescriptionAppend) do
+                        local finalDescTable = {}
+                        for i, st in ipairs(appendData.DescriptionToAdd) do
+                            local finalSt = st
+                            if(baseData.Color) then
+                                finalSt = string.gsub(finalSt, "{{CR}}", "{{CR}}"..baseData.Color)
+                                finalSt = baseData.Color..finalSt.."{{CR}}"
+                            end
+                            if(baseData.Icon) then
+                                finalSt = baseData.Icon.." "..finalSt
+                            end
+                            finalDescTable[i] = finalSt
+                        end
+                        table.insert(descs[og][key].DescriptionAppend,
+                            {
+                                AddToTop = appendData.AddToTop,
+                                Condition = baseData.BaseCondition,
+                                DescriptionToAdd = finalDescTable
+                            }
+                        )
+                    end
+                end
+                if(data.DescriptionModifiers) then
+                    if(descs[og][key].DescriptionModifiers==nil) then descs[og][key].DescriptionModifiers={} end
+                    for _, modifData in ipairs(data.DescriptionModifiers) do
+                        table.insert(descs[og][key].DescriptionModifiers,
+                            {
+                                Condition = baseData.BaseCondition,
+                                TextToModify = mod:cloneTable(modifData.TextToModify)
+                            }
+                        )
+                    end
+                end
+            end
+            --print(key)
     
             if(data.DescriptionAppend) then
                 if(descs[og][key].DescriptionAppend==nil) then descs[og][key].DescriptionAppend={} end
@@ -287,6 +324,39 @@ for key, data in pairs(descs.ITEMS) do
         EID:addCollectible(key, turnStringTableToEIDDesc(data.Description), data.Name, "en_us")
     end
     addExtraDescriptionStuff({5,100,key})
+
+    EID:addDescriptionModifier(
+        "TOYBOX-ALPHABET-BOX",
+        function(descObj)
+            if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
+            if(descObj.Entity==nil) then return false end
+            
+            return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_ALPHABET_BOX)
+        end,
+        function(descObj)
+            if(mod.CONFIG.ALPHABETBOX_EID_DISPLAYS>0) then
+                local boxDesc = "{{Collectible"..mod.COLLECTIBLE_ALPHABET_BOX.."}} :"
+
+                local idx = mod:getNextAlphabetItem(descObj.ObjSubType, false)
+                for i=1, mod.CONFIG.ALPHABETBOX_EID_DISPLAYS do
+                    if(i~=1) then boxDesc = boxDesc.." -> " end
+
+                    if(idx==-1) then
+                        boxDesc = boxDesc.."Item disappears"
+                        break
+                    else
+                        boxDesc = boxDesc.."{{Collectible"..mod.ABOX_ITEMS_ALPHABETICAL[idx][2].."}}"
+                    end
+                    
+                    idx = mod:getNextAlphabetItem(mod.ABOX_ITEMS_ALPHABETICAL[idx][2], false)
+                end
+
+                descObj.Description = descObj.Description.."#"..boxDesc
+            end
+
+            return descObj
+        end
+    )
 end
 for key, data in pairs(descs.TRINKETS) do
     if(data.Description) then
@@ -296,7 +366,7 @@ for key, data in pairs(descs.TRINKETS) do
 end
 
 local cardSprite = Sprite()
-cardSprite:Load("gfx/eid/tb_eid_mantles.anm2", true)
+cardSprite:Load("gfx/eid/tb_eid_cards.anm2", true)
 for key, data in pairs(descs.CARDS) do
     EID:addIcon("Card"..key, data.Name, -1, 16, 16, 5, 7, cardSprite)
 end

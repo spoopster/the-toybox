@@ -8,7 +8,9 @@ function mod:addOverflowing(npc, player, amount, rng)
         DURATION = (oldData.DURATION or 0)+amount,
         PLAYER = player or oldData.PLAYER or Isaac.GetPlayer(),
         RNG = rng or mod:generateRng(),
+        WAS_SPRITE_STOPPED = (oldData.WAS_SPRITE_STOPPED),
     }
+    if(d.STATUS_OVERFLOW_DATA.WAS_SPRITE_STOPPED==nil) then d.STATUS_OVERFLOW_DATA.WAS_SPRITE_STOPPED = npc:GetSprite():IsPlaying() end
 end
 function mod:hasOverflowing(npc)
     local d = mod:getEntityData(npc, "STATUS_OVERFLOW_DATA")
@@ -33,7 +35,15 @@ local function cancelOverflowingUpdate(_, npc)
         local d = mod:getEntityData(npc, "STATUS_OVERFLOW_DATA")
 
         d.DURATION = d.DURATION-1
-        if(d.DURATION<=0) then d=nil end
+        if(d.DURATION<=0) then
+            if(d.WAS_SPRITE_STOPPED==false) then npc:GetSprite():Continue(true) end
+            d=nil
+        else
+            if(npc:GetSprite():IsPlaying()) then
+                npc:GetSprite():Stop(true)
+                --print("go")
+            end
+        end
 
         mod:setEntityData(npc, "STATUS_OVERFLOW_DATA", d)
 

@@ -76,24 +76,28 @@ function mod:getCurrentTransformationType(player)
     return mod.MANTLE_DATA.DEFAULT.ID
 end
 
-function mod:setMantleType(player, idx, hpOverride, type)
+function mod:setMantleType(player, idx, hpOverride, mtype)
     local data = mod:getAtlasATable(player)
 
-    local oldD = data.MANTLES[idx]
-    data.MANTLES[idx] = {
-        TYPE = type or mod.MANTLE_DATA.DEFAULT.ID,
-        HP = hpOverride or (mod.MANTLE_DATA[mod:getMantleKeyFromId(type or mod.MANTLE_DATA.DEFAULT.ID)].HP or mod.MANTLE_DATA.DEFAULT.HP),
-        MAXHP = (mod.MANTLE_DATA[mod:getMantleKeyFromId(type or mod.MANTLE_DATA.DEFAULT.ID)].HP or mod.MANTLE_DATA.DEFAULT.HP),
+    mtype = mtype or mod.MANTLE_DATA.DEFAULT.ID
+    local mHp = mod.MANTLE_DATA[mod:getMantleKeyFromId(mtype)].HP or mod.MANTLE_DATA.DEFAULT.HP
+
+    local oldD = data.MANTLES[math.min(idx, data.HP_CAP)]
+    data.MANTLES[math.min(idx, data.HP_CAP)] = {
+        TYPE = mtype,
+        HP = hpOverride or mHp,
+        MAXHP = mHp,
         COLOR = oldD.COLOR or Color(1,1,1,1),
+        DATA = {},
     }
+    Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_ATLAS_ADD_MANTLE, mtype, idx, mtype, player)
+
     mod:updateMantles(player)
 end
 
 ---@return boolean hpChanged Returns true if the mantle HP changed
 function mod:addMantleHp(player, hpToAdd)
     local data = mod:getAtlasATable(player)
-
-    --print("here")
 
     local oldMantles = mod:cloneTable(data.MANTLES)
 
@@ -126,7 +130,7 @@ end
 function mod:getHeldMantle(player)
     local card = player:GetCard(0)
     for _, dt in pairs(mod.MANTLE_DATA) do
-        if(dt.CONSUMABLE_SUBTYPE==card) then
+        if(dt.ID>0 and dt.ID<1000 and dt.CONSUMABLE_SUBTYPE==card) then
             return dt.ID
         end
     end
@@ -163,10 +167,7 @@ function mod:giveMantle(player, type)
             local selMType = data.MANTLES[idx].TYPE
             
             mod:spawnShardsForMantle(player, idx, 10)
-
-            if(selMType==mod.MANTLE_DATA.METAL.ID or selMType==mod.MANTLE_DATA.GOLD.ID) then sfx:Play(mod.SFX_ATLASA_METALBREAK, 0.4)
-            elseif(selMType==mod.MANTLE_DATA.GLASS.ID) then sfx:Play(mod.SFX_ATLASA_GLASSBREAK, 0.4)
-            else sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.4) end
+            sfx:Play(mod.MANTLE_DATA[mod:getMantleKeyFromId(selMType) or "DEFAULT"].BREAK_SFX)
 
             for i=idx+1, rIdx do
                 data.MANTLES[i-1] = mod:cloneTable(data.MANTLES[i])
@@ -184,8 +185,7 @@ function mod:giveMantle(player, type)
 
         mod:updateMantles(player)
     end
-
-    sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.3)
+    --sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.3)
 end
 
 function mod:isBadMantle(mantle)
@@ -236,6 +236,7 @@ function mod:getRandomMantle(rng, ignoreBias)
         end
     end
 
+    rng = (rng or mod:generateRng())
     local selWeight = rng:RandomFloat()*maxWeight
     local curWeight = 0
 
@@ -321,4 +322,16 @@ end
 
 function mod:getMantleKeyFromId(idx)
     return mod.MANTLE_ID_TO_NAME[idx] or "DEFAULT"
+end
+
+function mod:getMantleHeartData(pl, idx, key)
+    local data = mod:getAtlasATable(pl)
+    data.MANTLES[idx].DATA = data.MANTLES[idx].DATA or {}
+
+    return data.MANTLES[idx].DATA[key]
+end
+function mod:setMantleHeartData(pl, idx, key, val)
+    local data = mod:getAtlasATable(pl)
+    data.MANTLES[idx].DATA = data.MANTLES[idx].DATA or {}
+    data.MANTLES[idx].DATA[key] = val
 end

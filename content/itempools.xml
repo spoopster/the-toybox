@@ -3,72 +3,88 @@
         <Item Name="Pliers"/>
         <Item Name="Condensed Milk"/>
         <Item Name="Goat Milk"/>
-        <Item Name="Slickwater"/>
+        <Item Name="Coconut Oil"/>
         <Item Name="Painkillers" Weight="0.2" DecreaseBy="0.2"/>
         <Item Name="Tech IX"/>
         <Item Name="Pepper X"/>
         <Item Name="Meteor Shower"/>
         <Item Name="Golden Tweezers"/>
-        <Item Name="Scattered Tome"/>
         <Item Name="Malicious Brain"/>
         <Item Name="Obsidian Shard"/>
+        <Item Name="Bone Boy"/>
+        <Item Name="Gilded Apple"/>
+        <Item Name="Steel Soul"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
         <Item Name="Condensed Milk"/>
         <Item Name="Goat Milk"/>
-        <Item Name="Slickwater"/>
+        <Item Name="Coconut Oil"/>
         <Item Name="Painkillers" Weight="0.2" DecreaseBy="0.2"/>
         <Item Name="Tech IX"/>
         <Item Name="Pepper X"/>
         <Item Name="Meteor Shower"/>
         <Item Name="Golden Tweezers"/>
-        <Item Name="Scattered Tome"/>
         <Item Name="Malicious Brain"/>
+        <Item Name="Bone Boy"/>
+        <Item Name="Gilded Apple"/>
+        <Item Name="Steel Soul"/>
     </Pool>
 
     <Pool Name="boss">
         <Item Name="Caramel Apple"/>
         <Item Name="Eyestrain"/>
+        <Item Name="Rock Candy"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
         <Item Name="Eyestrain"/>
+        <Item Name="Rock Candy"/>
     </Pool>
 
     <Pool Name="shop">
-        
+        <Item Name="Dad's Prescription"/>
+        <Item Name="D"/>
     </Pool>
     <Pool Name="greedShop">
-        
+        <Item Name="Dad's Prescription"/>
+        <Item Name="D"/>
     </Pool>
 
     <Pool Name="devil">
         <Item Name="Blood Ritual"/>
         <Item Name="Sigil of Greed"/>
+        <Item Name="Missing Page 3"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
-        <Item Name="Sigil of Greed" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Sigil of Greed" Weight="0.1" DecreaseBy="0.1"/>
+        <Item Name="Missing Page 3"/>
     </Pool>
 
     <Pool Name="angel">
         <Item Name="Silk Bag"/>
         <Item Name="Blessed Ring"/>
+        <Item Name="Glass Vessel"/>
+        <Item Name="Ascension"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
         <Item Name="Blessed Ring"/>
+        <Item Name="Glass Vessel"/>
+        <Item Name="Ascension"/>
     </Pool>
 
     <Pool Name="curse">
         <Item Name="Pliers"/>
         <Item Name="Lion Skull"/>
         <Item Name="Painkillers"/>
+        <Item Name="Horse Tranquilizer"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
         <Item Name="Painkillers"/>
+        <Item Name="Horse Tranquilizer"/>
     </Pool>
 
     <Pool Name="redChest">
@@ -78,11 +94,15 @@
 
     <Pool Name="secret">
         <Item Name="4 4"/>
-        <Item Name="Fatal Signal"/>
+        <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Bone Boy" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Steel Soul"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="4 4"/>
-        <Item Name="Fatal Signal"/>
+        <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Bone Boy" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Steel Soul"/>
     </Pool>
 
     <Pool Name="demonBeggar">

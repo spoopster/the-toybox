@@ -14,7 +14,7 @@ local function useMantle(_, _, player, _)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_SALT)
 
-local ENUM_TPS_BONUS = 1/3
+local TEARS_UP = 0.4
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
@@ -22,9 +22,8 @@ local function evalCache(_, player, flag)
     if(not mod:isAtlasA(player)) then return end
 
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.SALT.ID)
-
     if(flag==CacheFlag.CACHE_FIREDELAY) then
-        mod:addBasicTearsUp(player, ENUM_TPS_BONUS*numMantles)
+        mod:addBasicTearsUp(player, TEARS_UP*numMantles)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
@@ -122,11 +121,3 @@ function(_, e)
     e.Rotation = a
 end
 )
-
----@param player EntityPlayer
-local function playMantleSFX(_, player, mantle)
-    if(not mod:isAtlasA(player)) then return end
-
-    sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
-end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.DEFAULT.ID)

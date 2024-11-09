@@ -57,6 +57,19 @@
         pickup="2845"
     />
 
+    <card id="9" name="Laurel"
+        description="Limited invincibility"
+        hud="Laurel"
+        type="object"
+        pickup="2846"
+    />
+    <card id="10" name="Yanny"
+        description="Punish them all"
+        hud="Yanny"
+        type="object"
+        pickup="6482"
+    />
+
 <!-- PILLS -->
     <pilleffect id="0" name="I Believe I Can Fly!"
         class="1+"

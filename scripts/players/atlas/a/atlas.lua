@@ -10,9 +10,9 @@ local ATLAS_A_BASEDATA = {
 
     HP_CAP = 3,
     MANTLES = {
-        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
-        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
-        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), },
+        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), DATA={}, },
+        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), DATA={}, },
+        { TYPE=mod.MANTLE_DATA.DEFAULT.ID, HP=mod.MANTLE_DATA.DEFAULT.HP, MAXHP=mod.MANTLE_DATA.DEFAULT.HP, COLOR=Color(1,1,1,1), DATA={}, },
     },
     TRANSFORMATION = mod.MANTLE_DATA.DEFAULT.ID,
     BIRTHRIGHT_TRANSFORMATION = mod.MANTLE_DATA.NONE.ID,
@@ -58,4 +58,4 @@ local function cancelHeartCollision(_, pickup, player)
     if(not (player and player:ToPlayer() and mod:isAtlasA(player:ToPlayer()))) then return end
     return false
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, -1e12+1, cancelHeartCollision, PickupVariant.PICKUP_HEART)
+mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, cancelHeartCollision, PickupVariant.PICKUP_HEART)

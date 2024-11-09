@@ -112,4 +112,103 @@
         ]]>
         </fragment>
     </shader>
+
+    <shader name="ToyboxAscensionShader">
+        <parameters>
+            <param name="ShouldActivateIn" type="float"/>
+            <param name="IntensityIn" type="float"/>
+            <param name="GrayingIn" type="float"/>
+        </parameters>
+        <vertex>
+        <![CDATA[
+            attribute vec3 Position;
+                varying vec3 Position0;
+            attribute vec4 Color;
+                varying vec4 Color0;
+            attribute vec2 TexCoord;
+                varying vec2 TexCoord0;
+            attribute vec4 RenderData;
+                varying vec4 RenderData0;
+            attribute float Scale;
+                varying float Scale0;
+            
+            attribute float ShouldActivateIn;
+                varying float ShouldActivate;
+            attribute float IntensityIn;
+                varying float Intensity;
+            attribute float GrayingIn;
+                varying float Graying;
+            
+
+            uniform mat4 Transform;
+            void main(void) {
+                Position0 = Position;
+                Color0 = Color;
+                TexCoord0 = TexCoord;
+                RenderData0 = RenderData;
+                Scale0 = Scale;
+
+                ShouldActivate = ShouldActivateIn;
+                Intensity = IntensityIn;
+                Graying = GrayingIn;
+
+                gl_Position = Transform * vec4(Position.xyz, 1.0);
+            }
+        ]]>
+        </vertex>
+        <fragment>
+        <![CDATA[
+            varying lowp vec3 Position0;
+            varying lowp vec4 Color0;
+            varying mediump vec2 TexCoord0;
+            varying lowp vec4 RenderData0;
+            varying lowp float Scale0;
+            
+            varying float ShouldActivate;
+            varying float Intensity;
+            varying float Graying;
+
+            vec2 computeUV( vec2 uv, float k, float kcube ){
+                vec2 t = uv - 0.5;
+                float r2 = t.x*t.x+t.y*t.y;
+                float f = 0.0;
+                
+                if(kcube == 0.0) f = 1.0+r2*k;
+                else f = 1.0+r2*(k+kcube*sqrt(r2));
+                
+                vec2 nUv = f*t+0.5;
+                nUv.y = 1.0-nUv.y;
+                return nUv;
+            }
+
+            uniform sampler2D Texture0;
+            void main(void) {
+                vec4 Color = texture2D(Texture0,TexCoord0);
+                if(ShouldActivate>0.5)
+                {
+                    float inte = Intensity;
+                    float k = 0.4*inte;
+                    float kcube = k*0.5;
+
+                    vec2 uvMult = RenderData0.zw/RenderData0.xy;
+                    vec2 uv = TexCoord0.xy*uvMult;
+                    uv.y = 1.0-uv.y;
+
+                    vec2 computedUV = computeUV( uv, k, kcube )/uvMult;
+                    if(computedUV.x<=0 || computedUV.y<=0) return;
+                    
+                    float red = texture2D(Texture0,computeUV( uv, k+0.01, kcube )/uvMult).r;
+                    float green = texture2D(Texture0,computedUV).g;
+                    float blue = texture2D(Texture0,computeUV( uv, k-0.01, kcube )/uvMult).b;
+
+                    Color = vec4(red,green,blue,Color.a);
+
+                    float lum = Color.r*0.2126+Color.g*0.7152+Color.b*0.0722;
+                    Color = vec4(mix(Color.rgb,vec3(lum),Graying), Color.a);
+                }
+                gl_FragColor = Color0*Color;
+            }
+        ]]>
+        </fragment>
+    </shader>
 </shaders>

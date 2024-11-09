@@ -17,7 +17,7 @@ local function evalCache(_, player, flag)
     if(not mod:isAtlasA(player)) then return end
     
     if(flag==CacheFlag.CACHE_TEARCOLOR) then
-        player.TearColor = Color(0.15,0.15,0.15,1,0,0,0)
+        player.TearColor = Color(0.2,0.2,0.2,1,0,0,0)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

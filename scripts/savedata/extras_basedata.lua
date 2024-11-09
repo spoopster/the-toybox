@@ -3,6 +3,17 @@ local mod = MilcomMOD
 local BASEDATA = {
     RAINBOW_KEY_ACTIVE = 0,
 
+    DRILLDATA = {
+        IS_ACTIVE = 0,
+        STORED_ID = "",
+        NEXT_LAYOUT = {},
+        CURRENT_LAYOUT_ENEMIES = {},
+        WAVES_LEFT = 0,
+        CURR_DIFFICULTY = 0,
+        RESTART_CURRENT_WAVE = 0,
+        PREV_ROOM_IDX = "",
+    },
+
     CUSTOM_PILL_POOL = 0,
     PILLS_TOTAL = 0,
     PILLS_GOOD = 0,
@@ -10,10 +21,13 @@ local BASEDATA = {
     PILLS_BAD = 0,
     PILL_COLORS = 0,
     PILL_TABLES_CALCULATED = 0,
-
     PILLS_BAD_NUM = 0,
     PILLS_GOOD_NUM = 0,
     PILLS_NEUTRAL_NUM = 0,
+
+    BIGBLIND_INDEXES = {[0]=0},
+    BIGBLIND_FINALSTR = {[0]=0},
+    BIGBLIND_CONBOI_ACTIVE = 0,
 }
 
 return BASEDATA

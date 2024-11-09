@@ -2,7 +2,7 @@ local mod = MilcomMOD
 local sfx = SFXManager()
 
 local CHARGE_DURATION = math.floor(60*6.66)
-local SIGIL_RANGE = 40*2.5
+local SIGIL_RANGE = 40*2
 local SIGIL_DAMAGE = 66.6
 local MIDAS_CHANCE = 0.25
 local MIDAS_DURATION = 30*2
@@ -16,7 +16,7 @@ local function playerUpdate(_, p)
 
     local data = mod:getEntityDataTable(p)
 
-    if(p:GetFireDirection()~=Direction.NO_DIRECTION or p:GetAimDirection():Length()>0.01) then
+    if(p:GetFireDirection()~=Direction.NO_DIRECTION or p:GetShootingInput():Length()>0.01) then
         data.SIGIL_OF_GREED_CHARGE = math.min((data.SIGIL_OF_GREED_CHARGE or 0)+1, CHARGE_DURATION)
 
         local eff = data.SIGIL_OF_GREED_EFFECTENTITY
@@ -44,7 +44,7 @@ local function playerUpdate(_, p)
                 p:SetColor(Color(1,1,1,1,1,0.9,0.5),8,1,true,false)
                 sfx:Play(SoundEffect.SOUND_BEEP, 1, 0, false, 0.9)
             end
-            mod:setEntityData(eff, "CHARGEBAR_STATE", 1)
+            mod:setEntityData(eff, "CHARGEBAR_STATE", (isFinal and 2 or 1))
             mod:setEntityData(eff, "CHARGEBAR_STATEFRAME", 0)
         end
 
@@ -56,11 +56,14 @@ local function playerUpdate(_, p)
         if((data.SIGIL_OF_GREED_CHARGE or 0)>=CHARGE_DURATION) then
             isFull = true
             sfx:Play(SoundEffect.SOUND_CASH_REGISTER, 0.7)
-
-            local eff = Isaac.Spawn(1000, mod.EFFECT_GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()
-            eff.SpriteScale = Vector(1,1)*0.0
+            sfx:Play(SoundEffect.SOUND_GOLD_HEART, 0.3)
+            Game():ShakeScreen(5)
             local rng = p:GetCollectibleRNG(mod.COLLECTIBLE_SIGIL_OF_GREED)
 
+            local eff = Isaac.Spawn(1000, mod.EFFECT_GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()
+            eff.SpriteScale = Vector(1,1)*0.5
+            eff:FollowParent(p)
+            
             for _, ent in ipairs(Isaac.FindInRadius(p.Position, SIGIL_RANGE, EntityPartition.ENEMY)) do
                 if(mod:isValidEnemy(ent)) then
                     local willDie = (ent:IsDead() or ent:HasMortalDamage() or ent.HitPoints<=SIGIL_DAMAGE)
@@ -129,6 +132,20 @@ local function chargebarUpdate(_, e)
 
             e.SpriteScale = Vector(CHARGEBAR_SCALE,CHARGEBAR_SCALE)
         end
+    elseif(data.CHARGEBAR_STATE==2) then
+        local GROW_DUR = 4
+        local GROW_SCALE = 1.3*SIGIL_RANGE/40
+
+        if(data.CHARGEBAR_STATEFRAME<GROW_DUR) then
+            local val = data.CHARGEBAR_STATEFRAME/GROW_DUR
+            val = 1-(1-val)^2
+
+            e.Color = Color(1,1,1,CHARGEBAR_ALPHA*(0.2+(1-val)*0.8),0,0,0)
+            local sc = 1+(GROW_SCALE-1)*val
+            e.SpriteScale = Vector(sc,sc)*CHARGEBAR_SCALE
+        else
+            e.SpriteScale = Vector(GROW_SCALE,GROW_SCALE)*CHARGEBAR_SCALE
+        end
     elseif(data.CHARGEBAR_STATE==-1) then
         local DEATH_DUR = 12
         local GROW_SCALE = 1.2
@@ -146,11 +163,25 @@ local function chargebarUpdate(_, e)
             e:Remove()
         end
     elseif(data.CHARGEBAR_STATE==-2) then
-        local GROW_DUR = 5
-        local GROW_SCALE = 3.23
-        local DEATH_DUR = 10
-        local DEATH_SCALE = 3.38
+        local DEATH_DUR = 5
+        local GROW_SCALE = 1.9*SIGIL_RANGE/40
+        local START_SCALE = 1.5*SIGIL_RANGE/40
+        local START_ALPHA = 0.2
 
+        if(data.CHARGEBAR_STATEFRAME<DEATH_DUR) then
+            local val = data.CHARGEBAR_STATEFRAME/DEATH_DUR
+            val = 1-(1-val)^2
+
+            e.Color = Color(1,1,1,CHARGEBAR_ALPHA*(1-val)*START_ALPHA,0,0,0)
+            local sc = START_SCALE+(GROW_SCALE-START_SCALE)*val
+            e.SpriteScale = Vector(sc,sc)*CHARGEBAR_SCALE
+        else
+            data.CHARGEBAR_STATE = 0
+            data.CHARGEBAR_STATEFRAME = 0
+            e:Remove()
+        end
+
+        --[[] ]
         local FADEOUT_DUR = GROW_DUR+DEATH_DUR
 
         if(data.CHARGEBAR_STATEFRAME<GROW_DUR) then
@@ -177,6 +208,7 @@ local function chargebarUpdate(_, e)
             data.CHARGEBAR_STATEFRAME = 0
             e:Remove()
         end
+        --]]
     end
 
     data.CHARGEBAR_STATEFRAME = (data.CHARGEBAR_STATEFRAME or 0)+1

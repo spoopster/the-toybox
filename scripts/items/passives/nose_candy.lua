@@ -41,21 +41,22 @@ local function addNoseCandyBonuses(_, player)
 
     local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_NOSE_CANDY)
     local statTable = mod:getEntityDataTable(player).NOSE_CANDY_STATBONUSES
+    local num = player:GetCollectibleNum(mod.COLLECTIBLE_NOSE_CANDY)
 
     local statToUp = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
     local statToDown = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
 
-    statTable[statToUp] = statTable[statToUp]+ENUM_LEVEL_STATUPBONUS
-    statTable[statToDown] = statTable[statToDown]+ENUM_LEVEL_STATDOWNBONUS
+    statTable[statToUp] = statTable[statToUp]+ENUM_LEVEL_STATUPBONUS*num
+    statTable[statToDown] = statTable[statToDown]+ENUM_LEVEL_STATDOWNBONUS*num
 
-    if(player.MoveSpeed+ENUM_LEVEL_SPEEDBONUS>2) then
-        local speedOverflow = player.MoveSpeed+ENUM_LEVEL_SPEEDBONUS-2
+    if(player.MoveSpeed+ENUM_LEVEL_SPEEDBONUS*num>2) then
+        local speedOverflow = player.MoveSpeed+ENUM_LEVEL_SPEEDBONUS*num-2
 
-        statTable.SPEED = statTable.SPEED + ENUM_LEVEL_SPEEDBONUS-speedOverflow
+        statTable.SPEED = statTable.SPEED + ENUM_LEVEL_SPEEDBONUS*num-speedOverflow
         local overflowBonusStat = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
         statTable[overflowBonusStat] = statTable[overflowBonusStat]+speedOverflow
     else
-        statTable.SPEED = statTable.SPEED + ENUM_LEVEL_SPEEDBONUS
+        statTable.SPEED = statTable.SPEED + ENUM_LEVEL_SPEEDBONUS*num
     end
 
     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)

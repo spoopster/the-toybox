@@ -1,19 +1,6 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then
-    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_HOLY] = true
-end
-
-local function useMantle(_, _, player, _)
-    if(mod:isAtlasA(player)) then
-        mod:giveMantle(player, mod.MANTLE_DATA.HOLY.ID)
-    else
-
-    end
-end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_HOLY)
-
 local ENUM_SACRED_CHANCE = 1/30
 local ENUM_RANGE_BONUS = 0.5
 

@@ -102,7 +102,8 @@ function mod:getAllPillEffects(phdEffect)
         if((phdEffect & mod.PILL_PHDTYPE.NEUTRAL~=0 and currentpill.EffectSubClass==mod.PILL_SUBCLASS.NEUTRAL)
         or (phdEffect & mod.PILL_PHDTYPE.GOOD~=0 and currentpill.EffectSubClass==mod.PILL_SUBCLASS.GOOD)
         or (phdEffect & mod.PILL_PHDTYPE.BAD~=0 and currentpill.EffectSubClass==mod.PILL_SUBCLASS.BAD)) then
-            if(mod.PILL_ACHIEVEMENTS[currentpill.ID]==nil or (mod.PILL_ACHIEVEMENTS[currentpill.ID] and Isaac.GetPersistentGameData():Unlocked(mod.PILL_ACHIEVEMENTS[currentpill.ID]))) then
+            local ach = mod.PILL_ACHIEVEMENTS[currentpill.ID]
+            if(ach==nil or (ach and Isaac.GetPersistentGameData():Unlocked(ach))) then
                 table.insert(pillEffects,
                     {
                         ID = currentpill.ID,
@@ -219,6 +220,7 @@ function mod:convertPhdPillEffect(player, pilleffect, phdMask, rng, invalidPills
         end
 
         local canGetNeutralPill = 0
+        if(not dTable.PILLS_NEUTRAL) then mod:createPillTables() end
         for _, pill in ipairs(dTable.PILLS_NEUTRAL) do
             if(invalidPills[pill.ID]~=nil) then canGetNeutralPill = canGetNeutralPill+1 end
         end
@@ -323,15 +325,15 @@ function mod:unidentifyPillPool()
 end
 
 --#region --! PHD MASK FUNCTIONS
-local function calcPhdMask(hasGood, hasNeutral, hasBad)
+function mod:calcPhdMask(hasGood, hasNeutral, hasBad)
     if(hasNeutral) then return mod.PILL_PHDTYPE.NEUTRAL end
     if(hasGood and hasBad) then return mod.PILL_PHDTYPE.NONE end
     if(hasGood) then return mod.PILL_PHDTYPE.GOOD end
     if(hasBad) then return mod.PILL_PHDTYPE.BAD end
     return mod.PILL_PHDTYPE.NONE
 end
-function mod:getPlayerPhdMask(player)
-    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetPlayerType()==mod.PLAYER_JONAS_A) then return mod.PILL_PHDTYPE.GOOD end
+function mod:getPlayerPhdValues(player)
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetPlayerType()==mod.PLAYER_JONAS_A) then return {GOOD=true, NEUTRAL=false, BAD=false} end
 
     local hasGoodPhd = false
     local hasNeutralPhd = false
@@ -339,14 +341,21 @@ function mod:getPlayerPhdMask(player)
 
     if(player:HasCollectible(CollectibleType.COLLECTIBLE_PHD)
     or player:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
-    or player:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT)) then
+    or player:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT)
+    or player:HasCollectible(mod.COLLECTIBLE_CLOWN_PHD)) then
         hasGoodPhd = true
     end
     if(player:HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)) then
         hasBadPhd = true
     end
 
-    return calcPhdMask(hasGoodPhd, hasNeutralPhd, hasBadPhd)
+    return {GOOD=hasGoodPhd, NEUTRAL=hasNeutralPhd, BAD=hasBadPhd}
+end
+function mod:getPlayerPhdMask(player)
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetPlayerType()==mod.PLAYER_JONAS_A) then return mod.PILL_PHDTYPE.GOOD end
+
+    local phdVals = mod:getPlayerPhdValues(player)
+    return mod:calcPhdMask(phdVals.GOOD, phdVals.NEUTRAL, phdVals.BAD)
 end
 function mod:getTotalPhdMask()
     local hasGoodPhd = false
@@ -360,9 +369,44 @@ function mod:getTotalPhdMask()
         hasNeutralPhd = hasNeutralPhd or (mask == mod.PILL_PHDTYPE.NEUTRAL)
         hasBadPhd = hasBadPhd or (mask == mod.PILL_PHDTYPE.BAD)
     end
-    return calcPhdMask(hasGoodPhd, hasNeutralPhd, hasBadPhd)
+    return mod:calcPhdMask(hasGoodPhd, hasNeutralPhd, hasBadPhd)
 end
 --#endregion
+
+local function forceAddPillEffect(_, effect, col)
+    local dataTable = mod:getExtraDataTable()
+    local pillpool = dataTable.CUSTOM_PILL_POOL
+    if(not (pillpool and pillpool~=0)) then return end
+
+    local baseEffect = pillpool[col]
+    if(baseEffect.DEFAULT==effect) then return end
+
+    local invalidTb = {[mod.PILL_SUBCLASS.GOOD]={},[mod.PILL_SUBCLASS.NEUTRAL]={},[mod.PILL_SUBCLASS.BAD]={}}
+    local existingCol
+    for k, pd in pairs(pillpool) do
+        if(pd.DEFAULT==effect) then
+            existingCol = k
+        end
+        for key, _ in pairs(invalidTb) do
+            for _, jfhdjfhdfh in pairs(pd) do
+                invalidTb[key][jfhdjfhdfh] = 0
+            end
+        end
+    end
+    if(existingCol) then
+        local oldt = mod:cloneTable(pillpool[existingCol])
+        pillpool[existingCol] = mod:cloneTable(pillpool[col])
+        pillpool[col] = oldt
+    else
+        pillpool[col] = {
+            DEFAULT = effect,
+            NEUTRAL = mod:convertPhdPillEffect(nil, effect, mod.PILL_PHDTYPE.NEUTRAL, rng, invalidTb[mod.PILL_SUBCLASS.NEUTRAL]),
+            GOOD = mod:convertPhdPillEffect(nil, effect, mod.PILL_PHDTYPE.GOOD, rng, invalidTb[mod.PILL_SUBCLASS.GOOD]),
+            BAD = mod:convertPhdPillEffect(nil, effect, mod.PILL_PHDTYPE.BAD, rng, invalidTb[mod.PILL_SUBCLASS.BAD]),
+        }
+    end
+end
+mod:AddPriorityCallback(ModCallbacks.MC_POST_FORCE_ADD_PILL_EFFECT, CallbackPriority.LATE, forceAddPillEffect)
 
 -- base game is approx bad=4-5, neutral=2-3, good=6-7, 
 function mod:calcPillPool(rng, numBadPills, numNeutralPills, numGoodPills)
@@ -454,6 +498,91 @@ local function makeBaseDatas(_, player)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, makeBaseDatas)
+
+local BASE_GOLDEN_CHANCE = 0.7/100
+local BASE_HORSE_CHANCE = 1.43/100
+
+local GOLDEN_CHANCES = {}
+local HORSE_CHANCES = {}
+
+function mod:addGoldenChance(val, condition)
+    table.insert(GOLDEN_CHANCES, {Amount=val, Condition=condition})
+end
+function mod:addHorseChance(val, condition)
+    table.insert(HORSE_CHANCES, {Amount=val, Condition=condition})
+end
+function mod:getGoldenChance()
+    local baseChance = BASE_GOLDEN_CHANCE
+    for _, data in ipairs(GOLDEN_CHANCES) do
+        if(data.Condition==nil or (data.Condition and type(data.Condition)=="function" and data.Condition())) then
+            if(type(data.Amount)=="number") then baseChance = baseChance+data.Amount
+            elseif(type(data.Amount)=="function") then baseChance = data.Amount(baseChance) end
+        end
+    end
+    return baseChance
+end
+function mod:getHorseChance()
+    local baseChance = BASE_HORSE_CHANCE
+    for _, data in ipairs(HORSE_CHANCES) do
+        if(data.Condition==nil or (data.Condition and type(data.Condition)=="function" and data.Condition())) then
+            if(type(data.Amount)=="number") then baseChance = baseChance+data.Amount
+            elseif(type(data.Amount)=="function") then baseChance = data.Amount(baseChance) end
+        end
+    end
+    return baseChance
+end
+
+local isRecalc = false
+local function recalcPillColor(_, seed)
+    if(isRecalc) then return end
+    isRecalc = true
+    local col = Game():GetItemPool():GetPill(seed)
+
+    local isHorse = (col & PillColor.PILL_GIANT_FLAG ~= 0)
+    col = col & ~PillColor.PILL_GIANT_FLAG
+    local isGolden = (col == PillColor.PILL_GOLD)
+
+    local goldChance = mod:getGoldenChance()
+    local horseChance = mod:getHorseChance()
+    local rng = mod:generateRng(math.max(1,seed))
+    local pool = Game():GetItemPool()
+
+    if(Isaac.GetPersistentGameData():Unlocked(Achievement.GOLDEN_PILLS)) then
+        if(goldChance<BASE_GOLDEN_CHANCE and isGolden) then
+            goldChance = goldChance/BASE_GOLDEN_CHANCE
+            if(not (rng:RandomFloat()<goldChance)) then
+                while((col & ~PillColor.PILL_GIANT_FLAG)==PillColor.PILL_GOLD) do
+                    col = pool:GetPill(math.max(1,Random()))
+                end
+            end
+        elseif(goldChance>BASE_GOLDEN_CHANCE and not isGolden) then
+            goldChance = (goldChance-BASE_GOLDEN_CHANCE)/(1-BASE_GOLDEN_CHANCE)
+            if(rng:RandomFloat()<goldChance) then col = PillColor.PILL_GOLD end
+        end
+    else
+        while((col & ~PillColor.PILL_GIANT_FLAG)==PillColor.PILL_GOLD) do
+            col = pool:GetPill(math.max(1,Random()))
+        end
+    end
+
+    if(Isaac.GetPersistentGameData():Unlocked(Achievement.HORSE_PILLS)) then
+        if(horseChance<BASE_HORSE_CHANCE and isHorse) then
+            horseChance = horseChance/BASE_HORSE_CHANCE
+            if(rng:RandomFloat()<horseChance) then
+                col = col | PillColor.PILL_GIANT_FLAG
+            end
+        elseif(horseChance>BASE_HORSE_CHANCE and not isGolden) then
+            horseChance = (horseChance-BASE_HORSE_CHANCE)/(1-BASE_HORSE_CHANCE)
+            if(rng:RandomFloat()<horseChance) then col = col | PillColor.PILL_GIANT_FLAG end
+        end
+    else
+        col = (col & ~PillColor.PILL_GIANT_FLAG)
+    end
+    isRecalc = false
+
+    return col
+end
+mod:AddCallback(ModCallbacks.MC_GET_PILL_COLOR, recalcPillColor)
 
 --! RENDER TEST STUFF
 --[[

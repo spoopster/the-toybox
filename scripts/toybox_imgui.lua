@@ -1,5 +1,10 @@
 local mod = MilcomMOD
 
+local function getOptionID(name)
+	return "ToyboxOption"..name
+end
+
+--[ [
 if(not ImGui.ElementExists("ToyboxMenu")) then
     ImGui.CreateMenu("ToyboxMenu", "\u{f552} Toybox")
 
@@ -11,75 +16,93 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "GENERAL OPTIONS")
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 
+	do
+		local optionID = getOptionID("PEZDispenserDisplayName")
 
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Candy Dispenser - Consumable name display"
+		)
+		ImGui.AddCombobox("ToyboxOptionsWindow", optionID, "", nil, {"While holding the Map button", "Always", "Never"}, 0, false)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.PEZDISPENSER_DISPLAY_NAME)
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				mod.CONFIG.PEZDISPENSER_DISPLAY_NAME = v
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"Dictates when to display the name of Candy Dispenser's frontmost held consumable."
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
+
+	do
+		local optionID = getOptionID("AlphabetBoxDescriptionPreview")
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Alphabet Box - Description Previews"
+		)
+		ImGui.AddSliderInteger("ToyboxOptionsWindow", optionID, "", nil, 3, 0, 10)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.ALPHABETBOX_EID_DISPLAYS)
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				mod.CONFIG.ALPHABETBOX_EID_DISPLAYS = v
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"How many items should be previewed in item descriptions while Alphabet Box is held. (Only works if you have EID!)"
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
 
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 
-    ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
-	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "ATLAS OPTIONS")
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "FORTNITE FUNNIES")
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 
-    --ATLAS ALT TRANSFORMATION
-    ImGui.AddCheckbox("ToyboxOptionsWindow", "ToyboxOptionsAtlasPersistentTransformation", "Persistent Mantles", nil, false)
-    ImGui.AddCallback("ToyboxOptionsAtlasPersistentTransformation", ImGuiCallback.Render,
-    function()
-        ImGui.UpdateData("ToyboxOptionsAtlasPersistentTransformation", ImGuiData.Value, mod.CONFIG.ATLAS_PERSISTENT_TRANSFORMATIONS)
-    end)
-    ImGui.AddCallback("ToyboxOptionsAtlasPersistentTransformation", ImGuiCallback.Edited,
-    function(v)
-        mod.CONFIG.ATLAS_PERSISTENT_TRANSFORMATIONS = v
-    end)
-    ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-        "Atlas' transformations persist until you become Tar or get a different non-default transformation. If disabled, you revert to default form when you lose a mantle."
-    )
-    ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	do
+		local optionID = getOptionID("PEZAntibirthKiller")
 
-	--ATLAS STRONGER BASE TAR
-	ImGui.AddCheckbox("ToyboxOptionsWindow", "ToyboxOptionsStrongerBaseTar", "Stronger Tar", nil, false)
-	ImGui.AddCallback("ToyboxOptionsStrongerBaseTar", ImGuiCallback.Render,
-	function()
-		ImGui.UpdateData("ToyboxOptionsStrongerBaseTar", ImGuiData.Value, mod.CONFIG.ATLAS_BASE_STRONGER_TAR)
-	end)
-	ImGui.AddCallback("ToyboxOptionsStrongerBaseTar", ImGuiCallback.Edited,
-	function(v)
-		mod.CONFIG.ATLAS_BASE_STRONGER_TAR = v
-	end)
-	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-		"Atlas' Tar form has higher base stats."
-	)
-	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Candy Dispenser - Antibirth Killer"
+		)
+		ImGui.AddCheckbox("ToyboxOptionsWindow", optionID, "", nil, false)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.PEZDISPENSER_ANTIBIRTH_KILLER)
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				mod.CONFIG.PEZDISPENSER_ANTIBIRTH_KILLER = v
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"Turns Candy Dispenser into a (legally distinct) Pill Crusher."
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
+	--ImGui.AddCombobox("ToyboxOptionsWindow", "ToyboxOptionsPEZDispenserAntibirthKiller", )
 
-	--ATLAS TEMP STRONGER BASE TAR
-	ImGui.AddCheckbox("ToyboxOptionsWindow", "ToyboxOptionsTempStrongerBaseTar", "Temporary Tar Boost", nil, false)
-	ImGui.AddCallback("ToyboxOptionsTempStrongerBaseTar", ImGuiCallback.Render,
-	function()
-		ImGui.UpdateData("ToyboxOptionsTempStrongerBaseTar", ImGuiData.Value, mod.CONFIG.ATLAS_TEMP_STRONGER_TAR)
-	end)
-	ImGui.AddCallback("ToyboxOptionsTempStrongerBaseTar", ImGuiCallback.Edited,
-	function(v)
-		mod.CONFIG.ATLAS_TEMP_STRONGER_TAR = v
-	end)
-	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-		"Atlas' Tar form gets a fading stats up when transformed into."
-	)
-	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
-
-	--ATLAS LEAVE TAR CREEP
-	ImGui.AddCheckbox("ToyboxOptionsWindow", "ToyboxOptionsTarCreep", "Tar Creep", nil, false)
-	ImGui.AddCallback("ToyboxOptionsTarCreep", ImGuiCallback.Render,
-	function()
-		ImGui.UpdateData("ToyboxOptionsTarCreep", ImGuiData.Value, mod.CONFIG.ATLAS_TAR_CREEP)
-	end)
-	ImGui.AddCallback("ToyboxOptionsTarCreep", ImGuiCallback.Edited,
-	function(v)
-		mod.CONFIG.ATLAS_TAR_CREEP = v
-	end)
-	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-		"Atlas' Tar form leaves slowing black creep when walking."
-	)
-	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
+	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 end
+--]]
 
 --[[
     return function()

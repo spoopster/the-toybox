@@ -31,10 +31,40 @@ local mod = MilcomMOD
 --* Radius (Vector) = the radius of the ellipse, only applies to SpawnType CIRCLE and SpawnType CIRCLELINE (optional, defaults to Vector(40,40))
 --* RadiusCount (number) = the number of objects in the ellipse ring, only applies to SpawnType CIRCLE and SpawnType CIRCLELINE (optional, defaults to 4)
 
+--! ONLY APPLIES TO SHOCKWAVES!!!
 --* DamageCooldown (number) = number of frames to wait before it can deal damage again (optional, defaults to 10)
-    --! ONLY APPLIES TO SHOCKWAVES!!!
+--* DestroyGrid (number) = should the object break grids? (optional, defaults to 0)
 
 --]]
+
+local VALID_ROCK_TYPES = {
+    [2]=true,
+    [4]=true,
+    [5]=true,
+    [6]=true,
+    [12]=true,
+    [14]=true,
+    [25]=true,
+    [26]=true,
+    [27]=true,
+}
+local BAD_ROCK_TYPES = {
+    [3]=true,
+    [11]=true,
+    [7]=true,
+    [21]=true,
+    [24]=true,
+}
+local function getGridColl(pos)
+    if(not Game():GetRoom():IsPositionInRoom(pos, 0)) then return 2 end
+
+    local gridEnt = Game():GetRoom():GetGridEntityFromPos(pos)
+    if(gridEnt==nil) then return 0 end
+    local eType = gridEnt:GetType()
+    if(BAD_ROCK_TYPES[eType]) then return 2 end
+    if(VALID_ROCK_TYPES[eType]) then return 1 end
+    return 0
+end
 
 function mod:spawnCustomObjects(objData)
     objData = objData or {}
@@ -55,6 +85,7 @@ function mod:spawnCustomObjects(objData)
         Radius = objData.Radius or Vector(40,40),
         RadiusCount = math.max(0, objData.RadiusCount or 4),
         DamageCooldown = math.max(0, objData.DamageCooldown or 10),
+        DestroyGrid = (objData.DestroyGrid or 0),
 
         Index = objData.Index or 0,
         CircleIndex = objData.CircleIndex or 0,
@@ -81,7 +112,8 @@ function mod:spawnCustomObjects(objData)
             end
 
             if(oData.Index>0) then oData.Position = oData.Position+oData.Distance:Rotated( (rng:RandomFloat()-0.5)*oData.AngleVariation ) end
-            if(Game():GetRoom():IsPositionInRoom(oData.Position, 0) and Game():GetRoom():GetGridCollisionAtPos(oData.Position)==GridCollisionClass.COLLISION_NONE) then
+            local c = getGridColl(oData.Position)
+            if(c<=oData.DestroyGrid) then
                 local obj = mod:spawnSingleObject(oData)
 
                 if(oData.TimerExtraFunction) then oData.TimerExtraFunction(effect, oData.Index, oData.CircleIndex) end
@@ -108,7 +140,8 @@ function mod:spawnCustomObjects(objData)
             end
 
             if(oData.CircleIndex>0) then oData.Radius = oData.Radius+oData.Distance end
-            if(Game():GetRoom():IsPositionInRoom(oData.OGPosition, 0) and Game():GetRoom():GetGridCollisionAtPos(oData.OGPosition)==GridCollisionClass.COLLISION_NONE) then
+            local c = getGridColl(oData.OGPosition)
+            if(c<=oData.DestroyGrid) then
                 local obj = mod:spawnCircleObject(oData)
 
                 if(oData.TimerExtraFunction) then oData.TimerExtraFunction(effect, oData.Index, oData.CircleIndex) end
@@ -127,7 +160,8 @@ function mod:spawnCustomObjects(objData)
 end
 
 function mod:spawnSingleObject(objData)
-    if(Game():GetRoom():IsPositionInRoom(objData.Position, 0) and Game():GetRoom():GetGridCollisionAtPos(objData.Position)==GridCollisionClass.COLLISION_NONE) then
+    local c = getGridColl(objData.Position)
+    if(c<=objData.DestroyGrid) then
         local obj = Isaac.Spawn(objData.SpawnData[1], objData.SpawnData[2], objData.SpawnData[3], objData.Position, Vector(0,0), objData.SpawnerEntity)
         obj.CollisionDamage = objData.Damage
         obj.Color = objData.Color
@@ -183,6 +217,13 @@ mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, customObjPlayerDamage)
 local function specialShockwaveUpdate(_, effect)
     local objData = mod:getEntityDataTable(effect).COBJ_DATA
     if(not objData) then return end
+
+    if(objData.DestroyGrid and objData.DestroyGrid>=1) then
+        if(getGridColl(effect.Position)==1) then
+            local room = Game():GetRoom()
+            room:DestroyGrid(room:GetGridIndex(effect.Position), true)
+        end
+    end
 
     if(objData.CooldownFrames==0) then
         local dealtDamage = false

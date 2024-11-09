@@ -114,7 +114,6 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, loadImportantData)
 
 function mod:dataSaveInit(player)
-    --print(mod:getEntityData(player, "ATLAS_A_DATA"))
     mod.IS_DATA_LOADED = false
     mod:cloneTableWithoutDeleteing(mod:getEntityDataTable(player), playerBaseData)
     if(#Isaac.FindByType(1)==0) then
@@ -126,7 +125,7 @@ function mod:dataSaveInit(player)
         local save = json.decode(mod:LoadData())
         local pSeed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
 
-        if(save.playerData[seed]) then mod:cloneTableWithoutDeleteing(mod:getEntityDataTable(player), convertSaveDataToTable(save.playerData[pSeed])) end
+        if(save.playerData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getEntityDataTable(player), convertSaveDataToTable(save.playerData[pSeed])) end
         
         if(#Isaac.FindByType(1)==0) then
             if(save.extraData) then

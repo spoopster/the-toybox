@@ -2,7 +2,65 @@ local mod = MilcomMOD
 local sfx = SFXManager()
 
 --! make a fucking graphic for this loser
+--? never mind i reworked item
+local DAMAGE_COOLDOWN_MULT = 0.1
+local DAMAGE_BLOCK_FRAMES = 60*2.5
 
+local DAMAGE_BLOCK_CHANCE = 0.15
+local DAMAGE_BLOCK_CHANCEMAX = 0.5
+local DAMAGE_BLOCK_CHANCELUCK = 30
+local DAMAGE_BLOCK_STACKCHANCE = 0.1
+
+---@param pl Entity
+local function iwanttoNamethisOne(_, pl, dmg, flags, source, countdown)
+    pl = pl:ToPlayer()
+    if(not pl:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
+
+    local chance = mod:getLuckAffectedChance(pl.Luck, DAMAGE_BLOCK_CHANCE, DAMAGE_BLOCK_CHANCEMAX, DAMAGE_BLOCK_CHANCELUCK)
+    chance = math.min(0.5, chance+DAMAGE_BLOCK_STACKCHANCE*(pl:GetCollectibleNum(mod.COLLECTIBLE_PAINKILLERS)-1))
+    if(pl:GetCollectibleRNG(mod.COLLECTIBLE_PAINKILLERS):RandomFloat()<chance) then
+        mod:setEntityData(pl, "PAINKILLERS_DAMAGE_PROC", true)
+
+        return
+        {
+            Damage = 0,
+            DamageFlags = flags,
+            DamageCountdown = countdown,
+        }
+    end
+end
+mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, iwanttoNamethisOne, EntityType.ENTITY_PLAYER)
+
+---@param pl Entity
+local function idontwanttonamThisone(_, pl)
+    pl = pl:ToPlayer()
+    if(not pl:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
+    if(mod:getEntityData(pl, "PAINKILLERS_DAMAGE_PROC")) then
+        pl:SetMinDamageCooldown(DAMAGE_BLOCK_FRAMES*(pl:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
+        sfx:Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
+        local bloodSplat = Isaac.Spawn(1000,16,3,pl.Position,Vector.Zero,nil):ToEffect()
+        bloodSplat.DepthOffset = 5
+
+        local bloodCloud = Isaac.Spawn(1000,16,4,pl.Position,Vector.Zero,nil):ToEffect()
+        bloodCloud.DepthOffset = -5
+    else
+        local frames = pl:GetDamageCooldown()
+        pl:ResetDamageCooldown()
+        if(pl:GetCollectibleNum(mod.COLLECTIBLE_PAINKILLERS)==1) then
+            pl:SetMinDamageCooldown(math.floor(frames*DAMAGE_COOLDOWN_MULT))
+        end
+    end
+    mod:setEntityData(pl, "PAINKILLERS_DAMAGE_PROC", nil)
+end
+mod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, CallbackPriority.LATE, idontwanttonamThisone, EntityType.ENTITY_PLAYER)
+
+---@param player EntityPlayer
+local function painkillersTimerUpdate(_, player)
+    mod:setEntityData(player, "PAINKILLERS_DAMAGE_PROC", nil)
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, painkillersTimerUpdate)
+
+--[[
 local DAMAGE_COUNTER_ROOT_POWER = 3.5
 local DAMAGE_TIMER = 60*1
 local DMG_MULT = 1.25
@@ -145,3 +203,4 @@ local function renderDamageUi(_, p, offset)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, renderDamageUi)
+--]]

@@ -2,6 +2,7 @@ local mod = MilcomMOD
 local sfx = SFXManager()
 
 local SONIC_WAVE_COOLDOWN = 600
+local STACK_COOL_MULT = 0.8
 
 local SONIC_WAVES = 2
 local SONIC_WAVE_BASENUM = 5
@@ -12,7 +13,7 @@ local SONIC_WAVE_SPREAD = 8
 
 local OVERFLOW_BASECHANCE = 0.01
 local OVERFLOW_MAXCHANCE = 0.1
-local OVERFLOW_MAXLUCK = 100
+local OVERFLOW_MAXLUCK = 44
 
 local OVERFLOW_DURATION = 150
 
@@ -21,7 +22,7 @@ local function fireSonicWaves(_, player)
 
     local data = mod:getEntityDataTable(player)
     if(data.FOURFOUR_COOLDOWN<=0) then
-        data.FOURFOUR_COOLDOWN = SONIC_WAVE_COOLDOWN
+        data.FOURFOUR_COOLDOWN = SONIC_WAVE_COOLDOWN*(STACK_COOL_MULT^(player:GetCollectibleNum(mod.COLLECTIBLE_4_4)-1))
         data.FOURFOUR_FIRE_DATA = {
             DURATION = SONIC_WAVE_FREQ*SONIC_WAVES*2,
             DIRECTION = player:GetAimDirection():GetAngleDegrees(),

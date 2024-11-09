@@ -98,6 +98,11 @@ function mod:lerp(a, b, f)
     return a*(1-f)+b*f
 end
 
+function mod:sign(a)
+    if(a<0) then return -1 end
+    return 1
+end
+
 ---@param t table The table to count
 ---@return number count The number of elements in the table
 ---Counts the number of elements in a table
@@ -500,7 +505,7 @@ function mod:isInHallowedAura(player)
     local hallowedAuraNums = 0
     local starAuraNums = 0
 
-    for _, effect in pairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.HALLOWED_GROUND)) do
+    for _, effect in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.HALLOWED_GROUND)) do
         if(effect.Parent and (effect.Parent.Type == EntityType.ENTITY_POOP or (effect.Parent.Type == EntityType.ENTITY_FAMILIAR and effect.Parent.Variant == FamiliarVariant.DIP))) then
             local scale = ((effect.SpriteScale.X + effect.SpriteScale.Y) * 70 / 2) + player.Size
             if(player.Position:Distance(effect.Position) < scale) then
@@ -768,4 +773,24 @@ function mod:angleDifference(a1, a2)
     local dif = (a2-a1)%360
     if(dif>180) then return dif-360 end
     return dif
+end
+
+local SHOOT_ACTIONS = {
+    ButtonAction.ACTION_SHOOTDOWN,
+    ButtonAction.ACTION_SHOOTLEFT,
+    ButtonAction.ACTION_SHOOTUP,
+    ButtonAction.ACTION_SHOOTRIGHT,
+}
+function mod:isHoldingShootingInput(player)
+    local idx = player.ControllerIndex
+    for _, action in pairs(SHOOT_ACTIONS) do
+        if(Input.IsActionPressed(action, idx)) then
+            return true
+        end
+    end
+    return false
+end
+
+function mod:isPlayerShooting(player)
+    return (player:GetShootingInput():LengthSquared()>0.001) or mod:isHoldingShootingInput(player)
 end

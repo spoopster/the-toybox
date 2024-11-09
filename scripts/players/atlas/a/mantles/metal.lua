@@ -3,56 +3,69 @@ local sfx = SFXManager()
 
 --* maybe make sfx better
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then
-    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_METAL] = true
+local SPEED_UP = -0.1
+local BLOCKCHANCE_MANTLE = 0.05 --15% for all 3
+local BLOCKCHANCE_TRANSF = 0.1 --10%
+local BLOCK_DMGCOOLDOWN = 60
+
+local CREEP_VARIANTS = {
+    [EffectVariant.CREEP_RED] = 0,
+    [EffectVariant.CREEP_GREEN] = 0,
+    [EffectVariant.CREEP_YELLOW] = 0,
+    [EffectVariant.CREEP_WHITE] = 0,
+    [EffectVariant.CREEP_BLACK] = 0,
+    [EffectVariant.PLAYER_CREEP_LEMON_MISHAP] = 0,
+    [EffectVariant.PLAYER_CREEP_HOLYWATER] = 0,
+    [EffectVariant.PLAYER_CREEP_WHITE] = 0,
+    [EffectVariant.PLAYER_CREEP_BLACK] = 0,
+    [EffectVariant.PLAYER_CREEP_RED] = 0,
+    [EffectVariant.PLAYER_CREEP_GREEN] = 0,
+    [EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL] = 0,
+    [EffectVariant.CREEP_BROWN] = 0,
+    [EffectVariant.PLAYER_CREEP_LEMON_PARTY] = 0,
+    [EffectVariant.PLAYER_CREEP_PUDDLE_MILK] = 0,
+    [EffectVariant.PLAYER_CREEP_BLACKPOWDER] = 0,
+    [EffectVariant.CREEP_SLIPPERY_BROWN] = 0,
+    [EffectVariant.CREEP_SLIPPERY_BROWN_GROWING] = 0,
+    [EffectVariant.CREEP_STATIC] = 0,
+    [EffectVariant.CREEP_LIQUID_POOP] = 0,
+}
+
+local function getBlockChance(player)
+    if(not mod:isAtlasA(player)) then return 0 end
+
+    return BLOCKCHANCE_MANTLE*mod:getNumMantlesByType(player, mod.MANTLE_DATA.METAL.ID)+BLOCKCHANCE_TRANSF*(mod:atlasHasTransformation(player, mod.MANTLE_DATA.METAL.ID) and 1 or 0)
 end
-
-local function useMantle(_, _, player, _)
-    if(mod:isAtlasA(player)) then
-        mod:giveMantle(player, mod.MANTLE_DATA.METAL.ID)
-    else
-
-    end
-end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_METAL)
-
-local ENUM_SPEED_BONUS = -0.1
-local ENUM_BLOCKCHANCE = 1/15 --1/5 for all 3
-local ENUM_DAMAGECOOLDOWN = 60
-local ENUM_TRANSF_BLOCKCHANCE = 1/4
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
     if(not mod:isAtlasA(player)) then return end
-
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.METAL.ID)
 
     if(flag==CacheFlag.CACHE_SPEED) then
-        player.MoveSpeed = player.MoveSpeed+ENUM_SPEED_BONUS*numMantles
+        player.MoveSpeed = player.MoveSpeed+SPEED_UP*numMantles
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player Entity
+---@param source EntityRef
+---@param flags DamageFlag
 local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, frames)
+    if(not mod:isAtlasA(player:ToPlayer())) then return end
     player = player:ToPlayer()
-    if(not mod:isAtlasA(player)) then return end
-    local data = mod:getAtlasATable(player)
-    
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.METAL.ID)
 
     if(dmg>0) then
-        local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_METAL)
-
-        local blockChance = ENUM_BLOCKCHANCE*numMantles
+        local blockChance = getBlockChance(player)
         if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.METAL.ID)) then
-            blockChance = ENUM_TRANSF_BLOCKCHANCE
-            if(flags & DamageFlag.DAMAGE_SPIKES ~= 0 and Game():GetRoom():GetType()~=RoomType.ROOM_SACRIFICE) then blockChance = 1 end
+            if(flags & DamageFlag.DAMAGE_SPIKES~=0 and Game():GetRoom():GetType()~=RoomType.ROOM_SACRIFICE) then blockChance = 1
+            elseif(flags & DamageFlag.DAMAGE_ACID~=0) then blockChance = 1 end
         end
 
+        local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_METAL)
         if(rng:RandomFloat()<blockChance) then
-            player:SetMinDamageCooldown(ENUM_DAMAGECOOLDOWN*(player:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
+            player:SetMinDamageCooldown(BLOCK_DMGCOOLDOWN*(player:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
             player:SetColor(Color(0,0,0.5,1,0.9,0.9,1),10,0,true,false)
 
             sfx:Play(mod.SFX_ATLASA_METALBLOCK)
@@ -62,11 +75,3 @@ local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, fram
     end
 end
 mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12, cancelAtlasAMetalMantleDamage, EntityType.ENTITY_PLAYER)
-
----@param player EntityPlayer
-local function playMantleSFX(_, player, mantle)
-    if(not mod:isAtlasA(player)) then return end
-
-    sfx:Play(mod.SFX_ATLASA_METALBREAK, 1.4)
-end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.METAL.ID)

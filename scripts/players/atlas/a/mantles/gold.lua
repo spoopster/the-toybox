@@ -16,9 +16,9 @@ local function useMantle(_, _, player, _)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_GOLD)
 
-local ENUM_LUCK_BONUS = 0.5
-local ENUM_FREEZE_DURATION = 150
-local ENUM_LOSTMANTLE_FREEZE_DIST = 100
+local LUCK_UP = 1
+local MIDASFREEZE_DURATION = 150
+local MANTLEFREEZE_DISTANCE = 100
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
@@ -28,7 +28,7 @@ local function evalCache(_, player, flag)
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.GOLD.ID)
 
     if(flag==CacheFlag.CACHE_LUCK) then
-        player.Luck = player.Luck+ENUM_LUCK_BONUS*numMantles
+        player.Luck = player.Luck+LUCK_UP*numMantles
     end
     if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID)) then
         if(flag==CacheFlag.CACHE_TEARFLAG) then
@@ -43,9 +43,9 @@ local function mantleDestroyed(_, player, mantle)
     if(not mod:isAtlasA(player)) then return end
     if(not (mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID) or mantle==mod.MANTLE_DATA.GOLD.ID)) then return end
 
-    for _, ent in ipairs(Isaac.FindInRadius(player.Position, ENUM_LOSTMANTLE_FREEZE_DIST, EntityPartition.ENEMY)) do
+    for _, ent in ipairs(Isaac.FindInRadius(player.Position, MANTLEFREEZE_DISTANCE, EntityPartition.ENEMY)) do
         if(ent:IsVulnerableEnemy() and not ent:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
-            ent:AddMidasFreeze(EntityRef(player), ENUM_FREEZE_DURATION)
+            ent:AddMidasFreeze(EntityRef(player), MIDASFREEZE_DURATION)
         end
     end
 
@@ -66,19 +66,6 @@ local function mantleDestroyed(_, player, mantle)
     sfx:Play(mod.SFX_ATLASA_METALBREAK, 1.4)
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
-
----@param player EntityPlayer
----@param collider Entity
-local function freezeOnCollision(_, player, collider)
-    if(not mod:isAtlasA(player)) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID)) then return end
-    if(not (collider:IsVulnerableEnemy() and not collider:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))) then return end
-
-    if(not collider:HasEntityFlags(EntityFlag.FLAG_MIDAS_FREEZE)) then
-        collider:AddMidasFreeze(EntityRef(player), ENUM_FREEZE_DURATION)
-    end
-end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, freezeOnCollision)
 
 ---@param effect EntityEffect
 local function updateGoldMantleShatter(_, effect)

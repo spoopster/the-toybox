@@ -43,6 +43,7 @@ local function forceDevilDealPickup(_, pickup, player)
     pickup.AutoUpdatePrice = false
     pickup.Price = PickupPrice.PRICE_FREE
     pickup.Visible = false
+    print("hello")
 
     return true
 end

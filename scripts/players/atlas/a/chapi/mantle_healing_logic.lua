@@ -19,7 +19,7 @@ if(CustomHealthAPI) then
         if(not mod:isAtlasA(p)) then return end
         if(p.FrameCount==0) then return end
         if(mod:getAtlasATable(p)==nil) then return end
-
+--[[
         if(KEY_TO_MANTLE[k] and n~=0) then
             local a = n
 
@@ -35,6 +35,7 @@ if(CustomHealthAPI) then
                 end
             end
         end
+        --]]
 
         return true
     end
