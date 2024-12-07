@@ -1,7 +1,6 @@
 local mod = MilcomMOD
 
-local TINTED_COLOR = Color(0.9,0.8,0.9,1)
-TINTED_COLOR:SetColorize(0.6,0.49,0.72,0.3)
+local TINTED_COLOR = Color(0.9,0.8,0.9,1,0,0,0,0.6,0.49,0.72,0.6)
 
 local TINTED_MORPHS = {
     {

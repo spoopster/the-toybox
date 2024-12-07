@@ -58,24 +58,30 @@ mod.COLLECTIBLE_GILDED_APPLE = Isaac.GetItemIdByName("Gilded Apple")            
 mod.COLLECTIBLE_OBSIDIAN_CHUNK = Isaac.GetItemIdByName("Obsidian Chunk")            --!DONE
 mod.COLLECTIBLE_DADS_PRESCRIPTION = Isaac.GetItemIdByName("Dad's Prescription")     --!DONE
 mod.COLLECTIBLE_HORSE_TRANQUILIZER = Isaac.GetItemIdByName("Horse Tranquilizer")    --!DONE
-mod.COLLECTIBLE_BOBS_HEART = Isaac.GetItemIdByName("Bob's Heart")
+mod.COLLECTIBLE_BOBS_HEART = Isaac.GetItemIdByName("Bob's Heart")                   --!DONE
 mod.COLLECTIBLE_GLASS_VESSEL = Isaac.GetItemIdByName("Glass Vessel")                --!DONE
 mod.COLLECTIBLE_SCULTPORS_CHISEL = Isaac.GetItemIdByName("Sculptor's Chisel")
 mod.COLLECTIBLE_BONE_BOY = Isaac.GetItemIdByName("Bone Boy")                        --!DONE
 mod.COLLECTIBLE_HOSTILE_TAKEOVER = Isaac.GetItemIdByName("Hostile Takeover")
-mod.COLLECTIBLE_STEEL_SOUL = Isaac.GetItemIdByName("Steel Soul")
+mod.COLLECTIBLE_STEEL_SOUL = Isaac.GetItemIdByName("Steel Soul")                    --!DONE
 mod.COLLECTIBLE_ROCK_CANDY = Isaac.GetItemIdByName("Rock Candy")                    --!DONE
-mod.COLLECTIBLE_GIANT_CAPSULE = Isaac.GetItemIdByName("Giant Capsule")
-mod.COLLECTIBLE_PEZ_DISPENSER = Isaac.GetItemIdByName("Candy Dispenser")
+mod.COLLECTIBLE_GIANT_CAPSULE = Isaac.GetItemIdByName("Giant Capsule")              --!DONE
+mod.COLLECTIBLE_PEZ_DISPENSER = Isaac.GetItemIdByName("Candy Dispenser")            --!DONE
 mod.COLLECTIBLE_MISSING_PAGE_3 = Isaac.GetItemIdByName("Missing Page 3")            --!DONE
 mod.COLLECTIBLE_ASCENSION = Isaac.GetItemIdByName("Ascension")                      --!DONE
 mod.COLLECTIBLE_4_4 = Isaac.GetItemIdByName("4 4")                                  --!DONE
 mod.COLLECTIBLE_DR_BUM = Isaac.GetItemIdByName("Dr. Bum")
 mod.COLLECTIBLE_JONAS_MASK = Isaac.GetItemIdByName("Jonas' Mask")
-mod.COLLECTIBLE_CLOWN_PHD = Isaac.GetItemIdByName("Clown PHD")
+mod.COLLECTIBLE_CLOWN_PHD = Isaac.GetItemIdByName("Clown PHD")                      --!DONE
 mod.COLLECTIBLE_DRILL = Isaac.GetItemIdByName("Drill")
-mod.COLLECTIBLE_ALPHABET_BOX = Isaac.GetItemIdByName("Alphabet Box")
-mod.COLLECTIBLE_LOVE_LETTER = Isaac.GetItemIdByName("Love Letter")
+mod.COLLECTIBLE_ALPHABET_BOX = Isaac.GetItemIdByName("Alphabet Box")                --!DONE
+mod.COLLECTIBLE_LOVE_LETTER = Isaac.GetItemIdByName("Love Letter")                  --!DONE
+mod.COLLECTIBLE_QUAKE_BOMBS = Isaac.GetItemIdByName("Quake Bombs")                  --!DONE
+mod.COLLECTIBLE_ATHEISM = Isaac.GetItemIdByName("Atheism")                          --!DONE
+mod.COLLECTIBLE_MAYONAISE = Isaac.GetItemIdByName("Mayonnaise")                     --!DONE
+mod.COLLECTIBLE_AWESOME_FRUIT = Isaac.GetItemIdByName("Awesome Fruit")              --!DONE
+mod.COLLECTIBLE_BLOODY_MAP = Isaac.GetItemIdByName("Bloody Map")
+mod.COLLECTIBLE_SALTPETER = Isaac.GetItemIdByName("Saltpeter")
 
 --mod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")
 mod.COLLECTIBLE_D = Isaac.GetItemIdByName("D")
@@ -95,6 +101,9 @@ mod.TRINKET_SINE_WORM = Isaac.GetTrinketIdByName("Sine Worm")                   
 mod.TRINKET_BIG_BLIND = Isaac.GetTrinketIdByName("Big Blind")                       --!DONE
 
 --*CONSUMABLES
+mod.CARD_PRISMSTONE = Isaac.GetCardIdByName("Prismstone")
+mod.CARD_FOIL_CARD = Isaac.GetCardIdByName("Foil Card")
+
 mod.CONSUMABLE_MANTLE_ROCK = Isaac.GetCardIdByName("Rock Mantle")
 mod.CONSUMABLE_MANTLE_POOP = Isaac.GetCardIdByName("Poop Mantle")
 mod.CONSUMABLE_MANTLE_BONE = Isaac.GetCardIdByName("Bone Mantle")
@@ -135,6 +144,7 @@ mod.FAMILIAR_BONE_BOY = Isaac.GetEntityVariantByName("Bone Boy")
 mod.FAMILIAR_EVIL_SHADOW = Isaac.GetEntityVariantByName("Black Spirit")
 mod.FAMILIAR_VIRUS = Isaac.GetEntityVariantByName("Virus (Red)")
 mod.FAMILIAR_MASK_SHADOW = Isaac.GetEntityVariantByName("Shadow Fly")
+mod.FAMILIAR_DR_BUM = Isaac.GetEntityVariantByName("Dr Bum")
 
 --*EFFECTS
 mod.EFFECT_BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram")

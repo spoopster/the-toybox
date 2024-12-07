@@ -36,10 +36,11 @@ local mod_files = {
 
     "scripts.toybox_imgui",
 
-    "scripts.funny_shaders",
+    --"scripts.funny_shaders",
 
     --"scripts.fortnite funnies.silly healthbar",
-    --"scripts.fortnite funnies.silly hearts",
+    "scripts.fortnite funnies.silly hearts",
+    --"scripts.fortnite funnies.mattman chance",
 
     --"scripts.test",
 }

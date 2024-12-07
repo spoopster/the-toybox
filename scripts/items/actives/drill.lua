@@ -1,5 +1,22 @@
 local mod = MilcomMOD
 
+local function playerInit(_, pl)
+    print(pl.Type, pl.Variant, pl.SubType)
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, playerInit)
+
+local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
+    print("gg")
+
+    return {
+        Discharge = true,
+        Remove = false,
+        ShowAnim = true,
+    }
+end
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, gildedAppleUse, mod.COLLECTIBLE_DRILL)
+
+--[[
 local FREE_PICKUP_ID = -12841
 local MIN_DRILL_DIST = 60
 local FRAME_COOLDOWN = 15
@@ -150,3 +167,4 @@ local function getFreePickupPrice(_, var, st, id, price)
     if(id==FREE_PICKUP_ID) then return PickupPrice.PRICE_FREE end
 end
 mod:AddCallback(ModCallbacks.MC_GET_SHOP_ITEM_PRICE, getFreePickupPrice)
+--]]

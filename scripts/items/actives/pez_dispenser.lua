@@ -13,7 +13,7 @@ BAR_SPRITE:Play("Bar", true)
 
 local BAR_MINXPOS = -25
 local BAR_PADDING = 5
-local BAR_SLIDE_DUR = 15
+local BAR_SLIDE_DUR = 20
 
 local CONS_OFFSETS = {
     [1] = Vector(0,0),
@@ -45,6 +45,7 @@ local function getConsumableSpriteFromData(data, isSmall)
         if(data[3] and data[3][1]) then return data[3] end
 
         if(data[2]) then
+            local entityConf = EntityConfig.GetEntity(5,(data[2] and 70 or 300), data[1])
             return {Sprite(entityConf:GetAnm2Path(), true), "HUD", 0} -- The pickup anm2's HUD animation, for runes and pills and other objects
         else
             local conf = Isaac.GetItemConfig()
@@ -113,9 +114,11 @@ local function usePillCrusher(_, _, rng, player, flags)
         data.PILLCRUSHER_HELD_CONS[numConsHeld] = {-1,false,nil,nil}
 
         if(pickupToUse[2]) then
-            player:UsePill(Game():GetItemPool():GetPillEffect(pickupToUse[1], player), pickupToUse[1])
+            --player:UsePill(Game():GetItemPool():GetPillEffect(pickupToUse[1], player), pickupToUse[1])
+            player:AddPill(pickupToUse[1])
         else
-            player:UseCard(pickupToUse[1])
+            --player:UseCard(pickupToUse[1])
+            player:AddCard(pickupToUse[1])
         end
         sfx:Play(SoundEffect.SOUND_PLOP)
     end
@@ -150,6 +153,8 @@ local function preAddCard(_, pl, pickup)
     pickup:PlayPickupSound()
     pickup:Die()
 
+    pl:AnimateCard(pickup.SubType, "UseItem")
+
     return false
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLECT_CARD, preAddCard)
@@ -173,6 +178,8 @@ local function preAddPill(_, pl, pickup)
     pickup.Velocity = Vector.Zero
     pickup:PlayPickupSound()
     pickup:Die()
+
+    pl:AnimatePill(pickup.SubType, "UseItem")
 
     return false
 end
@@ -252,6 +259,7 @@ local function renderItem(_, player, slot, offset, a, scale)
         end
     end
 
+    --[[
     if(mod.CONFIG.PEZDISPENSER_DISPLAY_NAME~=2 and data.PILLCRUSHER_MAP_FRAMES and data.PILLCRUSHER_MAP_FRAMES>0) then
         local text = data.PILLCRUSHER_STORED_NAME or ""
         local screenSizes = {Isaac.GetScreenWidth(), Isaac.GetScreenHeight()}
@@ -272,7 +280,7 @@ local function renderItem(_, player, slot, offset, a, scale)
             posOffset.Y = -30
         end
 
-        local frames = (data.PILLCRUSHER_MAP_FRAMES/BAR_SLIDE_DUR)^(1/5)
+        local frames = (data.PILLCRUSHER_MAP_FRAMES/BAR_SLIDE_DUR)^(0.2)
         frames = math.min(1, frames)
 
         if(not Game():IsPaused()) then print(frames) end
@@ -283,6 +291,7 @@ local function renderItem(_, player, slot, offset, a, scale)
         BAR_SPRITE:Render(finalBarPos+Vector(0,7))
         NAME_FONT:DrawStringScaled(text, finalBarPos.X+textOffset.X, finalBarPos.Y+textOffset.Y, textScale, textScale, KColor(1,1,1,1))
     end
+    --]]
 
     vanillaConsSprite.Color = Color(1,1,1,ogAlpha)
 
@@ -338,7 +347,7 @@ local function playerUpdate(_, pl)
         data.PILLCRUSHER_HELD_CONS[numConsHeld] = mod:cloneTable(pickupToUse)
     end
     if(numConsHeld>0 and data.PILLCRUSHER_DROP_FRAMES>=DROP_DURATION) then
-        dropDispenserConsumables(pl)
+        dropDispenserConsumables(pl, 1, numConsHeld)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate, 0)

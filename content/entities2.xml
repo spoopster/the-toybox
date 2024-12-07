@@ -91,8 +91,8 @@
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Shadow Urchin"
-        id="3" variant="5784" subtype="1" anm2path="familiars/tb_familiar_shadow_ball.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
+        id="3" variant="5784" subtype="1" anm2path="familiars/tb_familiar_shadow_urchin.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="2"
         numGridCollisionPoints="6" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
@@ -100,6 +100,12 @@
         id="3" variant="5784" subtype="2" anm2path="familiars/tb_familiar_shadow_crawler.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
         numGridCollisionPoints="6" shadowSize="16" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Dr Bum"
+        id="3" variant="4857" subtype="0" anm2path="familiars/tb_familiar_bum_docter.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" collisionInterval="1"
+        numGridCollisionPoints="6" shadowSize="10" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
@@ -155,78 +161,86 @@
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
-    <entity name="Mantle (ROCK)"
-        id="5" variant="300" subtype="2837" anm2path="pickups/tb_pickup_mantle_rock.anm2" friction="1"
+    <entity name="Foil Card"
+        id="5" variant="300" subtype="2911" anm2path="pickups/tb_card_foil_card.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12"
+        numGridCollisionPoints="12" shadowSize="16" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+        <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+    </entity>
+
+    <entity name="Mantle - Rock"
+        id="5" variant="300" subtype="2837" anm2path="pickups/tb_card_mantle_rock.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
-    <entity name="Mantle (POOP)"
-        id="5" variant="300" subtype="2838" anm2path="pickups/tb_pickup_mantle_poop.anm2" friction="1"
+    <entity name="Mantle - Poop"
+        id="5" variant="300" subtype="2838" anm2path="pickups/tb_card_mantle_poop.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
-    <entity name="Mantle (BONE)"
-        id="5" variant="300" subtype="2839" anm2path="pickups/tb_pickup_mantle_bone.anm2" friction="1"
+    <entity name="Mantle - Bone"
+        id="5" variant="300" subtype="2839" anm2path="pickups/tb_card_mantle_bone.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
-    <entity name="Mantle (DARK)"
-        id="5" variant="300" subtype="2840" anm2path="pickups/tb_pickup_mantle_dark.anm2" friction="1"
+    <entity name="Mantle - Dark"
+        id="5" variant="300" subtype="2840" anm2path="pickups/tb_card_mantle_dark.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
-    <entity name="Mantle (HOLY)"
-        id="5" variant="300" subtype="2841" anm2path="pickups/tb_pickup_mantle_holy.anm2" friction="1"
+    <entity name="Mantle - Holy"
+        id="5" variant="300" subtype="2841" anm2path="pickups/tb_card_mantle_holy.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
-    <entity name="Mantle (SALT)"
-        id="5" variant="300" subtype="2842" anm2path="pickups/tb_pickup_mantle_salt.anm2" friction="1"
+    <entity name="Mantle - Salt"
+        id="5" variant="300" subtype="2842" anm2path="pickups/tb_card_mantle_salt.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
-    <entity name="Mantle (GLASS)"
-        id="5" variant="300" subtype="2843" anm2path="pickups/tb_pickup_mantle_glass.anm2" friction="1"
+    <entity name="Mantle - Glass"
+        id="5" variant="300" subtype="2843" anm2path="pickups/tb_card_mantle_glass.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
-    <entity name="Mantle (METAL)"
-        id="5" variant="300" subtype="2844" anm2path="pickups/tb_pickup_mantle_metal.anm2" friction="1"
+    <entity name="Mantle - Metal"
+        id="5" variant="300" subtype="2844" anm2path="pickups/tb_card_mantle_metal.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
-    <entity name="Mantle (GOLD)"
-        id="5" variant="300" subtype="2845" anm2path="pickups/tb_pickup_mantle_gold.anm2" friction="1"
+    <entity name="Mantle - Gold"
+        id="5" variant="300" subtype="2845" anm2path="pickups/tb_card_mantle_gold.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
     <entity name="Laurel"
-        id="5" variant="300" subtype="2846" anm2path="pickups/tb_pickup_laurel.anm2" friction="1"
+        id="5" variant="300" subtype="2846" anm2path="pickups/tb_card_laurel.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
     </entity>
     <entity name="Yanny"
-        id="5" variant="300" subtype="6482" anm2path="pickups/tb_pickup_yanny.anm2" friction="1"
+        id="5" variant="300" subtype="6482" anm2path="pickups/tb_card_yanny.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12"
         numGridCollisionPoints="12" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />

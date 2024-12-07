@@ -14,6 +14,10 @@
         <Item Name="Bone Boy"/>
         <Item Name="Gilded Apple"/>
         <Item Name="Steel Soul"/>
+        <Item Name="Clown PHD"/>
+        <Item Name="Alphabet Box"/>
+        <Item Name="Love Letter"/>
+        <Item Name="Quake Bombs"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -29,37 +33,48 @@
         <Item Name="Bone Boy"/>
         <Item Name="Gilded Apple"/>
         <Item Name="Steel Soul"/>
+        <Item Name="Clown PHD"/>
+        <Item Name="Alphabet Box"/>
+        <Item Name="Love Letter"/>
+        <Item Name="Quake Bombs"/>
     </Pool>
 
     <Pool Name="boss">
         <Item Name="Caramel Apple"/>
         <Item Name="Eyestrain"/>
         <Item Name="Rock Candy"/>
+        <Item Name="Mayonnaise"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
         <Item Name="Eyestrain"/>
         <Item Name="Rock Candy"/>
+        <Item Name="Mayonnaise"/>
     </Pool>
 
     <Pool Name="shop">
         <Item Name="Dad's Prescription"/>
         <Item Name="D"/>
+        <Item Name="Love Letter"/>
+        <Item Name="Jonas' Mask"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
         <Item Name="D"/>
+        <Item Name="Love Letter"/>
+        <Item Name="Jonas' Mask"/>
     </Pool>
 
     <Pool Name="devil">
         <Item Name="Blood Ritual"/>
         <Item Name="Sigil of Greed"/>
         <Item Name="Missing Page 3"/>
+        <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
         <Item Name="Sigil of Greed" Weight="0.1" DecreaseBy="0.1"/>
-        <Item Name="Missing Page 3"/>
+        <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="angel">
@@ -67,12 +82,16 @@
         <Item Name="Blessed Ring"/>
         <Item Name="Glass Vessel"/>
         <Item Name="Ascension"/>
+        <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Awesome Fruit" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
         <Item Name="Blessed Ring"/>
         <Item Name="Glass Vessel"/>
         <Item Name="Ascension"/>
+        <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Awesome Fruit" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="curse">
@@ -90,22 +109,33 @@
     <Pool Name="redChest">
         <Item Name="Obsidian Shard"/>
         <Item Name="Painkillers" Weight="0.75" DecreaseBy="0.75"/>
+        <Item Name="Clown PHD"/>
     </Pool>
 
     <Pool Name="secret">
         <Item Name="4 4"/>
-        <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Fatal Signal"/>
         <Item Name="Bone Boy" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Steel Soul"/>
+        <Item Name="Alphabet Box"/>
+        <Item Name="Atheism"/>
+        <Item Name="Awesome Fruit"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="4 4"/>
-        <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Fatal Signal"/>
         <Item Name="Bone Boy" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Steel Soul"/>
+        <Item Name="Alphabet Box"/>
+        <Item Name="Atheism"/>
+        <Item Name="Awesome Fruit"/>
     </Pool>
 
     <Pool Name="demonBeggar">
         <Item Name="Pliers"/>
+    </Pool>
+
+    <Pool Name="bombBum">
+        <Item Name="Quake Bombs"/>
     </Pool>
 </ItemPools>

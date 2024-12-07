@@ -1,5 +1,6 @@
 <costumes anm2root="gfx/characters/">
     <costume id="43" anm2path="tb_costume_ascension.anm2" type="active" isFlying="true"/>
+    <costume id="50" anm2path="tb_costume_love_letter.anm2" type="passive"/>
 
     <costume id="999" anm2path="tb_costume_atlas_tar.anm2" type="none"/>
 	<costume id="1000" anm2path="tb_costume_atlas_rock.anm2" type="none"/>

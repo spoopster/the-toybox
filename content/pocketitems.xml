@@ -1,56 +1,68 @@
 <pocketitems>
 <!-- CARDS -->
+    <card id="100" name="Prismstone"
+        description="Draw 3, discard 2"
+        hud="Prismstone"
+        type="special"
+        pickup="8"
+    />
+    <card id="101" name="Foil Card"
+        description="Patience brings wealth"
+        hud="Foil Card"
+        type="special"
+        pickup="2911"
+    />
 
 <!-- OBJECTS -->
-	<card id="0" name="Mantle (ROCK)"
+	<card id="0" name="Mantle - Rock"
         description="Rock and roll"
         hud="Rock Mantle"
         type="object"
         pickup="2837"
     />
-	<card id="1" name="Mantle (POOP)"
+	<card id="1" name="Mantle - Poop"
         description="You stink"
         hud="Poop Mantle"
         type="object"
         pickup="2838"
     />
-    <card id="2" name="Mantle (BONE)"
+    <card id="2" name="Mantle - Bone"
         description="Sticks and stones"
         hud="Bone Mantle"
         type="object"
         pickup="2839"
     />
-    <card id="3" name="Mantle (DARK)"
+    <card id="3" name="Mantle - Dark"
         description="Darkness falls"
         hud="Dark Mantle"
         type="object"
         pickup="2840"
     />
-    <card id="4" name="Mantle (HOLY)"
+    <card id="4" name="Mantle - Holy"
         description="Bless your soul"
         hud="Holy Mantle"
         type="object"
         pickup="2841"
     />
-    <card id="5" name="Mantle (SALT)"
+    <card id="5" name="Mantle - Salt"
         description="Seems familiar"
         hud="Salt Mantle"
         type="object"
         pickup="2842"
     />
-    <card id="6" name="Mantle (GLASS)"
+    <card id="6" name="Mantle - Glass"
         description="Brittle protection"
         hud="Glass Mantle"
         type="object"
         pickup="2843"
     />
-    <card id="7" name="Mantle (METAL)"
+    <card id="7" name="Mantle - Metal"
         description="Tough skin"
         hud="Metal Mantle"
         type="object"
         pickup="2844"
     />
-    <card id="8" name="Mantle (GOLD)"
+    <card id="8" name="Mantle - Gold"
         description="Dapper defence"
         hud="Gold Mantle"
         type="object"

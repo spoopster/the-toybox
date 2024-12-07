@@ -6,7 +6,7 @@ local METEOR_COOLDOWN_BIGROOM = 2*30
 local METEORS_NUM = 1
 
 local METEOR_SPEED = 30
-local METEOR_FALLING_FRAMES = 2*30
+local METEOR_FALLING_FRAMES = 1*30
 local FALLING_FRAME_RANDOMNESS = 15
 
 local METEOR_SCALE_MULT = 2
@@ -90,9 +90,11 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, meteorTearUpdate, mod.TEAR_METEOR)
 
 local function spawnOnDeath(_, tear)
-    if(Game():IsPaused()) then return end
-
     if(tear.Variant==mod.TEAR_METEOR and tear.SubType==2) then
+        Game():ShakeScreen(10)
+
+        Isaac.Explode(tear.Position, tear, 100)
+
         tear = tear:ToTear()
         local p = Isaac.GetPlayer()
         if(tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()) then p = tear.SpawnerEntity:ToPlayer() end
@@ -131,7 +133,7 @@ local function spawnOnDeath(_, tear)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, spawnOnDeath, EntityType.ENTITY_TEAR)
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_DEATH, spawnOnDeath, mod.TEAR_METEOR)
 
 local function explosionUpdate(_, effect)
     if(effect:GetSprite():IsFinished("Explosion")) then effect:Remove() end

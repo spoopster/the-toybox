@@ -33,6 +33,15 @@ local t = {
     "scripts.items.passives.clown_phd",
     "scripts.items.passives.giant_capsule",
     "scripts.items.passives.jonas_mask",
+    "scripts.items.passives.love_letter",
+    "scripts.items.passives.quake_bombs",
+    "scripts.items.passives.atheism",
+    "scripts.items.passives.mayonnaise",
+    "scripts.items.passives.awesome_fruit",
+    "scripts.items.passives.bloody_map",
+    "scripts.items.passives.saltpeter",
+    "scripts.items.passives.dr_bum",
+    "scripts.items.passives.preferred_options",
 
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 

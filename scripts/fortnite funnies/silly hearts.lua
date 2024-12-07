@@ -61,9 +61,9 @@ local function postHudRender()
 
             local rng = mod:generateRng()
             for idx, d in ipairs(hData) do
-                --d.VEL = d.VEL+Vector(10,1)*Vector.FromAngle(--[[rng:RandomInt(40)+250]] rng:RandomInt(360)):Resized((rng:RandomFloat()*0.5+0.5)*3)
-                --d.GRAVITY = 0.8+rng:RandomFloat()*0.1
-                --d.GRAVITYFRAMES = 0
+                d.VEL = d.VEL+Vector(10,1)*Vector.FromAngle(--[[rng:RandomInt(40)+250]] rng:RandomInt(360)):Resized((rng:RandomFloat()*0.5+0.5)*3)
+                d.GRAVITY = 0.8+rng:RandomFloat()*0.1
+                d.GRAVITYFRAMES = 0
             end
         end
 
@@ -71,7 +71,7 @@ local function postHudRender()
 
         local IS_MOUSE_BTN = Input.IsMouseBtnPressed(MouseButton.LEFT)
         if(IS_MOUSE_BTN) then
-            local mousePos = Input.GetMousePosition(false)/Isaac.GetScreenPointScale()
+            local mousePos = Isaac.WorldToScreen(Input.GetMousePosition(true))--/(Isaac.GetScreenPointScale())--*Isaac.GetScreenWidth()/Isaac.GetScreenHeight()
 
             if(not data.PREV_MOUSE_BTN) then-- just pressed mouse
                 data.CUR_HELD_HEART = nil
@@ -79,7 +79,7 @@ local function postHudRender()
 
                 for idx, d in ipairs(hData) do
                     local dist = d.POS:Distance(mousePos)
-                    print(idx, hud:GetHeartByIndex(idx-1):IsVisible())
+                    --print(idx, hud:GetHeartByIndex(idx-1):IsVisible())
                     if(dist<minDist and hud:GetHeartByIndex(idx-1):IsVisible()) then
                         minDist = dist
                         data.CUR_HELD_HEART = idx

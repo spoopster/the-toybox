@@ -5,6 +5,8 @@ local t = {
 
     --CARDS
     -- "scripts.pickups.cards.",
+    "scripts.pickups.cards.prismstone",
+    "scripts.pickups.cards.foil_card",
     -- nothing for now
 
     --OBJECTS

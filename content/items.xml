@@ -154,10 +154,10 @@
     maxcharges="3"
 />
 <passive id="20" name="Fatal Signal"
-    description="HP up + out of memory"
+    description="HP up + memory overfl"
     gfx="tb_fatal_signal.png"
-    quality="0"
-    tags="nolostbr"
+    quality="1"
+    tags="offensive"
     cache=""
     
     maxhearts="2"
@@ -328,7 +328,7 @@
 <active id="41" name="Candy Dispenser"
     description="Safe keepings"
     gfx="tb_pez_dispenser.png"
-    quality="2"
+    quality="3"
     tags="offensive"
     cache=""
 
@@ -363,7 +363,7 @@
 <familiar id="45" name="Dr. Bum"
     description="Still homeless"
     gfx="tb_dr_bum.png"
-    quality="2"
+    quality="1"
     tags="summonable offensive"
     cache=""
 />
@@ -404,6 +404,53 @@
     description="Isaac from Hell"
     gfx="tb_love_letter.png"
     quality="2"
+    tags="offensive"
+    cache=""
+/>
+<passive id="51" name="Quake Bombs"
+    description="Blast blast +5 bombs"
+    gfx="tb_quake_bombs.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+
+    bombs="5"
+/>
+<passive id="52" name="Atheism"
+    description="I don't want to believe"
+    gfx="tb_atheism.png"
+    quality="4"
+    tags="offensive"
+    cache=""
+/>
+<passive id="53" name="Mayonnaise"
+    description="Here comes the airplane!"
+    gfx="tb_mayonaise.png"
+    quality="2"
+    tags="offensive"
+    cache="shotspeed"
+/>
+<passive id="54" name="Awesome Fruit"
+    description="Follow your dreams!"
+    gfx="tb_awesome_fruit.png"
+    quality="4"
+    tags="offensive syringe mom guppy fly bob mushroom baby angel devil poop book spider"
+    cache=""
+
+    hearts="4"
+    maxhearts="2"
+/>
+<passive id="55" name="Bloody Map"
+    description="Dangerous territory"
+    gfx="tb_bloody_map.png"
+    quality="3"
+    tags="offensive"
+    cache=""
+/>
+<passive id="56" name="Saltpeter"
+    description="Bang!"
+    gfx="tb_saltpeter.png"
+    quality="3"
     tags="offensive"
     cache=""
 />

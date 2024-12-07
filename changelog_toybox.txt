@@ -1,28 +1,6 @@
 - NEW:
-    - New Passives: Dad's Prescription, Horse Tranquilizer, Missing Page 3, Glass Vessel, Rock Candy, Bone Boy, Steel Soul, Bob's Heart, Clown PHD, Giant Capsule
-    - New Actives: Ascension, Gilded Apple, D, Candy Dispenser, Alphabet Box
-    - New Trinkets: Antibiotics, Wonder Drug, Amber Fossil, Sine Worm, Big Blind
-    - Added effects for Atlas' mantles as other players
-    - Finished more of LIMIT BREAK's item buffs
-
-    - Painkillers has been completely reworked
-    - Silk Bag has been completely reworked
-    - Added stack effects for a few items
-    - Fixed Jonas' pill pool breaking pill effects forcefully added to the pool
-    - Atlas has fully completed spritesheets (rejoice)
-    - Added Jonas boss portrait
+    - New Passives: Love Letter, Quake Bombs, Mayonnaise, Atheism, Awesome Fruit, Jonas' Mask, Dr. Bum, Saltpeter
 - CHANGES:
-    - Overflowing status effect now stops the entity's sprite so the chance to error or bug enemies is lower
-    - Electrified now grants enemies an orbital tech circle for the sake of hurting other entities because its funny
-    - Fixed Coconut Oil not being able to show up in item pools
-    - Fixed Meteor Shower and Pepper X erroring out when they would spawn firejets
-    - Improved gamefeel for Sigil of Greed
-    - 4 4 needs less luck to hit its max proc chance
-    - Goat Milk now directly adds tears instead of a tear multiplier
-    - Fixed Lion Skull's damage down activating on some instances of self damage
-    - Jonas' pill pool now properly functions with forcefully added pill effects (like Maggie's Full Health pill)
-    - Nerfed Jonas' shotspeed bonus from pill boosts
-    - Fixed the mod's save system not saving any data pertaining to item effects (like Lion Skull, Nose Candy)
-    - Atlas' mantle hearts have been resprited
-    - Jonas has been resprited (rejoice)
-    - Nose Candy resprite
+    - Candy Dispenser no longer shows name of stored pickup, regardless of config setting
+    - Candy Dispenser no longer instantly uses pickup on activation, instead adds it to your consumable slots
+    - Added plenty of items to pools that formerly were in no pools

@@ -327,8 +327,8 @@ local ITEMS = {
         Name = "Horse Tranquilizer",
         Description = {
             "{{ToyboxHorsePill}} Spawns a horse pill",
-            "{{ToyboxHorsePill}} Picking up an item uses a random horse pill whose effect depends on the item's quality:",
-            "{{Blank}}{{Quality0}} and {{Quality1}} are positive, {{Quality2}} is neutral, {{Quality3}} and {{Quality4}} are negative",
+            "Picking up an item uses a random horse pill whose effect depends on the item's quality:",
+            "{{Blank}} {{Quality0}} and {{Quality1}} are positive, {{Quality2}} is neutral, {{Quality3}} and {{Quality4}} are negative",
         },
         DescriptionAppend = {
             {
@@ -581,16 +581,96 @@ local ITEMS = {
         Description = {
             "{{Charm}} 10% chance to shoot charming tears",
             "Charmed enemies take 33% more damage",
-            "Charmed enemies and their projectiles cannot collide with you",
+            "Charmed enemies and their projectiles cannot damage you",
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_GIANT_CAPSULE),
+                Condition = getStackFunction(mod.COLLECTIBLE_LOVE_LETTER),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_GIANT_CAPSULE.."}} {{ColorItemStack}}+1 virus for every item stack{{CR}}",
-                    "{{Collectible"..mod.COLLECTIBLE_GIANT_CAPSULE.."}} {{ColorItemStack}}Viruses live for +20 seconds per item stack{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE_LOVE_LETTER.."}} {{ColorItemStack}}+16% extra damage to charmed enemies{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE_LOVE_LETTER.."}} {{ColorItemStack}}+5% chance to charm enemies{{CR}}",
                 },
             },
+        },
+    },
+    [mod.COLLECTIBLE_QUAKE_BOMBS] = {
+        Name = "Quake Bombs",
+        Description = {
+            "{{Bomb}} +5 Bombs",
+            "Bombs explode additional connected rocks up to 2 tiles away",
+            "Rocks destroyed by your bombs have doubled drops"
+        },
+        DescriptionAppend = {
+            {
+                Condition = getStackFunction(mod.COLLECTIBLE_QUAKE_BOMBS),
+                DescriptionToAdd = {
+                    "{{Collectible"..mod.COLLECTIBLE_QUAKE_BOMBS.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_ATHEISM] = {
+        Name = "Atheism",
+        Description = {
+            "{{AngelDevilChance}} +15% Devil/Angel deal chance",
+            "{{AngelDevilChance}} Devil/Angel deals are replaced by {{TreasureRoom}} Treasure rooms which contain a choice between 2 items",
+        },
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return (Game().Difficulty==Difficulty.DIFFICULTY_GREED or Game().Difficulty==Difficulty.DIFFICULTY_GREEDIER)
+                end,
+                DescriptionToAdd = {
+                    "{{GreedMode}} In Greed Mode, replaces deals with {{GreedTreasureRoom}} Silver Treasure rooms",
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_MAYONAISE] = {
+        Name = "Mayonnaise",
+        Description = {
+            "\1 +0.15 Shotspeed",
+            "{{EternalHeart}} +1 Eternal Heart",
+        },
+    },
+    [mod.COLLECTIBLE_AWESOME_FRUIT] = {
+        Name = "Awesome Fruit",
+        Description = {
+            "\1 +1 Health",
+            "{{HealingRed}} Heals 1 heart",
+        },
+    },
+    [mod.COLLECTIBLE_JONAS_MASK] = {
+        Name = "Jonas' Mask",
+        Description = {
+            "Gives 1 of 3 shadow familiars:",
+            "{{Blank}} \7 Fly that bounces around the room and screams at enemies",
+            "{{Blank}} \7 Spider that crawls around and pounces on enemies",
+            "{{Blank}} \7 Urchin that orbits you and blocks projectiles",
+            "Every floor the familiar is rerolled"
+        },
+    },
+    [mod.COLLECTIBLE_SALTPETER] = {
+        Name = "Saltpeter",
+        Description = {
+            "When enemies take damage, nearby enemies are hurt for 50% of that damage",
+            "Tears have a 5% chance to explode upon hitting an enemy",
+        },
+        DescriptionAppend = {
+            {
+                Condition = getStackFunction(mod.COLLECTIBLE_SALTPETER),
+                DescriptionToAdd = {
+                    "{{Collectible"..mod.COLLECTIBLE_SALTPETER.."}} {{ColorItemStack}}+50% AOE damage{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE_SALTPETER.."}} {{ColorItemStack}}+5% chance to explode{{CR}}",
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_DR_BUM] = {
+        Name = "Dr. Bum",
+        Description = {
+            "{{Card}} Picks up cards, runes, and objects and turns them into {{Pill}} pills",
+            "Pills spawned by this are more likely to be positive or neutral"
         },
     },
     --#endregion
@@ -741,9 +821,10 @@ local ITEMS = {
         Name = nil,
         Description = {
             "{{Card}} Can store up to 2 consumables of any type",
-            "When activated, uses the frontmost stored consumable",
             "Swap between stored consumables by pressing the Drop key ({{ButtonRT}})",
-            "Hold the Map key ({{ButtonSelect}}) to see the frontmost stored consumable's name"
+            "When activated, puts the frontmost stored consumable into your consumable slot",
+            
+            --"Hold the Map key ({{ButtonSelect}}) to see the frontmost stored consumable's name"
         },
         DescriptionAppend = {
             {
@@ -1474,6 +1555,21 @@ local EXTRA_TRINKET_MODIFIERS = {
 }
 
 local CARDS = {
+    [mod.CARD_PRISMSTONE] = {
+        Name = "Prismstone",
+        Description = {
+            "{{Rune}} Spawns 3 runes or soul stones",
+            "Only 1 can be taken"
+        },
+    },
+    [mod.CARD_FOIL_CARD] = {
+        Name = "Foil Card",
+        Description = {
+            "{{Coin}} While held, clearing a room has a 50% chance to increase value of all Foil Cards by 3 coins",
+            "On use, gives coins equal to the card's value and resets the value of Foil Cards to 0"
+        },
+    },
+
     [mod.CONSUMABLE_LAUREL] = {
         Name = "Laurel",
         Description = {
