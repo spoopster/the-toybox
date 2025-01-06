@@ -6,7 +6,9 @@ local sfx = SFXManager()
 ---@param player EntityPlayer
 function mod:getJonasATable(player)
     local tb = mod:getEntityDataTable(player).JONAS_A_DATA
-    if(tb==nil) then mod:setEntityData(player, "JONAS_A_DATA", mod:cloneTable(mod.JONAS_A_BASEDATA)) end
+    if(type(tb)~="table") then
+	mod:setEntityData(player, "JONAS_A_DATA", mod:cloneTable(mod.JONAS_A_BASEDATA))
+    end
 
     return mod:getEntityDataTable(player).JONAS_A_DATA or {}
 end

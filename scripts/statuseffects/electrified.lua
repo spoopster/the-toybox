@@ -1,9 +1,9 @@
 local mod = MilcomMOD
 
-local ELECTRIFIED_LASER_FREQ = 7
+local ELECTRIFIED_LASER_FREQ = 14
 local ELECTRIFIED_LASER_LENGTH = {Min=70, Max=130}
 local ELECTRIFIED_LASER_TIMEOUT = 2
-local ELECTRIFIED_LASER_DAMAGE = 0.5
+local ELECTRIFIED_LASER_DAMAGE = 2
 local ELECTRIFIED_LASER_RANGE = 40
 
 local ELECTRIFIED_LASER_VAR = LaserVariant.ELECTRIC
@@ -66,25 +66,8 @@ local function postNpcUpdate(_, npc)
         end
     end
 
-    local orbitLaser = d.ACTIVE_LASER_ENT
-    if(not (orbitLaser and orbitLaser:Exists())) then
-        orbitLaser = Isaac.Spawn(7,10,3,npc.Position,npc.Velocity,d.PLAYER):ToLaser()
-        orbitLaser.Radius = 0.15
-        orbitLaser.CollisionDamage = d.DAMAGE*d.DAMAGE_MULT
-        orbitLaser.Parent = d.PLAYER
-        orbitLaser.DisableFollowParent = true
-        mod:setEntityData(orbitLaser, "ELECTRIFIED_LASER", true)
-        mod:setEntityData(orbitLaser, "ELECTRIFIED_LASER_ENEMYPARENT", npc)
-
-        d.ACTIVE_LASER_ENT = orbitLaser
-    end
-
-    orbitLaser.Velocity = mod:lerp(orbitLaser.Velocity, (npc.Position-orbitLaser.Position), 0.4)
-    orbitLaser.Radius = mod:lerp(orbitLaser.Radius, d.RANGE+npc.Size, 0.25)
-
     d.DURATION = d.DURATION-1
     if(d.DURATION<=0) then
-        d.ACTIVE_LASER_ENT:Die()
         d=nil
     end
     mod:setEntityData(npc, "STATUS_ELECTRIFIED_DATA", d)

@@ -1,7 +1,6 @@
 <players nameimageroot="gfx/ui/boss/" portraitroot="gfx/ui/stage/" root="gfx/characters/players/">
 	<player birthright="idk" name="Milcom"
 		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="tb_character_milcom.png" costumeSuffix="milcom_a" skinColor="-1"
-		damagemodifier="-0.7" hidden="true"
 	/>
 	<player birthright="-" name="Milcom" bSkinParent="Milcom"
 		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="tb_character_milcom.png" costumeSuffix="milcom_b" skinColor="-1"
@@ -19,7 +18,7 @@
 	<player birthright="-" name="Atlas" bSkinParent="Atlas"
 		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="tb_character_atlas.png" costumeSuffix="atlas_b" skinColor="-1"
 		heartcontainers="3" redhearts="3" healthlimit="3" modcostume="999"
-		achievement="Tainted Atlas"
+		achievement="Tainted Atlas" hidden="true"
 	/>
 
 	<player birthright="Better drugs" name="Jonas"
@@ -28,6 +27,6 @@
 	/>
 	<player birthright="-" name="Jonas" bSkinParent="Jonas"
 		nameimage="milcom_name.png" portrait="tb_portrait_jonas.png" skin="tb_character_jonas.png" costumeSuffix="jonas_b" skinColor="-1"
-		achievement="Tainted Milcom"
+		achievement="Tainted Jonas" hidden="true"
 	/>
 </players>

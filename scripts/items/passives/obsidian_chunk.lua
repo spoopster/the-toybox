@@ -1,5 +1,8 @@
 local mod = MilcomMOD
 
+local SHOTSPEED_UP = -0.2
+local DAMAGE_UP = 0.75
+
 local NUM_PEBBLE_TEARS = 20
 local PEBBLE_DMG = 1
 local PEBBLE_SPREAD = 40
@@ -15,6 +18,21 @@ local CHUNK_TEARCOLOR = Color(0.9,0.8,0.9,1)
 CHUNK_TEARCOLOR:SetColorize(0.6,0.49,0.72,1)
 local CHUNK_ROCKCOLOR = Color(0.9,0.8,0.9,1)
 CHUNK_ROCKCOLOR:SetColorize(0.6,0.49,0.72,0.4)
+
+---@param player EntityPlayer
+---@param flag CacheFlag
+local function evalCache(_, player, flag)
+    if(not player:HasCollectible(mod.COLLECTIBLE_OBSIDIAN_CHUNK)) then return end
+
+    local mult = player:GetCollectibleNum(mod.COLLECTIBLE_OBSIDIAN_CHUNK)
+
+    if(flag==CacheFlag.CACHE_DAMAGE) then
+        mod:addBasicDamageUp(player, DAMAGE_UP*mult)
+    elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
+        player.ShotSpeed = player.ShotSpeed+SHOTSPEED_UP*mult
+    end
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 local function getTriggerChance(luckval, chancemult)
     return mod:getLuckAffectedChance(luckval, OBSIDIAN_CHANCE*chancemult, MAXLUCK/chancemult, OBSIDIAN_CHANCEMAX)

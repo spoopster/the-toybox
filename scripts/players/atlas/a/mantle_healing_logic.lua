@@ -13,7 +13,7 @@ local HEARTS_TO_MANTLETYPE = {
 
 if(CustomHealthAPI==nil) then
     local function helpmehelpme(_, player, num, type, arg)
-        if(not mod.IS_DATA_LOADED) then return end
+        --if(not mod.IS_DATA_LOADED) then return end
         if(mod:isAtlasA(player) and player.FrameCount>0) then
 
             --! this is just funny dotn add it in!!!

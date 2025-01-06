@@ -20,6 +20,34 @@ mod.PLAYER_JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true)
 
 mod.ACH_MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom")
 mod.ACH_ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas")
+mod.ACH_JONAS_B = Isaac.GetAchievementIdByName("Tainted Jonas")
+
+mod.ACH_PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone")
+mod.ACH_GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel")
+mod.ACH_STEEL_SOUL = Isaac.GetAchievementIdByName("Steel Soul")
+mod.ACH_HOSTILE_TAKEOVER = Isaac.GetAchievementIdByName("Hostile Takeover")
+mod.ACH_ROCK_CANDY = Isaac.GetAchievementIdByName("Rock Candy")
+mod.ACH_MISSING_PAGE_3 = Isaac.GetAchievementIdByName("Missing Page 3")
+mod.ACH_GILDED_APPLE = Isaac.GetAchievementIdByName("Gilded Apple")
+mod.ACH_SALTPETER = Isaac.GetAchievementIdByName("Saltpeter")
+mod.ACH_MANTLES = Isaac.GetAchievementIdByName("Mantles")
+mod.ACH_AMBER_FOSSIL = Isaac.GetAchievementIdByName("Amber Fossil")
+mod.ACH_BONE_BOY = Isaac.GetAchievementIdByName("Bone Boy!")
+mod.ACH_ASCENSION = Isaac.GetAchievementIdByName("Ascension")
+mod.ACH_MIRACLE_MANTLE = Isaac.GetAchievementIdByName("Miracle Mantle")
+mod.ACH_GIANT_CAPSULE = Isaac.GetAchievementIdByName("Giant Capsule")
+mod.ACH_WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug")
+mod.ACH_DADS_PRESCRIPTION = Isaac.GetAchievementIdByName("Dad's Prescription")
+mod.ACH_CANDY_DISPENSER = Isaac.GetAchievementIdByName("Candy Dispenser")
+mod.ACH_DR_BUM = Isaac.GetAchievementIdByName("Dr. Bum")
+mod.ACH_JONAS_MASK = Isaac.GetAchievementIdByName("Jonas' Mask")
+mod.ACH_ANTIBIOTICS = Isaac.GetAchievementIdByName("Antibiotics")
+mod.ACH_FOIL_CARD = Isaac.GetAchievementIdByName("Foil Card")
+mod.ACH_HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer")
+mod.ACH_CLOWN_PHD = Isaac.GetAchievementIdByName("Clown PHD")
+mod.ACH_JONAS_LOCK = Isaac.GetAchievementIdByName("Jonas' Lock")
+mod.ACH_PILLS = Isaac.GetAchievementIdByName("Pill Diversity!")
+mod.ACH_DRILL = Isaac.GetAchievementIdByName("Drill")
 
 --#endregion
 --#region --!ITEMS
@@ -48,11 +76,9 @@ mod.COLLECTIBLE_SILK_BAG = Isaac.GetItemIdByName("Silk Bag")                    
 mod.COLLECTIBLE_BRAINFREEZE = Isaac.GetItemIdByName("Brainfreeze")
 mod.COLLECTIBLE_FATAL_SIGNAL = Isaac.GetItemIdByName("Fatal Signal")                --!DONE
 mod.COLLECTIBLE_METEOR_SHOWER = Isaac.GetItemIdByName("Meteor Shower")              --!DONE
-mod.COLLECTIBLE_MALICIOUS_BRAIN = Isaac.GetItemIdByName("Malicious Brain")
 mod.COLLECTIBLE_BLESSED_RING = Isaac.GetItemIdByName("Blessed Ring")                --!DONE
 mod.COLLECTIBLE_SIGIL_OF_GREED = Isaac.GetItemIdByName("Sigil of Greed")            --!DONE
 mod.COLLECTIBLE_PEPPER_X = Isaac.GetItemIdByName("Pepper X")                        --!DONE
-mod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")
 mod.COLLECTIBLE_GOLDEN_TWEEZERS = Isaac.GetItemIdByName("Golden Tweezers")          --!DONE
 mod.COLLECTIBLE_GILDED_APPLE = Isaac.GetItemIdByName("Gilded Apple")                --!DONE
 mod.COLLECTIBLE_OBSIDIAN_CHUNK = Isaac.GetItemIdByName("Obsidian Chunk")            --!DONE
@@ -60,9 +86,8 @@ mod.COLLECTIBLE_DADS_PRESCRIPTION = Isaac.GetItemIdByName("Dad's Prescription") 
 mod.COLLECTIBLE_HORSE_TRANQUILIZER = Isaac.GetItemIdByName("Horse Tranquilizer")    --!DONE
 mod.COLLECTIBLE_BOBS_HEART = Isaac.GetItemIdByName("Bob's Heart")                   --!DONE
 mod.COLLECTIBLE_GLASS_VESSEL = Isaac.GetItemIdByName("Glass Vessel")                --!DONE
-mod.COLLECTIBLE_SCULTPORS_CHISEL = Isaac.GetItemIdByName("Sculptor's Chisel")
 mod.COLLECTIBLE_BONE_BOY = Isaac.GetItemIdByName("Bone Boy")                        --!DONE
-mod.COLLECTIBLE_HOSTILE_TAKEOVER = Isaac.GetItemIdByName("Hostile Takeover")
+mod.COLLECTIBLE_HOSTILE_TAKEOVER = Isaac.GetItemIdByName("Hostile Takeover")        --!DONE
 mod.COLLECTIBLE_STEEL_SOUL = Isaac.GetItemIdByName("Steel Soul")                    --!DONE
 mod.COLLECTIBLE_ROCK_CANDY = Isaac.GetItemIdByName("Rock Candy")                    --!DONE
 mod.COLLECTIBLE_GIANT_CAPSULE = Isaac.GetItemIdByName("Giant Capsule")              --!DONE
@@ -70,8 +95,8 @@ mod.COLLECTIBLE_PEZ_DISPENSER = Isaac.GetItemIdByName("Candy Dispenser")        
 mod.COLLECTIBLE_MISSING_PAGE_3 = Isaac.GetItemIdByName("Missing Page 3")            --!DONE
 mod.COLLECTIBLE_ASCENSION = Isaac.GetItemIdByName("Ascension")                      --!DONE
 mod.COLLECTIBLE_4_4 = Isaac.GetItemIdByName("4 4")                                  --!DONE
-mod.COLLECTIBLE_DR_BUM = Isaac.GetItemIdByName("Dr. Bum")
-mod.COLLECTIBLE_JONAS_MASK = Isaac.GetItemIdByName("Jonas' Mask")
+mod.COLLECTIBLE_DR_BUM = Isaac.GetItemIdByName("Dr. Bum")                           --!DONE
+mod.COLLECTIBLE_JONAS_MASK = Isaac.GetItemIdByName("Jonas' Mask")                   --!DONE
 mod.COLLECTIBLE_CLOWN_PHD = Isaac.GetItemIdByName("Clown PHD")                      --!DONE
 mod.COLLECTIBLE_DRILL = Isaac.GetItemIdByName("Drill")
 mod.COLLECTIBLE_ALPHABET_BOX = Isaac.GetItemIdByName("Alphabet Box")                --!DONE
@@ -81,24 +106,36 @@ mod.COLLECTIBLE_ATHEISM = Isaac.GetItemIdByName("Atheism")                      
 mod.COLLECTIBLE_MAYONAISE = Isaac.GetItemIdByName("Mayonnaise")                     --!DONE
 mod.COLLECTIBLE_AWESOME_FRUIT = Isaac.GetItemIdByName("Awesome Fruit")              --!DONE
 mod.COLLECTIBLE_BLOODY_MAP = Isaac.GetItemIdByName("Bloody Map")
-mod.COLLECTIBLE_SALTPETER = Isaac.GetItemIdByName("Saltpeter")
+mod.COLLECTIBLE_SALTPETER = Isaac.GetItemIdByName("Saltpeter")                      --!DONE
+mod.COLLECTIBLE_PREFERRED_OPTIONS = Isaac.GetItemIdByName("Preferred Options")      --!DONE
+mod.COLLECTIBLE_PLASMA_GLOBE = Isaac.GetItemIdByName("Plasma Globe")                --!DONE
+mod.COLLECTIBLE_CURSED_EULOGY = Isaac.GetItemIdByName("Cursed Eulogy")              --!DONE
+mod.COLLECTIBLE_BLESSED_BOMBS = Isaac.GetItemIdByName("Blessed Bombs")              --!DONE
 
+
+mod.COLLECTIBLE_EQUALIZER = Isaac.GetItemIdByName("Equalizer")
+mod.COLLECTIBLE_D = Isaac.GetItemIdByName("D")                                      --!DONE
 --mod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")
-mod.COLLECTIBLE_D = Isaac.GetItemIdByName("D")
+
 mod.COLLECTIBLE_PORTABLE_TELLER = Isaac.GetItemIdByName("Portable Teller")
 
 --mod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")            --*UNUSED (i dont like the item)
+--mod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")                        --*UNUSED (same as above)
+--mod.COLLECTIBLE_MALICIOUS_BRAIN = Isaac.GetItemIdByName("Malicious Brain")        --*UNUSED
 
 --*TRINKETS
-mod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")
-mod.TRINKET_PLASMA_GLOBE = Isaac.GetTrinketIdByName("Plasma Globe")                 --!DONE
-mod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")                   --!DONE
 mod.TRINKET_ANTIBIOTICS = Isaac.GetTrinketIdByName("Antibiotics")                   --!DONE
 mod.TRINKET_WONDER_DRUG = Isaac.GetTrinketIdByName("Wonder Drug")                   --!DONE
 mod.TRINKET_AMBER_FOSSIL = Isaac.GetTrinketIdByName("Amber Fossil")                 --!DONE
-mod.TRINKET_JONAS_LOCK = Isaac.GetTrinketIdByName("Jonas' Lock")
+mod.TRINKET_JONAS_LOCK = Isaac.GetTrinketIdByName("Jonas' Lock")                    --!DONE
 mod.TRINKET_SINE_WORM = Isaac.GetTrinketIdByName("Sine Worm")                       --!DONE
 mod.TRINKET_BIG_BLIND = Isaac.GetTrinketIdByName("Big Blind")                       --!DONE
+mod.TRINKET_BATH_WATER = Isaac.GetTrinketIdByName("Bath Water")                     --!DONE
+mod.TRINKET_BLACK_RUNE_SHARD = Isaac.GetTrinketIdByName("Black Rune Shard")         --!DONE
+mod.TRINKET_YELLOW_BELT = Isaac.GetTrinketIdByName("Yellow Belt")
+
+--mod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")                 --*UNUSED
+--mod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")                 --*UNUSED
 
 --*CONSUMABLES
 mod.CARD_PRISMSTONE = Isaac.GetCardIdByName("Prismstone")
@@ -145,6 +182,7 @@ mod.FAMILIAR_EVIL_SHADOW = Isaac.GetEntityVariantByName("Black Spirit")
 mod.FAMILIAR_VIRUS = Isaac.GetEntityVariantByName("Virus (Red)")
 mod.FAMILIAR_MASK_SHADOW = Isaac.GetEntityVariantByName("Shadow Fly")
 mod.FAMILIAR_DR_BUM = Isaac.GetEntityVariantByName("Dr Bum")
+mod.FAMILIAR_BATH_WATER = Isaac.GetEntityVariantByName("Bath Water")
 
 --*EFFECTS
 mod.EFFECT_BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram")
@@ -152,11 +190,16 @@ mod.EFFECT_METEOR_TEAR_EXPLOSION = Isaac.GetEntityVariantByName("Meteor Tear Exp
 mod.EFFECT_GOLDMANTLE_BREAK = Isaac.GetEntityVariantByName("Gold Mantle Shatter")
 mod.EFFECT_GREED_SIGIL_CHARGEBAR = Isaac.GetEntityVariantByName("Greed Sigil Chargebar")
 mod.EFFECT_ASCENSION_PLAYER_DEATH = Isaac.GetEntityVariantByName("Ascension Dead Player")
+mod.EFFECT_AURA = Isaac.GetEntityVariantByName("Enemy Fear Aura")
+mod.EFFECT_VESSEL_BREAK = Isaac.GetEntityVariantByName("Glass Vessel Break")
 
 --*PICKUPS
 mod.PICKUP_MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny")
 mod.PICKUP_BLACK_SOUL = Isaac.GetEntityVariantByName("Black Soul")
 mod.PICKUP_BLOOD_SOUL = Isaac.GetEntityVariantByName("Blood Soul")
+mod.PICKUP_INK_1 = Isaac.GetEntitySubTypeByName("Ink (1)")
+mod.PICKUP_INK_2 = Isaac.GetEntitySubTypeByName("Ink (2)")
+mod.PICKUP_INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)")
 
 --*TEARS
 mod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear")
@@ -169,6 +212,7 @@ mod.NPC_MAIN = Isaac.GetEntityTypeByName("Shy Gal")
 mod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")
 mod.NPC_SHYGAL_CLONE = Isaac.GetEntityVariantByName("Shy Gal Clone")
 mod.NPC_SHYGAL_MASK = Isaac.GetEntityVariantByName("Shy Gal Mask")
+mod.BOSS_RED_MEGALODON = Isaac.GetEntityVariantByName("Red Megalodon")
 
 --#endregion
 --#region --!SFX
@@ -221,6 +265,13 @@ mod.FAMILIAR_MASK_SHADOW_SUBTYPE = {
     ORBITAL = Isaac.GetEntitySubTypeByName("Shadow Urchin"),
     CHASER = Isaac.GetEntitySubTypeByName("Shadow Crawler"),
 }
+
+mod.EFFECT_AURA_SUBTYPE = {
+    ENEMY_FEAR = 0,
+    BOMB_BLESSED = 1,
+    DARK_MANTLE = 2,
+    HOLY_MANTLE = 3,
+}
 --#endregion
 --#region --!CUSTOM_ENUMS
 
@@ -260,6 +311,8 @@ mod.CUSTOM_CALLBACKS = {
     POST_ROCKET_EXPLODE = "TOYBOX_POST_ROCKET_EXPLODE",
     POST_NEW_ROOM = "TOYBOX_POST_NEW_ROOM",
     POST_ROOM_CLEAR = "TOYBOX_POST_ROOM_CLEAR",
+    POST_CUSTOM_CHAMPION_DEATH = "TOYBOX_POST_CUSTOM_CHAMPION_DEATH",
+    POST_CUSTOM_CHAMPION_INIT = "TOYBOX_POST_CUSTOM_CHAMPION_INIT",
 }
 
 mod.CUSTOM_BOMBFLAGS = {
@@ -341,6 +394,7 @@ mod.MANTLE_DATA = {
         ID = 6,
         HP = 2,
         CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_SALT,
+        CHARIOT_COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/tb_costume_atlas_salt.anm2"),
         SHARD_COLOR = Color(1,1,1,1),
         ANIM = "SaltMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
@@ -429,5 +483,57 @@ mod.MANTLE_PICKER = {
 
 -- MANTLE HP RENDER ENUMS
 mod.MANTLE_SHARD_GRAVITY = 7
+
+--#endregion
+--#region !MILCOM_A
+
+mod.CUSTOM_CHAMPIONS = {
+    FEAR = {
+        Idx = 1,
+        Color = Color(0.8,0.8,0.8,1,0.1,0,0.1,1,0,1,1),
+        HPMult = 1.5,
+    },
+    ETERNAL = {
+        Idx = 2,
+        Color = Color(0.8,0.8,0.8,1,0.1,0,0.1,1,0,1,1),
+        HPMult = 1,
+    },
+    DROWNED = {
+        Idx = 3,
+        Color = Color(0.5,0.9,1,1,0,0,0,0,1,1,1),
+        HPMult = 2,
+    },
+    SPIDERS = {
+        Idx = 4,
+        Color = Color(0.8,0.8,0.8,1,0.1,0,0.1,1,0,1,1),
+        HPMult = 1,
+    },
+    GOLDEN = {
+        Idx = 5,
+        Color = Color(0.8,0.8,0.8,1,0.1,0,0.1,1,0,1,1),
+        HPMult = 1,
+    },
+    JELLY = {
+        Idx = 6,
+        Color = Color(1,1.3,1,1,0,0,0,0.3,1,0,1),
+        HPMult = 2,
+    },
+}
+mod.CUSTOM_CHAMPION_IDX_TO_NAME = {
+    "FEAR",
+    "ETERNAL",
+    "DROWNED",
+    "SPIDERS",
+    "GOLDEN",
+    "JELLY",
+}
+
+mod.CUSTOM_CHAMPION_PICKER = WeightedOutcomePicker()
+mod.CUSTOM_CHAMPION_PICKER:AddOutcomeFloat(1, 100, 1000)
+mod.CUSTOM_CHAMPION_PICKER:AddOutcomeFloat(2, 1, 1000)
+mod.CUSTOM_CHAMPION_PICKER:AddOutcomeFloat(3, 100, 1000)
+mod.CUSTOM_CHAMPION_PICKER:AddOutcomeFloat(4, 1, 1000)
+mod.CUSTOM_CHAMPION_PICKER:AddOutcomeFloat(5, 1, 1000)
+mod.CUSTOM_CHAMPION_PICKER:AddOutcomeFloat(6, 100, 1000)
 
 --#endregion

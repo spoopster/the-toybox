@@ -1,10 +1,5 @@
 local mod = MilcomMOD
 
-local function playerInit(_, pl)
-    print(pl.Type, pl.Variant, pl.SubType)
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, playerInit)
-
 local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
     print("gg")
 

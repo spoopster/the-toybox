@@ -62,7 +62,7 @@ function mod:updateMantles(player)
     end
 
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.SALT.ID)) then
-        data.SALT_AUTOTARGET_ENABLED = false
+        data.SALT_CHARIOT_ENABLED = false
     end
 
     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)

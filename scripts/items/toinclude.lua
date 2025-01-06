@@ -17,7 +17,6 @@ local t = {
     "scripts.items.passives.blessed_ring",
     "scripts.items.passives.eyestrain",
     "scripts.items.passives.4_4",
-    "scripts.items.passives.malicious_brain",
     "scripts.items.passives.obsidian_shard",
     "scripts.items.passives.obsidian_chunk",
     "scripts.items.passives.sigil_of_greed",
@@ -42,6 +41,9 @@ local t = {
     "scripts.items.passives.saltpeter",
     "scripts.items.passives.dr_bum",
     "scripts.items.passives.preferred_options",
+    "scripts.items.passives.plasma_globe",
+    "scripts.items.passives.blessed_bombs",
+    "scripts.items.passives.cursed_eulogy",
 
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 
@@ -49,7 +51,6 @@ local t = {
     -- "scripts.items.actives.",
     "scripts.items.actives.pliers",
     "scripts.items.actives.blood_ritual",
-    "scripts.items.actives.toy_gun",
     "scripts.items.actives.golden_tweezers",
     "scripts.items.actives.bronze_bull",
     "scripts.items.actives.ascension",
@@ -58,23 +59,28 @@ local t = {
     "scripts.items.actives.d",
     "scripts.items.actives.pez_dispenser",
     "scripts.items.actives.alphabet_box",
+    "scripts.items.actives.hostile_takeover",
+    "scripts.items.actives.equalizer",
 
     --TRINKETS
     -- "scripts.items.trinkets.",
-    "scripts.items.trinkets.plasma_globe",
-    "scripts.items.trinkets.foam_bullet",
-    "scripts.items.trinkets.limit_break",
     "scripts.items.trinkets.wonder_drug",
     "scripts.items.trinkets.antibiotics",
     "scripts.items.trinkets.amber_fossil",
     "scripts.items.trinkets.sine_worm",
     "scripts.items.trinkets.big_blind",
     "scripts.items.trinkets.jonas_lock",
+    "scripts.items.trinkets.big_boy_bathwater",
+    "scripts.items.trinkets.black_rune_shard",
 
     --UNUSED
     --"scripts.items.actives.btrain",
     --"scripts.items.unused.laser_pointer",
     --"scripts.items.unused.scattered_tome",
+    --"scripts.items.unused.toy_gun",
+    --"scripts.items.unused.foam_bullet",
+    --"scripts.items.unused.malicious_brain",
+    --"scripts.items.unused.limit_break",
 }
 for _, path in ipairs(t) do
     include(path)

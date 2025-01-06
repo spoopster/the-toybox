@@ -1,5 +1,15 @@
 local mod = MilcomMOD
 
+---@param pl EntityPlayer
+local function postAddAwesomeFruit(_, _, _, firstTime, _, _, pl)
+    if(not firstTime) then return end
+
+    for i=0,13 do
+        pl:IncrementPlayerFormCounter(i, 1)
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddAwesomeFruit, mod.COLLECTIBLE_AWESOME_FRUIT)
+
 --[[
 
 ConBoi is bad at balatro. Very bad actually. Like unimaginable levels of throwing are happening. The most complex variables are being calculated in his head just to figure out the dumbest way to lose.

@@ -6,8 +6,8 @@ local sfx = SFXManager()
 ---@param player EntityPlayer
 function mod:getAtlasATable(player)
     local tb = mod:getEntityDataTable(player).ATLAS_A_DATA
-    if(tb==nil) then
-        mod:setEntityData(player, "ATLAS_A_DATA", mod:cloneTable(mod.ATLAS_A_BASEDATA))
+    if(type(tb)~="table") then
+	mod:setEntityData(player, "ATLAS_A_DATA", mod:cloneTable(mod.ATLAS_A_BASEDATA))
     end
 
     return mod:getEntityDataTable(player).ATLAS_A_DATA or {}

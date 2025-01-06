@@ -22,7 +22,7 @@ local function skewWeaponFiredelay(fd, rng, num)
         randFl = mod:sign(randFl)*math.abs(randFl)^(1/(num*2-1))
         randFl = randFl/2+0.5
     end
-    print(randFl)
+    --print(randFl)
 
     local fireDelayMult = randFl*(ENUM_SKEW_MNMX.Max-ENUM_SKEW_MNMX.Min)+ENUM_SKEW_MNMX.Min
     return math.max(0, fd*fireDelayMult)

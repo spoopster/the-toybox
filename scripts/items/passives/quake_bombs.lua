@@ -58,26 +58,6 @@ local function placeQuakeBomb(_, pl, bomb)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_USE_BOMB, placeQuakeBomb)
 
----@param bomb EntityBomb
-local function getBombRadius(bomb)
-    local radius
-    if(bomb.Variant==BombVariant.BOMB_GIGA or bomb.Variant==BombVariant.BOMB_ROCKET_GIGA or bomb.Flags & TearFlags.TEAR_GIGA_BOMB ~= TearFlags.TEAR_NORMAL) then
-        radius = 130.0
-    else
-        if(bomb.ExplosionDamage>=175.0) then
-            radius = 105.0
-        else
-            if(bomb.ExplosionDamage<=140.0) then
-                radius = 75.0
-            else
-                radius = 90.0
-            end
-        end
-    end
-
-    return radius*bomb.RadiusMultiplier
-end
-
 local destrucibleGrids = {
     [GridEntityType.GRID_ROCK] = true,
     [GridEntityType.GRID_ROCKT] = true,
@@ -116,7 +96,7 @@ local function destroyQuakedGrids(timer)
 
     local room = Game():GetRoom()
     local currentLayer = (timer.FrameCount//QUAKE_TIMER)
-	print(currentLayer)
+	--print(currentLayer)
     if(currentLayer<=0) then return end
 
     quakeLayers[currentLayer] = {}
@@ -170,7 +150,7 @@ local function quakeBombUpdate(_, bomb)
     Game():ShakeScreen(10)
 
     local quakeLayers = {[0]={}, ["INVALID"]={}}
-    local bombRadius = getBombRadius(bomb)
+    local bombRadius = mod:getBombRadius(bomb)
 
     local room = Game():GetRoom()
     local function getInitialGridsToDestroy(pos)

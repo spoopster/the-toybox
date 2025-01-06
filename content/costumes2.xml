@@ -1,10 +1,14 @@
 <costumes anm2root="gfx/characters/">
+    <costume id="34" anm2path="tb_costume_glass_vessel.anm2" type="active" priority="1"/>
+    <costume id="37" anm2path="tb_costume_hostile_takeover.anm2" type="active"/>
     <costume id="43" anm2path="tb_costume_ascension.anm2" type="active" isFlying="true"/>
     <costume id="50" anm2path="tb_costume_love_letter.anm2" type="passive"/>
+    
 
-    <costume id="999" anm2path="tb_costume_atlas_tar.anm2" type="none"/>
-	<costume id="1000" anm2path="tb_costume_atlas_rock.anm2" type="none"/>
+    <costume id="999" anm2path="tb_costume_atlas_tar.anm2" type="none" priority="99"/>
+	<costume id="1000" anm2path="tb_costume_atlas_rock.anm2" type="none" priority="99"/>
     <costume id="1001" anm2path="tb_costume_atlas_wings.anm2" type="none" isFlying="true"/>
+    <costume id="1002" anm2path="tb_costume_atlas_salt.anm2" type="none" priority="99"/>
 
     <costume id="1100" anm2path="tb_costume_jonas.anm2" type="none" priority="99"/>
 </costumes>

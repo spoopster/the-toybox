@@ -18,6 +18,8 @@
         <Item Name="Alphabet Box"/>
         <Item Name="Love Letter"/>
         <Item Name="Quake Bombs"/>
+        <Item Name="Plasma Globe"/>
+        <Item Name="Hostile Takeover"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -37,6 +39,8 @@
         <Item Name="Alphabet Box"/>
         <Item Name="Love Letter"/>
         <Item Name="Quake Bombs"/>
+        <Item Name="Plasma Globe"/>
+        <Item Name="Hostile Takeover"/>
     </Pool>
 
     <Pool Name="boss">
@@ -57,12 +61,17 @@
         <Item Name="D"/>
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
+        <Item Name="Preferred Options" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Candy Dispenser"/>
+        <Item Name="Equalizer"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
         <Item Name="D"/>
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
+        <Item Name="Candy Dispenser"/>
+        <Item Name="Equalizer"/>
     </Pool>
 
     <Pool Name="devil">
@@ -70,11 +79,13 @@
         <Item Name="Sigil of Greed"/>
         <Item Name="Missing Page 3"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Cursed Eulogy"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
         <Item Name="Sigil of Greed" Weight="0.1" DecreaseBy="0.1"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Cursed Eulogy"/>
     </Pool>
 
     <Pool Name="angel">
@@ -83,7 +94,7 @@
         <Item Name="Glass Vessel"/>
         <Item Name="Ascension"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
-        <Item Name="Awesome Fruit" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Blessed Bombs"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
@@ -91,7 +102,7 @@
         <Item Name="Glass Vessel"/>
         <Item Name="Ascension"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
-        <Item Name="Awesome Fruit" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Blessed Bombs"/>
     </Pool>
 
     <Pool Name="curse">
@@ -110,6 +121,7 @@
         <Item Name="Obsidian Shard"/>
         <Item Name="Painkillers" Weight="0.75" DecreaseBy="0.75"/>
         <Item Name="Clown PHD"/>
+        <Item Name="Cursed Eulogy"/>
     </Pool>
 
     <Pool Name="secret">
@@ -137,5 +149,10 @@
 
     <Pool Name="bombBum">
         <Item Name="Quake Bombs"/>
+    </Pool>
+
+    <Pool Name="craneGame">
+        <Item Name="Awesome Fruit"/>
+        <Item Name="Plasma Globe"/>
     </Pool>
 </ItemPools>

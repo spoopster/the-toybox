@@ -77,6 +77,23 @@ mod.PILL_ACHIEVEMENTS = {
     [PillEffect.PILLEFFECT_HORF] = Achievement.HORF,
     [PillEffect.PILLEFFECT_SUNSHINE] = Achievement.SUNSHINE_PILL,
     [PillEffect.PILLEFFECT_VURP] = Achievement.VURP,
+
+    [mod.PILL_I_BELIEVE] = mod.ACH_PILLS,
+    [mod.PILL_DYSLEXIA] = mod.ACH_PILLS,
+    [mod.PILL_DMG_UP] = mod.ACH_PILLS,
+    [mod.PILL_DMG_DOWN] = mod.ACH_PILLS,
+    [mod.PILL_DEMENTIA] = mod.ACH_PILLS,
+    [mod.PILL_PARASITE] = mod.ACH_PILLS,
+    [mod.PILL_FENT] = mod.ACH_PILLS,
+    [mod.PILL_YOUR_SOUL_IS_MINE] = mod.ACH_PILLS,
+    [mod.PILL_ARTHRITIS] = mod.ACH_PILLS,
+    [mod.PILL_OSSIFICATION] = mod.ACH_PILLS,
+    [mod.PILL_VITAMINS] = mod.ACH_PILLS,
+    [mod.PILL_COAGULANT] = mod.ACH_PILLS,
+    [mod.PILL_FOOD_POISONING] = mod.ACH_PILLS,
+    [mod.PILL_HEARTBURN] = mod.ACH_PILLS,
+    [mod.PILL_MUSCLE_ATROPHY] = mod.ACH_PILLS,
+    [mod.PILL_CAPSULE] = mod.ACH_PILLS,
 }
 
 --! ff pill conversions
@@ -103,7 +120,19 @@ function mod:getAllPillEffects(phdEffect)
         or (phdEffect & mod.PILL_PHDTYPE.GOOD~=0 and currentpill.EffectSubClass==mod.PILL_SUBCLASS.GOOD)
         or (phdEffect & mod.PILL_PHDTYPE.BAD~=0 and currentpill.EffectSubClass==mod.PILL_SUBCLASS.BAD)) then
             local ach = mod.PILL_ACHIEVEMENTS[currentpill.ID]
-            if(ach==nil or (ach and Isaac.GetPersistentGameData():Unlocked(ach))) then
+
+            local shouldAdd = false
+            if(ach==nil) then
+                shouldAdd = true
+            else
+                if(Isaac.GetPersistentGameData():Unlocked(ach)) then
+                    shouldAdd = true
+                elseif(ach==mod.ACH_PILLS and PlayerManager.AnyoneIsPlayerType(mod.PLAYER_JONAS_A)) then
+                    shouldAdd = true
+                end
+            end
+
+            if(shouldAdd) then
                 table.insert(pillEffects,
                     {
                         ID = currentpill.ID,

@@ -1,6 +1,12 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
+local STAT_SPRITE = Sprite("gfx/ui/tb_ui_pill_bonus.anm2", true)
+STAT_SPRITE:Play("Idle", true)
+
+local PILLBONUS_FONT = Font()
+PILLBONUS_FONT:Load("font/pftempestasevencondensed.fnt")
+
 ---@param player EntityPlayer
 local function resetPillBonus(player, forcesfx)
     if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
@@ -16,6 +22,33 @@ local function resetPillBonus(player, forcesfx)
         player:AnimateSad()
     end
 end
+
+---@param player EntityPlayer
+local function renderStat(_, player, offset)
+    if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
+    local data = mod:getJonasATable(player)
+
+    local lerpVal = 0.3
+    data.HELD_MAP_ALPHA = data.HELD_MAP_ALPHA or 0
+    if(Minimap:GetState()==MinimapState.EXPANDED) then
+        data.HELD_MAP_ALPHA = mod:lerp(data.HELD_MAP_ALPHA, 1, lerpVal)
+    else
+        data.HELD_MAP_ALPHA = mod:lerp(data.HELD_MAP_ALPHA, 0, lerpVal)
+    end
+
+    if(data.HELD_MAP_ALPHA<=0.01) then return end
+
+    local toRender = math.floor(data.PILLS_POPPED or 0)
+
+    local renderPos = Isaac.WorldToRenderPosition(player.Position)+Vector(0,10)+offset
+
+    STAT_SPRITE.Color = Color(1,1,1,data.HELD_MAP_ALPHA)
+    STAT_SPRITE:Render(renderPos+Vector(-5,0))
+
+    local boxWidth = 250
+    PILLBONUS_FONT:DrawString((toRender<10 and "0" or "")..tostring(toRender), renderPos.X-boxWidth+2.5, renderPos.Y-8.5, KColor(1,1,1,data.HELD_MAP_ALPHA),boxWidth*2,true)
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, renderStat)
 
 ---@param player EntityPlayer
 local function addPillBonus(_, pillEffect, player, flags, pillColor)

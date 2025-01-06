@@ -39,8 +39,11 @@ local mod_files = {
     --"scripts.funny_shaders",
 
     --"scripts.fortnite funnies.silly healthbar",
-    "scripts.fortnite funnies.silly hearts",
+    --"scripts.fortnite funnies.silly hearts",
     --"scripts.fortnite funnies.mattman chance",
+    --"scripts.fortnite funnies.gold mode",
+    --"scripts.fortnite funnies.retro mode",
+    --"scripts.fortnite funnies.yes",
 
     --"scripts.test",
 }

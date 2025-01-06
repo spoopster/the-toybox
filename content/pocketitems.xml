@@ -5,12 +5,20 @@
         hud="Prismstone"
         type="special"
         pickup="8"
+
+        mimiccharge="8"
+
+        achievement="Prismstone"
     />
     <card id="101" name="Foil Card"
-        description="Patience brings wealth"
+        description="Greed is good"
         hud="Foil Card"
         type="special"
         pickup="2911"
+
+        mimiccharge="8"
+
+        achievement="Foil Card"
     />
 
 <!-- OBJECTS -->
@@ -19,54 +27,72 @@
         hud="Rock Mantle"
         type="object"
         pickup="2837"
+
+        achievement="Mantles"
     />
 	<card id="1" name="Mantle - Poop"
         description="You stink"
         hud="Poop Mantle"
         type="object"
         pickup="2838"
+
+        achievement="Mantles"
     />
     <card id="2" name="Mantle - Bone"
         description="Sticks and stones"
         hud="Bone Mantle"
         type="object"
         pickup="2839"
+
+        achievement="Mantles"
     />
     <card id="3" name="Mantle - Dark"
         description="Darkness falls"
         hud="Dark Mantle"
         type="object"
         pickup="2840"
+
+        achievement="Mantles"
     />
     <card id="4" name="Mantle - Holy"
         description="Bless your soul"
         hud="Holy Mantle"
         type="object"
         pickup="2841"
+
+        achievement="Mantles"
     />
     <card id="5" name="Mantle - Salt"
         description="Seems familiar"
         hud="Salt Mantle"
         type="object"
         pickup="2842"
+
+        achievement="Mantles"
     />
     <card id="6" name="Mantle - Glass"
         description="Brittle protection"
         hud="Glass Mantle"
         type="object"
         pickup="2843"
+
+        achievement="Mantles"
     />
     <card id="7" name="Mantle - Metal"
         description="Tough skin"
         hud="Metal Mantle"
         type="object"
         pickup="2844"
+
+        achievement="Mantles"
     />
     <card id="8" name="Mantle - Gold"
         description="Dapper defence"
         hud="Gold Mantle"
         type="object"
         pickup="2845"
+
+        achievement="Mantles"
     />
 
     <card id="9" name="Laurel"

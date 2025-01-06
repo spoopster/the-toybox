@@ -85,15 +85,14 @@ local ITEMS = {
     [mod.COLLECTIBLE_LION_SKULL] = {
         Name = "Lion Skull",
         Description = {
-            "\1 Clearing a room without getting hit gives +4% damage up",
-            "\2 Getting hit removes the damage up granted by this and gives a damage down proportional to how many rooms were cleared without getting hit",
-            "The damage down will wear off as you clear rooms",
+            "\1 +0.15 Damage for every room cleared without taking damage",
+            "\2 Getting hit turns the damage up granted by this into a damage down that wears off as you clear rooms",
         },
         DescriptionAppend = {
             {
                 Condition = getStackFunction(mod.COLLECTIBLE_LION_SKULL),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_LION_SKULL.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE_LION_SKULL.."}} {{ColorItemStack}}+0.15 Damage granted per stack{{CR}}",
                 },
             },
         },
@@ -257,6 +256,7 @@ local ITEMS = {
             "\1 +1 Damage",
         },
     },
+    --[[
     [mod.COLLECTIBLE_MALICIOUS_BRAIN] = {
         Name = "Malicious Brain",
         Description = {
@@ -281,6 +281,7 @@ local ITEMS = {
             },
         },
     },
+    --]]
     [mod.COLLECTIBLE_SIGIL_OF_GREED] = {
         Name = "Sigil of Greed",
         Description = {
@@ -327,8 +328,8 @@ local ITEMS = {
         Name = "Horse Tranquilizer",
         Description = {
             "{{ToyboxHorsePill}} Spawns a horse pill",
-            "Picking up an item uses a random horse pill whose effect depends on the item's quality:",
-            "{{Blank}} {{Quality0}} and {{Quality1}} are positive, {{Quality2}} is neutral, {{Quality3}} and {{Quality4}} are negative",
+            "Picking up an item uses a random horse pill",
+            "Higher quality items make you use worse pills",
         },
         DescriptionAppend = {
             {
@@ -337,6 +338,7 @@ local ITEMS = {
                     "{{Collectible"..mod.COLLECTIBLE_HORSE_TRANQUILIZER.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
                 },
             },
+            --[[
             {
                 Condition = function()
                     for i=0, Game():GetNumPlayers()-1 do
@@ -373,6 +375,7 @@ local ITEMS = {
                     "{{Blank}}{{ColorJonas}}{{Collectible654}} + {{Collectible75}}: No change{{CR}}",
                 },
             },
+            --]]
         },
     },
     [mod.COLLECTIBLE_SILK_BAG] = {
@@ -418,7 +421,7 @@ local ITEMS = {
         Name = "Missing Page 3",
         Description = {
             "{{DeathMark}} Enemies have a 4% chance to spawn as a Skull champion",
-            "{{Blank}} {{ColorGray}}Skull champions have 2x health and trigger {{Collectible35}} The Necronomicon effect on death{{CR}}",
+            --"{{Blank}} {{ColorGray}}Skull champions have 2x health and trigger {{Collectible35}} The Necronomicon effect on death{{CR}}",
             "{{BlackHeart}} Skull champions are guaranteed to drop a black heart on death",
         },
         DescriptionModifiers = {
@@ -638,6 +641,7 @@ local ITEMS = {
         Description = {
             "\1 +1 Health",
             "{{HealingRed}} Heals 1 heart",
+            "\1 +1 progress for all Transformations",
         },
     },
     [mod.COLLECTIBLE_JONAS_MASK] = {
@@ -671,6 +675,56 @@ local ITEMS = {
         Description = {
             "{{Card}} Picks up cards, runes, and objects and turns them into {{Pill}} pills",
             "Pills spawned by this are more likely to be positive or neutral"
+        },
+    },
+    [mod.COLLECTIBLE_PREFERRED_OPTIONS] = {
+        Name = "Preferred Options",
+        Description = {
+            "{{BossRoom}} You may choose between 2 items after beating a boss",
+            "One of the items will be a duplicate of the last item you took from a boss room",
+            --"{{Blank}} {{ColorGray}}Cannot duplicate story items{{CR}}", --# i feel like its kind of obvious
+        },
+        DescriptionAppend = {
+            {
+                Condition = getStackFunction(mod.COLLECTIBLE_PREFERRED_OPTIONS),
+                DescriptionToAdd = {
+                    "{{Collectible"..mod.COLLECTIBLE_PREFERRED_OPTIONS.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_PLASMA_GLOBE] = {
+        Name = "Plasma Globe",
+        Description = {
+            "\2 -0.2 Shotspeed down",
+            "While flying, your tears fire electric lasers at nearby enemies",
+            "The lasers deal 25% of the tear's damage",
+        },
+    },
+    [mod.COLLECTIBLE_CURSED_EULOGY] = {
+        Name = "Cursed Eulogy",
+        Description = {
+            "{{BlackHeart}} +1 Black Heart",
+            "\2 Items have a 20% chance to spawn as a Curse Room or Red Chest item",
+        },
+        DescriptionAppend = {
+            {
+                Condition = getStackFunction(mod.COLLECTIBLE_CURSED_EULOGY),
+                DescriptionToAdd = {
+                    "{{Collectible"..mod.COLLECTIBLE_CURSED_EULOGY.."}} {{ColorItemStack}}+20% chance to replace items{{CR}}",
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE_BLESSED_BOMBS] = {
+        Name = "Blessed Bombs",
+        Description = {
+            "{{Bomb}} +5 Bombs",
+            "Bombs take twice as long to explode",
+            "While fused, bombs have a holy aura that grants:",
+            "\1 x3 Tears",
+            "\1 x2 Damage",
+            "Homing tears",
         },
     },
     --#endregion
@@ -721,6 +775,7 @@ local ITEMS = {
             },
         },
     },
+    --[[
     [mod.COLLECTIBLE_TOY_GUN] = {
         Name = "Toy Gun",
         Description = {
@@ -764,6 +819,7 @@ local ITEMS = {
             },
         },
     },
+    --]]
     [mod.COLLECTIBLE_GOLDEN_TWEEZERS] = {
         Name = "Golden Tweezers",
         Description = {
@@ -809,12 +865,6 @@ local ITEMS = {
         Name = "Gilded Apple",
         Description = {
             "{{GoldenHeart}} +1 Golden Heart",
-        },
-    },
-    [mod.COLLECTIBLE_D] = {
-        Name = "D",
-        Description = {
-            "{{Timer}} Adds anywhere from +3 minutes to -3 minutes to the game's timer",
         },
     },
     [mod.COLLECTIBLE_PEZ_DISPENSER] = {
@@ -864,7 +914,67 @@ local ITEMS = {
             },
         },
     },
+    [mod.COLLECTIBLE_HOSTILE_TAKEOVER] = {
+        Name = "Hostile Takeover",
+        Description = {
+            "{{Timer}} For the room:",
+            "Gives stats that wear off over 10 seconds:",
+            "{{Blank}} \1 +0.2 Speed",
+            "{{Blank}} \1 +2 Damage",
+            "{{Blank}} \1 +1 Tears",
+            "Grants {{Collectible647}} 4.5 Volt",
+            "On death, enemies spawn puddles of slowing tar",
+            "Touching a puddle absorbs it, extends the temporary stats and adds partial active charge to this item"
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "+0.2 Speed",
+                        New = "+0.2/{{Collectible356}}{{BlinkYellowGreen}}0.3{{CR}} Speed"
+                    },
+                    {
+                        Old = "+2 Damage",
+                        New = "+2/{{Collectible356}}{{BlinkYellowGreen}}3{{CR}} Damage"
+                    },
+                    {
+                        Old = "+1 Tears",
+                        New = "+1/{{Collectible356}}{{BlinkYellowGreen}}1.5{{CR}} Tears"
+                    },
+                },
+            },
+        },
+        DescriptionAppend = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+                end,
+                DescriptionToAdd = {
+                    "{{Collectible356}} {{BlinkYellowGreen}}Gain more partial charge from tar puddles{{CR}}",
+                },
+            },
+        },
+    },
 
+    [mod.COLLECTIBLE_D] = {
+        Name = "D",
+        Description = {
+            "{{Timer}} Adds anywhere from +3 minutes to -3 minutes to the game's timer",
+        },
+    },
+    [mod.COLLECTIBLE_EQUALIZER] = {
+        Name = "Equalizer",
+        Description = {
+            "{{Coin}} +3 Coins",
+            "{{Bomb}} +1 Bomb",
+            "{{Key}} +1 Key",
+            "On pickup/on use, chooses a pickup and a stat",
+            "You will get a bonus to that stat proportional to how many of that pickup you have, until the next time you use the item"
+        },
+    },
     [mod.COLLECTIBLE_PORTABLE_TELLER] = {
         Name = "Portable Teller",
         Description = {
@@ -878,7 +988,7 @@ local EXTRA_ITEM_MODIFIERS = {
         --* special condition to apply to all of them
         ["0"] = {
             BaseCondition = function(descObj)
-                return mod:isAnyPlayerAtlasA()
+                return false --return mod:isAnyPlayerAtlasA()
             end,
             Icon = "{{Player"..mod.PLAYER_ATLAS_A.."}}",
             Color = "{{ColorSilver}}",
@@ -974,6 +1084,7 @@ local EXTRA_ITEM_MODIFIERS = {
             },
         },
     },
+    --[[
     { --! LIMIT BREAK
         ["0"] = {
             BaseCondition = function(descObj)
@@ -1230,6 +1341,7 @@ local EXTRA_ITEM_MODIFIERS = {
             },
         },
     },
+    --]]
     { --! JONAS
         ["0"] = {
             BaseCondition = function(descObj)
@@ -1248,9 +1360,46 @@ local EXTRA_ITEM_MODIFIERS = {
             },
         },
     },
+    { --! PREFERRED OPTIONS WARNING
+        ["0"] = {
+            BaseCondition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_PREFERRED_OPTIONS)
+            end,
+            Icon = "{{Collectible"..mod.COLLECTIBLE_PREFERRED_OPTIONS.."}}",
+            Color = "{{ColorGray}}",
+        },
+        [CollectibleType.COLLECTIBLE_POLAROID] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Cannot be copied by Preferred Options",
+                    },
+                },
+            },
+        },
+        [CollectibleType.COLLECTIBLE_NEGATIVE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Cannot be copied by Preferred Options",
+                    },
+                },
+            },
+        },
+        [CollectibleType.COLLECTIBLE_DADS_NOTE] = {
+            DescriptionAppend = {
+                {
+                    DescriptionToAdd = {
+                        "Cannot be copied by Preferred Options",
+                    },
+                },
+            },
+        },
+    },
 }
 
 local TRINKETS = {
+    --[[
     [mod.TRINKET_PLASMA_GLOBE] = {
         Name = "Plasma Globe",
         Description = {
@@ -1335,6 +1484,8 @@ local TRINKETS = {
             },
         }
     },
+    --]]
+    --[[
     [mod.TRINKET_FOAM_BULLET] = {
         Name = "Foam Bullet",
         Description = {
@@ -1355,7 +1506,7 @@ local TRINKETS = {
                 Condition = isTripleTrinketMultiplier,
                 TextToModify = {
                     {
-                        Old = "5%%",
+                        Old = "{{ColorGold}}5%%{{CR}} chance",
                         New = "{{ColorRainbow}}7.5%%{{CR}}",
                     },
                 },
@@ -1380,6 +1531,7 @@ local TRINKETS = {
             "\1 Certain \"bad\" items are buffed",
         },
     },
+    --]]
     [mod.TRINKET_WONDER_DRUG] = {
         Name = "Wonder Drug",
         Description = {
@@ -1410,15 +1562,15 @@ local TRINKETS = {
     [mod.TRINKET_ANTIBIOTICS] = {
         Name = "Antibiotics",
         Description = {
-            "{{ToyboxHorsePill}} Using an unidentified pill will instead use its horse pill version",
+            "{{ToyboxHorsePill}} Using an unidentified pill will use it 2 times",
         },
         DescriptionModifiers = {
             {
                 Condition = isDoubleTrinketMultiplier,
                 TextToModify = {
                     {
-                        Old = "will instead use",
-                        New = "will {{ColorGold}}also{{CR}} use",
+                        Old = "2 times",
+                        New = "{{ColorGold}}3{{CR}} times",
                     },
                 },
             },
@@ -1426,8 +1578,8 @@ local TRINKETS = {
                 Condition = isTripleTrinketMultiplier,
                 TextToModify = {
                     {
-                        Old = "will {{ColorGold}}also{{CR}} use its horse pill version",
-                        New = "will instead use its horse pill version {{ColorRainbow}}twice{{CR}}",
+                        Old = "{{ColorGold}}3{{CR}} times",
+                        New = "{{ColorRainbow}}4{{CR}} times",
                     },
                 },
             },
@@ -1452,7 +1604,7 @@ local TRINKETS = {
                 Condition = isTripleTrinketMultiplier,
                 TextToModify = {
                     {
-                        Old = "50%%{{CR}} chance",
+                        Old = "{{ColorGold}}50%%{{CR}} chance",
                         New = "{{ColorRainbow}}75%%{{CR}} chance",
                     },
                 },
@@ -1532,8 +1684,8 @@ local TRINKETS = {
                 Condition = isDoubleTrinketMultiplier,
                 TextToModify = {
                     {
-                        Old = "50%",
-                        New = "{{ColorGold}}100%{{CR}}",
+                        Old = "50%%",
+                        New = "{{ColorGold}}100%%{{CR}}",
                     },
                 },
             },
@@ -1541,8 +1693,52 @@ local TRINKETS = {
                 Condition = isTripleTrinketMultiplier,
                 TextToModify = {
                     {
-                        Old = "100%",
-                        New = "{{ColorRainbow}}150%{{CR}}",
+                        Old = "100%%",
+                        New = "{{ColorRainbow}}150%%{{CR}}",
+                    },
+                },
+            },
+        },
+    },
+    [mod.TRINKET_BATH_WATER] = {
+        Name = "Bath Water",
+        Description = {
+            "Familiar that shatters when you take damage and spawns a pool of creep, once per room",
+            "The creep deals 24 damage per second",
+        },
+    },
+    [mod.TRINKET_BLACK_RUNE_SHARD] = {
+        Name = "Black Rune Shard",
+        Description = {
+            "{{Coin}} Blue flies and spiders have a 33% chance to be replaced by a coin",
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return (FiendFolio~=nil)
+                end,
+                TextToModify = {
+                    {
+                        Old = "and spiders",
+                        New = ", spiders, and skuzzes",
+                    },
+                },
+            },
+            {
+                Condition = isDoubleTrinketMultiplier,
+                TextToModify = {
+                    {
+                        Old = "33%% chance",
+                        New = "{{ColorGold}}67%%{{CR}} chance",
+                    },
+                },
+            },
+            {
+                Condition = isTripleTrinketMultiplier,
+                TextToModify = {
+                    {
+                        Old = "{{ColorGold}}67%%{{CR}} chance",
+                        New = "{{ColorRainbow}}100%%{{CR}} chance",
                     },
                 },
             },
@@ -1565,8 +1761,7 @@ local CARDS = {
     [mod.CARD_FOIL_CARD] = {
         Name = "Foil Card",
         Description = {
-            "{{Coin}} While held, clearing a room has a 50% chance to increase value of all Foil Cards by 3 coins",
-            "On use, gives coins equal to the card's value and resets the value of Foil Cards to 0"
+            "{{Coin}} Spawns a golden heart, penny, key or bomb",
         },
     },
 
@@ -1633,11 +1828,10 @@ local CARDS = {
         Description = {
             "2 HP",
             "\1 +0.4 Damage",
-            "+6.67% chance to gain a fading +0.4 to Damage and Tears upon killing an enemy",
+            "Losing a Dark Mantle deals 60 damage to all enemies",
             "{{AtlasATransformationDark}} {{ColorGray}}Transformation{{CR}}",
-            "Gain a Shadow familiar that follows you on a delay and deals 3 damage per tick",
-            "15% chance to gain an extra Shadow upon killing an enemy",
-            "Taking damage makes your Shadows chase nearby enemies, and removes all but 1 of your shadows upon leaving the room"
+            "Gain a dark aura that gives +0.5 Damage for every enemy inside it",
+            "Losing any Mantle deals 60 damage to all enemies"
         },
         NonAtlasDescription = {
             "DescriptionTest",
@@ -1648,10 +1842,10 @@ local CARDS = {
         Description = {
             "2 HP",
             "\1 +0.5 Range",
-            "Chance to fire a {{Collectible182}} Sacred Heart shot when firing",
+            "+3.33% chance to fire a {{Collectible182}} Sacred Heart tear",
             "{{AtlasATransformationHoly}} {{ColorGray}}Transformation{{CR}}",
             "Flight",
-            "Spectral tears",
+            "Gain an aura that deals 10 damage per second",
         },
         NonAtlasDescription = {
             "{{EternalHeart}} +1 Eternal Heart",
@@ -1664,8 +1858,8 @@ local CARDS = {
             "2 HP",
             "\1 +0.33 Tears",
             "{{AtlasATransformationSalt}} {{ColorGray}}Transformation{{CR}}",
-            "Press the DROP key to toggle \"auto-targetting\"",
-            "\"Auto-targetting\" makes your shots fire towards the nearest enemy",
+            "Press the DROP key to enter or leave \"salt statue\" form",
+            "While in this form, you have x2.5 Tears but are immobile",
         },
         NonAtlasDescription = {
             "DescriptionTest",
@@ -1786,7 +1980,7 @@ local PILLS = {
         Name = "Fent",
         Description = {
             "{{Collectible582}} Uses Wavy Cap once",
-            "{{Timer}} For the next 10 seconds, you are invincible and have a 0.7x damage multiplier"
+            "{{Timer}} For the next 5 seconds, you are invincible and have a 0.7x damage multiplier"
         }
     },
     [mod.PILL_ARTHRITIS] = {
@@ -1813,13 +2007,13 @@ local PILLS = {
     [mod.PILL_DMG_UP] = {
         Name = "Damage Up",
         Description = {
-            "+0.45 damage",
+            "\1 +0.45 Damage",
         }
     },
     [mod.PILL_DMG_DOWN] = {
         Name = "Damage Down",
         Description = {
-            "-0.35 damage",
+            "\2 -0.35 Damage",
         }
     },
 }
@@ -2228,11 +2422,11 @@ local PLAYERS = {
     [mod.PLAYER_JONAS_A] = {
         Name="Jonas",
         Description = {
-            "Enemies may drop pills on death",
-            "Using a pill grants a small all stats up with diminishing returns",
-            "The stat bonus from pills is reset if you clear too many rooms without using a pill",
-            "You lose 66% of the stat bonus at the start every floor",
             "Pill pool gets rerolled and unidentified at the start of every floor",
+            "Enemies may drop pills on death",
+            "All stats up proportional to your \"Pill Bonus\"",
+            "Gain Pill Bonus by using pills",
+            "Lose Pill Bonus on new floor, or if you go too long without using a pill",
         },
         Birthright = {
             "{{Pill}} Bad and neutral pills become good pills",

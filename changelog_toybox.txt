@@ -1,6 +1,24 @@
 - NEW:
-    - New Passives: Love Letter, Quake Bombs, Mayonnaise, Atheism, Awesome Fruit, Jonas' Mask, Dr. Bum, Saltpeter
+    - New Actives: Hostile Takeover
+    - New Passives: Preferred Options, Plasma Globe, Cursed Eulogy, Blessed Bombs
+    - New Trinkets: Bath Water
+    - Reworked Foil Card
+    - Reworked Plasma Globe into a passive
+    - Reworked Atlas' Salt Mantle, Dark Mantle and Holy Mantle
+    - Added a visual Pill Bonus counter for Jonas, displayed when you hold TAB (or the respective map button)
+    - Added new champions: Drowned, Fear, Jelly
+    - Added Milcom, new character
+    - Added character select text for Jonas
+    - Added some VFX polish to Glass Vessel
+    - Removed Malicious Brain, Toy Gun, and Foam Bullet, LIMIT BREAK
+    - Added unlocks for Jonas and Atlas (with placeholder sprites, few unlocks missing)
 - CHANGES:
-    - Candy Dispenser no longer shows name of stored pickup, regardless of config setting
-    - Candy Dispenser no longer instantly uses pickup on activation, instead adds it to your consumable slots
-    - Added plenty of items to pools that formerly were in no pools
+    - Removed some useless print statements
+    - Obsidian Chunk now gives the stat ups described in its description
+    - Awesome Fruit now gives +1 to Stompy and Adult
+    - Updated some EID descriptions
+    - Rewrote Candy Dispenser, changed its visuals
+    - Added Candy Dispenser to Shop pool (was in no pools previously)
+    - Fixed Antibiotics being completely non functional
+    - Slightly changed Lion Skull's effect
+    - Made Laurels not randomly spawn

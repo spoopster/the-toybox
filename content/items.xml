@@ -67,7 +67,7 @@
     cache="all"
 />
 <passive id="9" name="Lion Skull"
-    description="You shall know discipline"
+    description="Trophy hunter"
     gfx="tb_lion_skull.png"
     quality="2"
     tags="offensive summonable"
@@ -170,12 +170,14 @@
     tags="summonable offensive"
     cache=""
 />
-<familiar id="22" name="Malicious Brain"
-    description="He hates you"
-    gfx="tb_malicious_brain.png"
-    quality="3"
-    tags="summonable offensive"
+<passive id="22" name="Blessed Bombs"
+    description="Sacred destruction +5 bombs"
+    gfx="tb_blessed_bombs.png"
+    quality="1"
+    tags="offensive"
     cache=""
+
+    bombs="5"
 />
 <passive id="23" name="Blessed Ring"
     description="Random holy blasts"
@@ -210,16 +212,12 @@
     maxcharges="1"
     shopprice="6"
 />
-<active id="27" name="Toy Gun"
-    description="Packs a punch"
-    gfx="tb_toy_gun.png"
-    quality="2"
-    tags="nolostbr"
-    cache=""
-    
-    maxcharges="600"
-    chargetype="special"
-    initcharge="0"
+<passive id="27" name="Plasma Globe"
+    description="High voltage tears"
+    gfx="tb_plasma_globe.png"
+    quality="4"
+    tags="offensive"
+    cache="shotspeed"
 />
 <active id="28" name="Golden Tweezers"
     description="No pluck no luck + 5 coins"
@@ -239,6 +237,8 @@
     cache=""
     
     maxcharges="6"
+
+    achievement="Gilded Apple"
 />
 <passive id="30" name="Obsidian Chunk"
     description="Harder than steel"
@@ -257,6 +257,8 @@
     cache=""
 
     shopprice="10"
+
+    achievement="Dad's Prescription"
 />
 <passive id="32" name="Horse Tranquilizer"
     description="Horse up!"
@@ -264,6 +266,8 @@
     quality="2"
     tags="offensive syringe"
     cache=""
+
+    achievement="Horse Tranquilizer"
 />
 <passive id="33" name="Bob's Heart"
     description="Nitroglycerin blood"
@@ -278,13 +282,18 @@
     quality="3"
     tags="nolostbr"
     cache=""
+    persistent="true"
+
+    achievement="Glass Vessel"
 />
-<passive id="35" name="Sculptor's Chisel"
-    description="Immortalized"
-    gfx="tb_sculptors_chisel.png"
+<passive id="35" name="Saltpeter"
+    description="Bang!"
+    gfx="tb_saltpeter.png"
     quality="3"
-    tags="nolostbr nokeeper"
+    tags="offensive"
     cache=""
+
+    achievement="Saltpeter"
 />
 <familiar id="36" name="Bone Boy"
     description="Life of the party"
@@ -292,6 +301,8 @@
     quality="4"
     tags="monstermanual summonable offensive"
     cache=""
+
+    achievement="Bone Boy!"
 />
 <active id="37" name="Hostile Takeover"
     description="We are One"
@@ -299,8 +310,11 @@
     quality="3"
     tags="offensive"
     cache="all"
+    persistent="true"
 
-    maxcharges="6"
+    maxcharges="8"
+
+    achievement="Hostile Takeover"
 />
 <passive id="38" name="Steel Soul"
     description="Unbreakable spirit"
@@ -310,6 +324,8 @@
     cache=""
 
     soulhearts="2"
+
+    achievement="Steel Soul"
 />
 <passive id="39" name="Rock Candy"
     description="Crunchy!"
@@ -317,6 +333,8 @@
     quality="3"
     tags="summonable offensive tearsup"
     cache="firedelay shotspeed"
+
+    achievement="Rock Candy"
 />
 <passive id="40" name="Giant Capsule"
     description="The doctor is in!"
@@ -324,6 +342,8 @@
     quality="2"
     tags="summonable offensive"
     cache="familiars"
+
+    achievement="Giant Capsule"
 />
 <active id="41" name="Candy Dispenser"
     description="Safe keepings"
@@ -333,6 +353,8 @@
     cache=""
 
     maxcharges="0"
+
+    achievement="Candy Dispenser"
 />
 <passive id="42" name="Missing Page 3"
     description="Zonked state"
@@ -342,6 +364,8 @@
     cache=""
 
     devilprice="1"
+    
+    achievement="Missing Page 3"
 />
 <active id="43" name="Ascension"
     description="Follow the light"
@@ -352,6 +376,8 @@
 
     chargetype="timed"
     maxcharges="300"
+
+    achievement="Ascension"
 />
 <passive id="44" name="4 4"
     description="Hear its cry"
@@ -366,6 +392,8 @@
     quality="1"
     tags="summonable offensive"
     cache=""
+
+    achievement="Dr. Bum"
 />
 <familiar id="46" name="Jonas' Mask"
     description="Shadow buddies"
@@ -373,6 +401,8 @@
     quality="2"
     tags="summonable offensive"
     cache=""
+
+    achievement="Jonas' Mask"
 />
 <passive id="47" name="Clown PHD"
     description="True chaos!"
@@ -380,6 +410,8 @@
     quality="1"
     tags="summonable offensive"
     cache=""
+
+    achievement="Clown PHD"
 />
 <active id="48" name="Drill"
     description="Jailbreaker"
@@ -390,6 +422,8 @@
 
     chargetype="timed"
     maxcharges="300"
+
+    achievement="Drill"
 />
 <active id="49" name="Alphabet Box"
     description="Learn your ABCs"
@@ -410,7 +444,7 @@
 <passive id="51" name="Quake Bombs"
     description="Blast blast +5 bombs"
     gfx="tb_quake_bombs.png"
-    quality="2"
+    quality="3"
     tags="offensive"
     cache=""
 
@@ -434,7 +468,7 @@
     description="Follow your dreams!"
     gfx="tb_awesome_fruit.png"
     quality="4"
-    tags="offensive syringe mom guppy fly bob mushroom baby angel devil poop book spider"
+    tags="offensive"
     cache=""
 
     hearts="4"
@@ -447,14 +481,37 @@
     tags="offensive"
     cache=""
 />
-<passive id="56" name="Saltpeter"
-    description="Bang!"
-    gfx="tb_saltpeter.png"
-    quality="3"
-    tags="offensive"
+<passive id="56" name="Preferred Options"
+    description="Targeted advertising"
+    gfx="tb_preferred_options.png"
+    quality="4"
+    tags="offensive nogreed"
     cache=""
 />
+<passive id="57" name="Cursed Eulogy"
+    description="Evil items"
+    gfx="tb_cursed_eulogy.png"
+    quality="2"
+    tags="offensive"
+    cache=""
 
+    blackhearts="2"
+/>
+
+<active id="499" name="Equalizer"
+    description="..."
+    gfx="tb_equalizer.png"
+    quality="3"
+    tags="offensive"
+    cache="all"
+
+    coins="3"
+    bombs="1"
+    keys="1"
+
+    passivecache="true"
+    maxcharges="1"
+/>
 <active id="500" name="Portable Teller"
     description="Fate 24/7"
     gfx="tb_portable_teller.png"
@@ -467,49 +524,57 @@
 />
 
 <!-- TRINKETS -->
-<trinket id="0" name="LIMIT BREAK"
-    description="Their true potential"
-    gfx="tb_limit_break.png"
+<trinket id="0" name="Bath Water"
+    description="I'm a big boy!"
+    gfx="tb_bathwater.png"
+    cache="familiars"
+/>
+<trinket id="1" name="Yellow Belt"
+    description="Ninja skills"
+    gfx="tb_yellow_belt.png"
     cache=""
 />
-<trinket id="1" name="Plasma Globe"
-    description="High voltage"
-    gfx="tb_plasma_globe.png"
-    cache=""
-/>
-<trinket id="2" name="Foam Bullet"
-    description="Lethal force"
-    gfx="tb_foam_bullet.png"
-    cache=""
-/>
-<trinket id="3" name="Antibiotics"
+<trinket id="2" name="Antibiotics"
     description="Double mystery"
     gfx="tb_antibiotics.png"
     cache=""
+
+    achievement="Antibiotics"
 />
-<trinket id="4" name="Wonder Drug"
+<trinket id="3" name="Wonder Drug"
     description="Better pills"
     gfx="tb_wonder_drug.png"
     cache=""
+
+    achievement="Wonder Drug"
 />
-<trinket id="5" name="Amber Fossil"
+<trinket id="4" name="Amber Fossil"
     description="Ancient plague"
     gfx="tb_amber_fossil.png"
     cache=""
+
+    achievement="Amber Fossil"
 />
-<trinket id="6" name="Jonas' Lock"
+<trinket id="5" name="Jonas' Lock"
     description="I love drugs!"
     gfx="tb_jonas_lock.png"
     cache=""
+
+    achievement="Jonas' Lock"
 />
-<trinket id="7" name="Sine Worm"
+<trinket id="6" name="Sine Worm"
     description="Bwoeowoeow!"
     gfx="tb_sine_worm.png"
     cache="firedelay range"
 />
-<trinket id="8" name="Big Blind"
+<trinket id="7" name="Big Blind"
     description="Ante up!"
     gfx="tb_big_blind.png"
+    cache=""
+/>
+<trinket id="8" name="Black Rune Shard"
+    description="Cold to the touch"
+    gfx="tb_black_rune_shard.png"
     cache=""
 />
 
@@ -522,11 +587,38 @@
     tags="summonable"
     cache=""
 />
+<familiar id="22" name="Malicious Brain"
+    description="He hates you"
+    gfx="tb_malicious_brain.png"
+    quality="3"
+    tags="summonable offensive"
+    cache=""
+/>
 <familiar id="26" name="Scattered Tome"
     description="Pages in the wind"
     gfx="tb_scattered_tome.png"
     quality="2"
     tags="monstermanual summonable offensive book"
+    cache=""
+/>
+<active id="27" name="Toy Gun"
+    description="Pack-a-punch"
+    gfx="tb_toy_gun.png"
+    quality="2"
+    tags="nolostbr"
+    cache=""
+    
+    maxcharges="0"
+/>
+
+<trinket id="2" name="Foam Bullet"
+    description="Lethal force"
+    gfx="tb_foam_bullet.png"
+    cache=""
+/>
+<trinket id="0" name="LIMIT BREAK"
+    description="Their true potential"
+    gfx="tb_limit_break.png"
     cache=""
 />
 

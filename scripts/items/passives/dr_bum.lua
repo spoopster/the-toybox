@@ -42,8 +42,7 @@ local function evalCache(_, pl)
         mod.FAMILIAR_DR_BUM,
         pl:GetCollectibleNum(mod.COLLECTIBLE_DR_BUM),
         pl:GetCollectibleRNG(mod.COLLECTIBLE_DR_BUM),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_DR_BUM),
-        i
+        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_DR_BUM)
     )
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)

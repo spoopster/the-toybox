@@ -12,54 +12,26 @@ TRANSF_SPRITE.Offset = Vector(0,-1)
 
 local PRICE_WIDTH = 12
 
-local function getMantleDealPrice(pickup)
-    if(pickup.Variant==PickupVariant.PICKUP_COLLECTIBLE) then return Isaac.GetItemConfig():GetCollectible(pickup.SubType).DevilPrice end
-    return 1
-end
-
----@param pickup EntityPickup
----@param player EntityPlayer
-local function forceDevilDealPickup(_, pickup, player)
-    if(not (player and player:ToPlayer() and mod:isAtlasA(player:ToPlayer()))) then return end
-    player = player:ToPlayer()
-    if(not player:IsExtraAnimationFinished()) then return end
-    if(not pickup:IsShopItem()) then return end
-    if(not (pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE)) then return end
-    if(pickup.Wait>0) then return end
-    if(player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)) then return end
-    if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.TAR.ID)) then return true end
-
-    local price = getMantleDealPrice(pickup)
-
-    local data = mod:getAtlasATable(player)
-
-    local rIdx = mod:getRightmostMantleIdx(player)
-    local dmgToAdd = 0
-    for i=rIdx, math.max(1,(rIdx-price+1) or 1), -1 do
-        dmgToAdd = dmgToAdd+data.MANTLES[i].HP
-    end
-
-    mod:addMantleHp(player, -dmgToAdd)
-    pickup.AutoUpdatePrice = false
-    pickup.Price = PickupPrice.PRICE_FREE
-    pickup.Visible = false
-    print("hello")
-
-    return true
-end
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, forceDevilDealPickup)
+local PICKUP_PRICE_TO_MANTLE_PRICE = {
+    [PickupPrice.PRICE_TWO_HEARTS] = 2,
+    [PickupPrice.PRICE_ONE_HEART_AND_TWO_SOULHEARTS] = 2,
+    [PickupPrice.PRICE_SPIKES] = 0,
+    [PickupPrice.PRICE_SOUL] = 0,
+    [PickupPrice.PRICE_FREE] = 0,
+}
 
 ---@param pickup EntityPickup
 local function pickupRenderAtlasPrice(_, pickup, offset)
     if(not mod:isAnyPlayerAtlasA()) then return end
     if(not pickup:IsShopItem()) then return end
-    if(not (pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE)) then return end
+    if(pickup.Price>=0) then return end
 
-    local mantlesToRender = getMantleDealPrice(pickup)
+    local mantlePrice = PICKUP_PRICE_TO_MANTLE_PRICE[pickup.Price] or 1
+    if(mantlePrice<=0) then return end
+
     local renderPos = Isaac.WorldToScreen(pickup.Position)+Vector(0,28)
-
-    for i=0, mantlesToRender do
-        local o = Vector(PRICE_WIDTH*(i-(mantlesToRender+1)/2)+1,0)
+    for i=0, mantlePrice do
+        local o = Vector(PRICE_WIDTH*(i-(mantlePrice+1)/2)+1,0)
 
         if(i==0) then
             TRANSF_SPRITE:Render(renderPos+o)
@@ -69,3 +41,47 @@ local function pickupRenderAtlasPrice(_, pickup, offset)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, pickupRenderAtlasPrice, PickupVariant.PICKUP_COLLECTIBLE)
+
+---@param pl EntityPlayer
+local function removeMantlePrice(_, pickup, pl, price)
+    if(not (pl and pl:ToPlayer() and mod:isAtlasA(pl:ToPlayer()))) then return end
+    if(pl:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)) then return end
+    if(price>=0) then return end
+
+    local mantlePrice = PICKUP_PRICE_TO_MANTLE_PRICE[price] or 1
+    if(mantlePrice<=0) then return end
+
+    if(mod:atlasHasTransformation(pl, mod.MANTLE_DATA.TAR.ID)) then
+        mod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 1)
+
+        return
+    end
+
+    local data = mod:getAtlasATable(pl)
+    local rIdx = mod:getRightmostMantleIdx(pl)
+    local dmgToAdd = 0
+    for i=rIdx, math.max(1,(rIdx-mantlePrice+1) or 1), -1 do
+        dmgToAdd = dmgToAdd+data.MANTLES[i].HP
+    end
+
+    mod:addMantleHp(pl, -dmgToAdd)
+end
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_SHOP_PURCHASE, removeMantlePrice)
+
+---@param pl EntityPlayer
+local function killMarkedForDeathTar(_, pl)
+    if(not mod:isAtlasA(pl)) then return end
+
+    if(mod:getAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL")==1) then
+        if(mod:atlasHasTransformation(pl, mod.MANTLE_DATA.TAR.ID)) then
+            if(not pl.QueuedItem.Item) then
+                pl:PlayExtraAnimation("Death")
+                pl:Kill()
+                mod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 0)
+            end
+        else
+            mod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 0)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, killMarkedForDeathTar)

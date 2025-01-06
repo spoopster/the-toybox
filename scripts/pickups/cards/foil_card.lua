@@ -1,8 +1,17 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-local INCREMENT_CHANCE = 0.5
-local COINS_PER_VALUE = 3
+local POSSIBLE_SPAWNS = {
+    {Type=EntityType.ENTITY_PICKUP, Variant=PickupVariant.PICKUP_HEART, SubType=HeartSubType.HEART_GOLDEN},
+    {Type=EntityType.ENTITY_PICKUP, Variant=PickupVariant.PICKUP_COIN, SubType=CoinSubType.COIN_GOLDEN},
+    {Type=EntityType.ENTITY_PICKUP, Variant=PickupVariant.PICKUP_BOMB, SubType=BombSubType.BOMB_GOLDEN},
+    {Type=EntityType.ENTITY_PICKUP, Variant=PickupVariant.PICKUP_KEY, SubType=KeySubType.KEY_GOLDEN},
+}
+local PICKER = WeightedOutcomePicker()
+PICKER:AddOutcomeFloat(1, 1, 100)
+PICKER:AddOutcomeFloat(2, 1, 100)
+PICKER:AddOutcomeFloat(3, 1, 100)
+PICKER:AddOutcomeFloat(4, 1, 100)
 
 ---@param pickup EntityPickup
 local function foilCardInit(_, pickup)
@@ -14,37 +23,13 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, foilCardInit, PickupVariant.PICKUP_TAROTCARD)
 
 ---@param pl EntityPlayer
-local function usePrismstone(_, _, pl, _)
-    local val = (mod:getExtraData("FOILCARD_VALUE") or 0)
+local function useFoilCard(_, _, pl, _)
+    local outcome = PICKER:PickOutcome(pl:GetCardRNG(mod.CARD_FOIL_CARD))
 
-    if(val>0) then
-        pl:AddCoins(val*COINS_PER_VALUE)
-        mod:setExtraData("FOILCARD_VALUE", 0)
+    local spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
+    local pickupData = POSSIBLE_SPAWNS[outcome]
+    local pickup = Isaac.Spawn(pickupData.Type,pickupData.Variant,pickupData.SubType,spawnPos,Vector.Zero,pl):ToPickup()
 
-        sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
-    end
+    sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, usePrismstone, mod.CARD_FOIL_CARD)
-
-local function incrementFoilCardCounter()
-    for i=0, Game():GetNumPlayers()-1 do
-        local pl = Isaac.GetPlayer(i)
-        for _, slot in pairs(PillCardSlot) do
-            if(pl:GetCard(slot)==mod.CARD_FOIL_CARD) then
-                if(pl:GetCardRNG(mod.CARD_FOIL_CARD):RandomFloat()<INCREMENT_CHANCE) then
-                    mod:setExtraData("FOILCARD_VALUE", (mod:getExtraData("FOILCARD_VALUE") or 0)+1)
-                end
-            end
-        end
-    end
-end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ROOM_CLEAR, incrementFoilCardCounter)
-
---[[
-local function postHudRender(_)
-    if(not Game():GetHUD():IsVisible()) then return end
-
-    Isaac.RenderText(tostring((mod:getExtraData("FOILCARD_VALUE") or 0)), 100, 100, 1,1,1,1)
-end
-mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postHudRender)
---]]
+mod:AddCallback(ModCallbacks.MC_USE_CARD, useFoilCard, mod.CARD_FOIL_CARD)

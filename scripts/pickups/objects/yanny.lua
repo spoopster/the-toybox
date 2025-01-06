@@ -23,3 +23,8 @@ local function postYannyInit(_, pickup)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postYannyInit, PickupVariant.PICKUP_TAROTCARD)
+
+local function decreaseWeight(_)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_YANNY).Weight = 0
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

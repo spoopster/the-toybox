@@ -20,3 +20,8 @@ local function useLaurel(_, _, player, _)
     end
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, useLaurel, mod.CONSUMABLE_LAUREL)
+
+local function decreaseWeight(_)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_LAUREL).Weight = 0
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

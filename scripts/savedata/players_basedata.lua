@@ -1,6 +1,9 @@
 local mod = MilcomMOD
 
 local BASEDATA = {
+    ATLAS_A_DATA = 0,
+    JONAS_A_DATA = 0,
+
     CONDENSED_MILK_BONUS = 1,
     NOSE_CANDY_STATBONUSES = {
         SPEED = 0,
@@ -34,17 +37,16 @@ local BASEDATA = {
     BIG_BLIND_COUNTERS_FINISHED = 0,
     BLACKSOUL_COUNTER = 0,
     BLACKSOUL_GOTHIT = 0,
-    PILLCRUSHER_HELD_CONS = {
-        [1] = {-1,false, {}, {}},
-        [2] = {-1,false, {}, {}},
-        [3] = {-1,false, {}, {}},
-    },
+    PILLCRUSHER_INVENTORY = {},
+    PILLCRUSHER_RENDEROFFSET = 0,
     PILLCRUSHER_OFFSET = Vector(0,0),
     PILLCRUSHER_DROP_FRAMES = 0,
     PILLCRUSHER_MAP_FRAMES = 0,
     PILLCRUSHER_STORED_NAME = "",
     PILLCRUSHER_RENDER_POS = Vector(0,0),
-    GIANT_CAPSULE_VIRUSCOUNT = {},
+    GIANTCAPSULE_VIRUSCOUNT = {},
+    HOSTILETAKEOVER_STAT_TIMER = 0,
+    HOSTILETAKEOVER_PARTIAL_CHARGES = {},
     
     --! STUPID CONSUMABLE SHIT
     DYSLEXIA_DURATION = 0,

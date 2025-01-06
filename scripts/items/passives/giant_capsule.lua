@@ -112,9 +112,9 @@ local OBJECT_PICKER = WeightedOutcomePicker()
 ---@param player EntityPlayer
 function mod:addVirus(player, var, num)
     local data = mod:getEntityDataTable(player)
-    data.GIANT_CAPSULE_VIRUSCOUNT = data.GIANT_CAPSULE_VIRUSCOUNT or {}
-    data.GIANT_CAPSULE_VIRUSCOUNT[var] = (data.GIANT_CAPSULE_VIRUSCOUNT[var] or 0)+num
-    data.GIANT_CAPSULE_VIRUSCOUNT[var] = math.max(data.GIANT_CAPSULE_VIRUSCOUNT[var], 0)
+    data.GIANTCAPSULE_VIRUSCOUNT = data.GIANTCAPSULE_VIRUSCOUNT or {}
+    data.GIANTCAPSULE_VIRUSCOUNT[var] = (data.GIANTCAPSULE_VIRUSCOUNT[var] or 0)+num
+    data.GIANTCAPSULE_VIRUSCOUNT[var] = math.max(data.GIANTCAPSULE_VIRUSCOUNT[var], 0)
 
     if(num>0) then
         sfx:Play(mod.SFX_VIRUS_SPAWN)
@@ -150,7 +150,7 @@ mod:AddCallback(ModCallbacks.MC_USE_CARD, useCard)
 local function evalViruses(_, player)
     local data = mod:getEntityDataTable(player)
 
-    for st, val in pairs(data.GIANT_CAPSULE_VIRUSCOUNT or {}) do
+    for st, val in pairs(data.GIANTCAPSULE_VIRUSCOUNT or {}) do
         player:CheckFamiliar(
             mod.FAMILIAR_VIRUS,
             val,
@@ -159,7 +159,7 @@ local function evalViruses(_, player)
             st
         )
 
-        if(val and val<=0) then data.GIANT_CAPSULE_VIRUSCOUNT[st] = nil end
+        if(val and val<=0) then data.GIANTCAPSULE_VIRUSCOUNT[st] = nil end
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalViruses, CacheFlag.CACHE_FAMILIARS)
@@ -234,9 +234,9 @@ local function virusUpdate(_, familiar)
     familiar.Hearts = familiar.Hearts-1
     if(familiar.Hearts==0) then
         local data = mod:getEntityDataTable(pl)
-        data.GIANT_CAPSULE_VIRUSCOUNT = data.GIANT_CAPSULE_VIRUSCOUNT or {}
+        data.GIANTCAPSULE_VIRUSCOUNT = data.GIANTCAPSULE_VIRUSCOUNT or {}
 
-        data.GIANT_CAPSULE_VIRUSCOUNT[familiar.SubType] = (data.GIANT_CAPSULE_VIRUSCOUNT[familiar.SubType] or 1)-1
+        data.GIANTCAPSULE_VIRUSCOUNT[familiar.SubType] = (data.GIANTCAPSULE_VIRUSCOUNT[familiar.SubType] or 1)-1
 
         familiar.Hearts = -1
         familiar:Remove()

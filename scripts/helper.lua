@@ -794,3 +794,23 @@ end
 function mod:isPlayerShooting(player)
     return (player:GetShootingInput():LengthSquared()>0.001) or mod:isHoldingShootingInput(player)
 end
+
+---@param bomb EntityBomb
+function mod:getBombRadius(bomb)
+    local radius
+    if(bomb.Variant==BombVariant.BOMB_GIGA or bomb.Variant==BombVariant.BOMB_ROCKET_GIGA or bomb.Flags & TearFlags.TEAR_GIGA_BOMB ~= TearFlags.TEAR_NORMAL) then
+        radius = 130.0
+    else
+        if(bomb.ExplosionDamage>=175.0) then
+            radius = 105.0
+        else
+            if(bomb.ExplosionDamage<=140.0) then
+                radius = 75.0
+            else
+                radius = 90.0
+            end
+        end
+    end
+
+    return radius*bomb.RadiusMultiplier
+end

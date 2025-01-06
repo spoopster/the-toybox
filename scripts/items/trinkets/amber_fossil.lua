@@ -3,6 +3,7 @@ local mod = MilcomMOD
 local LOCUST_CHANCE = 0.25
 
 local function blueFlyInit(_, familiar)
+    if(Isaac.GetPlayer().FrameCount==0) then return end
     if(familiar.SubType~=0) then return end
 
     local pl = familiar.Player or Isaac.GetPlayer()
