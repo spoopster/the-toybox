@@ -1,16 +1,20 @@
 local mod = MilcomMOD
 
-local CHANCE_REROLL_TO_MOD_CHAMP = 0.1
-
 ---@param npc EntityNPC
 local function tryMakeModChampion(_, npc)
     if(not (npc:IsChampion())) then return end
 
-    if(npc:GetDropRNG():RandomFloat()<CHANCE_REROLL_TO_MOD_CHAMP) then
+    if(npc:GetDropRNG():RandomFloat()<mod.CONFIG.MOD_CHAMPION_CHANCE) then
         local outcome = mod.CUSTOM_CHAMPION_IDX_TO_NAME[mod.CUSTOM_CHAMPION_PICKER:PickOutcome(npc:GetDropRNG())]
 
         mod.DENY_CHAMP_ROLL = true
-        local newNpc = Isaac.Spawn(npc.Type, npc.Variant, npc.SubType, npc.Position, npc.Velocity, npc.SpawnerEntity):ToNPC()
+        local newNpc
+        while(not (newNpc and newNpc:Exists())) do
+            newNpc = Isaac.Spawn(npc.Type, npc.Variant, npc.SubType, npc.Position, npc.Velocity, npc.SpawnerEntity):ToNPC()
+            if(newNpc:IsChampion()) then
+                newNpc:Remove()
+            end
+        end
         mod.DENY_CHAMP_ROLL = false
         npc:Remove()
 

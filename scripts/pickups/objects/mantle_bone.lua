@@ -39,3 +39,8 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, postNpcDeath)
 
 if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_BONE] = true end
+
+local function decreaseWeight(_)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_BONE).Weight = mod.CONFIG.MANTLE_WEIGHT
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

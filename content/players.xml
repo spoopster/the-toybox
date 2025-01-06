@@ -1,5 +1,5 @@
 <players nameimageroot="gfx/ui/boss/" portraitroot="gfx/ui/stage/" root="gfx/characters/players/">
-	<player birthright="idk" name="Milcom"
+	<player birthright="Printing press" name="Milcom"
 		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="tb_character_milcom.png" costumeSuffix="milcom_a" skinColor="-1"
 	/>
 	<player birthright="-" name="Milcom" bSkinParent="Milcom"
@@ -21,7 +21,7 @@
 		achievement="Tainted Atlas" hidden="true"
 	/>
 
-	<player birthright="Better drugs" name="Jonas"
+	<player birthright="Makin' paper" name="Jonas"
 		nameimage="milcom_name.png" portrait="tb_portrait_jonas.png" skin="tb_character_jonas.png" costumeSuffix="jonas_a" skinColor="-1"
 		luckmodifier="-2" trinket="44" modcostume="1100"
 	/>

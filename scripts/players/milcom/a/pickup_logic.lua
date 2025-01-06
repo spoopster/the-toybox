@@ -53,7 +53,7 @@ local function postEvaluateCustomCache(_, pl, flag, val)
         end
     end
 
-    local maxCoins = (PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_DEEP_POCKETS) and 9999 or 999)
+    local maxCoins = (PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_DEEP_POCKETS) and 999 or 99)
     if(flag=="maxcoins") then
         return maxCoins
     elseif(flag=="maxbombs") then

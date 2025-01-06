@@ -5,11 +5,12 @@ local SHOCKWAVE_DMG = 10
 
 ---@param player EntityPlayer
 local function useMantle(_, _, player, _)
-    if(mod:isAtlasA(player)) then mod:giveMantle(player, mod.MANTLE_DATA.DEFAULT.ID)
+    if(mod:isAtlasA(player)) then
+        mod:giveMantle(player, mod.MANTLE_DATA.DEFAULT.ID)
     else
         local data = mod:getEntityDataTable(player)
         data.MANTLEROCK_ACTIVE = (data.MANTLEROCK_ACTIVE or 0)+1
-        player:AddInnateCollectible(CollectibleType.COLLECTIBLE_TERRA, 1)
+        mod.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_TERRA, nil, 1, "TOYBOX")
         sfx:Play(SoundEffect.SOUND_ROCK_CRUMBLE)
     end
 end
@@ -18,12 +19,7 @@ mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_ROCK)
 ---@param player EntityPlayer
 local function postNewRoom(_, player)
     local data = mod:getEntityDataTable(player)
-    if(data.MANTLEROCK_ACTIVE and data.MANTLEROCK_ACTIVE>0) then
-        player:AddInnateCollectible(CollectibleType.COLLECTIBLE_TERRA,-data.MANTLEROCK_ACTIVE)
-        if(not player:HasCollectible(CollectibleType.COLLECTIBLE_TERRA)) then player:RemoveCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_TERRA)) end
-
-        data.MANTLEROCK_ACTIVE = 0
-    else data.MANTLEROCK_ACTIVE = 0 end
+    data.MANTLEROCK_ACTIVE = 0
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postNewRoom)
 
@@ -69,3 +65,8 @@ end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, fireShockwaves, EntityType.ENTITY_PLAYER)
 
 if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_ROCK] = true end
+
+local function decreaseWeight(_)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_ROCK).Weight = mod.CONFIG.MANTLE_WEIGHT
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

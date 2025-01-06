@@ -11,13 +11,13 @@ local MISSINGMANTLES_TEARS = 0.6
 
 --! REGULAR MANTLE
 ---@param player EntityPlayer
-local function playMantleSFX(_, player, mantle)
+local function spawnBoney(_, player, mantle)
     if(not mod:isAtlasA(player)) then return end
 
     local bone = Isaac.Spawn(227,0,0,Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 0, true),Vector.Zero,player):ToNPC()
     bone:AddCharmed(EntityRef(player),-1)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.BONE.ID)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, spawnBoney, mod.MANTLE_DATA.BONE.ID)
 
 local function mantleKill(_, entity)
     if(entity.MaxHitPoints<1) then return end

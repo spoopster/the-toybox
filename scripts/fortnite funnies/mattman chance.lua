@@ -303,6 +303,7 @@ local newStats = {
 }
 
 local function postHudRender(_)
+    if(not mod.CONFIG.MORE_STATS) then return end
     if(not Game():GetHUD():IsVisible()) then return end
 
     local pos = Vector(20,12)*Options.HUDOffset + Vector(0,88)

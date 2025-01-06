@@ -1,19 +1,6 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then
-    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_GLASS] = true
-end
-
-local function useMantle(_, _, player, _)
-    if(mod:isAtlasA(player)) then
-        mod:giveMantle(player, mod.MANTLE_DATA.GLASS.ID)
-    else
-
-    end
-end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_GLASS)
-
 local MANTLE_DMG_UP = 0.5
 local TRANSF_DMG_MULT = 1.5
 local SHOTSPEED_UP = 0.1

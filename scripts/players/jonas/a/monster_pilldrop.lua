@@ -7,9 +7,20 @@ local function enemyDie(_, npc)
     if(not npc:IsEnemy()) then return end
     if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_JONAS_A)) then return end
 
+    local cardReplaceTotal = 0
+    local cardReplaceChance = 0
+
     local chance = 0
     for _, player in ipairs(Isaac.FindByType(1,0,mod.PLAYER_JONAS_A)) do
-        chance = chance+(mod:getJonasAData(player:ToPlayer(), "MONSTER_PILLDROP_CHANCE") or 0.0777)
+        local jonasData = mod:getJonasATable(player:ToPlayer())
+        if(player:ToPlayer():HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
+            cardReplaceChance = cardReplaceChance+(jonasData.BIRTHRIGHT_CARD_CHANCE or 0.2)
+            chance = chance+(jonasData.BIRTHRIGHT_PILLDROP_CHANCE or 0.075)
+        else
+            chance = chance+(jonasData.MONSTER_PILLDROP_CHANCE or 0.05)
+        end
+
+        cardReplaceTotal = cardReplaceTotal+1
     end
 
     PILL_DROP_RNG = PILL_DROP_RNG or mod:generateRng()
@@ -19,9 +30,14 @@ local function enemyDie(_, npc)
 
         local spawnPos = npc.Position
         spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(spawnPos)
-        local pill = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, spawnPos,Vector.Zero,nil):ToPickup()
-        if(isHorsePill) then
-            pill:Morph(pill.Type,pill.Variant,mod:tryGetHorsepillSubType(PILL_DROP_RNG, pill.SubType, 1))
+
+        if(PILL_DROP_RNG:RandomFloat()<cardReplaceChance/cardReplaceTotal) then
+            local card = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, spawnPos, Vector.Zero, nil):ToPickup()
+        else
+            local pill = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, spawnPos,Vector.Zero,nil):ToPickup()
+            if(isHorsePill) then
+                pill:Morph(pill.Type,pill.Variant,mod:tryGetHorsepillSubType(PILL_DROP_RNG, pill.SubType, 1))
+            end
         end
     end
 end

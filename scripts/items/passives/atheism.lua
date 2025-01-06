@@ -89,8 +89,19 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, removeAtheism, mod.COLLECTIBLE_ATHEISM)
 
 ---@param pl EntityPlayer
+local function addDualitiesOnInit(_, pl)
+    if(pl.FrameCount~=0) then return end
+
+    local atheismNum = pl:GetCollectibleNum(mod.COLLECTIBLE_ATHEISM)
+    if(atheismNum==0) then return end
+
+    pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, atheismNum)
+end
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, addDualitiesOnInit)
+
+---@param pl EntityPlayer
 local function checkInnateDuality(_, pl)
-    if(pl:HasCollectible(mod.COLLECTIBLE_ATHEISM) and pl:GetCollectibleNum(CollectibleType.COLLECTIBLE_DUALITY)==pl:GetCollectibleNum(mod.COLLECTIBLE_ATHEISM)) then
+    if(pl:HasCollectible(mod.COLLECTIBLE_ATHEISM) and pl:GetCollectibleNum(CollectibleType.COLLECTIBLE_DUALITY)<=pl:GetCollectibleNum(mod.COLLECTIBLE_ATHEISM)) then
         local dualityConfig = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_DUALITY)
         if(pl:IsItemCostumeVisible(dualityConfig, PlayerSpriteLayer.SPRITE_GLOW)) then
             pl:RemoveCostume(dualityConfig)

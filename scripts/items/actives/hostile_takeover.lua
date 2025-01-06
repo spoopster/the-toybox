@@ -53,10 +53,7 @@ local function activateHostileTakeover(_, _, rng, pl, flags, slot, vdata)
     pl:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 
     if(not pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
-        pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT, 1)
-        if(pl:GetCollectibleNum(CollectibleType.COLLECTIBLE_4_5_VOLT)<=1) then
-            pl:RemoveCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT))
-        end
+        mod.HiddenItemManager:AddForRoom(pl, CollectibleType.COLLECTIBLE_4_5_VOLT, nil, 1, "TOYBOX")
     end
 
     return {
@@ -70,9 +67,7 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, activateHostileTakeover, mod.COLLECTIB
 ---@param pl EntityPlayer
 local function aa(_, pl)
     if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
-        pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT, -1)
         pl:GetEffects():RemoveCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER, -1)
-
         mod:setEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER", 0)
     end
 end

@@ -1,24 +1,14 @@
 - NEW:
-    - New Actives: Hostile Takeover
-    - New Passives: Preferred Options, Plasma Globe, Cursed Eulogy, Blessed Bombs
-    - New Trinkets: Bath Water
-    - Reworked Foil Card
-    - Reworked Plasma Globe into a passive
-    - Reworked Atlas' Salt Mantle, Dark Mantle and Holy Mantle
-    - Added a visual Pill Bonus counter for Jonas, displayed when you hold TAB (or the respective map button)
-    - Added new champions: Drowned, Fear, Jelly
-    - Added Milcom, new character
-    - Added character select text for Jonas
-    - Added some VFX polish to Glass Vessel
-    - Removed Malicious Brain, Toy Gun, and Foam Bullet, LIMIT BREAK
-    - Added unlocks for Jonas and Atlas (with placeholder sprites, few unlocks missing)
+    - Added effects for Salt Mantle, Glass Mantle, Dark Mantle and Gold Mantle as non-Atlas player
+    - Added sprites for Milcom's ink pickups
+    - Added new configs for:
+        - Chance to spawn the mod's custom champions
+        - Weight of Mantles when unlocked
+    - Added EID for Milcom's gimmick and Birthright
+    - Added new effect for Jonas' Birthright
 - CHANGES:
-    - Removed some useless print statements
-    - Obsidian Chunk now gives the stat ups described in its description
-    - Awesome Fruit now gives +1 to Stompy and Adult
-    - Updated some EID descriptions
-    - Rewrote Candy Dispenser, changed its visuals
-    - Added Candy Dispenser to Shop pool (was in no pools previously)
-    - Fixed Antibiotics being completely non functional
-    - Slightly changed Lion Skull's effect
-    - Made Laurels not randomly spawn
+    - Using Connor's Hidden Item Manager for Rock Mantle, Salt Mantle, and Hostile Takeover's innate items
+    - Made the mod's custom pill pool always active
+    - Reduced Milcom's max ink to 99 due to some issues with bombs
+    - Reduced weight of Mantles spawning when unlocked
+    - Fixed Nose Candy being cheesable by exiting and continuing a run

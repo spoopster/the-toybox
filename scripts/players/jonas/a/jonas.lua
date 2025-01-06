@@ -36,6 +36,8 @@ local JONAS_A_BASEDATA = {
     NEWFLOOR_MULT = 1/3,
 
     MONSTER_PILLDROP_CHANCE = 0.05,-- 0.0777, -- 7.77%
+    BIRTHRIGHT_PILLDROP_CHANCE = 0.075,
+    BIRTHRIGHT_CARD_CHANCE = 0.20,
 
     --BAD_PILLNUM = 3,
     --NEUTRAL_PILLNUM = 4,
@@ -110,13 +112,3 @@ local function replaceGoldPillEffect(_, pilleffect, color)
     end
 end
 mod:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, CallbackPriority.LATE-1, replaceGoldPillEffect)
-
----@param player EntityPlayer
-local function getBirthright(_, _, _, firstTime, slot, vData, player)
-    if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
-
-    local spawnPos = player.Position+Vector(0,30)
-    spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(spawnPos)
-    local pill = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL,PillColor.PILL_GOLD,spawnPos,Vector.Zero,nil):ToPickup()
-end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, getBirthright, CollectibleType.COLLECTIBLE_BIRTHRIGHT)

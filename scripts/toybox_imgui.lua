@@ -16,32 +16,57 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "GENERAL OPTIONS")
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 
-	do
-		local optionID = getOptionID("PEZDispenserDisplayName")
+	do -- CHAMPION CHANCE
+		local optionID = getOptionID("ChampionChance")
 
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
-			"Candy Dispenser - Consumable name display"
+			"Toybox Champion Chance"
 		)
-		ImGui.AddCombobox("ToyboxOptionsWindow", optionID, "", nil, {"While holding the Map button", "Always", "Never"}, 0, false)
+		ImGui.AddSliderFloat("ToyboxOptionsWindow", optionID, "", nil, 0.05, 0, 1, "%.2f")
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.PEZDISPENSER_DISPLAY_NAME)
+				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.MOD_CHAMPION_CHANCE)
 			end
 		)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Edited,
 			function(v)
-				mod.CONFIG.PEZDISPENSER_DISPLAY_NAME = v
+				mod.CONFIG.MOD_CHAMPION_CHANCE = v
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-			"Dictates when to display the name of Candy Dispenser's frontmost held consumable."
+			"The chance for a Toybox champion to replace a vanilla champion (if unlocked, or if playing as Milcom).\n(Toybox champions are currently unlocked by default)"
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 	end
 
-	do
+	do -- MANTLE WEIGHT
+		local optionID = getOptionID("MantleWeight")
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Mantle Weight"
+		)
+		ImGui.AddSliderFloat("ToyboxOptionsWindow", optionID, "", nil, 0.5, 0, 2, "%.1f")
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.MANTLE_WEIGHT)
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				mod.CONFIG.MANTLE_WEIGHT = v
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"The weight of Mantle consumables (if unlocked)"
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
+
+	do -- ALPHABET BOX DESC
 		local optionID = getOptionID("AlphabetBoxDescriptionPreview")
 
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
@@ -73,34 +98,157 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "FORTNITE FUNNIES")
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 
-	do
-		local optionID = getOptionID("PEZAntibirthKiller")
+	do -- MORE STATS
+		local optionID = getOptionID("MoreStats")
 
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
-			"Candy Dispenser - Antibirth Killer"
+			"More Stats"
 		)
 		ImGui.AddCheckbox("ToyboxOptionsWindow", optionID, "", nil, false)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.PEZDISPENSER_ANTIBIRTH_KILLER)
+				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.MORE_STATS)
 			end
 		)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Edited,
 			function(v)
-				mod.CONFIG.PEZDISPENSER_ANTIBIRTH_KILLER = v
+				mod.CONFIG.MORE_STATS = v
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-			"Turns Candy Dispenser into a (legally distinct) Pill Crusher."
+			"Adds more stats to the UI."
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 	end
-	--ImGui.AddCombobox("ToyboxOptionsWindow", "ToyboxOptionsPEZDispenserAntibirthKiller", )
+
+	do -- ITEM SHADER
+		local optionID = getOptionID("EpicItemShaders")
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Cool Item Shader"
+		)
+		ImGui.AddCombobox("ToyboxOptionsWindow", optionID, "", nil, {"None", "Retro", "Gold (QUALITY 5!)"}, 0, false)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.EPIC_ITEM_MODE)
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				mod.CONFIG.EPIC_ITEM_MODE = v
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"Applies a cool shader to all spawned items."
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
 
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
+
+
+	--! UNLOCKS
+
+	ImGui.AddElement("ToyboxMenu", "ToyboxUnlocksTab", ImGuiElement.MenuItem, "\u{f3c1} Unlocks")
+    ImGui.CreateWindow("ToyboxUnlocksWindow", "Unlocks")
+    ImGui.LinkWindowToElement("ToyboxUnlocksWindow", "ToyboxUnlocksTab")
+
+	local function addPlayerMarkUnlock(playerType, compType, playerName, compName, unlockName)
+		local optionID = getOptionID(playerName..compName)
+
+		--ImGui.AddElement("ToyboxUnlocksWindow", "", ImGuiElement.Text, compName)
+		ImGui.AddCombobox("ToyboxUnlocksWindow", optionID, compName, nil, {"Not Complete", "Normal Mode", "Hard Mode"}, 0, true)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, Isaac.GetCompletionMark(playerType, compType))
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				Isaac.SetCompletionMark(playerType, compType, v)
+				mod:checkUnlocks(true)
+			end
+		)
+		ImGui.SetTooltip(optionID, unlockName)
+		ImGui.AddElement("ToyboxUnlocksWindow", "", ImGuiElement.Separator)
+	end
+	local function addPlayerUnlocks(playerType, playerName, unlockTable)
+		ImGui.AddElement("ToyboxUnlocksWindow", "", ImGuiElement.Separator)
+		ImGui.AddElement("ToyboxUnlocksWindow", "", ImGuiElement.TextWrapped, playerName .. " UNLOCKS")
+		ImGui.AddElement("ToyboxUnlocksWindow", "", ImGuiElement.Separator)
+
+		ImGui.AddButton("ToyboxUnlocksWindow", getOptionID(playerName.."All Marks"), "All Marks", nil, false)
+		ImGui.AddCallback(getOptionID(playerName.."All Marks"),
+			ImGuiCallback.Clicked,
+			function()
+				Isaac.FillCompletionMarks(playerType)
+				mod:checkUnlocks(true)
+			end
+		)
+		ImGui.SetTooltip(getOptionID(playerName.."All Marks"), unlockTable.ALL_MARKS)
+		ImGui.SetHelpmarker(getOptionID(playerName.."All Marks"), "Forces full Hard Mode completion.")
+		ImGui.AddElement("ToyboxUnlocksWindow", "", ImGuiElement.Separator)
+
+		addPlayerMarkUnlock(playerType, CompletionType.BOSS_RUSH, playerName, "Boss Rush", unlockTable[CompletionType.BOSS_RUSH])
+		addPlayerMarkUnlock(playerType, CompletionType.MOMS_HEART, playerName, "Mom's Heart", unlockTable[CompletionType.MOMS_HEART])
+		addPlayerMarkUnlock(playerType, CompletionType.HUSH, playerName, "Hush", unlockTable[CompletionType.HUSH])
+		addPlayerMarkUnlock(playerType, CompletionType.ISAAC, playerName, "Isaac", unlockTable[CompletionType.ISAAC])
+		addPlayerMarkUnlock(playerType, CompletionType.BLUE_BABY, playerName, "Blue Baby", unlockTable[CompletionType.BLUE_BABY])
+		addPlayerMarkUnlock(playerType, CompletionType.SATAN, playerName, "Satan", unlockTable[CompletionType.SATAN])
+		addPlayerMarkUnlock(playerType, CompletionType.LAMB, playerName, "The Lamb", unlockTable[CompletionType.LAMB])
+		addPlayerMarkUnlock(playerType, CompletionType.MEGA_SATAN, playerName, "Mega Satan", unlockTable[CompletionType.MEGA_SATAN])
+		addPlayerMarkUnlock(playerType, CompletionType.ULTRA_GREED, playerName, "Greed", unlockTable[CompletionType.ULTRA_GREED])
+		--addPlayerMarkUnlock(playerType, CompletionType.ULTRA_GREEDIER, playerName, "Greedier", unlockTable[CompletionType.ULTRA_GREEDIER])
+		addPlayerMarkUnlock(playerType, CompletionType.DELIRIUM, playerName, "Delirium", unlockTable[CompletionType.DELIRIUM])
+		addPlayerMarkUnlock(playerType, CompletionType.MOTHER, playerName, "Mother", unlockTable[CompletionType.MOTHER])
+		addPlayerMarkUnlock(playerType, CompletionType.BEAST, playerName, "The Beast", unlockTable[CompletionType.BEAST])
+
+		ImGui.AddText("ToyboxUnlocksWindow", "", true, "")
+		ImGui.AddText("ToyboxUnlocksWindow", "", true, "")
+	end
+
+	addPlayerUnlocks(mod.PLAYER_ATLAS_A, "ATLAS",
+		{
+			[CompletionType.BOSS_RUSH] = "Unlocks \"Rock Candy\".",
+			[CompletionType.MOMS_HEART] = "Doesn't unlock anything for now.",
+			[CompletionType.HUSH] = "Unlocks \"Saltpeter\".",
+			[CompletionType.ISAAC] = "Unlocks \"Ascension\".",
+			[CompletionType.BLUE_BABY] = "Unlocks \"Glass Vessel\".",
+			[CompletionType.SATAN] = "Unlocks \"Missing Page 3\".",
+			[CompletionType.LAMB] = "Unlocks \"Bone Boy\"!",
+			[CompletionType.MEGA_SATAN] = "Atlas' Mantles can appear for other characters, with different effects.",
+			[CompletionType.ULTRA_GREED] = "Unlocks \"Gilded Apple\" in normal mode, \"Prismstone\" in hard mode.",
+			[CompletionType.DELIRIUM] = "Unlocks \"Hostile Takeover\".",
+			[CompletionType.MOTHER] = "Unlocks \"Amber Fossil\".",
+			[CompletionType.BEAST] = "Unlocks \"Steel Soul\".",
+			ALL_MARKS = "If completed in Hard Mode, Atlas starts with \"Miracle Mantle\". (not added yet)",
+		}
+	)
+
+	addPlayerUnlocks(mod.PLAYER_JONAS_A, "JONAS",
+		{
+			[CompletionType.BOSS_RUSH] = "Unlocks \"Jonas' Lock\".",
+			[CompletionType.MOMS_HEART] = "Doesn't unlock anything for now.",
+			[CompletionType.HUSH] = "Unlocks \"Wonder Drug\".",
+			[CompletionType.ISAAC] = "Unlocks \"Dad's Prescription\".",
+			[CompletionType.BLUE_BABY] = "Unlocks \"Candy Dispenser\".",
+			[CompletionType.SATAN] = "Unlocks \"Dr. Bum\".",
+			[CompletionType.LAMB] = "Unlocks \"Jonas' Mask\".",
+			[CompletionType.MEGA_SATAN] = "Jonas' new pill effects can appear for other characters.",
+			[CompletionType.ULTRA_GREED] = "Unlocks \"Antibiotics\" in normal mode, \"Foil Card\" in hard mode.",
+			[CompletionType.DELIRIUM] = "Unlocks \"Giant Capsule\".",
+			[CompletionType.MOTHER] = "Unlocks \"Horse Tranquilizer\".",
+			[CompletionType.BEAST] = "Unlocks \"Clown PHD\".",
+			ALL_MARKS = "Doesn't unlock anything for now.",
+		}
+	)
 end
 --]]
 

@@ -1,4 +1,5 @@
 local mod = MilcomMOD
+local sfx = SFXManager()
 
 local inkValue = {
     [mod.PICKUP_INK_1] = 1,
@@ -35,6 +36,24 @@ local function getInkValue(_, pickup)
     end
 end
 mod:AddCallback(ModCallbacks.MC_PICKUP_GET_COIN_VALUE, getInkValue)
+
+---@param pickup EntityPickup
+local function postInkUpdate(_, pickup)
+    if(not inkValue[pickup.SubType]) then return end
+
+    local sp = pickup:GetSprite()
+    if(sp:IsEventTriggered("DropSound")) then
+        sfx:Play(SoundEffect.SOUND_GOLD_HEART_DROP, 0.75, 2, false, 1.2)
+
+        local splat = Isaac.Spawn(1000,7,1,pickup.Position,Vector.Zero,pickup):ToEffect()
+        splat.SpriteScale = Vector(1,1)*0.6
+        splat.Color = Color(0.2,0.2,0.2, 0.5)
+    end
+    if(sp:GetFrame()==1 and sp:GetAnimation()=="Collect") then
+        sfx:Play(SoundEffect.SOUND_SHELLGAME, 0.75, 1, false, 1.1)
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postInkUpdate, PickupVariant.PICKUP_COIN)
 
 local function cancelRoomSpawns()
     if(Game():GetRoom():GetType()==RoomType.ROOM_DEFAULT) then

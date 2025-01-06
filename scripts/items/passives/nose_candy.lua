@@ -37,6 +37,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function addNoseCandyBonuses(_, player)
+    if(player.FrameCount==0) then return end
     if(not player:HasCollectible(mod.COLLECTIBLE_NOSE_CANDY)) then return end
 
     local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_NOSE_CANDY)

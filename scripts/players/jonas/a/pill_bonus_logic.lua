@@ -72,6 +72,25 @@ local function addPillBonus(_, pillEffect, player, flags, pillColor)
 end
 mod:AddCallback(ModCallbacks.MC_USE_PILL, addPillBonus)
 
+---@param player EntityPlayer
+local function addCardBonus(_, _, player, _)
+    if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
+    if(not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then return end
+    local data = mod:getJonasATable(player)
+
+    data.PILLS_POPPED = data.PILLS_POPPED or 0
+    local isBonus = math.floor(data.PILLS_POPPED)<math.floor(data.PILLS_POPPED+1)
+    data.PILLS_POPPED = data.PILLS_POPPED+1
+    data.RESET_BOOST_ROOMS = 0
+
+    if(isBonus) then
+        player:AddCacheFlags(CacheFlag.CACHE_SPEED | CacheFlag.CACHE_FIREDELAY | CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_RANGE | CacheFlag.CACHE_SHOTSPEED | CacheFlag.CACHE_LUCK, true)
+        sfx:Play(SoundEffect.SOUND_THUMBSUP)
+        --player:AnimateHappy()
+    end
+end
+mod:AddCallback(ModCallbacks.MC_USE_CARD, addCardBonus)
+
 local function incrementBonusReset()
     for _, player in ipairs(Isaac.FindByType(1,0,mod.PLAYER_JONAS_A)) do
         player = player:ToPlayer()

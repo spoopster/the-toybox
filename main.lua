@@ -1,6 +1,9 @@
 MilcomMOD = RegisterMod("toyboxMod", 1)
 local mod = MilcomMOD
 
+mod.HiddenItemManager = include("scripts.libraries.hiddenitemmanager")
+mod.HiddenItemManager:Init(mod)
+
 --! INCLUDE SHIT
 local mod_files = {
     "scripts.enums",
@@ -12,6 +15,7 @@ local mod_files = {
     "scripts.custom.statuseffects",
     "scripts.custom.tearvariants",
     "scripts.custom.throwables",
+    "scripts.custom.achievement_system",
 
     "scripts.helper",
 
@@ -40,9 +44,9 @@ local mod_files = {
 
     --"scripts.fortnite funnies.silly healthbar",
     --"scripts.fortnite funnies.silly hearts",
-    --"scripts.fortnite funnies.mattman chance",
-    --"scripts.fortnite funnies.gold mode",
-    --"scripts.fortnite funnies.retro mode",
+    "scripts.fortnite funnies.mattman chance",
+    "scripts.fortnite funnies.gold mode",
+    "scripts.fortnite funnies.retro mode",
     --"scripts.fortnite funnies.yes",
 
     --"scripts.test",

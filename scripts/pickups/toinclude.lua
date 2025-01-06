@@ -13,8 +13,12 @@ local t = {
     "scripts.pickups.objects.mantle_rock",
     "scripts.pickups.objects.mantle_poop",
     "scripts.pickups.objects.mantle_bone",
+    "scripts.pickups.objects.mantle_dark",
     "scripts.pickups.objects.mantle_holy",
+    "scripts.pickups.objects.mantle_salt",
+    "scripts.pickups.objects.mantle_glass",
     "scripts.pickups.objects.mantle_metal",
+    "scripts.pickups.objects.mantle_gold",
     "scripts.pickups.objects.laurel",
     "scripts.pickups.objects.yanny",
 

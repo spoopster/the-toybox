@@ -331,6 +331,159 @@ mod.DAMAGE_TYPE = {
     TEAR = 1<<7,
 }
 
+mod.ACHIEVEMENTS = {
+    {
+        Achievement = mod.ACH_ROCK_CANDY,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.BOSS_RUSH)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_SALTPETER,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.HUSH)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_ASCENSION,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.ISAAC)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_GLASS_VESSEL,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.BLUE_BABY)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_MISSING_PAGE_3,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.SATAN)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_BONE_BOY,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.LAMB)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_GILDED_APPLE,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.ULTRA_GREED)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_PRISMSTONE,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.ULTRA_GREED)>=2
+        end,
+    },
+    {
+        Achievement = mod.ACH_AMBER_FOSSIL,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.MOTHER)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_STEEL_SOUL,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.BEAST)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_HOSTILE_TAKEOVER,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.DELIRIUM)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_MANTLES,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.MEGA_SATAN)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_MIRACLE_MANTLE,
+        Condition = function()
+            return Isaac.AllMarksFilled(mod.PLAYER_ATLAS_A)>=2
+        end,
+    },
+    {
+        Achievement = mod.ACH_JONAS_LOCK,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.BOSS_RUSH)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_WONDER_DRUG,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.HUSH)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_DADS_PRESCRIPTION,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.ISAAC)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_CANDY_DISPENSER,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.BLUE_BABY)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_DR_BUM,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.SATAN)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_JONAS_MASK,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.LAMB)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_ANTIBIOTICS,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.ULTRA_GREED)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_FOIL_CARD,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.ULTRA_GREED)>=2
+        end,
+    },
+    {
+        Achievement = mod.ACH_HORSE_TRANQUILIZER,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.MOTHER)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_CLOWN_PHD,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.BEAST)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_GIANT_CAPSULE,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.DELIRIUM)>0
+        end,
+    },
+    {
+        Achievement = mod.ACH_PILLS,
+        Condition = function()
+            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.MEGA_SATAN)>0
+        end,
+    },
+}
+
 --#endregion
 --#region --!ATLAS_A
 

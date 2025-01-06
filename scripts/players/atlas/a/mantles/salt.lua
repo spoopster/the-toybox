@@ -1,19 +1,6 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then
-    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_SALT] = true
-end
-
-local function useMantle(_, _, player, _)
-    if(mod:isAtlasA(player)) then
-        mod:giveMantle(player, mod.MANTLE_DATA.SALT.ID)
-    else
-
-    end
-end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_SALT)
-
 local TEARS_UP = 0.3
 local ACTIVE_TEARS_MULT = 2
 local DEACTIVATE_FREEZE_DURATION = 0

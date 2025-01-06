@@ -1862,7 +1862,7 @@ local CARDS = {
             "While in this form, you have x2.5 Tears but are immobile",
         },
         NonAtlasDescription = {
-            "DescriptionTest",
+            "{{Timer}} Gives the effect of a random \"Tears Up\" item for the room",
         },
     },
     [mod.CONSUMABLE_MANTLE_GLASS] = {
@@ -1877,7 +1877,9 @@ local CARDS = {
             "!!! Taking damage has a 90% chance to destroy all Mantles",
         },
         NonAtlasDescription = {
-            "DescriptionTest",
+            "{{Timer}} For the room:",
+            "\1 x1.5 Damage",
+            "\2 Damage taken is doubled and increased by 1 extra heart"
         },
     },
     [mod.CONSUMABLE_MANTLE_METAL] = {
@@ -1906,7 +1908,8 @@ local CARDS = {
             "Losing any Mantle turns nearby enemies to gold",
         },
         NonAtlasDescription = {
-            "DescriptionTest",
+            "{{Coin}} Removes 1 coin, spawns a random pickup",
+            "Only has a 5% chance to be consumed on use"
         },
     },
 }
@@ -2429,8 +2432,21 @@ local PLAYERS = {
             "Lose Pill Bonus on new floor, or if you go too long without using a pill",
         },
         Birthright = {
-            "{{Pill}} Bad and neutral pills become good pills",
-            "{{ToyboxGoldenPill}} Spawns a Golden Pill",
+            "{{Pill}} Higher chance for enemies to drop a pill",
+            "{{Card}} When an enemy drops a pill, 20% chance to turn it into a card/rune",
+            "Cards and runes give Pill Bonus",
+        },
+    },
+    [mod.PLAYER_MILCOM_A] = {
+        Name="Milcom",
+        Description = {
+            "{{Coin}} Bombs and keys instead give coins when gained, and consume coins when used",
+            "No room clear rewards in normal rooms",
+            "Higher champion chance, champions drop 2-6 coins"
+        },
+        Birthright = {
+            "Bombs cost 3 coins to use",
+            "Keys cost 5 coins to use",
         },
     },
 }

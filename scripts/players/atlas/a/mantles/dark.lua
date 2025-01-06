@@ -3,19 +3,6 @@ local sfx = SFXManager()
 
 --* needs some polish
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then
-    mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_DARK] = true
-end
-
-local function useMantle(_, _, player, _)
-    if(mod:isAtlasA(player)) then
-        mod:giveMantle(player, mod.MANTLE_DATA.DARK.ID)
-    else
-
-    end
-end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_DARK)
-
 local DMG_BONUS = 0.4
 local LOSEMANTLE_DMG = 60
 local AURA_DMG = 0.5
@@ -130,11 +117,3 @@ local function darkAuraUpdate(_, effect)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, darkAuraUpdate, mod.EFFECT_AURA)
-
----@param player EntityPlayer
-local function playMantleSFX(_, player, mantle)
-    if(not mod:isAtlasA(player)) then return end
-
-    sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
-end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.DARK.ID)

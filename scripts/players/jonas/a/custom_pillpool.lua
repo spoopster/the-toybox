@@ -523,7 +523,8 @@ mod:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, CallbackPriority.LATE, 
 
 local function makeBaseDatas(_, player)
     if(#Isaac.FindByType(1)==0 and Game():GetFrameCount()==0) then
-        mod:createPillTables()
+        --print("Yea")
+        mod:calcPillPool()
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, makeBaseDatas)
