@@ -54,6 +54,6 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, removeMantleUses)
 if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_DARK] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_DARK).Weight = mod.CONFIG.MANTLE_WEIGHT
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_DARK).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

@@ -107,7 +107,8 @@ local function loadImportantData(_, slot)
         local sd = json.decode(Isaac.LoadModData(mod))
 
         if(sd and sd.configData) then
-            mod.CONFIG = mod:cloneTable(sd.configData)
+            mod.CONFIG = mod.CONFIG or {}
+            mod:cloneTableWithoutDeleteing(mod.CONFIG, sd.configData)
         end
     end
 end

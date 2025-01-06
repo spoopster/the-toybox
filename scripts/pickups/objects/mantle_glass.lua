@@ -23,7 +23,7 @@ mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_GLASS
 local function postNewRoom(_, player)
     local data = mod:getEntityDataTable(player)
     data.MANTLEGLASS_ACTIVE = 0
-    player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+    player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postNewRoom)
 
@@ -76,6 +76,6 @@ mod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, spawnBloodPoof, EntityType
 if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_GLASS] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_GLASS).Weight = mod.CONFIG.MANTLE_WEIGHT
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_GLASS).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

@@ -67,6 +67,6 @@ mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, updateDripPoop, EntityType.ENTITY_PO
 if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_POOP] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_POOP).Weight = mod.CONFIG.MANTLE_WEIGHT
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_POOP).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

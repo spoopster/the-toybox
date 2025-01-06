@@ -1,14 +1,5 @@
 - NEW:
-    - Added effects for Salt Mantle, Glass Mantle, Dark Mantle and Gold Mantle as non-Atlas player
-    - Added sprites for Milcom's ink pickups
-    - Added new configs for:
-        - Chance to spawn the mod's custom champions
-        - Weight of Mantles when unlocked
-    - Added EID for Milcom's gimmick and Birthright
-    - Added new effect for Jonas' Birthright
+
 - CHANGES:
-    - Using Connor's Hidden Item Manager for Rock Mantle, Salt Mantle, and Hostile Takeover's innate items
-    - Made the mod's custom pill pool always active
-    - Reduced Milcom's max ink to 99 due to some issues with bombs
-    - Reduced weight of Mantles spawning when unlocked
-    - Fixed Nose Candy being cheesable by exiting and continuing a run
+    - Fixed the mod erroring out if you previously had save data for it
+    - Fixed Glass Mantle not removing it's damage up when used as non-Atlas players
