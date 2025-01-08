@@ -1,5 +1,3 @@
 - NEW:
 
 - CHANGES:
-    - Fixed the mod erroring out if you previously had save data for it
-    - Fixed Glass Mantle not removing it's damage up when used as non-Atlas players

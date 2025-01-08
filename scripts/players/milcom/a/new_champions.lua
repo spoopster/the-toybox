@@ -1,7 +1,7 @@
 local mod = MilcomMOD
 
 ---@param npc EntityNPC
-local function tryMakeModChampion(_, npc)
+local function tryMakeModChampion(npc)
     if(not (npc:IsChampion())) then return end
 
     if(npc:GetDropRNG():RandomFloat()<mod.CONFIG.MOD_CHAMPION_CHANCE) then
@@ -15,6 +15,21 @@ local function tryMakeModChampion(_, npc)
                 newNpc:Remove()
             end
         end
+        newNpc.Parent = npc.Parent
+        newNpc.I1 = npc.I1
+        newNpc.I2 = npc.I2
+        newNpc.V1 = npc.V1
+        newNpc.V2 = npc.V2
+        newNpc.State = npc.State
+        newNpc.StateFrame = npc.StateFrame
+        newNpc:GetSprite():SetFrame(npc:GetSprite():GetAnimation(), npc:GetSprite():GetFrame())
+        newNpc:GetSprite():SetOverlayFrame(npc:GetSprite():GetOverlayAnimation(), npc:GetSprite():GetOverlayFrame())
+        newNpc.Target = npc.Target
+        newNpc.TargetPosition = npc.TargetPosition
+        if(npc.Parent and npc.Parent.Child and GetPtrHash(npc.Parent.Child)==GetPtrHash(npc)) then
+            npc.Parent.Child = newNpc
+        end
+
         mod.DENY_CHAMP_ROLL = false
         npc:Remove()
 
@@ -32,7 +47,15 @@ local function tryMakeModChampion(_, npc)
         Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_CUSTOM_CHAMPION_INIT, result.Idx, newNpc, result.Idx)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, tryMakeModChampion)
+
+local function makeModChampions(_)
+    for _, ent in ipairs(Isaac.GetRoomEntities()) do
+        if(ent:ToNPC()) then
+            tryMakeModChampion(ent:ToNPC())
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, makeModChampions)
 
 local function championProjDealDamage(_, _, amount, flags, source, frames)
     source = source.Entity

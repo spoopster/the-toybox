@@ -48,6 +48,7 @@ local mod_files = {
     "scripts.fortnite funnies.gold mode",
     "scripts.fortnite funnies.retro mode",
     --"scripts.fortnite funnies.yes",
+    "scripts.fortnite funnies.black_souls",
 
     --"scripts.test",
 }
