@@ -112,7 +112,7 @@ mod.COLLECTIBLE_PLASMA_GLOBE = Isaac.GetItemIdByName("Plasma Globe")            
 mod.COLLECTIBLE_CURSED_EULOGY = Isaac.GetItemIdByName("Cursed Eulogy")              --!DONE
 mod.COLLECTIBLE_BLESSED_BOMBS = Isaac.GetItemIdByName("Blessed Bombs")              --!DONE
 
-
+mod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")                      --!DONE
 mod.COLLECTIBLE_EQUALIZER = Isaac.GetItemIdByName("Equalizer")
 mod.COLLECTIBLE_D = Isaac.GetItemIdByName("D")                                      --!DONE
 --mod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")
@@ -212,7 +212,10 @@ mod.NPC_MAIN = Isaac.GetEntityTypeByName("Shy Gal")
 mod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")
 mod.NPC_SHYGAL_CLONE = Isaac.GetEntityVariantByName("Shy Gal Clone")
 mod.NPC_SHYGAL_MASK = Isaac.GetEntityVariantByName("Shy Gal Mask")
+
+
 mod.BOSS_RED_MEGALODON = Isaac.GetEntityVariantByName("Red Megalodon")
+mod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
 
 --#endregion
 --#region --!SFX

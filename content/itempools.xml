@@ -80,12 +80,14 @@
         <Item Name="Missing Page 3"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Cursed Eulogy"/>
+        <Item Name="Catharsis"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
         <Item Name="Sigil of Greed" Weight="0.1" DecreaseBy="0.1"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Cursed Eulogy"/>
+        <Item Name="Catharsis"/>
     </Pool>
 
     <Pool Name="angel">
@@ -132,6 +134,7 @@
         <Item Name="Alphabet Box"/>
         <Item Name="Atheism"/>
         <Item Name="Awesome Fruit"/>
+        <Item Name="Catharsis"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="4 4"/>
@@ -141,6 +144,7 @@
         <Item Name="Alphabet Box"/>
         <Item Name="Atheism"/>
         <Item Name="Awesome Fruit"/>
+        <Item Name="Catharsis"/>
     </Pool>
 
     <Pool Name="demonBeggar">

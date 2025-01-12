@@ -726,6 +726,13 @@ local ITEMS = {
             "Homing tears",
         },
     },
+    [mod.COLLECTIBLE_CATHARSIS] = {
+        Name = "Catharsis",
+        Description = {
+            "\1 +1 Tears",
+            "\1 Tears cap is doubled",
+        },
+    },
     --#endregion
 
     --#region --!ACTIVES

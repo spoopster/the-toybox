@@ -498,6 +498,15 @@
     blackhearts="2"
 />
 
+<passive id="498" name="Catharsis"
+    description="Tears up + tears cap up"
+    gfx="tb_catharsis.png"
+    quality="4"
+    tags="offensive"
+    cache="firedelay"
+
+    devilprice="2"
+/>
 <active id="499" name="Equalizer"
     description="..."
     gfx="tb_equalizer.png"

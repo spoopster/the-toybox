@@ -47,6 +47,8 @@ local t = {
 
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 
+    "scripts.items.passives.catharsis",
+
     --ACTIVES
     -- "scripts.items.actives.",
     "scripts.items.actives.pliers",
@@ -60,6 +62,7 @@ local t = {
     "scripts.items.actives.pez_dispenser",
     "scripts.items.actives.alphabet_box",
     "scripts.items.actives.hostile_takeover",
+
     "scripts.items.actives.equalizer",
 
     --TRINKETS
