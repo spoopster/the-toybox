@@ -1,0 +1,66 @@
+local mod = MilcomMOD
+
+local ITEMS = {
+    [mod.COLLECTIBLE_COCONUT_OIL] =         "Tears up + speed down + slippery movement",
+    [mod.COLLECTIBLE_CONDENSED_MILK] =      "Tears multiplier + DMG becomes tears",
+    [mod.COLLECTIBLE_EYESTRAIN] =           "DMG + luck up",
+    [mod.COLLECTIBLE_GOAT_MILK] =           "Tears up + random tear delay",
+    [mod.COLLECTIBLE_PLIERS] =              "Self harm for tears up for the room",
+    [mod.COLLECTIBLE_GOLDEN_TWEEZERS] =     "5 coins + spend coins for tears up for the room",
+    [mod.COLLECTIBLE_NOSE_CANDY] =          "On floor entry (speed up + random stat up + random stat down)",
+    [mod.COLLECTIBLE_LION_SKULL] =          "DMG up on room clear + DMG down when hurt",
+    [mod.COLLECTIBLE_BLOOD_RITUAL] =        "Gain 3 evil familiars for the room",
+    [mod.COLLECTIBLE_TECH_IX] =             "Orbital laser ring while firing",
+    [mod.COLLECTIBLE_PAINKILLERS] =         "No i-frames + may become invulnerable when hurt",
+    [mod.COLLECTIBLE_SILK_BAG] =            "Gives on-command invulnerability every few rooms",
+    [mod.COLLECTIBLE_METEOR_SHOWER] =       "Meteor strikes in hostile rooms",
+    [mod.COLLECTIBLE_BLESSED_RING] =        "Beams of light occasionally strike enemies",
+    [mod.COLLECTIBLE_GILDED_APPLE] =        "Gain a golden heart",
+    [mod.COLLECTIBLE_DADS_PRESCRIPTION] =   "A pill appears in special rooms",
+    [mod.COLLECTIBLE_HORSE_TRANQUILIZER] =  "Consume a pill when you get an item",
+    [mod.COLLECTIBLE_BOBS_HEART] =          "Blast immunity + (poison + may explode) when hurt",
+    [mod.COLLECTIBLE_GLASS_VESSEL] =        "Nullify damage + refill with red hearts",
+    [mod.COLLECTIBLE_BONE_BOY] =            "Immortal bony buddy",
+    [mod.COLLECTIBLE_HOSTILE_TAKEOVER] =    "(Temporary all stats up + refill on kill) for the room",
+    [mod.COLLECTIBLE_STEEL_SOUL] =          "Soul / black hearts can take an extra hit",
+    [mod.COLLECTIBLE_ROCK_CANDY] =          "Tears + shotspeed up + random mantle",
+    [mod.COLLECTIBLE_GIANT_CAPSULE] =       "Temporary virus buddy when using consumables",
+    [mod.COLLECTIBLE_PEZ_DISPENSER] =       "Consumable inventory",
+    [mod.COLLECTIBLE_MISSING_PAGE_3] =      "Enemies may (be skull champions + drop a black heart)",
+    [mod.COLLECTIBLE_ASCENSION] =           "Temporary flight",
+    [mod.COLLECTIBLE_4_4] =                 "Double-tap stunning-tear wave + tears may glitch enemies",
+    [mod.COLLECTIBLE_DR_BUM] =              "Cards-for-pills buddy",
+    [mod.COLLECTIBLE_JONAS_MASK] =          "Shadow buddy that changes on floor entry",
+    [mod.COLLECTIBLE_CLOWN_PHD] =           "Better pills + random pills",
+    [mod.COLLECTIBLE_ALPHABET_BOX] =        "Reroll items into next one alphabetically",
+    [mod.COLLECTIBLE_LOVE_LETTER] =         "Tears may charm + charmed enemies are safer and weaker",
+    [mod.COLLECTIBLE_QUAKE_BOMBS] =         "5 bombs + quaking blast + more drops from rocks",
+    [mod.COLLECTIBLE_ATHEISM] =             "Devil / Angel Rooms are Treasure Rooms",
+    [mod.COLLECTIBLE_MAYONAISE] =           "Shotspeed up + 1 eternal heart",
+    [mod.COLLECTIBLE_AWESOME_FRUIT] =       "HP up + heal + progress to all transformations",
+    [mod.COLLECTIBLE_SALTPETER] =           "Deal AOE damage + may fire an explosive tear",
+    [mod.COLLECTIBLE_PREFERRED_OPTIONS] =   "Extra nostalgic boss item choice",
+    [mod.COLLECTIBLE_PLASMA_GLOBE] =        "Tears zap enemies while flying",
+    [mod.COLLECTIBLE_CURSED_EULOGY] =       "Items may be cursed + 1 black heart",
+    [mod.COLLECTIBLE_BLESSED_BOMBS] =       "5 bombs + holy aura bombs + bombs explode slower",
+    [mod.COLLECTIBLE_D] =                   "Add or remove time from timer",
+
+    [mod.COLLECTIBLE_PORTABLE_TELLER] =     "Use coins for a chance to drop pickups",
+}
+
+local TRINKETS = {
+    [mod.TRINKET_ANTIBIOTICS] =             "Unidentified pills are used twice",
+    [mod.TRINKET_WONDER_DRUG] =             "More common gold pills and horse pills",
+    [mod.TRINKET_AMBER_FOSSIL] =            "Blue flies may be locusts",
+    [mod.TRINKET_JONAS_LOCK] =              "Pills give a random stat up",
+    [mod.TRINKET_SINE_WORM] =               "Tears + range up + tears accelerate and decelerate",
+    [mod.TRINKET_BIG_BLIND] =               "Enemies may drop coins when hurt",
+    [mod.TRINKET_BATH_WATER] =              "Damaging creep puddle when hurt",
+    [mod.TRINKET_BLACK_RUNE_SHARD] =        "Blue insects may be coins",
+}
+
+
+return {
+    ITEMS = ITEMS,
+    TRINKETS = TRINKETS,
+}

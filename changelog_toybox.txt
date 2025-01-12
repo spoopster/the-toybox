@@ -1,3 +1,4 @@
 - NEW:
-
+    - New Milcom costumes
 - CHANGES:
+    - Updated some item sprites

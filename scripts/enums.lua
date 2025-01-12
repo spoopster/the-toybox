@@ -58,7 +58,7 @@ mod.COLLECTIBLE_COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil")              
 mod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")            --!DONE
 mod.COLLECTIBLE_EYESTRAIN = Isaac.GetItemIdByName("Eyestrain")                      --!DONE
 mod.COLLECTIBLE_SNOWCONE = Isaac.GetItemIdByName("Snowcone")
-mod.COLLECTIBLE_OBSIDIAN_SHARD = Isaac.GetItemIdByName("Obsidian Shard")            --!DONE
+mod.COLLECTIBLE_OBSIDIAN_SHARD = Isaac.GetItemIdByName("Obsidian Shard")
 mod.COLLECTIBLE_GOAT_MILK = Isaac.GetItemIdByName("Goat Milk")                      --!DONE
 mod.COLLECTIBLE_LOOSE_BOWELS = Isaac.GetItemIdByName("Loose Bowels")
 mod.COLLECTIBLE_PLIERS = Isaac.GetItemIdByName("Pliers")                            --!DONE
@@ -74,14 +74,14 @@ mod.COLLECTIBLE_DRIED_PLACENTA = Isaac.GetItemIdByName("Dried Placenta")
 mod.COLLECTIBLE_PAINKILLERS = Isaac.GetItemIdByName("Painkillers")                  --!DONE
 mod.COLLECTIBLE_SILK_BAG = Isaac.GetItemIdByName("Silk Bag")                        --!DONE
 mod.COLLECTIBLE_BRAINFREEZE = Isaac.GetItemIdByName("Brainfreeze")
-mod.COLLECTIBLE_FATAL_SIGNAL = Isaac.GetItemIdByName("Fatal Signal")                --!DONE
+mod.COLLECTIBLE_FATAL_SIGNAL = Isaac.GetItemIdByName("Fatal Signal")
 mod.COLLECTIBLE_METEOR_SHOWER = Isaac.GetItemIdByName("Meteor Shower")              --!DONE
 mod.COLLECTIBLE_BLESSED_RING = Isaac.GetItemIdByName("Blessed Ring")                --!DONE
-mod.COLLECTIBLE_SIGIL_OF_GREED = Isaac.GetItemIdByName("Sigil of Greed")            --!DONE
-mod.COLLECTIBLE_PEPPER_X = Isaac.GetItemIdByName("Pepper X")                        --!DONE
+mod.COLLECTIBLE_SIGIL_OF_GREED = Isaac.GetItemIdByName("Sigil of Greed")
+mod.COLLECTIBLE_PEPPER_X = Isaac.GetItemIdByName("Pepper X")
 mod.COLLECTIBLE_GOLDEN_TWEEZERS = Isaac.GetItemIdByName("Golden Tweezers")          --!DONE
 mod.COLLECTIBLE_GILDED_APPLE = Isaac.GetItemIdByName("Gilded Apple")                --!DONE
-mod.COLLECTIBLE_OBSIDIAN_CHUNK = Isaac.GetItemIdByName("Obsidian Chunk")            --!DONE
+mod.COLLECTIBLE_OBSIDIAN_CHUNK = Isaac.GetItemIdByName("Obsidian Chunk")
 mod.COLLECTIBLE_DADS_PRESCRIPTION = Isaac.GetItemIdByName("Dad's Prescription")     --!DONE
 mod.COLLECTIBLE_HORSE_TRANQUILIZER = Isaac.GetItemIdByName("Horse Tranquilizer")    --!DONE
 mod.COLLECTIBLE_BOBS_HEART = Isaac.GetItemIdByName("Bob's Heart")                   --!DONE
@@ -496,6 +496,9 @@ mod.MANTLE_DATA = {
         ANIM = "Empty",
         HURT_SFX = 0,
         BREAK_SFX = 0,
+        
+        ATLAS_DESC = "",
+        REG_DESC = "",
     },
     DEFAULT = {
         ID = 1,
@@ -505,6 +508,9 @@ mod.MANTLE_DATA = {
         ANIM = "RockMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+                
+        ATLAS_DESC = "Useless",
+        REG_DESC = "Rock and roll",
     },
     POOP = {
         ID = 2,
@@ -514,6 +520,9 @@ mod.MANTLE_DATA = {
         ANIM = "PoopMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+                
+        ATLAS_DESC = "More poops, better poops",
+        REG_DESC = "On-command diarrhea",
     },
     BONE = {
         ID = 3,
@@ -523,6 +532,9 @@ mod.MANTLE_DATA = {
         ANIM = "BoneMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+                
+        ATLAS_DESC = "Bones on kill, panic = sorrow",
+        REG_DESC = "Bone buddy + bones on kill",
     },
     DARK = {
         ID = 4,
@@ -532,6 +544,9 @@ mod.MANTLE_DATA = {
         ANIM = "DarkMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+
+        ATLAS_DESC = "DMG up + mass room damage, dark aura",
+        REG_DESC = "Mass floor damage",
     },
     HOLY = {
         ID = 5,
@@ -542,6 +557,9 @@ mod.MANTLE_DATA = {
         ANIM = "HolyMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+                
+        ATLAS_DESC = "Range up + sacred tears, flight + holy aura",
+        REG_DESC = "Eternity + \"god\" tears",
     },
     SALT = {
         ID = 6,
@@ -552,6 +570,9 @@ mod.MANTLE_DATA = {
         ANIM = "SaltMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+                
+        ATLAS_DESC = "Tears up, on-command salt chariot",
+        REG_DESC = "Temporary sorrow",
     },
     GLASS = {
         ID = 7,
@@ -561,6 +582,9 @@ mod.MANTLE_DATA = {
         ANIM = "GlassMantle",
         HURT_SFX = 0,
         BREAK_SFX = mod.SFX_ATLASA_GLASSBREAK,
+                
+        ATLAS_DESC = "DMG + shotspeed up + brittle protection",
+        REG_DESC = "DMG up + fragility up",
     },
     METAL = {
         ID = 8,
@@ -570,6 +594,9 @@ mod.MANTLE_DATA = {
         ANIM = "MetalMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SFX_ATLASA_METALBREAK,
+                
+        ATLAS_DESC = "Speed down + defense up",
+        REG_DESC = "Tough skin",
     },
     GOLD = {
         ID = 9,
@@ -579,6 +606,9 @@ mod.MANTLE_DATA = {
         ANIM = "GoldMantle",
         HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SFX_ATLASA_METALBREAK,
+                
+        ATLAS_DESC = "Luck up + gold panic, penny tears",
+        REG_DESC = "Microtransactions",
     },
 
     TAR = {

@@ -37,6 +37,7 @@ local mod_files = {
     "scripts.pickups.toinclude",
 
     "scripts.modcompat.eid.eid",
+    "scripts.modcompat.accurate blurbs.accurate_blurbs",
 
     "scripts.toybox_imgui",
 

@@ -220,8 +220,7 @@ local ITEMS = {
     [mod.COLLECTIBLE_BLESSED_RING] = {
         Name = "Blessed Ring",
         Description = {
-            "In active rooms, every 7 seconds spawns a beam of light at the position of 2 random enemies which loosely follow them around",
-            "After a short delay, the light beams turn into a divine smite that deals 7 total damage",
+            "In active rooms, every 7 seconds 2 random enemies are struck by a beam of light",
         },
         DescriptionAppend = {
             {
@@ -252,8 +251,8 @@ local ITEMS = {
     [mod.COLLECTIBLE_EYESTRAIN] = {
         Name = "Eyestrain",
         Description = {
-            "\1 +0.75 Luck",
             "\1 +1 Damage",
+            "\1 +0.75 Luck",
         },
     },
     --[[
@@ -532,7 +531,7 @@ local ITEMS = {
     [mod.COLLECTIBLE_BOBS_HEART] = {
         Name = "Bob's Heart",
         Description = {
-            "Grants immunity to explosion",
+            "Grants immunity to explosions",
             "Taking damage spawns a cloud of poisonous gas and creep",
             "Taking damage has a 50% chance for Isaac to explode"
         },
