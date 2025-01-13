@@ -1,4 +1,3 @@
 - NEW:
 
 - CHANGES:
-    - Fixed all room drops being removed
