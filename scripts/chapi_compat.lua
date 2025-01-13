@@ -11,7 +11,6 @@ function mod:addChapiDamageCallback(func, priority)
 end
 
 if(CustomHealthAPI) then
-
     local function applyCHAPIDamage(_, player, dmg, flags, source, frames)
         player = player:ToPlayer()
         local data = mod:getEntityDataTable(player)
