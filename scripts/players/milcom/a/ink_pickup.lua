@@ -56,6 +56,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postInkUpdate, PickupVariant.PICKUP_COIN)
 
 local function cancelRoomSpawns()
+    if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_MILCOM_A)) then return end
     if(Game():GetRoom():GetType()==RoomType.ROOM_DEFAULT) then
         return true
     end

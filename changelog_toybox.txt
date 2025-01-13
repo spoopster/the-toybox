@@ -1,4 +1,4 @@
 - NEW:
-    - New Milcom costumes
+
 - CHANGES:
-    - Updated some item sprites
+    - Fixed all room drops being removed
