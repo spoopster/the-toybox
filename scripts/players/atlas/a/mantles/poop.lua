@@ -64,75 +64,48 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_ROOM_GRID_ENTITY_SPAWN, replaceRockSpawn, GridEntityType.GRID_ROCK)
 
 --! TRANSF
----@param poop GridEntityPoop
-local function poopUpdate(_, poop)
-    if(Game():IsPaused()) then return end
-    if(poop:GetVariant()==GridPoopVariant.RED) then return end
-    local data = mod:getGridEntityDataTable(poop)
+local function poopHeal(_, poop)
+    local shouldDoTransfEffect = nil
+    for _, player in ipairs(mod:getAllAtlasA()) do
+        player = player:ToPlayer()
+        if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
+            local didHeal = mod:addMantleHp(player, 1)
+            shouldDoTransfEffect = {player, didHeal}
 
-    if(data.POOP_DMG==nil) then data.POOP_DMG = poop:GetSaveState().State end
-    if(data.POOP_SPAWNEDPICKUP==nil) then data.POOP_SPAWNEDPICKUP = -1 end
-    
-    if(data.POOP_DMG and poop.State==1000 and poop.State~=data.POOP_DMG) then
-        local shouldDoTransfEffect = nil
-        for _, player in ipairs(mod:getAllAtlasA()) do
-            player = player:ToPlayer()
-            if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
-                local didHeal = mod:addMantleHp(player, 1)
-                shouldDoTransfEffect = {player, didHeal}
+            if(didHeal) then
+                local gulpEffect = Isaac.Spawn(1000, 49, 0, player.Position, Vector.Zero, nil):ToEffect()
+                gulpEffect.SpriteOffset = Vector(0, -35)
+                gulpEffect.DepthOffset = 1000
+                gulpEffect:FollowParent(player)
 
-                if(didHeal) then
-                    local gulpEffect = Isaac.Spawn(1000, 49, 0, player.Position, Vector.Zero, nil):ToEffect()
-                    gulpEffect.SpriteOffset = Vector(0, -35)
-                    gulpEffect.DepthOffset = 1000
-                    gulpEffect:FollowParent(player)
-
-                    sfx:Play(SoundEffect.SOUND_VAMP_GULP)
-                end
-            end
-        end
-        if(shouldDoTransfEffect) then
-            data.POOP_SPAWNEDPICKUP = 0
-            if(shouldDoTransfEffect[2]) then
-                Game():Fart(poop.Position, nil, shouldDoTransfEffect[1], 0.8)
+                sfx:Play(SoundEffect.SOUND_VAMP_GULP)
             end
         end
     end
-
-    if(data.POOP_SPAWNEDPICKUP>0) then data.POOP_SPAWNEDPICKUP = data.POOP_SPAWNEDPICKUP-1 end
-    if(poop.State==1000 and data.POOP_SPAWNEDPICKUP==0) then
-        data.POOP_SPAWNEDPICKUP = -100
-
-        local isAtlasPoop = false
-        for _, player in ipairs(mod:getAllAtlasA()) do
-            player = player:ToPlayer()
-            if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
-                isAtlasPoop = true
-            end
-        end
-
-        local pickupSpawned = false
-        local selPickup
-        for _, pickup in ipairs(Isaac.FindByType(5)) do
-            if(pickup.Position:Distance(poop.Position)<2) then
-                if(pickup.FrameCount==1) then
-                    pickupSpawned = true
-                    selPickup = pickup:ToPickup()
-                    break
-                end
-            end
-        end
-        
-        local rng = mod:generateRng(poop.Desc.SpawnSeed)
-        local selPickupData = TRANSF_DROPS[TRANSF_DROP_PICKER:PickOutcome(rng)]
-
-        if(isAtlasPoop and (not pickupSpawned) and rng:RandomFloat()<TRANSF_EXTRADROP_CHANCE) then
-            local pickup = Isaac.Spawn(selPickupData[1], selPickupData[2], selPickupData[3], poop.Position, Vector.Zero, nil)
-        elseif(isAtlasPoop and pickupSpawned) then
-            selPickup:ToPickup():Morph(selPickupData[1], selPickupData[2], selPickupData[3])
+    if(shouldDoTransfEffect) then
+        if(shouldDoTransfEffect[2]) then
+            Game():Fart(poop.Position, nil, shouldDoTransfEffect[1], 0.8)
         end
     end
-
-    data.POOP_DMG = poop.State
 end
-mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_POOP_UPDATE, poopUpdate)
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_POOP_DESTROY, poopHeal)
+
+local function changePoopPickupPool(_, pickup, poop)
+    local isAtlasPoop = false
+    for _, player in ipairs(mod:getAllAtlasA()) do
+        player = player:ToPlayer()
+        if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
+            isAtlasPoop = true
+        end
+    end
+    local rng = mod:generateRng(poop.Desc.SpawnSeed)
+
+    if(isAtlasPoop and (pickup or rng:RandomFloat()<TRANSF_EXTRADROP_CHANCE)) then
+        return {
+            Type = 5,
+            Variant = 0,
+            SubType = NullPickupSubType.NO_COLLECTIBLE_CHEST,
+        }
+    end
+end
+mod:AddCallback(mod.CUSTOM_CALLBACKS.POOP_SPAWN_DROP, changePoopPickupPool)

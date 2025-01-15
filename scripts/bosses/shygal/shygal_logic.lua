@@ -208,7 +208,7 @@ local function shygalsInit(_, npc)
 
         local clones = {}
         for i=1, numClones do
-            local clone = Isaac.Spawn(mod.NPC_MAIN, mod.NPC_SHYGAL_CLONE, SHYGAL_W_MASK_SUBTYPE, npc.Position, Vector.Zero, npc):ToNPC()
+            local clone = Isaac.Spawn(mod.NPC_BOSS, mod.NPC_SHYGAL_CLONE, SHYGAL_W_MASK_SUBTYPE, npc.Position, Vector.Zero, npc):ToNPC()
             mod:setEntityData(clone, "MOVEMENT_POS", p[i+1])
             table.insert(clones, clone)
         end
@@ -223,7 +223,7 @@ local function shygalsInit(_, npc)
         npc.CanShutDoors = false
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, shygalsInit, mod.NPC_MAIN)
+mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, shygalsInit, mod.NPC_BOSS)
 
 ---@param npc EntityNPC
 local function shygalsLogic(_, npc)
@@ -381,7 +381,7 @@ local function shygalsLogic(_, npc)
                 data.SHYGAL_CLONES = {}
                 data.SHYGAL_MASKS = {}
                 for i=1, numClones do
-                    local clone = Isaac.Spawn(mod.NPC_MAIN, mod.NPC_SHYGAL_CLONE, SHYGAL_W_MASK_SUBTYPE, npc.Position, Vector.Zero, npc):ToNPC()
+                    local clone = Isaac.Spawn(mod.NPC_BOSS, mod.NPC_SHYGAL_CLONE, SHYGAL_W_MASK_SUBTYPE, npc.Position, Vector.Zero, npc):ToNPC()
                     mod:setEntityData(clone, "MOVEMENT_POS", p[i+1])
                     table.insert(data.SHYGAL_CLONES, clone)
                 end
@@ -403,7 +403,7 @@ local function shygalsLogic(_, npc)
         end
 
         --[[
-        if(npc.SpawnerEntity and npc.SpawnerEntity.Type==mod.NPC_MAIN and npc.SpawnerEntity.Variant==mod.BOSS_SHYGAL and npc.SpawnerEntity.SubType==TRUE_SUBTYPE) then
+        if(npc.SpawnerEntity and npc.SpawnerEntity.Type==mod.NPC_BOSS and npc.SpawnerEntity.Variant==mod.BOSS_SHYGAL and npc.SpawnerEntity.SubType==TRUE_SUBTYPE) then
             local spawnerTb = mod:getEntityDataTable(npc.SpawnerEntity)
             local idx = 1
             for i, mask in ipairs(spawnerTb.SHYGAL_MASKS or {}) do
@@ -433,7 +433,7 @@ local function shygalsLogic(_, npc)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, shygalsLogic, mod.NPC_MAIN)
+mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, shygalsLogic, mod.NPC_BOSS)
 
 local function shygalsDead(_, npc)
     if(not (npc.Variant==mod.BOSS_SHYGAL or npc.Variant==mod.NPC_SHYGAL_CLONE or npc.Variant==mod.NPC_SHYGAL_MASK)) then return end
@@ -443,9 +443,9 @@ local function shygalsDead(_, npc)
 
     local mask
     if(npc.Variant==mod.NPC_SHYGAL_CLONE and npc.SubType & 1 == 1) then
-        mask = Isaac.Spawn(mod.NPC_MAIN, mod.NPC_SHYGAL_MASK, 0, npc.Position, Vector.Zero, npc.SpawnerEntity):ToNPC()
+        mask = Isaac.Spawn(mod.NPC_BOSS, mod.NPC_SHYGAL_MASK, 0, npc.Position, Vector.Zero, npc.SpawnerEntity):ToNPC()
     end
-    if(npc.Variant==mod.NPC_SHYGAL_CLONE and npc.SpawnerEntity and npc.SpawnerEntity.Type==mod.NPC_MAIN and npc.SpawnerEntity.Variant==mod.BOSS_SHYGAL) then
+    if(npc.Variant==mod.NPC_SHYGAL_CLONE and npc.SpawnerEntity and npc.SpawnerEntity.Type==mod.NPC_BOSS and npc.SpawnerEntity.Variant==mod.BOSS_SHYGAL) then
         local spawnerTb = mod:getEntityDataTable(npc.SpawnerEntity)
         spawnerTb.SHYGAL_CLONES = spawnerTb.SHYGAL_CLONES or {}
         for i, clone in ipairs(spawnerTb.SHYGAL_CLONES) do
@@ -460,14 +460,14 @@ local function shygalsDead(_, npc)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, shygalsDead, mod.NPC_MAIN)
+mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, shygalsDead, mod.NPC_BOSS)
 
 local function shygalsCollision(_, npc, coll, low)
     if(not (npc.Variant==mod.BOSS_SHYGAL or npc.Variant==mod.NPC_SHYGAL_CLONE or npc.Variant==mod.NPC_SHYGAL_MASK)) then return end
 
-    if(coll and coll.Type==mod.NPC_MAIN and (coll.Variant==mod.BOSS_SHYGAL or coll.Variant==mod.NPC_SHYGAL_CLONE or coll.Variant==mod.NPC_SHYGAL_MASK)) then return true end
+    if(coll and coll.Type==mod.NPC_BOSS and (coll.Variant==mod.BOSS_SHYGAL or coll.Variant==mod.NPC_SHYGAL_CLONE or coll.Variant==mod.NPC_SHYGAL_MASK)) then return true end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, shygalsCollision, mod.NPC_MAIN)
+mod:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, shygalsCollision, mod.NPC_BOSS)
 
 ---@param npc EntityNPC
 local function shygalsTakeDmg(_, npc, amount, flags, source, frames)
@@ -488,4 +488,4 @@ local function shygalsTakeDmg(_, npc, amount, flags, source, frames)
         return false
     end
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, shygalsTakeDmg, mod.NPC_MAIN)
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, shygalsTakeDmg, mod.NPC_BOSS)

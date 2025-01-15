@@ -16,6 +16,8 @@ local t = {
     "scripts.custom.callbacks.post_new_room",
     "scripts.custom.callbacks.post_room_clear",
     "scripts.custom.callbacks.post_custom_champion_death",
+    "scripts.custom.callbacks.post_poop_destroy",
+    "scripts.custom.callbacks.poop_spawn_drop",
 }
 for _, path in ipairs(t) do
     include(path)

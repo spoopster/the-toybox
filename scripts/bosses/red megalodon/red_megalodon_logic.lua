@@ -14,7 +14,7 @@ local function redMegalodonInit(_, npc)
     npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
     npc:GetSprite():Play("Idle")
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, redMegalodonInit, mod.NPC_MAIN)
+mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, redMegalodonInit, mod.NPC_BOSS)
 
 ---@param npc EntityNPC
 local function redMegalodonUpdate(_, npc)
@@ -36,4 +36,4 @@ local function redMegalodonUpdate(_, npc)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, redMegalodonUpdate, mod.NPC_MAIN)
+mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, redMegalodonUpdate, mod.NPC_BOSS)

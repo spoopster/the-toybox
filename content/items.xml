@@ -544,7 +544,7 @@
     cache=""
 />
 <trinket id="2" name="Antibiotics"
-    description="Double mystery"
+    description="Double drug"
     gfx="tb_antibiotics.png"
     cache=""
 
@@ -583,6 +583,11 @@
 />
 <trinket id="8" name="Black Rune Shard"
     description="Cold to the touch"
+    gfx="tb_black_rune_shard.png"
+    cache=""
+/>
+<trinket id="9" name="Suppository"
+    description="Wrong way"
     gfx="tb_black_rune_shard.png"
     cache=""
 />

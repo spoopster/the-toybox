@@ -49,7 +49,7 @@ local ITEMS = {
 }
 
 local TRINKETS = {
-    [mod.TRINKET_ANTIBIOTICS] =             "Unidentified pills are used twice",
+    [mod.TRINKET_ANTIBIOTICS] =             "Pills may be used twice",
     [mod.TRINKET_WONDER_DRUG] =             "More common gold pills and horse pills",
     [mod.TRINKET_AMBER_FOSSIL] =            "Blue flies may be locusts",
     [mod.TRINKET_JONAS_LOCK] =              "Pills give a random stat up",
@@ -57,6 +57,7 @@ local TRINKETS = {
     [mod.TRINKET_BIG_BLIND] =               "Enemies may drop coins when hurt",
     [mod.TRINKET_BATH_WATER] =              "Damaging creep puddle when hurt",
     [mod.TRINKET_BLACK_RUNE_SHARD] =        "Blue insects may be coins",
+    [mod.TRINKET_SUPPOSITORY] =             "Poops may drop pills",
 }
 
 

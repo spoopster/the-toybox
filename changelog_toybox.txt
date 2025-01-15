@@ -1,3 +1,6 @@
 - NEW:
-
+    - Added Stumpy trinket
+    - Added Suppository trinket
+    - Added system for poop drops
 - CHANGES:
+    - Buffed Antibiotics' effect

@@ -1568,7 +1568,8 @@ local TRINKETS = {
     [mod.TRINKET_ANTIBIOTICS] = {
         Name = "Antibiotics",
         Description = {
-            "{{ToyboxHorsePill}} Using an unidentified pill will use it 2 times",
+            "{{Pill}} Using a pill has a 20% chance to use it 2 times",
+            "100% chance for unidentified pills",
         },
         DescriptionModifiers = {
             {
@@ -1745,6 +1746,32 @@ local TRINKETS = {
                     {
                         Old = "{{ColorGold}}67%%{{CR}} chance",
                         New = "{{ColorRainbow}}100%%{{CR}} chance",
+                    },
+                },
+            },
+        },
+    },
+    [mod.TRINKET_SUPPOSITORY] = {
+        Name = "Suppository",
+        Description = {
+            "{{Pill}} Poop drops have a 20% chance to be replaced by a pill",
+        },
+        DescriptionModifiers = {
+            {
+                Condition = isDoubleTrinketMultiplier,
+                TextToModify = {
+                    {
+                        Old = "20%% chance",
+                        New = "{{ColorGold}}40%%{{CR}} chance",
+                    },
+                },
+            },
+            {
+                Condition = isTripleTrinketMultiplier,
+                TextToModify = {
+                    {
+                        Old = "{{ColorGold}}40%%{{CR}} chance",
+                        New = "{{ColorRainbow}}60%%{{CR}} chance",
                     },
                 },
             },

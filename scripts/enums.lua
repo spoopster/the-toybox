@@ -133,6 +133,7 @@ mod.TRINKET_BIG_BLIND = Isaac.GetTrinketIdByName("Big Blind")                   
 mod.TRINKET_BATH_WATER = Isaac.GetTrinketIdByName("Bath Water")                     --!DONE
 mod.TRINKET_BLACK_RUNE_SHARD = Isaac.GetTrinketIdByName("Black Rune Shard")         --!DONE
 mod.TRINKET_YELLOW_BELT = Isaac.GetTrinketIdByName("Yellow Belt")
+mod.TRINKET_SUPPOSITORY = Isaac.GetTrinketIdByName("Suppository")
 
 --mod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")                 --*UNUSED
 --mod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")                 --*UNUSED
@@ -208,14 +209,16 @@ mod.TEAR_SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear")
 mod.TEAR_PAPER = Isaac.GetEntityVariantByName("Tome Paper Tear")
 
 --*NPCS
-mod.NPC_MAIN = Isaac.GetEntityTypeByName("Shy Gal")
+mod.NPC_BOSS = Isaac.GetEntityTypeByName("Shy Gal")
 mod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")
 mod.NPC_SHYGAL_CLONE = Isaac.GetEntityVariantByName("Shy Gal Clone")
 mod.NPC_SHYGAL_MASK = Isaac.GetEntityVariantByName("Shy Gal Mask")
 
-
 mod.BOSS_RED_MEGALODON = Isaac.GetEntityVariantByName("Red Megalodon")
 mod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
+
+mod.NPC_MAIN = Isaac.GetEntityTypeByName("Stumpy")
+mod.VAR_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
 
 --#endregion
 --#region --!SFX
@@ -316,6 +319,8 @@ mod.CUSTOM_CALLBACKS = {
     POST_ROOM_CLEAR = "TOYBOX_POST_ROOM_CLEAR",
     POST_CUSTOM_CHAMPION_DEATH = "TOYBOX_POST_CUSTOM_CHAMPION_DEATH",
     POST_CUSTOM_CHAMPION_INIT = "TOYBOX_POST_CUSTOM_CHAMPION_INIT",
+    POST_POOP_DESTROY = "TOYBOX_POST_POOP_DESTROY",
+    POOP_SPAWN_DROP = "TOYBOX_POOP_SPAWN_DROP",
 }
 
 mod.CUSTOM_BOMBFLAGS = {

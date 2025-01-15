@@ -75,6 +75,7 @@ local t = {
     "scripts.items.trinkets.jonas_lock",
     "scripts.items.trinkets.big_boy_bathwater",
     "scripts.items.trinkets.black_rune_shard",
+    "scripts.items.trinkets.suppository",
 
     --UNUSED
     --"scripts.items.actives.btrain",
