@@ -9,7 +9,7 @@ local TEARS_PRICE = 5
 local function preUseSunkCosts(_, _, rng, player, flags)
     if(player:GetNumCoins()<TEARS_PRICE) then return true end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, preUseSunkCosts, mod.COLLECTIBLE_GOLDEN_TWEEZERS)
+mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, preUseSunkCosts, mod.COLLECTIBLE_SUNK_COSTS)
 
 ---@param player EntityPlayer
 local function useSunkCosts(_, _, rng, player, flags)
@@ -17,8 +17,8 @@ local function useSunkCosts(_, _, rng, player, flags)
     sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
 
     local mult = 0
-    if(player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_GOLDEN_TWEEZERS)) then
-        mult = player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_GOLDEN_TWEEZERS).Count
+    if(player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_SUNK_COSTS)) then
+        mult = player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_SUNK_COSTS).Count
     end
     mult = mult+1
 
@@ -32,14 +32,14 @@ local function useSunkCosts(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useSunkCosts, mod.COLLECTIBLE_GOLDEN_TWEEZERS)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, useSunkCosts, mod.COLLECTIBLE_SUNK_COSTS)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_GOLDEN_TWEEZERS)) then return end
+    if(not player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_SUNK_COSTS)) then return end
 
-    local mult = player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_GOLDEN_TWEEZERS).Count
+    local mult = player:GetEffects():GetCollectibleEffect(mod.COLLECTIBLE_SUNK_COSTS).Count
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
         mod:addBasicTearsUp(player, mult*(player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) and TEARSTOADD_BATTERY or TEARSTOADD))

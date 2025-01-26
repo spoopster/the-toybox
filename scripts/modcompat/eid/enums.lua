@@ -826,8 +826,8 @@ local ITEMS = {
         },
     },
     --]]
-    [mod.COLLECTIBLE_GOLDEN_TWEEZERS] = {
-        Name = "Golden Tweezers",
+    [mod.COLLECTIBLE_SUNK_COSTS] = {
+        Name = "Sunk Costs",
         Description = {
             "{{Coin}} +5 coins",
             "\1 Pay 5 {{Coin}} coins and get +0.7 Tears for the room",

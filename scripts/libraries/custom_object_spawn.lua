@@ -178,7 +178,7 @@ function mod:spawnCircleObject(objData)
     objData.Index = 0
     for i=0, objData.RadiusCount-1 do
         local pos = objData.OGPosition+objData.Radius*Vector.FromAngle(360*(objData.Index/objData.RadiusCount)+(rng:RandomFloat()-0.5)*objData.AngleVariation)
-        if(Game():GetRoom():IsPositionInRoom(pos, 0) and Game():GetRoom():GetGridCollisionAtPos(pos)==GridCollisionClass.COLLISION_NONE) then
+        if(Game():GetRoom():IsPositionInRoom(pos, 0)) then
             objData.Position = pos
             mod:spawnSingleObject(objData)
         end

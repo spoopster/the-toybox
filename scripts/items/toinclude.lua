@@ -53,7 +53,7 @@ local t = {
     -- "scripts.items.actives.",
     "scripts.items.actives.pliers",
     "scripts.items.actives.blood_ritual",
-    "scripts.items.actives.golden_tweezers",
+    "scripts.items.actives.sunk_costs",
     "scripts.items.actives.bronze_bull",
     "scripts.items.actives.ascension",
     "scripts.items.actives.gilded_apple",

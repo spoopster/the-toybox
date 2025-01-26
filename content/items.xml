@@ -51,7 +51,7 @@
     cache="speed firedelay"
 />
 <active id="7" name="Pliers"
-    description="No pain no gain"
+    description="The pain is temporary"
     gfx="tb_pliers.png"
     quality="0"
     tags="tearsup nolostbr"
@@ -219,9 +219,9 @@
     tags="offensive"
     cache="shotspeed"
 />
-<active id="28" name="Golden Tweezers"
-    description="No pluck no luck + 5 coins"
-    gfx="tb_golden_tweezers.png"
+<active id="28" name="Sunk Costs"
+    description="Suffering from success"
+    gfx="tb_sunk_costs.png"
     quality="1"
     tags="tearsup"
     cache="firedelay"
