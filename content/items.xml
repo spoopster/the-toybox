@@ -497,6 +497,15 @@
 
     blackhearts="2"
 />
+<active id="58" name="Bloody Whistle"
+    description="Boiling blood"
+    gfx="tb_bloody_whistle.png"
+    quality="0"
+    tags="offensive"
+    cache=""
+
+    maxcharges="3"
+/>
 
 <passive id="498" name="Catharsis"
     description="Tears up + tears cap up"

@@ -964,6 +964,27 @@ local ITEMS = {
             },
         },
     },
+    [mod.COLLECTIBLE_BLOODY_WHISTLE] = {
+        Name = "Bloody Whistle",
+        Description = {
+            "Spawns a pool of blood creep",
+            "The creep deals 21 damage per second",
+            "The creep spawns blood tears that deal 7 damage"
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+                end,
+                TextToModify = {
+                    {
+                        Old = "next item",
+                        New = "next/{{Collectible356}}{{BlinkYellowGreen}}second next{{CR}} item"
+                    },
+                },
+            },
+        },
+    },
 
     [mod.COLLECTIBLE_D] = {
         Name = "D",

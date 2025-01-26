@@ -111,9 +111,10 @@ mod.COLLECTIBLE_PREFERRED_OPTIONS = Isaac.GetItemIdByName("Preferred Options")  
 mod.COLLECTIBLE_PLASMA_GLOBE = Isaac.GetItemIdByName("Plasma Globe")                --!DONE
 mod.COLLECTIBLE_CURSED_EULOGY = Isaac.GetItemIdByName("Cursed Eulogy")              --!DONE
 mod.COLLECTIBLE_BLESSED_BOMBS = Isaac.GetItemIdByName("Blessed Bombs")              --!DONE
+mod.COLLECTIBLE_BLOODY_WHISTLE = Isaac.GetItemIdByName("Bloody Whistle")
 
 mod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")                      --!DONE
-mod.COLLECTIBLE_EQUALIZER = Isaac.GetItemIdByName("Equalizer")
+mod.COLLECTIBLE_EQUALIZER = Isaac.GetItemIdByName("Equalizer")                      --!DONE
 mod.COLLECTIBLE_D = Isaac.GetItemIdByName("D")                                      --!DONE
 --mod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")
 
@@ -234,6 +235,7 @@ mod.SFX_VIRUS_SPAWN = Isaac.GetSoundIdByName("Toybox_Virus_Spawn"); sfx:Preload(
 mod.SFX_VIRUS_SHOOT = Isaac.GetSoundIdByName("Toybox_Virus_Shoot"); sfx:Preload(mod.SFX_VIRUS_SHOOT)
 mod.SFX_VIRUS_DIE = Isaac.GetSoundIdByName("Toybox_Virus_Die"); sfx:Preload(mod.SFX_VIRUS_DIE)
 mod.SFX_SHADOW_SCREAM = Isaac.GetSoundIdByName("Toybox_Shadow_Scream"); sfx:Preload(mod.SFX_SHADOW_SCREAM)
+mod.SFX_BLOODY_WHISTLE = Isaac.GetSoundIdByName("Toybox_Bloody_Whistle"); sfx:Preload(mod.SFX_BLOODY_WHISTLE)
 
 mod.SFX_ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("Toybox_AtlasA_RockCrack"); sfx:Preload(mod.SFX_ATLASA_ROCKCRACK)
 mod.SFX_ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_RockBreak"); sfx:Preload(mod.SFX_ATLASA_ROCKBREAK)

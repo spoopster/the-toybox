@@ -62,6 +62,7 @@ local t = {
     "scripts.items.actives.pez_dispenser",
     "scripts.items.actives.alphabet_box",
     "scripts.items.actives.hostile_takeover",
+    "scripts.items.actives.bloody_whistle",
 
     "scripts.items.actives.equalizer",
 
