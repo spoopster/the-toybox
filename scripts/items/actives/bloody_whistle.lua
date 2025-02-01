@@ -87,7 +87,7 @@ local function updateBloodCreep(_, effect)
 
     tear.FallingAcceleration = 2+0.1
     tear.FallingSpeed = -10
-    tear.Height = -20
+    tear.Height = -5
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateBloodCreep, EffectVariant.PLAYER_CREEP_LEMON_PARTY)
 

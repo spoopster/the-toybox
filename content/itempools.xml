@@ -47,13 +47,13 @@
         <Item Name="Caramel Apple"/>
         <Item Name="Eyestrain"/>
         <Item Name="Rock Candy"/>
-        <Item Name="Mayonnaise"/>
+        <Item Name="A Spoonful of Mayonnaise"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
         <Item Name="Eyestrain"/>
         <Item Name="Rock Candy"/>
-        <Item Name="Mayonnaise"/>
+        <Item Name="A Spoonful of Mayonnaise"/>
     </Pool>
 
     <Pool Name="shop">

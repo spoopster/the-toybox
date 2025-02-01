@@ -21,6 +21,15 @@
         achievement="Foil Card"
     />
 
+    <card id="109" name="Soul of Cryogen"
+        description="7% increase to all damage"
+        hud="Soul of Cryogen"
+        type="rune"
+        pickup="3812"
+
+        mimiccharge="12"
+    />
+
 <!-- OBJECTS -->
 	<card id="0" name="Mantle - Rock"
         description="Useless"

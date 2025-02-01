@@ -629,7 +629,7 @@ local ITEMS = {
         },
     },
     [mod.COLLECTIBLE_MAYONAISE] = {
-        Name = "Mayonnaise",
+        Name = "A Spoonful of Mayonnaise",
         Description = {
             "\1 +0.15 Shotspeed",
             "{{EternalHeart}} +1 Eternal Heart",

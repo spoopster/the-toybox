@@ -457,11 +457,11 @@
     tags="offensive"
     cache=""
 />
-<passive id="53" name="Mayonnaise"
+<passive id="53" name="A Spoonful of Mayonnaise"
     description="Here comes the airplane!"
     gfx="tb_mayonaise.png"
-    quality="2"
-    tags="offensive"
+    quality="1"
+    tags="nolostbr"
     cache="shotspeed"
 />
 <passive id="54" name="Awesome Fruit"
