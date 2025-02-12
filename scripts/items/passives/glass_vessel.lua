@@ -15,34 +15,45 @@ local function renderVessel(_, offset, sprite, pos, x, pl)
     if(not (pl and pl:HasCollectible(mod.COLLECTIBLE_GLASS_VESSEL))) then return end
     if(pl:GetPlayerIndex()==-1) then return end
 
-    local idx = pl:GetPlayerIndex()
-    local hud = Game():GetHUD():GetPlayerHUD(idx)
-    local h = hud:GetHearts()
-    local sp = Game():GetHUD():GetHeartsSprite()
+    local playerHud = nil
+    for i=0, 7 do
+        playerHud = Game():GetHUD():GetPlayerHUD(i)
 
-    local numHeartsPerLine = 6
-    if(idx==1 or idx>3) then numHeartsPerLine = 3 end
-    local mult = Vector(12,10)
-
-    local heartLimit = math.ceil(pl:GetHeartLimit()/2)
-    local numHeartsDone=0
-    for i, heartData in pairs(h) do
-        if(heartData:IsVisible()) then numHeartsDone = numHeartsDone+1
-        else break end
-    end
-
-    if(pl:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)) then numHeartsDone = numHeartsDone+1 end
-    local positionOffset = Vector(numHeartsDone%numHeartsPerLine, (numHeartsDone//numHeartsPerLine))
-
-    if(numHeartsDone>=heartLimit and heartLimit>=12) then
-        if(numHeartsDone==heartLimit) then
-            positionOffset = Vector((numHeartsDone-1)%numHeartsPerLine+0.5, ((numHeartsDone-1)//numHeartsPerLine)) -- exceeds max health either by having containers equal to limit or by limit-1 and you have mantle
-        elseif(numHeartsDone==heartLimit+1) then
-            positionOffset = Vector((numHeartsDone-2)%numHeartsPerLine+1, ((numHeartsDone-2)//numHeartsPerLine)) -- max containers + holy mantle
+        if(playerHud:GetPlayer() and playerHud:GetPlayer():GetPlayerIndex()==pl:GetPlayerIndex()) then
+            break
         end
     end
+
+    local heartsPerLine = 6
+    local hpLimit = (pl:GetHeartLimit()+1)//2
+    local numHearts = 0
+
+    if(playerHud:GetPlayer()) then
+        for i, heart in ipairs(playerHud:GetHearts()) do
+            if(heart:IsVisible()) then
+                numHearts = i
+            end
+        end
+    else
+        heartsPerLine = 3
+        numHearts = (pl:GetMaxHearts()+1)//2+(pl:GetBoneHearts()+1)//2+(pl:GetSoulHearts()+1)//2
+    end
+
+    if(pl:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)) then
+        numHearts = numHearts+1
+    end
+
+    local mult = Vector(12,10)
+    if(pos.X>Isaac.GetScreenWidth()/2) then mult.X = -mult.X end
+
+    local posOffset = math.max(0, numHearts-hpLimit+1)*Vector(0.5, 0)
+
+    numHearts = math.min(numHearts, hpLimit-1)
+    local heartPos = Vector(numHearts%heartsPerLine, numHearts//heartsPerLine)
     
-    mod:renderGlassVesselSprite(pl, pos+positionOffset*mult)
+    mod:renderGlassVesselSprite(pl, pos+(heartPos+posOffset)*mult)
+
+    Game():GetHUD():GetHeartsSprite().Offset = Vector(0,0)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, renderVessel)
 
@@ -127,18 +138,20 @@ mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.I
 ---@param pl Entity
 local function consumeCoin(_, pickup, pl)
     if(not (pl and pl:ToPlayer() and pl:ToPlayer():HasCollectible(mod.COLLECTIBLE_GLASS_VESSEL))) then return end
+    pl = pl:ToPlayer() ---@cast pl EntityPlayer
+
     local hpType = pl:ToPlayer():GetHealthType()
     if(not (hpType==HealthType.COIN)) then return end
 
     local data = mod:getEntityDataTable(pl)
 
-    if(data.GLASS_VESSEL_MANTLESTATE~=0) then
+    if(not pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_GLASS_VESSEL)) then
         pickup:PlayPickupSound()
         pickup:GetSprite():Play("Collect", true)
         pickup:Die()
 
         sfx:Play(SoundEffect.SOUND_URN_OPEN)
-        data.GLASS_VESSEL_MANTLESTATE = 0
+        pl:GetEffects():AddCollectibleEffect(mod.COLLECTIBLE_GLASS_VESSEL, true, 1)
 
         return true
     end

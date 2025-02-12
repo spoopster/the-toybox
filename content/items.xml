@@ -280,7 +280,7 @@
     description="Frail protection"
     gfx="tb_glass_vessel.png"
     quality="3"
-    tags="nolostbr"
+    tags=""
     cache=""
     persistent="true"
 
