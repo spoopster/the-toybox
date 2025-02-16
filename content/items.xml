@@ -513,6 +513,13 @@
     tags="nolostbr"
     cache=""
 />
+<passive id="60" name="Fish"
+    description="After 9 years in development"
+    gfx="tb_fish.png"
+    quality="2"
+    tags="offensive dead"
+    cache=""
+/>
 
 <passive id="498" name="Catharsis"
     description="Tears up + tears cap up"

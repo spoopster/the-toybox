@@ -733,6 +733,13 @@ local ITEMS = {
             "Taking damage gives a large fading tears up",
         },
     },
+    [mod.COLLECTIBLE_FISH] = {
+        Name = "Fish",
+        Description = {
+            "\1 Doubles all blue fly/spider spawns",
+            "Taking damage spawns 1 blue fly and blue spider",
+        },
+    },
 
     [mod.COLLECTIBLE_CATHARSIS] = {
         Name = "Catharsis",

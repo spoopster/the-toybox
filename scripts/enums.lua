@@ -113,6 +113,7 @@ mod.COLLECTIBLE_CURSED_EULOGY = Isaac.GetItemIdByName("Cursed Eulogy")          
 mod.COLLECTIBLE_BLESSED_BOMBS = Isaac.GetItemIdByName("Blessed Bombs")              --!DONE
 mod.COLLECTIBLE_BLOODY_WHISTLE = Isaac.GetItemIdByName("Bloody Whistle")            --!DONE
 mod.COLLECTIBLE_HEMORRHAGE = Isaac.GetItemIdByName("Haemorrhage")                   --!DONE
+mod.COLLECTIBLE_FISH = Isaac.GetItemIdByName("Fish")                                --!DONE
 
 mod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")                      --!DONE
 mod.COLLECTIBLE_EQUALIZER = Isaac.GetItemIdByName("Equalizer")                      --!DONE
