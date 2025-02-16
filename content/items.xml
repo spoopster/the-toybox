@@ -506,6 +506,13 @@
 
     maxcharges="3"
 />
+<passive id="59" name="Haemorrhage"
+    description="It hurts"
+    gfx="tb_hemorrhage.png"
+    quality="0"
+    tags="nolostbr"
+    cache=""
+/>
 
 <passive id="498" name="Catharsis"
     description="Tears up + tears cap up"

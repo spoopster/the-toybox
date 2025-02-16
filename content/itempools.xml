@@ -20,6 +20,7 @@
         <Item Name="Quake Bombs"/>
         <Item Name="Plasma Globe"/>
         <Item Name="Hostile Takeover"/>
+        <Item Name="Haemorrhage"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -41,6 +42,7 @@
         <Item Name="Quake Bombs"/>
         <Item Name="Plasma Globe"/>
         <Item Name="Hostile Takeover"/>
+        <Item Name="Haemorrhage"/>
     </Pool>
 
     <Pool Name="boss">
@@ -81,6 +83,7 @@
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Cursed Eulogy"/>
         <Item Name="Catharsis"/>
+        <Item Name="Haemorrhage"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -88,6 +91,7 @@
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Cursed Eulogy"/>
         <Item Name="Catharsis"/>
+        <Item Name="Haemorrhage"/>
     </Pool>
 
     <Pool Name="angel">

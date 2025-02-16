@@ -44,7 +44,9 @@ local function renderVessel(_, offset, sprite, pos, x, pl)
     end
 
     local mult = Vector(12,10)
-    if(pos.X>Isaac.GetScreenWidth()/2) then mult.X = -mult.X end
+    if(playerHud:GetPlayer()) then
+        if(pos.X>Isaac.GetScreenWidth()/2) then mult.X = -mult.X end
+    end
 
     local posOffset = math.max(0, numHearts-hpLimit+1)*Vector(0.5, 0)
 
@@ -52,8 +54,6 @@ local function renderVessel(_, offset, sprite, pos, x, pl)
     local heartPos = Vector(numHearts%heartsPerLine, numHearts//heartsPerLine)
     
     mod:renderGlassVesselSprite(pl, pos+(heartPos+posOffset)*mult)
-
-    Game():GetHUD():GetHeartsSprite().Offset = Vector(0,0)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, renderVessel)
 

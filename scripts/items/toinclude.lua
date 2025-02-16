@@ -44,6 +44,7 @@ local t = {
     "scripts.items.passives.plasma_globe",
     "scripts.items.passives.blessed_bombs",
     "scripts.items.passives.cursed_eulogy",
+    "scripts.items.passives.haemorrhage",
 
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 

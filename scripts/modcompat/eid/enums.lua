@@ -726,6 +726,14 @@ local ITEMS = {
             "Homing tears",
         },
     },
+    [mod.COLLECTIBLE_HEMORRHAGE] = {
+        Name = "Haemorrhage",
+        Description = {
+            "{{BoneHeart}} +1 empty Bone Heart",
+            "Taking damage gives a large fading tears up",
+        },
+    },
+
     [mod.COLLECTIBLE_CATHARSIS] = {
         Name = "Catharsis",
         Description = {
