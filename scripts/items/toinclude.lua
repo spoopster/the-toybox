@@ -17,8 +17,8 @@ local t = {
     "scripts.items.passives.blessed_ring",
     "scripts.items.passives.eyestrain",
     "scripts.items.passives.4_4",
-    "scripts.items.passives.obsidian_shard",
-    "scripts.items.passives.obsidian_chunk",
+    "scripts.items.passives.evil_rock",
+    "scripts.items.passives.onyx",
     "scripts.items.passives.sigil_of_greed",
     "scripts.items.passives.dads_prescription",
     "scripts.items.passives.horse_tranquilizer",
@@ -50,6 +50,7 @@ local t = {
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 
     "scripts.items.passives.catharsis",
+    "scripts.items.passives.retrofall",
 
     --ACTIVES
     -- "scripts.items.actives.",

@@ -29,10 +29,10 @@
     tags="offensive summonable"
     cache="all"
 />
-<passive id="4" name="Obsidian Shard"
-    description="Cutting edge + &quot;tinted&quot; rocks"
-    gfx="tb_obsidian_shard.png"
-    quality="3"
+<passive id="4" name="Evil Rock"
+    description="Evil tinted rocks"
+    gfx="tb_evil_rock.png"
+    quality="1"
     tags="offensive"
     cache=""
 />
@@ -46,7 +46,7 @@
 <passive id="6" name="Loose Bowels"
     description="Can't control it..."
     gfx="tb_loose_bowels.png"
-    quality="3"
+    quality="2"
     tags="offensive summonable tearsup"           
     cache="speed firedelay"
 />
@@ -147,11 +147,11 @@
 <active id="19" name="Brainfreeze"
     description="Chill aura"
     gfx="tb_brainfreeze.png"
-    quality="3"
+    quality="2"
     tags="offensive"
     cache=""
     
-    maxcharges="3"
+    maxcharges="4"
 />
 <passive id="20" name="Fatal Signal"
     description="HP up + memory overfl"
@@ -240,12 +240,12 @@
 
     achievement="Gilded Apple"
 />
-<passive id="30" name="Obsidian Chunk"
-    description="Harder than steel"
-    gfx="tb_obsidian_chunk.png"
-    quality="3"
+<passive id="30" name="Onyx"
+    description="DMG + tears + speed up"
+    gfx="tb_onyx.png"
+    quality="4"
     tags="offensive"
-    cache="shotspeed damage"
+    cache="speed firedelay damage"
 
     blackhearts="2"
 />
@@ -521,6 +521,13 @@
     cache=""
 />
 
+<passive id="109" name="RETROFALL"
+    description=""
+    gfx="tb_RETROFALL.png"
+    quality="4"
+    tags=""
+    cache=""
+/>
 <passive id="498" name="Catharsis"
     description="Tears up + tears cap up"
     gfx="tb_catharsis.png"

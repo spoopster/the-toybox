@@ -1,4 +1,4 @@
-MilcomMOD = RegisterMod("toyboxMod", 1)
+MilcomMOD = RegisterMod("toyboxMod", 1) ---@type ModReference
 local mod = MilcomMOD
 
 mod.HiddenItemManager = include("scripts.libraries.hiddenitemmanager")

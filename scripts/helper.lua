@@ -430,6 +430,8 @@ function mod:addInvincibility(player, amount)
     player:SetMinDamageCooldown(player:GetDamageCooldown()+amount)
 end
 
+---@param seed integer?
+---@return RNG
 function mod:generateRng(seed)
     seed = seed or Random()
     if(seed<=0) then seed=1 end

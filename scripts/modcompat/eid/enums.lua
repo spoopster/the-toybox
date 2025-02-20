@@ -290,23 +290,24 @@ local ITEMS = {
             "{{Coin}} Killing a golden enemy spawns coins"
         },
     },
-    [mod.COLLECTIBLE_OBSIDIAN_SHARD] = {
-        Name = "Obsidian Shard",
+    [mod.COLLECTIBLE_EVIL_ROCK] = {
+        Name = "Evil Rock",
         Description = {
-            "Tinted rocks are colored purple, making them easier to see",
-            "Tinted rocks drop an assortment of \"evil\" pickups",
-            "{{BleedingOut}} 7.5% chance to shoot tears that inflict bleeding",
-            "{{Luck}} 20% chance at 18 luck"
+            "Tinted rocks are darker and easier to see",
+            "Drops from tinted rocks are changed:",
+            "{{SoulHeart}} Soul Hearts > Black Hearts",
+            "{{Key}} Keys > Troll Bombs/Pills",
+            "{{Chest}} Chests > Red Chests",
+            "{{Collectible90}} The Small Rock > {{ColorYellow}}???{{CR}}",
         },
     },
-    [mod.COLLECTIBLE_OBSIDIAN_CHUNK] = {
-        Name = "Obsidian Chunk",
+    [mod.COLLECTIBLE_ONYX] = {
+        Name = "Onyx",
         Description = {
-            "\1 +0.75 Damage",
-            "\2 -0.2 Shotspeed",
+            "\1 +0.2 Speed",
+            "\1 +0.5 Tears",
+            "\1 +1.2 Damage",
             "{{BlackHeart}} +1 Black Heart",
-            "5% chance to shoot a hunk of obsidian that deals 2x damage, along with a few smaller chunks that deal 2 damage each",
-            "{{Luck}} 20% chance at 25 luck"
         },
     },
     [mod.COLLECTIBLE_DADS_PRESCRIPTION] = {
@@ -741,6 +742,12 @@ local ITEMS = {
         },
     },
 
+    [mod.COLLECTIBLE_RETROFALL] = {
+        Name = "RETROFALL",
+        Description = {
+            "Bad news, tomorrow is retrofall, which is an 8-bit attack event on all classic gaming consoles including the Nintendo Entertainment System. There will be people trying to send you ray tracing, extreme graphics, 4K, Call of Duty, and there will also be pixel grabbers, moderners, and Unreal Engine 4K Remasterers. I advise NO ONE to play video games from retro gamers you don't know, please stay safe. Please pass this on to any gaming console you own or have 1UP Mushroom and can level up to spread awareness. I wish you all safety. Also, make sure to be game over tomorrow, which gives you less chance for this to happen to you. It's also specifically against retro video gamers.",
+        },
+    },
     [mod.COLLECTIBLE_CATHARSIS] = {
         Name = "Catharsis",
         Description = {

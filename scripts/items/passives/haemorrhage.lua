@@ -1,7 +1,17 @@
 local mod = MilcomMOD
 
+local BONEHEART_ADD = 1
+
 local INTENSITY_DURATION = 17*18
 local TEARS_MULT_MAX = 5
+
+---@param player EntityPlayer
+local function addHaemorrhage(_, item, _, firstTime, _, _, player)
+    if(firstTime~=true) then return end
+
+    player:AddBoneHearts(BONEHEART_ADD)
+end
+mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, mod.COLLECTIBLE_HEMORRHAGE)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag

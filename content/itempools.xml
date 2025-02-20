@@ -10,7 +10,7 @@
         <Item Name="Meteor Shower"/>
         <Item Name="Sunk Costs"/>
         <Item Name="Malicious Brain"/>
-        <Item Name="Obsidian Shard"/>
+        <Item Name="Evil Rock"/>
         <Item Name="Bone Boy"/>
         <Item Name="Gilded Apple"/>
         <Item Name="Steel Soul"/>
@@ -124,7 +124,7 @@
     </Pool>
 
     <Pool Name="redChest">
-        <Item Name="Obsidian Shard"/>
+        <Item Name="Evil Rock"/>
         <Item Name="Painkillers" Weight="0.75" DecreaseBy="0.75"/>
         <Item Name="Clown PHD"/>
         <Item Name="Cursed Eulogy"/>
