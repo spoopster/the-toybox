@@ -1,8 +1,6 @@
 local mod = MilcomMOD
 
---* TODO:
--- polish mantle effects a bit
--- hopefully wait for 1.0.6 to add player healing hook
+mod.DONT_IGNORE_ATLAS_HEALING = false
 
 --#region DATA
 local ATLAS_A_BASEDATA = {
@@ -64,3 +62,43 @@ local function cancelHeartCollision(_, pickup, player)
     return false
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, cancelHeartCollision, PickupVariant.PICKUP_HEART)
+
+---@param player EntityPlayer
+---@param flag CacheFlag
+local function evalCache(_, player, flag)
+    if(not mod:isAtlasA(player)) then return end
+    
+    if(flag==CacheFlag.CACHE_TEARCOLOR) then
+        player.TearColor = Color(0.2,0.2,0.2,1,0,0,0)
+    end
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+
+local function badsifbaf(_, pl)
+    return 6
+end
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, mod.PLAYER_ATLAS_A)
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, mod.PLAYER_ATLAS_A_TAR)
+
+local function bibidibabidibu(_, pl)
+    return HealthType.DEFAULT
+end
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, mod.PLAYER_ATLAS_A)
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, mod.PLAYER_ATLAS_A_TAR)
+
+---@param player EntityPlayer
+local function forceHealth(_, player)
+    if(not mod:isAtlasA(player)) then return end
+
+    print(player:GetMaxHearts(), player:GetHearts())
+
+    mod.DONT_IGNORE_ATLAS_HEALING = true
+    if(player:GetMaxHearts()<6) then
+        player:AddMaxHearts(6)
+    end
+    if(player:GetHearts()<6) then
+        player:AddHearts(6)
+    end
+    mod.DONT_IGNORE_ATLAS_HEALING = false
+end
+mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, math.huge, forceHealth, 0)

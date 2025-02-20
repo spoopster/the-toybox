@@ -48,7 +48,6 @@ mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postHudRender)
 local function asdasdad(_, title, subtitle, sticky, curse)
     if(title=="RETROFALL") then
         itemTextOnScreen = 0
-        print("Yeah")
     else
         itemTextOnScreen = -1
     end

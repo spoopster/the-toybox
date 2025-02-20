@@ -1,1 +1,0 @@
-local mod = MilcomMOD

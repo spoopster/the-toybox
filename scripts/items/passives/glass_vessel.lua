@@ -48,9 +48,11 @@ local function renderVessel(_, offset, sprite, pos, x, pl)
         if(pos.X>Isaac.GetScreenWidth()/2) then mult.X = -mult.X end
     end
 
-    local posOffset = math.max(0, numHearts-hpLimit+1)*Vector(0.5, 0)
-
-    numHearts = math.min(numHearts, hpLimit-1)
+    local posOffset = Vector(0,0)
+    if(hpLimit>=12) then
+        posOffset = math.max(0, numHearts-hpLimit+1)*Vector(0.5, 0)
+        numHearts = math.min(numHearts, hpLimit-1)
+    end
     local heartPos = Vector(numHearts%heartsPerLine, numHearts//heartsPerLine)
     
     mod:renderGlassVesselSprite(pl, pos+(heartPos+posOffset)*mult)

@@ -696,7 +696,7 @@ local ITEMS = {
     [mod.COLLECTIBLE_PLASMA_GLOBE] = {
         Name = "Plasma Globe",
         Description = {
-            "\2 -0.2 Shotspeed down",
+            "\2 -0.2 Shotspeed",
             "While flying, your tears fire electric lasers at nearby enemies",
             "The lasers deal 25% of the tear's damage",
         },

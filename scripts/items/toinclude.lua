@@ -9,8 +9,6 @@ local t = {
     "scripts.items.passives.caramel_apple",
     "scripts.items.passives.painkillers",
     "scripts.items.passives.tech_ix",
-    "scripts.items.passives.mammons_offering",
-    --"scripts.items.passives.paint_bucket",
     "scripts.items.passives.fatal_signal",
     "scripts.items.passives.pepper_x",
     "scripts.items.passives.meteor_shower",

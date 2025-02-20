@@ -1,32 +1,69 @@
 <players nameimageroot="gfx/ui/boss/" portraitroot="gfx/ui/stage/" root="gfx/characters/players/">
+	<!-- NORMALS -->
+
 	<player birthright="Printing press" name="Milcom"
-		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="tb_character_milcom.png" costumeSuffix="milcom_a" skinColor="-1"
-	/>
-	<player birthright="-" name="Milcom" bSkinParent="Milcom"
-		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="tb_character_milcom.png" costumeSuffix="milcom_b" skinColor="-1"
-		achievement="Tainted Milcom" hidden="true"
+		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="tb_character_milcom.png"
+		costumeSuffix="milcom_a" skinColor="-1"
+
+		heartcontainers="6" redhearts="6"
 	/>
 
 	<player birthright="Mantle stratification" name="Atlas"
-		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="tb_character_atlas.png" costumeSuffix="atlas_a" skinColor="-1"
+		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="tb_character_atlas.png"
+		costumeSuffix="atlas_a" skinColor="-1"
 		modcostume="1000"
+
+		heartcontainers="6" redhearts="6" healthlimit="6"
 	/>
-	<player birthright="Mantle stratification" name="The Tar"
-		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="tb_character_atlas_tar.png" costumeSuffix="atlas_a_tar" skinColor="-1"
-		modcostume="999" hidden="true"
-	/>
-	<player birthright="-" name="Atlas" bSkinParent="Atlas"
-		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="tb_character_atlas.png" costumeSuffix="atlas_b" skinColor="-1"
-		heartcontainers="3" redhearts="3" healthlimit="3" modcostume="999"
-		achievement="Tainted Atlas" hidden="true"
+	<player birthright="Mantle stratification" name="The Tar" 
+		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="tb_character_atlas_tar.png"
+		costumeSuffix="atlas_a_tar" skinColor="-1"
+		modcostume="999"
+
+		heartcontainers="6" redhearts="6" healthlimit="6"
+
+		hidden="true"
 	/>
 
 	<player birthright="Makin' paper" name="Jonas"
-		nameimage="milcom_name.png" portrait="tb_portrait_jonas.png" skin="tb_character_jonas.png" costumeSuffix="jonas_a" skinColor="-1"
-		luckmodifier="-2" trinket="44" modcostume="1100"
+		nameimage="milcom_name.png" portrait="tb_portrait_jonas.png" skin="tb_character_jonas.png"
+		costumeSuffix="jonas_a" skinColor="-1"
+		modcostume="1100"
+
+		heartcontainers="6" redhearts="6"
+		luckmodifier="-2"
+		trinket="44" 
 	/>
-	<player birthright="-" name="Jonas" bSkinParent="Jonas"
-		nameimage="milcom_name.png" portrait="tb_portrait_jonas.png" skin="tb_character_jonas.png" costumeSuffix="jonas_b" skinColor="-1"
-		achievement="Tainted Jonas" hidden="true"
+
+
+	<!-- TAINTEDS -->
+
+	<player birthright="-" name="Milcom" 
+		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="tb_character_milcom.png"
+		costumeSuffix="milcom_b" skinColor="-1"
+
+		heartcontainers="6" redhearts="6"
+
+		achievement="Tainted Milcom" bSkinParent="Milcom"
+		hidden="true"
+	/>
+	<player birthright="-" name="Atlas" 
+		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="tb_character_atlas.png"
+		costumeSuffix="atlas_b" skinColor="-1"
+		modcostume="999"
+
+		heartcontainers="6" redhearts="6" healthlimit="6"
+
+		achievement="Tainted Atlas" bSkinParent="Atlas" 
+		hidden="true"
+	/>
+	<player birthright="-" name="Jonas" 
+		nameimage="milcom_name.png" portrait="tb_portrait_jonas.png" skin="tb_character_jonas.png"
+		costumeSuffix="jonas_b" skinColor="-1"
+
+		heartcontainers="6" redhearts="6"
+
+		achievement="Tainted Jonas" bSkinParent="Jonas"
+		hidden="true"
 	/>
 </players>
