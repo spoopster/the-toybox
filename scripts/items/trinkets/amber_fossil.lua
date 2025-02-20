@@ -1,6 +1,6 @@
 local mod = MilcomMOD
 
-local LOCUST_CHANCE = 0.25
+local LOCUST_CHANCE = 1/3
 
 local function blueFlyInit(_, familiar)
     if(Isaac.GetPlayer().FrameCount==0) then return end

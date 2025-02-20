@@ -304,9 +304,9 @@ local ITEMS = {
     [mod.COLLECTIBLE_ONYX] = {
         Name = "Onyx",
         Description = {
-            "\1 +0.2 Speed",
-            "\1 +0.5 Tears",
             "\1 +1.2 Damage",
+            "\1 +0.5 Tears",
+            "\1 +0.2 Speed",
             "{{BlackHeart}} +1 Black Heart",
         },
     },
@@ -1638,15 +1638,15 @@ local TRINKETS = {
     [mod.TRINKET_AMBER_FOSSIL] = {
         Name = "Amber Fossil",
         Description = {
-            "Your blue flies have a 25% chance to be converted into a random locust",
+            "Blue flies have a 33% chance to be converted into a random locust",
         },
         DescriptionModifiers = {
             {
                 Condition = isDoubleTrinketMultiplier,
                 TextToModify = {
                     {
-                        Old = "25%% chance",
-                        New = "{{ColorGold}}50%%{{CR}} chance",
+                        Old = "33%% chance",
+                        New = "{{ColorGold}}67%%{{CR}} chance",
                     },
                 },
             },
@@ -1654,8 +1654,8 @@ local TRINKETS = {
                 Condition = isTripleTrinketMultiplier,
                 TextToModify = {
                     {
-                        Old = "{{ColorGold}}50%%{{CR}} chance",
-                        New = "{{ColorRainbow}}75%%{{CR}} chance",
+                        Old = "{{ColorGold}}67%%{{CR}} chance",
+                        New = "{{ColorRainbow}}100%%{{CR}} chance",
                     },
                 },
             },
