@@ -18,7 +18,7 @@ local function foilCardInit(_, pickup)
     if(pickup.SubType~=mod.CARD_FOIL_CARD) then return end
 
     local sp = pickup:GetSprite()
-    sp:SetRenderFlags(AnimRenderFlags.GOLDEN)
+    --sp:SetRenderFlags(AnimRenderFlags.GOLDEN)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, foilCardInit, PickupVariant.PICKUP_TAROTCARD)
 

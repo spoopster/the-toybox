@@ -23,7 +23,7 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     if(not mod:isAtlasA(player)) then return end
 
     player = player:ToPlayer()
-    local renderPos = pos+Vector(0,40)
+    local renderPos = pos+Vector(0,0)
     local data = mod:getAtlasATable(player)
 
     local hasCurseOfTheUnknown = false

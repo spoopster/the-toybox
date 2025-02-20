@@ -90,8 +90,6 @@ mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibid
 local function forceHealth(_, player)
     if(not mod:isAtlasA(player)) then return end
 
-    print(player:GetMaxHearts(), player:GetHearts())
-
     mod.DONT_IGNORE_ATLAS_HEALING = true
     if(player:GetMaxHearts()<6) then
         player:AddMaxHearts(6)
