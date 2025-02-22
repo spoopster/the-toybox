@@ -48,7 +48,7 @@ if(CustomHealthAPI) then
             }
         end
     end
-    mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e6, applyCHAPIDamage, EntityType.ENTITY_PLAYER)
+    --mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e6, applyCHAPIDamage, EntityType.ENTITY_PLAYER)
     
     ---@param player Entity
     local function cancelCHAPIDmg(player, dmg, flags, source, frames)
@@ -62,5 +62,5 @@ if(CustomHealthAPI) then
 
         --return true
     end
-    CustomHealthAPI.Library.AddCallback(mod, CustomHealthAPI.Enums.Callbacks.PRE_PLAYER_DAMAGE, 1e12, cancelCHAPIDmg)
+    --CustomHealthAPI.Library.AddCallback(mod, CustomHealthAPI.Enums.Callbacks.PRE_PLAYER_DAMAGE, 1e12, cancelCHAPIDmg)
 end

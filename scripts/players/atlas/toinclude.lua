@@ -9,7 +9,6 @@ local t = {
     "scripts.players.atlas.a.mantle_spawn_logic",
     "scripts.players.atlas.a.mantle_devildeal_logic",
     "scripts.players.atlas.a.mantle_healing_logic",
-        --"scripts.players.atlas.a.chapi.mantle_healing_logic",
     "scripts.players.atlas.a.render_health",
     "scripts.players.atlas.a.horn_costumes",
     --"scripts.players.atlas.a.effect_reworks",

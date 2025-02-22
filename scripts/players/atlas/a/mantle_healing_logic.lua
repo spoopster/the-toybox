@@ -2,7 +2,7 @@ local mod = MilcomMOD
 
 if(CustomHealthAPI) then
     local function addHealth(p, k, n)
-        if(mod:isAtlasA(p) and not mod.DONT_IGNORE_ATLAS_HEALING) then
+        if(mod:isAtlasA(p) and not mod.DONT_IGNORE_ATLAS_HEALING and p.FrameCount>0) then
             return true
         end
     end

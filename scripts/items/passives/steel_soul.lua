@@ -89,15 +89,29 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, renderSoulShields)
 
 ---@param pl EntityPlayer
+local function stupidfuckinghackFuckyouCHAPI(_, pl, damage, flags, source, count)
+    mod:setEntityData(pl, "STEELSOUL_GETHEARS",
+    {
+        Red = pl:GetHearts(),
+        Soul = pl:GetSoulHearts(),
+        Bone = pl:GetBoneHearts(),
+    })
+end
+mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, stupidfuckinghackFuckyouCHAPI, 0)
+
+---@param pl EntityPlayer
 local function destroySoulShields(_, pl, dmg, flags, source, frames)
     pl = pl:ToPlayer()
-    if(flags & (DamageFlag.DAMAGE_RED_HEARTS)~=0 and pl:GetHearts()>0) then return end
+    local heartData = mod:getEntityData(pl, "STEELSOUL_GETHEARS")
+    if(not heartData) then return end
+
+    if(flags & (DamageFlag.DAMAGE_RED_HEARTS)~=0 and heartData.Red>0) then return end
 
     local disposableDmg = dmg
     local numDamageRemoved = 0
-    local extraHeartIdx = mod:getMaxExtraHeartIdx(pl)
+    local extraHeartIdx = math.ceil(heartData.Soul/2)+heartData.Bone-1
 
-    if(disposableDmg>0 and not pl:IsBoneHeart(extraHeartIdx) and pl:GetSoulHearts()%2~=0) then
+    if(disposableDmg>0 and not pl:IsBoneHeart(extraHeartIdx) and heartData.Soul%2~=0) then
         disposableDmg = disposableDmg-1
         extraHeartIdx = extraHeartIdx-1
     end
