@@ -174,3 +174,54 @@ mod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, darkRedRegen)
 ■         ■         ■
 ■■■■■■■■■■■■■■■■■■■■■
 --]]
+
+--[[
+
+local PILLBONUS_FONT = Font()
+PILLBONUS_FONT:Load("font/pftempestasevencondensed.fnt")
+
+---@param slot EntitySlot
+local function reSlotUpdate(_, slot, offset)
+    mod:setEntityData(slot, "MAX_TIMEOUT", math.max(mod:getEntityData(slot, "MAX_TIMEOUT") or 0, slot:GetTimeout()))
+
+    local tb = {}
+
+    table.insert(tb, {NAME="STATE", VAL=slot:GetState()})
+    table.insert(tb, {NAME="TIMEOUT", VAL=slot:GetTimeout()})
+    table.insert(tb, {NAME="MAX TIMEOUT", VAL=(mod:getEntityData(slot, "MAX_TIMEOUT") or 0)})
+    table.insert(tb, {NAME="PRIZE TYPE", VAL=slot:GetPrizeType()})
+    table.insert(tb, {NAME="DONATION VALUE", VAL=slot:GetDonationValue()})
+
+    mod:setEntityData(slot, "SLOT_RENDERS", tb)
+end
+mod:AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, reSlotUpdate)
+
+---@param slot EntitySlot
+local function postSlotUpdate(_, slot, offset)
+    local oldTb = mod:getEntityData(slot, "SLOT_RENDERS")
+
+    oldTb[1].VAL = tostring(oldTb[1].VAL).." / "..slot:GetState()
+    oldTb[2].VAL = tostring(oldTb[2].VAL).." / "..slot:GetTimeout()
+    oldTb[4].VAL = tostring(oldTb[4].VAL).." / "..slot:GetPrizeType()
+    oldTb[5].VAL = tostring(oldTb[5].VAL).." / "..slot:GetDonationValue()
+
+    mod:setEntityData(slot, "SLOT_RENDERS", oldTb)
+end
+mod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate)
+
+---@param slot EntitySlot
+local function postSlotRender(_, slot, offset)
+
+    local off = 7
+    local pos = Isaac.WorldToRenderPosition(slot.Position)+offset+Vector(0,off)
+    local renders = mod:getEntityData(slot, "SLOT_RENDERS") or {}
+
+    for _, renderData in ipairs(renders) do
+        PILLBONUS_FONT:DrawStringScaled(renderData.NAME..": "..renderData.VAL, pos.X, pos.Y, 0.5,0.5, KColor(1,1,1,1))
+
+        pos.Y = pos.Y+off
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_SLOT_RENDER, postSlotRender)
+
+--]]
