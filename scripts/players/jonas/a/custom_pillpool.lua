@@ -106,6 +106,8 @@ if(FiendFolio) then
     mod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.CLAIRVOYANCE] = PillEffect.PILLEFFECT_AMNESIA
     mod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.MELATONIN] = PillEffect.PILLEFFECT_PARALYSIS
     mod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.FISH_OIL] = FiendFolio.ITEM.PILL.LEMON_JUICE
+
+    mod.PILL_ACHIEVEMENTS[FiendFolio.ITEM.PILL.CYANIDE] = -1
 end
 
 function mod:getAllPillEffects(phdEffect)
@@ -124,7 +126,7 @@ function mod:getAllPillEffects(phdEffect)
             local shouldAdd = false
             if(ach==nil) then
                 shouldAdd = true
-            else
+            elseif(ach~=-1) then
                 if(Isaac.GetPersistentGameData():Unlocked(ach)) then
                     shouldAdd = true
                 elseif(ach==mod.ACH_PILLS and PlayerManager.AnyoneIsPlayerType(mod.PLAYER_JONAS_A)) then
