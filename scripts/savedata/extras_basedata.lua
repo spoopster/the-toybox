@@ -5,13 +5,9 @@ local BASEDATA = {
 
     DRILLDATA = {
         IS_ACTIVE = 0,
-        STORED_ID = "",
-        NEXT_LAYOUT = {},
-        CURRENT_LAYOUT_ENEMIES = {},
-        WAVES_LEFT = 0,
-        CURR_DIFFICULTY = 0,
-        RESTART_CURRENT_WAVE = 0,
-        PREV_ROOM_IDX = "",
+        ITEM_ID = 0,
+        FORCE_SET_AMBUSH = 0,
+        IGNORE_RESET_DATA = 0,
     },
 
     PREFERRED_OPTIONS_LASTITEM = CollectibleType.COLLECTIBLE_BREAKFAST,

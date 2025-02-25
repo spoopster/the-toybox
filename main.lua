@@ -51,6 +51,7 @@ local mod_files = {
     "scripts.fortnite funnies.retro mode",
     --"scripts.fortnite funnies.yes",
     --"scripts.fortnite funnies.black_souls",
+    --"scripts.fortnite funnies.deja_vu",
 
     --"scripts.test",
 }
