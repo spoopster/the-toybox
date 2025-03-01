@@ -36,7 +36,9 @@ local function playerTakeDMGFromCharm(_, p, dmg, flags, source, cooldown)
     if(not p:HasCollectible(mod.COLLECTIBLE_LOVE_LETTER)) then return true end
 
     local dmgSource = source.Entity
-    if(dmgSource and dmgSource:HasEntityFlags(EntityFlag.FLAG_CHARM) and not dmgSource:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
+    if(not dmgSource) then return end
+
+    if(dmgSource:HasEntityFlags(EntityFlag.FLAG_CHARM) and not dmgSource:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
         if(p:GetDamageCooldown()==0) then
             p:SetMinDamageCooldown(CHARM_INVINCIBILITY)
             sfx:Play(SoundEffect.SOUND_KISS_LIPS1)

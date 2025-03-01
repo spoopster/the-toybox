@@ -2046,7 +2046,8 @@ local PILLS = {
     [mod.PILL_HEARTBURN] = {
         Name = "Heartburn",
         Description = {
-            "{{Timer}} Reduces all healing by half a heart for the room",
+            "{{Timer}} You are on fire for the next 30 seconds",
+            "{{Burning}} While on fire, take damage every second while standing still"
         }
     },
     [mod.PILL_COAGULANT] = {
@@ -2188,10 +2189,13 @@ local EXTRA_PILL_MODIFIERS = {
             },
         },
         [mod.PILL_HEARTBURN] = {
-            DescriptionAppend = {
+            DescriptionModifiers = {
                 {
-                    DescriptionToAdd = {
-                        "You cannot gain any health or heart containers this room",
+                    TextToModify = {
+                        {
+                            Old = "every second",
+                            New = "every {{ColorToyboxHorsePill}}half a second{{CR}}"
+                        }
                     },
                 },
             },
