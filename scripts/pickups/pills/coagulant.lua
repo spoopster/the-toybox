@@ -7,7 +7,14 @@ local HORSE_INVINCIBILITY = 3*60
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
 
-    mod:setEntityData(player, "COAGULANT_MODE", (isHorse and 2 or 1))
+    for i=1, (isHorse and 3 or 1) do
+        local pos = Vector.FromAngle(math.random(360))*4
+        local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, 0, player.Position, pos, player):ToFamiliar()
+        clot.Parent = player
+        clot.Player = player
+
+        clot:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+    end
 
     sfx:Play(SoundEffect.SOUND_POWERUP_SPEWER)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))

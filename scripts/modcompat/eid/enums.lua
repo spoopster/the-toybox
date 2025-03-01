@@ -2053,7 +2053,7 @@ local PILLS = {
     [mod.PILL_COAGULANT] = {
         Name = "Coagulant",
         Description = {
-            "The next hit you take is reduced by half a heart",
+            "Spawns a blood clot",
         }
     },
     [mod.PILL_FENT] = {
@@ -2201,19 +2201,12 @@ local EXTRA_PILL_MODIFIERS = {
             },
         },
         [mod.PILL_COAGULANT] = {
-            DescriptionAppend = {
-                {
-                    DescriptionToAdd = {
-                        "The next time you take damage, gain 3 seconds of invincibility",
-                    },
-                },
-            },
             DescriptionModifiers = {
                 {
                     TextToModify = {
                         {
-                            Old = "reduced by half a heart",
-                            New = "{{ColorToyboxHorsePill}}completely negated{{CR}}"
+                            Old = "a blood clot",
+                            New = "{{ColorToyboxHorsePill}}3{{CR}} blood clots"
                         }
                     },
                 },

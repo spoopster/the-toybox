@@ -44,7 +44,7 @@ local function reduceDuration(_, player)
     data.ATROPHY_DURATION = data.ATROPHY_DURATION or 0
     if(data.ATROPHY_DURATION>0) then
         data.ATROPHY_DURATION = data.ATROPHY_DURATION-1
-        if(data.ATROPHY_DURATION%5==0) then player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true) end
+        if(data.ATROPHY_DURATION%30==0) then player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true) end
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, reduceDuration, 0)
