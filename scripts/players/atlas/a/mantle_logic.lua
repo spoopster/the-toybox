@@ -1,6 +1,7 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
+---@param player EntityPlayer
 function mod:updateMantles(player)
     if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
@@ -49,6 +50,17 @@ function mod:updateMantles(player)
             end
 
             if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID) then player:ChangePlayerType(mod.PLAYER_TYPE.ATLAS_A) end
+
+            if(not mod:isBadMantle(trf)) then
+                local mantleDataTable = mod.MANTLE_DATA[mod:getMantleKeyFromId(trf)]
+
+                if(mantleDataTable.TRANSF_NAME and mantleDataTable.TRANSF_DESC) then
+                    Game():GetHUD():ShowItemText(mantleDataTable.TRANSF_NAME, mantleDataTable.TRANSF_DESC, false)
+                end
+
+                player:AnimateCard(mantleDataTable.CONSUMABLE_SUBTYPE, "Pickup")
+                sfx:Play(SoundEffect.SOUND_POWERUP_SPEWER)
+            end
 
             data.TRANSFORMATION = trf
             data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0

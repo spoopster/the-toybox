@@ -527,6 +527,9 @@ mod.MANTLE_DATA = {
                 
         ATLAS_DESC = "Useless",
         REG_DESC = "Rock and roll",
+
+        TRANSF_NAME = "Rock!",
+        TRANSF_DESC = "Useless",
     },
     POOP = {
         ID = 2,
@@ -537,8 +540,11 @@ mod.MANTLE_DATA = {
         HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
-        ATLAS_DESC = "More poops / Better poops",
+        ATLAS_DESC = "Flies on room clear + more poops",
         REG_DESC = "On-command diarrhea",
+
+        TRANSF_NAME = "Poop!",
+        TRANSF_DESC = "Poop healing + better poop drops",
     },
     BONE = {
         ID = 3,
@@ -549,8 +555,11 @@ mod.MANTLE_DATA = {
         HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
-        ATLAS_DESC = "Bones on kill, panic = sorrow",
+        ATLAS_DESC = "Bones on kill + bones when lost",
         REG_DESC = "Bone buddy + bones on kill",
+
+        TRANSF_NAME = "Bone!",
+        TRANSF_DESC = "Panic = sorrow",
     },
     DARK = {
         ID = 4,
@@ -561,8 +570,11 @@ mod.MANTLE_DATA = {
         HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
 
-        ATLAS_DESC = "DMG up + mass room damage / Dark aura",
+        ATLAS_DESC = "DMG up + room damage when lost",
         REG_DESC = "Mass floor damage",
+
+        TRANSF_NAME = "Dark!",
+        TRANSF_DESC = "Dark aura",
     },
     HOLY = {
         ID = 5,
@@ -574,8 +586,11 @@ mod.MANTLE_DATA = {
         HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
-        ATLAS_DESC = "Range up + sacred tears, flight + holy aura",
+        ATLAS_DESC = "Range up + sacred tears",
         REG_DESC = "Eternity + \"god\" tears",
+
+        TRANSF_NAME = "Holy!",
+        TRANSF_DESC = "Flight + holy aura",
     },
     SALT = {
         ID = 6,
@@ -587,8 +602,11 @@ mod.MANTLE_DATA = {
         HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
-        ATLAS_DESC = "Tears up / On-command salt chariot",
+        ATLAS_DESC = "Tears up",
         REG_DESC = "Temporary sorrow",
+
+        TRANSF_NAME = "Salt!",
+        TRANSF_DESC = "On-command salt chariot",
     },
     GLASS = {
         ID = 7,
@@ -601,6 +619,9 @@ mod.MANTLE_DATA = {
                 
         ATLAS_DESC = "DMG + shotspeed up + brittle protection",
         REG_DESC = "DMG up + fragility up",
+
+        TRANSF_NAME = "Glass!",
+        TRANSF_DESC = "DMG up + brittler protection",
     },
     METAL = {
         ID = 8,
@@ -613,6 +634,9 @@ mod.MANTLE_DATA = {
                 
         ATLAS_DESC = "Speed down + defense up",
         REG_DESC = "Tough skin",
+
+        TRANSF_NAME = "Metal!",
+        TRANSF_DESC = "Better defense",
     },
     GOLD = {
         ID = 9,
@@ -623,8 +647,11 @@ mod.MANTLE_DATA = {
         HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
         BREAK_SFX = mod.SOUND_EFFECT.ATLASA_METALBREAK,
                 
-        ATLAS_DESC = "Luck up + gold panic, penny tears",
+        ATLAS_DESC = "Luck up + gild when lost",
         REG_DESC = "Microtransactions",
+
+        TRANSF_NAME = "Gold!",
+        TRANSF_DESC = "Penny tears",
     },
 
     TAR = {
