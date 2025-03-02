@@ -29,13 +29,13 @@ local function useMantle(_, _, player, _)
     if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.DARK.ID)
     else
-        local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_DARK)
+        local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_DARK)
 
         mod:setExtraData("MANTLEDARK_USES", (mod:getExtraData("MANTLEDARK_USES") or 1)+1)
         hurtAllEnemies(DMG_TODEAL+Game():GetLevel():GetAbsoluteStage()*DMG_TO_DEAL_FLOOR)
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_DARK)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE.MANTLE_DARK)
 
 local function hurtNewRoomEnemies(_)
     local dmgToDeal = (DMG_TODEAL+Game():GetLevel():GetAbsoluteStage()*DMG_TO_DEAL_FLOOR)*(mod:getExtraData("MANTLEDARK_USES") or 0)
@@ -51,9 +51,9 @@ local function removeMantleUses(_)
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, removeMantleUses)
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_DARK] = true end
+if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE.MANTLE_DARK] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_DARK).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE.MANTLE_DARK).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

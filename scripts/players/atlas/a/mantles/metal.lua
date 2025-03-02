@@ -63,12 +63,12 @@ local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, fram
             elseif(flags & DamageFlag.DAMAGE_ACID~=0) then blockChance = 1 end
         end
 
-        local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_METAL)
+        local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_METAL)
         if(rng:RandomFloat()<blockChance) then
             player:SetMinDamageCooldown(BLOCK_DMGCOOLDOWN*(player:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
             player:SetColor(Color(0,0,0.5,1,0.9,0.9,1),10,0,true,false)
 
-            sfx:Play(mod.SFX_ATLASA_METALBLOCK)
+            sfx:Play(mod.SOUND_EFFECT.ATLASA_METALBLOCK)
 
             return false
         end

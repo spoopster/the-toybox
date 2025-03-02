@@ -77,14 +77,14 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 local function badsifbaf(_, pl)
     return 6
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, mod.PLAYER_ATLAS_A)
-mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, mod.PLAYER_ATLAS_A_TAR)
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, mod.PLAYER_TYPE.ATLAS_A)
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, mod.PLAYER_TYPE.ATLAS_A_TAR)
 
 local function bibidibabidibu(_, pl)
     return HealthType.DEFAULT
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, mod.PLAYER_ATLAS_A)
-mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, mod.PLAYER_ATLAS_A_TAR)
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, mod.PLAYER_TYPE.ATLAS_A)
+mod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, mod.PLAYER_TYPE.ATLAS_A_TAR)
 
 ---@param player EntityPlayer
 local function forceHealth(_, player)

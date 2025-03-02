@@ -48,12 +48,12 @@ function mod:updateMantles(player)
                 data.BIRTHRIGHT_TRANSFORMATION = mod.MANTLE_DATA.NONE.ID
             end
 
-            if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID) then player:ChangePlayerType(mod.PLAYER_ATLAS_A) end
+            if(data.TRANSFORMATION==mod.MANTLE_DATA.TAR.ID) then player:ChangePlayerType(mod.PLAYER_TYPE.ATLAS_A) end
 
             data.TRANSFORMATION = trf
             data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
         elseif(trf==mod.MANTLE_DATA.TAR.ID) then
-            player:ChangePlayerType(mod.PLAYER_ATLAS_A_TAR)
+            player:ChangePlayerType(mod.PLAYER_TYPE.ATLAS_A_TAR)
 
             data.TRANSFORMATION = mod.MANTLE_DATA.TAR.ID
             data.BIRTHRIGHT_TRANSFORMATION=mod.MANTLE_DATA.NONE.ID

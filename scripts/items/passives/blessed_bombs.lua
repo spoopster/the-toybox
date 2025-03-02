@@ -26,7 +26,7 @@ end
 ---@param pl EntityPlayer
 ---@param bomb EntityBomb
 local function playerPlaceBomb(_, pl, bomb)
-    if(not pl:HasCollectible(mod.COLLECTIBLE_BLESSED_BOMBS)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.BLESSED_BOMBS)) then return end
 
     bomb:SetExplosionCountdown(math.floor(bomb:GetExplosionCountdown()*EXPLOSION_TIME_MULT))
     mod:setEntityData(bomb, "BLESSED_BOMB_PLAYER", pl)
@@ -42,7 +42,7 @@ local function blessedBombUpdate(_, bomb)
 
     local blessedAura = mod:getEntityData(bomb, "BLESSED_BOMB_AURA")
     if(not (blessedAura and blessedAura:Exists())) then
-        blessedAura = Isaac.Spawn(1000,mod.EFFECT_AURA,mod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED,bomb.Position,Vector.Zero,pl):ToEffect()
+        blessedAura = Isaac.Spawn(1000,mod.EFFECT_VARIANT.AURA,mod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED,bomb.Position,Vector.Zero,pl):ToEffect()
         blessedAura.DepthOffset = -1000
         blessedAura:FollowParent(bomb)
         --blessedAura:GetSprite():GetLayer(0):GetBlendMode():SetMode(BlendType.NORMAL)
@@ -81,13 +81,13 @@ local function blessedAuraUpdate(_, effect)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, blessedAuraUpdate, mod.EFFECT_AURA)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, blessedAuraUpdate, mod.EFFECT_VARIANT.AURA)
 
 local function checkEnterExitBlessedRadius(_, pl)
     local data = mod:getEntityDataTable(pl)
 
     data.BLESSED_AURAS = 0
-    for _, effect in ipairs(Isaac.FindByType(1000,mod.EFFECT_AURA,mod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED)) do
+    for _, effect in ipairs(Isaac.FindByType(1000,mod.EFFECT_VARIANT.AURA,mod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED)) do
         effect = effect:ToEffect()
 
         local dist = effect.Scale*effect.Scale*BASE_AURA_RADIUS*BASE_AURA_RADIUS

@@ -117,7 +117,7 @@ function mod:addVirus(player, var, num)
     data.GIANTCAPSULE_VIRUSCOUNT[var] = math.max(data.GIANTCAPSULE_VIRUSCOUNT[var], 0)
 
     if(num>0) then
-        sfx:Play(mod.SFX_VIRUS_SPAWN)
+        sfx:Play(mod.SOUND_EFFECT.VIRUS_SPAWN)
     end
     player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
 end
@@ -125,7 +125,7 @@ end
 ---@param player EntityPlayer
 local function usePill(_, effect, player, flags, color)
     local rng = player:GetPillRNG(effect)
-    for _=1, player:GetCollectibleNum(mod.COLLECTIBLE_GIANT_CAPSULE) do
+    for _=1, player:GetCollectibleNum(mod.COLLECTIBLE.GIANT_CAPSULE) do
         local st = PILL_PICKER:PickOutcome(rng)
         mod:addVirus(player, st, 1)
     end
@@ -139,7 +139,7 @@ local function useCard(_, card, player, flags)
     local isObj = not (itemConf:IsCard() or itemConf:IsRune())
 
     local rng = player:GetCardRNG(card)
-    for _=1, player:GetCollectibleNum(mod.COLLECTIBLE_GIANT_CAPSULE) do
+    for _=1, player:GetCollectibleNum(mod.COLLECTIBLE.GIANT_CAPSULE) do
         local st = ((isObj and OBJECT_PICKER) or (isRune and RUNE_PICKER) or CARD_PICKER):PickOutcome(rng)
         mod:addVirus(player, st, 1)
     end
@@ -152,10 +152,10 @@ local function evalViruses(_, player)
 
     for st, val in pairs(data.GIANTCAPSULE_VIRUSCOUNT or {}) do
         player:CheckFamiliar(
-            mod.FAMILIAR_VIRUS,
+            mod.FAMILIAR_VARIANT.VIRUS,
             val,
-            player:GetCollectibleRNG(mod.COLLECTIBLE_GIANT_CAPSULE),
-            Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_GIANT_CAPSULE),
+            player:GetCollectibleRNG(mod.COLLECTIBLE.GIANT_CAPSULE),
+            Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.GIANT_CAPSULE),
             st
         )
 
@@ -174,10 +174,10 @@ local function virusInit(_, familiar)
     familiar:AddToOrbit(ORBIT_LAYER)
 
     if(familiar.Hearts==0) then
-        familiar.Hearts = VIRUS_LIFESPAN*(1+LIFESPAN_MULT*math.max(0, (familiar.Player:GetCollectibleNum(mod.COLLECTIBLE_GIANT_CAPSULE)-1)))
+        familiar.Hearts = VIRUS_LIFESPAN*(1+LIFESPAN_MULT*math.max(0, (familiar.Player:GetCollectibleNum(mod.COLLECTIBLE.GIANT_CAPSULE)-1)))
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, virusInit, mod.FAMILIAR_VIRUS)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, virusInit, mod.FAMILIAR_VARIANT.VIRUS)
 
 ---@param familiar EntityFamiliar
 local function virusUpdate(_, familiar)
@@ -218,7 +218,7 @@ local function virusUpdate(_, familiar)
                 end
             end
             tear:Update()
-            sfx:Play(mod.SFX_VIRUS_SHOOT, 0.5, 1, false, 0.95+rng:RandomFloat()*0.1, 0)
+            sfx:Play(mod.SOUND_EFFECT.VIRUS_SHOOT, 0.5, 1, false, 0.95+rng:RandomFloat()*0.1, 0)
 
             familiar.FireCooldown = fireCool
         end
@@ -247,11 +247,11 @@ local function virusUpdate(_, familiar)
 
         local col = (VIRUS_INFO[familiar.SubType] or VIRUS_INFO[0]).COLOR
         imp.Color = col or imp.Color
-        sfx:Play(mod.SFX_VIRUS_DIE)
+        sfx:Play(mod.SOUND_EFFECT.VIRUS_DIE)
 
         pl:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, virusUpdate, mod.FAMILIAR_VIRUS)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, virusUpdate, mod.FAMILIAR_VARIANT.VIRUS)
 --im bored
 

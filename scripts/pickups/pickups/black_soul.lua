@@ -32,7 +32,7 @@ function mod:addBlackSoulCounter(player, num)
     player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
 
     local plrhash = GetPtrHash(player)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_EVIL_SHADOW)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
         if(GetPtrHash(fam:ToFamiliar().Player)==plrhash) then
             local poof = Isaac.Spawn(1000,16,1,fam.Position,Vector.Zero,fam):ToEffect()
             poof.SpriteScale = Vector(1,1)*0.5
@@ -58,7 +58,7 @@ local function blackSoulInit(_, pickup)
 
     trail:Update()
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, blackSoulInit, mod.PICKUP_BLACK_SOUL)
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, blackSoulInit, mod.PICKUP_VARIANT.BLACK_SOUL)
 
 ---@param pickup EntityPickup
 local function blackSoulUpdate(_, pickup)
@@ -68,7 +68,7 @@ local function blackSoulUpdate(_, pickup)
         pickup.Velocity = pickup.Velocity*0.95
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, blackSoulUpdate, mod.PICKUP_BLACK_SOUL)
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, blackSoulUpdate, mod.PICKUP_VARIANT.BLACK_SOUL)
 
 local function blackSoulCollision(_, pickup, coll)
     if(coll.Type~=1) then return true end
@@ -86,7 +86,7 @@ local function blackSoulCollision(_, pickup, coll)
     pickup:Remove()
     return true
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.LATE, blackSoulCollision, mod.PICKUP_BLACK_SOUL)
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.LATE, blackSoulCollision, mod.PICKUP_VARIANT.BLACK_SOUL)
 
 local function soulTrailRender(_, effect, offset)
     local pickupParent = mod:getEntityData(effect, "BLACK_SOUL_PARENT")
@@ -105,7 +105,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, soulTrailRender, EffectVaria
 ---@param player EntityPlayer
 local function evalSpirits(_, player, flag)
     local data = mod:getEntityDataTable(player)
-    player:CheckFamiliar(mod.FAMILIAR_EVIL_SHADOW, mod:getBlackSpiritNum(player), player:GetCardRNG(mod.CONSUMABLE_MANTLE_DARK), nil)
+    player:CheckFamiliar(mod.FAMILIAR_VARIANT.EVIL_SHADOW, mod:getBlackSpiritNum(player), player:GetCardRNG(mod.CONSUMABLE.MANTLE_DARK), nil)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalSpirits, CacheFlag.CACHE_FAMILIARS)
 
@@ -130,7 +130,7 @@ local function blackSpiritInit(_, fam)
     data.BLACKSPIRIT_RANDOMFLICKEROFFSET = Random()
     data.BLACKSPIRIT_DELAYEDPOS = {}
 
-    local otherSpirits = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_EVIL_SHADOW)
+    local otherSpirits = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.EVIL_SHADOW)
     if(#otherSpirits>0) then
         local lastSpirit, lastIdx
         local playerHash = GetPtrHash(data.BLACKSPIRIT_DELAY_TARGET)
@@ -163,7 +163,7 @@ local function blackSpiritInit(_, fam)
     fam:GetSprite():Play("Idle", true)
     fam.DepthOffset = -100
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, blackSpiritInit, mod.FAMILIAR_EVIL_SHADOW)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, blackSpiritInit, mod.FAMILIAR_VARIANT.EVIL_SHADOW)
 
 ---@param fam EntityFamiliar
 local function blackSpiritUpdate(_, fam)
@@ -211,10 +211,10 @@ local function blackSpiritUpdate(_, fam)
         fam.Color = Color(1,1,1,alpha)
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, blackSpiritUpdate, mod.FAMILIAR_EVIL_SHADOW)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, blackSpiritUpdate, mod.FAMILIAR_VARIANT.EVIL_SHADOW)
 
 local function spiritNewRoom(_)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_EVIL_SHADOW)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
         flushSpiritQueue(fam:ToFamiliar())
     end
 
@@ -224,7 +224,7 @@ local function spiritNewRoom(_)
 
         if(data.BLACKSOUL_COUNTER and data.BLACKSOUL_COUNTER>0 and data.BLACKSOUL_GOTHIT and data.BLACKSOUL_GOTHIT>0) then
             local oldCount = data.BLACKSOUL_COUNTER
-            pl:CheckFamiliar(mod.FAMILIAR_EVIL_SHADOW, 0, mod:generateRng())
+            pl:CheckFamiliar(mod.FAMILIAR_VARIANT.EVIL_SHADOW, 0, mod:generateRng())
 
             data.BLACKSOUL_COUNTER = math.max(0, oldCount-data.BLACKSOUL_GOTHIT)
             pl:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
@@ -253,7 +253,7 @@ local function soulDamage(_, player, _, flags, source)
     mod:setEntityData(player, "BLACKSOUL_GOTHIT", mod:getEntityData(player, "BLACKSOUL_COUNTER"))
     local didEvilShadow = false
     local plrHash = GetPtrHash(player)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_EVIL_SHADOW)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
         fam = fam:ToFamiliar()
         if(GetPtrHash(fam.Player)==plrHash and fam.State==0) then
             didEvilShadow = true

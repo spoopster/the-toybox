@@ -17,7 +17,7 @@ local function trySpawnMicroBattery(_, player)
         end
     end
 
-    if(numUnchargedActives>0 and player:GetTrinketRNG(mod.TRINKET_LIMIT_BREAK):RandomFloat()<BATTERY_CHANCE*numUnchargedActives) then
+    if(numUnchargedActives>0 and player:GetTrinketRNG(mod.TRINKET.LIMIT_BREAK):RandomFloat()<BATTERY_CHANCE*numUnchargedActives) then
         local battery = Isaac.Spawn(5,90,2,Game():GetRoom():FindFreePickupSpawnPosition(player.Position,40),Vector.Zero,player):ToPickup()
     end
 end

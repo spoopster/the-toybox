@@ -40,7 +40,7 @@ local function destroyGlassMantles(_, player, mantle)
             }
         end
     end
-    sfx:Play(mod.SFX_ATLASA_GLASSBREAK)
+    sfx:Play(mod.SOUND_EFFECT.ATLASA_GLASSBREAK)
 
     local poof = Isaac.Spawn(1000,16,1,player.Position,Vector.Zero,nil):ToEffect()
     poof.Color = Color(1,1,1,1,0.5,0.5,0.5)
@@ -53,7 +53,7 @@ local function shatterMantles(_, player, dmg, flags, source, frames)
     if(not mod:isAtlasA(player)) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.GLASS.ID)) then return end
     local data = mod:getAtlasATable(player)
-    local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_GLASS)
+    local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_GLASS)
 
     if(rng:RandomFloat()>=SHATTER_CHANCE) then
         return
@@ -75,7 +75,7 @@ local function shatterMantles(_, player, dmg, flags, source, frames)
     end
     mod:updateMantles(player)
 
-    sfx:Play(mod.SFX_ATLASA_GLASSBREAK)
+    sfx:Play(mod.SOUND_EFFECT.ATLASA_GLASSBREAK)
 
     local poof = Isaac.Spawn(1000,16,1,player.Position,Vector.Zero,nil):ToEffect()
     poof.Color = Color(1,1,1,1,0.5,0.5,0.5)

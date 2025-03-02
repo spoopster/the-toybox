@@ -12,7 +12,7 @@ local CHARGEBAR_ALPHA = 0.4
 
 ---@param p EntityPlayer
 local function playerUpdate(_, p)
-    if(not p:HasCollectible(mod.COLLECTIBLE_SIGIL_OF_GREED)) then return end
+    if(not p:HasCollectible(mod.COLLECTIBLE.SIGIL_OF_GREED)) then return end
 
     local data = mod:getEntityDataTable(p)
 
@@ -21,7 +21,7 @@ local function playerUpdate(_, p)
 
         local eff = data.SIGIL_OF_GREED_EFFECTENTITY
         if(not (eff and eff:Exists())) then
-            eff = Isaac.Spawn(1000, mod.EFFECT_GREED_SIGIL_CHARGEBAR, 0, p.Position, Vector.Zero, p):ToEffect()
+            eff = Isaac.Spawn(1000, mod.EFFECT_VARIANT.GREED_SIGIL_CHARGEBAR, 0, p.Position, Vector.Zero, p):ToEffect()
             eff:FollowParent(p)
 
             eff:GetSprite():SetAnimation("Idle", true)
@@ -58,9 +58,9 @@ local function playerUpdate(_, p)
             sfx:Play(SoundEffect.SOUND_CASH_REGISTER, 0.7)
             sfx:Play(SoundEffect.SOUND_GOLD_HEART, 0.3)
             Game():ShakeScreen(5)
-            local rng = p:GetCollectibleRNG(mod.COLLECTIBLE_SIGIL_OF_GREED)
+            local rng = p:GetCollectibleRNG(mod.COLLECTIBLE.SIGIL_OF_GREED)
 
-            local eff = Isaac.Spawn(1000, mod.EFFECT_GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()
+            local eff = Isaac.Spawn(1000, mod.EFFECT_VARIANT.GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()
             eff.SpriteScale = Vector(1,1)*0.5
             eff:FollowParent(p)
             
@@ -213,4 +213,4 @@ local function chargebarUpdate(_, e)
 
     data.CHARGEBAR_STATEFRAME = (data.CHARGEBAR_STATEFRAME or 0)+1
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, chargebarUpdate, mod.EFFECT_GREED_SIGIL_CHARGEBAR)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, chargebarUpdate, mod.EFFECT_VARIANT.GREED_SIGIL_CHARGEBAR)

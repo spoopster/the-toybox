@@ -11,7 +11,7 @@ local FADE_DURATION = 5
 
 ---@param npc EntityNPC
 local function addFearAuraVisual(_, npc)
-    local aura = Isaac.Spawn(1000, mod.EFFECT_AURA, mod.EFFECT_AURA_SUBTYPE.ENEMY_FEAR, npc.Position, Vector.Zero, npc):ToEffect()
+    local aura = Isaac.Spawn(1000, mod.EFFECT_VARIANT.AURA, mod.EFFECT_AURA_SUBTYPE.ENEMY_FEAR, npc.Position, Vector.Zero, npc):ToEffect()
     aura.DepthOffset = -1000
     aura:FollowParent(npc)
     aura:GetSprite():GetLayer(0):GetBlendMode():SetMode(BlendType.OVERLAY)
@@ -95,4 +95,4 @@ local function fearAuraLogic(_, effect)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fearAuraLogic, mod.EFFECT_AURA)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fearAuraLogic, mod.EFFECT_VARIANT.AURA)

@@ -19,7 +19,7 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_MUSCLE_ATROPHY)
+mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.MUSCLE_ATROPHY)
 
 local function cacheEval(_, player, flag)
     local data = mod:getEntityDataTable(player)

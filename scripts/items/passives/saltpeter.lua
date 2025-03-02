@@ -13,7 +13,7 @@ local EXPLODE_COLOR = Color(1.25,1.25,1.2,1,0.12,0.12,0.09)
 local function dealAOEdmg(_, ent, dmg, flags, source, cooldown)
     if(flags & DamageFlag.DAMAGE_CLONES ~= 0) then return end
 
-    local numSaltpeters = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE_SALTPETER)
+    local numSaltpeters = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.SALTPETER)
     if(numSaltpeters<=0) then return end
 
     local dmgMult = AOE_DMG_MULT*numSaltpeters
@@ -29,7 +29,7 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, dealAOEdmg)
 
 ---@param player EntityPlayer
 local function getTriggerChance(player, chancemult)
-    local itemNum = player:GetCollectibleNum(mod.COLLECTIBLE_SALTPETER)
+    local itemNum = player:GetCollectibleNum(mod.COLLECTIBLE.SALTPETER)
     if(itemNum<=0) then return 0 end
     return chancemult*math.min(1, EXPLODE_CHANCE+(itemNum-1)*EXPLODE_STACK_CHANCE)
 end
@@ -48,8 +48,8 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, saltpeterExplode)
 ---@param tear EntityTear
 ---@param player EntityPlayer
 local function saltFireTear(_, tear, player, isLudo)
-    if(not player:HasCollectible(mod.COLLECTIBLE_SALTPETER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_SALTPETER)
+    if(not player:HasCollectible(mod.COLLECTIBLE.SALTPETER)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.SALTPETER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, (isLudo and 0.75 or 1))) then return end
 
@@ -70,8 +70,8 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.RESET_LUDOVICO_DATA, resetLudoData)
 ---@param bomb EntityBomb
 ---@param player EntityPlayer
 local function saltFireBomb(_, bomb, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_SALTPETER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_SALTPETER)
+    if(not player:HasCollectible(mod.COLLECTIBLE.SALTPETER)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.SALTPETER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, 1.5)) then return end
 
@@ -103,8 +103,8 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, saltCopyScatterData
 ---@param rocket EntityEffect
 ---@param player EntityPlayer
 local function saltFireRocket(_, rocket, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_SALTPETER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_SALTPETER)
+    if(not player:HasCollectible(mod.COLLECTIBLE.SALTPETER)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.SALTPETER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, 1.5)) then return end
 
@@ -138,8 +138,8 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ROCKET_EXPLODE, saltRocketExplode)
 local function postLaserDamage(_, dmgtype, player, ent, dmg, flags)
     if(not (dmgtype==mod.DAMAGE_TYPE.LASER or dmgtype==mod.DAMAGE_TYPE.KNIFE)) then return end
 
-    if(not player:HasCollectible(mod.COLLECTIBLE_SALTPETER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_SALTPETER)
+    if(not player:HasCollectible(mod.COLLECTIBLE.SALTPETER)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.SALTPETER)
     if(rng:RandomFloat()>=getTriggerChance(player, 0.8)) then return end
 
     Isaac.Explode(bomb.Position, player, EXPLODE_DMG)

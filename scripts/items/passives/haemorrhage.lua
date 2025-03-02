@@ -11,12 +11,12 @@ local function addHaemorrhage(_, item, _, firstTime, _, _, player)
 
     player:AddBoneHearts(BONEHEART_ADD)
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, mod.COLLECTIBLE_HEMORRHAGE)
+mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, mod.COLLECTIBLE.HEMORRHAGE)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_HEMORRHAGE)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.HEMORRHAGE)) then return end
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
         local lerpFloat = (mod:getEntityData(player, "HAEMORRHAGE_COUNTDOWN") or 0)/INTENSITY_DURATION
@@ -28,7 +28,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param pl EntityPlayer
 local function hemorrhageEffectCheck(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE_HEMORRHAGE)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.HEMORRHAGE)) then return end
 
     local data = mod:getEntityDataTable(pl)
     data.HAEMORRHAGE_COUNTDOWN = (data.HAEMORRHAGE_COUNTDOWN or 0)
@@ -48,7 +48,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, hemorrhageEffectCheck)
 
 ---@param player Entity
 local function increaseIntensity(_, player, _, flags, source)
-    if(not player:ToPlayer():HasCollectible(mod.COLLECTIBLE_HEMORRHAGE)) then return end
+    if(not player:ToPlayer():HasCollectible(mod.COLLECTIBLE.HEMORRHAGE)) then return end
 
     mod:setEntityData(player:ToPlayer(), "HAEMORRHAGE_COUNTDOWN", INTENSITY_DURATION)
 end

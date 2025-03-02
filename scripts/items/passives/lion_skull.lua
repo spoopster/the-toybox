@@ -11,9 +11,9 @@ local ENUM_DMG_DECREASE = 0.15
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_LION_SKULL)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.LION_SKULL)) then return end
 
-    local mult = player:GetCollectibleNum(mod.COLLECTIBLE_LION_SKULL)
+    local mult = player:GetCollectibleNum(mod.COLLECTIBLE.LION_SKULL)
     local bonus = mod:getEntityData(player, "LION_SKULL_MARKS") or 0
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
@@ -30,8 +30,8 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 local function increaseLionMark(_)
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        if(pl:HasCollectible(mod.COLLECTIBLE_LION_SKULL)) then
-            local mult = pl:GetCollectibleNum(mod.COLLECTIBLE_LION_SKULL)
+        if(pl:HasCollectible(mod.COLLECTIBLE.LION_SKULL)) then
+            local mult = pl:GetCollectibleNum(mod.COLLECTIBLE.LION_SKULL)
             local bonus = mod:getEntityData(pl, "LION_SKULL_MARKS") or 0
 
             if(bonus<0) then bonus = math.min(0, bonus+ENUM_MARKS_INCREASE_CATCHUP)

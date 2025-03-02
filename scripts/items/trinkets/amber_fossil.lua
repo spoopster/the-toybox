@@ -8,7 +8,7 @@ local function blueFlyInit(_, familiar)
 
     local pl = familiar.Player or Isaac.GetPlayer()
     local rng = familiar:GetDropRNG()
-    if(rng:RandomFloat()<LOCUST_CHANCE*pl:GetTrinketMultiplier(mod.TRINKET_AMBER_FOSSIL)) then
+    if(rng:RandomFloat()<LOCUST_CHANCE*pl:GetTrinketMultiplier(mod.TRINKET.AMBER_FOSSIL)) then
         local sub = rng:RandomInt(5)+1
         local numLocusts = 1
         if(sub==LocustSubtypes.LOCUST_OF_CONQUEST) then numLocusts = rng:RandomInt(4)+1 end

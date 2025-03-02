@@ -37,7 +37,7 @@ end
 function mod:getChampionChance()
     local baseChance = mod:getVanillaChampionChance()
 
-    local numMilcoms = #Isaac.FindByType(1,0,mod.PLAYER_MILCOM_A)
+    local numMilcoms = #Isaac.FindByType(1,0,mod.PLAYER_TYPE.MILCOM_A)
     baseChance = baseChance*(1+mod.MILCOM_CHAMPION_CHANCE_INC*numMilcoms)
     --print(baseChance)
 

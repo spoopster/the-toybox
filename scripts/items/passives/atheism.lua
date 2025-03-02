@@ -2,14 +2,14 @@ local mod = MilcomMOD
 
 local DEVILCHANCE_INCREASE = 0.15
 local function getDevilDealChance(_, chance)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_ATHEISM)) then return end
-    return chance+(DEVILCHANCE_INCREASE*PlayerManager.GetNumCollectibles(mod.COLLECTIBLE_ATHEISM)-0.01)
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.ATHEISM)) then return end
+    return chance+(DEVILCHANCE_INCREASE*PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.ATHEISM)-0.01)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_DEVIL_APPLY_ITEMS, getDevilDealChance)
 
 
 local function replaceWithAtheismDeal(_)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_ATHEISM)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.ATHEISM)) then return end
 
     local level = Game():GetLevel()
     local st = RoomSubType.TREASURE_OPTIONS
@@ -37,7 +37,7 @@ mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_DOOR_UPDATE, unlockAtheismDealD
 local statsSprite = Sprite("gfx/ui/hudstats2.anm2", true)
 statsSprite:Play("Idle", true)
 local function renderAtheismDealIcon(_)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_ATHEISM)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.ATHEISM)) then return end
     if(not Game():GetHUD():IsVisible()) then return end
 
     local pos = Vector(20,12)*Options.HUDOffset + Vector(0,160)
@@ -80,19 +80,19 @@ local function addAtheism(_, _, _, firstTime, _, _, pl)
         replaceWithAtheismDeal()
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addAtheism, mod.COLLECTIBLE_ATHEISM)
+mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addAtheism, mod.COLLECTIBLE.ATHEISM)
 
 ---@param pl EntityPlayer
 local function removeAtheism(_, pl)
     pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, -1)
 end
-mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, removeAtheism, mod.COLLECTIBLE_ATHEISM)
+mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, removeAtheism, mod.COLLECTIBLE.ATHEISM)
 
 ---@param pl EntityPlayer
 local function addDualitiesOnInit(_, pl)
     if(pl.FrameCount~=0) then return end
 
-    local atheismNum = pl:GetCollectibleNum(mod.COLLECTIBLE_ATHEISM)
+    local atheismNum = pl:GetCollectibleNum(mod.COLLECTIBLE.ATHEISM)
     if(atheismNum==0) then return end
 
     pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, atheismNum)
@@ -101,7 +101,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, addDualitiesOnInit)
 
 ---@param pl EntityPlayer
 local function checkInnateDuality(_, pl)
-    if(pl:HasCollectible(mod.COLLECTIBLE_ATHEISM) and pl:GetCollectibleNum(CollectibleType.COLLECTIBLE_DUALITY)<=pl:GetCollectibleNum(mod.COLLECTIBLE_ATHEISM)) then
+    if(pl:HasCollectible(mod.COLLECTIBLE.ATHEISM) and pl:GetCollectibleNum(CollectibleType.COLLECTIBLE_DUALITY)<=pl:GetCollectibleNum(mod.COLLECTIBLE.ATHEISM)) then
         local dualityConfig = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_DUALITY)
         if(pl:IsItemCostumeVisible(dualityConfig, PlayerSpriteLayer.SPRITE_GLOW)) then
             pl:RemoveCostume(dualityConfig)

@@ -50,9 +50,9 @@ end
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_PLASMA_GLOBE)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.PLASMA_GLOBE)) then return end
 
-    local mult = player:GetCollectibleNum(mod.COLLECTIBLE_PLASMA_GLOBE)
+    local mult = player:GetCollectibleNum(mod.COLLECTIBLE.PLASMA_GLOBE)
     player.ShotSpeed = player.ShotSpeed+SHOTSPEED_UP*mult
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SHOTSPEED)
@@ -60,7 +60,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SHOTS
 ---@param tear EntityTear
 local function electricTearUpdate(_, tear)
     local player = getPlayerForEnt(tear)
-    if(not (player and player:HasCollectible(mod.COLLECTIBLE_PLASMA_GLOBE))) then return end
+    if(not (player and player:HasCollectible(mod.COLLECTIBLE.PLASMA_GLOBE))) then return end
 
     local laserCountdown = (mod:getEntityData(tear, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
     if(laserCountdown>0) then
@@ -84,7 +84,7 @@ local function electricLaserUpdate(_, laser)
     if(mod:getEntityData(laser, "DISABLE_PLASMA_TRIGGER")==0) then return end
 
     local player = getPlayerForEnt(laser)
-    if(not (player and player:HasCollectible(mod.COLLECTIBLE_PLASMA_GLOBE))) then return end
+    if(not (player and player:HasCollectible(mod.COLLECTIBLE.PLASMA_GLOBE))) then return end
 
     local laserCountdown = (mod:getEntityData(laser, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
     if(laserCountdown>0) then
@@ -118,7 +118,7 @@ mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, electricLaserUpdate)
 ---@param knife EntityKnife
 local function electricKnifeUpdate(_, knife)
     local player = getPlayerForEnt(knife)
-    if(not (player and player:HasCollectible(mod.COLLECTIBLE_PLASMA_GLOBE))) then return end
+    if(not (player and player:HasCollectible(mod.COLLECTIBLE.PLASMA_GLOBE))) then return end
 
     if(not (knife:IsFlying() or knife:GetIsSwinging() or knife:GetIsSpinAttack())) then return end
 
@@ -142,7 +142,7 @@ mod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, electricKnifeUpdate)
 ---@param bomb EntityBomb
 local function electricBombUpdate(_, bomb)
     local player = getPlayerForEnt(bomb)
-    if(not (player and player:HasCollectible(mod.COLLECTIBLE_PLASMA_GLOBE))) then return end
+    if(not (player and player:HasCollectible(mod.COLLECTIBLE.PLASMA_GLOBE))) then return end
 
     local laserCountdown = (mod:getEntityData(bomb, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
     if(laserCountdown>0) then
@@ -178,9 +178,9 @@ local function postNewRoom(_)
 
             for i=0, Game():GetNumPlayers()-1 do
                 local p = Isaac.GetPlayer(i)
-                local tMult = p:GetTrinketMultiplier(mod.TRINKET_PLASMA_GLOBE)
+                local tMult = p:GetTrinketMultiplier(mod.TRINKET.PLASMA_GLOBE)
 
-                if(tMult>0 and p:GetTrinketRNG(mod.TRINKET_PLASMA_GLOBE):RandomFloat()<mod:getLuckAffectedChance(p.Luck, ELECTRIFIED_CHANCE, ELECTRIFIED_MAXLUCK, ELECTRIFIED_MAXCHANCE)) then
+                if(tMult>0 and p:GetTrinketRNG(mod.TRINKET.PLASMA_GLOBE):RandomFloat()<mod:getLuckAffectedChance(p.Luck, ELECTRIFIED_CHANCE, ELECTRIFIED_MAXLUCK, ELECTRIFIED_MAXCHANCE)) then
                     willElectrify = {p,tMult}
                     break
                 end
@@ -230,7 +230,7 @@ end
 ---@param tear EntityTear
 ---@param player EntityPlayer
 local function fireMagnetTear(_, tear, player)
-    if(player:GetCollectibleRNG(mod.COLLECTIBLE_PLASMA_GLOBE):RandomFloat()<0.025) then
+    if(player:GetCollectibleRNG(mod.COLLECTIBLE.PLASMA_GLOBE):RandomFloat()<0.025) then
         tear.Velocity = tear.Velocity*0.33
         tear.FallingAcceleration = -0.1
         tear:AddTearFlags(TearFlags.TEAR_PIERCING | TearFlags.TEAR_BOUNCE)

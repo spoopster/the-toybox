@@ -14,7 +14,7 @@ POOL_PICKER:AddOutcomeWeight(ItemPoolType.POOL_RED_CHEST, 1)
 local function tryReplacePool(_, pool, dec, seed)
     if(CANCEL_CHECK_EFFECT) then return end
 
-    local totalEulogyNum = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE_CURSED_EULOGY)
+    local totalEulogyNum = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.CURSED_EULOGY)
     if(totalEulogyNum<=0) then return end
 
     local rng = mod:generateRng(seed)

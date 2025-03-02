@@ -20,10 +20,10 @@ local BFFS_BONE_DMG = 4
 ---@param player EntityPlayer
 local function checkFamiliars(_, player, cacheFlag)
     player:CheckFamiliar(
-        mod.FAMILIAR_BONE_BOY,
-        player:GetCollectibleNum(mod.COLLECTIBLE_BONE_BOY)+player:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE_BONE_BOY),
-        player:GetCollectibleRNG(mod.COLLECTIBLE_BONE_BOY),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_BONE_BOY)
+        mod.FAMILIAR_VARIANT.BONE_BOY,
+        player:GetCollectibleNum(mod.COLLECTIBLE.BONE_BOY)+player:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.BONE_BOY),
+        player:GetCollectibleRNG(mod.COLLECTIBLE.BONE_BOY),
+        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.BONE_BOY)
     )
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
@@ -82,7 +82,7 @@ local function boneBoyInit(_, familiar)
 
     replaceSpriteSheets(familiar)
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, boneBoyInit, mod.FAMILIAR_BONE_BOY)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, boneBoyInit, mod.FAMILIAR_VARIANT.BONE_BOY)
 
 ---@param familiar EntityFamiliar
 local function boneBoyUpdate(_, familiar)
@@ -242,7 +242,7 @@ local function boneBoyUpdate(_, familiar)
 
         if(sp:IsFinished("Crumple") and familiar.SubType & (1<<1)~=0) then
             sp:Play("LevelDown", true)
-            sfx:Play(mod.SFX_POWERDOWN)
+            sfx:Play(mod.SOUND_EFFECT.POWERDOWN)
         end
 
         if(sp:IsEventTriggered("LevelDown")) then
@@ -276,7 +276,7 @@ local function boneBoyUpdate(_, familiar)
     elseif(familiar.State==3) then
         if(sp:GetAnimation()~="LevelUp") then
             sp:Play("LevelUp", true)
-            sfx:Play(mod.SFX_POWERUP)
+            sfx:Play(mod.SOUND_EFFECT.POWERUP)
         end
         if(sp:IsEventTriggered("LevelUp")) then
             familiar.SubType = familiar.SubType | (1<<1)
@@ -293,7 +293,7 @@ local function boneBoyUpdate(_, familiar)
 
     data.BONEBOY_DAMAGE_COOLDOWN = math.max(0, (data.BONEBOY_DAMAGE_COOLDOWN or 0)-1)
 end
-mod:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_UPDATE, boneBoyUpdate, mod.FAMILIAR_BONE_BOY)
+mod:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_UPDATE, boneBoyUpdate, mod.FAMILIAR_VARIANT.BONE_BOY)
 
 ---@param familiar EntityFamiliar
 local function postBoneBoyUpdate(_, familiar)
@@ -301,11 +301,11 @@ local function postBoneBoyUpdate(_, familiar)
         familiar.SpriteScale = familiar.SpriteScale*0.8
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postBoneBoyUpdate, mod.FAMILIAR_BONE_BOY)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postBoneBoyUpdate, mod.FAMILIAR_VARIANT.BONE_BOY)
 
 ---@param ent EntityFamiliar
 local function bonerTakeDmg(_, ent, am, flags, source, frames)
-    if(ent.Variant~=mod.FAMILIAR_BONE_BOY) then return end
+    if(ent.Variant~=mod.FAMILIAR_VARIANT.BONE_BOY) then return end
     local data = mod:getEntityDataTable(ent)
     if(ent.HitPoints<=1 or (data.BONEBOY_DAMAGE_COOLDOWN or 0)>0) then return false end
 
@@ -324,7 +324,7 @@ end
 mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.IMPORTANT, bonerTakeDmg, EntityType.ENTITY_FAMILIAR)
 
 local function useBookOfTheDead(_, item, rng, player, flags, slot, vdata)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_BONE_BOY)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.BONE_BOY)) do
         fam = fam:ToFamiliar()
 
         if(fam.State==1) then

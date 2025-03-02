@@ -23,4 +23,4 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     sfx:Play(SoundEffect.SOUND_POWERUP_SPEWER)
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_I_BELIEVE)
+mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.I_BELIEVE)

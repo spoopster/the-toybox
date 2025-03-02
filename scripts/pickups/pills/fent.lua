@@ -21,7 +21,7 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play(SoundEffect.SOUND_POWERUP_SPEWER)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_FENT)
+mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.FENT)
 
 ---@param player EntityPlayer
 local function reduceEffect(_, player)

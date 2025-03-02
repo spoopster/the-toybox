@@ -13,21 +13,21 @@ local tellerOutcomes = {
         local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,350,0,pos,Vector.Zero,player):ToPickup()
 
-        player:AnimateCollectible(mod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
+        player:AnimateCollectible(mod.COLLECTIBLE.PORTABLE_TELLER, "UseItem")
     end,
     ---@param player EntityPlayer
     [2] = function(player) -- SOUL HEART
         local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,10,3,pos,Vector.Zero,player):ToPickup()
 
-        player:AnimateCollectible(mod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
+        player:AnimateCollectible(mod.COLLECTIBLE.PORTABLE_TELLER, "UseItem")
     end,
     ---@param player EntityPlayer
     [3] = function(player) -- CARD
         local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,300,0,pos,Vector.Zero,player):ToPickup()
 
-        player:AnimateCollectible(mod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
+        player:AnimateCollectible(mod.COLLECTIBLE.PORTABLE_TELLER, "UseItem")
     end,
 }
 local tellerPicker = WeightedOutcomePicker()
@@ -50,15 +50,15 @@ local function useTeller(_, item, rng, player, flags, slot, vdata)
         ShowAnim = false,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useTeller, mod.COLLECTIBLE_PORTABLE_TELLER)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, useTeller, mod.COLLECTIBLE.PORTABLE_TELLER)
 
 ---@param player EntityPlayer
 local function playerUpdate(_, player)
     if(not mod:playerHasLimitBreak(player)) then
-        if(player:HasCollectible(mod.COLLECTIBLE_PORTABLE_TELLER)) then
+        if(player:HasCollectible(mod.COLLECTIBLE.PORTABLE_TELLER)) then
             for _, slot in pairs(ActiveSlot) do
-                if(player:GetActiveItem(slot)==mod.COLLECTIBLE_PORTABLE_TELLER) then
-                    player:RemoveCollectible(mod.COLLECTIBLE_PORTABLE_TELLER, true, slot, true)
+                if(player:GetActiveItem(slot)==mod.COLLECTIBLE.PORTABLE_TELLER) then
+                    player:RemoveCollectible(mod.COLLECTIBLE.PORTABLE_TELLER, true, slot, true)
                     player:AddCollectible(CollectibleType.COLLECTIBLE_PORTABLE_SLOT, 0, false, slot, 0)
                 end
             end
@@ -71,8 +71,8 @@ local function playerUpdate(_, player)
         local slotsToCheck = { ActiveSlot.SLOT_PRIMARY, ActiveSlot.SLOT_POCKET }
         for _, slot in ipairs(slotsToCheck) do
             local itemInSlot = player:GetActiveItem(slot)
-            if(itemInSlot==CollectibleType.COLLECTIBLE_PORTABLE_SLOT or itemInSlot==mod.COLLECTIBLE_PORTABLE_TELLER) then
-                local itemToAdd = (itemInSlot==CollectibleType.COLLECTIBLE_PORTABLE_SLOT and mod.COLLECTIBLE_PORTABLE_TELLER or CollectibleType.COLLECTIBLE_PORTABLE_SLOT)
+            if(itemInSlot==CollectibleType.COLLECTIBLE_PORTABLE_SLOT or itemInSlot==mod.COLLECTIBLE.PORTABLE_TELLER) then
+                local itemToAdd = (itemInSlot==CollectibleType.COLLECTIBLE_PORTABLE_SLOT and mod.COLLECTIBLE.PORTABLE_TELLER or CollectibleType.COLLECTIBLE_PORTABLE_SLOT)
                 player:RemoveCollectible(itemInSlot, true, slot, true)
                 player:AddCollectible(itemToAdd, 0, false, slot, 0)
             end

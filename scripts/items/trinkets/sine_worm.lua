@@ -9,8 +9,8 @@ local RANGE_UP = 1.5
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasTrinket(mod.TRINKET_SINE_WORM)) then return end
-    local mult = player:GetTrinketMultiplier(mod.TRINKET_SINE_WORM)
+    if(not player:HasTrinket(mod.TRINKET.SINE_WORM)) then return end
+    local mult = player:GetTrinketMultiplier(mod.TRINKET.SINE_WORM)
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
         mod:addBasicTearsUp(player, TEARS_UP*mult)
@@ -52,7 +52,7 @@ local function postTearInit(_, tear)
     local player = (tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())
     if(not player) then return end
 
-    local mult = player:GetTrinketMultiplier(mod.TRINKET_SINE_WORM)
+    local mult = player:GetTrinketMultiplier(mod.TRINKET.SINE_WORM)
     if(mult<=0) then return end
 
     mod:setEntityData(tear, "IS_SINE_WORM_TEAR", mult)
@@ -61,7 +61,7 @@ mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, postTearInit)
 ---@param tear EntityTear
 ---@param player EntityPlayer
 local function fireSineTear(_, tear, player, isLudo)
-    local mult = player:GetTrinketMultiplier(mod.TRINKET_SINE_WORM)
+    local mult = player:GetTrinketMultiplier(mod.TRINKET.SINE_WORM)
     if(mult<=0) then return end
 
     mod:setEntityData(tear, "IS_SINE_WORM_TEAR", mult)
@@ -75,7 +75,7 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.RESET_LUDOVICO_DATA, resetLudoData)
 ---@param bomb EntityBomb
 ---@param player EntityPlayer
 local function fireSineBomb(_, bomb, player)
-    local mult = player:GetTrinketMultiplier(mod.TRINKET_SINE_WORM)
+    local mult = player:GetTrinketMultiplier(mod.TRINKET.SINE_WORM)
     if(mult<=0) then return end
 
     mod:setEntityData(bomb, "IS_SINE_WORM_TEAR", mult)
@@ -93,7 +93,7 @@ local function fireSineX(_, laser)
     local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
     if(not player) then return end
 
-    local mult = player:GetTrinketMultiplier(mod.TRINKET_SINE_WORM)
+    local mult = player:GetTrinketMultiplier(mod.TRINKET.SINE_WORM)
     if(mult<=0) then return end
 
     mod:setEntityData(laser, "IS_SINE_WORM_TEAR", mult)

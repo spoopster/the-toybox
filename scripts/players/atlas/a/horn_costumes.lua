@@ -35,7 +35,7 @@ mod:addHornCostume(
 
 ---@param pl EntityPlayer
 local function updateCostume(_, _, pl, _)
-    if(pl:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(pl:GetPlayerType()~=mod.PLAYER_TYPE.ATLAS_A) then return end
 
     mod:setEntityData(pl, "UPDATE_COSTUMES", true)
 end
@@ -44,7 +44,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_REMOVE_COSTUME, updateCostume)
 
 ---@param player EntityPlayer
 local function evaluateHorn(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_ATLAS_A) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_TYPE.ATLAS_A) then return end
     if(not mod:getEntityData(player, "UPDATE_COSTUMES")) then return end
     mod:setEntityData(player, "UPDATE_COSTUMES", nil)
 

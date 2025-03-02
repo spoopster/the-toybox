@@ -6,8 +6,8 @@ local DAMAGEUP = 1
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_EYESTRAIN)) then return end
-    local mult = player:GetCollectibleNum(mod.COLLECTIBLE_EYESTRAIN)
+    if(not player:HasCollectible(mod.COLLECTIBLE.EYESTRAIN)) then return end
+    local mult = player:GetCollectibleNum(mod.COLLECTIBLE.EYESTRAIN)
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
         mod:addBasicDamageUp(player, DAMAGEUP*mult)

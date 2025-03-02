@@ -37,10 +37,10 @@ end
 ---@param player EntityPlayer
 local function checkFamiliars(_, player, cacheFlag)
     player:CheckFamiliar(
-        mod.FAMILIAR_HYPNOS,
-        (player:HasCollectible(mod.COLLECTIBLE_MALICIOUS_BRAIN) and 1 or 0),
-        player:GetCollectibleRNG(mod.COLLECTIBLE_MALICIOUS_BRAIN),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_MALICIOUS_BRAIN)
+        mod.FAMILIAR_VARIANT.HYPNOS,
+        (player:HasCollectible(mod.COLLECTIBLE.MALICIOUS_BRAIN) and 1 or 0),
+        player:GetCollectibleRNG(mod.COLLECTIBLE.MALICIOUS_BRAIN),
+        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.MALICIOUS_BRAIN)
     )
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
@@ -61,7 +61,7 @@ local function postHypnosInit(_, familiar)
     data.BRAIN_ACTIVERAGELASER = nil
     data.STUPID_POS = false
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postHypnosInit, mod.FAMILIAR_HYPNOS)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postHypnosInit, mod.FAMILIAR_VARIANT.HYPNOS)
 
 ---@param familiar EntityFamiliar
 local function postHypnosUpdate(_, familiar)
@@ -195,10 +195,10 @@ local function postHypnosUpdate(_, familiar)
         familiar:GetSprite().Color:SetColorize(1,1,1,scaledframe-math.floor(scaledframe))
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postHypnosUpdate, mod.FAMILIAR_HYPNOS)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postHypnosUpdate, mod.FAMILIAR_VARIANT.HYPNOS)
 
 local function fuckYouStupidBitch(_)
-    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_HYPNOS)) do
+    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.HYPNOS)) do
         mod:setEntityData(ent, "STUPID_POS", true)
     end
 end
@@ -206,10 +206,10 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, fuckYouStupidBitch)
 
 ---@param player EntityPlayer
 local function triggerHypnosEffects(_, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_MALICIOUS_BRAIN)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.MALICIOUS_BRAIN)) then return end
 
     local pPtr = GetPtrHash(player)
-    for _, brain in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_HYPNOS)) do
+    for _, brain in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.HYPNOS)) do
         if(GetPtrHash(brain:ToFamiliar().Player)==pPtr) then
             local sprite = brain:GetSprite()
             local data = mod:getEntityDataTable(brain)
@@ -232,12 +232,12 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_DOUBLE_TAP, triggerHypnosEffect
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_MALICIOUS_BRAIN)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.MALICIOUS_BRAIN)) then return end
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
         local dmgMult = 1
         local pPtr = GetPtrHash(player)
-        for _, brain in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_HYPNOS)) do
+        for _, brain in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.HYPNOS)) do
             local adrCnt = (mod:getEntityData(brain, "BRAIN_ADRENALINECOUNTER") or 0)
             if(GetPtrHash(brain:ToFamiliar().Player)==pPtr and adrCnt>0) then
                 dmgMult = dmgMult*mod:lerp(ADRENEL_DMGMULT, 1, math.min(adrCnt/ADRENALE_DURATION, 1))
@@ -328,4 +328,4 @@ local function hypnoRender(_, familiar)
     f:DrawStringScaled(tostring(time).."s", pos.X-200,pos.Y+10,1,1,tColor,400, true)
     f:DrawStringScaled(tostring(familiar.CollisionDamage), pos.X-200, pos.Y+20,1,1,pColor,400,true)
 end
---mod:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, hypnoRender, mod.FAMILIAR_HYPNOS)
+--mod:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, hypnoRender, mod.FAMILIAR_VARIANT.HYPNOS)

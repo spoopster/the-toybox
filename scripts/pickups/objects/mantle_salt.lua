@@ -5,7 +5,7 @@ local function useMantle(_, _, player, _)
     if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.SALT.ID)
     else
-        local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_SALT)
+        local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_SALT)
         local conf = Isaac.GetItemConfig()
         local isOk = false
         local finalItem
@@ -29,11 +29,11 @@ local function useMantle(_, _, player, _)
         mod.HiddenItemManager:AddForRoom(player, finalItem, nil, 1, "TOYBOX")
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_SALT)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE.MANTLE_SALT)
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_SALT] = true end
+if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE.MANTLE_SALT] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_SALT).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE.MANTLE_SALT).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

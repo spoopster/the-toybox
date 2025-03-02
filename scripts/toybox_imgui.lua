@@ -214,7 +214,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddText("ToyboxUnlocksWindow", "", true, "")
 	end
 
-	addPlayerUnlocks(mod.PLAYER_ATLAS_A, "ATLAS",
+	addPlayerUnlocks(mod.PLAYER_TYPE.ATLAS_A, "ATLAS",
 		{
 			[CompletionType.BOSS_RUSH] = "Unlocks \"Rock Candy\".",
 			[CompletionType.MOMS_HEART] = "Doesn't unlock anything for now.",
@@ -232,7 +232,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		}
 	)
 
-	addPlayerUnlocks(mod.PLAYER_JONAS_A, "JONAS",
+	addPlayerUnlocks(mod.PLAYER_TYPE.JONAS_A, "JONAS",
 		{
 			[CompletionType.BOSS_RUSH] = "Unlocks \"Jonas' Lock\".",
 			[CompletionType.MOMS_HEART] = "Doesn't unlock anything for now.",

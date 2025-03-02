@@ -33,8 +33,8 @@ local function usePill(_, effect, player, flags, color)
             end
         end
 
-        local goodPills = dataTable.PILLS_GOOD or mod:getAllPillEffects(mod.PILL_PHDTYPE.GOOD)
-        local badPills = dataTable.PILLS_BAD or mod:getAllPillEffects(mod.PILL_PHDTYPE.BAD)
+        local goodPills = dataTable.PILLS_GOOD or mod:getAllPillEffects(mod.PHD_TYPE.GOOD)
+        local badPills = dataTable.PILLS_BAD or mod:getAllPillEffects(mod.PHD_TYPE.BAD)
         for col, pill in pairs(toReroll) do
             local chosenPill
             if(rng:RandomInt(2)==0) then
@@ -46,8 +46,8 @@ local function usePill(_, effect, player, flags, color)
             end
 
             dataTable.CUSTOM_PILL_POOL[col].DEFAULT = chosenPill
-            dataTable.CUSTOM_PILL_POOL[col].GOOD = mod:convertPhdPillEffect(nil, chosenPill, mod.PILL_PHDTYPE.GOOD, rng)
-            dataTable.CUSTOM_PILL_POOL[col].BAD = mod:convertPhdPillEffect(nil, chosenPill, mod.PILL_PHDTYPE.BAD, rng)
+            dataTable.CUSTOM_PILL_POOL[col].GOOD = mod:convertPhdPillEffect(nil, chosenPill, mod.PHD_TYPE.GOOD, rng)
+            dataTable.CUSTOM_PILL_POOL[col].BAD = mod:convertPhdPillEffect(nil, chosenPill, mod.PHD_TYPE.BAD, rng)
         end
 
         mod:unidentifyPillPool()
@@ -56,4 +56,4 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_DEMENTIA)
+mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.DEMENTIA)

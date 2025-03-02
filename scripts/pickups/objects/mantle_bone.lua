@@ -15,7 +15,7 @@ local function useMantle(_, _, player, _)
         sfx:Play(SoundEffect.SOUND_DEATH_BURST_BONE)
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_BONE)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE.MANTLE_BONE)
 
 ---@param player EntityPlayer
 local function postNewRoom(_, player)
@@ -27,7 +27,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postNewRoom)
 local function postNpcDeath(_, npc)
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        local rng = pl:GetCardRNG(mod.CONSUMABLE_MANTLE_BONE)
+        local rng = pl:GetCardRNG(mod.CONSUMABLE.MANTLE_BONE)
         local data = mod:getEntityDataTable(pl)
         if(data.MANTLEBONE_ACTIVE and data.MANTLEBONE_ACTIVE>0) then
             for _=1, data.MANTLEBONE_ACTIVE do
@@ -38,9 +38,9 @@ local function postNpcDeath(_, npc)
 end
 mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, postNpcDeath)
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_BONE] = true end
+if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE.MANTLE_BONE] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_BONE).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE.MANTLE_BONE).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

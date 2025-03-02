@@ -3,7 +3,7 @@ local mod = MilcomMOD
 -- [[
 ---@param player EntityPlayer
 local function jumpOffset(_, player, offset)
-    if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_TYPE.MILCOM_A) then return end
     local renderMode = Game():GetRoom():GetRenderMode()
 
     local data = mod:getMilcomATable(player)

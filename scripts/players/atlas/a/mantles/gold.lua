@@ -36,7 +36,7 @@ local function mantleDestroyed(_, player, mantle)
         end
     end
 
-    local shatter = Isaac.Spawn(1000, mod.EFFECT_GOLDMANTLE_BREAK, 0, player.Position, Vector.Zero, player):ToEffect()
+    local shatter = Isaac.Spawn(1000, mod.EFFECT_VARIANT.GOLDMANTLE_BREAK, 0, player.Position, Vector.Zero, player):ToEffect()
     shatter.DepthOffset = 100
     shatter:GetSprite().PlaybackSpeed = 1.4
     shatter.SpriteOffset = Vector(0,-10)
@@ -50,7 +50,7 @@ local function mantleDestroyed(_, player, mantle)
     end
 
     sfx:Play(SoundEffect.SOUND_METAL_BLOCKBREAK)
-    sfx:Play(mod.SFX_ATLASA_METALBREAK, 1.4)
+    sfx:Play(mod.SOUND_EFFECT.ATLASA_METALBREAK, 1.4)
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 
@@ -59,4 +59,4 @@ local function updateGoldMantleShatter(_, effect)
     if(effect.FrameCount==0) then effect:GetSprite():Play("Idle", true) end
     if(effect:GetSprite():IsFinished("Idle")) then effect:Remove() end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateGoldMantleShatter, mod.EFFECT_GOLDMANTLE_BREAK)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateGoldMantleShatter, mod.EFFECT_VARIANT.GOLDMANTLE_BREAK)

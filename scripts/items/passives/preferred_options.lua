@@ -19,7 +19,7 @@ local function spawnNewItem(_)
     if(mod:getExtraData("PREFERRED_OPTIONS_MARKROOMFORCLEAR")~=1) then return end
     mod:setExtraData("PREFERRED_OPTIONS_MARKROOMFORCLEAR", 0)
 
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_PREFERRED_OPTIONS)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.PREFERRED_OPTIONS)) then return end
 
     local room = Game():GetRoom()
     if(room:GetType()~=RoomType.ROOM_BOSS) then return end

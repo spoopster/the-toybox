@@ -26,11 +26,13 @@ end
 --#endregion
 function mod:isAtlasA(player)
     local pt = player:GetPlayerType()
-    return (pt==mod.PLAYER_ATLAS_A or pt==mod.PLAYER_ATLAS_A_TAR)
+    return (pt==mod.PLAYER_TYPE.ATLAS_A or pt==mod.PLAYER_TYPE.ATLAS_A_TAR)
 end
 function mod:isAnyPlayerAtlasA()
-    for _, player in ipairs(Isaac.FindByType(1,0)) do
-        if(mod:isAtlasA(player:ToPlayer())) then return true end
+    for i=0, Game():GetNumPlayers()-1 do
+        if(mod:isAtlasA(Isaac.GetPlayer(i))) then
+            return true
+        end
     end
     return false
 end
@@ -185,7 +187,7 @@ function mod:giveMantle(player, type)
 
         mod:updateMantles(player)
     end
-    --sfx:Play(mod.SFX_ATLASA_ROCKBREAK, 0.3)
+    --sfx:Play(mod.SOUND_EFFECT.ATLASA_ROCKBREAK, 0.3)
 end
 
 function mod:isBadMantle(mantle)

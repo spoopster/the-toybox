@@ -35,7 +35,7 @@ local function addNewBossRoom(_)
 
     local finalRoom
     while(#validRooms>0 and not finalRoom) do
-        local idx = Isaac.GetPlayer():GetCollectibleRNG(mod.COLLECTIBLE_BLOODY_MAP):RandomInt(#validRooms)+1
+        local idx = Isaac.GetPlayer():GetCollectibleRNG(mod.COLLECTIBLE.BLOODY_MAP):RandomInt(#validRooms)+1
     
         finalRoom = level:TryPlaceRoom(newBossRoom, validRooms[idx], -1, 0, true, true, false)
         table.remove(validRooms, idx)
@@ -43,7 +43,7 @@ local function addNewBossRoom(_)
 
     print(finalRoom)
     --[[if(#validRooms>0) then
-        local idx = Isaac.GetPlayer():GetCollectibleRNG(mod.COLLECTIBLE_BLOODY_MAP):RandomInt(#validRooms)+1
+        local idx = Isaac.GetPlayer():GetCollectibleRNG(mod.COLLECTIBLE.BLOODY_MAP):RandomInt(#validRooms)+1
 
         level:TryPlaceRoom(newBossRoom, validRooms[idx], -1, 0, true, true, false)
     end] ]

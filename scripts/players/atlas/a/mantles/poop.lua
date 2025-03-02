@@ -35,7 +35,7 @@ local function addPoopFlies(_, player)
     if(not mod:isAtlasA(player)) then return end
     local data = mod:getAtlasATable(player)
     local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.POOP.ID)
-    local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_POOP)
+    local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_POOP)
 
     for _=1, numMantles do
         if(rng:RandomFloat()<MANTLE_FLY_CHANCE) then player:AddBlueFlies(MANTLE_FLY_NUM, player.Position, nil) end

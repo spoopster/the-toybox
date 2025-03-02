@@ -86,7 +86,7 @@ local function getSpriteDataForConsumable(id, isPill, isSmall)
 end
 
 local function getMaxInventorySlots(player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_PEZ_DISPENSER)) then return 0 end
+    if(not player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then return 0 end
 
     local numSlots = MAXSLOTS
     if(player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)) then
@@ -203,10 +203,10 @@ local function takeDispenserConsumable(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, takeDispenserConsumable, mod.COLLECTIBLE_PEZ_DISPENSER)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, takeDispenserConsumable, mod.COLLECTIBLE.PEZ_DISPENSER)
 
 local function collectConsumable(_, player, pickup)
-    if(not player:HasCollectible(mod.COLLECTIBLE_PEZ_DISPENSER)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then return end
 
     if(pickup.Variant==PickupVariant.PICKUP_TAROTCARD) then
         addDispenserConsumable(player, pickup.SubType, false)
@@ -249,14 +249,14 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, removeExcessPickups)
 ---@param player EntityPlayer
 local function checkDropButton(_, player)
     if(EID) then
-        if(player:HasCollectible(mod.COLLECTIBLE_PEZ_DISPENSER)) then
+        if(player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then
             EID:addTextPosModifier(EID_OFFSET, EID_POS_OFFSET)
         else
             EID:removeTextPosModifier(EID_OFFSET)
         end
     end
 
-    if(not player:HasCollectible(mod.COLLECTIBLE_PEZ_DISPENSER)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then return end
 
     local dispenserInventory = validateDispenserInventory((mod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {}))
     for _, idx in pairs(PillCardSlot) do
@@ -299,7 +299,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_UPDATE, checkDropButton)
 
 local function renderInventory()
     local player = Isaac.GetPlayer()
-    if(not player:HasCollectible(mod.COLLECTIBLE_PEZ_DISPENSER)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then return end
     local dispenserInventory = (mod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {})
     local selectedIndex = mod:clamp(mod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1, 1, math.max(1, #dispenserInventory))
     mod:setEntityData(player, "PILLCRUSHER_SELECTED", selectedIndex)

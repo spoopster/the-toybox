@@ -8,10 +8,10 @@ local YANNY_SPAWN_CHANCE = 0.001--0.5
 ---@param player EntityPlayer
 local function checkFamiliars(_, player, cacheFlag)
     player:CheckFamiliar(
-        mod.FAMILIAR_SILK_BAG,
-        player:GetCollectibleNum(mod.COLLECTIBLE_SILK_BAG),
-        player:GetCollectibleRNG(mod.COLLECTIBLE_SILK_BAG),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_SILK_BAG)
+        mod.FAMILIAR_VARIANT.SILK_BAG,
+        player:GetCollectibleNum(mod.COLLECTIBLE.SILK_BAG),
+        player:GetCollectibleRNG(mod.COLLECTIBLE.SILK_BAG),
+        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.SILK_BAG)
     )
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
@@ -20,7 +20,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_
 local function silkBagInit(_, familiar)
     familiar:AddToFollowers()
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, silkBagInit, mod.FAMILIAR_SILK_BAG)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, silkBagInit, mod.FAMILIAR_VARIANT.SILK_BAG)
 
 ---@param familiar EntityFamiliar
 local function silkBagUpdate(_, familiar)
@@ -29,19 +29,19 @@ local function silkBagUpdate(_, familiar)
 
     familiar:FollowParent()
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, silkBagUpdate, mod.FAMILIAR_SILK_BAG)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, silkBagUpdate, mod.FAMILIAR_VARIANT.SILK_BAG)
 
 local function postRoomClear(_, waves)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_SILK_BAG)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.SILK_BAG)) do
         fam = fam:ToFamiliar()
         local pl = (fam.Player or Isaac.GetPlayer())
         if(fam.RoomClearCount%(pl:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) and BFFS_REQ or ROOMS_REQ)==FIRST_SPAWN_REQ) then
             fam:GetSprite():Play("Spawn", true)
-            local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE_SILK_BAG)
+            local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE.SILK_BAG)
             if(rng:RandomFloat()<YANNY_SPAWN_CHANCE) then
-                local yanny = Isaac.Spawn(5, 300, mod.CONSUMABLE_YANNY,Game():GetRoom():FindFreePickupSpawnPosition(fam.Position),Vector.Zero,fam):ToPickup()
+                local yanny = Isaac.Spawn(5, 300, mod.CONSUMABLE.YANNY,Game():GetRoom():FindFreePickupSpawnPosition(fam.Position),Vector.Zero,fam):ToPickup()
             else
-                local laurel = Isaac.Spawn(5, 300, mod.CONSUMABLE_LAUREL,Game():GetRoom():FindFreePickupSpawnPosition(fam.Position),Vector.Zero,fam):ToPickup()
+                local laurel = Isaac.Spawn(5, 300, mod.CONSUMABLE.LAUREL,Game():GetRoom():FindFreePickupSpawnPosition(fam.Position),Vector.Zero,fam):ToPickup()
             end
         end
     end

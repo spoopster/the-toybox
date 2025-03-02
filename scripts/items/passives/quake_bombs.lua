@@ -25,8 +25,8 @@ end
 ---@param pl EntityPlayer
 ---@param bomb EntityBomb
 local function fireQuakeBomb(_, bomb, pl, isScatter)
-    if(pl:HasCollectible(mod.COLLECTIBLE_QUAKE_BOMBS) and not isScatter) then
-        if(pl:GetCollectibleRNG(mod.COLLECTIBLE_QUAKE_BOMBS):RandomFloat()<FETUS_QUAKE_CHANCE) then
+    if(pl:HasCollectible(mod.COLLECTIBLE.QUAKE_BOMBS) and not isScatter) then
+        if(pl:GetCollectibleRNG(mod.COLLECTIBLE.QUAKE_BOMBS):RandomFloat()<FETUS_QUAKE_CHANCE) then
             mod:setEntityData(bomb, "QUAKE_BOMB", true)
             if(pl:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)) then
                 mod:setEntityData(bomb, "QUAKE_BOMBER_BOY", true)
@@ -48,7 +48,7 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, copyQuakeData)
 ---@param pl EntityPlayer
 ---@param bomb EntityBomb
 local function placeQuakeBomb(_, pl, bomb)
-    if(pl:HasCollectible(mod.COLLECTIBLE_QUAKE_BOMBS)) then
+    if(pl:HasCollectible(mod.COLLECTIBLE.QUAKE_BOMBS)) then
         mod:setEntityData(bomb, "QUAKE_BOMB", true)
         if(pl:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)) then
             mod:setEntityData(bomb, "QUAKE_BOMBER_BOY", true)

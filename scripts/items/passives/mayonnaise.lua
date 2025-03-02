@@ -8,14 +8,14 @@ local function addAtheism(_, _, _, firstTime, _, _, pl)
         pl:AddEternalHearts(1)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addAtheism, mod.COLLECTIBLE_MAYONAISE)
+mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addAtheism, mod.COLLECTIBLE.MAYONAISE)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_MAYONAISE)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.MAYONAISE)) then return end
 
-    local mult = player:GetCollectibleNum(mod.COLLECTIBLE_MAYONAISE)
+    local mult = player:GetCollectibleNum(mod.COLLECTIBLE.MAYONAISE)
 
     if(flag==CacheFlag.CACHE_SHOTSPEED) then
         player.ShotSpeed = player.ShotSpeed+SHOTSPEED_UP*mult

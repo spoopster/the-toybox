@@ -67,7 +67,7 @@ local function playerAttack(_, ent, weap, dir, cMod)
     local p = ent:ToPlayer()
     if(ent.Type==EntityType.ENTITY_FAMILIAR and ent:ToFamiliar().Player) then p = ent:ToFamiliar().Player:ToPlayer() end
 
-    if(p and p:HasCollectible(mod.COLLECTIBLE_TECH_IX)) then
+    if(p and p:HasCollectible(mod.COLLECTIBLE.TECH_IX)) then
         local cMod2 = 1
         local t = weap:GetWeaponType()
 

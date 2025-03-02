@@ -8,7 +8,7 @@ local function useMantle(_, _, player, _)
     if(mod:isAtlasA(player)) then
         mod:giveMantle(player, mod.MANTLE_DATA.GOLD.ID)
     else
-        local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_GOLD)
+        local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_GOLD)
 
         if(player:GetNumCoins()>=COINS_REMOVE) then
             sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
@@ -19,23 +19,23 @@ local function useMantle(_, _, player, _)
 
             if(rng:RandomFloat()<1-REMOVE_CHANCE) then
                 player:SetCard(1, player:GetCard(0))
-                player:SetCard(0, mod.CONSUMABLE_MANTLE_GOLD)
+                player:SetCard(0, mod.CONSUMABLE.MANTLE_GOLD)
             end
         else
             sfx:Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
 
             player:SetCard(1, player:GetCard(0))
-            player:SetCard(0, mod.CONSUMABLE_MANTLE_GOLD)
+            player:SetCard(0, mod.CONSUMABLE.MANTLE_GOLD)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_GOLD)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE.MANTLE_GOLD)
 
 
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_GOLD] = true end
+if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE.MANTLE_GOLD] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_GOLD).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE.MANTLE_GOLD).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

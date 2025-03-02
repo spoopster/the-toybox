@@ -11,4 +11,4 @@ local function gildedAppleUse(_, item, rng, player, flags, slot, vdata)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, gildedAppleUse, mod.COLLECTIBLE_GILDED_APPLE)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, gildedAppleUse, mod.COLLECTIBLE.GILDED_APPLE)

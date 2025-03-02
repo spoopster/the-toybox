@@ -34,7 +34,7 @@ local function toggleAutofire(_, player)
     if(not mod:isAtlasA(player)) then return end
     if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.SALT.ID)) then return end
     local data = mod:getAtlasATable(player)
-    local rng = player:GetCardRNG(mod.CONSUMABLE_MANTLE_SALT)
+    local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_SALT)
 
     data.SALT_CHARIOT_ENABLED = data.SALT_CHARIOT_ENABLED or 0
     if(data.SALT_CHARIOT_ENABLED>0) then

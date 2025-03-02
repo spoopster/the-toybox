@@ -60,7 +60,7 @@ local function useBloodRitual(_, _, rng, player, flags)
         end
         mod:setEntityData(player, "BLOOD_RITUAL_DATA", ritualData)
 
-        local pentagram = Isaac.Spawn(1000, mod.EFFECT_BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
+        local pentagram = Isaac.Spawn(1000, mod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
         pentagram.DepthOffset = -1000
 
         sfx:Play(SoundEffect.SOUND_DEVIL_CARD)
@@ -74,7 +74,7 @@ local function useBloodRitual(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodRitual, mod.COLLECTIBLE_BLOOD_RITUAL)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodRitual, mod.COLLECTIBLE.BLOOD_RITUAL)
 
 ---@param player EntityPlayer
 local function removeBloodRitualEffect(_, player)
@@ -103,7 +103,7 @@ end
 local function evalCache(_, player, flag)
     local ritualData = mod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
     if(#ritualData==0 or #ritualData==(mod:getEntityData(player, "BLOOD_RITUAL_PREVNUM") or 0)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_BLOOD_RITUAL)
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.BLOOD_RITUAL)
 
     local itemCounts = {}
     local invalidFIndex = {}
@@ -171,4 +171,4 @@ mod:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, bloodRitualPriority)
 local function pentagramUpdate(_, effect)
     if(effect:GetSprite():IsFinished("Idle")) then effect:Remove() end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, pentagramUpdate, mod.EFFECT_BLOOD_RITUAL_PENTAGRAM)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, pentagramUpdate, mod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM)

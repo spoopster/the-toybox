@@ -9,10 +9,10 @@ local updatedTears = false
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_CONDENSED_MILK)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.CONDENSED_MILK)) then return end
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
-        local mult = FIREDELAY_MULT^player:GetCollectibleNum(mod.COLLECTIBLE_CONDENSED_MILK)
+        local mult = FIREDELAY_MULT^player:GetCollectibleNum(mod.COLLECTIBLE.CONDENSED_MILK)
         player.MaxFireDelay = player.MaxFireDelay/mult
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
         if(not updatedTears) then
@@ -25,7 +25,7 @@ end
 mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, math.huge, evalCache)
 
 local function postPeffectUpdate(_, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_CONDENSED_MILK)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.CONDENSED_MILK)) then return end
 
     player.MaxFireDelay = mod:toFireDelay(mod:toTps(player.MaxFireDelay)*(player.Damage/3.5 or 1))
     player.Damage = 3.5

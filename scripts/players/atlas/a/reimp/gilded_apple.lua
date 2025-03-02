@@ -16,10 +16,10 @@ function(_, _, rng, player, flags, slot)
     mod:spawnShardsForMantle(player, mod:getRightmostMantleIdx(player), 5)
 
     if(flags & UseFlag.USE_NOANIM == 0) then
-        player:AnimateCollectible(mod.COLLECTIBLE_GILDED_APPLE, "UseItem")
+        player:AnimateCollectible(mod.COLLECTIBLE.GILDED_APPLE, "UseItem")
     end
     sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
 
     return true
 end,
-mod.COLLECTIBLE_GILDED_APPLE)
+mod.COLLECTIBLE.GILDED_APPLE)

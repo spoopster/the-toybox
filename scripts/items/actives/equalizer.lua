@@ -43,7 +43,7 @@ local function pickPickupStat(rng)
     end
 
     local toDisplay = PICKUP_TABLE[extraData.EQUALIZER_PICKUP].Name.." = "..STAT_TABLE[extraData.EQUALIZER_STAT].Name
-    local item = Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_EQUALIZER)
+    local item = Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.EQUALIZER)
     item.Description = toDisplay
 end
 
@@ -60,7 +60,7 @@ local function useEqualizer(_, _, rng, player, flags)
     pickPickupStat(rng)
     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 
-    local item = Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_EQUALIZER)
+    local item = Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.EQUALIZER)
     Game():GetHUD():ShowItemText(player, item)
 
     sfx:Play(SoundEffect.SOUND_POWERUP1)
@@ -71,14 +71,14 @@ local function useEqualizer(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useEqualizer, mod.COLLECTIBLE_EQUALIZER)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, useEqualizer, mod.COLLECTIBLE.EQUALIZER)
 
 ---@param player EntityPlayer
 local function evalCache(_, player, flags)
-    if(not player:HasCollectible(mod.COLLECTIBLE_EQUALIZER)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.EQUALIZER)) then return end
 
     if(not PICKUP_TABLE[mod:getExtraData("EQUALIZER_PICKUP")]) then
-        pickPickupStat(player:GetCollectibleRNG(mod.COLLECTIBLE_EQUALIZER))
+        pickPickupStat(player:GetCollectibleRNG(mod.COLLECTIBLE.EQUALIZER))
     end
 
     local pickupData = mod:getExtraData("EQUALIZER_PICKUP")
@@ -111,11 +111,11 @@ local function updatePickups(_)
     local numBombs = pl:GetNumBombs()
     local numKeys = pl:GetNumKeys()
 
-    if(PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_EQUALIZER)) then
+    if(PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.EQUALIZER)) then
         if(numCoins~=extraData.EQUALIZER_COINS or numBombs~=extraData.EQUALIZER_BOMBS or numKeys~=extraData.EQUALIZER_KEYS) then
            for i=0, Game():GetNumPlayers()-1 do
                 local player = Isaac.GetPlayer(i)
-                if(player:HasCollectible(mod.COLLECTIBLE_EQUALIZER)) then
+                if(player:HasCollectible(mod.COLLECTIBLE.EQUALIZER)) then
                     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
                 end
            end

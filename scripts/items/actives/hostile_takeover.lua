@@ -23,8 +23,8 @@ local TEARS_UP = 1
 local function firstHostileTakeoverPlayer()
     for i=0,Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
-            return pl, pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE_HOSTILE_TAKEOVER)
+        if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER)) then
+            return pl, pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.HOSTILE_TAKEOVER)
         end
     end
     return nil
@@ -52,7 +52,7 @@ local function activateHostileTakeover(_, _, rng, pl, flags, slot, vdata)
     mod:setEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER", STAT_DECREASE_TIMER)
     pl:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 
-    if(not pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
+    if(not pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER)) then
         mod.HiddenItemManager:AddForRoom(pl, CollectibleType.COLLECTIBLE_4_5_VOLT, nil, 1, "TOYBOX")
     end
 
@@ -62,12 +62,12 @@ local function activateHostileTakeover(_, _, rng, pl, flags, slot, vdata)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, activateHostileTakeover, mod.COLLECTIBLE_HOSTILE_TAKEOVER)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, activateHostileTakeover, mod.COLLECTIBLE.HOSTILE_TAKEOVER)
 
 ---@param pl EntityPlayer
 local function aa(_, pl)
-    if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
-        pl:GetEffects():RemoveCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER, -1)
+    if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER)) then
+        pl:GetEffects():RemoveCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER, -1)
         mod:setEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER", 0)
     end
 end
@@ -75,7 +75,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, aa)
 
 ---@param pl EntityPlayer
 local function postPeffectUpdate(_, pl)
-    if(not (pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER))) then return end
+    if(not (pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER))) then return end
     local data = mod:getEntityDataTable(pl)
     data.HOSTILETAKEOVER_STAT_TIMER = (data.HOSTILETAKEOVER_STAT_TIMER or 0)-1
 
@@ -89,11 +89,11 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, postPeffectUpdate)
 ---@param pl EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, pl, flag)
-    if(not (pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER))) then return end
+    if(not (pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER))) then return end
     local timer = (mod:getEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER") or 0)
     if(timer<=0) then return end
 
-    local numEffects = pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE_HOSTILE_TAKEOVER)
+    local numEffects = pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.HOSTILE_TAKEOVER)
     local statFrac = timer/STAT_DECREASE_TIMER*(1+(numEffects-1)*STACK_BONUS)
 
     if(flag==CacheFlag.CACHE_SPEED) then
@@ -132,7 +132,7 @@ local function consumeTarPuddle(_, effect)
     local currentScale = (data.TAKEOVER_PUDDLE_SCALE or 1)*(1-(data.TAKEOVER_PUDDLE_CONSUMPTION_FRAMES or 0)/PUDDLE_CONSUME_FRAMES)
     for _, pl in ipairs(Isaac.FindInRadius(effect.Position, math.max(40, currentScale*25), EntityPartition.PLAYER)) do
         pl = pl:ToPlayer()
-        if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
+        if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER)) then
             consumerPl = pl
             break
         end
@@ -142,12 +142,12 @@ local function consumeTarPuddle(_, effect)
 
     if(not consumerPl) then return end
     local plData = mod:getEntityDataTable(consumerPl)
-    local mul = consumerPl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE_HOSTILE_TAKEOVER)
+    local mul = consumerPl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.HOSTILE_TAKEOVER)
     local scaleMul = (data.TAKEOVER_PUDDLE_SIZE or 1)/PUDDLE_CONSUME_FRAMES
 
     for _, slot in pairs(ActiveSlot) do
         local desc = consumerPl:GetActiveItemDesc(slot)
-        if(desc and desc.Item==mod.COLLECTIBLE_HOSTILE_TAKEOVER) then
+        if(desc and desc.Item==mod.COLLECTIBLE.HOSTILE_TAKEOVER) then
             desc.PartialCharge = desc.PartialCharge+BASE_CHARGES_GIVEN*scaleMul*mul
         end
     end

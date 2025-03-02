@@ -5,16 +5,16 @@ local BEAMS_NUM = 2
 local BEAM_DAMAGE = 7
 
 local function postUpdate(_)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_BLESSED_RING)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.BLESSED_RING)) then return end
     if(mod:isRoomClear()) then return end
 
-    local cool = math.floor(BASE_BEAM_COOLDOWN/(PlayerManager.GetNumCollectibles(mod.COLLECTIBLE_BLESSED_RING)))
+    local cool = math.floor(BASE_BEAM_COOLDOWN/(PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.BLESSED_RING)))
     if(cool<1) then cool=1 end
 
     if((Game():GetRoom():GetFrameCount()-1)%cool~=0) then return end
     local r = Game():GetRoom()
-    local p = PlayerManager.FirstCollectibleOwner(mod.COLLECTIBLE_BLESSED_RING)
-    local rng = p:GetCollectibleRNG(mod.COLLECTIBLE_BLESSED_RING)
+    local p = PlayerManager.FirstCollectibleOwner(mod.COLLECTIBLE.BLESSED_RING)
+    local rng = p:GetCollectibleRNG(mod.COLLECTIBLE.BLESSED_RING)
 
     local enemyBlacklists = {}
     local pickedEnemies = {}

@@ -23,7 +23,7 @@ local EVIL_TINTEDROCK_PICKUP_MORPHS = {
     },
     {
         ORIGINAL = {{5,100,0}}, -- item
-        MORPH = {{5,100,mod.COLLECTIBLE_ONYX, 1.0}}, -- obsidian chunk
+        MORPH = {{5,100,mod.COLLECTIBLE.ONYX, 1.0}}, -- obsidian chunk
     },
 }
 
@@ -57,7 +57,7 @@ end
 ---@param rock GridEntityRock
 ---@param offset Vector
 local function renderEvilAfterimages(_, rock, offset)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_EVIL_ROCK)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.EVIL_ROCK)) then return end
     if(rock.State==2) then return end
 
     local renderPos = Isaac.WorldToRenderPosition(rock.Position)+offset-Vector(0,1)
@@ -85,7 +85,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, renderEvilAfterimag
 ---@param type GridEntityType
 ---@param immediate boolean
 local function replaceEvilTintedRockDrops(_, rock, type, immediate)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_EVIL_ROCK)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.EVIL_ROCK)) then return end
 
     local rng = mod:generateRng(rock:GetSaveState().SpawnSeed) ---@type RNG
     
@@ -103,7 +103,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_POST_GRID_ROCK_DESTROY, CallbackPriority
 ---@param ent EntityNPC
 local function preTintedSpiderUpdate(_, ent)
     if(ent.Variant~=1) then return end
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_EVIL_ROCK)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.EVIL_ROCK)) then return end
 
     ent.Color = EVIL_TINTEDSPIDER_COLOR
     ent.SplatColor = EVIL_TINTEDROCK_COLOR

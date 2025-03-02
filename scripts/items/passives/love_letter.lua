@@ -18,7 +18,7 @@ local CHARM_INVINCIBILITY = 60
 local function postCharmedTakeDMG(_, ent, dmg, flags, source, cooldown)
     if(not (ent:HasEntityFlags(EntityFlag.FLAG_CHARM) and not ent:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))) then return end
 
-    local numLetters = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE_LOVE_LETTER)
+    local numLetters = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.LOVE_LETTER)
     if(numLetters>0) then
         return
         {
@@ -33,7 +33,7 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, postCharmedTakeDMG)
 ---@param p EntityPlayer
 ---@param source EntityRef
 local function playerTakeDMGFromCharm(_, p, dmg, flags, source, cooldown)
-    if(not p:HasCollectible(mod.COLLECTIBLE_LOVE_LETTER)) then return true end
+    if(not p:HasCollectible(mod.COLLECTIBLE.LOVE_LETTER)) then return true end
 
     local dmgSource = source.Entity
     if(not dmgSource) then return end
@@ -65,7 +65,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, playerTakeDMGFromCharm)
 
 ---@param player EntityPlayer
 local function getTriggerChance(player, chancemult)
-    local itemNum = player:GetCollectibleNum(mod.COLLECTIBLE_LOVE_LETTER)
+    local itemNum = player:GetCollectibleNum(mod.COLLECTIBLE.LOVE_LETTER)
     if(itemNum==0) then return 0 end
     return chancemult*math.min(CHARM_MAXCHANCE, CHARM_CHANCE+(itemNum-1)*CHARM_STACKCHANCE)
 end
@@ -81,8 +81,8 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, applyLetterCharm)
 ---@param tear EntityTear
 ---@param player EntityPlayer
 local function letterFireTear(_, tear, player, isLudo)
-    if(not player:HasCollectible(mod.COLLECTIBLE_LOVE_LETTER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_LOVE_LETTER)
+    if(not player:HasCollectible(mod.COLLECTIBLE.LOVE_LETTER)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.LOVE_LETTER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, (isLudo and 0.75 or 1))) then return end
 
@@ -94,8 +94,8 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, letterFireTear)
 ---@param bomb EntityBomb
 ---@param player EntityPlayer
 local function letterFireBomb(_, bomb, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_LOVE_LETTER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_LOVE_LETTER)
+    if(not player:HasCollectible(mod.COLLECTIBLE.LOVE_LETTER)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.LOVE_LETTER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, 1.5)) then return end
 
@@ -107,8 +107,8 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_BOMB, letterFireBomb)
 ---@param rocket EntityEffect
 ---@param player EntityPlayer
 local function letterFireRocket(_, rocket, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_LOVE_LETTER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_LOVE_LETTER)
+    if(not player:HasCollectible(mod.COLLECTIBLE.LOVE_LETTER)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.LOVE_LETTER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, 1.5)) then return end
 
@@ -128,8 +128,8 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.ROCKET_COPY_TARGET_DATA, letterCopyTargetDa
 local function laserKnifeDamage(_, dmgtype, player, ent)
     if(not (dmgtype==mod.DAMAGE_TYPE.LASER or dmgtype==mod.DAMAGE_TYPE.KNIFE)) then return end
 
-    if(not player:HasCollectible(mod.COLLECTIBLE_LOVE_LETTER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE_LOVE_LETTER)
+    if(not player:HasCollectible(mod.COLLECTIBLE.LOVE_LETTER)) then return end
+    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.LOVE_LETTER)
     if(rng:RandomFloat()>=getTriggerChance(player, 0.8)) then return end
 
     ent:AddCharmed(EntityRef(player), CHARM_DURATION)

@@ -7,9 +7,9 @@ local DAMAGE_UP = 1.2
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_ONYX)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.ONYX)) then return end
 
-    local mult = player:GetCollectibleNum(mod.COLLECTIBLE_ONYX)
+    local mult = player:GetCollectibleNum(mod.COLLECTIBLE.ONYX)
 
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+SPEED_UP*mult

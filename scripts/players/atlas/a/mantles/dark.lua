@@ -50,7 +50,7 @@ local function checkEnterExitDarkRadius(_, pl)
 
     local data = mod:getEntityDataTable(pl)
     if(not (data.DARK_AURA and data.DARK_AURA:Exists())) then
-        local darkAura = Isaac.Spawn(1000,mod.EFFECT_AURA,mod.EFFECT_AURA_SUBTYPE.DARK_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
+        local darkAura = Isaac.Spawn(1000,mod.EFFECT_VARIANT.AURA,mod.EFFECT_AURA_SUBTYPE.DARK_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
         darkAura.DepthOffset = -1000
         darkAura:FollowParent(pl)
 
@@ -116,4 +116,4 @@ local function darkAuraUpdate(_, effect)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, darkAuraUpdate, mod.EFFECT_AURA)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, darkAuraUpdate, mod.EFFECT_VARIANT.AURA)

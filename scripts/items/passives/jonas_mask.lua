@@ -9,20 +9,20 @@ local NUM_TOSPAWN = 1
 local function evalCache(_, pl)
     local numFamiliers = {[0]=0, [1]=0, [2]=0}
 
-    local numCollectibles = pl:GetCollectibleNum(mod.COLLECTIBLE_JONAS_MASK)+pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE_JONAS_MASK)
+    local numCollectibles = pl:GetCollectibleNum(mod.COLLECTIBLE.JONAS_MASK)+pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.JONAS_MASK)
     local rng = mod:generateRng(Game():GetLevel():GetDungeonPlacementSeed()+pl:GetPlayerIndex())
     for _=1, numCollectibles do
         local idx = rng:RandomInt(3)
         numFamiliers[idx] = numFamiliers[idx]+1
     end
 
-    local plrng = pl:GetCollectibleRNG(mod.COLLECTIBLE_JONAS_MASK)
+    local plrng = pl:GetCollectibleRNG(mod.COLLECTIBLE.JONAS_MASK)
     for i=0, 2 do
         pl:CheckFamiliar(
-            mod.FAMILIAR_MASK_SHADOW,
+            mod.FAMILIAR_VARIANT.MASK_SHADOW,
             numFamiliers[i],
             plrng,
-            Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_JONAS_MASK),
+            Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.JONAS_MASK),
             i
         )
     end
@@ -87,7 +87,7 @@ local function shadowFlyUpdate(fam)
         if(sp:IsEventTriggered("Scream")) then
             local poof = Isaac.Spawn(1000,144,1,fam.Position,Vector.Zero,fam):ToEffect()
             sfx:Play(SoundEffect.SOUND_DEMON_HIT)
-            --sfx:Play(mod.SFX_SHADOW_SCREAM, 1, 0, false, 0.95+rng:RandomFloat()*0.1)
+            --sfx:Play(mod.SOUND_EFFECT.SHADOW_SCREAM, 1, 0, false, 0.95+rng:RandomFloat()*0.1)
 
             local screamShockwave = Isaac.Spawn(1000, EffectVariant.SIREN_RING, 0, fam.Position, Vector.Zero, fam):ToEffect()
             screamShockwave.SpriteScale = Vector(1,1)*0.6
@@ -328,7 +328,7 @@ local function shadowFamiliarInit(_, fam)
         shadowCrawlerInit(fam)
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, shadowFamiliarInit, mod.FAMILIAR_MASK_SHADOW)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, shadowFamiliarInit, mod.FAMILIAR_VARIANT.MASK_SHADOW)
 
 ---@param fam EntityFamiliar
 local function shadowFamiliarUpdate(_, fam)
@@ -356,6 +356,6 @@ local function shadowFamiliarUpdate(_, fam)
         shadowCrawlerUpdate(fam)
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, shadowFamiliarUpdate, mod.FAMILIAR_MASK_SHADOW)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, shadowFamiliarUpdate, mod.FAMILIAR_VARIANT.MASK_SHADOW)
 
 --#endregion

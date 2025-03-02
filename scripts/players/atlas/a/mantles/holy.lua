@@ -41,7 +41,7 @@ local function makeHolyAura(_, pl)
 
     local data = mod:getEntityDataTable(pl)
     if(not (data.HOLY_AURA and data.HOLY_AURA:Exists())) then
-        local aura = Isaac.Spawn(1000,mod.EFFECT_AURA,mod.EFFECT_AURA_SUBTYPE.HOLY_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
+        local aura = Isaac.Spawn(1000,mod.EFFECT_VARIANT.AURA,mod.EFFECT_AURA_SUBTYPE.HOLY_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
         aura.DepthOffset = -1000
         aura:FollowParent(pl)
     
@@ -86,7 +86,7 @@ local function holyAuraUpdate(_, effect)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, holyAuraUpdate, mod.EFFECT_AURA)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, holyAuraUpdate, mod.EFFECT_VARIANT.AURA)
 
 --ADDING THE HOMING TEARFLAG + DMG BONUS ON DIFFERENT WEAPONS
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
@@ -141,6 +141,6 @@ end
 local function playMantleSFX(_, player, mantle)
     if(not mod:isAtlasA(player)) then return end
 
-    sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
+    sfx:Play(mod.SOUND_EFFECT.ATLASA_ROCKBREAK)
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.HOLY.ID)

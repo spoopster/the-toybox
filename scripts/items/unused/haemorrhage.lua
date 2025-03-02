@@ -15,7 +15,7 @@ local DMG_MULT = 1
 
 ---@param pl EntityPlayer
 function mod:doHemorrhageEffect(pl)
-    local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE_HEMORRHAGE)
+    local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE.HEMORRHAGE)
     local tearsNum = rng:RandomInt(TEARS_FIRED_MIN, TEARS_FIRED_MAX)
 
     for _=1, tearsNum do
@@ -39,11 +39,11 @@ local function addHaemorrhage(_, item, _, firstTime, _, _, player)
 
     player:AddBoneHearts(BONEHEART_ADD)
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, mod.COLLECTIBLE_HEMORRHAGE)
+mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, mod.COLLECTIBLE.HEMORRHAGE)
 
 ---@param pl EntityPlayer
 local function hemorrhageEffectCheck(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE_HEMORRHAGE)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.HEMORRHAGE)) then return end
 
     local data = mod:getEntityDataTable(pl)
     data.HAEMORRHAGE_COUNTDOWN = (data.HAEMORRHAGE_COUNTDOWN or 0)
@@ -65,9 +65,9 @@ local function hemorrhageEffectCheck(_, pl)
         print("Yeah")
 
         data.HEMORRHAGE_TEARS_HELD = 0
-        local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE_HEMORRHAGE)
+        local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE.HEMORRHAGE)
 
-        if(rng:RandomFloat()<CHECK_CHANCE*pl:GetCollectibleNum(mod.COLLECTIBLE_HEMORRHAGE)) then
+        if(rng:RandomFloat()<CHECK_CHANCE*pl:GetCollectibleNum(mod.COLLECTIBLE.HEMORRHAGE)) then
             mod:doHemorrhageEffect(pl)
         end
     end

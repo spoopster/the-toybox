@@ -12,13 +12,13 @@ local nonSpecialRooms = {
 }
 
 local function postPlayerNewRoom(_, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_DADS_PRESCRIPTION)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.DADS_PRESCRIPTION)) then return end
     local room = Game():GetRoom()
     if(not room:IsFirstVisit()) then return end
     if(nonSpecialRooms[room:GetType()]==0) then return end
 
     local pos = player.Position
-    local num = player:GetCollectibleNum(mod.COLLECTIBLE_DADS_PRESCRIPTION)
+    local num = player:GetCollectibleNum(mod.COLLECTIBLE.DADS_PRESCRIPTION)
     if(num%2~=0) then
         local pill = Isaac.Spawn(5,70,0,room:FindFreePickupSpawnPosition(pos,40),Vector.Zero,nil):ToPickup()
     end

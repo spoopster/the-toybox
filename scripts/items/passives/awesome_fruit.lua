@@ -8,7 +8,7 @@ local function postAddAwesomeFruit(_, _, _, firstTime, _, _, pl)
         pl:IncrementPlayerFormCounter(i, 1)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddAwesomeFruit, mod.COLLECTIBLE_AWESOME_FRUIT)
+mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddAwesomeFruit, mod.COLLECTIBLE.AWESOME_FRUIT)
 
 --[[
 

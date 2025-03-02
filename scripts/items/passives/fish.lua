@@ -6,7 +6,7 @@ local copyingFamiliar
 ---@param fam EntityFamiliar
 local function familiarCopy(_, fam)
     if(Isaac.GetPlayer().FrameCount==0) then return end
-    if(not fam.Player:HasCollectible(mod.COLLECTIBLE_FISH)) then return end
+    if(not fam.Player:HasCollectible(mod.COLLECTIBLE.FISH)) then return end
 
     if(copyingFamiliar) then return end
     copyingFamiliar = true
@@ -26,7 +26,7 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarCopy, FamiliarVariant.BLU
 ---@param pl Entity
 local function playerHurtAddBlueFam(_, pl, _, flags, source)
     pl = pl:ToPlayer()
-    if(not pl:HasCollectible(mod.COLLECTIBLE_FISH)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.FISH)) then return end
 
     pl:AddBlueFlies(1, pl.Position, nil)
     pl:AddBlueSpider(pl.Position)
@@ -38,9 +38,9 @@ local function checkTrinketCombo(_, pl, trAdded, firstTime)
     while(pl:HasTrinket(TrinketType.TRINKET_FISH_HEAD) and pl:HasTrinket(TrinketType.TRINKET_FISH_TAIL)) do
         pl:TryRemoveTrinket(TrinketType.TRINKET_FISH_HEAD)
         pl:TryRemoveTrinket(TrinketType.TRINKET_FISH_TAIL)
-        pl:AddCollectible(mod.COLLECTIBLE_FISH)
+        pl:AddCollectible(mod.COLLECTIBLE.FISH)
 
-        pl:AnimateCollectible(mod.COLLECTIBLE_FISH)
+        pl:AnimateCollectible(mod.COLLECTIBLE.FISH)
         sfx:Play(SoundEffect.SOUND_POWERUP1)
     end
 end

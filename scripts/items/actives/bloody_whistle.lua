@@ -39,7 +39,7 @@ local function useBloodyWhistle(_, _, rng, player, flags)
 
     mod:setEntityData(creep, "BLOODYWHISTLE_BLOOD_CREEP", true)
 
-    sfx:Play(mod.SFX_BLOODY_WHISTLE)
+    sfx:Play(mod.SOUND_EFFECT.BLOODY_WHISTLE)
 
     return {
         Discharge = true,
@@ -47,7 +47,7 @@ local function useBloodyWhistle(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodyWhistle, mod.COLLECTIBLE_BLOODY_WHISTLE)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodyWhistle, mod.COLLECTIBLE.BLOODY_WHISTLE)
 
 ---@param effect EntityEffect
 local function updateBloodCreep(_, effect)

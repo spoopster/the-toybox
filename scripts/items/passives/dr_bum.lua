@@ -15,7 +15,7 @@ local function getDrBumPill(fam)
     local pool = Game():GetItemPool()
     local conf = Isaac.GetItemConfig()
 
-    local rng = fam.Player:GetCollectibleRNG(mod.COLLECTIBLE_DR_BUM)
+    local rng = fam.Player:GetCollectibleRNG(mod.COLLECTIBLE.DR_BUM)
     local mult = fam:GetMultiplier()
 
     local pill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:RandomInt(1<<32-1))))
@@ -39,10 +39,10 @@ end
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     pl:CheckFamiliar(
-        mod.FAMILIAR_DR_BUM,
-        pl:GetCollectibleNum(mod.COLLECTIBLE_DR_BUM),
-        pl:GetCollectibleRNG(mod.COLLECTIBLE_DR_BUM),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE_DR_BUM)
+        mod.FAMILIAR_VARIANT.DR_BUM,
+        pl:GetCollectibleNum(mod.COLLECTIBLE.DR_BUM),
+        pl:GetCollectibleRNG(mod.COLLECTIBLE.DR_BUM),
+        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.DR_BUM)
     )
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
@@ -53,7 +53,7 @@ local function drBumInit(_, fam)
     fam.State = 0
     fam.Coins = 0
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, drBumInit, mod.FAMILIAR_DR_BUM)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, drBumInit, mod.FAMILIAR_VARIANT.DR_BUM)
 
 ---@param fam EntityFamiliar
 local function drBumUpdate(_, fam)
@@ -132,4 +132,4 @@ local function drBumUpdate(_, fam)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, drBumUpdate, mod.FAMILIAR_DR_BUM)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, drBumUpdate, mod.FAMILIAR_VARIANT.DR_BUM)

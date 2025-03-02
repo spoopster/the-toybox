@@ -73,15 +73,15 @@ end
 
 ---@param player EntityPlayer
 function mod:isMilcom(player)
-    if(player:GetPlayerType()==mod.PLAYER_MILCOM_A) then return true end
-    if(player:GetPlayerType()==mod.PLAYER_MILCOM_B) then return true end
+    if(player:GetPlayerType()==mod.PLAYER_TYPE.MILCOM_A) then return true end
+    if(player:GetPlayerType()==mod.PLAYER_TYPE.MILCOM_B) then return true end
     return false
 end
 
 ---@param player EntityPlayer
 function mod:isAtlas(player)
     if(mod:isAtlasA(player)) then return true end
-    if(player:GetPlayerType()==mod.PLAYER_ATLAS_B) then return true end
+    if(player:GetPlayerType()==mod.PLAYER_TYPE.ATLAS_B) then return true end
     return false
 end
 

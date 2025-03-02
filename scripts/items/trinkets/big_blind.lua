@@ -12,10 +12,10 @@ local function addToCounter(_, ent, amount, flags, ref, frames)
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
 
-        if(pl:HasTrinket(mod.TRINKET_BIG_BLIND)) then
-            local rng = pl:GetTrinketRNG(mod.TRINKET_BIG_BLIND)
+        if(pl:HasTrinket(mod.TRINKET.BIG_BLIND)) then
+            local rng = pl:GetTrinketRNG(mod.TRINKET.BIG_BLIND)
             local data = mod:getEntityDataTable(pl)
-            data.BIG_BLIND_COUNTER = (data.BIG_BLIND_COUNTER or 0)+amount*pl:GetTrinketMultiplier(mod.TRINKET_BIG_BLIND)
+            data.BIG_BLIND_COUNTER = (data.BIG_BLIND_COUNTER or 0)+amount*pl:GetTrinketMultiplier(mod.TRINKET.BIG_BLIND)
             data.BIG_BLIND_COUNTERS_FINISHED = (data.BIG_BLIND_COUNTERS_FINISHED or 0)
 
             local req = FIRST_REQ+SUM_INCREASE*(data.BIG_BLIND_COUNTERS_FINISHED*(data.BIG_BLIND_COUNTERS_FINISHED+1)/2)

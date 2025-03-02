@@ -1,7 +1,7 @@
 local mod = MilcomMOD
 
 function mod:playerHasLimitBreak(player)
-    return player:HasTrinket(mod.TRINKET_LIMIT_BREAK)
+    return player:HasTrinket(mod.TRINKET.LIMIT_BREAK)
 end
 function mod:anyPlayerHasLimitBreak()
     for i=0, Game():GetNumPlayers()-1 do

@@ -3,7 +3,7 @@ local mod = MilcomMOD
 local PILL_POOP_CHANCE = 0.2
 
 local function replaceDropWithPill(_, pickup, poop)
-    local numTrinkets = PlayerManager.GetTotalTrinketMultiplier(mod.TRINKET_SUPPOSITORY)
+    local numTrinkets = PlayerManager.GetTotalTrinketMultiplier(mod.TRINKET.SUPPOSITORY)
     if(numTrinkets==0) then return end
 
     local rng = mod:generateRng(poop.Desc.SpawnSeed)

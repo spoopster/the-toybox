@@ -50,7 +50,7 @@ local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, gildedAppleUse, mod.COLLECTIBLE_DRILL)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, gildedAppleUse, mod.COLLECTIBLE.DRILL)
 
 local function postUpdate(_)
     local data = mod:getExtraDataTable().DRILLDATA

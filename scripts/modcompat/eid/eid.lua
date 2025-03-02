@@ -30,10 +30,10 @@ EID:addIcon("ToyboxGoldenPill", "Icons", 2, 16, 16, 5, 6, miscIconSprites)
 EID:addIcon("ToyboxHorsePill", "Icons", 3, 16, 16, 5, 6, miscIconSprites)
 EID:addIcon("ToyboxGoldenHorsePill", "Icons", 4, 16, 16, 5, 6, miscIconSprites)
 
-EID:addIcon("Player"..mod.PLAYER_ATLAS_A, "AtlasA", 0, 16, 16, 5, 6, playerIconSprites)
-EID:addIcon("Player"..mod.PLAYER_ATLAS_A_TAR, "AtlasATar", 0, 16, 16, 5, 6, playerIconSprites)
-EID:addIcon("Player"..mod.PLAYER_JONAS_A, "JonasA", 0, 16, 16, 5, 6, playerIconSprites)
-EID:addIcon("Player"..mod.PLAYER_MILCOM_A, "MilcomA", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..mod.PLAYER_TYPE.ATLAS_A, "AtlasA", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..mod.PLAYER_TYPE.ATLAS_A_TAR, "AtlasATar", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..mod.PLAYER_TYPE.JONAS_A, "JonasA", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..mod.PLAYER_TYPE.MILCOM_A, "MilcomA", 0, 16, 16, 5, 6, playerIconSprites)
 
 --* stolen from EID, they should expose this in the api itd be cool
 local function SwagColors(colors, maxAnimTime)
@@ -332,11 +332,11 @@ for key, data in pairs(descs.ITEMS) do
             if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
             if(descObj.Entity==nil) then return false end
             
-            return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_ALPHABET_BOX)
+            return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.ALPHABET_BOX)
         end,
         function(descObj)
             if(mod.CONFIG.ALPHABETBOX_EID_DISPLAYS>0) then
-                local boxDesc = "{{Collectible"..mod.COLLECTIBLE_ALPHABET_BOX.."}} :"
+                local boxDesc = "{{Collectible"..mod.COLLECTIBLE.ALPHABET_BOX.."}} :"
 
                 local idx = mod:getNextAlphabetItem(descObj.ObjSubType, false)
                 for i=1, mod.CONFIG.ALPHABETBOX_EID_DISPLAYS do

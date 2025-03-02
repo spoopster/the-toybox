@@ -1,253 +1,250 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-mod.loadedData = false
+mod.DATA_LOADED = false
 
---#region --!PLAYERS
+---@type PlayerType[]
+mod.PLAYER_TYPE = {
+    MILCOM_A = Isaac.GetPlayerTypeByName("Milcom", false),
+    ATLAS_A = Isaac.GetPlayerTypeByName("Atlas", false),
+    ATLAS_A_TAR = Isaac.GetPlayerTypeByName("The Tar", false),
+    JONAS_A = Isaac.GetPlayerTypeByName("Jonas", false),
 
-mod.PLAYER_MILCOM_A = Isaac.GetPlayerTypeByName("Milcom", false)
-mod.PLAYER_MILCOM_B = Isaac.GetPlayerTypeByName("Milcom", true)
+    MILCOM_B = Isaac.GetPlayerTypeByName("Milcom", true),
+    ATLAS_B = Isaac.GetPlayerTypeByName("Atlas", true),
+    JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true),
+}
 
-mod.PLAYER_ATLAS_A = Isaac.GetPlayerTypeByName("Atlas", false)
-mod.PLAYER_ATLAS_A_TAR = Isaac.GetPlayerTypeByName("The Tar", false)
-mod.PLAYER_ATLAS_B = Isaac.GetPlayerTypeByName("Atlas", true)
+---@type Achievement[]
+mod.ACHIEVEMENT = {
+    MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom"),
+    ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas"),
+    JONAS_B = Isaac.GetAchievementIdByName("Tainted Jonas"),
+    PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone"),
+    GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel"),
+    STEEL_SOUL = Isaac.GetAchievementIdByName("Steel Soul"),
+    HOSTILE_TAKEOVER = Isaac.GetAchievementIdByName("Hostile Takeover"),
+    ROCK_CANDY = Isaac.GetAchievementIdByName("Rock Candy"),
+    MISSING_PAGE_3 = Isaac.GetAchievementIdByName("Missing Page 3"),
+    GILDED_APPLE = Isaac.GetAchievementIdByName("Gilded Apple"),
+    SALTPETER = Isaac.GetAchievementIdByName("Saltpeter"),
+    MANTLES = Isaac.GetAchievementIdByName("Mantles"),
+    AMBER_FOSSIL = Isaac.GetAchievementIdByName("Amber Fossil"),
+    BONE_BOY = Isaac.GetAchievementIdByName("Bone Boy!"),
+    ASCENSION = Isaac.GetAchievementIdByName("Ascension"),
+    MIRACLE_MANTLE = Isaac.GetAchievementIdByName("Miracle Mantle"),
+    GIANT_CAPSULE = Isaac.GetAchievementIdByName("Giant Capsule"),
+    WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug"),
+    DADS_PRESCRIPTION = Isaac.GetAchievementIdByName("Dad's Prescription"),
+    CANDY_DISPENSER = Isaac.GetAchievementIdByName("Candy Dispenser"),
+    DR_BUM = Isaac.GetAchievementIdByName("Dr. Bum"),
+    JONAS_MASK = Isaac.GetAchievementIdByName("Jonas' Mask"),
+    ANTIBIOTICS = Isaac.GetAchievementIdByName("Antibiotics"),
+    FOIL_CARD = Isaac.GetAchievementIdByName("Foil Card"),
+    HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer"),
+    CLOWN_PHD = Isaac.GetAchievementIdByName("Clown PHD"),
+    JONAS_LOCK = Isaac.GetAchievementIdByName("Jonas' Lock"),
+    PILLS = Isaac.GetAchievementIdByName("Pill Diversity!"),
+    DRILL = Isaac.GetAchievementIdByName("Drill"),
+}
 
-mod.PLAYER_JONAS_A = Isaac.GetPlayerTypeByName("Jonas", false)
-mod.PLAYER_JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true)
+---@type CollectibleType[]
+mod.COLLECTIBLE = {
+    COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil"),
+    CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk"),
+    EYESTRAIN = Isaac.GetItemIdByName("Eyestrain"),
+    SNOWCONE = Isaac.GetItemIdByName("Snowcone"),
+    EVIL_ROCK = Isaac.GetItemIdByName("Evil Rock"),
+    GOAT_MILK = Isaac.GetItemIdByName("Goat Milk"),
+    LOOSE_BOWELS = Isaac.GetItemIdByName("Loose Bowels"),
+    PLIERS = Isaac.GetItemIdByName("Pliers"),
+    NOSE_CANDY = Isaac.GetItemIdByName("Nose Candy"),
+    LION_SKULL = Isaac.GetItemIdByName("Lion Skull"),
+    DADS_SLIPPER = Isaac.GetItemIdByName("Dad's Slipper"),
+    GOOD_JOB = Isaac.GetItemIdByName("Good Job"),
+    ODD_ONION = Isaac.GetItemIdByName("Odd Onion"),
+    CARAMEL_APPLE = Isaac.GetItemIdByName("Caramel Apple"),
+    BLOOD_RITUAL = Isaac.GetItemIdByName("Blood Ritual"),
+    TECH_IX = Isaac.GetItemIdByName("Tech IX"),
+    DRIED_PLACENTA = Isaac.GetItemIdByName("Dried Placenta"),
+    PAINKILLERS = Isaac.GetItemIdByName("Painkillers"),
+    SILK_BAG = Isaac.GetItemIdByName("Silk Bag"),
+    BRAINFREEZE = Isaac.GetItemIdByName("Brainfreeze"),
+    FATAL_SIGNAL = Isaac.GetItemIdByName("Fatal Signal"),
+    METEOR_SHOWER = Isaac.GetItemIdByName("Meteor Shower"),
+    BLESSED_RING = Isaac.GetItemIdByName("Blessed Ring"),
+    SIGIL_OF_GREED = Isaac.GetItemIdByName("Sigil of Greed"),
+    PEPPER_X = Isaac.GetItemIdByName("Pepper X"),
+    SUNK_COSTS = Isaac.GetItemIdByName("Sunk Costs"),
+    GILDED_APPLE = Isaac.GetItemIdByName("Gilded Apple"),
+    ONYX = Isaac.GetItemIdByName("Onyx"),
+    DADS_PRESCRIPTION = Isaac.GetItemIdByName("Dad's Prescription"),
+    HORSE_TRANQUILIZER = Isaac.GetItemIdByName("Horse Tranquilizer"),
+    BOBS_HEART = Isaac.GetItemIdByName("Bob's Heart"),
+    GLASS_VESSEL = Isaac.GetItemIdByName("Glass Vessel"),
+    BONE_BOY = Isaac.GetItemIdByName("Bone Boy"),
+    HOSTILE_TAKEOVER = Isaac.GetItemIdByName("Hostile Takeover"),
+    STEEL_SOUL = Isaac.GetItemIdByName("Steel Soul"),
+    ROCK_CANDY = Isaac.GetItemIdByName("Rock Candy"),
+    GIANT_CAPSULE = Isaac.GetItemIdByName("Giant Capsule"),
+    PEZ_DISPENSER = Isaac.GetItemIdByName("Candy Dispenser"),
+    MISSING_PAGE_3 = Isaac.GetItemIdByName("Missing Page 3"),
+    ASCENSION = Isaac.GetItemIdByName("Ascension"),
+    FOUR_FOUR = Isaac.GetItemIdByName("4 4"),
+    DR_BUM = Isaac.GetItemIdByName("Dr. Bum"),
+    JONAS_MASK = Isaac.GetItemIdByName("Jonas' Mask"),
+    CLOWN_PHD = Isaac.GetItemIdByName("Clown PHD"),
+    DRILL = Isaac.GetItemIdByName("Drill"),
+    ALPHABET_BOX = Isaac.GetItemIdByName("Alphabet Box"),
+    LOVE_LETTER = Isaac.GetItemIdByName("Love Letter"),
+    QUAKE_BOMBS = Isaac.GetItemIdByName("Quake Bombs"),
+    ATHEISM = Isaac.GetItemIdByName("Atheism"),
+    MAYONAISE = Isaac.GetItemIdByName("A Spoonful of Mayonnaise"),
+    AWESOME_FRUIT = Isaac.GetItemIdByName("Awesome Fruit"),
+    BLOODY_MAP = Isaac.GetItemIdByName("Bloody Map"),
+    SALTPETER = Isaac.GetItemIdByName("Saltpeter"),
+    PREFERRED_OPTIONS = Isaac.GetItemIdByName("Preferred Options"),
+    PLASMA_GLOBE = Isaac.GetItemIdByName("Plasma Globe"),
+    CURSED_EULOGY = Isaac.GetItemIdByName("Cursed Eulogy"),
+    BLESSED_BOMBS = Isaac.GetItemIdByName("Blessed Bombs"),
+    BLOODY_WHISTLE = Isaac.GetItemIdByName("Bloody Whistle"),
+    HEMORRHAGE = Isaac.GetItemIdByName("Haemorrhage"),
+    FISH = Isaac.GetItemIdByName("Fish"),
 
---#endregion
---#region --!ACHIEVEMENTS
+    RETROFALL = Isaac.GetItemIdByName("RETROFALL"),
+    CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
+    EQUALIZER = Isaac.GetItemIdByName("Equalizer"),
+    D = Isaac.GetItemIdByName("D"),
+    --BTRAIN = Isaac.GetItemIdByName("B-Train"),                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
 
-mod.ACH_MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom")
-mod.ACH_ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas")
-mod.ACH_JONAS_B = Isaac.GetAchievementIdByName("Tainted Jonas")
+    PORTABLE_TELLER = Isaac.GetItemIdByName("Portable Teller"),
 
-mod.ACH_PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone")
-mod.ACH_GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel")
-mod.ACH_STEEL_SOUL = Isaac.GetAchievementIdByName("Steel Soul")
-mod.ACH_HOSTILE_TAKEOVER = Isaac.GetAchievementIdByName("Hostile Takeover")
-mod.ACH_ROCK_CANDY = Isaac.GetAchievementIdByName("Rock Candy")
-mod.ACH_MISSING_PAGE_3 = Isaac.GetAchievementIdByName("Missing Page 3")
-mod.ACH_GILDED_APPLE = Isaac.GetAchievementIdByName("Gilded Apple")
-mod.ACH_SALTPETER = Isaac.GetAchievementIdByName("Saltpeter")
-mod.ACH_MANTLES = Isaac.GetAchievementIdByName("Mantles")
-mod.ACH_AMBER_FOSSIL = Isaac.GetAchievementIdByName("Amber Fossil")
-mod.ACH_BONE_BOY = Isaac.GetAchievementIdByName("Bone Boy!")
-mod.ACH_ASCENSION = Isaac.GetAchievementIdByName("Ascension")
-mod.ACH_MIRACLE_MANTLE = Isaac.GetAchievementIdByName("Miracle Mantle")
-mod.ACH_GIANT_CAPSULE = Isaac.GetAchievementIdByName("Giant Capsule")
-mod.ACH_WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug")
-mod.ACH_DADS_PRESCRIPTION = Isaac.GetAchievementIdByName("Dad's Prescription")
-mod.ACH_CANDY_DISPENSER = Isaac.GetAchievementIdByName("Candy Dispenser")
-mod.ACH_DR_BUM = Isaac.GetAchievementIdByName("Dr. Bum")
-mod.ACH_JONAS_MASK = Isaac.GetAchievementIdByName("Jonas' Mask")
-mod.ACH_ANTIBIOTICS = Isaac.GetAchievementIdByName("Antibiotics")
-mod.ACH_FOIL_CARD = Isaac.GetAchievementIdByName("Foil Card")
-mod.ACH_HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer")
-mod.ACH_CLOWN_PHD = Isaac.GetAchievementIdByName("Clown PHD")
-mod.ACH_JONAS_LOCK = Isaac.GetAchievementIdByName("Jonas' Lock")
-mod.ACH_PILLS = Isaac.GetAchievementIdByName("Pill Diversity!")
-mod.ACH_DRILL = Isaac.GetAchievementIdByName("Drill")
+    --LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer"),         --*UNUSED (i dont like the item)
+    --TOY_GUN = Isaac.GetItemIdByName("Toy Gun"),                     --*UNUSED (same as above)
+    --MALICIOUS_BRAIN = Isaac.GetItemIdByName("Malicious Brain"),     --*UNUSED (same)
+}
 
---#endregion
---#region --!ITEMS
+---@type TrinketType[]
+mod.TRINKET = {
+    ANTIBIOTICS = Isaac.GetTrinketIdByName("Antibiotics"),
+    WONDER_DRUG = Isaac.GetTrinketIdByName("Wonder Drug"),
+    AMBER_FOSSIL = Isaac.GetTrinketIdByName("Amber Fossil"),
+    JONAS_LOCK = Isaac.GetTrinketIdByName("Jonas' Lock"),
+    SINE_WORM = Isaac.GetTrinketIdByName("Sine Worm"),
+    BIG_BLIND = Isaac.GetTrinketIdByName("Big Blind"),
+    BATH_WATER = Isaac.GetTrinketIdByName("Bath Water"),
+    BLACK_RUNE_SHARD = Isaac.GetTrinketIdByName("Black Rune Shard"),
+    YELLOW_BELT = Isaac.GetTrinketIdByName("Yellow Belt"),
+    SUPPOSITORY = Isaac.GetTrinketIdByName("Suppository"),
 
---*COLLECTIBLES
--- mod.COLLECTIBLE_ = Isaac.GetItemIdByName("")
-mod.COLLECTIBLE_COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil")                  --!DONE
-mod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")            --!DONE
-mod.COLLECTIBLE_EYESTRAIN = Isaac.GetItemIdByName("Eyestrain")                      --!DONE
-mod.COLLECTIBLE_SNOWCONE = Isaac.GetItemIdByName("Snowcone")
-mod.COLLECTIBLE_EVIL_ROCK = Isaac.GetItemIdByName("Evil Rock")
-mod.COLLECTIBLE_GOAT_MILK = Isaac.GetItemIdByName("Goat Milk")                      --!DONE
-mod.COLLECTIBLE_LOOSE_BOWELS = Isaac.GetItemIdByName("Loose Bowels")
-mod.COLLECTIBLE_PLIERS = Isaac.GetItemIdByName("Pliers")                            --!DONE
-mod.COLLECTIBLE_NOSE_CANDY = Isaac.GetItemIdByName("Nose Candy")                    --!DONE
-mod.COLLECTIBLE_LION_SKULL = Isaac.GetItemIdByName("Lion Skull")                    --!DONE
-mod.COLLECTIBLE_DADS_SLIPPER = Isaac.GetItemIdByName("Dad's Slipper")
-mod.COLLECTIBLE_GOOD_JOB = Isaac.GetItemIdByName("Good Job")
-mod.COLLECTIBLE_ODD_ONION = Isaac.GetItemIdByName("Odd Onion")
-mod.COLLECTIBLE_CARAMEL_APPLE = Isaac.GetItemIdByName("Caramel Apple")              --!DONE
-mod.COLLECTIBLE_BLOOD_RITUAL = Isaac.GetItemIdByName("Blood Ritual")                --!DONE
-mod.COLLECTIBLE_TECH_IX = Isaac.GetItemIdByName("Tech IX")                          --!DONE
-mod.COLLECTIBLE_DRIED_PLACENTA = Isaac.GetItemIdByName("Dried Placenta")
-mod.COLLECTIBLE_PAINKILLERS = Isaac.GetItemIdByName("Painkillers")                  --!DONE
-mod.COLLECTIBLE_SILK_BAG = Isaac.GetItemIdByName("Silk Bag")                        --!DONE
-mod.COLLECTIBLE_BRAINFREEZE = Isaac.GetItemIdByName("Brainfreeze")
-mod.COLLECTIBLE_FATAL_SIGNAL = Isaac.GetItemIdByName("Fatal Signal")
-mod.COLLECTIBLE_METEOR_SHOWER = Isaac.GetItemIdByName("Meteor Shower")              --!DONE
-mod.COLLECTIBLE_BLESSED_RING = Isaac.GetItemIdByName("Blessed Ring")                --!DONE
-mod.COLLECTIBLE_SIGIL_OF_GREED = Isaac.GetItemIdByName("Sigil of Greed")
-mod.COLLECTIBLE_PEPPER_X = Isaac.GetItemIdByName("Pepper X")
-mod.COLLECTIBLE_SUNK_COSTS = Isaac.GetItemIdByName("Sunk Costs")                    --!DONE
-mod.COLLECTIBLE_GILDED_APPLE = Isaac.GetItemIdByName("Gilded Apple")                --!DONE
-mod.COLLECTIBLE_ONYX = Isaac.GetItemIdByName("Onyx")
-mod.COLLECTIBLE_DADS_PRESCRIPTION = Isaac.GetItemIdByName("Dad's Prescription")     --!DONE
-mod.COLLECTIBLE_HORSE_TRANQUILIZER = Isaac.GetItemIdByName("Horse Tranquilizer")    --!DONE
-mod.COLLECTIBLE_BOBS_HEART = Isaac.GetItemIdByName("Bob's Heart")                   --!DONE
-mod.COLLECTIBLE_GLASS_VESSEL = Isaac.GetItemIdByName("Glass Vessel")                --!DONE
-mod.COLLECTIBLE_BONE_BOY = Isaac.GetItemIdByName("Bone Boy")                        --!DONE
-mod.COLLECTIBLE_HOSTILE_TAKEOVER = Isaac.GetItemIdByName("Hostile Takeover")        --!DONE
-mod.COLLECTIBLE_STEEL_SOUL = Isaac.GetItemIdByName("Steel Soul")                    --!DONE
-mod.COLLECTIBLE_ROCK_CANDY = Isaac.GetItemIdByName("Rock Candy")                    --!DONE
-mod.COLLECTIBLE_GIANT_CAPSULE = Isaac.GetItemIdByName("Giant Capsule")              --!DONE
-mod.COLLECTIBLE_PEZ_DISPENSER = Isaac.GetItemIdByName("Candy Dispenser")            --!DONE
-mod.COLLECTIBLE_MISSING_PAGE_3 = Isaac.GetItemIdByName("Missing Page 3")            --!DONE
-mod.COLLECTIBLE_ASCENSION = Isaac.GetItemIdByName("Ascension")                      --!DONE
-mod.COLLECTIBLE_4_4 = Isaac.GetItemIdByName("4 4")                                  --!DONE
-mod.COLLECTIBLE_DR_BUM = Isaac.GetItemIdByName("Dr. Bum")                           --!DONE
-mod.COLLECTIBLE_JONAS_MASK = Isaac.GetItemIdByName("Jonas' Mask")                   --!DONE
-mod.COLLECTIBLE_CLOWN_PHD = Isaac.GetItemIdByName("Clown PHD")                      --!DONE
-mod.COLLECTIBLE_DRILL = Isaac.GetItemIdByName("Drill")
-mod.COLLECTIBLE_ALPHABET_BOX = Isaac.GetItemIdByName("Alphabet Box")                --!DONE
-mod.COLLECTIBLE_LOVE_LETTER = Isaac.GetItemIdByName("Love Letter")                  --!DONE
-mod.COLLECTIBLE_QUAKE_BOMBS = Isaac.GetItemIdByName("Quake Bombs")                  --!DONE
-mod.COLLECTIBLE_ATHEISM = Isaac.GetItemIdByName("Atheism")                          --!DONE
-mod.COLLECTIBLE_MAYONAISE = Isaac.GetItemIdByName("A Spoonful of Mayonnaise")       --!DONE
-mod.COLLECTIBLE_AWESOME_FRUIT = Isaac.GetItemIdByName("Awesome Fruit")              --!DONE
-mod.COLLECTIBLE_BLOODY_MAP = Isaac.GetItemIdByName("Bloody Map")
-mod.COLLECTIBLE_SALTPETER = Isaac.GetItemIdByName("Saltpeter")                      --!DONE
-mod.COLLECTIBLE_PREFERRED_OPTIONS = Isaac.GetItemIdByName("Preferred Options")      --!DONE
-mod.COLLECTIBLE_PLASMA_GLOBE = Isaac.GetItemIdByName("Plasma Globe")                --!DONE
-mod.COLLECTIBLE_CURSED_EULOGY = Isaac.GetItemIdByName("Cursed Eulogy")              --!DONE
-mod.COLLECTIBLE_BLESSED_BOMBS = Isaac.GetItemIdByName("Blessed Bombs")              --!DONE
-mod.COLLECTIBLE_BLOODY_WHISTLE = Isaac.GetItemIdByName("Bloody Whistle")            --!DONE
-mod.COLLECTIBLE_HEMORRHAGE = Isaac.GetItemIdByName("Haemorrhage")                   --!DONE
-mod.COLLECTIBLE_FISH = Isaac.GetItemIdByName("Fish")                                --!DONE
+    --LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK"),            --*UNUSED
+    --FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet"),            --*UNUSED
+}
 
-mod.COLLECTIBLE_RETROFALL = Isaac.GetItemIdByName("RETROFALL")                      --!DONE
-mod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")                      --!DONE
-mod.COLLECTIBLE_EQUALIZER = Isaac.GetItemIdByName("Equalizer")                      --!DONE
-mod.COLLECTIBLE_D = Isaac.GetItemIdByName("D")                                      --!DONE
---mod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")
+---@type Card[]
+mod.CONSUMABLE = {
+    PRISMSTONE = Isaac.GetCardIdByName("Prismstone"),
+    FOIL_CARD = Isaac.GetCardIdByName("Foil Card"),
+    LAUREL = Isaac.GetCardIdByName("Laurel"),
+    YANNY = Isaac.GetCardIdByName("Yanny"),
+    
+    MANTLE_ROCK = Isaac.GetCardIdByName("Rock Mantle"),
+    MANTLE_POOP = Isaac.GetCardIdByName("Poop Mantle"),
+    MANTLE_BONE = Isaac.GetCardIdByName("Bone Mantle"),
+    MANTLE_DARK = Isaac.GetCardIdByName("Dark Mantle"),
+    MANTLE_HOLY = Isaac.GetCardIdByName("Holy Mantle"),
+    MANTLE_SALT = Isaac.GetCardIdByName("Salt Mantle"),
+    MANTLE_GLASS = Isaac.GetCardIdByName("Glass Mantle"),
+    MANTLE_METAL = Isaac.GetCardIdByName("Metal Mantle"),
+    MANTLE_GOLD = Isaac.GetCardIdByName("Gold Mantle"),
+}
 
-mod.COLLECTIBLE_PORTABLE_TELLER = Isaac.GetItemIdByName("Portable Teller")
+---@type PillEffect[]
+mod.PILL_EFFECT = {
+    I_BELIEVE = Isaac.GetPillEffectByName("I Believe I Can Fly!"),
+    DYSLEXIA = Isaac.GetPillEffectByName("Dyslexia"),
+    DMG_UP = Isaac.GetPillEffectByName("Damage Up"),
+    DMG_DOWN = Isaac.GetPillEffectByName("Damage Down"),
+    DEMENTIA = Isaac.GetPillEffectByName("Dementia"),
+    PARASITE = Isaac.GetPillEffectByName("Parasite!"),
+    FENT = Isaac.GetPillEffectByName("Fent"),
+    YOUR_SOUL_IS_MINE = Isaac.GetPillEffectByName("Your Soul is Mine"),
+    ARTHRITIS = Isaac.GetPillEffectByName("Arthritis"),
+    OSSIFICATION = Isaac.GetPillEffectByName("Ossification"),
+    --BLEEEGH = Isaac.GetPillEffectByName("Bleeegh!"),
+    VITAMINS = Isaac.GetPillEffectByName("Vitamins!"),
+    COAGULANT = Isaac.GetPillEffectByName("Coagulant"),
+    FOOD_POISONING = Isaac.GetPillEffectByName("Food Poisoning"),
+    HEARTBURN = Isaac.GetPillEffectByName("Heartburn"),
+    MUSCLE_ATROPHY = Isaac.GetPillEffectByName("Muscle Atrophy"),
+    CAPSULE = Isaac.GetPillEffectByName("Capsule"),
+}
 
---mod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")            --*UNUSED (i dont like the item)
---mod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")                        --*UNUSED (same as above)
---mod.COLLECTIBLE_MALICIOUS_BRAIN = Isaac.GetItemIdByName("Malicious Brain")        --*UNUSED
+---@type FamiliarVariant[]
+mod.FAMILIAR_VARIANT = {
+    HYPNOS = Isaac.GetEntityVariantByName("Malicious Brain"),
+    SILK_BAG = Isaac.GetEntityVariantByName("Silk Bag"),
+    BONE_BOY = Isaac.GetEntityVariantByName("Bone Boy"),
+    EVIL_SHADOW = Isaac.GetEntityVariantByName("Black Spirit"),
+    VIRUS = Isaac.GetEntityVariantByName("Virus (Red)"),
+    MASK_SHADOW = Isaac.GetEntityVariantByName("Shadow Fly"),
+    DR_BUM = Isaac.GetEntityVariantByName("Dr Bum"),
+    BATH_WATER = Isaac.GetEntityVariantByName("Bath Water"),
+}
 
---*TRINKETS
-mod.TRINKET_ANTIBIOTICS = Isaac.GetTrinketIdByName("Antibiotics")                   --!DONE
-mod.TRINKET_WONDER_DRUG = Isaac.GetTrinketIdByName("Wonder Drug")                   --!DONE
-mod.TRINKET_AMBER_FOSSIL = Isaac.GetTrinketIdByName("Amber Fossil")                 --!DONE
-mod.TRINKET_JONAS_LOCK = Isaac.GetTrinketIdByName("Jonas' Lock")                    --!DONE
-mod.TRINKET_SINE_WORM = Isaac.GetTrinketIdByName("Sine Worm")                       --!DONE
-mod.TRINKET_BIG_BLIND = Isaac.GetTrinketIdByName("Big Blind")                       --!DONE
-mod.TRINKET_BATH_WATER = Isaac.GetTrinketIdByName("Bath Water")                     --!DONE
-mod.TRINKET_BLACK_RUNE_SHARD = Isaac.GetTrinketIdByName("Black Rune Shard")         --!DONE
-mod.TRINKET_YELLOW_BELT = Isaac.GetTrinketIdByName("Yellow Belt")
-mod.TRINKET_SUPPOSITORY = Isaac.GetTrinketIdByName("Suppository")                   --!DONE
+---@type EffectVariant[]
+mod.EFFECT_VARIANT = {
+    BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram"),
+    METEOR_TEAR_EXPLOSION = Isaac.GetEntityVariantByName("Meteor Tear Explosion"),
+    GOLDMANTLE_BREAK = Isaac.GetEntityVariantByName("Gold Mantle Shatter"),
+    GREED_SIGIL_CHARGEBAR = Isaac.GetEntityVariantByName("Greed Sigil Chargebar"),
+    ASCENSION_PLAYER_DEATH = Isaac.GetEntityVariantByName("Ascension Dead Player"),
+    AURA = Isaac.GetEntityVariantByName("Enemy Fear Aura"),
+    VESSEL_BREAK = Isaac.GetEntityVariantByName("Glass Vessel Break"),
+}
 
---mod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")                 --*UNUSED
---mod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")                 --*UNUSED
+---@type PickupVariant[]
+mod.PICKUP_VARIANT = {
+    MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny"),
+    BLACK_SOUL = Isaac.GetEntityVariantByName("Black Soul"),
+    BLOOD_SOUL = Isaac.GetEntityVariantByName("Blood Soul"),
+    INK_1 = Isaac.GetEntitySubTypeByName("Ink (1)"),
+    INK_2 = Isaac.GetEntitySubTypeByName("Ink (2)"),
+    INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)"),
+}
 
---*CONSUMABLES
-mod.CARD_PRISMSTONE = Isaac.GetCardIdByName("Prismstone")
-mod.CARD_FOIL_CARD = Isaac.GetCardIdByName("Foil Card")
+---@type TearVariant[]
+mod.TEAR_VARIANT = {
+    METEOR = Isaac.GetEntityVariantByName("Meteor Tear"),
+    BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear"),
+    SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear"),
+    PAPER = Isaac.GetEntityVariantByName("Tome Paper Tear"),
+}
 
-mod.CONSUMABLE_MANTLE_ROCK = Isaac.GetCardIdByName("Rock Mantle")
-mod.CONSUMABLE_MANTLE_POOP = Isaac.GetCardIdByName("Poop Mantle")
-mod.CONSUMABLE_MANTLE_BONE = Isaac.GetCardIdByName("Bone Mantle")
-mod.CONSUMABLE_MANTLE_DARK = Isaac.GetCardIdByName("Dark Mantle")
-mod.CONSUMABLE_MANTLE_HOLY = Isaac.GetCardIdByName("Holy Mantle")
-mod.CONSUMABLE_MANTLE_SALT = Isaac.GetCardIdByName("Salt Mantle")
-mod.CONSUMABLE_MANTLE_GLASS = Isaac.GetCardIdByName("Glass Mantle")
-mod.CONSUMABLE_MANTLE_METAL = Isaac.GetCardIdByName("Metal Mantle")
-mod.CONSUMABLE_MANTLE_GOLD = Isaac.GetCardIdByName("Gold Mantle")
-mod.CONSUMABLE_LAUREL = Isaac.GetCardIdByName("Laurel")
-mod.CONSUMABLE_YANNY = Isaac.GetCardIdByName("Yanny")
+---@type SoundEffect
+mod.SOUND_EFFECT = {
+    FOUR_FOUR_SCREAM = Isaac.GetSoundIdByName("Toybox_4_4_Scream"),
+    SILK_BAG_SHIELD = Isaac.GetSoundIdByName("Toybox_SilkBag_Shield"),
+    TOY_GUN_RELOAD = Isaac.GetSoundIdByName("Toybox_ToyGun_Reload"),
+    BULLET_FIRE = Isaac.GetSoundIdByName("Toybox_Bullet_Shoot"),
+    BULLET_HIT = Isaac.GetSoundIdByName("Toybox_Bullet_Hit"),
+    POWERUP = Isaac.GetSoundIdByName("Toybox_PowerUp"),
+    POWERDOWN = Isaac.GetSoundIdByName("Toybox_PowerDown"),
+    VIRUS_SPAWN = Isaac.GetSoundIdByName("Toybox_Virus_Spawn"),
+    VIRUS_SHOOT = Isaac.GetSoundIdByName("Toybox_Virus_Shoot"),
+    VIRUS_DIE = Isaac.GetSoundIdByName("Toybox_Virus_Die"),
+    SHADOW_SCREAM = Isaac.GetSoundIdByName("Toybox_Shadow_Scream"),
+    BLOODY_WHISTLE = Isaac.GetSoundIdByName("Toybox_Bloody_Whistle"),
+    ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("Toybox_AtlasA_RockCrack"),
+    ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_RockBreak"),
+    ATLASA_METALBLOCK = Isaac.GetSoundIdByName("Toybox_AtlasA_MetalBlock"),
+    ATLASA_METALBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_MetalBreak"),
+    ATLASA_GLASSBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_GlassBreak"),
+}
+for _, soundEffect in ipairs(mod.SOUND_EFFECT) do
+    sfx:Preload(soundEffect)
+end
 
-mod.PILL_I_BELIEVE = Isaac.GetPillEffectByName("I Believe I Can Fly!")
-mod.PILL_DYSLEXIA = Isaac.GetPillEffectByName("Dyslexia")
-mod.PILL_DMG_UP = Isaac.GetPillEffectByName("Damage Up")
-mod.PILL_DMG_DOWN = Isaac.GetPillEffectByName("Damage Down")
-mod.PILL_DEMENTIA = Isaac.GetPillEffectByName("Dementia")
-mod.PILL_PARASITE = Isaac.GetPillEffectByName("Parasite!")
-mod.PILL_FENT = Isaac.GetPillEffectByName("Fent")
-mod.PILL_YOUR_SOUL_IS_MINE = Isaac.GetPillEffectByName("Your Soul is Mine")
-mod.PILL_ARTHRITIS = Isaac.GetPillEffectByName("Arthritis")
-mod.PILL_OSSIFICATION = Isaac.GetPillEffectByName("Ossification")
---mod.PILL_BLEEEGH = Isaac.GetPillEffectByName("Bleeegh!")
-mod.PILL_VITAMINS = Isaac.GetPillEffectByName("Vitamins!")
-mod.PILL_COAGULANT = Isaac.GetPillEffectByName("Coagulant")
-mod.PILL_FOOD_POISONING = Isaac.GetPillEffectByName("Food Poisoning")
-mod.PILL_HEARTBURN = Isaac.GetPillEffectByName("Heartburn")
-mod.PILL_MUSCLE_ATROPHY = Isaac.GetPillEffectByName("Muscle Atrophy")
-mod.PILL_CAPSULE = Isaac.GetPillEffectByName("Capsule")
-
---#endregion
---#region --!ENTITIES
-
---*FAMILIARS
-mod.FAMILIAR_HYPNOS = Isaac.GetEntityVariantByName("Malicious Brain")
-mod.FAMILIAR_SILK_BAG = Isaac.GetEntityVariantByName("Silk Bag")
-mod.FAMILIAR_BONE_BOY = Isaac.GetEntityVariantByName("Bone Boy")
-mod.FAMILIAR_EVIL_SHADOW = Isaac.GetEntityVariantByName("Black Spirit")
-mod.FAMILIAR_VIRUS = Isaac.GetEntityVariantByName("Virus (Red)")
-mod.FAMILIAR_MASK_SHADOW = Isaac.GetEntityVariantByName("Shadow Fly")
-mod.FAMILIAR_DR_BUM = Isaac.GetEntityVariantByName("Dr Bum")
-mod.FAMILIAR_BATH_WATER = Isaac.GetEntityVariantByName("Bath Water")
-
---*EFFECTS
-mod.EFFECT_BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram")
-mod.EFFECT_METEOR_TEAR_EXPLOSION = Isaac.GetEntityVariantByName("Meteor Tear Explosion")
-mod.EFFECT_GOLDMANTLE_BREAK = Isaac.GetEntityVariantByName("Gold Mantle Shatter")
-mod.EFFECT_GREED_SIGIL_CHARGEBAR = Isaac.GetEntityVariantByName("Greed Sigil Chargebar")
-mod.EFFECT_ASCENSION_PLAYER_DEATH = Isaac.GetEntityVariantByName("Ascension Dead Player")
-mod.EFFECT_AURA = Isaac.GetEntityVariantByName("Enemy Fear Aura")
-mod.EFFECT_VESSEL_BREAK = Isaac.GetEntityVariantByName("Glass Vessel Break")
-
---*PICKUPS
-mod.PICKUP_MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny")
-mod.PICKUP_BLACK_SOUL = Isaac.GetEntityVariantByName("Black Soul")
-mod.PICKUP_BLOOD_SOUL = Isaac.GetEntityVariantByName("Blood Soul")
-mod.PICKUP_INK_1 = Isaac.GetEntitySubTypeByName("Ink (1)")
-mod.PICKUP_INK_2 = Isaac.GetEntitySubTypeByName("Ink (2)")
-mod.PICKUP_INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)")
-
---*TEARS
-mod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear")
-mod.TEAR_BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear")
-mod.TEAR_SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear")
-mod.TEAR_PAPER = Isaac.GetEntityVariantByName("Tome Paper Tear")
-
---*NPCS
-mod.NPC_BOSS = Isaac.GetEntityTypeByName("Shy Gal")
-mod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")
-mod.NPC_SHYGAL_CLONE = Isaac.GetEntityVariantByName("Shy Gal Clone")
-mod.NPC_SHYGAL_MASK = Isaac.GetEntityVariantByName("Shy Gal Mask")
-
-mod.BOSS_RED_MEGALODON = Isaac.GetEntityVariantByName("Red Megalodon")
-mod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
-
-mod.NPC_MAIN = Isaac.GetEntityTypeByName("Stumpy")
-mod.VAR_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
-
---#endregion
---#region --!SFX
-
-mod.SFX_4_4_SCREAM = Isaac.GetSoundIdByName("Toybox_4_4_Scream"); sfx:Preload(mod.SFX_4_4_SCREAM)
-mod.SFX_SILK_BAG_SHIELD = Isaac.GetSoundIdByName("Toybox_SilkBag_Shield"); sfx:Preload(mod.SFX_SILK_BAG_SHIELD)
-mod.SFX_TOY_GUN_RELOAD = Isaac.GetSoundIdByName("Toybox_ToyGun_Reload"); sfx:Preload(mod.SFX_TOY_GUN_RELOAD)
-mod.SFX_BULLET_FIRE = Isaac.GetSoundIdByName("Toybox_Bullet_Shoot"); sfx:Preload(mod.SFX_BULLET_FIRE)
-mod.SFX_BULLET_HIT = Isaac.GetSoundIdByName("Toybox_Bullet_Hit"); sfx:Preload(mod.SFX_BULLET_HIT)
-mod.SFX_POWERUP = Isaac.GetSoundIdByName("Toybox_PowerUp"); sfx:Preload(mod.SFX_POWERUP)
-mod.SFX_POWERDOWN = Isaac.GetSoundIdByName("Toybox_PowerDown"); sfx:Preload(mod.SFX_POWERDOWN)
-mod.SFX_VIRUS_SPAWN = Isaac.GetSoundIdByName("Toybox_Virus_Spawn"); sfx:Preload(mod.SFX_VIRUS_SPAWN)
-mod.SFX_VIRUS_SHOOT = Isaac.GetSoundIdByName("Toybox_Virus_Shoot"); sfx:Preload(mod.SFX_VIRUS_SHOOT)
-mod.SFX_VIRUS_DIE = Isaac.GetSoundIdByName("Toybox_Virus_Die"); sfx:Preload(mod.SFX_VIRUS_DIE)
-mod.SFX_SHADOW_SCREAM = Isaac.GetSoundIdByName("Toybox_Shadow_Scream"); sfx:Preload(mod.SFX_SHADOW_SCREAM)
-mod.SFX_BLOODY_WHISTLE = Isaac.GetSoundIdByName("Toybox_Bloody_Whistle"); sfx:Preload(mod.SFX_BLOODY_WHISTLE)
-
-mod.SFX_ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("Toybox_AtlasA_RockCrack"); sfx:Preload(mod.SFX_ATLASA_ROCKCRACK)
-mod.SFX_ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_RockBreak"); sfx:Preload(mod.SFX_ATLASA_ROCKBREAK)
-mod.SFX_ATLASA_METALBLOCK = Isaac.GetSoundIdByName("Toybox_AtlasA_MetalBlock"); sfx:Preload(mod.SFX_ATLASA_METALBLOCK)
-mod.SFX_ATLASA_METALBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_MetalBreak"); sfx:Preload(mod.SFX_ATLASA_METALBREAK)
-mod.SFX_ATLASA_GLASSBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_GlassBreak"); sfx:Preload(mod.SFX_ATLASA_GLASSBREAK)
-
---#endregion
---#region --!MISC
 mod.FAMILIAR_VIRUS_SUBTYPE = {
     RED = Isaac.GetEntitySubTypeByName("Virus (Red)"),
     FEVER = Isaac.GetEntitySubTypeByName("Virus (Red)"),
@@ -267,7 +264,6 @@ mod.FAMILIAR_VIRUS_SUBTYPE = {
     PINK = Isaac.GetEntitySubTypeByName("Virus (Pink)"),
     PURPLE = Isaac.GetEntitySubTypeByName("Virus (Purple)"),
 }
-
 mod.FAMILIAR_MASK_SHADOW_SUBTYPE = {
     FLY = Isaac.GetEntitySubTypeByName("Shadow Fly"),
     URCHIN = Isaac.GetEntitySubTypeByName("Shadow Urchin"),
@@ -276,16 +272,25 @@ mod.FAMILIAR_MASK_SHADOW_SUBTYPE = {
     ORBITAL = Isaac.GetEntitySubTypeByName("Shadow Urchin"),
     CHASER = Isaac.GetEntitySubTypeByName("Shadow Crawler"),
 }
-
 mod.EFFECT_AURA_SUBTYPE = {
     ENEMY_FEAR = 0,
     BOMB_BLESSED = 1,
     DARK_MANTLE = 2,
     HOLY_MANTLE = 3,
 }
---#endregion
---#region --!CUSTOM_ENUMS
 
+mod.NPC_BOSS = Isaac.GetEntityTypeByName("Shy Gal")
+mod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")
+mod.NPC_SHYGAL_CLONE = Isaac.GetEntityVariantByName("Shy Gal Clone")
+mod.NPC_SHYGAL_MASK = Isaac.GetEntityVariantByName("Shy Gal Mask")
+
+mod.BOSS_RED_MEGALODON = Isaac.GetEntityVariantByName("Red Megalodon")
+mod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
+
+mod.NPC_MAIN = Isaac.GetEntityTypeByName("Stumpy")
+mod.VAR_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
+
+---@type ShaderType
 mod.SHADERS = {
     EMPTY = "ToyboxEmptyShader",
     BLOOM = "ToyboxBloomShader",
@@ -302,6 +307,7 @@ mod.COPYING_FAMILIARS = {
     --[FamiliarVariant.FATES_REWARD] = true,
 }
 
+---@type CallbackID[]
 mod.CUSTOM_CALLBACKS = {
     PRE_ATLAS_LOSE_MANTLE = "TOYBOX_PRE_ATLAS_LOSE_MANTLE",
     POST_ATLAS_LOSE_MANTLE = "TOYBOX_POST_ATLAS_LOSE_MANTLE",
@@ -346,153 +352,153 @@ mod.DAMAGE_TYPE = {
 
 mod.ACHIEVEMENTS = {
     {
-        Achievement = mod.ACH_ROCK_CANDY,
+        Achievement = mod.ACHIEVEMENT.ROCK_CANDY,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.BOSS_RUSH)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.BOSS_RUSH)>0
         end,
     },
     {
-        Achievement = mod.ACH_SALTPETER,
+        Achievement = mod.ACHIEVEMENT.SALTPETER,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.HUSH)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.HUSH)>0
         end,
     },
     {
-        Achievement = mod.ACH_ASCENSION,
+        Achievement = mod.ACHIEVEMENT.ASCENSION,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.ISAAC)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.ISAAC)>0
         end,
     },
     {
-        Achievement = mod.ACH_GLASS_VESSEL,
+        Achievement = mod.ACHIEVEMENT.GLASS_VESSEL,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.BLUE_BABY)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.BLUE_BABY)>0
         end,
     },
     {
-        Achievement = mod.ACH_MISSING_PAGE_3,
+        Achievement = mod.ACHIEVEMENT.MISSING_PAGE_3,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.SATAN)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.SATAN)>0
         end,
     },
     {
-        Achievement = mod.ACH_BONE_BOY,
+        Achievement = mod.ACHIEVEMENT.BONE_BOY,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.LAMB)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.LAMB)>0
         end,
     },
     {
-        Achievement = mod.ACH_GILDED_APPLE,
+        Achievement = mod.ACHIEVEMENT.GILDED_APPLE,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.ULTRA_GREED)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.ULTRA_GREED)>0
         end,
     },
     {
-        Achievement = mod.ACH_PRISMSTONE,
+        Achievement = mod.ACHIEVEMENT.PRISMSTONE,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.ULTRA_GREED)>=2
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.ULTRA_GREED)>=2
         end,
     },
     {
-        Achievement = mod.ACH_AMBER_FOSSIL,
+        Achievement = mod.ACHIEVEMENT.AMBER_FOSSIL,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.MOTHER)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.MOTHER)>0
         end,
     },
     {
-        Achievement = mod.ACH_STEEL_SOUL,
+        Achievement = mod.ACHIEVEMENT.STEEL_SOUL,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.BEAST)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.BEAST)>0
         end,
     },
     {
-        Achievement = mod.ACH_HOSTILE_TAKEOVER,
+        Achievement = mod.ACHIEVEMENT.HOSTILE_TAKEOVER,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.DELIRIUM)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.DELIRIUM)>0
         end,
     },
     {
-        Achievement = mod.ACH_MANTLES,
+        Achievement = mod.ACHIEVEMENT.MANTLES,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_ATLAS_A, CompletionType.MEGA_SATAN)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.ATLAS_A, CompletionType.MEGA_SATAN)>0
         end,
     },
     {
-        Achievement = mod.ACH_MIRACLE_MANTLE,
+        Achievement = mod.ACHIEVEMENT.MIRACLE_MANTLE,
         Condition = function()
-            return Isaac.AllMarksFilled(mod.PLAYER_ATLAS_A)>=2
+            return Isaac.AllMarksFilled(mod.PLAYER_TYPE.ATLAS_A)>=2
         end,
     },
     {
-        Achievement = mod.ACH_JONAS_LOCK,
+        Achievement = mod.ACHIEVEMENT.JONAS_LOCK,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.BOSS_RUSH)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.BOSS_RUSH)>0
         end,
     },
     {
-        Achievement = mod.ACH_WONDER_DRUG,
+        Achievement = mod.ACHIEVEMENT.WONDER_DRUG,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.HUSH)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.HUSH)>0
         end,
     },
     {
-        Achievement = mod.ACH_DADS_PRESCRIPTION,
+        Achievement = mod.ACHIEVEMENT.DADS_PRESCRIPTION,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.ISAAC)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.ISAAC)>0
         end,
     },
     {
-        Achievement = mod.ACH_CANDY_DISPENSER,
+        Achievement = mod.ACHIEVEMENT.CANDY_DISPENSER,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.BLUE_BABY)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.BLUE_BABY)>0
         end,
     },
     {
-        Achievement = mod.ACH_DR_BUM,
+        Achievement = mod.ACHIEVEMENT.DR_BUM,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.SATAN)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.SATAN)>0
         end,
     },
     {
-        Achievement = mod.ACH_JONAS_MASK,
+        Achievement = mod.ACHIEVEMENT.JONAS_MASK,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.LAMB)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.LAMB)>0
         end,
     },
     {
-        Achievement = mod.ACH_ANTIBIOTICS,
+        Achievement = mod.ACHIEVEMENT.ANTIBIOTICS,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.ULTRA_GREED)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.ULTRA_GREED)>0
         end,
     },
     {
-        Achievement = mod.ACH_FOIL_CARD,
+        Achievement = mod.ACHIEVEMENT.FOIL_CARD,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.ULTRA_GREED)>=2
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.ULTRA_GREED)>=2
         end,
     },
     {
-        Achievement = mod.ACH_HORSE_TRANQUILIZER,
+        Achievement = mod.ACHIEVEMENT.HORSE_TRANQUILIZER,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.MOTHER)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.MOTHER)>0
         end,
     },
     {
-        Achievement = mod.ACH_CLOWN_PHD,
+        Achievement = mod.ACHIEVEMENT.CLOWN_PHD,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.BEAST)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.BEAST)>0
         end,
     },
     {
-        Achievement = mod.ACH_GIANT_CAPSULE,
+        Achievement = mod.ACHIEVEMENT.GIANT_CAPSULE,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.DELIRIUM)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.DELIRIUM)>0
         end,
     },
     {
-        Achievement = mod.ACH_PILLS,
+        Achievement = mod.ACHIEVEMENT.PILLS,
         Condition = function()
-            return Isaac.GetCompletionMark(mod.PLAYER_JONAS_A, CompletionType.MEGA_SATAN)>0
+            return Isaac.GetCompletionMark(mod.PLAYER_TYPE.JONAS_A, CompletionType.MEGA_SATAN)>0
         end,
     },
 }
@@ -504,23 +510,20 @@ mod.MANTLE_DATA = {
     NONE = {
         ID = 0,
         HP = 0,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_ROCK,
         SHARD_COLOR = Color(0,0,0,0),
         ANIM = "Empty",
         HURT_SFX = 0,
         BREAK_SFX = 0,
-        
-        ATLAS_DESC = "",
-        REG_DESC = "",
     },
     DEFAULT = {
         ID = 1,
         HP = 2,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_ROCK,
         SHARD_COLOR = Color(153/255,139/255,136/255,1),
         ANIM = "RockMantle",
-        HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
-        BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+        HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
         ATLAS_DESC = "Useless",
         REG_DESC = "Rock and roll",
@@ -528,23 +531,23 @@ mod.MANTLE_DATA = {
     POOP = {
         ID = 2,
         HP = 2,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_POOP,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_POOP,
         SHARD_COLOR = Color(124/255,86/255,52/255,1),
         ANIM = "PoopMantle",
-        HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
-        BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+        HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
-        ATLAS_DESC = "More poops, better poops",
+        ATLAS_DESC = "More poops / Better poops",
         REG_DESC = "On-command diarrhea",
     },
     BONE = {
         ID = 3,
         HP = 3,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_BONE,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_BONE,
         SHARD_COLOR = Color(95/255,112/255,121/255,1),
         ANIM = "BoneMantle",
-        HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
-        BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+        HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
         ATLAS_DESC = "Bones on kill, panic = sorrow",
         REG_DESC = "Bone buddy + bones on kill",
@@ -552,24 +555,24 @@ mod.MANTLE_DATA = {
     DARK = {
         ID = 4,
         HP = 2,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_DARK,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_DARK,
         SHARD_COLOR = Color(59/255,59/255,59/255,1),
         ANIM = "DarkMantle",
-        HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
-        BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+        HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
 
-        ATLAS_DESC = "DMG up + mass room damage, dark aura",
+        ATLAS_DESC = "DMG up + mass room damage / Dark aura",
         REG_DESC = "Mass floor damage",
     },
     HOLY = {
         ID = 5,
         HP = 2,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_HOLY,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_HOLY,
         FLIGHT_COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/tb_costume_atlas_wings.anm2"),
         SHARD_COLOR = Color(190/255,190/255,190/255,1),
         ANIM = "HolyMantle",
-        HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
-        BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+        HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
         ATLAS_DESC = "Range up + sacred tears, flight + holy aura",
         REG_DESC = "Eternity + \"god\" tears",
@@ -577,24 +580,24 @@ mod.MANTLE_DATA = {
     SALT = {
         ID = 6,
         HP = 2,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_SALT,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_SALT,
         CHARIOT_COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/tb_costume_atlas_salt.anm2"),
         SHARD_COLOR = Color(1,1,1,1),
         ANIM = "SaltMantle",
-        HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
-        BREAK_SFX = mod.SFX_ATLASA_ROCKBREAK,
+        HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_ROCKBREAK,
                 
-        ATLAS_DESC = "Tears up, on-command salt chariot",
+        ATLAS_DESC = "Tears up / On-command salt chariot",
         REG_DESC = "Temporary sorrow",
     },
     GLASS = {
         ID = 7,
         HP = 1,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_GLASS,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_GLASS,
         SHARD_COLOR = Color(1,1,1,1),
         ANIM = "GlassMantle",
         HURT_SFX = 0,
-        BREAK_SFX = mod.SFX_ATLASA_GLASSBREAK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_GLASSBREAK,
                 
         ATLAS_DESC = "DMG + shotspeed up + brittle protection",
         REG_DESC = "DMG up + fragility up",
@@ -602,11 +605,11 @@ mod.MANTLE_DATA = {
     METAL = {
         ID = 8,
         HP = 3,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_METAL,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_METAL,
         SHARD_COLOR = Color(147/255,147/255,147/255,1),
         ANIM = "MetalMantle",
-        HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
-        BREAK_SFX = mod.SFX_ATLASA_METALBREAK,
+        HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_METALBREAK,
                 
         ATLAS_DESC = "Speed down + defense up",
         REG_DESC = "Tough skin",
@@ -614,11 +617,11 @@ mod.MANTLE_DATA = {
     GOLD = {
         ID = 9,
         HP = 2,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_GOLD,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_GOLD,
         SHARD_COLOR = Color(205/255,181/255,60/255,1),
         ANIM = "GoldMantle",
-        HURT_SFX = mod.SFX_ATLASA_ROCKCRACK,
-        BREAK_SFX = mod.SFX_ATLASA_METALBREAK,
+        HURT_SFX = mod.SOUND_EFFECT.ATLASA_ROCKCRACK,
+        BREAK_SFX = mod.SOUND_EFFECT.ATLASA_METALBREAK,
                 
         ATLAS_DESC = "Luck up + gold panic, penny tears",
         REG_DESC = "Microtransactions",
@@ -627,7 +630,7 @@ mod.MANTLE_DATA = {
     TAR = {
         ID = 1024,
         HP = 0,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_ROCK,
         SHARD_COLOR = Color(0,0,0,1),
         ANIM = "TarMantle",
         HURT_SFX = 0,
@@ -636,7 +639,7 @@ mod.MANTLE_DATA = {
     UNKNOWN = {
         ID = 1000,
         HP = 0,
-        CONSUMABLE_SUBTYPE = mod.CONSUMABLE_MANTLE_ROCK,
+        CONSUMABLE_SUBTYPE = mod.CONSUMABLE.MANTLE_ROCK,
         SHARD_COLOR = Color(0,0,0,0),
         ANIM = "Unknown",
         HURT_SFX = 0,

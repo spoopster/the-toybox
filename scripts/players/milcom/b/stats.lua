@@ -2,9 +2,9 @@ local mod = MilcomMOD
 
 ---@param player EntityPlayer
 local function milcomBInit(_, player)
-    if(player:GetPlayerType()==mod.PLAYER_MILCOM_B) then
+    if(player:GetPlayerType()==mod.PLAYER_TYPE.MILCOM_B) then
         local pgd = Isaac.GetPersistentGameData()
-        if(not pgd:Unlocked(mod.ACH_MILCOM_B)) then
+        if(not pgd:Unlocked(mod.ACHIEVEMENT.MILCOM_B)) then
             player:ChangePlayerType(0)
             player:AddMaxHearts(6)
             player:AddHearts(6)

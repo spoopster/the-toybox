@@ -24,7 +24,7 @@ mod.MILCOM_A_BASEDATA = MILCOM_A_BASEDATA
 
 ---@param player EntityPlayer
 local function postMilcomInit(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_TYPE.MILCOM_A) then return end
     local data = mod:getMilcomATable(player)
 
     player:GetSprite():Load("gfx/characters/tb_character_milcom_a.anm2", true)
@@ -33,7 +33,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postMilcomInit)
 
 ---@param player EntityPlayer
 local function postMilcomUpdate(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_MILCOM_A) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_TYPE.MILCOM_A) then return end
     local data = mod:getMilcomATable(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postMilcomUpdate)

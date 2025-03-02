@@ -17,4 +17,4 @@ function(_, effect, player, flags, color)
         mod:setMantleType(player, right, 1, mod.MANTLE_DATA.BONE.ID)
     end
 end,
-mod.PILL_OSSIFICATION)
+mod.PILL_EFFECT.OSSIFICATION)

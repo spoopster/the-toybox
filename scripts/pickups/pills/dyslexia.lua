@@ -14,7 +14,7 @@ local function usePill(_, effect, player, flags, color)
     player:AnimateSad()
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_DYSLEXIA)
+mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.DYSLEXIA)
 
 --! randomeze streings
 local function shouldDysxzjejcinz()
@@ -75,7 +75,7 @@ local function getdyselxiaoffset(player)
     data.DYSLEXIA_DURATION = data.DYSLEXIA_DURATION or 0
 
     if(data.DYSLEXIA_DURATION<=0) then return 0
-    elseif(data.DYSLEXIA_HORSE) then return player:GetPillRNG(mod.PILL_DYSLEXIA):RandomInt(360)
+    elseif(data.DYSLEXIA_HORSE) then return player:GetPillRNG(mod.PILL_EFFECT.DYSLEXIA):RandomInt(360)
     else return 180 end
 end
 local function spanrrhasdyselxia(player)

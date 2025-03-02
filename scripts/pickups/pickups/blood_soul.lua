@@ -32,7 +32,7 @@ local function bloodSoulInit(_, pickup)
 
     trail:Update()
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, bloodSoulInit, mod.PICKUP_BLOOD_SOUL)
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, bloodSoulInit, mod.PICKUP_VARIANT.BLOOD_SOUL)
 
 ---@param pickup EntityPickup
 local function bloodSoulUpdate(_, pickup)
@@ -42,7 +42,7 @@ local function bloodSoulUpdate(_, pickup)
         pickup.Velocity = pickup.Velocity*0.95
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, bloodSoulUpdate, mod.PICKUP_BLOOD_SOUL)
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, bloodSoulUpdate, mod.PICKUP_VARIANT.BLOOD_SOUL)
 
 local function bloodSoulCollision(_, pickup, coll)
     if(coll.Type~=1) then return true end
@@ -60,7 +60,7 @@ local function bloodSoulCollision(_, pickup, coll)
     pickup:Remove()
     return true
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.LATE, bloodSoulCollision, mod.PICKUP_BLOOD_SOUL)
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.LATE, bloodSoulCollision, mod.PICKUP_VARIANT.BLOOD_SOUL)
 
 local function soulTrailRender(_, effect, offset)
     local pickupParent = mod:getEntityData(effect, "BLOOD_SOUL_PARENT")

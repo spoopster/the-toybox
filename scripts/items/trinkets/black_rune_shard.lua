@@ -7,11 +7,11 @@ local function replaceBlueFlySpider(_, familiar)
     if(Isaac.GetPlayer().FrameCount==0) then return end
 
     local pl = familiar.Player
-    local trinketScale = pl:GetTrinketMultiplier(mod.TRINKET_BLACK_RUNE_SHARD)
+    local trinketScale = pl:GetTrinketMultiplier(mod.TRINKET.BLACK_RUNE_SHARD)
     if(trinketScale==0) then return end
 
     local chance = REPLACE_CHANCE*trinketScale--1-(1-REPLACE_CHANCE)^trinketScale
-    local rng = pl:GetTrinketRNG(mod.TRINKET_BLACK_RUNE_SHARD)
+    local rng = pl:GetTrinketRNG(mod.TRINKET.BLACK_RUNE_SHARD)
     if(rng:RandomFloat()<chance) then
         --print("hell yes")
         local dir = Vector.FromAngle(rng:RandomInt(360))*3

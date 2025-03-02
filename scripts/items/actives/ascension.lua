@@ -27,7 +27,7 @@ local function stopAscension(player)
     data.ASCENSION_EFFECT = nil
     SHADER_PLAYER = nil
 
-    player:GetEffects():RemoveCollectibleEffect(mod.COLLECTIBLE_ASCENSION, player:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE_ASCENSION))
+    player:GetEffects():RemoveCollectibleEffect(mod.COLLECTIBLE.ASCENSION, player:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.ASCENSION))
     player:SetMinDamageCooldown(END_INVINCIBILITY)
 end
 
@@ -43,7 +43,7 @@ local function useAscenson(_, _, rng, player, flags)
             data.ASCENSION_ORIGINALPOS = player.Position
             data.ASCENSION_JUSTUSEDASCENSION = true
 
-            data.ASCENSION_EFFECT = Isaac.Spawn(1000,mod.EFFECT_ASCENSION_PLAYER_DEATH,0,player.Position,Vector.Zero,player):ToEffect()
+            data.ASCENSION_EFFECT = Isaac.Spawn(1000,mod.EFFECT_VARIANT.ASCENSION_PLAYER_DEATH,0,player.Position,Vector.Zero,player):ToEffect()
             data.ASCENSION_EFFECT:GetSprite():Load(player:GetSprite():GetFilename(), true)
             data.ASCENSION_EFFECT:GetSprite():ReplaceSpritesheet(12, EntityConfig.GetPlayer(player:GetPlayerType()):GetSkinPath(), true)
             data.ASCENSION_EFFECT:GetSprite():GetLayer("ghost"):SetVisible(false)
@@ -64,7 +64,7 @@ local function useAscenson(_, _, rng, player, flags)
         ShowAnim = false,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useAscenson, mod.COLLECTIBLE_ASCENSION)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, useAscenson, mod.COLLECTIBLE.ASCENSION)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
@@ -91,8 +91,8 @@ local function updateAscension(_, player)
     data.ASCENSION_LENGTH = (data.ASCENSION_LENGTH or 0)-1
     if(data.ASCENSION_LENGTH<=0) then stopAscension(player) end
 
-    local isUsingPrimaryAscension = (Input.IsActionTriggered(ButtonAction.ACTION_ITEM, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)==mod.COLLECTIBLE_ASCENSION)
-    local isUsingPocketAscension = (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_POCKET)==mod.COLLECTIBLE_ASCENSION)
+    local isUsingPrimaryAscension = (Input.IsActionTriggered(ButtonAction.ACTION_ITEM, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)==mod.COLLECTIBLE.ASCENSION)
+    local isUsingPocketAscension = (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_POCKET)==mod.COLLECTIBLE.ASCENSION)
 
     if(data.ASCENSION_ISACTIVE==true and (isUsingPrimaryAscension or isUsingPocketAscension)) then
         stopAscension(player)
@@ -101,7 +101,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateAscension, 0)
 
 local function postNewRoom()
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_ASCENSION)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.ASCENSION)) then return end
 
     for i=0, Game():GetNumPlayers() do
         local pl = Isaac.GetPlayer(i)
@@ -149,7 +149,7 @@ mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, getShaderParams)
 ---@param player EntityPlayer
 local function initRemoveAscension(_, player)
     if(player:GetPlayerType()==PlayerType.PLAYER_THELOST or player:GetPlayerType()==PlayerType.PLAYER_THELOST_B) then
-        Game():GetItemPool():RemoveCollectible(mod.COLLECTIBLE_ASCENSION)
+        Game():GetItemPool():RemoveCollectible(mod.COLLECTIBLE.ASCENSION)
     end
 end
 --mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, initRemoveAscension, 0)

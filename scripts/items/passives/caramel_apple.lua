@@ -228,7 +228,7 @@ end
 ---@param pickup EntityPickup
 ---@param player EntityPlayer?
 local function collideWithHearts(_, pickup, player)
-    if(not (player and player:ToPlayer() and player:ToPlayer():HasCollectible(mod.COLLECTIBLE_CARAMEL_APPLE))) then return end
+    if(not (player and player:ToPlayer() and player:ToPlayer():HasCollectible(mod.COLLECTIBLE.CARAMEL_APPLE))) then return end
     player = player:ToPlayer()
 
     local data = mod:getEntityDataTable(player)
@@ -242,7 +242,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.E
 
 ---@param player EntityPlayer
 local function addHeartEffects(_, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_CARAMEL_APPLE)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.CARAMEL_APPLE)) then return end
     local hpData = mod:getEntityData(player, "CARAMEL_APPLE_DATA") or {}
 
     local addedHearts = {}
@@ -250,7 +250,7 @@ local function addHeartEffects(_, player)
     for k, st in pairs(hpData) do
         local hTable = ENUM_HEARTS[st]
         if(hTable) then
-            if(hTable.TestFunc(player) and player:GetCollectibleRNG(mod.COLLECTIBLE_CARAMEL_APPLE):RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then
+            if(hTable.TestFunc(player) and player:GetCollectibleRNG(mod.COLLECTIBLE.CARAMEL_APPLE):RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then
                 if(type(hTable.Color)=="table") then
                     for _, col in ipairs(hTable.Color) do addedHearts[#addedHearts+1] = col end
                 else

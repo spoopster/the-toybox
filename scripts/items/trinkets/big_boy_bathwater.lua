@@ -6,10 +6,10 @@ local CREEP_COLOR = Color(0,0,0,1,141/255,145/255,159/255)
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     pl:CheckFamiliar(
-        mod.FAMILIAR_BATH_WATER,
-        pl:GetTrinketMultiplier(mod.TRINKET_BATH_WATER),
-        pl:GetTrinketRNG(mod.TRINKET_BATH_WATER),
-        Isaac.GetItemConfig():GetTrinket(mod.TRINKET_BATH_WATER)
+        mod.FAMILIAR_VARIANT.BATH_WATER,
+        pl:GetTrinketMultiplier(mod.TRINKET.BATH_WATER),
+        pl:GetTrinketRNG(mod.TRINKET.BATH_WATER),
+        Isaac.GetItemConfig():GetTrinket(mod.TRINKET.BATH_WATER)
     )
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
@@ -20,7 +20,7 @@ local function bathwaterInit(_, fam)
     fam.State = 0
     fam:AddToFollowers()
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, bathwaterInit, mod.FAMILIAR_BATH_WATER)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, bathwaterInit, mod.FAMILIAR_VARIANT.BATH_WATER)
 
 ---@param fam EntityFamiliar
 local function bathwaterUpdate(_, fam)
@@ -47,11 +47,11 @@ local function bathwaterUpdate(_, fam)
         fam:FollowParent()
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bathwaterUpdate, mod.FAMILIAR_BATH_WATER)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bathwaterUpdate, mod.FAMILIAR_VARIANT.BATH_WATER)
 
 ---@param pl EntityPlayer
 local function resetBathwater(_, pl)
-    for _, fam in ipairs(Isaac.FindByType(3,mod.FAMILIAR_BATH_WATER)) do
+    for _, fam in ipairs(Isaac.FindByType(3,mod.FAMILIAR_VARIANT.BATH_WATER)) do
         fam = fam:ToFamiliar()
         if(fam.State~=0 and GetPtrHash(fam.Player)==GetPtrHash(pl)) then
             fam.Visible = true
@@ -68,7 +68,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, resetBathwate
 ---@param player Entity
 local function breakBathwater(_, player, _, flags, source)
     player = player:ToPlayer()
-    for _, fam in ipairs(Isaac.FindByType(3,mod.FAMILIAR_BATH_WATER)) do
+    for _, fam in ipairs(Isaac.FindByType(3,mod.FAMILIAR_VARIANT.BATH_WATER)) do
         fam = fam:ToFamiliar()
         if(fam.State==0 and GetPtrHash(fam.Player)==GetPtrHash(player)) then
             fam.State = 1

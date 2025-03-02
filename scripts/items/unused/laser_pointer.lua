@@ -6,7 +6,7 @@ laserSprite:Play("Idle", true)
 local ANGLE_DIF_TRIGGER = 25
 
 local function postProjectileRender(_, p)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_LASER_POINTER)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.LASER_POINTER)) then return end
 
     local dir = p.Velocity:Normalized()
     local a = dir:GetAngleDegrees()
@@ -15,7 +15,7 @@ local function postProjectileRender(_, p)
     -- [[
     for _, player in ipairs(Isaac.FindByType(1)) do
         player = player:ToPlayer() or Isaac.GetPlayer()
-        if(player:HasCollectible(mod.COLLECTIBLE_LASER_POINTER)) then
+        if(player:HasCollectible(mod.COLLECTIBLE.LASER_POINTER)) then
             local aDif = math.abs((player.Position-p.Position):GetAngleDegrees()-a)
             if(aDif<=ANGLE_DIF_TRIGGER) then
                 alpha = 1-aDif/ANGLE_DIF_TRIGGER

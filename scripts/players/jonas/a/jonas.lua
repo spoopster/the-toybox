@@ -58,7 +58,7 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, resetPoolRerollPleaseee)
 
 ---@param player EntityPlayer
 local function postJonasInit(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_TYPE.JONAS_A) then return end
 
     --make pill pool
     if(Game():GetFrameCount()==0 or not mod:getExtraData("CUSTOM_PILL_POOL")) then
@@ -73,7 +73,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postJonasInit)
 
 ---@param player EntityPlayer
 local function rerollPillPoolNewLevel(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_TYPE.JONAS_A) then return end
     if(player.FrameCount==0) then return end
 
     local data = mod:getJonasATable(player)
@@ -87,7 +87,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, rerollPillPoolNewLevel)
 
 ---@param player EntityPlayer
 local function postJonasRender(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_JONAS_A) then return end
+    if(player:GetPlayerType()~=mod.PLAYER_TYPE.JONAS_A) then return end
     --! FOR TESTING PURPOSES, DELETE ON RELEASE
     --if(mod.JONAS_A_DATA[player.InitSeed]==nil) then mod.JONAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.JONAS_A_BASEDATA) end
 end
@@ -104,7 +104,7 @@ local function replaceGoldPillEffect(_, pilleffect, color)
         local chosenPlayer = Isaac.GetPlayer()
         local phdVal = mod:getTotalPhdMask()
 
-        if(chosenPlayer:GetPlayerType()==mod.PLAYER_JONAS_A) then
+        if(chosenPlayer:GetPlayerType()==mod.PLAYER_TYPE.JONAS_A) then
             --print("y")
             local rng = mod:generateRng()
             return mod:getRandomPillEffect(rng, chosenPlayer, phdVal, {})

@@ -17,7 +17,7 @@ end
 
 local ITEMS = {
     --#region --!PASSIVES
-    [mod.COLLECTIBLE_COCONUT_OIL] = {
+    [mod.COLLECTIBLE.COCONUT_OIL] = {
         Name = "Coconut Oil",
         Description = {
             "\1 +0.5 Tears",
@@ -25,7 +25,7 @@ local ITEMS = {
             "Your friction increases, effectively increasing your movement speed",
         },
     },
-    [mod.COLLECTIBLE_CONDENSED_MILK] = {
+    [mod.COLLECTIBLE.CONDENSED_MILK] = {
         Name = "Condensed Milk",
         Description = {
             "\1 x1.2 Tears",
@@ -50,7 +50,7 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_GOAT_MILK] = {
+    [mod.COLLECTIBLE.GOAT_MILK] = {
         Name = "Goat Milk",
         Description = {
             "\1 +0.5 tears",
@@ -58,14 +58,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_GOAT_MILK),
+                Condition = getStackFunction(mod.COLLECTIBLE.GOAT_MILK),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_GOAT_MILK.."}} {{ColorItemStack}}Firedelay multipliers are more extreme{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.GOAT_MILK.."}} {{ColorItemStack}}Firedelay multipliers are more extreme{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_NOSE_CANDY] = {
+    [mod.COLLECTIBLE.NOSE_CANDY] = {
         Name = "Nose Candy",
         Description = {
             "\1 Each floor you go up, your speed will increase by 0.2",
@@ -75,14 +75,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_NOSE_CANDY),
+                Condition = getStackFunction(mod.COLLECTIBLE.NOSE_CANDY),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_NOSE_CANDY.."}} {{ColorItemStack}}All attribute increases/decreases of this item are amplified{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.NOSE_CANDY.."}} {{ColorItemStack}}All attribute increases/decreases of this item are amplified{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_LION_SKULL] = {
+    [mod.COLLECTIBLE.LION_SKULL] = {
         Name = "Lion Skull",
         Description = {
             "\1 +0.15 damage for each room cleared",
@@ -91,14 +91,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_LION_SKULL),
+                Condition = getStackFunction(mod.COLLECTIBLE.LION_SKULL),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_LION_SKULL.."}} {{ColorItemStack}}Damage increase/reduction is more extreme{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.LION_SKULL.."}} {{ColorItemStack}}Damage increase/reduction is more extreme{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_CARAMEL_APPLE] = {
+    [mod.COLLECTIBLE.CARAMEL_APPLE] = {
         Name = "Caramel Apple",
         Description = {
             "\1 +1 Health",
@@ -106,9 +106,9 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_CARAMEL_APPLE),
+                Condition = getStackFunction(mod.COLLECTIBLE.CARAMEL_APPLE),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_CARAMEL_APPLE.."}} {{ColorItemStack}}Multiple copies do not increase the chance{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.CARAMEL_APPLE.."}} {{ColorItemStack}}Multiple copies do not increase the chance{{CR}}",
                 },
             },
         },
@@ -147,7 +147,7 @@ local ITEMS = {
         },
         --]]
     },
-    [mod.COLLECTIBLE_PAINKILLERS] = {
+    [mod.COLLECTIBLE.PAINKILLERS] = {
         Name = "Painkillers",
         Description = {
             "\2 Reduces invincibility frames after taking damage by 90%",
@@ -156,15 +156,15 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_PAINKILLERS),
+                Condition = getStackFunction(mod.COLLECTIBLE.PAINKILLERS),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_PAINKILLERS.."}} {{ColorItemStack}}The invincibility frame has been completely removed{{CR}}",
-                    "{{Collectible"..mod.COLLECTIBLE_PAINKILLERS.."}} {{ColorItemStack}}Each copy of the item increases the chance to block by 10%, capped at 50%{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.PAINKILLERS.."}} {{ColorItemStack}}The invincibility frame has been completely removed{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.PAINKILLERS.."}} {{ColorItemStack}}Each copy of the item increases the chance to block by 10%, capped at 50%{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_TECH_IX] = {
+    [mod.COLLECTIBLE.TECH_IX] = {
         Name = "Tech IX",
         Description = {
             "When shooting, you gain a {{Collectible395}} Tech X aura",
@@ -172,21 +172,21 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_TECH_IX),
+                Condition = getStackFunction(mod.COLLECTIBLE.TECH_IX),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_TECH_IX.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.TECH_IX.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_FATAL_SIGNAL] = {
+    [mod.COLLECTIBLE.FATAL_SIGNAL] = {
         Name = "Fatal Signal",
         Description = {
             "\1 +1 Health",
             "Gives a passive {{Collectible721}} glitch item when picked up",
         },
     },
-    [mod.COLLECTIBLE_PEPPER_X] = {
+    [mod.COLLECTIBLE.PEPPER_X] = {
         Name = "Pepper X",
         Description = {
             "9% chance to shoot a meteor tear that creates fire on contact",
@@ -195,14 +195,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_PEPPER_X),
+                Condition = getStackFunction(mod.COLLECTIBLE.PEPPER_X),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_PEPPER_X.."}} {{ColorItemStack}}Each stack of items fires an additional meteor.{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.PEPPER_X.."}} {{ColorItemStack}}Each stack of items fires an additional meteor.{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_METEOR_SHOWER] = {
+    [mod.COLLECTIBLE.METEOR_SHOWER] = {
         Name = "Meteor Shower",
         Description = {
             "In the event room, a meteor will fall from the sky every 4 seconds",
@@ -211,28 +211,28 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_METEOR_SHOWER),
+                Condition = getStackFunction(mod.COLLECTIBLE.METEOR_SHOWER),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_METEOR_SHOWER.."}} {{ColorItemStack}}Each stack of items generates an additional meteor.{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.METEOR_SHOWER.."}} {{ColorItemStack}}Each stack of items generates an additional meteor.{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_BLESSED_RING] = {
+    [mod.COLLECTIBLE.BLESSED_RING] = {
         Name = "Blessed Ring",
         Description = {
             "In the event room, 2 random enemies will be hit by the beam every 7 seconds",
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_BLESSED_RING),
+                Condition = getStackFunction(mod.COLLECTIBLE.BLESSED_RING),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_BLESSED_RING.."}} {{ColorItemStack}}Producing beams twice as fast{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.BLESSED_RING.."}} {{ColorItemStack}}Producing beams twice as fast{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_4_4] = {
+    [mod.COLLECTIBLE.FOUR_FOUR] = {
         Name = "4 4",
         Description = {
             "Double tap fires a series of spectral cacophony that confuses enemies, 10 second cooldown",
@@ -242,14 +242,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_4_4),
+                Condition = getStackFunction(mod.COLLECTIBLE.FOUR_FOUR),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_4_4.."}} {{ColorItemStack}}Double-click skill cooldown reduced by 20%{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.FOUR_FOUR.."}} {{ColorItemStack}}Double-click skill cooldown reduced by 20%{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_EYESTRAIN] = {
+    [mod.COLLECTIBLE.EYESTRAIN] = {
         Name = "Eyestrain",
         Description = {
             "\1 +1 Damage",
@@ -257,7 +257,7 @@ local ITEMS = {
         },
     },
     --[[
-    [mod.COLLECTIBLE_MALICIOUS_BRAIN] = {
+    [mod.COLLECTIBLE.MALICIOUS_BRAIN] = {
         Name = "Malicious Brain",
         Description = {
             "Gives an orbital brain familiar",
@@ -266,9 +266,9 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_MALICIOUS_BRAIN),
+                Condition = getStackFunction(mod.COLLECTIBLE.MALICIOUS_BRAIN),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_MALICIOUS_BRAIN.."}} {{ColorItemStack}}Multiple copies have no additional effect and do not spawn additional brain orbitals{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.MALICIOUS_BRAIN.."}} {{ColorItemStack}}Multiple copies have no additional effect and do not spawn additional brain orbitals{{CR}}",
                 },
             },
             {
@@ -282,7 +282,7 @@ local ITEMS = {
         },
     },
     --]]
-    [mod.COLLECTIBLE_SIGIL_OF_GREED] = {
+    [mod.COLLECTIBLE.SIGIL_OF_GREED] = {
         Name = "Sigil of Greed",
         Description = {
             "{{Chargeable}} Firing for 6.66 seconds charges up a golden sigil",
@@ -291,7 +291,7 @@ local ITEMS = {
             "{{Coin}} Killing a golden enemy spawns coins"
         },
     },
-    [mod.COLLECTIBLE_EVIL_ROCK] = {
+    [mod.COLLECTIBLE.EVIL_ROCK] = {
         Name = "Evil Rock",
         Description = {
             "Colored rocks are darker and easier to see",
@@ -302,7 +302,7 @@ local ITEMS = {
             "{{Collectible90}} Small Stone > {{ColorYellow}}???{{CR}}",
         },
     },
-    [mod.COLLECTIBLE_ONYX] = {
+    [mod.COLLECTIBLE.ONYX] = {
         Name = "Onyx",
         Description = {
             "\1 +1.2 Damage",
@@ -311,21 +311,21 @@ local ITEMS = {
             "{{BlackHeart}} +1 Black Heart",
         },
     },
-    [mod.COLLECTIBLE_DADS_PRESCRIPTION] = {
+    [mod.COLLECTIBLE.DADS_PRESCRIPTION] = {
         Name = "Dad's Prescription",
         Description = {
             "{{Pill}} Entering a special room spawns a pill",
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_DADS_PRESCRIPTION),
+                Condition = getStackFunction(mod.COLLECTIBLE.DADS_PRESCRIPTION),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_DADS_PRESCRIPTION.."}} {{ColorItemStack}}+1 pill for every item stack, every 2 pills spawned are instead merged into a single horse pill{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.DADS_PRESCRIPTION.."}} {{ColorItemStack}}+1 pill for every item stack, every 2 pills spawned are instead merged into a single horse pill{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_HORSE_TRANQUILIZER] = {
+    [mod.COLLECTIBLE.HORSE_TRANQUILIZER] = {
         Name = "Horse Tranquilizer",
         Description = {
             "{{ToyboxHorsePill}} Spawns a horse pill",
@@ -334,9 +334,9 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_HORSE_TRANQUILIZER),
+                Condition = getStackFunction(mod.COLLECTIBLE.HORSE_TRANQUILIZER),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_HORSE_TRANQUILIZER.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.HORSE_TRANQUILIZER.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
                 },
             },
             --[[
@@ -379,10 +379,10 @@ local ITEMS = {
             --]]
         },
     },
-    [mod.COLLECTIBLE_SILK_BAG] = {
+    [mod.COLLECTIBLE.SILK_BAG] = {
         Name = "Silk Bag",
         Description = {
-            "{{Card"..mod.CONSUMABLE_LAUREL.."}} Spawns 1 Laurel every 6 rooms",
+            "{{Card"..mod.CONSUMABLE.LAUREL.."}} Spawns 1 Laurel every 6 rooms",
             "{{Blank}} Laurels give 5 seconds of invincibility when used",
         },
         DescriptionAppend = {
@@ -391,7 +391,7 @@ local ITEMS = {
                     return (mod:getPersistentData("HAS_SEEN_YANNY")==1)
                 end,
                 DescriptionToAdd = {
-                    "{{Card"..mod.CONSUMABLE_YANNY.."}} 0.1% chance to spawn a Yanny instead of a Laurel",
+                    "{{Card"..mod.CONSUMABLE.YANNY.."}} 0.1% chance to spawn a Yanny instead of a Laurel",
                     "{{Blank}} Yannies deal 30 damage to all enemies in the room when used",
                 },
             },
@@ -410,15 +410,15 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_ROCK_CANDY] = {
+    [mod.COLLECTIBLE.ROCK_CANDY] = {
         Name = "Rock Candy",
         Description = {
             "\1 +0.3 Tears",
             "\1 +0.15 Shotspeed",
-            "{{Card"..mod.CONSUMABLE_MANTLE_ROCK.."}} Spawns a random Mantle consumable",
+            "{{Card"..mod.CONSUMABLE.MANTLE_ROCK.."}} Spawns a random Mantle consumable",
         },
     },
-    [mod.COLLECTIBLE_MISSING_PAGE_3] = {
+    [mod.COLLECTIBLE.MISSING_PAGE_3] = {
         Name = "Missing Page 3",
         Description = {
             "{{DeathMark}} Enemies have a 4% chance to spawn as a Skull champion",
@@ -440,15 +440,15 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_MISSING_PAGE_3),
+                Condition = getStackFunction(mod.COLLECTIBLE.MISSING_PAGE_3),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_MISSING_PAGE_3.."}} {{ColorItemStack}}+4% chance for Skull champions to spawn for every item stack{{CR}}",
-                    "{{Collectible"..mod.COLLECTIBLE_MISSING_PAGE_3.."}} {{ColorItemStack}}Skull champions spawned by this item don't have increased health{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.MISSING_PAGE_3.."}} {{ColorItemStack}}+4% chance for Skull champions to spawn for every item stack{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.MISSING_PAGE_3.."}} {{ColorItemStack}}Skull champions spawned by this item don't have increased health{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_GLASS_VESSEL] = {
+    [mod.COLLECTIBLE.GLASS_VESSEL] = {
         Name = "Glass Vessel",
         Description = {
             "Grants a glass shield that negates one hit",
@@ -472,14 +472,14 @@ local ITEMS = {
                 },
             },
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_GLASS_VESSEL),
+                Condition = getStackFunction(mod.COLLECTIBLE.GLASS_VESSEL),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_GLASS_VESSEL.."}} {{ColorItemStack}}No effect with multiple stacks{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.GLASS_VESSEL.."}} {{ColorItemStack}}No effect with multiple stacks{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_BONE_BOY] = {
+    [mod.COLLECTIBLE.BONE_BOY] = {
         Name = "Bone Boy",
         Description = {
             "{{DeathMark}} Grants a Bony familiar that loves to party!",
@@ -515,7 +515,7 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_STEEL_SOUL] = {
+    [mod.COLLECTIBLE.STEEL_SOUL] = {
         Name = "Steel Soul",
         Description = {
             "{{SoulHeart}} +1 Soul Heart",
@@ -523,14 +523,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_STEEL_SOUL),
+                Condition = getStackFunction(mod.COLLECTIBLE.STEEL_SOUL),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_STEEL_SOUL.."}} {{ColorItemStack}}No effect with multiple stacks{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.STEEL_SOUL.."}} {{ColorItemStack}}No effect with multiple stacks{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_BOBS_HEART] = {
+    [mod.COLLECTIBLE.BOBS_HEART] = {
         Name = "Bob's Heart",
         Description = {
             "Grants immunity to explosions",
@@ -539,14 +539,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_BOBS_HEART),
+                Condition = getStackFunction(mod.COLLECTIBLE.BOBS_HEART),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_BOBS_HEART.."}} {{ColorItemStack}}No effect with multiple stacks{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.BOBS_HEART.."}} {{ColorItemStack}}No effect with multiple stacks{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_CLOWN_PHD] = {
+    [mod.COLLECTIBLE.CLOWN_PHD] = {
         Name = "Clown PHD",
         Description = {
             "{{Pill}} When used, pills have a random effect",
@@ -556,14 +556,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_CLOWN_PHD),
+                Condition = getStackFunction(mod.COLLECTIBLE.CLOWN_PHD),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_CLOWN_PHD.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.CLOWN_PHD.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_GIANT_CAPSULE] = {
+    [mod.COLLECTIBLE.GIANT_CAPSULE] = {
         Name = "Giant Capsule",
         Description = {
             "Using a consumable spawns a virus orbital that disappears after 40 seconds",
@@ -572,15 +572,15 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_GIANT_CAPSULE),
+                Condition = getStackFunction(mod.COLLECTIBLE.GIANT_CAPSULE),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_GIANT_CAPSULE.."}} {{ColorItemStack}}+1 virus for every item stack{{CR}}",
-                    "{{Collectible"..mod.COLLECTIBLE_GIANT_CAPSULE.."}} {{ColorItemStack}}Viruses live for +20 seconds per item stack{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.GIANT_CAPSULE.."}} {{ColorItemStack}}+1 virus for every item stack{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.GIANT_CAPSULE.."}} {{ColorItemStack}}Viruses live for +20 seconds per item stack{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_LOVE_LETTER] = {
+    [mod.COLLECTIBLE.LOVE_LETTER] = {
         Name = "Love Letter",
         Description = {
             "{{Charm}} 10% chance to shoot charming tears",
@@ -589,15 +589,15 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_LOVE_LETTER),
+                Condition = getStackFunction(mod.COLLECTIBLE.LOVE_LETTER),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_LOVE_LETTER.."}} {{ColorItemStack}}+16% extra damage to charmed enemies{{CR}}",
-                    "{{Collectible"..mod.COLLECTIBLE_LOVE_LETTER.."}} {{ColorItemStack}}+5% chance to charm enemies{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.LOVE_LETTER.."}} {{ColorItemStack}}+16% extra damage to charmed enemies{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.LOVE_LETTER.."}} {{ColorItemStack}}+5% chance to charm enemies{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_QUAKE_BOMBS] = {
+    [mod.COLLECTIBLE.QUAKE_BOMBS] = {
         Name = "Quake Bombs",
         Description = {
             "{{Bomb}} +5 Bombs",
@@ -606,14 +606,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_QUAKE_BOMBS),
+                Condition = getStackFunction(mod.COLLECTIBLE.QUAKE_BOMBS),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_QUAKE_BOMBS.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.QUAKE_BOMBS.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_ATHEISM] = {
+    [mod.COLLECTIBLE.ATHEISM] = {
         Name = "Atheism",
         Description = {
             "{{AngelDevilChance}} +15% Devil/Angel deal chance",
@@ -630,14 +630,14 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_MAYONAISE] = {
+    [mod.COLLECTIBLE.MAYONAISE] = {
         Name = "A Spoonful of Mayonnaise",
         Description = {
             "\1 +0.15 Shotspeed",
             "{{EternalHeart}} +1 Eternal Heart",
         },
     },
-    [mod.COLLECTIBLE_AWESOME_FRUIT] = {
+    [mod.COLLECTIBLE.AWESOME_FRUIT] = {
         Name = "Awesome Fruit",
         Description = {
             "\1 +1 Health",
@@ -645,7 +645,7 @@ local ITEMS = {
             "\1 +1 progress for all Transformations",
         },
     },
-    [mod.COLLECTIBLE_JONAS_MASK] = {
+    [mod.COLLECTIBLE.JONAS_MASK] = {
         Name = "Jonas' Mask",
         Description = {
             "Gives 1 of 3 shadow familiars:",
@@ -655,7 +655,7 @@ local ITEMS = {
             "Every floor the familiar is rerolled"
         },
     },
-    [mod.COLLECTIBLE_SALTPETER] = {
+    [mod.COLLECTIBLE.SALTPETER] = {
         Name = "Saltpeter",
         Description = {
             "When enemies take damage, nearby enemies are hurt for 50% of that damage",
@@ -663,22 +663,22 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_SALTPETER),
+                Condition = getStackFunction(mod.COLLECTIBLE.SALTPETER),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_SALTPETER.."}} {{ColorItemStack}}+50% AOE damage{{CR}}",
-                    "{{Collectible"..mod.COLLECTIBLE_SALTPETER.."}} {{ColorItemStack}}+5% chance to explode{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.SALTPETER.."}} {{ColorItemStack}}+50% AOE damage{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.SALTPETER.."}} {{ColorItemStack}}+5% chance to explode{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_DR_BUM] = {
+    [mod.COLLECTIBLE.DR_BUM] = {
         Name = "Dr. Bum",
         Description = {
             "{{Card}} Picks up cards, runes, and objects and turns them into {{Pill}} pills",
             "Pills spawned by this are more likely to be positive or neutral"
         },
     },
-    [mod.COLLECTIBLE_PREFERRED_OPTIONS] = {
+    [mod.COLLECTIBLE.PREFERRED_OPTIONS] = {
         Name = "Preferred Options",
         Description = {
             "{{BossRoom}} You may choose between 2 items after beating a boss",
@@ -687,14 +687,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_PREFERRED_OPTIONS),
+                Condition = getStackFunction(mod.COLLECTIBLE.PREFERRED_OPTIONS),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_PREFERRED_OPTIONS.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.PREFERRED_OPTIONS.."}} {{ColorItemStack}}Multiple copies have no additional effect{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_PLASMA_GLOBE] = {
+    [mod.COLLECTIBLE.PLASMA_GLOBE] = {
         Name = "Plasma Globe",
         Description = {
             "\2 -0.2 Shotspeed",
@@ -702,7 +702,7 @@ local ITEMS = {
             "The lasers deal 25% of the tear's damage",
         },
     },
-    [mod.COLLECTIBLE_CURSED_EULOGY] = {
+    [mod.COLLECTIBLE.CURSED_EULOGY] = {
         Name = "Cursed Eulogy",
         Description = {
             "{{BlackHeart}} +1 Black Heart",
@@ -710,14 +710,14 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(mod.COLLECTIBLE_CURSED_EULOGY),
+                Condition = getStackFunction(mod.COLLECTIBLE.CURSED_EULOGY),
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_CURSED_EULOGY.."}} {{ColorItemStack}}+20% chance to replace items{{CR}}",
+                    "{{Collectible"..mod.COLLECTIBLE.CURSED_EULOGY.."}} {{ColorItemStack}}+20% chance to replace items{{CR}}",
                 },
             },
         },
     },
-    [mod.COLLECTIBLE_BLESSED_BOMBS] = {
+    [mod.COLLECTIBLE.BLESSED_BOMBS] = {
         Name = "Blessed Bombs",
         Description = {
             "{{Bomb}} +5 Bombs",
@@ -728,14 +728,14 @@ local ITEMS = {
             "Homing tears",
         },
     },
-    [mod.COLLECTIBLE_HEMORRHAGE] = {
+    [mod.COLLECTIBLE.HEMORRHAGE] = {
         Name = "Haemorrhage",
         Description = {
             "{{BoneHeart}} +1 empty Bone Heart",
             "Taking damage gives a large fading tears up",
         },
     },
-    [mod.COLLECTIBLE_FISH] = {
+    [mod.COLLECTIBLE.FISH] = {
         Name = "Fish",
         Description = {
             "\1 Doubles all blue fly/spider spawns",
@@ -743,13 +743,13 @@ local ITEMS = {
         },
     },
 
-    [mod.COLLECTIBLE_RETROFALL] = {
+    [mod.COLLECTIBLE.RETROFALL] = {
         Name = "RETROFALL",
         Description = {
             "Bad news, tomorrow is retrofall, which is an 8-bit attack event on all classic gaming consoles including the Nintendo Entertainment System. There will be people trying to send you ray tracing, extreme graphics, 4K, Call of Duty, and there will also be pixel grabbers, moderners, and Unreal Engine 4K Remasterers. I advise NO ONE to play video games from retro gamers you don't know, please stay safe. Please pass this on to any gaming console you own or have 1UP Mushroom and can level up to spread awareness. I wish you all safety. Also, make sure to be game over tomorrow, which gives you less chance for this to happen to you. It's also specifically against retro video gamers.",
         },
     },
-    [mod.COLLECTIBLE_CATHARSIS] = {
+    [mod.COLLECTIBLE.CATHARSIS] = {
         Name = "Catharsis",
         Description = {
             "\1 +1 Tears",
@@ -759,7 +759,7 @@ local ITEMS = {
     --#endregion
 
     --#region --!ACTIVES
-    [mod.COLLECTIBLE_PLIERS] = {
+    [mod.COLLECTIBLE.PLIERS] = {
         Name = "Pliers",
         Description = {
             "\1 +0.7 Tears for the room",
@@ -780,7 +780,7 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_BLOOD_RITUAL] = {
+    [mod.COLLECTIBLE.BLOOD_RITUAL] = {
         Name = "Blood Ritual",
         Description = {
             "Spawns 3 {{DevilChanceSmall}} evil familiars for the room that orbit around you",
@@ -805,12 +805,12 @@ local ITEMS = {
         },
     },
     --[[
-    [mod.COLLECTIBLE_TOY_GUN] = {
+    [mod.COLLECTIBLE.TOY_GUN] = {
         Name = "Toy Gun",
         Description = {
             "When used, fires a foam bullet in the chosen direction that deals 15 damage",
             "Can be used as long as it has bullets in the magazine, which reloads a bullet every 10 seconds, up to 5",
-            "Trinkets have a 20% chance to be replaced by {{Trinket"..mod.TRINKET_FOAM_BULLET.."}}Foam Bullets, which are automatically smelted",
+            "Trinkets have a 20% chance to be replaced by {{Trinket"..mod.TRINKET.FOAM_BULLET.."}}Foam Bullets, which are automatically smelted",
         },
         DescriptionModifiers = {
             {
@@ -849,7 +849,7 @@ local ITEMS = {
         },
     },
     --]]
-    [mod.COLLECTIBLE_SUNK_COSTS] = {
+    [mod.COLLECTIBLE.SUNK_COSTS] = {
         Name = "Sunk Costs",
         Description = {
             "{{Coin}} +5 coins",
@@ -869,7 +869,7 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_ASCENSION] = {
+    [mod.COLLECTIBLE.ASCENSION] = {
         Name = "Ascension",
         Description = {
             "{{Timer}} For the next 3 seconds: gain flight and spectral tears",
@@ -890,13 +890,13 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_GILDED_APPLE] = {
+    [mod.COLLECTIBLE.GILDED_APPLE] = {
         Name = "Gilded Apple",
         Description = {
             "{{GoldenHeart}} +1 Golden Heart",
         },
     },
-    [mod.COLLECTIBLE_PEZ_DISPENSER] = {
+    [mod.COLLECTIBLE.PEZ_DISPENSER] = {
         Name = nil,
         Description = {
             "{{Card}} Can store up to 2 consumables of any type",
@@ -924,7 +924,7 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_ALPHABET_BOX] = {
+    [mod.COLLECTIBLE.ALPHABET_BOX] = {
         Name = "Alphabet Box",
         Description = {
             "Rerolls all items in the room into the next item in alphabetical order",
@@ -943,7 +943,7 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_HOSTILE_TAKEOVER] = {
+    [mod.COLLECTIBLE.HOSTILE_TAKEOVER] = {
         Name = "Hostile Takeover",
         Description = {
             "{{Timer}} For the room:",
@@ -987,7 +987,7 @@ local ITEMS = {
             },
         },
     },
-    [mod.COLLECTIBLE_BLOODY_WHISTLE] = {
+    [mod.COLLECTIBLE.BLOODY_WHISTLE] = {
         Name = "Bloody Whistle",
         Description = {
             "Spawns a pool of blood creep",
@@ -1009,13 +1009,13 @@ local ITEMS = {
         },
     },
 
-    [mod.COLLECTIBLE_D] = {
+    [mod.COLLECTIBLE.D] = {
         Name = "D",
         Description = {
             "{{Timer}} Adds anywhere from +3 minutes to -3 minutes to the game's timer",
         },
     },
-    [mod.COLLECTIBLE_EQUALIZER] = {
+    [mod.COLLECTIBLE.EQUALIZER] = {
         Name = "Equalizer",
         Description = {
             "{{Coin}} +3 Coins",
@@ -1025,7 +1025,7 @@ local ITEMS = {
             "You will get a bonus to that stat proportional to how many of that pickup you have, until the next time you use the item"
         },
     },
-    [mod.COLLECTIBLE_PORTABLE_TELLER] = {
+    [mod.COLLECTIBLE.PORTABLE_TELLER] = {
         Name = "Portable Teller",
         Description = {
             "{{Coin}} Spend 1 coin to display a fortune or a chance to spawn a trinket, card or soul heart",
@@ -1040,10 +1040,10 @@ local EXTRA_ITEM_MODIFIERS = {
             BaseCondition = function(descObj)
                 return false --return mod:isAnyPlayerAtlasA()
             end,
-            Icon = "{{Player"..mod.PLAYER_ATLAS_A.."}}",
+            Icon = "{{Player"..mod.PLAYER_TYPE.ATLAS_A.."}}",
             Color = "{{ColorSilver}}",
         },
-        [mod.COLLECTIBLE_STEEL_SOUL] = {
+        [mod.COLLECTIBLE.STEEL_SOUL] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -1124,7 +1124,7 @@ local EXTRA_ITEM_MODIFIERS = {
                 },
             },
         },
-        [mod.COLLECTIBLE_GILDED_APPLE] = {
+        [mod.COLLECTIBLE.GILDED_APPLE] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -1140,7 +1140,7 @@ local EXTRA_ITEM_MODIFIERS = {
             BaseCondition = function(descObj)
                 return mod.anyPlayerHasLimitBreak()
             end,
-            Icon = "{{Trinket"..mod.TRINKET_LIMIT_BREAK.."}}",
+            Icon = "{{Trinket"..mod.TRINKET.LIMIT_BREAK.."}}",
             Color = "{{ColorToyboxLimitBreak}}",
         },
         [CollectibleType.COLLECTIBLE_CURSE_OF_THE_TOWER] = {
@@ -1262,7 +1262,7 @@ local EXTRA_ITEM_MODIFIERS = {
                 },
             },
         },
-        [mod.COLLECTIBLE_PORTABLE_TELLER] = {
+        [mod.COLLECTIBLE.PORTABLE_TELLER] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -1395,9 +1395,9 @@ local EXTRA_ITEM_MODIFIERS = {
     { --! JONAS
         ["0"] = {
             BaseCondition = function(descObj)
-                return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_JONAS_A)
+                return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_TYPE.JONAS_A)
             end,
-            Icon = "{{Player"..mod.PLAYER_JONAS_A.."}}",
+            Icon = "{{Player"..mod.PLAYER_TYPE.JONAS_A.."}}",
             Color = "{{ColorJonas}}",
         },
         [CollectibleType.COLLECTIBLE_URANUS] = {
@@ -1413,9 +1413,9 @@ local EXTRA_ITEM_MODIFIERS = {
     { --! PREFERRED OPTIONS WARNING
         ["0"] = {
             BaseCondition = function(descObj)
-                return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_PREFERRED_OPTIONS)
+                return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.PREFERRED_OPTIONS)
             end,
-            Icon = "{{Collectible"..mod.COLLECTIBLE_PREFERRED_OPTIONS.."}}",
+            Icon = "{{Collectible"..mod.COLLECTIBLE.PREFERRED_OPTIONS.."}}",
             Color = "{{ColorGray}}",
         },
         [CollectibleType.COLLECTIBLE_POLAROID] = {
@@ -1450,7 +1450,7 @@ local EXTRA_ITEM_MODIFIERS = {
 
 local TRINKETS = {
     --[[
-    [mod.TRINKET_PLASMA_GLOBE] = {
+    [mod.TRINKET.PLASMA_GLOBE] = {
         Name = "Plasma Globe",
         Description = {
             "On new rooms, enemies have a 15% chance to be electrified for 4 seconds",
@@ -1536,7 +1536,7 @@ local TRINKETS = {
     },
     --]]
     --[[
-    [mod.TRINKET_FOAM_BULLET] = {
+    [mod.TRINKET.FOAM_BULLET] = {
         Name = "Foam Bullet",
         Description = {
             "When you deal damage, 2.5% chance to double the damage",
@@ -1565,24 +1565,24 @@ local TRINKETS = {
         DescriptionAppend = {
             {
                 Condition = function(descObj)
-                    return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_TOY_GUN)
+                    return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.TOY_GUN)
                 end,
                 DescriptionToAdd = {
-                    "{{Collectible"..mod.COLLECTIBLE_TOY_GUN.."}} Trinket is automatically smelted",
-                    "{{Collectible"..mod.COLLECTIBLE_TOY_GUN.."}} +1 Toy Gun magazine size",
-                    "{{Collectible"..mod.COLLECTIBLE_TOY_GUN.."}} +1.5 Toy Gun bullet damage",
+                    "{{Collectible"..mod.COLLECTIBLE.TOY_GUN.."}} Trinket is automatically smelted",
+                    "{{Collectible"..mod.COLLECTIBLE.TOY_GUN.."}} +1 Toy Gun magazine size",
+                    "{{Collectible"..mod.COLLECTIBLE.TOY_GUN.."}} +1.5 Toy Gun bullet damage",
                 },
             },
         },
     },
-    [mod.TRINKET_LIMIT_BREAK] = {
+    [mod.TRINKET.LIMIT_BREAK] = {
         Name = "LIMIT BREAK",
         Description = {
             "\1 Certain \"bad\" items are buffed",
         },
     },
     --]]
-    [mod.TRINKET_WONDER_DRUG] = {
+    [mod.TRINKET.WONDER_DRUG] = {
         Name = "Wonder Drug",
         Description = {
             "{{ToyboxGoldenPill}} Doubles the chance for gold pills to spawn",
@@ -1609,7 +1609,7 @@ local TRINKETS = {
             },
         },
     },
-    [mod.TRINKET_ANTIBIOTICS] = {
+    [mod.TRINKET.ANTIBIOTICS] = {
         Name = "Antibiotics",
         Description = {
             "{{Pill}} Using a pill has a 20% chance to use it 2 times",
@@ -1636,7 +1636,7 @@ local TRINKETS = {
             },
         },
     },
-    [mod.TRINKET_AMBER_FOSSIL] = {
+    [mod.TRINKET.AMBER_FOSSIL] = {
         Name = "Amber Fossil",
         Description = {
             "Blue flies have a 33% chance to be converted into a random locust",
@@ -1662,7 +1662,7 @@ local TRINKETS = {
             },
         },
     },
-    [mod.TRINKET_SINE_WORM] = {
+    [mod.TRINKET.SINE_WORM] = {
         Name = "Sine Worm",
         Description = {
             "\1 +0.4 Tears",
@@ -1698,7 +1698,7 @@ local TRINKETS = {
             },
         },
     },
-    [mod.TRINKET_BIG_BLIND] = {
+    [mod.TRINKET.BIG_BLIND] = {
         Name = "Big Blind",
         Description = {
             "Every 10 damage dealt to enemies, they spawn a coin",
@@ -1724,7 +1724,7 @@ local TRINKETS = {
             },
         },
     },
-    [mod.TRINKET_JONAS_LOCK] = {
+    [mod.TRINKET.JONAS_LOCK] = {
         Name = "Jonas' Lock",
         Description = {
             "{{Pill}} Using a pill grants a stat bonus equivalent to 50% of a random \"stat up\" pill's effect",
@@ -1751,14 +1751,14 @@ local TRINKETS = {
             },
         },
     },
-    [mod.TRINKET_BATH_WATER] = {
+    [mod.TRINKET.BATH_WATER] = {
         Name = "Bath Water",
         Description = {
             "Familiar that shatters when you take damage and spawns a pool of creep, once per room",
             "The creep deals 24 damage per second",
         },
     },
-    [mod.TRINKET_BLACK_RUNE_SHARD] = {
+    [mod.TRINKET.BLACK_RUNE_SHARD] = {
         Name = "Black Rune Shard",
         Description = {
             "{{Coin}} Blue flies and spiders have a 33% chance to be replaced by a coin",
@@ -1795,7 +1795,7 @@ local TRINKETS = {
             },
         },
     },
-    [mod.TRINKET_SUPPOSITORY] = {
+    [mod.TRINKET.SUPPOSITORY] = {
         Name = "Suppository",
         Description = {
             "{{Pill}} Poop drops have a 20% chance to be replaced by a pill",
@@ -1828,34 +1828,34 @@ local EXTRA_TRINKET_MODIFIERS = {
 }
 
 local CARDS = {
-    [mod.CARD_PRISMSTONE] = {
+    [mod.CONSUMABLE.PRISMSTONE] = {
         Name = "Prismstone",
         Description = {
             "{{Rune}} Spawns 3 runes or soul stones",
             "Only 1 can be taken"
         },
     },
-    [mod.CARD_FOIL_CARD] = {
+    [mod.CONSUMABLE.FOIL_CARD] = {
         Name = "Foil Card",
         Description = {
             "{{Coin}} Spawns a golden heart, penny, key or bomb",
         },
     },
 
-    [mod.CONSUMABLE_LAUREL] = {
+    [mod.CONSUMABLE.LAUREL] = {
         Name = "Laurel",
         Description = {
             "Gives 5 seconds of invincibility when used",
         },
     },
-    [mod.CONSUMABLE_YANNY] = {
+    [mod.CONSUMABLE.YANNY] = {
         Name = "Yanny",
         Description = {
             "Deals 30 damage to all enemies in the room when used",
         },
     },
 
-    [mod.CONSUMABLE_MANTLE_ROCK] = {
+    [mod.CONSUMABLE.MANTLE_ROCK] = {
         Name = "Rock Mantle",
         Description = {
             "2 HP",
@@ -1869,7 +1869,7 @@ local CARDS = {
             "Taking damage fires a shockwave at the enemy who hurt you"
         },
     },
-    [mod.CONSUMABLE_MANTLE_POOP] = {
+    [mod.CONSUMABLE.MANTLE_POOP] = {
         Name = "Poop Mantle",
         Description = {
             "2 HP",
@@ -1885,7 +1885,7 @@ local CARDS = {
             "When thrown, it leaves liquid poop creep under it as it flies"
         },
     },
-    [mod.CONSUMABLE_MANTLE_BONE] = {
+    [mod.CONSUMABLE.MANTLE_BONE] = {
         Name = "Bone Mantle",
         Description = {
             "\1 3 HP",
@@ -1900,7 +1900,7 @@ local CARDS = {
             "{{Timer}} For the room, enemies have a 67% chance to spawn an orbital bone shard on death",
         },
     },
-    [mod.CONSUMABLE_MANTLE_DARK] = {
+    [mod.CONSUMABLE.MANTLE_DARK] = {
         Name = "Dark Mantle",
         Description = {
             "2 HP",
@@ -1914,7 +1914,7 @@ local CARDS = {
             "DescriptionTest",
         },
     },
-    [mod.CONSUMABLE_MANTLE_HOLY] = {
+    [mod.CONSUMABLE.MANTLE_HOLY] = {
         Name = "Holy Mantle",
         Description = {
             "2 HP",
@@ -1929,7 +1929,7 @@ local CARDS = {
             "{{Timer}} Your tears gain a damaging aura for the room"
         },
     },
-    [mod.CONSUMABLE_MANTLE_SALT] = {
+    [mod.CONSUMABLE.MANTLE_SALT] = {
         Name = "Salt Mantle",
         Description = {
             "2 HP",
@@ -1942,7 +1942,7 @@ local CARDS = {
             "{{Timer}} Gives the effect of a random \"Tears Up\" item for the room",
         },
     },
-    [mod.CONSUMABLE_MANTLE_GLASS] = {
+    [mod.CONSUMABLE.MANTLE_GLASS] = {
         Name = "Glass Mantle",
         Description = {
             "\2 1 HP",
@@ -1959,7 +1959,7 @@ local CARDS = {
             "\2 Damage taken is doubled and increased by 1 extra heart"
         },
     },
-    [mod.CONSUMABLE_MANTLE_METAL] = {
+    [mod.CONSUMABLE.MANTLE_METAL] = {
         Name = "Metal Mantle",
         Description = {
             "\1 3 HP",
@@ -1974,7 +1974,7 @@ local CARDS = {
             "All of your full Soul/Black Hearts gain a metal shield that blocks 1 damage",
         },
     },
-    [mod.CONSUMABLE_MANTLE_GOLD] = {
+    [mod.CONSUMABLE.MANTLE_GOLD] = {
         Name = "Gold Mantle",
         Description = {
             "2 HP",
@@ -1994,88 +1994,88 @@ local CARDS = {
 local EXTRA_CARD_MODIFIERS = {}
 
 local PILLS = {
-    [mod.PILL_DYSLEXIA] = {
+    [mod.PILL_EFFECT.DYSLEXIA] = {
         Name = "Dsylxeia",
         Description = {
             "{{Timer}} You fire backwards for 30 seconds"
         },
     },
-    [mod.PILL_I_BELIEVE] = {
+    [mod.PILL_EFFECT.I_BELIEVE] = {
         Name = "I Believe I Can Fly!",
         Description = {
             "{{Timer}} Flight for the room"
         },
     },
-    [mod.PILL_DEMENTIA] = {
+    [mod.PILL_EFFECT.DEMENTIA] = {
         Name = "Dementia",
         Description = {
             "Rerolls the current pill pool"
         }
     },
-    [mod.PILL_PARASITE] = {
+    [mod.PILL_EFFECT.PARASITE] = {
         Name = "Parasite!",
         Description = {
             "Spawns 1 blue fly for every enemy in the room, along with 2 additional blue flies"
         }
     },
-    [mod.PILL_OSSIFICATION] = {
+    [mod.PILL_EFFECT.OSSIFICATION] = {
         Name = "Ossification",
         Description = {
             "Turns 1 heart container into an {{EmptyBoneHeart}} empty bone heart"
         }
     },
-    [mod.PILL_YOUR_SOUL_IS_MINE] = {
+    [mod.PILL_EFFECT.YOUR_SOUL_IS_MINE] = {
         Name = "Your Soul is Mine",
         Description = {
             "Turns all of your Soul Hearts into {{BlackHeart}} Black Hearts",
             "If you have no Soul Hearts, gives 1 {{BlackHeart}} Black Heart"
         }
     },
-    [mod.PILL_FOOD_POISONING] = {
+    [mod.PILL_EFFECT.FOOD_POISONING] = {
         Name = "Food Poisoning",
         Description = {
             "Spawns a poisonous cloud at your position",
             "The cloud hurts you if you stand in it for too long",
         }
     },
-    [mod.PILL_CAPSULE] = {
+    [mod.PILL_EFFECT.CAPSULE] = {
         Name = "Capsule",
         Description = {
             "Gives a random smelted trinket",
         }
     },
-    [mod.PILL_HEARTBURN] = {
+    [mod.PILL_EFFECT.HEARTBURN] = {
         Name = "Heartburn",
         Description = {
             "{{Timer}} Reduces all healing by half a heart for the room",
         }
     },
-    [mod.PILL_COAGULANT] = {
+    [mod.PILL_EFFECT.COAGULANT] = {
         Name = "Coagulant",
         Description = {
             "The next hit you take is reduced by half a heart",
         }
     },
-    [mod.PILL_FENT] = {
+    [mod.PILL_EFFECT.FENT] = {
         Name = "Fent",
         Description = {
             "{{Collectible582}} Uses Wavy Cap once",
             "{{Timer}} For the next 5 seconds, you are invincible and have a 0.7x damage multiplier"
         }
     },
-    [mod.PILL_ARTHRITIS] = {
+    [mod.PILL_EFFECT.ARTHRITIS] = {
         Name = "Arthritis",
         Description = {
             "{{Timer}} For the next 10 seconds, you gain a 3x tears multiplier but you can only fire in 1 direction",
         }
     },
-    [mod.PILL_MUSCLE_ATROPHY] = {
+    [mod.PILL_EFFECT.MUSCLE_ATROPHY] = {
         Name = "Muscle Atrophy",
         Description = {
             "\2 Your damage is lowered to 0.5 and slowly recovers over the next 18 seconds",
         }
     },
-    [mod.PILL_VITAMINS] = {
+    [mod.PILL_EFFECT.VITAMINS] = {
         Name = "Vitamins!",
         Description = {
             "{{Timer}} Gives temporary stats that fade over the next 24 seconds:",
@@ -2084,13 +2084,13 @@ local PILLS = {
             "{{Blank}} \7 +0.3 shotspeed",
         }
     },
-    [mod.PILL_DMG_UP] = {
+    [mod.PILL_EFFECT.DMG_UP] = {
         Name = "Damage Up",
         Description = {
             "\1 +0.45 Damage",
         }
     },
-    [mod.PILL_DMG_DOWN] = {
+    [mod.PILL_EFFECT.DMG_DOWN] = {
         Name = "Damage Down",
         Description = {
             "\2 -0.35 Damage",
@@ -2107,7 +2107,7 @@ local EXTRA_PILL_MODIFIERS = {
             Icon = "{{ToyboxHorsePill}}",
             Color = "{{ColorToyboxHorsePill}}",
         },
-        [mod.PILL_DYSLEXIA] = {
+        [mod.PILL_EFFECT.DYSLEXIA] = {
             DescriptionModifiers = {
                 {
                     TextToModify = {
@@ -2119,7 +2119,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_I_BELIEVE] = {
+        [mod.PILL_EFFECT.I_BELIEVE] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2128,7 +2128,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_DEMENTIA] = {
+        [mod.PILL_EFFECT.DEMENTIA] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2138,7 +2138,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_PARASITE] = {
+        [mod.PILL_EFFECT.PARASITE] = {
             DescriptionModifiers = {
                 {
                     TextToModify = {
@@ -2150,7 +2150,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_OSSIFICATION] = {
+        [mod.PILL_EFFECT.OSSIFICATION] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2159,7 +2159,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_YOUR_SOUL_IS_MINE] = {
+        [mod.PILL_EFFECT.YOUR_SOUL_IS_MINE] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2169,7 +2169,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_FOOD_POISONING] = {
+        [mod.PILL_EFFECT.FOOD_POISONING] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2179,7 +2179,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_CAPSULE] = {
+        [mod.PILL_EFFECT.CAPSULE] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2188,7 +2188,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_HEARTBURN] = {
+        [mod.PILL_EFFECT.HEARTBURN] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2197,7 +2197,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_COAGULANT] = {
+        [mod.PILL_EFFECT.COAGULANT] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2216,7 +2216,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_FENT] = {
+        [mod.PILL_EFFECT.FENT] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2235,7 +2235,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_ARTHRITIS] = {
+        [mod.PILL_EFFECT.ARTHRITIS] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2244,7 +2244,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_MUSCLE_ATROPHY] = {
+        [mod.PILL_EFFECT.MUSCLE_ATROPHY] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2263,7 +2263,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_VITAMINS] = {
+        [mod.PILL_EFFECT.VITAMINS] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2290,7 +2290,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_DMG_UP] = {
+        [mod.PILL_EFFECT.DMG_UP] = {
             DescriptionModifiers = {
                 {
                     TextToModify = {
@@ -2302,7 +2302,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_DMG_DOWN] = {
+        [mod.PILL_EFFECT.DMG_DOWN] = {
             DescriptionModifiers = {
                 {
                     TextToModify = {
@@ -2323,7 +2323,7 @@ local EXTRA_PILL_MODIFIERS = {
             Icon = "{{Collectible348}}",
             Color = "{{ColorSilver}}",
         },
-        [mod.PILL_DYSLEXIA] = {
+        [mod.PILL_EFFECT.DYSLEXIA] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2332,7 +2332,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_I_BELIEVE] = {
+        [mod.PILL_EFFECT.I_BELIEVE] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2341,7 +2341,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_DEMENTIA] = {
+        [mod.PILL_EFFECT.DEMENTIA] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2350,7 +2350,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_PARASITE] = {
+        [mod.PILL_EFFECT.PARASITE] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2359,7 +2359,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_OSSIFICATION] = {
+        [mod.PILL_EFFECT.OSSIFICATION] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2368,7 +2368,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_YOUR_SOUL_IS_MINE] = {
+        [mod.PILL_EFFECT.YOUR_SOUL_IS_MINE] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2377,7 +2377,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_FOOD_POISONING] = {
+        [mod.PILL_EFFECT.FOOD_POISONING] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2386,7 +2386,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_CAPSULE] = {
+        [mod.PILL_EFFECT.CAPSULE] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2395,7 +2395,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_HEARTBURN] = {
+        [mod.PILL_EFFECT.HEARTBURN] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2404,7 +2404,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_COAGULANT] = {
+        [mod.PILL_EFFECT.COAGULANT] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2413,7 +2413,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_FENT] = {
+        [mod.PILL_EFFECT.FENT] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2422,7 +2422,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_ARTHRITIS] = {
+        [mod.PILL_EFFECT.ARTHRITIS] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2431,7 +2431,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_MUSCLE_ATROPHY] = {
+        [mod.PILL_EFFECT.MUSCLE_ATROPHY] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2440,7 +2440,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_VITAMINS] = {
+        [mod.PILL_EFFECT.VITAMINS] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2449,7 +2449,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_DMG_UP] = {
+        [mod.PILL_EFFECT.DMG_UP] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2458,7 +2458,7 @@ local EXTRA_PILL_MODIFIERS = {
                 },
             },
         },
-        [mod.PILL_DMG_DOWN] = {
+        [mod.PILL_EFFECT.DMG_DOWN] = {
             DescriptionAppend = {
                 {
                     DescriptionToAdd = {
@@ -2471,7 +2471,7 @@ local EXTRA_PILL_MODIFIERS = {
 }
 
 local PLAYERS = {
-    [mod.PLAYER_ATLAS_A] = {
+    [mod.PLAYER_TYPE.ATLAS_A] = {
         Name="Atlas",
         Description = {
             "Your health is made of \"mantles\" with various effects, which may replace hearts",
@@ -2485,7 +2485,7 @@ local PLAYERS = {
             "Turning into {{AtlasATransformationTar}}{{ColorGray}}Tar{{CR}} removes both transformations",
         },
     },
-    [mod.PLAYER_ATLAS_A_TAR] = {
+    [mod.PLAYER_TYPE.ATLAS_A_TAR] = {
         Name="Atlas",
         Description = {
             "Your health is made of \"mantles\" with various effects, which may replace hearts",
@@ -2499,7 +2499,7 @@ local PLAYERS = {
             "Turning into {{AtlasATransformationTar}}{{ColorGray}}Tar{{CR}} removes both transformations",
         },
     },
-    [mod.PLAYER_JONAS_A] = {
+    [mod.PLAYER_TYPE.JONAS_A] = {
         Name="Jonas",
         Description = {
             "Pill pool gets rerolled and unidentified at the start of every floor",
@@ -2514,7 +2514,7 @@ local PLAYERS = {
             "Cards and runes give Pill Bonus",
         },
     },
-    [mod.PLAYER_MILCOM_A] = {
+    [mod.PLAYER_TYPE.MILCOM_A] = {
         Name="Milcom",
         Description = {
             "{{Coin}} Bombs and keys instead give coins when gained, and consume coins when used",

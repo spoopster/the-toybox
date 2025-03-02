@@ -21,7 +21,7 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     player:AnimateHappy()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_VITAMINS)
+mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.VITAMINS)
 
 ---@param player EntityPlayer
 local function tempDamage(_, player, flag)

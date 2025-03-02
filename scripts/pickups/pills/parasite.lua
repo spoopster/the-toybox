@@ -16,4 +16,4 @@ local function usePill(_, effect, player, flags, color)
     player:AnimateHappy()
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_PARASITE)
+mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.PARASITE)

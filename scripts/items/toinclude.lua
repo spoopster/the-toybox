@@ -25,7 +25,7 @@ local t = {
     "scripts.items.passives.missing_page_3",
     "scripts.items.passives.glass_vessel",
     "scripts.items.passives.bone_boy",
-    --"scripts.items.passives.steel_soul",
+    "scripts.items.passives.steel_soul",
     "scripts.items.passives.bobs_heart",
     "scripts.items.passives.clown_phd",
     "scripts.items.passives.giant_capsule",

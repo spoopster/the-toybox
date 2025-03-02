@@ -14,11 +14,11 @@ local DAMAGE_BLOCK_STACKCHANCE = 0.1
 ---@param pl Entity
 local function iwanttoNamethisOne(_, pl, dmg, flags, source, countdown)
     pl = pl:ToPlayer()
-    if(not pl:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.PAINKILLERS)) then return end
 
     local chance = mod:getLuckAffectedChance(pl.Luck, DAMAGE_BLOCK_CHANCE, DAMAGE_BLOCK_CHANCEMAX, DAMAGE_BLOCK_CHANCELUCK)
-    chance = math.min(0.5, chance+DAMAGE_BLOCK_STACKCHANCE*(pl:GetCollectibleNum(mod.COLLECTIBLE_PAINKILLERS)-1))
-    if(pl:GetCollectibleRNG(mod.COLLECTIBLE_PAINKILLERS):RandomFloat()<chance) then
+    chance = math.min(0.5, chance+DAMAGE_BLOCK_STACKCHANCE*(pl:GetCollectibleNum(mod.COLLECTIBLE.PAINKILLERS)-1))
+    if(pl:GetCollectibleRNG(mod.COLLECTIBLE.PAINKILLERS):RandomFloat()<chance) then
         mod:setEntityData(pl, "PAINKILLERS_DAMAGE_PROC", true)
 
         return
@@ -34,7 +34,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, 
 ---@param pl Entity
 local function idontwanttonamThisone(_, pl)
     pl = pl:ToPlayer()
-    if(not pl:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.PAINKILLERS)) then return end
     if(mod:getEntityData(pl, "PAINKILLERS_DAMAGE_PROC")) then
         pl:SetMinDamageCooldown(DAMAGE_BLOCK_FRAMES*(pl:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
         sfx:Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
@@ -46,7 +46,7 @@ local function idontwanttonamThisone(_, pl)
     else
         local frames = pl:GetDamageCooldown()
         pl:ResetDamageCooldown()
-        if(pl:GetCollectibleNum(mod.COLLECTIBLE_PAINKILLERS)==1) then
+        if(pl:GetCollectibleNum(mod.COLLECTIBLE.PAINKILLERS)==1) then
             pl:SetMinDamageCooldown(math.floor(frames*DAMAGE_COOLDOWN_MULT))
         end
     end
@@ -73,7 +73,7 @@ local uiSprite = Sprite("gfx/ui/tb_ui_painkillers.anm2", true)
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.PAINKILLERS)) then return end
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
         player.Damage = player.Damage*DMG_MULT
@@ -88,12 +88,12 @@ local function calcPainkillerDamage(player)
     return math.floor(dmg^(1/DAMAGE_COUNTER_ROOT_POWER))
 end
 local function calcPainkillerTimer(player)
-    return math.floor( DAMAGE_TIMER*(1+(player:GetCollectibleNum(mod.COLLECTIBLE_PAINKILLERS)-1)*0.5) )
+    return math.floor( DAMAGE_TIMER*(1+(player:GetCollectibleNum(mod.COLLECTIBLE.PAINKILLERS)-1)*0.5) )
 end
 
 ---@param player EntityPlayer
 local function painkillersTimerUpdate(_, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.PAINKILLERS)) then return end
 
     local data = mod:getEntityDataTable(player)
     data.PAINKILLERS_DAMAGE_TIMER = data.PAINKILLERS_DAMAGE_TIMER or 0
@@ -128,7 +128,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, painkillersTimerUpdate)
 ---@param player EntityPlayer
 local function painkillersCancelDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
-    if(not player:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
+    if(not player:HasCollectible(mod.COLLECTIBLE.PAINKILLERS)) then return end
     local data = mod:getEntityDataTable(player)
 
     if(source.Type==6) then return end
@@ -167,7 +167,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -math.huge, painkillers
 
 ---@param p EntityPlayer
 local function renderDamageUi(_, p, offset)
-    if(not p:HasCollectible(mod.COLLECTIBLE_PAINKILLERS)) then return end
+    if(not p:HasCollectible(mod.COLLECTIBLE.PAINKILLERS)) then return end
     local dmg = mod:getEntityData(p, "PAINKILLERS_DAMAGE_COUNTER") or 0
     if(dmg<1) then return end
 

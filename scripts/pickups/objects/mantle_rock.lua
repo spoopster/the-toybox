@@ -14,7 +14,7 @@ local function useMantle(_, _, player, _)
         sfx:Play(SoundEffect.SOUND_ROCK_CRUMBLE)
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE_MANTLE_ROCK)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE.MANTLE_ROCK)
 
 ---@param player EntityPlayer
 local function postNewRoom(_, player)
@@ -59,14 +59,14 @@ local function fireShockwaves(_, player, dmg, flags, source)
 
         local poof = Isaac.Spawn(1000,16,2,player.Position,Vector.Zero,player):ToEffect()
         poof.Color = Color(0.75,0.75,0.75,0.65)
-        sfx:Play(mod.SFX_ATLASA_ROCKBREAK)
+        sfx:Play(mod.SOUND_EFFECT.ATLASA_ROCKBREAK)
     end
 end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, fireShockwaves, EntityType.ENTITY_PLAYER)
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE_MANTLE_ROCK] = true end
+if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE.MANTLE_ROCK] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE_MANTLE_ROCK).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE.MANTLE_ROCK).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

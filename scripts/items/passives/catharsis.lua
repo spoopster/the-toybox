@@ -36,7 +36,7 @@ local ignoreTearCalc = false
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     if(ignoreTearCalc) then return end
-    if(not pl:HasCollectible(mod.COLLECTIBLE_CATHARSIS)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.CATHARSIS)) then return end
     ignoreTearCalc = true
 
     local tearsMult = mod:getVanillaTearMultiplier(pl)
@@ -55,7 +55,7 @@ local function evalCache(_, pl)
     local finalTps = mod:toTps(tearsToFiredelay(finalTearsStat))*tearsMult
     pl.MaxFireDelay = mod:toFireDelay(math.min(finalTps, TEAR_CAP*tearsMult))
 
-    mod:addBasicTearsUp(pl, TEARS_UP*pl:GetCollectibleNum(mod.COLLECTIBLE_CATHARSIS))
+    mod:addBasicTearsUp(pl, TEARS_UP*pl:GetCollectibleNum(mod.COLLECTIBLE.CATHARSIS))
 
     ignoreTearCalc = false
 end

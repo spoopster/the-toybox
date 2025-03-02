@@ -15,4 +15,4 @@ local function useD(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useD, mod.COLLECTIBLE_D)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, useD, mod.COLLECTIBLE.D)

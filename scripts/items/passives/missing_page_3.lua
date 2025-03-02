@@ -9,7 +9,7 @@ local function npcInit(_, npc)
     local conf = EntityConfig.GetEntity(npc.Type, npc.Variant, npc.SubType)
     if(not (conf and conf:CanBeChampion())) then return end
 
-    local pageNum = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE_MISSING_PAGE_3)
+    local pageNum = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.MISSING_PAGE_3)
     if(pageNum<=0) then return end
 
     local rng = npc:GetDropRNG()
@@ -29,7 +29,7 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, npcInit)
 local function npcDeath(_, npc)
     if(not (npc:IsChampion() and npc:GetChampionColorIdx()==ChampionColor.DEATH)) then return end
 
-    if(PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE_MISSING_PAGE_3)) then
+    if(PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.MISSING_PAGE_3)) then
         local chance = 1
         if(Game():IsHardMode()) then chance = HARD_BLACK_CHANCE end
 

@@ -25,7 +25,7 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     player:AnimateHappy()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_CAPSULE)
+mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.CAPSULE)
 
 local function showStreakText(_, title, subtitle, issticky, iscurse)
     if(isShowingTrinketName) then

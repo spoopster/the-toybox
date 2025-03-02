@@ -5,12 +5,12 @@ local SHIELD_CHANCE = 1--0.25
 
 local function addMantle(_, idx, mtype, pl)
     if(mtype==mod.MANTLE_DATA.NONE.ID) then return end
-    if(not pl:HasCollectible(mod.COLLECTIBLE_STEEL_SOUL)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.STEEL_SOUL)) then return end
     local adata = mod:getAtlasATable(pl)
     idx = math.min(idx, adata.HP_CAP)
     if(adata.MANTLES[idx].HP<adata.MANTLES[idx].MAXHP) then return end
 
-    mod:setMantleHeartData(pl, idx, "SOUL_SHIELD", (pl:GetCollectibleRNG(mod.COLLECTIBLE_STEEL_SOUL):RandomFloat()<SHIELD_CHANCE and 1 or nil))
+    mod:setMantleHeartData(pl, idx, "SOUL_SHIELD", (pl:GetCollectibleRNG(mod.COLLECTIBLE.STEEL_SOUL):RandomFloat()<SHIELD_CHANCE and 1 or nil))
 end
 mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_ADD_MANTLE, addMantle)
 
@@ -37,7 +37,7 @@ local function destroySoulShields(_, pl, dmg, flags, source, frames)
     end
     
     if(numDamageRemoved>0) then
-        sfx:Play(mod.SFX_ATLASA_METALBLOCK)
+        sfx:Play(mod.SOUND_EFFECT.ATLASA_METALBLOCK)
         Game():ShakeScreen(5)
 
         return {

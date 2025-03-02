@@ -27,7 +27,8 @@ end
 ---@param pl EntityPlayer
 local function giveSoulShield(_, pl, amount, hpType)
     if(not (hpType==AddHealthType.SOUL or hpType==AddHealthType.BONE)) then return end
-    if(not pl:HasCollectible(mod.COLLECTIBLE_STEEL_SOUL)) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.STEEL_SOUL)) then return end
+    
     local data = mod:getEntityDataTable(pl)
     data.PREV_SOULHP = data.PREV_SOULHP or 0
 
@@ -77,7 +78,7 @@ local function renderSoulShields(_, offset, sprite, pos, x, pl)
     local numMaxReds = math.ceil(pl:GetMaxHearts()/2)
     for i, heartData in pairs(h) do
         if(heartData:IsVisible() and i>numMaxReds) then
-            local p = Vector((i-1)%6, ((i-1)//6))*Vector(12,10)+pos---Vector(3,8)+Vector(0, 30)
+            local p = Vector((i-1)%6, ((i-1)//6))*Vector(12,10)+pos+Vector(0,-1)
             local soulBit = mod:getSoulShieldBit(pl, i-1-numMaxReds)
 
             if(soulBit~=0) then
@@ -128,7 +129,7 @@ local function destroySoulShields(_, pl, dmg, flags, source, frames)
     end
     
     if(numDamageRemoved>0) then
-        sfx:Play(mod.SFX_ATLASA_METALBLOCK)
+        sfx:Play(mod.SOUND_EFFECT.ATLASA_METALBLOCK)
         Game():ShakeScreen(5)
 
         return {

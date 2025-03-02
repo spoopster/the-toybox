@@ -83,4 +83,4 @@ local function useAlphabetBox(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useAlphabetBox, mod.COLLECTIBLE_ALPHABET_BOX)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, useAlphabetBox, mod.COLLECTIBLE.ALPHABET_BOX)
