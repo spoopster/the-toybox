@@ -742,6 +742,53 @@ local ITEMS = {
             "Taking damage spawns 1 blue fly and blue spider",
         },
     },
+    [mod.COLLECTIBLE.BOBS_THESIS] = {
+        Name = "Bob's Thesis",
+        Description = {
+            "All item spawns are replaced by {{Collectible"..mod.COLLECTIBLE.PLACEHOLDER.."}} Placeholder",
+            --"{{Blank}} {{ColorGray}}Placeholder gives an all stats up, but turns into a random item at the start of next floor{{CR}}",
+            "Placeholder gives an all stats up, but turns into a random item at the start of next floor",
+        },
+        DescriptionAppend = {
+            {
+                Condition = getStackFunction(mod.COLLECTIBLE.BOBS_THESIS),
+                DescriptionToAdd = {
+                    "{{Collectible"..mod.COLLECTIBLE.BOBS_THESIS.."}} {{ColorItemStack}}Placeholder gives better items{{CR}}",
+                },
+            },
+        },
+    },
+    [mod.COLLECTIBLE.PLACEHOLDER] = {
+        Name = "Placeholder",
+        Description = {
+            "\1 +0.15 Speed",
+            "\1 +0.5 Tears",
+            "\1 +0.5 Damage",
+            "\1 +1 Range",
+            "\1 +0.1 Shotspeed",
+            "\1 +1 Luck",
+            "At the start of next floor, will turn into an item from the X pool"
+        },
+        DescriptionModifiers = {
+            {
+                Condition = function(descObj)
+                    return true
+                end,
+                TextToModify = {
+                    {
+                        Old = "X pool",
+                        New = function(descObj)
+                            local lastPool = Game():GetItemPool():GetLastPool()
+                            local poolName = EID:getDescriptionEntry("itemPoolNames")[lastPool]
+                            local poolIcon = (EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")
+
+                            return poolIcon.." {{ColorSilver}}"..poolName.."{{CR}} pool"
+                        end,
+                    },
+                },
+            },
+        },
+    },
 
     [mod.COLLECTIBLE.URANIUM] = {
         Name = "Uranium",

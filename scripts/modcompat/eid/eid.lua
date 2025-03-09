@@ -79,10 +79,15 @@ local function turnStringTableToEIDDesc(table)
     return s
 end
 
-local function modifyEIDDescValues(desc, values)
+local function modifyEIDDescValues(descObj, desc, values)
     local newDesc = desc
     for i, tab in ipairs(values) do
-        newDesc = string.gsub(newDesc, tab.Old, tab.New)
+        local strToReplace = tab.New
+        if(type(tab.New)=="function") then
+            strToReplace = tab.New(descObj)
+        end
+
+        newDesc = string.gsub(newDesc, tab.Old, strToReplace)
     end
 
     return newDesc
@@ -95,7 +100,7 @@ local function atlasMantleDescription(descData, id)
             return (entity.ObjType==5 and entity.ObjVariant==300 and entity.ObjSubType==id) and (#mod:getAllAtlasA()<Game():GetNumPlayers())
         end,
         function(entity)
-            if(not descs.CARDS[entity.ObjSubType].NonAtlasDescription) then return end
+            if(not descs.CARDS[entity.ObjSubType].NonAtlasDescription) then return entity end
 
             local extraDesc = turnStringTableToEIDDesc(descs.CARDS[entity.ObjSubType].NonAtlasDescription)
 
@@ -209,7 +214,7 @@ local function addExtraDescriptionStuff(entData)
             function(descObj)
                 for _, mData in ipairs(desc.DescriptionModifiers) do
                     if(mData.Condition(descObj)) then
-                        descObj.Description = modifyEIDDescValues(descObj.Description, mData.TextToModify)
+                        descObj.Description = modifyEIDDescValues(descObj, descObj.Description, mData.TextToModify)
                     end
                 end
 

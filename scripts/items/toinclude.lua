@@ -44,6 +44,7 @@ local t = {
     "scripts.items.passives.cursed_eulogy",
     "scripts.items.passives.haemorrhage",
     "scripts.items.passives.fish",
+    "scripts.items.passives.bobs_thesis", -- Also includes Placeholder
 
     "scripts.items.passives.the_elder_scroll", -- just the shader fo now
 

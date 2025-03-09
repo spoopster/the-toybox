@@ -110,6 +110,8 @@ mod.COLLECTIBLE = {
     BLOODY_WHISTLE = Isaac.GetItemIdByName("Bloody Whistle"),
     HEMORRHAGE = Isaac.GetItemIdByName("Haemorrhage"),
     FISH = Isaac.GetItemIdByName("Fish"),
+    BOBS_THESIS = Isaac.GetItemIdByName("Bob's Thesis"),
+    PLACEHOLDER = Isaac.GetItemIdByName("Placeholder"),
 
     RETROFALL = Isaac.GetItemIdByName("RETROFALL"),
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
