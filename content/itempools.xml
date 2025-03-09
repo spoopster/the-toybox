@@ -21,6 +21,7 @@
         <Item Name="Plasma Globe"/>
         <Item Name="Hostile Takeover"/>
         <Item Name="Haemorrhage"/>
+        <Item Name="Bob's Thesis"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -43,6 +44,7 @@
         <Item Name="Plasma Globe"/>
         <Item Name="Hostile Takeover"/>
         <Item Name="Haemorrhage"/>
+        <Item Name="Bob's Thesis"/>
     </Pool>
 
     <Pool Name="boss">
@@ -128,6 +130,7 @@
         <Item Name="Painkillers" Weight="0.75" DecreaseBy="0.75"/>
         <Item Name="Clown PHD"/>
         <Item Name="Cursed Eulogy"/>
+        <Item Name="Bob's Thesis"/>
     </Pool>
 
     <Pool Name="secret">
