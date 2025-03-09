@@ -523,7 +523,7 @@
     description="I'm workin' on it!"
     gfx="tb_bobs_thesis.png"
     quality="2"
-    tags="offensive"
+    tags="offensive bob"
     cache=""
 />
 <passive id="62" name="Placeholder"
