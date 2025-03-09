@@ -49,6 +49,7 @@ local t = {
 
     "scripts.items.passives.catharsis",
     "scripts.items.passives.retrofall",
+    "scripts.items.passives.uranium",
 
     --ACTIVES
     -- "scripts.items.actives.",

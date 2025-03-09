@@ -113,6 +113,7 @@ mod.COLLECTIBLE = {
 
     RETROFALL = Isaac.GetItemIdByName("RETROFALL"),
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
+    URANIUM = Isaac.GetItemIdByName("Uranium"),
     EQUALIZER = Isaac.GetItemIdByName("Equalizer"),
     D = Isaac.GetItemIdByName("D"),
     --BTRAIN = Isaac.GetItemIdByName("B-Train"),                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)

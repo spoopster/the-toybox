@@ -1,11 +1,10 @@
 local mod = MilcomMOD
 local sfx = SFXManager()
 
-local BASEHP = 10
+local BASEHP = 8
 local HPSCALE_EXPO = 0.7
 
-local BASE_CHARGES_GIVEN = 0.15
-local BASE_STATSTIMER_INCREASE = 90
+local BASE_STATSTIMER_INCREASE = 30*2
 
 local STAT_DECREASE_TIMER = 30*10
 local STAT_DECREASE_FREQ = 15
@@ -51,10 +50,6 @@ end
 local function activateHostileTakeover(_, _, rng, pl, flags, slot, vdata)
     mod:setEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER", STAT_DECREASE_TIMER)
     pl:AddCacheFlags(CacheFlag.CACHE_ALL, true)
-
-    if(not pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER)) then
-        mod.HiddenItemManager:AddForRoom(pl, CollectibleType.COLLECTIBLE_4_5_VOLT, nil, 1, "TOYBOX")
-    end
 
     return {
         Discharge = true,
@@ -145,17 +140,10 @@ local function consumeTarPuddle(_, effect)
     local mul = consumerPl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.HOSTILE_TAKEOVER)
     local scaleMul = (data.TAKEOVER_PUDDLE_SIZE or 1)/PUDDLE_CONSUME_FRAMES
 
-    for _, slot in pairs(ActiveSlot) do
-        local desc = consumerPl:GetActiveItemDesc(slot)
-        if(desc and desc.Item==mod.COLLECTIBLE.HOSTILE_TAKEOVER) then
-            desc.PartialCharge = desc.PartialCharge+BASE_CHARGES_GIVEN*scaleMul*mul
-        end
-    end
-
     local oldTime = (plData.HOSTILETAKEOVER_STAT_TIMER or 0)
 
     plData.HOSTILETAKEOVER_STAT_TIMER = (plData.HOSTILETAKEOVER_STAT_TIMER or 0)+math.floor(BASE_STATSTIMER_INCREASE*scaleMul+1)
-    plData.HOSTILETAKEOVER_STAT_TIMER = math.min(plData.HOSTILETAKEOVER_STAT_TIMER, STAT_DECREASE_TIMER)
+    --plData.HOSTILETAKEOVER_STAT_TIMER = math.min(plData.HOSTILETAKEOVER_STAT_TIMER, STAT_DECREASE_TIMER)
 
     if(oldTime//STAT_DECREASE_FREQ~=plData.HOSTILETAKEOVER_STAT_TIMER//STAT_DECREASE_FREQ) then
         consumerPl:AddCacheFlags(CacheFlag.CACHE_ALL, true)

@@ -78,5 +78,5 @@ void main(void)
     if(mod(time, ALPHA_FREQ)<(ALPHA_FREQ*0.5)) texColor.a *= 0.85;
     else texColor.rgba *= 0.55;
 
-    gl_FragColor = vec4(texColor + ColorOffsetOut * texColor.a, texColor.a);
+    gl_FragColor = vec4(texColor.rgb + ColorOffsetOut * texColor.a, texColor.a);
 }

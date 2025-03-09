@@ -310,9 +310,8 @@
     quality="3"
     tags="offensive"
     cache="all"
-    persistent="true"
 
-    maxcharges="8"
+    maxcharges="6"
 
     achievement="Hostile Takeover"
 />
@@ -520,12 +519,33 @@
     tags="offensive dead"
     cache=""
 />
+<passive id="61" name="Bob's Thesis"
+    description="I'm workin' on it!"
+    gfx="tb_bobs_thesis.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+/>
+<passive id="62" name="Placeholder"
+    description="TODO"
+    gfx="tb_no_sprite.png"
+    quality="3"
+    tags="offensive"
+    cache="all"
+/>
 
 <passive id="109" name="RETROFALL"
     description=""
     gfx="tb_RETROFALL.png"
     quality="4"
     tags=""
+    cache=""
+/>
+<passive id="497" name="Uranium"
+    description="Literally just a slab of uranium"
+    gfx="tb_URANIUM.png"
+    quality="4"
+    tags="offensive"
     cache=""
 />
 <passive id="498" name="Catharsis"

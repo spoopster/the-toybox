@@ -743,6 +743,12 @@ local ITEMS = {
         },
     },
 
+    [mod.COLLECTIBLE.URANIUM] = {
+        Name = "Uranium",
+        Description = {
+            "How did this get in the basement.",
+        },
+    },
     [mod.COLLECTIBLE.RETROFALL] = {
         Name = "RETROFALL",
         Description = {
@@ -951,9 +957,8 @@ local ITEMS = {
             "{{Blank}} \1 +0.2 Speed",
             "{{Blank}} \1 +2 Damage",
             "{{Blank}} \1 +1 Tears",
-            "Grants {{Collectible647}} 4.5 Volt",
             "On death, enemies spawn puddles of slowing tar",
-            "Touching a puddle absorbs it, extends the temporary stats and adds partial active charge to this item"
+            "Touching a puddle absorbs it and extends the temporary stats"
         },
         DescriptionModifiers = {
             {
