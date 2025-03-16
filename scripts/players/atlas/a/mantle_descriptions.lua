@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function replaceDescriptionsOnInit(_, pl)
     local atlasDescriptions = mod:isAnyPlayerAtlasA()

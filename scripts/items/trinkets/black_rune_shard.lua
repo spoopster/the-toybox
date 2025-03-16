@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local REPLACE_CHANCE = 0.33
 

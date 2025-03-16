@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local ENUM_FIREDELAY_MULT = 0.5
 local ENUM_SKEW_MNMX = {Min=0.45,Max=1.35}

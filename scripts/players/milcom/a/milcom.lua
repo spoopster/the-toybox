@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod.MILCOM_CHAMPION_CHANCE_INC = 1--0.5
 

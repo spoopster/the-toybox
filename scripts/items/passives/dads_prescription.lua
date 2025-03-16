@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local nonSpecialRooms = {
     [RoomType.ROOM_NULL] = 0,

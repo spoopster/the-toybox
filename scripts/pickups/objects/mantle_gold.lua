@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 local COINS_REMOVE = 1

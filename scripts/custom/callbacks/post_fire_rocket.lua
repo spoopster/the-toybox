@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --! also has the ROCKET_COPY_TARGET_DATA and POST_ROCKET_EXPLODE
 
 function mod:tryCalculateRocketEffects(player, effect)

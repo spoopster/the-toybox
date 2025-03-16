@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 --! add the funny sparkles (both transf and mantle)

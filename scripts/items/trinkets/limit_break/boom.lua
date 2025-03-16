@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Super Troll Bombs devolve into Troll Bombs, Troll Bombs have a chance to never explode
 
 local DUD_CHANCE = 0.15

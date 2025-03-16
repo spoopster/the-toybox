@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 local BLOOD_SOUL_TRAIL_OFFSET = Vector(0,-25)

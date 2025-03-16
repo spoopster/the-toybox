@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local INK_NUM_PICKER = WeightedOutcomePicker()
 INK_NUM_PICKER:AddOutcomeWeight(2, 10)

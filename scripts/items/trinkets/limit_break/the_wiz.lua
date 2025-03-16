@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Reduced spread
 
 local WIZ_ANGLE_MULT = 0.3

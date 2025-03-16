@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod.DENY_CHAMP_ROLL = false
 

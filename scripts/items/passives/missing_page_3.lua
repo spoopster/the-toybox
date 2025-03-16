@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local DEATH_CHAMP_CHANCE = 4*0.01 --4%
 local HARD_BLACK_CHANCE = 0.33

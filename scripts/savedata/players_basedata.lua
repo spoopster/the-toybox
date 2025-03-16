@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local BASEDATA = {
     ATLAS_A_DATA = 0,

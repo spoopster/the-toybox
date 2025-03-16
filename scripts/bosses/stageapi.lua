@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 if(not (StageAPI and StageAPI.Loaded)) then return end
 

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local ELECTRIFIED_LASER_FREQ = 14
 local ELECTRIFIED_LASER_LENGTH = {Min=70, Max=130}

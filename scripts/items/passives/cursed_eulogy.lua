@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 -- make the default collectible evil breakfast be like

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 local ENUM_BONUSHEALTH_CHANCE = 1/3

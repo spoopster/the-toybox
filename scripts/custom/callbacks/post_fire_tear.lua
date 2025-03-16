@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 -- normal tears - no evil hacks
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function copyScatterData(bomb)
 	for _, sBomb in pairs(mod.CALLBACK_BOMBS_FIRED) do

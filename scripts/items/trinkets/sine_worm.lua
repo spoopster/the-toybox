@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local FRAME_MULT = 20
 local SPEED_MULT = 2

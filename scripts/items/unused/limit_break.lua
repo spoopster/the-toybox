@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 function mod:playerHasLimitBreak(player)
     return player:HasTrinket(mod.TRINKET.LIMIT_BREAK)

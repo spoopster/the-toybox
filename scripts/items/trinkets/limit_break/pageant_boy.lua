@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Penny spawns have a chance to become double pennies or nickels
 
 local SPECIAL_CHANCE = 15*0.01

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local CLOUD_DURATION = 30*10
 local CREEP_DURATION = 30*8

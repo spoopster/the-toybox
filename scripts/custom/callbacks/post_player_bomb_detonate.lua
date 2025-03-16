@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE,
 function(_, bomb)

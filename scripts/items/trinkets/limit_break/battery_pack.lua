@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* On room clear, chance to spawn Micro Battery if active item is not fully charged
 
 local BATTERY_CHANCE = 0.25

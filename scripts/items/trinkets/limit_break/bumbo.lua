@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Coins count as double value when picked up by Bumbo
 
 local function postFamiliarColl(_, familiar, collider)

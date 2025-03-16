@@ -1,4 +1,4 @@
-MilcomMOD.CONFIG = {
+ToyboxMod.CONFIG = {
     ALPHABETBOX_EID_DISPLAYS = 3,
 
     MANTLE_WEIGHT = 0.5,

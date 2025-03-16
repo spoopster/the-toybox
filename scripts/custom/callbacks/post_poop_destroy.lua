@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 ---@param poop GridEntityPoop
 local function updatePoopGrid(_, poop)

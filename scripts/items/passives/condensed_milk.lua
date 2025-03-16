@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --// this is the worst code i have ever written
 --// nvm
 --* i reworked the item but this code is kinda evil tbh

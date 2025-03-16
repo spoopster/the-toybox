@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local STAT_MULTS = 0.5
 local HORSE_MULT = 2

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local BASEDATA = {
     RAINBOW_KEY_ACTIVE = 0,

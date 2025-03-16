@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local MODEntityData = {}
 local MODExtraData = {}             --! ONE=RUN ONLY, NOT ENTITY DEPENDENT
 local MODPersistentData = {}        --! PERSISTS ACROSS RUNS

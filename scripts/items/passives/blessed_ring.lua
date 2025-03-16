@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local BASE_BEAM_COOLDOWN = 7*30
 local BEAMS_NUM = 2

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local TEARS_ADD = 0.3
 local SHOTSPEED_ADD = 0.15

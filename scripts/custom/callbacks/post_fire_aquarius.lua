@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, effect)
 	if(not (effect.SpawnerEntity and effect.SpawnerEntity.Type==EntityType.ENTITY_PLAYER)) then return end

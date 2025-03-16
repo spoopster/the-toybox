@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local ROOMS_REQ = 6
 local BFFS_REQ = 4

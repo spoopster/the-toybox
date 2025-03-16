@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local persistentData = Isaac.GetPersistentGameData()
 
 local MAX_STATS_PER_LINE = 10

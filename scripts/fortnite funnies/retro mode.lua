@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function makeItemRetro(_, pickup)
     if(mod.CONFIG.EPIC_ITEM_MODE==1) then

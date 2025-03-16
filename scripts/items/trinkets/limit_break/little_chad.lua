@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Spawns full red hearts instead of half red hearts
 
 ---@param pickup EntityPickup

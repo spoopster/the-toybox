@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function makeItemGold(_, pickup)
     if(mod.CONFIG.EPIC_ITEM_MODE==2) then

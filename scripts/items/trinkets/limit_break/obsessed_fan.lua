@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* When hitting enemies, Obsessed Fan has a chance to apply charm to them
 
 local OBSFAN_CHARMCHANCE = 1/2

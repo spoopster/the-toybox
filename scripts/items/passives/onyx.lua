@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local SPEED_UP = 0.2
 local TEARS_UP = 0.5

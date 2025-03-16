@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local LUCKUP = 0.75
 local DAMAGEUP = 1

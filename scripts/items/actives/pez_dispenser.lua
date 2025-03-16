@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 --TODO: coop compat, maybe? against it because its an inventory thing so it should have coop support (awesome)

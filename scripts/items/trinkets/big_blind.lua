@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local FIRST_REQ = 10
 local SUM_INCREASE = 6

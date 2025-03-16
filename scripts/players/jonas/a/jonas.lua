@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 --#region DATA
 local JONAS_A_BASEDATA = {

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, function(_, tear)
 	if(not tear:HasTearFlags(TearFlags.TEAR_LUDOVICO)) then return end

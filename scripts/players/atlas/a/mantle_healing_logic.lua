@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 if(CustomHealthAPI) then
     local function addHealth(p, k, n)

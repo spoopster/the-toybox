@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Chests spawned by Key Bum auto-open after a few frames
 
 local OPEN_FRAMES = 2

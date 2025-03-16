@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local itemTextOnScreen = -1
 local BOX_WIDTH = 10000

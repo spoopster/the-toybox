@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* You can pick up and throw poops by using this item
 --? maybe make custom rainbow, giant and charming poop variants for the entity
 --? if possible make it hold up poop enemies bc funny

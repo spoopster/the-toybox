@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Spawns Gold Key and Gold Bomb
 
 ---@param player EntityPlayer

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 ---@param bomb EntityBomb
 local function initFlags(_, bomb)

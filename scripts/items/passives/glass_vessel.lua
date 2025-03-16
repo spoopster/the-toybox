@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 local heartSprite, test = Sprite("gfx/ui/tb_ui_glassvessel_heart.anm2", true)

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local CHANCE_INCREASE = 1 -- increase per mult
 

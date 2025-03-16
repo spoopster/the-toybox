@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Fires Cricket's Body rock tears that deal 6 damage
 local EXTRA_DMG = 2.5
 

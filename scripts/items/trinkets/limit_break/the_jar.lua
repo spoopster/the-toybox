@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* When full, using it gives a full heart container
 
 ---@param player EntityPlayer

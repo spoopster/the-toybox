@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local TIME_MIN = -3
 local TIME_MAX = 3

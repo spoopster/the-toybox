@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function checkMark(_, mark)
     if(not mod:isAtlasA(Isaac.GetPlayer())) then return end

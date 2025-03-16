@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local HEART_REPLACEMENT_CHANCES = {
     [0]=0.8,

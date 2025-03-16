@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 --* add ghost costume
 --* add dead player on ground dead dead dead

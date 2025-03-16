@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 ---@param pickup EntityPickup
 local function replaceCollectibleInCloset(_, pickup)

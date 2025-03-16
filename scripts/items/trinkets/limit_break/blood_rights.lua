@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Enemies killed by Blood Rights have a 10% chance to spawn a half red heart
 
 local HEART_CHANCE = 10*0.01

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED,
 ---@param e Entity

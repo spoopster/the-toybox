@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local TEARSTOADD = 0.7
 local TEARSTOADD_BATTERY = 1

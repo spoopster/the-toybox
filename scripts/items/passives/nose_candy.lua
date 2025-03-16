@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local ENUM_NUMTOSTAT = {"FIREDELAY", "DAMAGE", "RANGE", "SHOTSPEED", "LUCK"}
 local ENUM_STATPICKER = WeightedOutcomePicker()

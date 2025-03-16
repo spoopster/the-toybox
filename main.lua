@@ -1,5 +1,5 @@
-MilcomMOD = RegisterMod("toyboxMod", 1) ---@type ModReference
-local mod = MilcomMOD
+ToyboxMod = RegisterMod("toyboxMod", 1) ---@type ModReference
+local mod = ToyboxMod
 
 mod.HiddenItemManager = include("scripts.libraries.hiddenitemmanager")
 mod.HiddenItemManager:Init(mod)
@@ -225,4 +225,30 @@ local function postSlotRender(_, slot, offset)
 end
 mod:AddCallback(ModCallbacks.MC_POST_SLOT_RENDER, postSlotRender)
 
+--]]
+
+--[[
+---@param pickup EntityPickup
+local function postCollectableUpdate(_, pickup)
+    if pickup.SubType ~= 0 then return end
+    if pickup:GetData().AlreadyChecked then return end
+
+    local nearby_pickup_num = 0
+    for _, other in ipairs(Isaac.FindByType(5)) do
+        if other.FrameCount==1 and other.Position:DistanceSquared(pickup.Position)<3*3 then
+            nearby_pickup_num = nearby_pickup_num+1
+        end
+    end
+
+    if(nearby_pickup_num>0) then
+        for _, other in ipairs(Isaac.FindByType(5)) do
+            if other.FrameCount==1 and other.Position:DistanceSquared(pickup.Position)<3*3 then
+                other:Remove()
+            end
+        end
+    end
+
+    pickup:GetData().AlreadyChecked = true
+end
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postCollectableUpdate, PickupVariant.PICKUP_COLLECTIBLE)
 --]]

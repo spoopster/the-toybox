@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local FART_RADIUS = 40*3
 local HORSE_CLOUD_DURATION = 30*15

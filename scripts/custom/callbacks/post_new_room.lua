@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local lastWaveVal = 0
 
 local function postUpdate()

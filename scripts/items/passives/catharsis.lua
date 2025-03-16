@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local TEAR_CAP = 5*2
 local TEARS_UP = 1

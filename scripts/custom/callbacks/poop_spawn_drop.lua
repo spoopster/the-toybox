@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local POOPS_WITH_DROPS = {
     [GridPoopVariant.NORMAL] = 1,

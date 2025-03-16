@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local ITEMS = {
     [mod.COLLECTIBLE.COCONUT_OIL] =         "Tears up + speed down + slippery movement",

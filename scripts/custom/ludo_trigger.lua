@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod:AddPriorityCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, math.huge,
 ---@param e Entity

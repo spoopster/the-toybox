@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local HP_SPRITE = Sprite()
 HP_SPRITE:Load("gfx/ui/tb_ui_mantlehearts.anm2", true)

@@ -1,6 +1,6 @@
 --! add death stuff for the masks! it looks wierd
 
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 local SHYGAL_W_MASK_SUBTYPE = 1

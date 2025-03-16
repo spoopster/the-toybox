@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 function mod:getClassByQuality(phdval, qual)
     if(phdval==mod.PHD_TYPE.NONE) then

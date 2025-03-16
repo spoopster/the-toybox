@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 mod:AddCallback(ModCallbacks.MC_USE_PILL,

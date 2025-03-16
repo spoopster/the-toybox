@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 function mod:checkUnlocks(blockPaper)
     for _, unlockData in ipairs(mod.ACHIEVEMENTS) do

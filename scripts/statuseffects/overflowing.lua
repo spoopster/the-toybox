@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 function mod:addOverflowing(npc, player, amount, rng)
     local d = mod:getEntityDataTable(npc)

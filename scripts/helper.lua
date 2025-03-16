@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 function mod:unlock(unlock, force)
     local pgd = Isaac.GetPersistentGameData()

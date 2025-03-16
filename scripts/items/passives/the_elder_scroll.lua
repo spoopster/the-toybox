@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function getShaderParams(_, name)
     if(name==mod.SHADERS.BLOOM) then

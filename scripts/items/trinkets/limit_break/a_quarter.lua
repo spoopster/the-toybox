@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Penny spawns have a chance to become lucky pennies
 
 local SPECIAL_CHANCE = 5*0.01

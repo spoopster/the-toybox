@@ -1,1 +1,1 @@
-local mod = MilcomMOD
+local mod = ToyboxMod

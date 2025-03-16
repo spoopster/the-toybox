@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 local STAT_SPRITE = Sprite("gfx/ui/tb_ui_pill_bonus.anm2", true)

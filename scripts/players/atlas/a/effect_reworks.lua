@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local t = {
     "scripts.players.atlas.a.reimp.guppys_paw",

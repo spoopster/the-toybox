@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Using an active has a chance to trigger the Necronomicon effect
 
 ---@param player EntityPlayer

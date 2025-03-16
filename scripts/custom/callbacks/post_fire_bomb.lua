@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 -- cant use MC_POST_FIRE_BOMB bc of scatter bombs so its over
 local function getSpawnerPlayer(bomb)

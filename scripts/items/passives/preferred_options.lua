@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --im tired of making this
 
 local function getItemAtPos(pos)

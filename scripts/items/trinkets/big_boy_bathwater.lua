@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 
 local CREEP_COLOR = Color(0,0,0,1,141/255,145/255,159/255)

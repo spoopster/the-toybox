@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod.DONT_IGNORE_ATLAS_HEALING = false
 

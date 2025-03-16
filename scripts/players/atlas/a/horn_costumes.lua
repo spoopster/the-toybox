@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local COSTUME_PATH = "gfx/characters/tb_costume_atlas_rock.anm2"
 local COSTUME_DEFAULT = "gfx/characters/costumes/tb_character_atlas_horn.png"

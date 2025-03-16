@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 ---@param player EntityPlayer
 local function useItemRegister(_, item, rng, player, flags, slot, vardata)

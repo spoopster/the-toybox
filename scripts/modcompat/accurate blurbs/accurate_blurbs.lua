@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function loadBlurbs()
     if(not AccurateBlurbs) then return end

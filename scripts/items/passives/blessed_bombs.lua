@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 -- FUCK THIS SHIT! Fuck you caligulas
 

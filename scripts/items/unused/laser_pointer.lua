@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local laserSprite = Sprite("gfx/effects/tb_effect_laser_pointer.anm2", true)
 laserSprite:Play("Idle", true)

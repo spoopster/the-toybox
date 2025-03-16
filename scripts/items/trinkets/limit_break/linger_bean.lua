@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local SPAWN_FREQ = 90
 local CLOUD_DUR = 135

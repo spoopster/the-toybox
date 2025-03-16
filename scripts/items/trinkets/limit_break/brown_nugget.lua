@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Damage buff, copies your tear effects
 
 ---@param familiar EntityFamiliar

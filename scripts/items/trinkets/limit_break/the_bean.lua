@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Spawns an additional poison gas cloud that lasts for 10 seconds
 
 ---@param player EntityPlayer

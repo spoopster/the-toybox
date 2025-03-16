@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function postUpdate(_)
     if(not PlayerManager.AnyoneIsPlayerType(mod.PLAYER_TYPE.MILCOM_A)) then return end

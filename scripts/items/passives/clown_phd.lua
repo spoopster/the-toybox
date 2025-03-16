@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local strokinMyShit = false
 local function replacePillEffects(_, pilleffect, color)

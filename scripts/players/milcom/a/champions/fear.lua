@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local AURA_SCALE_POW = 0.3
 local BASE_AURA_SIZE = 13

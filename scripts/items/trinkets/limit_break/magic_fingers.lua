@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Enemies damaged by Magic Fingers have a 7.77% chance to be turned to gold
 
 local MIDAS_CHANCE = 7.77*0.01

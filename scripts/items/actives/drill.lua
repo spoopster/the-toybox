@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local FREE_PICKUP_ID = -12841
 local MIN_DRILL_DIST = 60

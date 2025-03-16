@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local DEVILCHANCE_INCREASE = 0.15
 local function getDevilDealChance(_, chance)

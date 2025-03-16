@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local LASER_RING_MAXSIZE = 60 --radius
 local LASER_RING_DECREASEBY = 0.55

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 ---@param pl Entity
 local function dsadasdad(_, pl, dmg)

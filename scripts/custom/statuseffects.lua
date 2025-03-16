@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local statusSprite = Sprite("gfx/ui/tb_custom_statuses.anm2", true)
 

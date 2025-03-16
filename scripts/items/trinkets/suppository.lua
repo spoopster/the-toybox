@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local PILL_POOP_CHANCE = 0.2
 

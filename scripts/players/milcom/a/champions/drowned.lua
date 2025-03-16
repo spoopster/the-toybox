@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local function angle2Dir(x)
     return math.floor((x+225)%360/90)

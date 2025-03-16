@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Troll bombs spawned by the item(s) do not damage the player that spawned them
 
 ---@param player EntityPlayer

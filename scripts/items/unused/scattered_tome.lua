@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local NUM_TOMES = 1
 local PAPER_SPAWN_FREQ = 90

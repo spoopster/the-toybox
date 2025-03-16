@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local CHASE_SPEED = 21
 local CHASE_LERP = 0.05

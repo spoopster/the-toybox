@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 ---@param pl EntityPlayer
 local function postAddAwesomeFruit(_, _, _, firstTime, _, _, pl)

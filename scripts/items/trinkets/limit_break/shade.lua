@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* When hitting enemies, Shade has a chance to apply fear to them
 --* When killing enemies, Shade has a chance to spawn a shadow charger
 

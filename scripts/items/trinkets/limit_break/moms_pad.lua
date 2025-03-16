@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* 25% chance for enemy to get perma-feared
 
 local PERMA_CHANCE = 0.25

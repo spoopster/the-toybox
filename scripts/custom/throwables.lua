@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod.THROWABLE_ITEMS = {}
 function mod:registerThrowableActive(item, willDischarge, willRemove)

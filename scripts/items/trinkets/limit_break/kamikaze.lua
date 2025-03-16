@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Explosion inherits bomb effects
 
 ---@param player EntityPlayer

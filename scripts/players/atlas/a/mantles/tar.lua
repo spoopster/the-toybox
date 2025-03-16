@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local SPEED_BONUS = 0.2
 local DMG_BONUS = 0.3

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local ROCK_DECAY_RADIUS = 40*1.5
 local ROCK_DECAY_DURATION = 50

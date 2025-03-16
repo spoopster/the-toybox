@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 local sfx = SFXManager()
 --! this is the worst code ive written for this mod
 --* add overlay for adrenaline

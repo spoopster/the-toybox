@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local DIRECTION_FLUSH_MOD = 10
 local LAST_FIRE_DIRECTIONS = {}

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local EVIL_TINTEDROCK_COLOR = Color(1,0.9,0.9,1,0,0,0,0.9,0.8,0.8,1)
 local EVIL_TINTEDSPIDER_COLOR = Color(0.9,0.85,0.85,1,0,0,0,0.8,0.8,0.8,1)

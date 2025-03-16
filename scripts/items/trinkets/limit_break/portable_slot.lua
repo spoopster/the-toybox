@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --* Lets you switch between Portable Slot and Portable Teller (works like slot but has fortune teller pool)
 
 local tellerOutcomes = {

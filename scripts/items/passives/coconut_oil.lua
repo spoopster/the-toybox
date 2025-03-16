@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local ENUM_SPEEDTOADD = -0.25
 local ENUM_TEARSTOADD = 0.5

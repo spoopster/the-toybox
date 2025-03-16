@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local BASEDATA = {
     HAS_SEEN_YANNY = 0,

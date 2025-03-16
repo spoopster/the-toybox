@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 local NUM_REQ = 1
 local SEARCH_RADIUS = 4.5*40

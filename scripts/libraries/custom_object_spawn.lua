@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 --! make circle type use a timer for delayed circle spawn
 --! make line and circleline have a second extrafunction for the timer effect
 

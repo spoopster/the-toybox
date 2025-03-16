@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 function mod:getPlayerFromKnifeEnt(knife)
     local sp = knife.SpawnerEntity

@@ -1,4 +1,4 @@
-local mod = MilcomMOD
+local mod = ToyboxMod
 
 mod.ABOX_ITEMS_ALPHABETICAL = {}
 mod.ABOX_ITEMS_INDEX = {}
