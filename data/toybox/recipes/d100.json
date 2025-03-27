@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "t": "D20"
+    },
+
+    "pattern": [
+        " t ",
+        "ttt",
+        " t "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "D100"
+    }
+}

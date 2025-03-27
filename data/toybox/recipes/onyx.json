@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "collectible",
+    "ingredients": [
+        "The Small Rock",
+        "Evil Rock",
+        "tcainrework:black_heart"
+    ],
+    "result": {
+      "id": "tcainrework:collectible",
+      "collectible": "Onyx"
+    }
+  }

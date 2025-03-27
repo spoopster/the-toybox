@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "collectible",
+    "ingredients": [
+        "There's Options",
+        "tcainrework:pill{\"pill_effect\":37}"
+    ],
+    "result": {
+      "id": "tcainrework:collectible",
+      "collectible": "Preferred Options"
+    }
+  }

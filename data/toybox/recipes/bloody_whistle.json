@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "K": "#tcainrework:key",
+        "H": "#tcainrework:heart"
+    },
+
+    "pattern": [
+        "  K",
+        "HKK",
+        "H  "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Bloody Whistle"
+    }
+}

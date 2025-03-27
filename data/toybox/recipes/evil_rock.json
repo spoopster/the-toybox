@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "e": "Cursed Eulogy",
+        "c": "minecraft:cobblestone",
+        "b": "tcainrework:black_heart"
+    },
+
+    "pattern": [
+        " c ",
+        "beb",
+        " c "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Evil Rock"
+    }
+}

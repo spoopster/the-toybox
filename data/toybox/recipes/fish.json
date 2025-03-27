@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "C": "Compost",
+        "r": "tcainrework:rotten_heart"
+    },
+
+    "pattern": [
+        "r  ",
+        "rCC",
+        "r  "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Fish"
+    }
+}

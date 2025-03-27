@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "collectible",
+    "ingredients": [
+        "There's Options",
+        "RETROFALL"
+    ],
+    "result": {
+      "id": "tcainrework:collectible",
+      "collectible": "Preferred Options"
+    }
+  }

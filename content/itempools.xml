@@ -62,7 +62,7 @@
 
     <Pool Name="shop">
         <Item Name="Dad's Prescription"/>
-        <Item Name="D"/>
+        <Item Name="D0"/>
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
         <Item Name="Preferred Options" Weight="0.5" DecreaseBy="0.5"/>
@@ -71,7 +71,7 @@
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
-        <Item Name="D"/>
+        <Item Name="D0"/>
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>

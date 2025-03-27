@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "r": "toybox:rainbow_poop",
+        "p": "minecraft:paper"
+    },
+
+    "pattern": [
+        "   ",
+        " p ",
+        "prp"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Bozo"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "collectible",
+    "ingredients": [
+        "Nose Candy",
+        "Milk!",
+        "Milk!",
+        "Milk!"
+    ],
+    "result": {
+      "id": "tcainrework:collectible",
+      "collectible": "Condensed Milk"
+    }
+  }

@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "collectible",
+    "ingredients": [
+        "#tcainrework:bomb",
+        "tcainrework:rotten_heart",
+        "tcainrework:rotten_heart",
+        "tcainrework:rotten_heart",
+        "tcainrework:rotten_heart",
+        "tcainrework:rotten_heart"
+    ],
+    "result": {
+      "id": "tcainrework:collectible",
+      "collectible": "Bob's Heart"
+    }
+  }

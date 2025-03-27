@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "m": "#tcainrework:metal",
+        "e": "tcainrework:eternal_heart"
+    },
+
+    "pattern": [
+        "e  ",
+        "mmm",
+        "   "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "A Spoonful of Mayonnaise"
+    }
+}

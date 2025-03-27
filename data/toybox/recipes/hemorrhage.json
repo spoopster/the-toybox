@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "H": "Host Hat",
+        "h": "#tcainrework:heart"
+    },
+
+    "pattern": [
+        "hh ",
+        "hH ",
+        "   "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Haemorrhage"
+    }
+}

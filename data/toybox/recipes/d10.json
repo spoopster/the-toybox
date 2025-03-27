@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "d": "D0",
+        "D": "tcainrework:dice_shard",
+        "f": "D4"
+    },
+
+    "pattern": [
+        " d ",
+        "fDf",
+        " d "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "D10"
+    }
+}

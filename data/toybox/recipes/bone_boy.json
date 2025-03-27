@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "b": "tcainrework:bone_heart",
+        "B": "Bozo",
+        "H": "Host Hat"
+    },
+
+    "pattern": [
+        " B ",
+        "bHb",
+        "b b"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Bone Boy"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "collectible",
+    "ingredients": [
+        "D100",
+        "D100",
+        "D100",
+        "D100",
+        "D100",
+        "D100",
+        "D100",
+        "D100",
+        "D100"
+    ],
+    "result": {
+      "id": "tcainrework:collectible",
+      "collectible": "Compressed Dice"
+    }
+}

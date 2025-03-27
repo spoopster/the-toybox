@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "b": "tcainrework:bone_heart",
+        "D": "Dog Tooth"
+    },
+
+    "pattern": [
+        "   ",
+        "bbb",
+        "D D"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Lion Skull"
+    }
+}

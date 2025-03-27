@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "p": "minecraft:paper",
+        "P": "#tcainrework:pill"
+    },
+
+    "pattern": [
+        "p p",
+        "pPp",
+        "p p"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Dad's Prescription"
+    }
+}

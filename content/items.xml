@@ -202,7 +202,7 @@
     tags="summonable offensive"
     cache=""
 />
-<active id="26" name="D"
+<active id="26" name="D0"
     description="Reroll your... uhh..."
     gfx="tb_d.png"
     quality="0"
@@ -541,14 +541,14 @@
     tags=""
     cache=""
 />
-<passive id="497" name="Uranium"
+<passive id="496" name="Uranium"
     description="Literally just a slab of uranium"
     gfx="tb_URANIUM.png"
     quality="4"
     tags="offensive"
     cache=""
 />
-<passive id="498" name="Catharsis"
+<passive id="497" name="Catharsis"
     description="Tears up + tears cap up"
     gfx="tb_catharsis.png"
     quality="4"
@@ -557,7 +557,7 @@
 
     devilprice="2"
 />
-<active id="499" name="Equalizer"
+<active id="498" name="Equalizer"
     description="..."
     gfx="tb_equalizer.png"
     quality="3"
@@ -570,6 +570,16 @@
 
     passivecache="true"
     maxcharges="1"
+/>
+<active id="499" name="Compressed Dice"
+    description="One reroll to rule them all"
+    gfx="tb_menger.png"
+    quality="4"
+    tags="offensive noeden"
+    cache=""
+
+    maxcharges="0"
+    hidden="true"
 />
 <active id="500" name="Portable Teller"
     description="Fate 24/7"

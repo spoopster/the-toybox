@@ -197,9 +197,9 @@
                     vec2 computedUV = computeUV( uv, k, kcube )/uvMult;
                     if(computedUV.x<=0 || computedUV.y<=0) return;
                     
-                    float red = texture2D(Texture0,computeUV( uv, k+0.01, kcube )/uvMult).r;
+                    float red = texture2D(Texture0,computeUV( uv, k+0.03*inte, kcube )/uvMult).r;
                     float green = texture2D(Texture0,computedUV).g;
-                    float blue = texture2D(Texture0,computeUV( uv, k-0.01, kcube )/uvMult).b;
+                    float blue = texture2D(Texture0,computeUV( uv, k-0.03*inte, kcube )/uvMult).b;
 
                     Color = vec4(red,green,blue,Color.a);
 

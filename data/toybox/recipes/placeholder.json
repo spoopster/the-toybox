@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "p": "minecraft:paper",
+        "C": "tcainrework:collectible"
+    },
+
+    "pattern": [
+        "ppp",
+        "pCp",
+        "ppp"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Placeholder"
+    }
+}

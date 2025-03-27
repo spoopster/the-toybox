@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "p": "minecraft:paper",
+        "B": "Bob's Brain",
+        "r": "tcainrework:rotten_heart"
+    },
+
+    "pattern": [
+        "ppp",
+        "rBr",
+        "ppp"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Bob's Thesis"
+    }
+}

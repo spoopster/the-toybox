@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "R": "tcainrework:pill{\"pill_effect\":37}",
+        "p": "#tcainrework:pill"
+    },
+
+    "pattern": [
+        "   ",
+        "pRp",
+        "   "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Giant Capsule"
+    }
+}

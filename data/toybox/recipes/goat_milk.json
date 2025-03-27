@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "m": "Milk!",
+        "G": "Goat Head"
+    },
+
+    "pattern": [
+        "   ",
+        "mGm",
+        "   "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Goat Milk"
+    }
+}

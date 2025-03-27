@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "collectible",
+    "ingredients": [
+        "tcainrework:bone_heart",
+        "Ball of Tar",
+        "#tcainrework:battery"
+    ],
+    "result": {
+      "id": "tcainrework:collectible",
+      "collectible": "Hostile Takeover"
+    }
+  }

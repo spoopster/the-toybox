@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "collectible",
+    "ingredients": [
+        "PHD",
+        "toybox:rainbow_poop"
+    ],
+    "result": {
+      "id": "tcainrework:collectible",
+      "collectible": "Clown PHD"
+    }
+  }

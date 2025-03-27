@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "R": "RETROFALL",
+        "p": "#tcainrework:pill"
+    },
+
+    "pattern": [
+        "   ",
+        "pRp",
+        "   "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Giant Capsule"
+    }
+}

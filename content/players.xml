@@ -23,6 +23,7 @@
 		heartcontainers="6" redhearts="6" healthlimit="6"
 
 		hidden="true"
+		completionparent="Atlas"
 	/>
 
 	<player birthright="Makin' paper" name="Jonas"

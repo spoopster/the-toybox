@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "W": "tcainrework:wooden_doll",
+        "p": "minecraft:paper",
+        "B": "tcainrework:black_heart"
+    },
+
+    "pattern": [
+        "WBW",
+        " p ",
+        " W "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Blood Ritual"
+    }
+}

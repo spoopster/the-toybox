@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "p": "#tcainrework:pill",
+        "i": "#tcainrework:metal"
+    },
+
+    "pattern": [
+        "  p",
+        " p ",
+        "i  "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Horse Tranquilizer"
+    }
+}

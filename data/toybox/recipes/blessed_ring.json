@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "g": "Midas' Touch",
+        "e": "tcainrework:eternal_heart"
+    },
+
+    "pattern": [
+        "ggg",
+        "geg",
+        "ggg"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Blessed Ring"
+    }
+}

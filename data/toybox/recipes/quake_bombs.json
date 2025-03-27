@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "T": "Terra",
+        "c": "minecraft:cobblestone",
+        "b": "#tcainrework:bomb"
+    },
+
+    "pattern": [
+        " T ",
+        "cb ",
+        "cc "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Quake Bombs"
+    }
+}

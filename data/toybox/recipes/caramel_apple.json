@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "N": "Nose Candy",
+        "C": "Compost",
+        "h": "#tcainrework:heart"
+    },
+
+    "pattern": [
+        " N ",
+        "hCh",
+        "hhh"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Caramel Apple"
+    }
+}

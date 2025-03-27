@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "c": "minecraft:cobblestone",
+        "p": "#tcainrework:pill",
+        "B": "tcainrework:black_heart"
+    },
+
+    "pattern": [
+        "BpB",
+        "ccc",
+        " c "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Jonas' Mask"
+    }
+}

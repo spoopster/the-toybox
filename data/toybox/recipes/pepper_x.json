@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "B": "Bird's Eye",
+        "t": "minecraft:torch"
+    },
+
+    "pattern": [
+        "ttt",
+        "tBt",
+        "ttt"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Pepper X"
+    }
+}

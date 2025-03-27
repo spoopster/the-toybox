@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "c": "minecraft:cobblestone",
+        "t": "minecraft:torch"
+    },
+
+    "pattern": [
+        "tt ",
+        "tcc",
+        " cc"
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Meteor Shower"
+    }
+}

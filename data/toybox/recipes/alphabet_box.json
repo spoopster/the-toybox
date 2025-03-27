@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "collectible",
+    "key": {
+        "S": "Spindown Dice",
+        "w": "minecraft:oak_planks"
+    },
+
+    "pattern": [
+        " w ",
+        "wSw",
+        " w "
+    ],
+
+    "result": {
+        "id": "tcainrework:collectible",
+        "collectible": "Alphabet Box"
+    }
+}

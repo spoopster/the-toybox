@@ -1,62 +1,68 @@
 ToyboxMod = RegisterMod("toyboxMod", 1) ---@type ModReference
 local mod = ToyboxMod
 
-mod.HiddenItemManager = include("scripts.libraries.hiddenitemmanager")
+mod.HiddenItemManager = include("scripts_toybox.libraries.hiddenitemmanager")
 mod.HiddenItemManager:Init(mod)
 
 --! INCLUDE SHIT
 local mod_files = {
-    "scripts.enums",
+    "scripts_toybox.enums",
 
-    "scripts.custom.data",
-    "scripts.custom.callback_includes",
-    "scripts.custom.bombflags",
-    "scripts.custom.ludo_trigger",
-    "scripts.custom.statuseffects",
-    "scripts.custom.tearvariants",
-    "scripts.custom.throwables",
-    "scripts.custom.achievement_system",
+    "scripts_toybox.custom.data",
+    "scripts_toybox.custom.callback_includes",
+    "scripts_toybox.custom.bombflags",
+    "scripts_toybox.custom.ludo_trigger",
+    "scripts_toybox.custom.statuseffects",
+    "scripts_toybox.custom.tearvariants",
+    "scripts_toybox.custom.throwables",
+    "scripts_toybox.custom.achievement_system",
 
-    "scripts.helper",
+    "scripts_toybox.helper",
 
-    "scripts.libraries.custom_object_spawn",
+    "scripts_toybox.libraries.custom_object_spawn",
 
-    "scripts.config",
-    "scripts.savedata.save_data",
+    "scripts_toybox.config",
+    "scripts_toybox.savedata.save_data",
 
-    "scripts.statuseffects.electrified",
-    "scripts.statuseffects.overflowing",
+    "scripts_toybox.statuseffects.electrified",
+    "scripts_toybox.statuseffects.overflowing",
 
-    "scripts.bosses.toinclude",
-    "scripts.enemies.toinclude",
+    "scripts_toybox.bosses.toinclude",
+    "scripts_toybox.enemies.toinclude",
 
-    "scripts.players.milcom.toinclude",
-    "scripts.players.atlas.toinclude",
-    "scripts.players.jonas.toinclude",
+    "scripts_toybox.players.milcom.toinclude",
+    "scripts_toybox.players.atlas.toinclude",
+    "scripts_toybox.players.jonas.toinclude",
 
-    "scripts.items.toinclude",
-    "scripts.pickups.toinclude",
+    "scripts_toybox.items.toinclude",
+    "scripts_toybox.pickups.toinclude",
 
-    "scripts.modcompat.eid.eid",
-    "scripts.modcompat.accurate blurbs.accurate_blurbs",
+    "scripts_toybox.modcompat.eid.eid",
+    "scripts_toybox.modcompat.accurate blurbs.accurate_blurbs",
+    "scripts_toybox.modcompat.cain rework.main",
 
-    "scripts.toybox_imgui",
+    "scripts_toybox.toybox_imgui",
 
-    --"scripts.funny_shaders",
+    --"scripts_toybox.funny_shaders",
 
-    --"scripts.fortnite funnies.silly healthbar",
-    --"scripts.fortnite funnies.silly hearts",
-    "scripts.fortnite funnies.mattman chance",
-    "scripts.fortnite funnies.gold mode",
-    "scripts.fortnite funnies.retro mode",
-    --"scripts.fortnite funnies.yes",
-    --"scripts.fortnite funnies.black_souls",
-    --"scripts.fortnite funnies.deja_vu",
+    --"scripts_toybox.fortnite funnies.silly healthbar",
+    --"scripts_toybox.fortnite funnies.silly hearts",
+    "scripts_toybox.fortnite funnies.mattman chance",
+    "scripts_toybox.fortnite funnies.gold mode",
+    "scripts_toybox.fortnite funnies.retro mode",
+    --"scripts_toybox.fortnite funnies.yes",
+    --"scripts_toybox.fortnite funnies.black_souls",
+    --"scripts_toybox.fortnite funnies.deja_vu",
+    "scripts_toybox.fortnite funnies.lupustro",
 
-    --"scripts.test",
+    --"scripts_toybox.test",
 }
 for _, path in ipairs(mod_files) do
-    include(path)
+    local res = include(path)
+
+    if(type(res)=="function") then
+        res()
+    end
 end
 
 --[[
