@@ -33,7 +33,7 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, postCharmedTakeDMG)
 ---@param p EntityPlayer
 ---@param source EntityRef
 local function playerTakeDMGFromCharm(_, p, dmg, flags, source, cooldown)
-    if(not p:HasCollectible(mod.COLLECTIBLE.LOVE_LETTER)) then return true end
+    if(not p:HasCollectible(mod.COLLECTIBLE.LOVE_LETTER)) then return end
 
     local dmgSource = source.Entity
     if(not dmgSource) then return end

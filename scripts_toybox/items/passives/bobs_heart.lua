@@ -7,7 +7,7 @@ local EXPL_CHANCE = 0.5
 ---@param pl EntityPlayer
 local function cancelExplosionDmg(_, pl, damage, flags, source, count)
     if(not pl:HasCollectible(mod.COLLECTIBLE.BOBS_HEART)) then return end
-    if(flags & DamageFlag.DAMAGE_EXPLOSION ~= 0 ) then return false end
+    if(flags & DamageFlag.DAMAGE_EXPLOSION~=0) then return false end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, cancelExplosionDmg, 0)
 

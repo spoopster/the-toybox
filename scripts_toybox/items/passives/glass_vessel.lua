@@ -85,12 +85,12 @@ mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addVessel, mod.COLLECTIBLE
 
 ---@param pl EntityPlayer
 local function cancelVesselDamage(_, pl, damage, flags, source, count)
-    if(pl:GetDamageCooldown()>0) then return end
-    if(not (pl and pl:HasCollectible(mod.COLLECTIBLE.GLASS_VESSEL))) then return end
+    if(pl:GetDamageCooldown()~=0) then return end
+    if(not pl:HasCollectible(mod.COLLECTIBLE.GLASS_VESSEL)) then return end
 
     if(source.Type==6) then return end
     if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
-    
+
     if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.GLASS_VESSEL)) then
         pl:GetEffects():RemoveCollectibleEffect(mod.COLLECTIBLE.GLASS_VESSEL, -1)
         pl:SetMinDamageCooldown(60*(pl:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
