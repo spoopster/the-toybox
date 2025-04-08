@@ -65,15 +65,24 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_ITEM_TEXT_DISPLAY, replaceRetrofallDesc)
 
 
+
+local function canRetrofy(id)
+    local conf = Isaac.GetItemConfig():GetCollectible(id)
+    if(not (conf and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return false end
+
+    if(conf.MaxCharges==0) then return false end
+
+    return true
+end
+
 ---@param id CollectibleType
 ---@param pl EntityPlayer
 local function replaceRetroCharge(_, id, pl, vardata, current)
     if(not pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then return end
 
-    local conf = Isaac.GetItemConfig():GetCollectible(id)
-    if(not (conf and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return end
-
-    return REPLACED_CHARGE
+    if(canRetrofy(id)) then
+        return REPLACED_CHARGE
+    end
 end
 mod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, replaceRetroCharge)
 
@@ -82,8 +91,7 @@ mod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, replaceRetroCharge
 local function postUseRetroActive(_, id, rng, pl, flags, slot, vardata)
     if(not pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then return end
 
-    local conf = Isaac.GetItemConfig():GetCollectible(id)
-    if(not (conf and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return end
+    if(not canRetrofy(id)) then return end
 
     for _, item in ipairs(Isaac.FindByType(5,100)) do
         item = item:ToPickup() ---@cast item EntityPickup
