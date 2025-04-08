@@ -1904,7 +1904,7 @@ enums.FUNCTIONS.AddItem({
     ID = mod.COLLECTIBLE.RETROFALL,
     Name = "RETROFALL",
     Description = {
-        "Bad news, tomorrow is retrofall, which is an 8-bit attack event on all classic gaming consoles including the Nintendo Entertainment System. There will be people trying to send you ray tracing, extreme graphics, 4K, Call of Duty, and there will also be pixel grabbers, moderners, and Unreal Engine 4K Remasterers. I advise NO ONE to play video games from retro gamers you don't know, please stay safe. Please pass this on to any gaming console you own or have 1UP Mushroom and can level up to spread awareness. I wish you all safety. Also, make sure to be game over tomorrow, which gives you less chance for this to happen to you. It's also specifically against retro video gamers.",
+        "{{Collectible105}} All non-timed active items have 6 charges and reroll pedestal items in the room",
     },
 })
 enums.FUNCTIONS.AddItem({

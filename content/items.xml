@@ -627,12 +627,13 @@
 />
 
 <passive id="109" name="RETROFALL"
-    description=""
+    description="Classic roller"
     gfx="tb_RETROFALL.png"
     quality="4"
     tags=""
     cache=""
 />
+
 <passive id="496" name="Uranium"
     description="Literally just a slab of uranium"
     gfx="tb_URANIUM.png"

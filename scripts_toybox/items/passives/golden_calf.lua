@@ -1,4 +1,4 @@
-local mod = Fakebox
+local mod = ToyboxMod
 
 local RESPAWN_CHANCE = 0.1
 local BOSS_CHANCE_MOD = 1/1000

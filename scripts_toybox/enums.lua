@@ -3,6 +3,12 @@ local sfx = SFXManager()
 
 mod.DATA_LOADED = false
 
+mod.ENUMS = {
+    ITEM_SHADER_INACTIVE = 0,
+    ITEM_SHADER_RETRO = 1,
+    ITEM_SHADER_GOLD = 2,
+}
+
 ---@type PlayerType[]
 mod.PLAYER_TYPE = {
     MILCOM_A = Isaac.GetPlayerTypeByName("Milcom", false),

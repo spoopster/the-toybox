@@ -1,14 +1,15 @@
 local mod = ToyboxMod
 
-local itemTextOnScreen = -1
-local BOX_WIDTH = 10000
+local REPLACED_CHARGE = 6
 
-local lineHeight = 10
+local RENDER_RETROFALL = -1
+local BOX_WIDTH = 10000
+local LINE_HEIGHT = 10
 
 local font = Font()
 font:Load("font/pftempestasevencondensed.fnt")
 
-local stringsss = {
+local retrofallDescStrings = {
     "Bad news, tomorrow is retrofall, which is an 8-bit",
     "attack event on all classic gaming consoles",
     "including the Nintendo Entertainment System. There",
@@ -25,8 +26,10 @@ local stringsss = {
     "against retro video gamers.",
 }
 
-local function postHudRender(_)
-    if(itemTextOnScreen>=0) then
+local function renderRetrofallDesc(_)
+    if(mod.CONFIG.EPIC_ITEM_MODE~=mod.ENUMS.ITEM_SHADER_RETRO) then return end
+
+    if(RENDER_RETROFALL>=0) then
         local streakSprite = Game():GetHUD():GetStreakSprite()
         local baseCenterPos = Vector(Isaac.GetScreenWidth()/2, 40)
 
@@ -34,22 +37,59 @@ local function postHudRender(_)
         local frameScale = frameData:GetScale()
         baseCenterPos = baseCenterPos+frameData:GetPos()+Vector(0,17)*frameScale
 
-        for key, str in ipairs(stringsss) do
+        for key, str in ipairs(retrofallDescStrings) do
             font:DrawStringScaled(str, baseCenterPos.X-BOX_WIDTH/2, baseCenterPos.Y, frameScale.X, frameScale.Y, KColor(1,1,1,1), BOX_WIDTH, true)
 
-            baseCenterPos.Y = baseCenterPos.Y+lineHeight*frameScale.Y
+            baseCenterPos.Y = baseCenterPos.Y+LINE_HEIGHT*frameScale.Y
         end
 
-        if(streakSprite:IsFinished("Text")) then itemTextOnScreen = -1 end
+        if(streakSprite:IsFinished("Text")) then RENDER_RETROFALL = -1 end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postHudRender)
+mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderRetrofallDesc)
 
-local function asdasdad(_, title, subtitle, sticky, curse)
+local function replaceRetrofallDesc(_, title, subtitle, sticky, curse)
+    if(mod.CONFIG.EPIC_ITEM_MODE~=mod.ENUMS.ITEM_SHADER_RETRO) then return end
+
     if(title=="RETROFALL") then
-        itemTextOnScreen = 0
+        RENDER_RETROFALL = 0
+
+        if(subtitle~="") then
+            Game():GetHUD():ShowItemText("RETROFALL", "", curse)
+            return false
+        end
     else
-        itemTextOnScreen = -1
+        RENDER_RETROFALL = -1
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_ITEM_TEXT_DISPLAY, asdasdad)
+mod:AddCallback(ModCallbacks.MC_PRE_ITEM_TEXT_DISPLAY, replaceRetrofallDesc)
+
+
+---@param id CollectibleType
+---@param pl EntityPlayer
+local function replaceRetroCharge(_, id, pl, vardata, current)
+    if(not pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then return end
+
+    local conf = Isaac.GetItemConfig():GetCollectible(id)
+    if(not (conf and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return end
+
+    return REPLACED_CHARGE
+end
+mod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, replaceRetroCharge)
+
+---@param id CollectibleType
+---@param pl EntityPlayer
+local function postUseRetroActive(_, id, rng, pl, flags, slot, vardata)
+    if(not pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then return end
+
+    local conf = Isaac.GetItemConfig():GetCollectible(id)
+    if(not (conf and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return end
+
+    for _, item in ipairs(Isaac.FindByType(5,100)) do
+        item = item:ToPickup() ---@cast item EntityPickup
+        if(item.SubType~=0 and item:CanReroll()) then
+            item:Morph(5,100,0)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, postUseRetroActive)

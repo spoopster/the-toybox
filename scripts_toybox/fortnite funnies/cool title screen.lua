@@ -34,13 +34,16 @@ local function randomItemPos()
     return Vector(-ITEM_POS_PADDING.X, math.random(MENU_SIZE.Y+ITEM_POS_PADDING.Y*2)-ITEM_POS_PADDING.Y)
 end
 local function randomItemVel()
-    return Vector(math.random()*1.5+0.75, math.random()+1)
+    return Vector(1.5*(math.random()*1.5+0.75), 1*(math.random()+1))
 end
 local function randomItemOscillation()
-    return math.random()+1
+    return (math.random()+1)*0.3
 end
 local function randomItemOffset()
     return math.random(10000)
+end
+local function randomItemAccel()
+    return Vector(0,0)
 end
 
 local ITEM_SPRITES = {}
@@ -55,6 +58,7 @@ for _=1, 150 do
         VEL = randomItemVel(),
         OSC_INTENSITY = randomItemOscillation(),
         FRAME_OFFSET = randomItemOffset(),
+        ACCEL = randomItemAccel(),
     })
 end
 
@@ -79,6 +83,7 @@ local function postMenuRender(_)
     for _, spData in ipairs(ITEM_SPRITES) do
         spData.SPRITE:Render(spData.POS+topLeftCorner)
         spData.POS = spData.POS+Vector(1,0)*spData.VEL.X+Vector(0,math.sin(math.rad((FRAMES+spData.FRAME_OFFSET)*spData.VEL.Y))*0.1*spData.OSC_INTENSITY)
+        spData.VEL = spData.VEL+spData.ACCEL
 
         if(spData.POS.X>MENU_SIZE.X+ITEM_POS_PADDING.X) then
             spData.SPRITE:ReplaceSpritesheet(1, getRandomItemGfx(), true)
@@ -86,6 +91,7 @@ local function postMenuRender(_)
             spData.VEL = randomItemVel()
             spData.OSC_INTENSITY = randomItemOscillation()
             spData.FRAME_OFFSET = randomItemOffset()
+            spData.ACCEL = randomItemAccel()
         end
     end
 end
