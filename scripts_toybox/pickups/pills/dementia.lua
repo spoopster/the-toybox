@@ -49,9 +49,9 @@ local function usePill(_, effect, player, flags, color)
             dataTable.CUSTOM_PILL_POOL[col].GOOD = mod:convertPhdPillEffect(nil, chosenPill, mod.PHD_TYPE.GOOD, rng)
             dataTable.CUSTOM_PILL_POOL[col].BAD = mod:convertPhdPillEffect(nil, chosenPill, mod.PHD_TYPE.BAD, rng)
         end
-
-        mod:unidentifyPillPool()
     end
+
+    mod:unidentifyPillPool()
 
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()

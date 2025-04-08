@@ -76,7 +76,7 @@
     devilprice="1"
 />
 <passive id="10" name="Dad's Slipper"
-    description="Shotspeed up"
+    description="Shotspeed up + god smack"
     gfx="tb_dads_slipper.png"
     quality="1"
     tags="offensive summonable"
@@ -532,6 +532,98 @@
     quality="3"
     tags="offensive"
     cache="all"
+/>
+<active id="63" name="Art of War"
+    description="Appear weak when you are strong"
+    gfx="tb_art_of_war.png"
+    quality="2"
+    tags="offensive"
+
+    maxcharges="3"
+    cache=""
+/>
+<passive id="64" name="Asteroid Belt"
+    description="World revolving around you"
+    gfx="tb_asteroid_belt.png"
+    quality="2"
+    tags="offensive summonable"
+    
+    cache=""
+/>
+<passive id="65" name="Barbed Wire"
+    description="Personal space"
+    gfx="tb_barbed_wire.png"
+    quality="1"
+    tags="offensive summonable"
+
+    cache=""
+/>
+<active id="66" name="Big Bang"
+    description="Our whole universe"
+    gfx="tb_big_bang.png"
+    quality="4"
+    tags="offensive"
+
+    maxcharges="0"
+    cache=""
+/>
+<passive id="67" name="Coffee Cup"
+    description="Do diligence"
+    gfx="tb_coffee_cup.png"
+    quality="2"
+    tags="offensive summonable"
+
+    cache="speed firedelay"
+/>
+<passive id="68" name="Last Beer"
+    description="One beer left"
+    gfx="tb_last_beer.png"
+    quality="3"
+    tags="offensive summonable"
+
+    cache=""
+/>
+<active id="69" name="Chocolate Bar"
+    description="Hello friends!"
+    gfx="tb_chocolate_bar.png"
+    quality="3"
+    tags="nolostbr"
+
+    maxcharges="4"
+    cache=""
+/>
+<active id="70" name="Exorcism Kit"
+    description="Evil begone!"
+    gfx="tb_exorcism_kit.png"
+    quality="2"
+    tags="offensive"
+
+    maxcharges="4"
+    cache=""
+/>
+<passive id="71" name="Conjunctivitis"
+    description="Icky eye"
+    gfx="tb_conjunctivitis.png"
+    quality="2"
+    tags="offensive summonable"
+
+    cache=""
+/>
+<passive id="72" name="Food Stamps"
+    description="Never go hungry"
+    gfx="tb_food_stamps.png"
+    quality="1"
+    tags="nolostbr summonable"
+
+    cache=""
+/>
+<passive id="73" name="Golden Calf"
+    description="Worship me"
+    gfx="tb_golden_calf.png"
+    quality="3"
+    tags="offensive summonable"
+
+    cache=""
 />
 
 <passive id="109" name="RETROFALL"

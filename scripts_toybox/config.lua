@@ -6,4 +6,5 @@ ToyboxMod.CONFIG = {
 
     MORE_STATS = false,
     EPIC_ITEM_MODE = 0,
+    AWESOME_FUCKING_TITLESCREEN = true,
 }

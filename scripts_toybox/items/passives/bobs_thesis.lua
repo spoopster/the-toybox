@@ -1,6 +1,8 @@
 local mod = ToyboxMod
 local sfx = SFXManager()
 
+local STACK_PLACEHOLDER_REROLLS = 1
+
 local PLACEHOLDER_GIVING_ITEM = false
 local PLACEHOLDER_GIVE_ITEM_FREQ = 15
 local PLACEHOLDER_FAST_THRESHOLD = 3*30
@@ -80,17 +82,33 @@ local function giveThePlaces(_, pl)
     local poolType = data.PLACEHOLDER_POOLS[1]
     table.remove(data.PLACEHOLDER_POOLS, 1)
 
+    local conf = Isaac.GetItemConfig()
+
     PLACEHOLDER_GIVING_ITEM = true
-    local itemToGive = Game():GetItemPool():GetCollectible(poolType, true)
+    local numRolls = math.max(0, pl:GetCollectibleNum(mod.COLLECTIBLE.BOBS_THESIS)-1)*STACK_PLACEHOLDER_REROLLS
+
+    local chosenItem = Game():GetItemPool():GetCollectible(poolType, false)
+    local chosenQuality = conf:GetCollectible(chosenItem).Quality
+
+    for _=1, numRolls do
+        local newItem = Game():GetItemPool():GetCollectible(poolType, false)
+        local newQuality = conf:GetCollectible(newItem).Quality
+
+        if(newQuality>chosenQuality) then
+            chosenItem = newItem
+            chosenQuality = newQuality
+        end
+    end
+    
+    Game():GetItemPool():RemoveCollectible(chosenItem)
     PLACEHOLDER_GIVING_ITEM = false
 
-    local conf = Isaac.GetItemConfig():GetCollectible(itemToGive)
-    if(conf.Type==ItemType.ITEM_ACTIVE and pl:GetActiveItem(ActiveSlot.SLOT_PRIMARY)~=0) then
+    if(conf:GetCollectible(chosenItem).Type==ItemType.ITEM_ACTIVE and pl:GetActiveItem(ActiveSlot.SLOT_PRIMARY)~=0) then
         pl:DropCollectible(pl:GetActiveItem(ActiveSlot.SLOT_PRIMARY))
     end
-    pl:AddCollectible(itemToGive)
+    pl:AddCollectible(chosenItem)
 
-    pl:AnimateCollectible(itemToGive)
+    pl:AnimateCollectible(chosenItem)
     sfx:Play(SoundEffect.SOUND_POWERUP1)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, giveThePlaces)

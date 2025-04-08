@@ -112,6 +112,17 @@ mod.COLLECTIBLE = {
     FISH = Isaac.GetItemIdByName("Fish"),
     BOBS_THESIS = Isaac.GetItemIdByName("Bob's Thesis"),
     PLACEHOLDER = Isaac.GetItemIdByName("Placeholder"),
+    ART_OF_WAR = Isaac.GetItemIdByName("Art of War"),
+    ASTEROID_BELT = Isaac.GetItemIdByName("Asteroid Belt"),
+    BARBED_WIRE = Isaac.GetItemIdByName("Barbed Wire"),
+    BIG_BANG = Isaac.GetItemIdByName("Big Bang"),
+    COFFEE_CUP = Isaac.GetItemIdByName("Coffee Cup"),
+    LAST_BEER = Isaac.GetItemIdByName("Last Beer"),
+    CHOCOLATE_BAR = Isaac.GetItemIdByName("Chocolate Bar"),
+    EXORCISM_KIT = Isaac.GetItemIdByName("Exorcism Kit"),
+    CONJUNCTIVITIS = Isaac.GetItemIdByName("Conjunctivitis"),
+    FOOD_STAMPS = Isaac.GetItemIdByName("Food Stamps"),
+    GOLDEN_CALF = Isaac.GetItemIdByName("Golden Calf"),
 
     RETROFALL = Isaac.GetItemIdByName("RETROFALL"),
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
@@ -206,6 +217,7 @@ mod.EFFECT_VARIANT = {
     ASCENSION_PLAYER_DEATH = Isaac.GetEntityVariantByName("Ascension Dead Player"),
     AURA = Isaac.GetEntityVariantByName("Enemy Fear Aura"),
     VESSEL_BREAK = Isaac.GetEntityVariantByName("Glass Vessel Break"),
+    BARBED_WIRE_HALO = Isaac.GetEntityVariantByName("Barbed Wire Halo (TOYBOX)"),
 }
 
 ---@type PickupVariant[]
@@ -245,10 +257,16 @@ mod.SOUND_EFFECT = {
     ATLASA_METALBLOCK = Isaac.GetSoundIdByName("Toybox_AtlasA_MetalBlock"),
     ATLASA_METALBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_MetalBreak"),
     ATLASA_GLASSBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_GlassBreak"),
+    SLIPPER_WHIP = Isaac.GetSoundIdByName("Toybox_Whip"),
 }
 for _, soundEffect in ipairs(mod.SOUND_EFFECT) do
     sfx:Preload(soundEffect)
 end
+
+---@type Giantbook
+mod.GIANTBOOK = {
+    BIG_BANG = Isaac.GetGiantBookIdByName("Big Bang (TOYBOX)"),
+}
 
 mod.FAMILIAR_VIRUS_SUBTYPE = {
     RED = Isaac.GetEntitySubTypeByName("Virus (Red)"),

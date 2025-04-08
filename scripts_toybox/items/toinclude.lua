@@ -45,6 +45,14 @@ local t = {
     "scripts_toybox.items.passives.haemorrhage",
     "scripts_toybox.items.passives.fish",
     "scripts_toybox.items.passives.bobs_thesis", -- Also includes Placeholder
+    "scripts_toybox.items.passives.asteroid_belt",
+    "scripts_toybox.items.passives.barbed_wire",
+    "scripts_toybox.items.passives.coffee_cup",
+    "scripts_toybox.items.passives.conjunctivitis",
+    "scripts_toybox.items.passives.dads_slipper",
+    "scripts_toybox.items.passives.food_stamps",
+    "scripts_toybox.items.passives.golden_calf",
+    "scripts_toybox.items.passives.last_beer",
 
     "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
 
@@ -66,6 +74,10 @@ local t = {
     "scripts_toybox.items.actives.alphabet_box",
     "scripts_toybox.items.actives.hostile_takeover",
     "scripts_toybox.items.actives.bloody_whistle",
+    "scripts_toybox.items.actives.art_of_war",
+    "scripts_toybox.items.actives.big_bang",
+    "scripts_toybox.items.actives.chocolate_bar",
+    "scripts_toybox.items.actives.exoricsm_kit",
 
     "scripts_toybox.items.actives.equalizer",
 

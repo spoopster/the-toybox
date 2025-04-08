@@ -98,6 +98,13 @@ function mod:lerp(a, b, f)
     return a*(1-f)+b*f
 end
 
+---@param rng RNG
+---@param a number
+---@param b number
+function mod:randomRange(rng, a, b)
+    return a+rng:RandomFloat()*(b-a)
+end
+
 function mod:sign(a)
     if(a<0) then return -1 end
     return 1
@@ -111,6 +118,19 @@ function mod:countElements(t)
     for _, _ in pairs(t) do count = count+1 end
 
     return count
+end
+
+function mod:getPlayerFromEnt(ent)
+    local sp = ent.SpawnerEntity
+    if(sp==nil) then return nil end
+    if(sp:ToPlayer()) then return sp:ToPlayer()
+    elseif(sp:ToFamiliar() and sp:ToFamiliar().Player) then
+        local fam = sp:ToFamiliar()
+        if(mod.COPYING_FAMILIARS[fam.Variant]) then return fam.Player
+        else return nil end
+    end
+
+    return nil
 end
 
 ---@param player EntityPlayer

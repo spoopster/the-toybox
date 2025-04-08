@@ -1,0 +1,7 @@
+<giantbook anm2root="gfx/ui/giantbook/">
+    <entry id="1" anm2="GiantBook.anm2" anim="Appear" gfx="tb_giantbook_big_bang.png" name="Big Bang (TOYBOX)">
+		<layer name="poof" r="20" g="68" b="182" a="255" />
+		<layer name="bg" r="21" g="39" b="80" a="153" />
+		<layer name="poof2" r="66" g="156" b="219" a="128" />
+	</entry>
+</giantbook>

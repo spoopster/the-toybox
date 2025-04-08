@@ -37,7 +37,7 @@ local mod_files = {
     "scripts_toybox.items.toinclude",
     "scripts_toybox.pickups.toinclude",
 
-    "scripts_toybox.modcompat.eid.eid",
+    "scripts_toybox.modcompat.eid.core",
     "scripts_toybox.modcompat.accurate blurbs.accurate_blurbs",
     "scripts_toybox.modcompat.cain rework.main",
 
@@ -54,6 +54,8 @@ local mod_files = {
     --"scripts_toybox.fortnite funnies.black_souls",
     --"scripts_toybox.fortnite funnies.deja_vu",
     "scripts_toybox.fortnite funnies.lupustro",
+    --"scripts_toybox.fortnite funnies.stupid enemy title",
+    "scripts_toybox.fortnite funnies.cool title screen",
 
     --"scripts_toybox.test",
 }
@@ -257,4 +259,66 @@ local function postCollectableUpdate(_, pickup)
     pickup:GetData().AlreadyChecked = true
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postCollectableUpdate, PickupVariant.PICKUP_COLLECTIBLE)
+--]]
+
+--[[
+local function postNewRoom()
+    local room = Game():GetRoom()
+    --if(not room:IsFirstVisit()) then return end
+    
+    for _, slot in pairs(DoorSlot) do
+        local door = room:GetDoor(slot)
+        if(door) then
+            local doorNormal = (door.Position-room:GetClampedPosition(door.Position, 0)):Normalized()
+
+            local newIdx = room:GetGridIndex(door.Position+doorNormal:Rotated(90)*80)
+
+            room:RemoveGridEntityImmediate(newIdx, 0, false)
+            room:SpawnGridEntity(newIdx, door:GetSaveState())
+
+            local newDoor = room:GetGridEntity(newIdx)
+            if(newDoor and newDoor:ToDoor()) then
+                newDoor = newDoor:ToDoor() ---@cast newDoor GridEntityDoor
+
+                newDoor:Init(newDoor:GetSaveState().SpawnSeed)
+
+                newDoor.CollisionClass = GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER
+                newDoor.TargetRoomIndex = door.TargetRoomIndex
+                newDoor.TargetRoomType = door.TargetRoomType
+
+                newDoor:GetSaveState().VarData = slot+100
+
+                newDoor:Update()
+
+                print(newDoor:GetSaveState().VarData)
+            end
+
+            print(door.CollisionClass)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
+
+---@param door GridEntityDoor
+local function postGridEntityDoorRender(_, door, offset)
+    local slot = door:GetSaveState().VarData-100
+    if(slot<0) then return end
+
+    local ogDoor = Game():GetRoom():GetDoor(slot)
+    ogDoor:GetSprite():Render(Isaac.WorldToRenderPosition(door.Position))
+    Isaac.RenderText("PENOR", Isaac.WorldToRenderPosition(door.Position).X, Isaac.WorldToRenderPosition(door.Position).Y,1,1,1,1)
+end
+mod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_DOOR_RENDER, postGridEntityDoorRender)
+
+---@param ent GridEntity?
+local function collideithgrid(_, pl, idx, ent)
+    if(ent and ent:ToWall()) then return true end
+
+    if(not (ent and ent:ToDoor())) then return end
+    local slot = ent:GetSaveState().VarData-100
+    if(slot<0) then return end
+
+    return true
+end
+mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_GRID_COLLISION, collideithgrid)
 --]]
