@@ -2,6 +2,145 @@ local mod = ToyboxMod
 
 local REPLACED_CHARGE = 6
 
+function mod:canApplyRetrofall(id)
+    local conf = Isaac.GetItemConfig():GetCollectible(id)
+    if(not (conf and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return false end
+
+    --if(conf.MaxCharges==0) then return false end
+
+    return true
+end
+local function doRetrofallReroll(_)
+    for _, item in ipairs(Isaac.FindByType(5,100)) do
+        item = item:ToPickup() ---@cast item EntityPickup
+        if(item.SubType~=0 and item:CanReroll()) then
+            item:Morph(5,100,0)
+            item:AddEntityFlags(EntityFlag.FLAG_APPEAR)
+        end
+    end
+end
+
+---@param id CollectibleType
+---@param pl EntityPlayer
+local function replaceRetroCharge(_, id, pl, vardata, current)
+    if(pl:HasCollectible(mod.COLLECTIBLE.RETROFALL) and mod:canApplyRetrofall(id)) then
+        return REPLACED_CHARGE
+    end
+end
+mod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, replaceRetroCharge)
+
+local function giveExtraInitialCharge(_, id, charge, firstTime, slot, var, pl)
+    if(not (firstTime and pl:HasCollectible(mod.COLLECTIBLE.RETROFALL) and mod:canApplyRetrofall(id))) then return end
+
+    if(charge==Isaac.GetItemConfig():GetCollectible(id).MaxCharges) then
+        return {id, REPLACED_CHARGE, firstTime, slot, var}
+    end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, giveExtraInitialCharge)
+
+
+--- VANILLA/MODDED NON-THROWABLE ITEMS
+--- PROBABLY BREAKS IN SOME SITUATIONS AS IT JUST CHECKS WHETHER ITEM CHARGE IS LOWER THAN IN PRE_USE_ITEM
+
+---@param id CollectibleType
+---@param pl EntityPlayer
+local function blablabla(_, id, rng, pl, flags, slot, vardata)
+    if(slot==-1) then return end
+    if(not (pl:HasCollectible(mod.COLLECTIBLE.RETROFALL) and mod:canApplyRetrofall(id))) then return end
+
+    local data = mod:getEntityDataTable(pl)
+
+    data.QUEUED_ITEM_USES = data.QUEUED_ITEM_USES or {}
+    table.insert(data.QUEUED_ITEM_USES, {id,slot,flags,pl:GetTotalActiveCharge(slot)})
+end
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_USE_ITEM, math.huge, blablabla)
+
+---@param pl EntityPlayer
+local function nonThrowableReroll(_, pl)
+    if(not pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then
+        mod:setEntityData(pl, "QUEUED_ITEM_USES", nil)
+
+        return
+    end
+
+    local data = mod:getEntityDataTable(pl)
+    if(not data.QUEUED_ITEM_USES) then return end
+
+    for _, itemData in ipairs(data.QUEUED_ITEM_USES) do
+        if(mod:canApplyRetrofall(itemData[1])) then
+            local currentCharge = pl:GetTotalActiveCharge(itemData[2])
+            if(currentCharge<itemData[4]) then
+                doRetrofallReroll()
+            end
+        end
+    end
+
+    data.QUEUED_ITEM_USES = nil
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, nonThrowableReroll)
+
+
+--- VANILLA THROWABLE ITEMS
+--- BIT JANKY (DELAYED REROLL)
+
+local vanillaThrowables = {
+    [CollectibleType.COLLECTIBLE_DECAP_ATTACK] = 1,
+    [CollectibleType.COLLECTIBLE_ERASER] = 1,
+    [CollectibleType.COLLECTIBLE_SHARP_KEY] = 1,
+    [CollectibleType.COLLECTIBLE_GLASS_CANNON] = 1,
+    [CollectibleType.COLLECTIBLE_BOOMERANG] = 1,
+    [CollectibleType.COLLECTIBLE_RED_CANDLE] = 1,
+    [CollectibleType.COLLECTIBLE_CANDLE] = 1,
+    [CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD] = 1,
+}
+
+---@param pl EntityPlayer
+local function vanillaThrowableItemReroll(_, pl)
+    local data = mod:getEntityDataTable(pl)
+    local state = pl:GetItemState()
+    data.RETRO_LAST_ITEM_STATE = data.RETRO_LAST_ITEM_STATE or state
+
+    if(state==0 and data.RETRO_LAST_ITEM_STATE~=0 and pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then
+        local isntPickupAnim = (string.find(pl:GetSprite():GetAnimation(), "PickupWalk")==nil)
+        if(isntPickupAnim and vanillaThrowables[data.RETRO_LAST_ITEM_STATE] and mod:canApplyRetrofall(data.RETRO_LAST_ITEM_STATE)) then
+            doRetrofallReroll()
+        end
+    end
+
+    data.RETRO_LAST_ITEM_STATE = state
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, vanillaThrowableItemReroll)
+
+
+--- MODDED THROWABLE ITEMS
+--- MODIFIES METATABLE TO TRY AND REROLL WHEN player:DischargeActiveItem(slot) IS CALLED
+
+local ogMetaTable = getmetatable(EntityPlayer).__class
+local newMetaTable = {}
+local ogIndex = ogMetaTable.__index
+
+function newMetaTable:DischargeActiveItem(slot)
+    if(self:HasCollectible(mod.COLLECTIBLE.RETROFALL) and mod:canApplyRetrofall(ogMetaTable.GetActiveItem(self, slot))) then
+        doRetrofallReroll()
+    end
+
+    ogMetaTable.DischargeActiveItem(self, slot)
+end
+
+rawset(ogMetaTable, "__index",
+    function(self, key)
+        if(newMetaTable[key]) then
+            return newMetaTable[key]
+        else
+            return ogIndex(self, key)
+        end
+    end
+)
+
+
+
+--- REPLACE ITEM TOOLTIP IF RETRO MODE ENABLED
+
 local RENDER_RETROFALL = -1
 local BOX_WIDTH = 10000
 local LINE_HEIGHT = 10
@@ -63,41 +202,3 @@ local function replaceRetrofallDesc(_, title, subtitle, sticky, curse)
     end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_ITEM_TEXT_DISPLAY, replaceRetrofallDesc)
-
-
-
-local function canRetrofy(id)
-    local conf = Isaac.GetItemConfig():GetCollectible(id)
-    if(not (conf and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return false end
-
-    if(conf.MaxCharges==0) then return false end
-
-    return true
-end
-
----@param id CollectibleType
----@param pl EntityPlayer
-local function replaceRetroCharge(_, id, pl, vardata, current)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then return end
-
-    if(canRetrofy(id)) then
-        return REPLACED_CHARGE
-    end
-end
-mod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, replaceRetroCharge)
-
----@param id CollectibleType
----@param pl EntityPlayer
-local function postUseRetroActive(_, id, rng, pl, flags, slot, vardata)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then return end
-
-    if(not canRetrofy(id)) then return end
-
-    for _, item in ipairs(Isaac.FindByType(5,100)) do
-        item = item:ToPickup() ---@cast item EntityPickup
-        if(item.SubType~=0 and item:CanReroll()) then
-            item:Morph(5,100,0)
-        end
-    end
-end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, postUseRetroActive)

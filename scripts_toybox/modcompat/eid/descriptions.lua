@@ -972,6 +972,7 @@ enums.FUNCTIONS.AddItem({
     ID = mod.COLLECTIBLE.BIG_BANG,
     Name = "Big Bang",
     Description = {
+        "!!! SINGLE USE !!!",
         "Resets all item pools",
     },
 })
@@ -999,6 +1000,13 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "Instantly kills the nearest enemy and all other enemies of the same type and variant",
         "Bosses instead take 40 damage"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.RETROFALL,
+    Name = "RETROFALL",
+    Description = {
+        "{{Collectible105}} All non-timed active items have 6 charges and reroll pedestal items in the room",
     },
 })
 
@@ -1878,13 +1886,28 @@ enums.FUNCTIONS.AddGlobalModifier({
     Modifiers = {
         {
             Condition = function(descObj)
-                if(not descObj.Entity) then return false end
                 if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
 
                 return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.FOOD_STAMPS)
             end,
             ToModify = {
                 "{{Collectible"..mod.COLLECTIBLE.FOOD_STAMPS.."}} {{Heart}} +1 Health",
+            }
+        }
+    }
+})
+enums.FUNCTIONS.AddGlobalModifier({
+    ID = "FoodStamps",
+    Modifiers = {
+        {
+            Condition = function(descObj)
+                if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
+                if(not mod:canApplyRetrofall(descObj.ObjSubType)) then return false end
+
+                return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.RETROFALL)
+            end,
+            ToModify = {
+                "{{Collectible"..mod.COLLECTIBLE.RETROFALL.."}} Rerolls pedestal items in the room",
             }
         }
     }
@@ -1898,13 +1921,6 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "Nearby rocks are irradiated and will destroy after a short duration",
         "Nearby enemies are poisoned",
-    },
-})
-enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.RETROFALL,
-    Name = "RETROFALL",
-    Description = {
-        "{{Collectible105}} All non-timed active items have 6 charges and reroll pedestal items in the room",
     },
 })
 enums.FUNCTIONS.AddItem({
