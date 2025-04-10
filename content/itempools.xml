@@ -52,12 +52,16 @@
         <Item Name="Eyestrain"/>
         <Item Name="Rock Candy"/>
         <Item Name="A Spoonful of Mayonnaise"/>
+        <Item Name="Brunch"/>
+        <Item Name="Toast"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
         <Item Name="Eyestrain"/>
         <Item Name="Rock Candy"/>
         <Item Name="A Spoonful of Mayonnaise"/>
+        <Item Name="Brunch"/>
+        <Item Name="Toast"/>
     </Pool>
 
     <Pool Name="shop">
@@ -67,7 +71,7 @@
         <Item Name="Jonas' Mask"/>
         <Item Name="Preferred Options" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Candy Dispenser"/>
-        <Item Name="Equalizer"/>
+        <Item Name="RETROFALL"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -75,7 +79,7 @@
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>
-        <Item Name="Equalizer"/>
+        <Item Name="RETROFALL"/>
     </Pool>
 
     <Pool Name="devil">
@@ -141,7 +145,6 @@
         <Item Name="Alphabet Box"/>
         <Item Name="Atheism"/>
         <Item Name="Awesome Fruit"/>
-        <Item Name="Catharsis"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="4 4"/>
@@ -151,7 +154,6 @@
         <Item Name="Alphabet Box"/>
         <Item Name="Atheism"/>
         <Item Name="Awesome Fruit"/>
-        <Item Name="Catharsis"/>
     </Pool>
 
     <Pool Name="demonBeggar">

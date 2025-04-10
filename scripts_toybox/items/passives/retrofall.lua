@@ -4,7 +4,7 @@ local REPLACED_CHARGE = 6
 
 function mod:canApplyRetrofall(id)
     local conf = Isaac.GetItemConfig():GetCollectible(id)
-    if(not (conf and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return false end
+    if(not (conf and conf.Type==ItemType.ITEM_ACTIVE and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return false end
 
     --if(conf.MaxCharges==0) then return false end
 

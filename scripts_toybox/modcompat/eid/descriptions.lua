@@ -1009,6 +1009,22 @@ enums.FUNCTIONS.AddItem({
         "{{Collectible105}} All non-timed active items have 6 charges and reroll pedestal items in the room",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.BRUNCH,
+    Name = "Brunch",
+    Description = {
+        "\1 +1 Health",
+        "{{HealingRed}} Heals 2 hearts",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.TOAST,
+    Name = "Toast",
+    Description = {
+        "\1 +1 Empty heart container",
+        "{{BlackHeart}} +1 Black Heart",
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---

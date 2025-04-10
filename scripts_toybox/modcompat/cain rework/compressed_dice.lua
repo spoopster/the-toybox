@@ -61,7 +61,7 @@ local function playerRender(_, pl, offset)
 
     if(not Game():IsPaused()) then
         local heldsp = pl:GetHeldSprite()
-        print(heldsp.Offset, heldsp:GetFilename())
+        --print(heldsp.Offset, heldsp:GetFilename())
     end
 
     local renderPos = Isaac.WorldToRenderPosition(pl.Position)+offset

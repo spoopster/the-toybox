@@ -129,16 +129,18 @@ mod.COLLECTIBLE = {
     CONJUNCTIVITIS = Isaac.GetItemIdByName("Conjunctivitis"),
     FOOD_STAMPS = Isaac.GetItemIdByName("Food Stamps"),
     GOLDEN_CALF = Isaac.GetItemIdByName("Golden Calf"),
-
     RETROFALL = Isaac.GetItemIdByName("RETROFALL"),
+    D = Isaac.GetItemIdByName("D0"),
+    BRUNCH = Isaac.GetItemIdByName("Brunch"),
+    TOAST = Isaac.GetItemIdByName("Toast"),
+
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),
     EQUALIZER = Isaac.GetItemIdByName("Equalizer"),
-    D = Isaac.GetItemIdByName("D0"),
+    
     --BTRAIN = Isaac.GetItemIdByName("B-Train"),                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
 
     COMPRESSED_DICE = Isaac.GetItemIdByName("Compressed Dice"),
-
     PORTABLE_TELLER = Isaac.GetItemIdByName("Portable Teller"),
 
     --LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer"),         --*UNUSED (i dont like the item)

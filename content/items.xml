@@ -625,6 +625,26 @@
 
     cache=""
 />
+<passive id="74" name="Brunch"
+    description="HP up!"
+    gfx="tb_no_sprite.png"
+    quality="1"
+    tags="nolostbr summonable"
+    cache=""
+
+    maxhearts="2"
+    hearts="6"
+/>
+<passive id="75" name="Toast"
+    description="HP up?"
+    gfx="tb_no_sprite.png"
+    quality="1"
+    tags="nolostbr summonable"
+    cache=""
+
+    maxhearts="2"
+    blackhearts="2"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"
