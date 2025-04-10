@@ -629,7 +629,7 @@
     description="HP up!"
     gfx="tb_no_sprite.png"
     quality="1"
-    tags="nolostbr summonable"
+    tags="nolostbr summonable food"
     cache=""
 
     maxhearts="2"
@@ -639,7 +639,7 @@
     description="HP up?"
     gfx="tb_no_sprite.png"
     quality="1"
-    tags="nolostbr summonable"
+    tags="nolostbr summonable food"
     cache=""
 
     maxhearts="2"

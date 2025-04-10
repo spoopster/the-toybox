@@ -53,11 +53,13 @@ local t = {
     "scripts_toybox.items.passives.food_stamps",
     "scripts_toybox.items.passives.golden_calf",
     "scripts_toybox.items.passives.last_beer",
+    "scripts_toybox.items.passives.retrofall",
+    "scripts_toybox.items.passives.brunch",
+    "scripts_toybox.items.passives.toast",
 
     "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
 
     "scripts_toybox.items.passives.catharsis",
-    "scripts_toybox.items.passives.retrofall",
     "scripts_toybox.items.passives.uranium",
 
     --ACTIVES

@@ -1016,6 +1016,28 @@ enums.FUNCTIONS.AddItem({
         "\1 +1 Health",
         "{{HealingRed}} Heals 2 hearts",
     },
+    Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)
+            end,
+            ToModify = {
+                {"2", "{{BlinkGreen}}3{{CR}}"}
+            }
+        },
+        {
+            Condition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)
+            end,
+            ToModify = {
+                "{{Collectible664}} \1 +2.5 Range",
+                "{{Collectible664}} \1 +1 Luck",
+                "{{Collectible664}} \1 Temporary +3.6 damage",
+                "{{Collectible664}} \2 -0.03 Speed",
+            }
+        },
+    }
 })
 enums.FUNCTIONS.AddItem({
     ID = mod.COLLECTIBLE.TOAST,
@@ -1024,6 +1046,28 @@ enums.FUNCTIONS.AddItem({
         "\1 +1 Empty heart container",
         "{{BlackHeart}} +1 Black Heart",
     },
+    Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)
+            end,
+            ToModify = {
+                {"Empty heart container", "{{BlinkGreen}}Health{{CR}}"}
+            }
+        },
+        {
+            Condition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)
+            end,
+            ToModify = {
+                "{{Collectible664}} \1 +0.5 Tears",
+                "{{Collectible664}} \1 +1 Damage",
+                "{{Collectible664}} \1 Temporary +3.6 damage",
+                "{{Collectible664}} \2 -0.03 Speed",
+            }
+        },
+    }
 })
 
 
