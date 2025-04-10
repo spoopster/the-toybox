@@ -80,6 +80,7 @@ local t = {
     "scripts_toybox.items.actives.big_bang",
     "scripts_toybox.items.actives.chocolate_bar",
     "scripts_toybox.items.actives.exoricsm_kit",
+    "scripts_toybox.items.actives.delivery_box",
 
     "scripts_toybox.items.actives.equalizer",
 

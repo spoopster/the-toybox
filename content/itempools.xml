@@ -88,6 +88,7 @@
         <Item Name="RETROFALL"/>
         <Item Name="Last Beer"/>
         <Item Name="Food Stamps"/>
+        <Item Name="Delivery Box"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -98,6 +99,7 @@
         <Item Name="RETROFALL"/>
         <Item Name="Last Beer"/>
         <Item Name="Food Stamps"/>
+        <Item Name="Delivery Box"/>
     </Pool>
 
     <Pool Name="devil">

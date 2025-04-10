@@ -645,6 +645,16 @@
     maxhearts="2"
     blackhearts="2"
 />
+<active id="76" name="Delivery Box"
+    description="Same-day shipping"
+    gfx="tb_no_sprite.png"
+    quality="3"
+    tags="offenisve"
+    cache=""
+
+    shopprice="10"
+    maxcharges="3"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

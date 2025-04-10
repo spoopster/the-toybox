@@ -133,6 +133,7 @@ mod.COLLECTIBLE = {
     D = Isaac.GetItemIdByName("D0"),
     BRUNCH = Isaac.GetItemIdByName("Brunch"),
     TOAST = Isaac.GetItemIdByName("Toast"),
+    DELIVERY_BOX = Isaac.GetItemIdByName("Delivery Box"),
 
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),

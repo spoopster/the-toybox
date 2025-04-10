@@ -1069,6 +1069,14 @@ enums.FUNCTIONS.AddItem({
         },
     }
 })
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.DELIVERY_BOX,
+    Name = "Delivery Box",
+    Description = {
+        "{{Coin}} Pay 3 coins to spawn a {{Bomb}} Bomb or {{Key}} Key",
+        "The pickup you have less of is more common",
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---
@@ -1861,14 +1869,13 @@ enums.FUNCTIONS.AddPlayer({
     Name = "Atlas",
     Description = {
         "Your health is made of \"mantles\" with various effects, which may replace hearts",
-        "Having 3 of the same mantle grants a unique transformation that lasts until you get another transformation or lose all mantles",
-        "Losing all mantle turns you into {{AtlasATransformationTar}}{{ColorGray}}Tar{{CR}}, a form where you die in one hit and have slightly better stats",
-        "In Tar form, you can turn back to normal by recovering a mantle",
+        "Having 3 of the same mantle grants a unique transformation until you get a different transformation",
+        "While you have no mantles: lose your transformation, have slightly better stats, and die when you take damage",
     },
     BirthrightDescription = {
         "You can have 2 mantle transformations at once",
-        "When you lose a transformation, it gets transferred into the second transformation slot where it functions alongside the current transformation",
-        "Turning into {{AtlasATransformationTar}}{{ColorGray}}Tar{{CR}} removes both transformations",
+        "When you get a new transformation, your original one moves to a second slot",
+        "While at no mantles, lose both transformations",
     }
 })
 enums.FUNCTIONS.AddPlayer({
@@ -1876,14 +1883,13 @@ enums.FUNCTIONS.AddPlayer({
     Name = "Atlas",
     Description = {
         "Your health is made of \"mantles\" with various effects, which may replace hearts",
-        "Having 3 of the same mantle grants a unique transformation that lasts until you get another transformation or lose all mantles",
-        "Losing all mantle turns you into {{AtlasATransformationTar}}{{ColorGray}}Tar{{CR}}, a form where you die in one hit and have slightly better stats",
-        "In Tar form, you can turn back to normal by recovering a mantle",
+        "Having 3 of the same mantle grants a unique transformation, until you get a different transformation",
+        "While you have no mantles: lose your transformation, have slightly better stats, and die when you take damage",
     },
     BirthrightDescription = {
         "You can have 2 mantle transformations at once",
-        "When you lose a transformation, it gets transferred into the second transformation slot where it functions alongside the current transformation",
-        "Turning into {{AtlasATransformationTar}}{{ColorGray}}Tar{{CR}} removes both transformations",
+        "When you get a new transformation, your original one moves to a second slot",
+        "While at no mantles, lose both transformations",
     }
 })
 enums.FUNCTIONS.AddPlayer({
