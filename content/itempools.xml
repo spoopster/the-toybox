@@ -22,6 +22,10 @@
         <Item Name="Hostile Takeover"/>
         <Item Name="Haemorrhage"/>
         <Item Name="Bob's Thesis"/>
+        <Item Name="Asteroid Belt"/>
+        <Item Name="Barbed Wire"/>
+        <Item Name="Chocolate Bar"/>
+        <Item Name="Food Stamps"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -45,6 +49,10 @@
         <Item Name="Hostile Takeover"/>
         <Item Name="Haemorrhage"/>
         <Item Name="Bob's Thesis"/>
+        <Item Name="Asteroid Belt"/>
+        <Item Name="Barbed Wire"/>
+        <Item Name="Chocolate Bar"/>
+        <Item Name="Food Stamps"/>
     </Pool>
 
     <Pool Name="boss">
@@ -54,6 +62,9 @@
         <Item Name="A Spoonful of Mayonnaise"/>
         <Item Name="Brunch"/>
         <Item Name="Toast"/>
+        <Item Name="Coffee Cup"/>
+        <Item Name="Conjunctivitis"/>
+        <Item Name="Dad's Slipper"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
@@ -62,6 +73,9 @@
         <Item Name="A Spoonful of Mayonnaise"/>
         <Item Name="Brunch"/>
         <Item Name="Toast"/>
+        <Item Name="Coffee Cup"/>
+        <Item Name="Conjunctivitis"/>
+        <Item Name="Dad's Slipper"/>
     </Pool>
 
     <Pool Name="shop">
@@ -72,6 +86,8 @@
         <Item Name="Preferred Options" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Candy Dispenser"/>
         <Item Name="RETROFALL"/>
+        <Item Name="Last Beer"/>
+        <Item Name="Food Stamps"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -80,6 +96,8 @@
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>
         <Item Name="RETROFALL"/>
+        <Item Name="Last Beer"/>
+        <Item Name="Food Stamps"/>
     </Pool>
 
     <Pool Name="devil">
@@ -90,6 +108,7 @@
         <Item Name="Cursed Eulogy"/>
         <Item Name="Catharsis"/>
         <Item Name="Haemorrhage"/>
+        <Item Name="Golden Calf"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -98,6 +117,7 @@
         <Item Name="Cursed Eulogy"/>
         <Item Name="Catharsis"/>
         <Item Name="Haemorrhage"/>
+        <Item Name="Golden Calf"/>
     </Pool>
 
     <Pool Name="angel">
@@ -107,6 +127,7 @@
         <Item Name="Ascension"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Blessed Bombs"/>
+        <Item Name="Exorcism Kit"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
@@ -115,6 +136,7 @@
         <Item Name="Ascension"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Blessed Bombs"/>
+        <Item Name="Exorcism Kit"/>
     </Pool>
 
     <Pool Name="curse">
@@ -122,11 +144,13 @@
         <Item Name="Lion Skull"/>
         <Item Name="Painkillers"/>
         <Item Name="Horse Tranquilizer"/>
+        <Item Name="Golden Calf"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
         <Item Name="Painkillers"/>
         <Item Name="Horse Tranquilizer"/>
+        <Item Name="Golden Calf"/>
     </Pool>
 
     <Pool Name="redChest">
@@ -145,6 +169,7 @@
         <Item Name="Alphabet Box"/>
         <Item Name="Atheism"/>
         <Item Name="Awesome Fruit"/>
+        <Item Name="Big Bang"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="4 4"/>
@@ -154,6 +179,11 @@
         <Item Name="Alphabet Box"/>
         <Item Name="Atheism"/>
         <Item Name="Awesome Fruit"/>
+        <Item Name="Big Bang"/>
+    </Pool>
+
+    <Pool Name="library">
+        <Item Name="Art of War"/>
     </Pool>
 
     <Pool Name="demonBeggar">
@@ -162,6 +192,7 @@
 
     <Pool Name="bombBum">
         <Item Name="Quake Bombs"/>
+        <Item Name="Blessed Bombs"/>
     </Pool>
 
     <Pool Name="craneGame">

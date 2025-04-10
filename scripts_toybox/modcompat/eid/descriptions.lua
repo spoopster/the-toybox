@@ -1192,23 +1192,34 @@ enums.FUNCTIONS.AddTrinket({
     ID = mod.TRINKET.BIG_BLIND,
     Name = "Big Blind",
     Description = {
-        "Every 10 damage dealt to enemies, spawn a coin",
+        "{{Coin}} Every COUNTER damage dealt to enemies, spawn a coin",
         "The requirement for spawning a coin goes up more and more for every coin spawned",
     },
-    DoubleModifiers = {
+    Modifiers = {
         {
-            ToModify = {
-                "Coins are spawned twice as often",
-            }
-        },
-    },
-    TripleModifiers = {
-        {
-            ToModify = {
-                "Coins are spawned thrice as often",
-            }
-        },
-    },
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = function(descObj)
+                local mult, color
+                if(enums.FUNCTIONS.IsTrinketTripled(descObj)) then
+                    color="{{ColorRainbow}}"
+                    mult = 3
+                elseif(enums.FUNCTIONS.IsTrinketDoubled(descObj)) then
+                    color="{{ColorGold}}"
+                    mult = 2
+                else
+                    mult = 1
+                end
+                --mult = mult+(descObj.Entity and Isaac.GetPlayer():GetTrinketMultiplier(mod.TRINKET.BIG_BLIND) or 0)
+
+                local counter = mod:getBigBlindDamageRequirement(Isaac.GetPlayer())/mult
+                counter = tostring(math.floor(counter))
+
+                local replaceString = (color or "")..counter..(color and "{{CR}}" or "")
+                descObj.Description = string.gsub(descObj.Description, "COUNTER", replaceString)
+                return descObj.Description
+            end,
+        }
+    }
 })
 enums.FUNCTIONS.AddTrinket({
     ID = mod.TRINKET.JONAS_LOCK,

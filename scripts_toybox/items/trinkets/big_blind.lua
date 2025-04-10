@@ -5,8 +5,17 @@ local SUM_INCREASE = 6
 local COIN_SPEED = 8
 local godimkillingmyself = false
 
+function mod:getBigBlindDamageRequirement(pl)
+    local data = mod:getEntityDataTable(pl)
+    data.BIG_BLIND_COUNTERS_FINISHED = (data.BIG_BLIND_COUNTERS_FINISHED or 0)
+
+    local gaussSum = (data.BIG_BLIND_COUNTERS_FINISHED*(data.BIG_BLIND_COUNTERS_FINISHED+1)/2)
+
+    return FIRST_REQ+SUM_INCREASE*gaussSum
+end
+
 ---@param ent Entity
-local function addToCounter(_, ent, amount, flags, ref, frames)
+local function addToCounter(_, ent, amount, _, _, _)
     if(not (ent and ent:Exists() and mod:isValidEnemy(ent))) then return end
 
     for i=0, Game():GetNumPlayers()-1 do
@@ -15,24 +24,27 @@ local function addToCounter(_, ent, amount, flags, ref, frames)
         if(pl:HasTrinket(mod.TRINKET.BIG_BLIND)) then
             local rng = pl:GetTrinketRNG(mod.TRINKET.BIG_BLIND)
             local data = mod:getEntityDataTable(pl)
-            data.BIG_BLIND_COUNTER = (data.BIG_BLIND_COUNTER or 0)+amount*pl:GetTrinketMultiplier(mod.TRINKET.BIG_BLIND)
-            data.BIG_BLIND_COUNTERS_FINISHED = (data.BIG_BLIND_COUNTERS_FINISHED or 0)
+            data.BIG_BLIND_COUNTER = (data.BIG_BLIND_COUNTER or 0)+amount
 
-            local req = FIRST_REQ+SUM_INCREASE*(data.BIG_BLIND_COUNTERS_FINISHED*(data.BIG_BLIND_COUNTERS_FINISHED+1)/2)
+            print(data.BIG_BLIND_COUNTER)
+
+            local req = mod:getBigBlindDamageRequirement(pl)/pl:GetTrinketMultiplier(mod.TRINKET.BIG_BLIND)
             while(data.BIG_BLIND_COUNTER>=req) do
                 local coin = Isaac.Spawn(5,20,1,ent.Position,Vector.FromAngle(rng:RandomInt(360)):Resized(COIN_SPEED),pl):ToPickup()
+
+                data.BIG_BLIND_COUNTER = data.BIG_BLIND_COUNTER-req
+                data.BIG_BLIND_COUNTERS_FINISHED = (data.BIG_BLIND_COUNTERS_FINISHED or 0)+1
+
+                req = mod:getBigBlindDamageRequirement(pl)/pl:GetTrinketMultiplier(mod.TRINKET.BIG_BLIND)
+
                 if(mod:getPersistentData("IS_CONBOI")==1) then
                     mod:setExtraData("BIGBLIND_CONBOI_ACTIVE", 1)
                 end
-                data.BIG_BLIND_COUNTER = data.BIG_BLIND_COUNTER-req
-                data.BIG_BLIND_COUNTERS_FINISHED = data.BIG_BLIND_COUNTERS_FINISHED+1
-
-                req = FIRST_REQ+SUM_INCREASE*(data.BIG_BLIND_COUNTERS_FINISHED*(data.BIG_BLIND_COUNTERS_FINISHED+1)/2)
             end
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, addToCounter)
+mod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, addToCounter)
 
 --* display
 mod.CONBOI_TEXT = {
