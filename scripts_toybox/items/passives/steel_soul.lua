@@ -3,6 +3,28 @@ local sfx = SFXManager()
 
 local SHIELD_FRAMES_MULT = 0.25
 
+local function getReadHearts(pl)
+    if(CustomHealthAPI) then
+        return CustomHealthAPI.PersistentData.OverriddenFunctions.GetHearts(pl)
+    else
+        return pl:GetHearts()
+    end
+end
+local function getSoulHearts(pl)
+    if(CustomHealthAPI) then
+        return CustomHealthAPI.PersistentData.OverriddenFunctions.GetSoulHearts(pl)
+    else
+        return pl:GetSoulHearts()
+    end
+end
+local function getBoneHearts(pl)
+    if(CustomHealthAPI) then
+        return CustomHealthAPI.PersistentData.OverriddenFunctions.GetBoneHearts(pl)
+    else
+        return pl:GetBoneHearts()
+    end
+end
+
 ---@param pl EntityPlayer
 function mod:getSoulShieldMask(pl)
     return (mod:getEntityData(pl, "STEELSOUL_SHIELDMASK") or 0)
@@ -21,23 +43,23 @@ function mod:getSoulShieldBit(pl, idx)
 end
 ---@param pl EntityPlayer
 function mod:getMaxExtraHeartIdx(pl)
-    return math.ceil(pl:GetSoulHearts()/2)+pl:GetBoneHearts()-1
+    return math.ceil(getSoulHearts(pl)/2)+getBoneHearts(pl)-1
 end
 
 ---@param pl EntityPlayer
 local function giveSoulShield(_, pl, amount, hpType)
     if(not (hpType==AddHealthType.SOUL or hpType==AddHealthType.BONE)) then return end
     if(not pl:HasCollectible(mod.COLLECTIBLE.STEEL_SOUL)) then return end
-    
+
     local data = mod:getEntityDataTable(pl)
     data.PREV_SOULHP = data.PREV_SOULHP or 0
 
-    local heartDif = pl:GetSoulHearts()-(data.PREV_SOULHP-data.PREV_SOULHP%2)
+    local heartDif = getSoulHearts(pl)-(data.PREV_SOULHP-data.PREV_SOULHP%2)
     local heartIdx = mod:getMaxExtraHeartIdx(pl)
 
     if(heartDif>0) then
         while(pl:IsBoneHeart(heartIdx)) do heartIdx = heartIdx-1 end
-        if(pl:GetSoulHearts()>0 and pl:GetSoulHearts()%2~=0) then heartIdx = heartIdx-1 end
+        if(getSoulHearts(pl)>0 and getSoulHearts(pl)%2~=0) then heartIdx = heartIdx-1 end
 
         while(heartDif>1 and heartIdx>=0) do
             if(pl:IsBoneHeart(heartIdx)) then
@@ -49,13 +71,13 @@ local function giveSoulShield(_, pl, amount, hpType)
             end
         end
     end
-    data.PREV_SOULHP = pl:GetSoulHearts()
+    data.PREV_SOULHP = getSoulHearts(pl)
 end
 mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_ADD_HEARTS, math.huge, giveSoulShield)
 
 ---@param pl EntityPlayer
 local function updateHpData(_, pl)
-    mod:setEntityData(pl, "PREV_SOULHP", pl:GetSoulHearts())
+    mod:setEntityData(pl, "PREV_SOULHP", getSoulHearts(pl))
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateHpData, 0)
 
@@ -90,29 +112,16 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, renderSoulShields)
 
 ---@param pl EntityPlayer
-local function stupidfuckinghackFuckyouCHAPI(_, pl, damage, flags, source, count)
-    mod:setEntityData(pl, "STEELSOUL_GETHEARS",
-    {
-        Red = pl:GetHearts(),
-        Soul = pl:GetSoulHearts(),
-        Bone = pl:GetBoneHearts(),
-    })
-end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, stupidfuckinghackFuckyouCHAPI, 0)
-
----@param pl EntityPlayer
 local function destroySoulShields(_, pl, dmg, flags, source, frames)
     pl = pl:ToPlayer()
-    local heartData = mod:getEntityData(pl, "STEELSOUL_GETHEARS")
-    if(not heartData) then return end
 
-    if(flags & (DamageFlag.DAMAGE_RED_HEARTS)~=0 and heartData.Red>0) then return end
+    if(flags & (DamageFlag.DAMAGE_RED_HEARTS)~=0 and getReadHearts(pl)>0) then return end
 
     local disposableDmg = dmg
     local numDamageRemoved = 0
-    local extraHeartIdx = math.ceil(heartData.Soul/2)+heartData.Bone-1
+    local extraHeartIdx = mod:getMaxExtraHeartIdx(pl)
 
-    if(disposableDmg>0 and not pl:IsBoneHeart(extraHeartIdx) and heartData.Soul%2~=0) then
+    if(disposableDmg>0 and not pl:IsBoneHeart(extraHeartIdx) and getSoulHearts(pl)%2~=0) then
         disposableDmg = disposableDmg-1
         extraHeartIdx = extraHeartIdx-1
     end

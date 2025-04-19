@@ -12,9 +12,9 @@ local function spawnInk(npc)
     local numToSpawn = INK_NUM_PICKER:PickOutcome(rng)
 
     while(numToSpawn>0) do
-        local subToSpawn = mod.PICKUP_VARIANT.INK_1
+        local subToSpawn = mod.PICKUP_SUBTYPE.COIN_INK_1
         if(numToSpawn>1 and rng:RandomFloat()<0.33) then
-            subToSpawn = mod.PICKUP_VARIANT.INK_2
+            subToSpawn = mod.PICKUP_SUBTYPE.COIN_INK_2
             numToSpawn = numToSpawn-1
         end
         numToSpawn = numToSpawn-1

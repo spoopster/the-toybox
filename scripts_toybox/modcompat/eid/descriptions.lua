@@ -91,7 +91,7 @@ enums.FUNCTIONS.AddItem({
     Name = "Caramel Apple",
     Description = {
         "\1 +1 Health",
-        "\1 Picking up a heart has a 33% chance to give an additional unit of the same heart type, if possible",
+        "\1 Heart spawns have a 25% chance to be doubled",
     },
     StackModifiers = {
         {

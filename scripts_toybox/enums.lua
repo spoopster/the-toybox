@@ -234,9 +234,27 @@ mod.PICKUP_VARIANT = {
     MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny"),
     BLACK_SOUL = Isaac.GetEntityVariantByName("Black Soul"),
     BLOOD_SOUL = Isaac.GetEntityVariantByName("Blood Soul"),
-    INK_1 = Isaac.GetEntitySubTypeByName("Ink (1)"),
-    INK_2 = Isaac.GetEntitySubTypeByName("Ink (2)"),
-    INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)"),
+}
+
+---@type integer[]
+mod.PICKUP_SUBTYPE = {
+    COIN_INK_1 = Isaac.GetEntitySubTypeByName("Ink (1)"),
+    COIN_INK_2 = Isaac.GetEntitySubTypeByName("Ink (2)"),
+    COIN_INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)"),
+
+    HEART_QUAD = Isaac.GetEntitySubTypeByName("Quad Heart"),
+    HEART_SOUL_DOUBLE = Isaac.GetEntitySubTypeByName("Double Soul Heart"),
+    HEART_BLACK_DOUBLE = Isaac.GetEntitySubTypeByName("Double Black Heart"),
+    HEART_ROTTEN_DOUBLE = Isaac.GetEntitySubTypeByName("Double Rotten Heart"),
+    HEART_ETERNAL_FULL = Isaac.GetEntitySubTypeByName("Full Eternal Heart (TOYBOX)"),
+    HEART_BLENDED_DOUBLE = Isaac.GetEntitySubTypeByName("Double Blended Heart"),
+    HEART_GOLD_DOUBLE = Isaac.GetEntitySubTypeByName("Double Gold Heart"),
+    HEART_BONE_DOUBLE = Isaac.GetEntitySubTypeByName("Double Bone Heart"),
+    HEART_BLENDEDBLACK_DOUBLE = Isaac.GetEntitySubTypeByName("Double Blended Black Heart"),
+    HEART_BLENDEDIMMORAL_DOUBLE = Isaac.GetEntitySubTypeByName("Double Blended Immoral Heart"),
+    HEART_IMMORAL_DOUBLE = Isaac.GetEntitySubTypeByName("Double Immoral Heart"),
+    HEART_MORBID_DOUBLE = Isaac.GetEntitySubTypeByName("Double Morbid Heart"),
+    HEART_MORBID_FOURTHIRDS = Isaac.GetEntitySubTypeByName("Four-Thirds Morbid Heart"),
 }
 
 ---@type TearVariant[]
