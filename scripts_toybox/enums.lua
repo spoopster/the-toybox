@@ -138,6 +138,7 @@ mod.COLLECTIBLE = {
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),
     EQUALIZER = Isaac.GetItemIdByName("Equalizer"),
+    GOLDEN_PRAYER_CARD = Isaac.GetItemIdByName("Golden Prayer Card"),
     
     --BTRAIN = Isaac.GetItemIdByName("B-Train"),                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
 
@@ -234,6 +235,8 @@ mod.PICKUP_VARIANT = {
     MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny"),
     BLACK_SOUL = Isaac.GetEntityVariantByName("Black Soul"),
     BLOOD_SOUL = Isaac.GetEntityVariantByName("Blood Soul"),
+
+    ETERNAL_MOUND = Isaac.GetEntityVariantByName("Eternal Mound"),
 }
 
 ---@type integer[]

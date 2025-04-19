@@ -83,6 +83,7 @@ local t = {
     "scripts_toybox.items.actives.delivery_box",
 
     "scripts_toybox.items.actives.equalizer",
+    "scripts_toybox.items.actives.golden_prayer_card",
 
     --TRINKETS
     -- "scripts_toybox.items.trinkets.",
