@@ -1,6 +1,6 @@
 local mod = ToyboxMod
 
-local REPLACE_CHANCE = 1/6
+local REPLACE_CHANCE = 0.1
 
 local replacingPickup = false
 ---@param pickup EntityPickup

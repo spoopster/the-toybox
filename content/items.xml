@@ -603,7 +603,7 @@
 />
 <passive id="71" name="Conjunctivitis"
     description="Icky eye"
-    gfx="tb_conjunctivitis.png"
+    gfx="tb_conjuctivitis.png"
     quality="2"
     tags="offensive summonable"
 

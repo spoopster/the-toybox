@@ -630,7 +630,7 @@ enums.FUNCTIONS.AddItem({
     ID = mod.COLLECTIBLE.HEMORRHAGE,
     Name = "Haemorrhage",
     Description = {
-        "{{BoneHeart}} +1 empty Bone Heart",
+        "{{EmptyBoneHeart}} +1 Bone Heart",
         "Taking damage gives a large fading tears up",
     },
 })
@@ -1322,14 +1322,14 @@ enums.FUNCTIONS.AddTrinket({
     ID = mod.TRINKET.DIVIDED_JUSTICE,
     Name = "Divided Justice",
     Description = {
-        "Common heart, coin, bomb, and key drops have a 16.7% chance to be replaced by a Smorgasbord",
+        "Common heart, coin, bomb, and key drops have a 10% chance to be replaced by a Smorgasbord",
         "Smorgasbords give 1 coin, 1 bomb, 1 key, and heal 1 red heart"
     },
     DoubleModifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
-                {"16.7%%", "33.3%%"},
+                {"10%%", "20%%"},
             }
         },
     },
@@ -1337,7 +1337,7 @@ enums.FUNCTIONS.AddTrinket({
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
-                {"16.7%%", "50%%"},
+                {"10%%", "30%%"},
             }
         },
     },
