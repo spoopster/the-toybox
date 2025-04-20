@@ -65,7 +65,7 @@ local function useAlphabetBox(_, _, rng, player, flags)
             local shouldRemoveItem = true
 
             if(idx~=-1) then
-                item:Morph(5,100,(mod.ABOX_ITEMS_ALPHABETICAL[idx][2] or 0))
+                item:Morph(5,100,(mod.ABOX_ITEMS_ALPHABETICAL[idx][2] or 0), true)
                 local poof = Isaac.Spawn(1000,15,2,item.Position,Vector.Zero,item)
 
                 shouldRemoveItem = false

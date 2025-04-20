@@ -352,6 +352,7 @@
     cache=""
 
     maxcharges="0"
+    chargetype="special"
 
     achievement="Candy Dispenser"
 />
@@ -664,6 +665,13 @@
     cache=""
 />
 
+<passive id="494" name="Golden Schoolbag"
+    description="More room"
+    gfx="tb_golden_schoolbag.png"
+    quality="4"
+    tags="offensive"
+    cache=""
+/>
 <active id="495" name="Golden Prayer Card"
     description="Eternal eternity"
     gfx="tb_golden_prayer_card.png"

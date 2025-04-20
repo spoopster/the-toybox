@@ -346,13 +346,20 @@ end
 
 function mod:unidentifyPill(color)
     Game():GetItemPool():UnidentifyPill(color)
-    if(EID) then EID.UsedPillColors[tostring(color)] = nil end
+    if(EID) then
+        EID.UsedPillColors[tostring(color)] = nil end
+    if(FiendFolio) then
+        local pillIdx = color % PillColor.PILL_GIANT_FLAG
+        FiendFolio.savedata.run.IdentifiedRunPills[tostring(pillIdx)] = false
+    end
 end
 function mod:unidentifyPillPool()
     local dataTable = mod:getExtraDataTable()
     if(not dataTable.PILL_COLORS) then dataTable.PILL_COLORS = mod:getPillColorsInRun() end
 
-    for _, val in ipairs(dataTable.PILL_COLORS) do mod:unidentifyPill(val.COLOR) end
+    for i=1,PillColor.PILL_GIANT_FLAG-1 do
+        mod:unidentifyPill(i)
+    end
 end
 
 --#region --! PHD MASK FUNCTIONS

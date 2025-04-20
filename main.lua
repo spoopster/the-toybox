@@ -50,10 +50,10 @@ local mod_files = {
     "scripts_toybox.fortnite funnies.mattman chance",
     "scripts_toybox.fortnite funnies.gold mode",
     "scripts_toybox.fortnite funnies.retro mode",
-    --"scripts_toybox.fortnite funnies.yes",
+    "scripts_toybox.fortnite funnies.yes",
     --"scripts_toybox.fortnite funnies.black_souls",
     --"scripts_toybox.fortnite funnies.deja_vu",
-    "scripts_toybox.fortnite funnies.lupustro",
+    --"scripts_toybox.fortnite funnies.lupustro",
     --"scripts_toybox.fortnite funnies.stupid enemy title",
     "scripts_toybox.fortnite funnies.cool title screen",
 

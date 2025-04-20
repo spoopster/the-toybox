@@ -84,6 +84,7 @@ local t = {
 
     "scripts_toybox.items.actives.equalizer",
     "scripts_toybox.items.actives.golden_prayer_card",
+    "scripts_toybox.items.actives.golden_schoolbag",
 
     --TRINKETS
     -- "scripts_toybox.items.trinkets.",

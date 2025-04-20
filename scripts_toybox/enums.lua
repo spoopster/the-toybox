@@ -139,6 +139,7 @@ mod.COLLECTIBLE = {
     URANIUM = Isaac.GetItemIdByName("Uranium"),
     EQUALIZER = Isaac.GetItemIdByName("Equalizer"),
     GOLDEN_PRAYER_CARD = Isaac.GetItemIdByName("Golden Prayer Card"),
+    GOLDEN_SCHOOLBAG = Isaac.GetItemIdByName("Golden Schoolbag"),
     
     --BTRAIN = Isaac.GetItemIdByName("B-Train"),                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
 

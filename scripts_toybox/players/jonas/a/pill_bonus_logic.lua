@@ -91,16 +91,14 @@ local function addCardBonus(_, _, player, _)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, addCardBonus)
 
-local function incrementBonusReset()
-    for _, player in ipairs(Isaac.FindByType(1,0,mod.PLAYER_TYPE.JONAS_A)) do
-        player = player:ToPlayer()
-        local data = mod:getJonasATable(player)
+---@param pl EntityPlayer
+local function incrementBonusReset(_, pl)
+    local data = mod:getJonasATable(pl)
 
-        if((data.PILLS_POPPED or 0)>0) then
-            data.RESET_BOOST_ROOMS = data.RESET_BOOST_ROOMS+1
-            if(data.RESET_BOOST_ROOMS>=(Game():IsGreedMode() and data.RESET_BOOST_ROOMSREQ_GREED or data.RESET_BOOST_ROOMSREQ)) then
-                resetPillBonus(player)
-            end
+    if((data.PILLS_POPPED or 0)>0) then
+        data.RESET_BOOST_ROOMS = data.RESET_BOOST_ROOMS+1
+        if(data.RESET_BOOST_ROOMS>=(Game():IsGreedMode() and data.RESET_BOOST_ROOMSREQ_GREED or data.RESET_BOOST_ROOMSREQ)) then
+            resetPillBonus(pl)
         end
     end
 end

@@ -14,15 +14,14 @@ local function postHeartInit(_, pickup)
     local allAtlasA = mod:getAllAtlasA()
     if(#allAtlasA==0) then return end
 
-    local rng = RNG()
-    rng:SetSeed(pickup.InitSeed, 35)
+    local rng = mod:generateRng(pickup.InitSeed)
 
     local chance = 0
     for _, player in ipairs(allAtlasA) do
         player = player:ToPlayer()
         chance = chance+HEART_REPLACEMENT_CHANCES[mod:getRightmostMantleIdx(player)]
     end
-    chance = chance/Game():GetNumPlayers()
+    --chance = chance/Game():GetNumPlayers()
     if(rng:RandomFloat()<chance) then
         local mantle = mod:getRandomMantle(rng)
         local cons = mod.MANTLE_DATA[mod:getMantleKeyFromId(mantle)].CONSUMABLE_SUBTYPE

@@ -64,6 +64,7 @@ local ITEMS = {
     [mod.COLLECTIBLE.BRUNCH] =              "HP up + heal",
     [mod.COLLECTIBLE.TOAST] =               "HP up + heal",
     [mod.COLLECTIBLE.DELIVERY_BOX] =        "Spend coins for bomb or key",
+    [mod.COLLECTIBLE.CARAMEL_APPLE] =       "HP up + hearts may be doubled",
 
     [mod.COLLECTIBLE.PORTABLE_TELLER] =     "Use coins for a chance to drop pickups",
 }
