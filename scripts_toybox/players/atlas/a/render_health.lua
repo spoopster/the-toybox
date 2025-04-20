@@ -34,7 +34,7 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     HP_SPRITE.Rotation = 0
 
     local heartPosOffsets = Vector(12,0)
-    local heartRenderPos = renderPos-heartPosOffsets
+    local heartRenderPos = renderPos-heartPosOffsets--+Vector(0,10)
 
     TRANSF_SPRITE.Scale = Vector(1,1)
     TRANSF_SPRITE.Color = Color(1,1,1,0.75)

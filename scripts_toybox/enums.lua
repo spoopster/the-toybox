@@ -162,6 +162,7 @@ mod.TRINKET = {
     BLACK_RUNE_SHARD = Isaac.GetTrinketIdByName("Black Rune Shard"),
     YELLOW_BELT = Isaac.GetTrinketIdByName("Yellow Belt"),
     SUPPOSITORY = Isaac.GetTrinketIdByName("Suppository"),
+    DIVIDED_JUSTICE = Isaac.GetTrinketIdByName("Divided Justice"),
 
     --LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK"),            --*UNUSED
     --FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet"),            --*UNUSED
@@ -235,6 +236,8 @@ mod.PICKUP_VARIANT = {
     MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny"),
     BLACK_SOUL = Isaac.GetEntityVariantByName("Black Soul"),
     BLOOD_SOUL = Isaac.GetEntityVariantByName("Blood Soul"),
+
+    SMORGASBORD = Isaac.GetEntityVariantByName("Smorgasbord"),
 
     ETERNAL_MOUND = Isaac.GetEntityVariantByName("Eternal Mound"),
 }

@@ -96,6 +96,7 @@ local t = {
     "scripts_toybox.items.trinkets.big_boy_bathwater",
     "scripts_toybox.items.trinkets.black_rune_shard",
     "scripts_toybox.items.trinkets.suppository",
+    "scripts_toybox.items.trinkets.divided_justice",
 
     --UNUSED
     --"scripts_toybox.items.actives.btrain",

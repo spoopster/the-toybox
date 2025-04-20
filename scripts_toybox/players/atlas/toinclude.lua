@@ -11,6 +11,7 @@ local t = {
     "scripts_toybox.players.atlas.a.mantle_healing_logic",
     "scripts_toybox.players.atlas.a.mantle_descriptions",
     "scripts_toybox.players.atlas.a.render_health",
+    "scripts_toybox.players.atlas.a.chapi_cancel",
 
     "scripts_toybox.players.atlas.a.horn_costumes",
     --"scripts_toybox.players.atlas.a.effect_reworks",

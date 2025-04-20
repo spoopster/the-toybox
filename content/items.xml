@@ -781,7 +781,12 @@
 />
 <trinket id="9" name="Suppository"
     description="Wrong way"
-    gfx="tb_black_rune_shard.png"
+    gfx="tb_no_sprite.png"
+    cache=""
+/>
+<trinket id="10" name="Divided Justice"
+    description="A little bit of everything"
+    gfx="tb_divided_justice.png"
     cache=""
 />
 

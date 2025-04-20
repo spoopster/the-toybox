@@ -1318,6 +1318,30 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = mod.TRINKET.DIVIDED_JUSTICE,
+    Name = "Divided Justice",
+    Description = {
+        "Common heart, coin, bomb, and key drops have a 16.7% chance to be replaced by a Smorgasbord",
+        "Smorgasbords give 1 coin, 1 bomb, 1 key, and heal 1 red heart"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"16.7%%", "33.3%%"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"16.7%%", "50%%"},
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = mod.CONSUMABLE.PRISMSTONE,

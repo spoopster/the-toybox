@@ -2,6 +2,9 @@ local t = {
     --PICKUPS
     "scripts_toybox.pickups.pickups.black_soul",
     "scripts_toybox.pickups.pickups.blood_soul",
+
+    "scripts_toybox.pickups.pickups.smorgasbord",
+
     "scripts_toybox.pickups.pickups.eternal_mound",
 
     --CARDS
