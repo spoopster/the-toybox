@@ -1,14 +1,12 @@
 local mod = ToyboxMod
 
 function mod:playerHasLimitBreak(player)
-    return player:HasTrinket(mod.TRINKET.LIMIT_BREAK)
+    return true
 end
 function mod:anyPlayerHasLimitBreak()
-    for i=0, Game():GetNumPlayers()-1 do
-        if(mod:playerHasLimitBreak(Isaac.GetPlayer(i))) then return true end
-    end
-    return false
+    return true
 end
+mod.TRINKET.LIMIT_BREAK = 1
 
 local t = {
     "scripts_toybox.items.trinkets.limit_break.the_wiz",

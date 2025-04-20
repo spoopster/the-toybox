@@ -59,9 +59,6 @@ local t = {
 
     "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
 
-    "scripts_toybox.items.passives.catharsis",
-    "scripts_toybox.items.passives.uranium",
-
     --ACTIVES
     -- "scripts_toybox.items.actives.",
     "scripts_toybox.items.actives.pliers",
@@ -81,10 +78,6 @@ local t = {
     "scripts_toybox.items.actives.chocolate_bar",
     "scripts_toybox.items.actives.exoricsm_kit",
     "scripts_toybox.items.actives.delivery_box",
-
-    "scripts_toybox.items.actives.equalizer",
-    "scripts_toybox.items.actives.golden_prayer_card",
-    "scripts_toybox.items.actives.golden_schoolbag",
 
     --TRINKETS
     -- "scripts_toybox.items.trinkets.",
@@ -107,6 +100,13 @@ local t = {
     --"scripts_toybox.items.unused.foam_bullet",
     --"scripts_toybox.items.unused.malicious_brain",
     --"scripts_toybox.items.unused.limit_break",
+
+    --JOKE
+    "scripts_toybox.items.troll.equalizer",
+    "scripts_toybox.items.troll.golden_prayer_card",
+    "scripts_toybox.items.troll.golden_schoolbag",
+    "scripts_toybox.items.troll.catharsis",
+    "scripts_toybox.items.troll.uranium",
 }
 for _, path in ipairs(t) do
     include(path)
