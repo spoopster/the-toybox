@@ -27,6 +27,7 @@
         <Item Name="Chocolate Bar"/>
         <Item Name="Food Stamps"/>
         <Item Name="Lucky Pebbles"/>
+        <Item Name="Hemolymph"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -55,6 +56,7 @@
         <Item Name="Chocolate Bar"/>
         <Item Name="Food Stamps"/>
         <Item Name="Lucky Pebbles"/>
+        <Item Name="Hemolymph"/>
     </Pool>
 
     <Pool Name="boss">
@@ -67,6 +69,7 @@
         <Item Name="Coffee Cup"/>
         <Item Name="Conjunctivitis"/>
         <Item Name="Dad's Slipper"/>
+        <Item Name="Finger Trap"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
@@ -78,6 +81,7 @@
         <Item Name="Coffee Cup"/>
         <Item Name="Conjunctivitis"/>
         <Item Name="Dad's Slipper"/>
+        <Item Name="Finger Trap"/>
     </Pool>
 
     <Pool Name="shop">
