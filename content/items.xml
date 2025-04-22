@@ -587,7 +587,7 @@
 <active id="69" name="Chocolate Bar"
     description="Hello friends!"
     gfx="tb_chocolate_bar.png"
-    quality="3"
+    quality="2"
     tags="nolostbr"
 
     maxcharges="4"
