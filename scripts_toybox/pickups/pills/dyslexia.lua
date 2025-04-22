@@ -63,7 +63,7 @@ local function getpyaerfromet(ent)
     if(sp:ToPlayer()) then player = sp:ToPlayer()
     elseif(sp:ToFamiliar() and sp:ToFamiliar().Player) then
         local fam = sp:ToFamiliar()
-        if(fam.Variant==FamiliarVariant.FATES_REWARD or mod.COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
+        if(fam.Variant==FamiliarVariant.FATES_REWARD or mod.TEAR_COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
         else return end
     else return end
 

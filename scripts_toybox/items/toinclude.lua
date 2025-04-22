@@ -56,6 +56,9 @@ local t = {
     "scripts_toybox.items.passives.retrofall",
     "scripts_toybox.items.passives.brunch",
     "scripts_toybox.items.passives.toast",
+    "scripts_toybox.items.passives.lucky_pebbles",
+    "scripts_toybox.items.passives.finger_trap",
+    "scripts_toybox.items.passives.hemolymph",
 
     "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
 
@@ -78,6 +81,7 @@ local t = {
     "scripts_toybox.items.actives.chocolate_bar",
     "scripts_toybox.items.actives.exoricsm_kit",
     "scripts_toybox.items.actives.delivery_box",
+    "scripts_toybox.items.actives.moms_photobook",
 
     --TRINKETS
     -- "scripts_toybox.items.trinkets.",

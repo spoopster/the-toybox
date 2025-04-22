@@ -103,18 +103,10 @@ local function cancelVesselDamage(_, pl, damage, flags, source, count)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, cancelVesselDamage, 0)
 
-local redHeartSubTypes = {
-    [HeartSubType.HEART_HALF] = 0,
-    [HeartSubType.HEART_FULL] = 0,
-    [HeartSubType.HEART_DOUBLEPACK] = 0,
-    [HeartSubType.HEART_BLENDED] = 0,
-    [HeartSubType.HEART_ROTTEN] = 0,
-}
-
 ---@param pickup EntityPickup
 ---@param pl Entity
 local function consumeHeart(_, pickup, pl)
-    if(not (redHeartSubTypes[pickup.SubType])) then return end
+    if(not mod.RED_HEART_SUBTYPES[pickup.SubType]) then return end
     if(not (pl and pl:ToPlayer() and pl:ToPlayer():HasCollectible(mod.COLLECTIBLE.GLASS_VESSEL))) then return end
     pl = pl:ToPlayer() ---@cast pl EntityPlayer
 
@@ -124,12 +116,13 @@ local function consumeHeart(_, pickup, pl)
     local data = mod:getEntityDataTable(pl)
 
     if(not pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.GLASS_VESSEL)) then
-        pickup:PlayPickupSound()
+        pl:GetEffects():AddCollectibleEffect(mod.COLLECTIBLE.GLASS_VESSEL, true, 1)
+
+        --pickup:PlayPickupSound()
         pickup:GetSprite():Play("Collect", true)
         pickup:Die()
 
         sfx:Play(SoundEffect.SOUND_URN_OPEN)
-        pl:GetEffects():AddCollectibleEffect(mod.COLLECTIBLE.GLASS_VESSEL, true, 1)
 
         return true
     end

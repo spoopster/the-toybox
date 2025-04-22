@@ -1,8 +1,9 @@
 local mod = ToyboxMod
+local sfx = SFXManager()
 
 ---@param player EntityPlayer
 local function gildedAppleUse(_, item, rng, player, flags, slot, vdata)
-    SFXManager():Play(SoundEffect.SOUND_CASH_REGISTER)
+    sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
     player:AddGoldenHearts(1)
 
     return {

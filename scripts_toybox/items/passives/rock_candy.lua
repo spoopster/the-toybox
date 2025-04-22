@@ -1,7 +1,7 @@
 local mod = ToyboxMod
 
-local TEARS_ADD = 0.3
-local SHOTSPEED_ADD = 0.15
+local DAMAGE_UP = 0.7
+local SHOTSPEED_ADD = 0.16
 
 ---@param player EntityPlayer
 local function postAddItem(_, _, _, firstTime, slot, vData, player)
@@ -19,8 +19,8 @@ local function evalCache(_, player, flag)
     if(not player:HasCollectible(mod.COLLECTIBLE.ROCK_CANDY)) then return end
     local mult = player:GetCollectibleNum(mod.COLLECTIBLE.ROCK_CANDY)
 
-    if(flag==CacheFlag.CACHE_FIREDELAY) then
-        mod:addBasicTearsUp(player, TEARS_ADD*mult)
+    if(flag==CacheFlag.CACHE_DAMAGE) then
+        mod:addBasicDamageUp(player, DAMAGE_UP*mult)
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
         player.ShotSpeed = player.ShotSpeed+SHOTSPEED_ADD*mult
     end

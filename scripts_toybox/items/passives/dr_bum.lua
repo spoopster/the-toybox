@@ -65,12 +65,14 @@ local function drBumUpdate(_, fam)
 
     if(fam.State==1) then
         local nearestPickup
-        for _, pickup in ipairs(Isaac.FindInRadius(fam.Position,SEARCH_RADIUS, EntityPartition.PICKUP)) do
+        for _, pickup in ipairs(Isaac.FindInRadius(fam.Position, SEARCH_RADIUS, EntityPartition.PICKUP)) do
             pickup = pickup:ToPickup()
-            if(pickup.Variant==300 and pickup.Touched~=true and pickup.Wait<=0) then
-                nearestPickup = pickup
-                
-                break
+            if(pickup and pickup.Variant==PickupVariant.PICKUP_TAROTCARD) then
+                if(pickup.Wait<=0 and not pickup:IsShopItem()) then
+                    nearestPickup = pickup
+                    
+                    break
+                end
             end
         end
 
@@ -98,6 +100,8 @@ local function drBumUpdate(_, fam)
     elseif(fam.State==2) then
         if(not fam.Target) then
             fam.State = 0
+
+            return
         end
 
         local dir = fam.Target.Position-fam.Position

@@ -4,4 +4,9 @@
 		<layer name="bg" r="21" g="39" b="80" a="153" />
 		<layer name="poof2" r="66" g="156" b="219" a="128" />
 	</entry>
+	<entry id="2" anm2="GiantBook.anm2" anim="Appear" gfx="tb_giantbook_moms_photobook.png" name="Mom's Photobook">
+		<layer name="poof" r="228" g="228" b="228" a="255" />
+		<layer name="bg" r="228" g="228" b="228" a="153" />
+		<layer name="poof2" r="225" g="225" b="225" a="128" />
+	</entry>
 </giantbook>

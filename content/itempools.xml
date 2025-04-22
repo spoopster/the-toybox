@@ -26,6 +26,7 @@
         <Item Name="Barbed Wire"/>
         <Item Name="Chocolate Bar"/>
         <Item Name="Food Stamps"/>
+        <Item Name="Lucky Pebbles"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -53,6 +54,7 @@
         <Item Name="Barbed Wire"/>
         <Item Name="Chocolate Bar"/>
         <Item Name="Food Stamps"/>
+        <Item Name="Lucky Pebbles"/>
     </Pool>
 
     <Pool Name="boss">
@@ -166,26 +168,23 @@
     <Pool Name="secret">
         <Item Name="4 4"/>
         <Item Name="Fatal Signal"/>
-        <Item Name="Bone Boy" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Steel Soul"/>
         <Item Name="Alphabet Box"/>
-        <Item Name="Atheism"/>
         <Item Name="Awesome Fruit"/>
         <Item Name="Big Bang"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="4 4"/>
         <Item Name="Fatal Signal"/>
-        <Item Name="Bone Boy" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Steel Soul"/>
         <Item Name="Alphabet Box"/>
-        <Item Name="Atheism"/>
         <Item Name="Awesome Fruit"/>
         <Item Name="Big Bang"/>
     </Pool>
 
     <Pool Name="library">
         <Item Name="Art of War"/>
+        <Item Name="Mom's Photobook"/>
     </Pool>
 
     <Pool Name="demonBeggar">

@@ -134,6 +134,10 @@ mod.COLLECTIBLE = {
     BRUNCH = Isaac.GetItemIdByName("Brunch"),
     TOAST = Isaac.GetItemIdByName("Toast"),
     DELIVERY_BOX = Isaac.GetItemIdByName("Delivery Box"),
+    LUCKY_PEBBLES = Isaac.GetItemIdByName("Lucky Pebbles"),
+    MOMS_PHOTOBOOK = Isaac.GetItemIdByName("Mom's Photobook"),
+    FINGER_TRAP = Isaac.GetItemIdByName("Finger Trap"),
+    HEMOLYMPH = Isaac.GetItemIdByName("Hemolymph"),
 
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),
@@ -300,6 +304,7 @@ end
 ---@type Giantbook
 mod.GIANTBOOK = {
     BIG_BANG = Isaac.GetGiantBookIdByName("Big Bang (TOYBOX)"),
+    MOMS_PHOTOBOOK = Isaac.GetGiantBookIdByName("Mom's Photobook"),
 }
 
 mod.FAMILIAR_VIRUS_SUBTYPE = {
@@ -336,6 +341,36 @@ mod.EFFECT_AURA_SUBTYPE = {
     HOLY_MANTLE = 3,
 }
 
+---@type ShaderType
+mod.SHADERS = {
+    EMPTY = "ToyboxEmptyShader",
+    BLOOM = "ToyboxBloomShader",
+    ASCENSION = "ToyboxAscensionShader",
+}
+
+
+
+mod.TEAR_COPYING_FAMILIARS = {
+    [FamiliarVariant.INCUBUS] = true,
+    [FamiliarVariant.SPRINKLER] = true,
+    [FamiliarVariant.TWISTED_BABY] = true,
+    [FamiliarVariant.BLOOD_BABY] = true,
+    [FamiliarVariant.UMBILICAL_BABY] = true,
+    [FamiliarVariant.CAINS_OTHER_EYE] = true,
+    --[FamiliarVariant.FATES_REWARD] = true,
+}
+mod.RED_HEART_SUBTYPES = {
+    [HeartSubType.HEART_HALF] = true,
+    [HeartSubType.HEART_FULL] = true,
+    [HeartSubType.HEART_DOUBLEPACK] = true,
+    [HeartSubType.HEART_SCARED] = true,
+
+    [mod.PICKUP_SUBTYPE.HEART_QUAD] = true,
+
+    --[HeartSubType.HEART_ROTTEN] = true,
+    --[HeartSubType.HEART_BLENDED] = true,
+}
+
 mod.NPC_BOSS = Isaac.GetEntityTypeByName("Shy Gal")
 mod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")
 mod.NPC_SHYGAL_CLONE = Isaac.GetEntityVariantByName("Shy Gal Clone")
@@ -347,22 +382,7 @@ mod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
 mod.NPC_MAIN = Isaac.GetEntityTypeByName("Stumpy")
 mod.VAR_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
 
----@type ShaderType
-mod.SHADERS = {
-    EMPTY = "ToyboxEmptyShader",
-    BLOOM = "ToyboxBloomShader",
-    ASCENSION = "ToyboxAscensionShader",
-}
 
-mod.COPYING_FAMILIARS = {
-    [FamiliarVariant.INCUBUS] = true,
-    [FamiliarVariant.SPRINKLER] = true,
-    [FamiliarVariant.TWISTED_BABY] = true,
-    [FamiliarVariant.BLOOD_BABY] = true,
-    [FamiliarVariant.UMBILICAL_BABY] = true,
-    [FamiliarVariant.CAINS_OTHER_EYE] = true,
-    --[FamiliarVariant.FATES_REWARD] = true,
-}
 
 ---@type CallbackID[]
 mod.CUSTOM_CALLBACKS = {

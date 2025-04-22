@@ -19,7 +19,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
     if(sp:ToPlayer()) then player = sp:ToPlayer()
     elseif(sp:ToFamiliar() and sp:ToFamiliar().Player) then
         local fam = sp:ToFamiliar()
-        if(mod.COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
+        if(mod.TEAR_COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
         else return end
     else return end
 
@@ -34,7 +34,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
     if(sp:ToPlayer()) then player = sp:ToPlayer()
     elseif(sp:ToFamiliar() and sp:ToFamiliar().Player) then
         local fam = sp:ToFamiliar()
-        if(mod.COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
+        if(mod.TEAR_COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
         else return end
     else return end
 
@@ -64,7 +64,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, effect)
         if(sp:ToPlayer()) then player = sp:ToPlayer()
         elseif(sp:ToFamiliar() and sp:ToFamiliar().Player) then
             local fam = sp:ToFamiliar()
-            if(mod.COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
+            if(mod.TEAR_COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
             else return end
         else return end
 

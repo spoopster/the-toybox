@@ -126,7 +126,7 @@ function mod:getPlayerFromEnt(ent)
     if(sp:ToPlayer()) then return sp:ToPlayer()
     elseif(sp:ToFamiliar() and sp:ToFamiliar().Player) then
         local fam = sp:ToFamiliar()
-        if(mod.COPYING_FAMILIARS[fam.Variant]) then return fam.Player
+        if(mod.TEAR_COPYING_FAMILIARS[fam.Variant]) then return fam.Player
         else return nil end
     end
 

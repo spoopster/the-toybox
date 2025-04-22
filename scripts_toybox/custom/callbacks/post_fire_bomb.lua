@@ -9,7 +9,7 @@ local function getSpawnerPlayer(bomb)
     if(sp:ToPlayer()) then player = sp:ToPlayer()
     elseif(sp:ToFamiliar() and sp:ToFamiliar().Player) then
         local fam = sp:ToFamiliar()
-        if(mod.COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
+        if(mod.TEAR_COPYING_FAMILIARS[fam.Variant]) then player = fam.Player
         else return end
     else return end
 
@@ -31,7 +31,7 @@ local function testFiredBombs(_, _)
     mod.CALLBACK_BOMBS_FIRED = {}
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, testFiredBombs)
-for fVar, _ in pairs(mod.COPYING_FAMILIARS) do
+for fVar, _ in pairs(mod.TEAR_COPYING_FAMILIARS) do
     mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, testFiredBombs, fVar)
 end
 

@@ -244,7 +244,7 @@
     description="DMG + tears + speed up"
     gfx="tb_onyx.png"
     quality="4"
-    tags="offensive"
+    tags="offensive tearsup"
     cache="speed firedelay damage"
 
     blackhearts="2"
@@ -330,8 +330,8 @@
     description="Crunchy!"
     gfx="tb_rock_candy.png"
     quality="3"
-    tags="summonable offensive tearsup"
-    cache="firedelay shotspeed"
+    tags="summonable offensive"
+    cache="damage shotspeed"
 
     achievement="Rock Candy"
 />
@@ -627,34 +627,67 @@
     cache=""
 />
 <passive id="74" name="Brunch"
-    description="HP up!"
+    description="HP up"
     gfx="tb_no_sprite.png"
     quality="1"
-    tags="nolostbr summonable food"
+    tags="nolostbr food"
     cache=""
 
     maxhearts="2"
-    hearts="6"
+    hearts="4"
 />
 <passive id="75" name="Toast"
-    description="HP up?"
+    description="HP up"
     gfx="tb_no_sprite.png"
     quality="1"
-    tags="nolostbr summonable food"
+    tags="nolostbr food"
     cache=""
 
     maxhearts="2"
-    blackhearts="2"
+    hearts="4"
 />
 <active id="76" name="Delivery Box"
     description="Same-day shipping"
     gfx="tb_no_sprite.png"
-    quality="3"
-    tags="offenisve"
+    quality="2"
+    tags="offensive"
     cache=""
 
     shopprice="10"
+    maxcharges="4"
+/>
+<passive id="77" name="Lucky Pebbles"
+    description="HP + luck up"
+    gfx="tb_lucky_pebbles.png"
+    quality="2"
+    tags="nolostbr summonable"
+    cache="luck"
+
+    maxhearts="2"
+    hearts="6"
+/>
+<active id="78" name="Mom's Photobook"
+    description="Mass confusion"
+    gfx="tb_no_sprite.png"
+    quality="0"
+    tags="offensive mom"
+    cache=""
+
     maxcharges="3"
+/>
+<passive id="79" name="Finger Trap"
+    description="Tears up + shotspeed down"
+    gfx="tb_chinese_finger_trap.png"
+    quality="1"
+    tags="offensive summonable tearsup"
+    cache="firedelay shotspeed"
+/>
+<passive id="80" name="Hemolymph"
+    description="You're blue now!"
+    gfx="tb_hemolyph.png"
+    quality="0"
+    tags="nolostbr summonable"
+    cache=""
 />
 
 <passive id="109" name="RETROFALL"
@@ -693,7 +726,7 @@
     description="Tears up + tears cap up"
     gfx="tb_catharsis.png"
     quality="4"
-    tags="offensive"
+    tags="offensive tearsup"
     cache="firedelay"
 
     devilprice="2"

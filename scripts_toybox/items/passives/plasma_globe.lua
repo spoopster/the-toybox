@@ -20,7 +20,7 @@ local function getPlayerForEnt(ent)
             if(cEnt:ToPlayer()) then
                 return cEnt:ToPlayer()
             elseif(cEnt:ToFamiliar()) then
-                if(mod.COPYING_FAMILIARS[cEnt.Variant] or cEnt.Variant==FamiliarVariant.FATES_REWARD) then
+                if(mod.TEAR_COPYING_FAMILIARS[cEnt.Variant] or cEnt.Variant==FamiliarVariant.FATES_REWARD) then
                     return cEnt:ToFamiliar().Player
                 end
             end
@@ -217,7 +217,7 @@ local function getPlayerForEnt(ent)
             if(cEnt:ToPlayer()) then
                 return cEnt:ToPlayer()
             elseif(cEnt:ToFamiliar()) then
-                if(mod.COPYING_FAMILIARS[fam.Variant] or fam.Variant==FamiliarVariant.FATES_REWARD) then
+                if(mod.TEAR_COPYING_FAMILIARS[fam.Variant] or fam.Variant==FamiliarVariant.FATES_REWARD) then
                     return cEnt:ToFamiliar().Player
                 end
             end

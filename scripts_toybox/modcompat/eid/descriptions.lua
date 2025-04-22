@@ -305,8 +305,8 @@ enums.FUNCTIONS.AddItem({
     ID = mod.COLLECTIBLE.ROCK_CANDY,
     Name = "Rock Candy",
     Description = {
-        "\1 +0.3 Tears",
-        "\1 +0.15 Shotspeed",
+        "\1 +0.7 Damage",
+        "\1 +0.16 Shotspeed",
         "{{Card"..mod.CONSUMABLE.MANTLE_ROCK.."}} Spawns a random Mantle consumable",
     },
 })
@@ -1014,7 +1014,7 @@ enums.FUNCTIONS.AddItem({
     Name = "Brunch",
     Description = {
         "\1 +1 Health",
-        "{{HealingRed}} Heals 2 hearts",
+        "{{HealingRed}} Heals 1 heart",
     },
     Modifiers = {
         {
@@ -1023,7 +1023,7 @@ enums.FUNCTIONS.AddItem({
                 return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)
             end,
             ToModify = {
-                {"2", "{{BlinkGreen}}3{{CR}}"}
+                {"1 heart", "{{BlinkGreen}}2{{CR}} hearts"}
             }
         },
         {
@@ -1043,8 +1043,8 @@ enums.FUNCTIONS.AddItem({
     ID = mod.COLLECTIBLE.TOAST,
     Name = "Toast",
     Description = {
-        "\1 +1 Empty heart container",
-        "{{BlackHeart}} +1 Black Heart",
+        "\1 +1 Health",
+        "{{HealingRed}} Heals 1 heart",
     },
     Modifiers = {
         {
@@ -1053,7 +1053,7 @@ enums.FUNCTIONS.AddItem({
                 return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)
             end,
             ToModify = {
-                {"Empty heart container", "{{BlinkGreen}}Health{{CR}}"}
+                {"1 heart", "{{BlinkGreen}}2{{CR}} hearts"}
             }
         },
         {
@@ -1075,6 +1075,39 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{Coin}} Pay 3 coins to spawn a {{Bomb}} Bomb or {{Key}} Key",
         "The pickup you have less of is more common",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.LUCKY_PEBBLES,
+    Name = "Lucky Pebbles",
+    Description = {
+        "\1 +1 Health",
+        "{{HealingRed}} Heals 1 heart",
+        "\1 +1 Luck"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.MOMS_PHOTOBOOK,
+    Name = "Mom's Photobook",
+    Description = {
+        "{{Confusion}} Confuses all enemies in the room for 5 seconds",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.FINGER_TRAP,
+    Name = "Finger Trap",
+    Description = {
+        "\1 +0.5 Tears",
+        "\2 -0.16 Shotspeed",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.HEMOLYMPH,
+    Name = "Hemolymph",
+    Description = {
+        "If you have full health, you may pick up Red Hearts to:",
+        "{{SoulHeart}} Replenish half Soul/Black Hearts",
+        "{{HalfSoulHeart}} Get a half Soul Heart, if you have no Soul Hearts"
     },
 })
 
