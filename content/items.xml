@@ -702,8 +702,10 @@
     description="More room"
     gfx="tb_golden_schoolbag.png"
     quality="4"
-    tags="offensive"
+    tags="offensive noeden"
     cache=""
+
+    hidden="true"
 />
 <active id="495" name="Golden Prayer Card"
     description="Eternal eternity"
@@ -719,23 +721,27 @@
     description="Literally just a slab of uranium"
     gfx="tb_URANIUM.png"
     quality="4"
-    tags="offensive"
+    tags="offensive noeden"
     cache=""
+
+    hidden="true"
 />
 <passive id="497" name="Catharsis"
     description="Tears up + tears cap up"
     gfx="tb_catharsis.png"
     quality="4"
-    tags="offensive tearsup"
+    tags="offensive tearsup noeden"
     cache="firedelay"
 
     devilprice="2"
+
+    hidden="true"
 />
 <active id="498" name="Equalizer"
     description="..."
     gfx="tb_equalizer.png"
     quality="3"
-    tags="offensive"
+    tags="offensive noeden"
     cache="all"
 
     coins="3"
@@ -744,6 +750,8 @@
 
     passivecache="true"
     maxcharges="1"
+
+    hidden="true"
 />
 <active id="499" name="Compressed Dice"
     description="One reroll to rule them all"

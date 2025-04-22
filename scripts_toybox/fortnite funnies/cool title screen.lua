@@ -20,10 +20,16 @@ PLAYER_SPRITE:ReplaceSpritesheet(0, PLAYER_FILENAMES[math.random(#PLAYER_FILENAM
 
 local ITEM_FILENAMES = {}
 for _, id in pairs(mod.COLLECTIBLE) do
-    table.insert(ITEM_FILENAMES, conf:GetCollectible(id).GfxFileName)
+    local iconf = conf:GetCollectible(id)
+    if(not iconf.Hidden) then
+        table.insert(ITEM_FILENAMES, iconf.GfxFileName)
+    end
 end
 for _, id in pairs(mod.TRINKET) do
-    table.insert(ITEM_FILENAMES, conf:GetTrinket(id).GfxFileName)
+    local iconf = conf:GetTrinket(id)
+    if(not iconf.Hidden) then
+        table.insert(ITEM_FILENAMES, iconf.GfxFileName)
+    end
 end
 
 
