@@ -838,6 +838,16 @@
     gfx="tb_divided_justice.png"
     cache=""
 />
+<trinket id="11" name="Killscreen"
+    description="High Sc .  !"
+    gfx="tb_no_sprite.png"
+    cache=""
+/>
+<trinket id="12" name="Mirror Shard"
+    description="13 years bad luck"
+    gfx="tb_no_sprite.png"
+    cache="luck"
+/>
 
 <!-- UNUSED ITEMS
 

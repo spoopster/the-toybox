@@ -95,6 +95,8 @@ local t = {
     "scripts_toybox.items.trinkets.black_rune_shard",
     "scripts_toybox.items.trinkets.suppository",
     "scripts_toybox.items.trinkets.divided_justice",
+    "scripts_toybox.items.trinkets.killscreen",
+    "scripts_toybox.items.trinkets.mirror_shard",
 
     --UNUSED
     --"scripts_toybox.items.actives.btrain",

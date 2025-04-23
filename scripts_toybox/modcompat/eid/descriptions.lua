@@ -1375,6 +1375,53 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = mod.TRINKET.KILLSCREEN,
+    Name = "Killscreen",
+    Description = {
+        "Enemies on the right side of the room take 1 damage every 0.5 seconds",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"0.5", "0.33"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"0.5", "0.25"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = mod.TRINKET.MIRROR_SHARD,
+    Name = "Mirror Shard",
+    Description = {
+        "\2 -13 Luck",
+        "\1 +1 Luck whenever you take damage"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"1 ", "1.5 "},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"1 ", "2 "},
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = mod.CONSUMABLE.PRISMSTONE,
