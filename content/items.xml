@@ -848,6 +848,11 @@
     gfx="tb_no_sprite.png"
     cache="luck"
 />
+<trinket id="13" name="Lucky Tooth"
+    description="Charisma up"
+    gfx="tb_no_sprite.png"
+    cache=""
+/>
 
 <!-- UNUSED ITEMS
 

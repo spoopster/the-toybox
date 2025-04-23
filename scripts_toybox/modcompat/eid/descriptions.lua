@@ -1422,6 +1422,29 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = mod.TRINKET.LUCKY_TOOTH,
+    Name = "Lucky Tooth",
+    Description = {
+        "\1 Beggars have a flat +33% chance to payout",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"33%%", "67%%"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"33%%", "100%%"},
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = mod.CONSUMABLE.PRISMSTONE,

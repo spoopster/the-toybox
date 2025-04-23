@@ -201,6 +201,7 @@ local function reSlotUpdate(_, slot, offset)
     table.insert(tb, {NAME="MAX TIMEOUT", VAL=(mod:getEntityData(slot, "MAX_TIMEOUT") or 0)})
     table.insert(tb, {NAME="PRIZE TYPE", VAL=slot:GetPrizeType()})
     table.insert(tb, {NAME="DONATION VALUE", VAL=slot:GetDonationValue()})
+    table.insert(tb, {NAME="ANIMATION", VAL=slot:GetSprite():GetAnimation()})
 
     mod:setEntityData(slot, "SLOT_RENDERS", tb)
 end
@@ -214,6 +215,7 @@ local function postSlotUpdate(_, slot, offset)
     oldTb[2].VAL = tostring(oldTb[2].VAL).." / "..slot:GetTimeout()
     oldTb[4].VAL = tostring(oldTb[4].VAL).." / "..slot:GetPrizeType()
     oldTb[5].VAL = tostring(oldTb[5].VAL).." / "..slot:GetDonationValue()
+    oldTb[6].VAL = tostring(oldTb[6].VAL).." / "..slot:GetSprite():GetAnimation()
 
     mod:setEntityData(slot, "SLOT_RENDERS", oldTb)
 end
@@ -233,6 +235,145 @@ local function postSlotRender(_, slot, offset)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_SLOT_RENDER, postSlotRender)
+
+function mod:test()
+    local slot = Isaac.FindByType(6)[1]
+    if(not slot) then return end
+    slot = slot:ToSlot()
+
+    slot:SetState(2)
+end
+
+local shitFound = {
+    NOTHING = 0,
+
+    BOMB = 0,
+    KEY = 0,
+    HEART = 0,
+    ONE_COIN = 0,
+    TWO_COIN = 0,
+    PILL = 0,
+    FLY = 0,
+    PRETTY_FLY = 0,
+    DOLLAR = 0,
+
+    EXPLOSION = 0,
+}
+local renderOrder = {
+    "NOTHING",
+    "BOMB" ,
+    "KEY",
+    "HEART",
+    "ONE_COIN",
+    "TWO_COIN",
+    "PILL",
+    "FLY",
+    "PRETTY_FLY",
+    "DOLLAR",
+    "EXPLOSION",
+}
+
+
+function mod:triggerSlot(prizetype)
+    local slot = Isaac.Spawn(6,1,0,Game():GetRoom():GetCenterPos(),Vector.Zero,nil):ToSlot()
+
+    slot:SetState(2)
+    slot:GetSprite():SetFrame("WiggleEnd", 6)
+
+    slot:Update()
+    slot:Update()
+    slot:Update()
+
+    local foundThings = {BOMB=0, KEY=0, HEART=0, PILL=0, COIN=0, FLY=0, PFLY=0, ITEM=0, BOOM=0, POOF=0}
+    for _, ent in ipairs(Isaac.GetRoomEntities()) do
+        if(ent.FrameCount==0) then
+            if(ent.Type==EntityType.ENTITY_FAMILIAR) then
+                foundThings.PFLY = foundThings.PFLY+1
+            elseif(ent.Type==EntityType.ENTITY_FLY) then
+                foundThings.FLY = foundThings.FLY+1
+            elseif(ent.Type==EntityType.ENTITY_PICKUP) then
+                if(ent.Variant==PickupVariant.PICKUP_BOMB) then
+                    foundThings.BOMB = foundThings.BOMB+1
+                elseif(ent.Variant==PickupVariant.PICKUP_KEY) then
+                    foundThings.KEY = foundThings.KEY+1
+                elseif(ent.Variant==PickupVariant.PICKUP_HEART) then
+                    foundThings.HEART = foundThings.HEART+1
+                elseif(ent.Variant==PickupVariant.PICKUP_PILL) then
+                    foundThings.PILL = foundThings.PILL+1
+                elseif(ent.Variant==PickupVariant.PICKUP_COIN) then
+                    foundThings.COIN = foundThings.COIN+1
+                elseif(ent.Variant==PickupVariant.PICKUP_COLLECTIBLE) then
+                    foundThings.ITEM = foundThings.ITEM+1
+                end
+            elseif(ent.Type==EntityType.ENTITY_BOMB) then
+                foundThings.BOMB = foundThings.BOMB+1
+            elseif(ent.Type==EntityType.ENTITY_EFFECT) then
+                if(ent.Variant==1) then
+                    foundThings.BOOM = foundThings.BOOM+1
+                elseif(ent.Variant==15) then
+                    foundThings.POOF = foundThings.POOF+1
+                end
+            end
+            ent:Remove()
+        end
+    end
+
+    if(foundThings.BOOM~=0 and foundThings.ITEM==0) then
+        shitFound.EXPLOSION = shitFound.EXPLOSION+1
+    elseif(foundThings.ITEM~=0 and foundThings.POOF~=0) then
+        shitFound.DOLLAR = shitFound.DOLLAR+1
+    else
+        if(foundThings.BOMB~=0) then
+            shitFound.BOMB = shitFound.BOMB+1
+        elseif(foundThings.KEY~=0) then
+            shitFound.KEY = shitFound.KEY+1
+        elseif(foundThings.HEART~=0) then
+            shitFound.HEART = shitFound.HEART+1
+        elseif(foundThings.COIN~=0) then
+            if(foundThings.COIN==1) then
+                shitFound.ONE_COIN = shitFound.ONE_COIN+1
+            elseif(foundThings.COIN==2) then
+                shitFound.TWO_COIN = shitFound.TWO_COIN+1
+            end
+        elseif(foundThings.PILL~=0) then
+            shitFound.PILL = shitFound.PILL+1
+        elseif(foundThings.PFLY~=0) then
+            shitFound.PRETTY_FLY = shitFound.PRETTY_FLY+1
+        elseif(foundThings.FLY~=0) then
+            shitFound.FLY = shitFound.FLY+1
+        else
+            shitFound.NOTHING = shitFound.NOTHING+1
+        end
+    end
+
+    slot:Remove()
+end
+
+local function renderResults()
+    if(Isaac.GetPlayer().FrameCount>30 and not Game():IsPaused()) then
+        mod:triggerSlot()
+    end
+
+    local renderPos = Vector(130,40)
+
+    local totalFound = 0
+    for key, val in pairs(shitFound) do
+        totalFound = totalFound+val
+    end
+
+    PILLBONUS_FONT:DrawStringScaled("TOTAL FOUND: "..tostring(totalFound), renderPos.X, renderPos.Y, 0.5, 0.5, KColor(1,1,1,1))
+
+    for i, key in ipairs(renderOrder) do
+        local curPos = renderPos+i*Vector(0,7)
+        PILLBONUS_FONT:DrawStringScaled(tostring(key)..": "..tostring(shitFound[key]), curPos.X, curPos.Y, 0.5, 0.5, KColor(1,1,1,1))
+
+        local perc = (shitFound[key]/totalFound)*100
+        perc = math.floor(perc*100)/100
+
+        PILLBONUS_FONT:DrawStringScaled(tostring(perc).."%", curPos.X+100, curPos.Y, 0.5, 0.5, KColor(1,1,1,1))
+    end
+end
+--mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderResults)
 
 --]]
 

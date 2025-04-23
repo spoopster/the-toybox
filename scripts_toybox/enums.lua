@@ -170,6 +170,7 @@ mod.TRINKET = {
     DIVIDED_JUSTICE = Isaac.GetTrinketIdByName("Divided Justice"),
     KILLSCREEN = Isaac.GetTrinketIdByName("Killscreen"),
     MIRROR_SHARD = Isaac.GetTrinketIdByName("Mirror Shard"),
+    LUCKY_TOOTH = Isaac.GetTrinketIdByName("Lucky Tooth"),
 
     --LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK"),            --*UNUSED
     --FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet"),            --*UNUSED

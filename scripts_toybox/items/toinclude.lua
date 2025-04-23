@@ -97,6 +97,7 @@ local t = {
     "scripts_toybox.items.trinkets.divided_justice",
     "scripts_toybox.items.trinkets.killscreen",
     "scripts_toybox.items.trinkets.mirror_shard",
+    "scripts_toybox.items.trinkets.lucky_tooth",
 
     --UNUSED
     --"scripts_toybox.items.actives.btrain",
