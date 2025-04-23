@@ -59,7 +59,7 @@ local function convertDataToSaveData(data, basedata)
     local saveDat = {}
     for key, val in pairs(basedata) do
         --print(key, val, data[key])
-        saveDat[key] = data[key] or val
+        saveDat[key] = (data[key]~=nil and data[key] or val)
     end
     saveDat = convertTableToSaveData(saveDat)
 

@@ -843,15 +843,15 @@
     gfx="tb_no_sprite.png"
     cache=""
 />
-<trinket id="12" name="Mirror Shard"
-    description="13 years bad luck"
-    gfx="tb_no_sprite.png"
-    cache="luck"
-/>
-<trinket id="13" name="Lucky Tooth"
+<trinket id="12" name="Lucky Tooth"
     description="Charisma up"
     gfx="tb_no_sprite.png"
     cache=""
+/>
+<trinket id="13" name="Mirror Shard"
+    description="13 years bad luck"
+    gfx="tb_no_sprite.png"
+    cache="luck"
 />
 
 <!-- UNUSED ITEMS
