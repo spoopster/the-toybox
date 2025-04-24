@@ -850,7 +850,7 @@
 />
 <trinket id="13" name="Mirror Shard"
     description="13 years bad luck"
-    gfx="tb_no_sprite.png"
+    gfx="tb_mirror_shard.png"
     cache="luck"
 />
 

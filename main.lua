@@ -464,3 +464,36 @@ local function collideithgrid(_, pl, idx, ent)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_GRID_COLLISION, collideithgrid)
 --]]
+
+--[[
+
+mod.DARK_UPGRADE = false
+local hadDarkArts = false
+local darkArtsMult = 2.5
+
+---@param pl EntityPlayer
+local function playerUpdate(_, pl)
+    if(not mod.DARK_UPGRADE) then return end
+
+    local hasDarkArts = pl:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_DARK_ARTS)
+
+    if(hasDarkArts and not hadDarkArts) then
+        pl.SizeMulti = pl.SizeMulti*darkArtsMult
+    elseif(hadDarkArts and not hasDarkArts) then
+        pl.SizeMulti = pl.SizeMulti/darkArtsMult
+    end
+
+
+    hadDarkArts = hasDarkArts
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate)
+
+local function postPlayerRender(_, pl)
+    local c = Capsule(pl.Position, pl.SizeMulti, 0, pl.Size)
+    local sh = DebugRenderer.Get(1000, true)
+    sh:Capsule(c)
+    sh:SetTimeout(1)
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender)
+
+--]]
