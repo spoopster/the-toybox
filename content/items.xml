@@ -784,6 +784,10 @@
     description="Ninja skills"
     gfx="tb_yellow_belt.png"
     cache=""
+
+    tags="noeden"
+
+    hidden="true"
 />
 <trinket id="2" name="Antibiotics"
     description="Double drug"
