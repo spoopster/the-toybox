@@ -3,7 +3,7 @@ local sfx = SFXManager()
 
 --- !!! TODO: update toybox to rep+ to use rgon nightly TriggerRestock feature
 
-local HEART_UPGRADE_CHANCE = 1--0.25
+local HEART_UPGRADE_CHANCE = 0.25
 
 local HEART_UPGRADE_TABLE = {
     [HeartSubType.HEART_HALF] = HeartSubType.HEART_FULL,

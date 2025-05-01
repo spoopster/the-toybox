@@ -1,9 +1,9 @@
 local mod = ToyboxMod
 
+local itemsData = include("scripts_toybox.modcompat.accurate blurbs.enums")
+
 local function loadBlurbs()
     if(not AccurateBlurbs) then return end
-
-    local itemsData = include("scripts_toybox.modcompat.accurate blurbs.enums")
 
     local conf = Isaac.GetItemConfig()
     for item, desc in pairs(itemsData.ITEMS) do

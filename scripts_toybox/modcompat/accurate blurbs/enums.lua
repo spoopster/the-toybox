@@ -82,8 +82,7 @@ local TRINKETS = {
     [mod.TRINKET.DIVIDED_JUSTICE] =         "Pickups may give one of everything",
 }
 
-
 return {
-    ITEMS = ITEMS,
-    TRINKETS = TRINKETS,
+    ["ITEMS"] = ITEMS,
+    ["TRINKETS"] = TRINKETS,
 }

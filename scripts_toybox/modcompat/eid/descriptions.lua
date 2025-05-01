@@ -493,7 +493,7 @@ enums.FUNCTIONS.AddItem({
     Name = "Quake Bombs",
     Description = {
         "{{Bomb}} +5 Bombs",
-        "Bombs explode additional connected rocks up to 2 tiles away",
+        "Bombs explode additional connected rocks up to 3 tiles away",
         "Rocks destroyed by your bombs have doubled drops"
     },
     StackModifiers = {
@@ -1108,6 +1108,13 @@ enums.FUNCTIONS.AddItem({
         "If you have full health, you may pick up Red Hearts to:",
         "{{SoulHeart}} Replenish half Soul/Black Hearts",
         "{{HalfSoulHeart}} Get a half Soul Heart, if you have no Soul Hearts"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.SOLAR_PANEL,
+    Name = "Solar Panel",
+    Description = {
+        "{{Battery}} Entering a non-hostile room for the first time adds 1 active charge",
     },
 })
 

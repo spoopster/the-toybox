@@ -347,7 +347,7 @@
 <active id="41" name="Candy Dispenser"
     description="Safe keepings"
     gfx="tb_pez_dispenser.png"
-    quality="3"
+    quality="2"
     tags="offensive"
     cache=""
 
@@ -687,6 +687,13 @@
     gfx="tb_hemolyph.png"
     quality="0"
     tags="nolostbr summonable"
+    cache=""
+/>
+<passive id="81" name="Solar Panel"
+    description="Passive charge"
+    gfx="tb_no_sprite.png"
+    quality="2"
+    tags="offensive summonable"
     cache=""
 />
 
