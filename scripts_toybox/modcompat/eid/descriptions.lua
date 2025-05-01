@@ -1117,6 +1117,15 @@ enums.FUNCTIONS.AddItem({
         "{{Battery}} Entering a non-hostile room for the first time adds 1 active charge",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.SURPRISE_EGG,
+    Name = "Surprise Egg",
+    Description = {
+        "\1 +1 Health",
+        "{{Pill}} Forces you to eat a Capsule, and adds it to the pill pool",
+        "Capsule grants a random smelted trinket"
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---

@@ -60,6 +60,7 @@ local t = {
     "scripts_toybox.items.passives.finger_trap",
     "scripts_toybox.items.passives.hemolymph",
     "scripts_toybox.items.passives.solar_panel",
+    "scripts_toybox.items.passives.surprise_egg",
 
     "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
 

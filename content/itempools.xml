@@ -70,6 +70,7 @@
         <Item Name="Conjunctivitis"/>
         <Item Name="Dad's Slipper"/>
         <Item Name="Finger Trap"/>
+        <Item Name="Surprise Egg"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
@@ -82,6 +83,7 @@
         <Item Name="Conjunctivitis"/>
         <Item Name="Dad's Slipper"/>
         <Item Name="Finger Trap"/>
+        <Item Name="Surprise Egg"/>
     </Pool>
 
     <Pool Name="shop">
@@ -95,6 +97,7 @@
         <Item Name="Last Beer"/>
         <Item Name="Food Stamps"/>
         <Item Name="Delivery Box"/>
+        <Item Name="Solar Panel"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -106,6 +109,7 @@
         <Item Name="Last Beer"/>
         <Item Name="Food Stamps"/>
         <Item Name="Delivery Box"/>
+        <Item Name="Solar Panel"/>
     </Pool>
 
     <Pool Name="devil">
@@ -198,6 +202,10 @@
     <Pool Name="bombBum">
         <Item Name="Quake Bombs"/>
         <Item Name="Blessed Bombs"/>
+    </Pool>
+
+    <Pool Name="batteryBum">
+        <Item Name="Solar Panel"/>
     </Pool>
 
     <Pool Name="craneGame">

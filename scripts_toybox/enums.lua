@@ -139,6 +139,7 @@ mod.COLLECTIBLE = {
     FINGER_TRAP = Isaac.GetItemIdByName("Finger Trap"),
     HEMOLYMPH = Isaac.GetItemIdByName("Hemolymph"),
     SOLAR_PANEL = Isaac.GetItemIdByName("Solar Panel"),
+    SURPRISE_EGG = Isaac.GetItemIdByName("Surprise Egg"),
 
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),
