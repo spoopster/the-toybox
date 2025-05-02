@@ -116,6 +116,7 @@ local t = {
     "scripts_toybox.items.troll.golden_schoolbag",
     "scripts_toybox.items.troll.catharsis",
     "scripts_toybox.items.troll.uranium",
+    "scripts_toybox.items.troll.zero_gravity",
 }
 for _, path in ipairs(t) do
     include(path)

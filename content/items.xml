@@ -715,6 +715,15 @@
     cache=""
 />
 
+<passive id="493" name="Zero-Gravity"
+    description="Sluggish movement + DMG up"
+    gfx="tb_zero_gravity.png"
+    quality="0"
+    tags="offensive noeden"
+    cache="damage"
+
+    hidden="true"
+/>
 <passive id="494" name="Golden Schoolbag"
     description="More room"
     gfx="tb_golden_schoolbag.png"

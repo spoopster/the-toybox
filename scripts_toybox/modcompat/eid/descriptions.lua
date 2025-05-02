@@ -2163,6 +2163,16 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.ZERO_GRAVITY,
+    Name = "Zero-Gravity",
+    Description = {
+        "\1 +1.5 Damage",
+        "You move on a 2 second delay",
+        "Releasing movement buttons makes you instantly teleport to the desired position"
+    },
+})
+
+enums.FUNCTIONS.AddItem({
     ID = mod.COLLECTIBLE.COMPRESSED_DICE,
     Name = "Compressed Dice",
     Description = {

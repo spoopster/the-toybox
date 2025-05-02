@@ -146,6 +146,7 @@ mod.COLLECTIBLE = {
     EQUALIZER = Isaac.GetItemIdByName("Equalizer"),
     GOLDEN_PRAYER_CARD = Isaac.GetItemIdByName("Golden Prayer Card"),
     GOLDEN_SCHOOLBAG = Isaac.GetItemIdByName("Golden Schoolbag"),
+    ZERO_GRAVITY = Isaac.GetItemIdByName("Zero-Gravity"),
     
     --BTRAIN = Isaac.GetItemIdByName("B-Train"),                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
 
@@ -239,6 +240,8 @@ mod.EFFECT_VARIANT = {
     AURA = Isaac.GetEntityVariantByName("Enemy Fear Aura"),
     VESSEL_BREAK = Isaac.GetEntityVariantByName("Glass Vessel Break"),
     BARBED_WIRE_HALO = Isaac.GetEntityVariantByName("Barbed Wire Halo (TOYBOX)"),
+
+    ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair")
 }
 
 ---@type PickupVariant[]
