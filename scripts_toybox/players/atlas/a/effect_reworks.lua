@@ -1,6 +1,7 @@
 local mod = ToyboxMod
 
 local t = {
+    --[[
     "scripts_toybox.players.atlas.a.reimp.guppys_paw",
     "scripts_toybox.players.atlas.a.reimp.converter",
     "scripts_toybox.players.atlas.a.reimp.ossification",
@@ -12,6 +13,9 @@ local t = {
     "scripts_toybox.players.atlas.a.reimp.the_nail",
     "scripts_toybox.players.atlas.a.reimp.prayer_card",
     "scripts_toybox.players.atlas.a.reimp.steel_soul",
+    --]]
+    --"scripts.scripts_toybox.atlas.a.reimp.adrenaline",
+    "scripts_toybox.players.atlas.a.reimp.blood_oath",
 }
 for _, path in ipairs(t) do
     include(path)

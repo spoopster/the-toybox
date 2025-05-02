@@ -77,6 +77,19 @@ function mod:updateMantles(player)
         data.SALT_CHARIOT_ENABLED = false
     end
 
+    mod.DONT_IGNORE_ATLAS_HEALING = true
+    local desiredHealth = 0
+    for i=1, data.HP_CAP do
+        if(mantles[i].TYPE~=mod.MANTLE_DATA.NONE.ID) then
+            local hpToAdd = (mantles[i].HP==1 and 1 or 2)
+            if(mantles[i].MAXHP<=1) then hpToAdd = 2 end
+
+            desiredHealth = desiredHealth+hpToAdd
+        end
+    end
+    player:AddHearts(desiredHealth-player:GetHearts())
+    mod.DONT_IGNORE_ATLAS_HEALING = false
+
     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 end
 

@@ -13,14 +13,14 @@
 		costumeSuffix="atlas_a" skinColor="-1"
 		modcostume="1000"
 
-		heartcontainers="6" redhearts="6" healthlimit="6"
+		bonehearts="3" redhearts="6"
 	/>
 	<player birthright="Mantle stratification" name="The Tar" 
 		nameimage="tb_atlas_name.png" portrait="tb_atlas_tar_portrait.png" skin="tb_character_atlas_tar.png"
 		costumeSuffix="atlas_a_tar" skinColor="-1"
 		modcostume="999"
 
-		heartcontainers="6" redhearts="6" healthlimit="6"
+		bonehearts="3" redhearts="6"
 
 		hidden="true"
 		completionparent="Atlas"

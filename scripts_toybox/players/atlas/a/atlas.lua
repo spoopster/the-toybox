@@ -92,11 +92,11 @@ local function forceHealth(_, player)
 
     mod.DONT_IGNORE_ATLAS_HEALING = true
     if(player:GetMaxHearts()<6) then
-        player:AddMaxHearts(6)
+        --player:AddMaxHearts(6)
     end
     if(player:GetHearts()<6) then
-        player:AddHearts(6)
+        --player:AddHearts(6)
     end
     mod.DONT_IGNORE_ATLAS_HEALING = false
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, math.huge, forceHealth, 0)
+--mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, math.huge, forceHealth, 0)

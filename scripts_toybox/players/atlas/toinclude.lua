@@ -14,7 +14,7 @@ local t = {
     "scripts_toybox.players.atlas.a.chapi_cancel",
 
     "scripts_toybox.players.atlas.a.horn_costumes",
-    --"scripts_toybox.players.atlas.a.effect_reworks",
+    "scripts_toybox.players.atlas.a.effect_reworks",
     --]]
 
     -- [[
