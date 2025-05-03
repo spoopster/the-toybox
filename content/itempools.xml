@@ -28,6 +28,7 @@
         <Item Name="Food Stamps"/>
         <Item Name="Lucky Pebbles"/>
         <Item Name="Hemolymph"/>
+        <Item Name="Colossal Orb"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -211,5 +212,6 @@
     <Pool Name="craneGame">
         <Item Name="Awesome Fruit"/>
         <Item Name="Plasma Globe"/>
+        <Item Name="Colossal Orb"/>
     </Pool>
 </ItemPools>

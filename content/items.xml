@@ -710,8 +710,11 @@
     description="Who's the boss now?"
     gfx="tb_colossal_orb.png"
     quality="3"
-    tags="offensive summonable"
+    tags="offensive summonable nogreed"
     cache="damage speed size"
+
+    maxhearts="2"
+    hearts="2"
 />
 
 <passive id="109" name="RETROFALL"

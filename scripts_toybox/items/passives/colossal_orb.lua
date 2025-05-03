@@ -29,15 +29,27 @@ local function shockwaveOnEntry(_)
     local room = Game():GetRoom()
     if(room:IsClear()) then return end
 
+    local isBoss = (Game():GetRoom():GetType()==RoomType.ROOM_BOSS)
+    local bossTimeMod = 5
+
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(mod.COLLECTIBLE.COLOSSAL_ORB)) then
-            sfx:Play(mod.SOUND_EFFECT.COLOSSAL_ORB_SHOCKWAVE)
+            if(not isBoss) then
+                sfx:Play(mod.SOUND_EFFECT.COLOSSAL_ORB_SHOCKWAVE)
+            end
 
             Isaac.CreateTimer(
                 ---@param effect EntityEffect
                 function(effect)
-                    if(effect.FrameCount==0) then return end
+                    if(isBoss) then
+                        if(effect.FrameCount==1) then
+                            sfx:Play(mod.SOUND_EFFECT.COLOSSAL_ORB_SHOCKWAVE)
+                        end
+                        if(effect.FrameCount<=bossTimeMod) then return end
+                    elseif(effect.FrameCount~=1) then
+                        return
+                    end
 
                     Game():MakeShockwave(pl.Position, 0.075, 0.05, TIMER_DUR)
                     effect.Position = pl.Position
@@ -62,7 +74,7 @@ local function shockwaveOnEntry(_)
 
                     end, 1, TIMER_DUR, false
                     )
-                end, 0, 2, false
+                end, 1, 2+bossTimeMod, false
             )
         end
     end

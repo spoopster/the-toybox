@@ -1130,6 +1130,7 @@ enums.FUNCTIONS.AddItem({
     ID = mod.COLLECTIBLE.COLOSSAL_ORB,
     Name = "Colossal Orb",
     Description = {
+        "{{HealingRed}} +1 Health",
         "\1 +1 Damage",
         "\2 -0.2 Speed",
         "Size up",
