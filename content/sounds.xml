@@ -50,6 +50,10 @@
 		<sample weight="1" path="toybox_whip.wav" />
 	</sound>
 
+	<sound name="Toybox_Colossal_Orb">
+		<sample weight="1" path="toybox_colossal_shockwave.wav" />
+	</sound>
+
 	<sound name="Toybox_AtlasA_RockCrack">
 		<sample weight="1" path="toybox_atlas_rockcrack1.wav" />
         <sample weight="1" path="toybox_atlas_rockcrack2.wav" />

@@ -706,6 +706,13 @@
     maxhearts="2"
     hearts="2"
 />
+<passive id="83" name="Colossal Orb"
+    description="Who's the boss now?"
+    gfx="tb_colossal_orb.png"
+    quality="3"
+    tags="offensive summonable"
+    cache="damage speed size"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

@@ -32,7 +32,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMIL
 
 --#region FLY FAMILIAR
 
-local FLY_COLL_DAMAGE = 1
+local FLY_COLL_DAMAGE = 2.5
 
 local SCREAM_TRYFREQ = 15
 local SCREAM_CHANCE = 0.2
@@ -59,8 +59,10 @@ local function shadowFlyUpdate(fam)
     local sp = fam:GetSprite()
     local rng = fam:GetDropRNG()
 
+    local data = mod:getEntityDataTable(fam)
+
     if(fam.State==0) then
-        if(fam.FireCooldown<=0 and fam.FrameCount%SCREAM_TRYFREQ==0) then
+        if((data.SHADOW_FIRE_COOL or 0)<=0 and fam.FrameCount%SCREAM_TRYFREQ==0) then
             local enemyNum = 0
             for _, enemy in ipairs(Isaac.FindInRadius(fam.Position, SCREAM_TRYRADIUS, EntityPartition.ENEMY)) do
                 if(mod:isValidEnemy(enemy)) then
@@ -73,13 +75,13 @@ local function shadowFlyUpdate(fam)
             end
         end
 
-        fam.FireCooldown = math.max(0, fam.FireCooldown-1)
+        data.SHADOW_FIRE_COOL = math.max(0, (data.SHADOW_FIRE_COOL or 0)-1)
         fam:MoveDiagonally(DIAG_SPEED)
     elseif(fam.State==1) then
         if(sp:IsFinished("Scream")) then
             sp:Play("Idle", true)
             fam.State = 0
-            fam.FireCooldown = SCREAM_COOLDOWN
+            data.SHADOW_FIRE_COOL = SCREAM_COOLDOWN
         elseif(not sp:IsPlaying("Scream")) then
             sp:Play("Scream", true)
         end
@@ -105,6 +107,7 @@ local function shadowFlyUpdate(fam)
         fam.Velocity = fam.Velocity*0.75
     end
 end
+
 --#endregion
 
 --#region CRAWLER FAMILIAR
@@ -241,7 +244,7 @@ end
 
 local URCHIN_COLL_DAMAGE = 7.13
 
-local SPIKES_CHANCE = 0.5
+local SPIKES_CHANCE = 0.25
 local SPIKES_COOLDOWN = 30
 local SPIKES_RADIUS = 40*2.5
 

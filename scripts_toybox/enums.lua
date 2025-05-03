@@ -140,6 +140,7 @@ mod.COLLECTIBLE = {
     HEMOLYMPH = Isaac.GetItemIdByName("Hemolymph"),
     SOLAR_PANEL = Isaac.GetItemIdByName("Solar Panel"),
     SURPRISE_EGG = Isaac.GetItemIdByName("Surprise Egg"),
+    COLOSSAL_ORB = Isaac.GetItemIdByName("Colossal Orb"),
 
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),
@@ -304,6 +305,7 @@ mod.SOUND_EFFECT = {
     ATLASA_METALBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_MetalBreak"),
     ATLASA_GLASSBREAK = Isaac.GetSoundIdByName("Toybox_AtlasA_GlassBreak"),
     SLIPPER_WHIP = Isaac.GetSoundIdByName("Toybox_Whip"),
+    COLOSSAL_ORB_SHOCKWAVE = Isaac.GetSoundIdByName("Toybox_Colossal_Orb"),
 }
 for _, soundEffect in ipairs(mod.SOUND_EFFECT) do
     sfx:Preload(soundEffect)

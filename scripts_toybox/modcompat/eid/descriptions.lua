@@ -1126,6 +1126,16 @@ enums.FUNCTIONS.AddItem({
         "Capsule grants a random smelted trinket"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.COLOSSAL_ORB,
+    Name = "Colossal Orb",
+    Description = {
+        "\1 +1 Damage",
+        "\2 -0.2 Speed",
+        "Size up",
+        "On room entry, all enemies are confused for 4 seconds"
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---
