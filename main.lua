@@ -497,3 +497,26 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender)
 
 --]]
+
+local newDim = 0
+
+function mod:tryPlaceRoom()
+    local room = RoomConfigHolder.GetRandomRoom(Random(), true, StbType.BASEMENT, RoomType.ROOM_DEFAULT)
+    local level = Game():GetLevel()
+
+    local spots = level:FindValidRoomPlacementLocations(room, newDim, true, true)
+    print("NUM FREE SPOTS:", #spots)
+    local idx = spots[math.random(#spots)]
+    local canPlace = level:CanPlaceRoom(room, idx, newDim, true, true, false)
+    print("CAN PLACE ROOM?:", canPlace)
+    if(canPlace) then
+        local desc = level:TryPlaceRoom(room, idx, newDim, true, true, false)
+        print("RESULTING DESCRIPTOR:", desc)
+        print("FINAL IDX:", idx, desc.SafeGridIndex)
+    end
+end
+
+function mod:tryGotoRoom(idx)
+    Game():ChangeRoom(idx, newDim)
+end
+

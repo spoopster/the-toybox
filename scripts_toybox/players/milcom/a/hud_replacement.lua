@@ -27,7 +27,7 @@ local function postRender(_)
     local pl = PlayerManager.FirstPlayerByType(mod.PLAYER_TYPE.MILCOM_A)
     if(not pl) then return end
 
-    local renderPos = Vector(20,12)*Options.HUDOffset + Vector(16,45)
+    local renderPos = Vector(20,12)*Options.HUDOffset + Vector(16,45) + Game().ScreenShakeOffset
 
     -- bombs
     local bombText = tostring(pl:GetNumBombs())

@@ -40,10 +40,10 @@ local function renderStat(_, player, offset)
 
     local toRender = math.floor(data.PILLS_POPPED or 0)
 
-    local renderPos = Isaac.WorldToRenderPosition(player.Position)+Vector(0,10)+offset
+    local renderPos = Isaac.WorldToRenderPosition(player.Position)+Vector(0,10)+offset+Game().ScreenShakeOffset
 
     STAT_SPRITE.Color = Color(1,1,1,data.HELD_MAP_ALPHA)
-    STAT_SPRITE:Render(renderPos+Vector(-5,0))
+    STAT_SPRITE:Render(renderPos+Vector(-5,0)-Game().ScreenShakeOffset)
 
     local boxWidth = 250
     PILLBONUS_FONT:DrawString((toRender<10 and "0" or "")..tostring(toRender), renderPos.X-boxWidth+2.5, renderPos.Y-8.5, KColor(1,1,1,data.HELD_MAP_ALPHA),boxWidth*2,true)

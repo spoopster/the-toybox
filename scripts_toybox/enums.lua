@@ -241,6 +241,7 @@ mod.EFFECT_VARIANT = {
     AURA = Isaac.GetEntityVariantByName("Enemy Fear Aura"),
     VESSEL_BREAK = Isaac.GetEntityVariantByName("Glass Vessel Break"),
     BARBED_WIRE_HALO = Isaac.GetEntityVariantByName("Barbed Wire Halo (TOYBOX)"),
+    DRILL = Isaac.GetEntityVariantByName("Drill"),
 
     ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair")
 }
