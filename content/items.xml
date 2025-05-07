@@ -538,7 +538,7 @@
     description="Appear weak when you are strong"
     gfx="tb_art_of_war.png"
     quality="2"
-    tags="offensive"
+    tags="offensive book"
 
     maxcharges="3"
     cache=""
@@ -668,9 +668,9 @@
 />
 <active id="78" name="Mom's Photobook"
     description="Mass confusion"
-    gfx="tb_no_sprite.png"
+    gfx="tb_moms_photobook.png"
     quality="0"
-    tags="offensive mom"
+    tags="offensive mom book"
     cache=""
 
     maxcharges="3"

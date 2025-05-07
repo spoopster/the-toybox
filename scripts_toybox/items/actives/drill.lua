@@ -1,5 +1,14 @@
 local mod = ToyboxMod
 
+--TODO:
+--  the "drill" effect in the challenge rooms
+--  maybe disable "pre_spawn_clean_award" while the drill is active?
+--     this should disable item recharge and item spawns when challenge room is finished
+--  make it not timed charge (3 or 4 charges?)
+--  add boss challenge room logic for price stuff
+--     >25c = boss wave (2 waves + 1 per extra 25c) 
+--     if is devil item, boss wave with num waves = devilprice    
+
 ---fucking dumb
 
 local FREE_PICKUP_ID = -12841
