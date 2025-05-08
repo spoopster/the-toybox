@@ -99,6 +99,7 @@
         <Item Name="Food Stamps"/>
         <Item Name="Delivery Box"/>
         <Item Name="Solar Panel"/>
+        <Item Name="Baby Shoes"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>

@@ -141,6 +141,8 @@ mod.COLLECTIBLE = {
     SOLAR_PANEL = Isaac.GetItemIdByName("Solar Panel"),
     SURPRISE_EGG = Isaac.GetItemIdByName("Surprise Egg"),
     COLOSSAL_ORB = Isaac.GetItemIdByName("Colossal Orb"),
+    SACK_OF_CHESTS = Isaac.GetItemIdByName("Sack of Chests"),
+    BABY_SHOES = Isaac.GetItemIdByName("Baby Shoes"),
 
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),

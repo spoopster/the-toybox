@@ -62,6 +62,7 @@ local t = {
     "scripts_toybox.items.passives.solar_panel",
     "scripts_toybox.items.passives.surprise_egg",
     "scripts_toybox.items.passives.colossal_orb",
+    "scripts_toybox.items.passives.baby_shoes",
 
     "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
 

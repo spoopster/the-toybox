@@ -1137,6 +1137,14 @@ enums.FUNCTIONS.AddItem({
         "On room entry, all enemies are confused for 4 seconds"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.BABY_SHOES,
+    Name = "Baby Shoes",
+    Description = {
+        "\1 +0.1 Speed",
+        "If the room is clear, grants an additional +0.5 Speed",
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---

@@ -1,4 +1,5 @@
 local mod = ToyboxMod
+local sfx = SFXManager()
 
 mod.TEAR_REPLACEMENT_ITEMS = {
     {CollectibleType.COLLECTIBLE_TECH_X, 1},
@@ -31,9 +32,12 @@ local function artOfWarUse(_, _, rng, pl, flags, slot, vdata)
     data.ART_OF_WAR_ITEMS = data.ART_OF_WAR_ITEMS or {}
     data.ART_OF_WAR_ITEMS[pickedItem] = (data.ART_OF_WAR_ITEMS[pickedItem] or 0)+1
 
+    pl:AnimateCollectible(pickedItem, "UseItem")
+    sfx:Play(SoundEffect.SOUND_MONSTER_YELL_A)
+
     return {
         Discharge = true,
-        ShowAnim = true,
+        ShowAnim = false,
         Remove = false,
     }
 end
