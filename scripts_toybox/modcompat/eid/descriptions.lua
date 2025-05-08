@@ -43,12 +43,12 @@ enums.FUNCTIONS.AddItem({
     Name = "Goat Milk",
     Description = {
         "\1 +0.5 tears",
-        "Everytime you fire, your firedelay will instead be randomly multiplied by anywhere from x0.45 to x1.35",
+        "Everytime you fire, your fire delay is randomized",
     },
     StackModifiers = {
         {
             ToModify = {
-                "Firedelay multiplier is more extreme",
+                "Fire delay randomization is more extreme",
             }
         }
     }
@@ -1142,7 +1142,7 @@ enums.FUNCTIONS.AddItem({
     Name = "Baby Shoes",
     Description = {
         "\1 +0.1 Speed",
-        "If the room is clear, grants an additional +0.5 Speed",
+        "+0.5 Speed if room is clear",
     },
 })
 
