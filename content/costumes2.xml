@@ -7,7 +7,7 @@
     <costume id="50" anm2path="tb_costume_love_letter.anm2" type="passive" hasSkinAlt="true"/>
     <costume id="61" anm2path="tb_costume_bobs_thesis.anm2" type="passive" hasSkinAlt="true"/>
 
-    <costume id="109" anm2path="tb_costume_retrofall.anm2" type="passive" hasSkinAlt="true"/>
+    <costume id="109" anm2path="tb_costume_retrofall.anm2" type="passive" hasSkinAlt="true" priority="1"/>
     
 
     <costume id="999" anm2path="tb_costume_atlas_tar.anm2" type="none" priority="99"/>

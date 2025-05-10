@@ -63,6 +63,8 @@ local t = {
     "scripts_toybox.items.passives.surprise_egg",
     "scripts_toybox.items.passives.colossal_orb",
     "scripts_toybox.items.passives.baby_shoes",
+    "scripts_toybox.items.passives.sack_of_chests",
+    "scripts_toybox.items.passives.effigy",
 
     "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
 

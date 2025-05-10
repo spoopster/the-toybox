@@ -725,10 +725,19 @@
 />
 <passive id="85" name="Baby Shoes"
     description="Never worn"
-    gfx="tb_no_sprite.png"
+    gfx="tb_baby_shoes.png"
     quality="2"
     tags="offensive summonable nogreed"
     cache="speed"
+/>
+<familiar id="86" name="Effigy"
+    description="A real boy"
+    gfx="tb_effigy.png"
+    quality="3"
+    tags="offensive summonable"
+    cache=""
+
+    devilprice="2"
 />
 
 <passive id="109" name="RETROFALL"

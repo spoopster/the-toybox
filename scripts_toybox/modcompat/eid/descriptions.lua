@@ -1145,6 +1145,21 @@ enums.FUNCTIONS.AddItem({
         "+0.5 Speed if room is clear",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.SACK_OF_CHESTS,
+    Name = "Sack of Chests",
+    Description = {
+        "Spawns a random chest every 9-10 rooms",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.EFFIGY,
+    Name = "Effigy",
+    Description = {
+        "On room entry, tries to turn into a champion copy of a random enemy in the room",
+        "Champions spawned by this have a 50% chance of dropping a random pickup when killed"
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---

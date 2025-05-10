@@ -143,6 +143,7 @@ mod.COLLECTIBLE = {
     COLOSSAL_ORB = Isaac.GetItemIdByName("Colossal Orb"),
     SACK_OF_CHESTS = Isaac.GetItemIdByName("Sack of Chests"),
     BABY_SHOES = Isaac.GetItemIdByName("Baby Shoes"),
+    EFFIGY = Isaac.GetItemIdByName("Effigy"),
 
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),
@@ -231,6 +232,8 @@ mod.FAMILIAR_VARIANT = {
     MASK_SHADOW = Isaac.GetEntityVariantByName("Shadow Fly"),
     DR_BUM = Isaac.GetEntityVariantByName("Dr Bum"),
     BATH_WATER = Isaac.GetEntityVariantByName("Bath Water"),
+    SACK_OF_CHESTS = Isaac.GetEntityVariantByName("Sack of Chests"),
+    EFFIGY = Isaac.GetEntityVariantByName("Effigy"),
 }
 
 ---@type EffectVariant[]

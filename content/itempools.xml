@@ -29,6 +29,7 @@
         <Item Name="Lucky Pebbles"/>
         <Item Name="Hemolymph"/>
         <Item Name="Colossal Orb"/>
+        <Item Name="Golden Calf"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -58,6 +59,7 @@
         <Item Name="Food Stamps"/>
         <Item Name="Lucky Pebbles"/>
         <Item Name="Hemolymph"/>
+        <Item Name="Golden Calf"/>
     </Pool>
 
     <Pool Name="boss">
@@ -100,6 +102,7 @@
         <Item Name="Delivery Box"/>
         <Item Name="Solar Panel"/>
         <Item Name="Baby Shoes"/>
+        <Item Name="Sack of Chests"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -112,6 +115,7 @@
         <Item Name="Food Stamps"/>
         <Item Name="Delivery Box"/>
         <Item Name="Solar Panel"/>
+        <Item Name="Sack of Chests"/>
     </Pool>
 
     <Pool Name="devil">
@@ -122,7 +126,7 @@
         <Item Name="Cursed Eulogy"/>
         <Item Name="Catharsis"/>
         <Item Name="Haemorrhage"/>
-        <Item Name="Golden Calf"/>
+        <Item Name="Effigy"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -131,7 +135,7 @@
         <Item Name="Cursed Eulogy"/>
         <Item Name="Catharsis"/>
         <Item Name="Haemorrhage"/>
-        <Item Name="Golden Calf"/>
+        <Item Name="Effigy"/>
     </Pool>
 
     <Pool Name="angel">
@@ -173,6 +177,7 @@
         <Item Name="Clown PHD"/>
         <Item Name="Cursed Eulogy"/>
         <Item Name="Bob's Thesis"/>
+        <Item Name="Effigy"/>
     </Pool>
 
     <Pool Name="secret">
@@ -183,6 +188,7 @@
         <Item Name="Awesome Fruit"/>
         <Item Name="Big Bang"/>
         <Item Name="Fish"/>
+        <Item Name="Sack of Chests"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="4 4"/>
@@ -192,6 +198,7 @@
         <Item Name="Awesome Fruit"/>
         <Item Name="Big Bang"/>
         <Item Name="Fish"/>
+        <Item Name="Sack of Chests"/>
     </Pool>
 
     <Pool Name="library">
