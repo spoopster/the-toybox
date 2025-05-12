@@ -739,12 +739,19 @@
 
     devilprice="2"
 />
+<passive id="87" name="Gambling Addiction"
+    description="One more spin"
+    gfx="tb_gambling_addiction.png"
+    quality="3"
+    tags="offensive summonable"
+    cache=""
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"
     gfx="tb_RETROFALL.png"
     quality="4"
-    tags=""
+    tags="offensive summonable"
     cache=""
 />
 

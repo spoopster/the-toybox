@@ -18,6 +18,10 @@ local PLAYER_SPRITE = Sprite("gfx/ui/tb_awesome_title_screen.anm2", true)
 PLAYER_SPRITE:Play("Character", true)
 PLAYER_SPRITE:ReplaceSpritesheet(0, PLAYER_FILENAMES[math.random(#PLAYER_FILENAMES)], true)
 
+local BIG_ITEMS = {
+    --["gfx/items/collectibles/tb_gambling_addiction.png"] = true,
+}
+
 local ITEM_FILENAMES = {}
 for _, id in pairs(mod.COLLECTIBLE) do
     local iconf = conf:GetCollectible(id)
@@ -54,9 +58,17 @@ end
 
 local ITEM_SPRITES = {}
 for _=1, 150 do
+    local itemgfx = getRandomItemGfx()
+
     local sp = Sprite("gfx/ui/tb_awesome_title_screen.anm2", true)
     sp:Play("Item", true)
-    sp:ReplaceSpritesheet(1, getRandomItemGfx(), true)
+    sp:ReplaceSpritesheet(1, itemgfx, true)
+
+    if(BIG_ITEMS[itemgfx]) then
+        sp:SetFrame(1)
+    else
+        sp:SetFrame(0)
+    end
 
     table.insert(ITEM_SPRITES,{
         SPRITE = sp,
@@ -92,12 +104,20 @@ local function postMenuRender(_)
         spData.VEL = spData.VEL+spData.ACCEL
 
         if(spData.POS.X>MENU_SIZE.X+ITEM_POS_PADDING.X) then
-            spData.SPRITE:ReplaceSpritesheet(1, getRandomItemGfx(), true)
+            local itemgfx = getRandomItemGfx()
+
+            spData.SPRITE:ReplaceSpritesheet(1, itemgfx, true)
             spData.POS = randomItemPos()
             spData.VEL = randomItemVel()
             spData.OSC_INTENSITY = randomItemOscillation()
             spData.FRAME_OFFSET = randomItemOffset()
             spData.ACCEL = randomItemAccel()
+
+            if(BIG_ITEMS[itemgfx]) then
+                spData.SPRITE:SetFrame(1)
+            else
+                spData.SPRITE:SetFrame(0)
+            end
         end
     end
 end

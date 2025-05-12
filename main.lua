@@ -202,6 +202,7 @@ local function reSlotUpdate(_, slot, offset)
     table.insert(tb, {NAME="PRIZE TYPE", VAL=slot:GetPrizeType()})
     table.insert(tb, {NAME="DONATION VALUE", VAL=slot:GetDonationValue()})
     table.insert(tb, {NAME="ANIMATION", VAL=slot:GetSprite():GetAnimation()})
+    table.insert(tb, {NAME="WILL EXPLODE?", VAL=false})
 
     mod:setEntityData(slot, "SLOT_RENDERS", tb)
 end
@@ -216,6 +217,7 @@ local function postSlotUpdate(_, slot, offset)
     oldTb[4].VAL = tostring(oldTb[4].VAL).." / "..slot:GetPrizeType()
     oldTb[5].VAL = tostring(oldTb[5].VAL).." / "..slot:GetDonationValue()
     oldTb[6].VAL = tostring(oldTb[6].VAL).." / "..slot:GetSprite():GetAnimation()
+    oldTb[7].VAL = tostring(slot:GetDropRNG():RandomInt(50)==0)
 
     mod:setEntityData(slot, "SLOT_RENDERS", oldTb)
 end

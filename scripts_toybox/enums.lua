@@ -144,6 +144,7 @@ mod.COLLECTIBLE = {
     SACK_OF_CHESTS = Isaac.GetItemIdByName("Sack of Chests"),
     BABY_SHOES = Isaac.GetItemIdByName("Baby Shoes"),
     EFFIGY = Isaac.GetItemIdByName("Effigy"),
+    GAMBLING_ADDICTION = Isaac.GetItemIdByName("Gambling Addiction"),
 
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),

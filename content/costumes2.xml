@@ -7,6 +7,8 @@
     <costume id="50" anm2path="tb_costume_love_letter.anm2" type="passive" hasSkinAlt="true"/>
     <costume id="61" anm2path="tb_costume_bobs_thesis.anm2" type="passive" hasSkinAlt="true"/>
 
+    <costume id="87" anm2path="tb_costume_gambling_addiction.anm2" type="passive" priority="1"/>
+
     <costume id="109" anm2path="tb_costume_retrofall.anm2" type="passive" hasSkinAlt="true" priority="1"/>
     
 
@@ -16,4 +18,6 @@
     <costume id="1002" anm2path="tb_costume_atlas_salt.anm2" type="none" priority="99"/>
 
     <costume id="1100" anm2path="tb_costume_jonas.anm2" type="none" priority="99"/>
+
+    <costume id="1200" anm2path="tb_costume_gambling_addiction_spin.anm2" type="none" priority="99" hasOverlay="true"/>
 </costumes>

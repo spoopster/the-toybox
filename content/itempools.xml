@@ -103,6 +103,7 @@
         <Item Name="Solar Panel"/>
         <Item Name="Baby Shoes"/>
         <Item Name="Sack of Chests"/>
+        <Item Name="Gambling Addiction"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -116,6 +117,7 @@
         <Item Name="Delivery Box"/>
         <Item Name="Solar Panel"/>
         <Item Name="Sack of Chests"/>
+        <Item Name="Gambling Addiction"/>
     </Pool>
 
     <Pool Name="devil">
@@ -223,5 +225,6 @@
         <Item Name="Awesome Fruit"/>
         <Item Name="Plasma Globe"/>
         <Item Name="Colossal Orb"/>
+        <Item Name="Gambling Addiction"/>
     </Pool>
 </ItemPools>

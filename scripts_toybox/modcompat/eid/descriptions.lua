@@ -1160,6 +1160,20 @@ enums.FUNCTIONS.AddItem({
         "Champions spawned by this have a 50% chance of dropping a random pickup when killed"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.GAMBLING_ADDICTION,
+    Name = "Gambling Addiction",
+    Description = {
+        "Upon killing an enemy, 25% chance to spawn one of the following:",
+        "Nothing",
+        "{{Coin}} 1-3 coins",
+        "{{Key}} 1 key",
+        "{{Bomb}} 1 bomb",
+        "{{Heart}} 1-2 hearts",
+        "{{Pill}} 1 pill",
+        "1-2 blue flies",
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---

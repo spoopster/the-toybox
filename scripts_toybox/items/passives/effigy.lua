@@ -25,7 +25,6 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarInit, mod.FAMILIAR_VARIAN
 
 ---@param fam EntityFamiliar
 local function familiarUpdate(_, fam)
-    print(Game():GetRoom():GetFrameCount())
     if(Game():GetRoom():GetFrameCount()==4) then
         local conf = EntityConfig
         local validEnemies = {}
@@ -70,6 +69,8 @@ local function familiarUpdate(_, fam)
 
             local newEnemy = Isaac.Spawn(data.Type, data.Variant, data.SubType, fam.Position, Vector.Zero, fam):ToNPC()
             newEnemy:MakeChampion(math.random(2^32-1), -1, true)
+            newEnemy.HitPoints = newEnemy.MaxHitPoints
+
             newEnemy:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 
             newEnemy.SpawnerEntity = fam
@@ -99,8 +100,7 @@ local function postNewRoom(_)
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
 
----@param npc EntityNPC
-local function trySpawnPickup(npc)
+local function effigyEnemyDeath(_, npc)
     if(not (npc.SpawnerType==EntityType.ENTITY_FAMILIAR and npc.SpawnerVariant==mod.FAMILIAR_VARIANT.EFFIGY)) then return end
 
     local rng = npc:GetDropRNG()
@@ -109,15 +109,4 @@ local function trySpawnPickup(npc)
         local pickupDrop = Isaac.Spawn(5,0,NullPickupSubType.NO_COLLECTIBLE_TRINKET_CHEST,npc.Position,dir,npc):ToPickup()
     end
 end
-
-local function championDeath(_, npc)
-    if(npc:IsChampion()) then
-        trySpawnPickup(npc)
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, championDeath)
-
-local function modChampionDeath(_, npc)
-    trySpawnPickup(npc)
-end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_CUSTOM_CHAMPION_DEATH, modChampionDeath)
+mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, effigyEnemyDeath)
