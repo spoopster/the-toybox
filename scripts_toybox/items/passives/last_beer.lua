@@ -31,3 +31,14 @@ local function beerTearParams(_, pl)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, beerTearParams)
+
+local function postNewRoom(_)
+    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.LAST_BEER)) then return end
+
+    for i=0, Game():GetNumPlayers()-1 do
+        local pl = Isaac.GetPlayer(i)
+
+        mod:setEntityData(pl, "LAST_BEER_COUNTER", 0)
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)

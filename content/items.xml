@@ -628,7 +628,7 @@
 />
 <passive id="74" name="Brunch"
     description="HP up"
-    gfx="tb_no_sprite.png"
+    gfx="tb_brunch.png"
     quality="1"
     tags="nolostbr food"
     cache=""
@@ -638,7 +638,7 @@
 />
 <passive id="75" name="Toast"
     description="HP up"
-    gfx="tb_no_sprite.png"
+    gfx="tb_toast.png"
     quality="1"
     tags="nolostbr food"
     cache=""
@@ -648,7 +648,7 @@
 />
 <active id="76" name="Delivery Box"
     description="Same-day shipping"
-    gfx="tb_no_sprite.png"
+    gfx="tb_delivery_box.png"
     quality="2"
     tags="offensive"
     cache=""
@@ -691,10 +691,10 @@
 />
 <passive id="81" name="Solar Panel"
     description="Passive charge"
-    gfx="tb_no_sprite.png"
+    gfx="tb_solar_panel.png"
     quality="2"
     tags="offensive summonable"
-    cache=""
+    cache="speed"
 />
 <passive id="82" name="Surprise Egg"
     description="HP up + choking hazard"
@@ -755,6 +755,18 @@
     cache=""
 />
 
+<passive id="492" name="Super Hamburger"
+    description="I'm big and fat"
+    gfx="tb_super_hamburger.png"
+    quality="4"
+    tags="offensive noeden"
+    cache="size speed"
+
+    maxhearts="99"
+    hearts="99"
+
+    hidden="true"
+/>
 <passive id="493" name="Zero-Gravity"
     description="Sluggish movement + DMG up"
     gfx="tb_zero_gravity.png"

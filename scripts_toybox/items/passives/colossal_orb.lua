@@ -3,7 +3,7 @@ local sfx = SFXManager()
 
 local DMG_UP = 1
 local SPEED_UP = -0.2
-local SIZE_UP = 0.33
+local SIZE_UP = 1.33
 
 local TIMER_DUR = 30
 local MAX_DIST = 40*40
@@ -20,7 +20,7 @@ local function evalCache(_, pl, flag)
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
         mod:addBasicDamageUp(pl, DMG_UP*mult)
     elseif(flag==CacheFlag.CACHE_SIZE) then
-        pl.SpriteScale = pl.SpriteScale*((1+SIZE_UP)^mult)
+        pl.SpriteScale = pl.SpriteScale*(SIZE_UP^mult)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

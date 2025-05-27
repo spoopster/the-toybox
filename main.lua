@@ -499,3 +499,34 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender)
 
 --]]
+
+--[[
+---@param ent GridEntity
+local function kysbitch(_, ent, offset)
+    local c = Capsule(ent.Position, Vector(1,1), 0, 11)
+    local sh = DebugRenderer.Get(1005+ent:GetSaveState().SpawnSeed, true)
+    sh:Capsule(c)
+    sh:SetTimeout(1)
+end
+mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_SPIKES_RENDER, kysbitch)
+
+function mod:testSpikeFireHitboxes(spikeidx, fireidx)
+    local room = Game():GetRoom()
+
+    for i=-1, 1 do
+        for j=-1, 1 do
+            if(not (i==j and i~=-1)) then
+                room:SpawnGridEntity(room:GetGridIndex(room:GetGridPosition(spikeidx)+Vector(i,j)*40), GridEntityType.GRID_SPIKES)
+            end
+        end
+    end
+
+    for i=-1, 1 do
+        for j=-1, 1 do
+            if(not (i==j and i~=-1)) then
+                Isaac.Spawn(33,0,0,room:GetGridPosition(fireidx)+Vector(i,j)*40,Vector.Zero,nil)
+            end
+        end
+    end
+end
+--]]

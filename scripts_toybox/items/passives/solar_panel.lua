@@ -1,5 +1,6 @@
 local mod = ToyboxMod
 
+local SPEED_UP = 0.16
 local CHARGES_ON_ROOM = 1
 
 local chargeOrder = {
@@ -8,6 +9,16 @@ local chargeOrder = {
     ActiveSlot.SLOT_POCKET,
     ActiveSlot.SLOT_POCKET2
 }
+
+---@param player EntityPlayer
+---@param flag CacheFlag
+local function evalCache(_, player, flag)
+    if(not player:HasCollectible(mod.COLLECTIBLE.SOLAR_PANEL)) then return end
+    local mult = player:GetCollectibleNum(mod.COLLECTIBLE.SOLAR_PANEL)
+
+    player.MoveSpeed = player.MoveSpeed+mult*SPEED_UP
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SPEED)
 
 local function addChargeOnNewRoom(_)
     local room = Game():GetRoom()

@@ -30,6 +30,7 @@
         <Item Name="Hemolymph"/>
         <Item Name="Colossal Orb"/>
         <Item Name="Golden Calf"/>
+        <Item Name="Last Beer"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -60,6 +61,7 @@
         <Item Name="Lucky Pebbles"/>
         <Item Name="Hemolymph"/>
         <Item Name="Golden Calf"/>
+        <Item Name="Last Beer"/>
     </Pool>
 
     <Pool Name="boss">
