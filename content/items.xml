@@ -746,6 +746,13 @@
     tags="offensive summonable"
     cache=""
 />
+<passive id="88" name="Pyramid Scheme"
+    description="Fraud is good"
+    gfx="tb_pyramid_scheme.png"
+    quality="2"
+    tags="offensive summonable"
+    cache=""
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

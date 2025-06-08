@@ -1174,6 +1174,15 @@ enums.FUNCTIONS.AddItem({
         "1-2 blue flies",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = mod.COLLECTIBLE.PYRAMID_SCHEME,
+    Name = "Pyramid Scheme",
+    Description = {
+        "{{TreasureRoom}} In Treasure Rooms, a special donation machine will spawn",
+        "Donating has a 5% chance to explode it and drop 1-3 Coins",
+        "{{Coin}} Exploding it manually makes it drop 2x the Coins donated to it"
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---

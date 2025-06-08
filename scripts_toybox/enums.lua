@@ -145,6 +145,7 @@ mod.COLLECTIBLE = {
     BABY_SHOES = Isaac.GetItemIdByName("Baby Shoes"),
     EFFIGY = Isaac.GetItemIdByName("Effigy"),
     GAMBLING_ADDICTION = Isaac.GetItemIdByName("Gambling Addiction"),
+    PYRAMID_SCHEME = Isaac.GetItemIdByName("Pyramid Scheme"),
 
     CATHARSIS = Isaac.GetItemIdByName("Catharsis"),
     URANIUM = Isaac.GetItemIdByName("Uranium"),
@@ -236,6 +237,11 @@ mod.FAMILIAR_VARIANT = {
     BATH_WATER = Isaac.GetEntityVariantByName("Bath Water"),
     SACK_OF_CHESTS = Isaac.GetEntityVariantByName("Sack of Chests"),
     EFFIGY = Isaac.GetEntityVariantByName("Effigy"),
+}
+
+---@type SlotVariant[]
+mod.SLOT_VARIANT = {
+    PYRAMID_DONATION = Isaac.GetEntityVariantByName("Pyramid Donation Machine")
 }
 
 ---@type EffectVariant[]
