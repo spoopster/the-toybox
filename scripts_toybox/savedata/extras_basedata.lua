@@ -47,6 +47,8 @@ local BASEDATA = {
     EQUALIZER_COINS = 0,
     EQUALIZER_KEYS = 0,
     EQUALIZER_BOMBS = 0,
+
+    TINTED_ROOM_POSITIONS = {}
 }
 
 return BASEDATA

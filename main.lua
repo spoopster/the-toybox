@@ -30,6 +30,8 @@ local mod_files = {
     "scripts_toybox.bosses.toinclude",
     "scripts_toybox.enemies.toinclude",
 
+    "scripts_toybox.misc.toinclude",
+
     "scripts_toybox.players.milcom.toinclude",
     "scripts_toybox.players.atlas.toinclude",
     "scripts_toybox.players.jonas.toinclude",

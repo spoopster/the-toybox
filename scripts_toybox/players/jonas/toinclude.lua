@@ -4,7 +4,7 @@ local t = {
     "scripts_toybox.players.jonas.a.jonas",
     "scripts_toybox.players.jonas.a.stats",
     "scripts_toybox.players.jonas.a.character_helpers",
-    "scripts_toybox.players.jonas.a.custom_pillpool",
+    --"scripts_toybox.players.jonas.a.custom_pillpool",
     "scripts_toybox.players.jonas.a.pill_bonus_logic",
     "scripts_toybox.players.jonas.a.monster_pilldrop",
     --]]

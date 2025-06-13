@@ -67,6 +67,7 @@ local t = {
     "scripts_toybox.items.passives.effigy",
     "scripts_toybox.items.passives.gambling_addiction",
     "scripts_toybox.items.passives.pyramid_scheme",
+    --"scripts_toybox.items.passives.public_works",
 
     "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
 

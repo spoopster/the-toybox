@@ -372,8 +372,6 @@ mod.SHADERS = {
     ASCENSION = "ToyboxAscensionShader",
 }
 
-
-
 mod.TEAR_COPYING_FAMILIARS = {
     [FamiliarVariant.INCUBUS] = true,
     [FamiliarVariant.SPRINKLER] = true,

@@ -8,11 +8,11 @@ local t = {
     "scripts_toybox.players.milcom.a.pickup_logic",
     "scripts_toybox.players.milcom.a.ink_champion_drop",
     "scripts_toybox.players.milcom.a.hud_replacement",
-    "scripts_toybox.players.milcom.a.champion_chance",
-    "scripts_toybox.players.milcom.a.new_champions",
-        "scripts_toybox.players.milcom.a.champions.drowned",
-        "scripts_toybox.players.milcom.a.champions.fear",
-        "scripts_toybox.players.milcom.a.champions.bouncy",
+    --"scripts_toybox.players.milcom.a.champion_chance",
+    --"scripts_toybox.players.milcom.a.new_champions",
+        --"scripts_toybox.players.milcom.a.champions.drowned",
+        --"scripts_toybox.players.milcom.a.champions.fear",
+        --"scripts_toybox.players.milcom.a.champions.bouncy",
 
     --MILCOM B
     "scripts_toybox.players.milcom.b.milcom",
