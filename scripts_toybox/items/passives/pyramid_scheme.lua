@@ -1,7 +1,7 @@
 local mod = ToyboxMod
 local sfx = SFXManager()
 
-local JAM_CHANCE = 0.05
+local JAM_CHANCE = 0.075
 local COIN_MULT = 2
 local FLAT_COIN_ADD = {1,3}
 
@@ -31,7 +31,7 @@ local function spawnPyramidTreasure()
     if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.PYRAMID_SCHEME)) then return end
     local room = Game():GetRoom()
 
-    if(room:GetType()==RoomType.ROOM_TREASURE) then
+    if(room:IsFirstVisit() and room:GetType()==RoomType.ROOM_TREASURE) then
         local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos())
 
         local pyramid = Isaac.Spawn(6,mod.SLOT_VARIANT.PYRAMID_DONATION,0,pos,Vector.Zero,nil)
