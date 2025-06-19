@@ -150,6 +150,7 @@
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Blessed Bombs"/>
         <Item Name="Exorcism Kit"/>
+        <Item Name="Pythagoras' Cup"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
@@ -159,6 +160,7 @@
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Blessed Bombs"/>
         <Item Name="Exorcism Kit"/>
+        <Item Name="Pythagoras' Cup"/>
     </Pool>
 
     <Pool Name="curse">

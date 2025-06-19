@@ -1192,6 +1192,15 @@ enums.FUNCTIONS.AddItem({
         "Picking up more than 3 items on the same floor makes the cup spill, removing itself and all items picked up after using this"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE,
+    Name = "Pythagoras' Cup",
+    Description = {
+        "!!! SINGLE USE !!!",
+        "Gives a cup that makes all items spawn as a choice between 3 items",
+        "Picking up more than 3 items on the same floor makes the cup spill, removing itself and all items picked up after using this"
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---
