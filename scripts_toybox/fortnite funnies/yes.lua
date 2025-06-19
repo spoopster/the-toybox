@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local SEL_PLAYERS = {}
@@ -29,7 +29,7 @@ local function rendersYes()
         local lerpDist = 20
         local dist = math.min(1, pl.Position:Distance(mousePos)/lerpDist)^0.5
 
-        pl.Velocity = mod:lerp(pl.Velocity, dir, 0.2+0.8*(1-dist))
+        pl.Velocity = ToyboxMod:lerp(pl.Velocity, dir, 0.2+0.8*(1-dist))
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, rendersYes)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_RENDER, rendersYes)

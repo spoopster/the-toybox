@@ -1,8 +1,8 @@
 ToyboxMod = RegisterMod("toyboxMod", 1) ---@type ModReference
-local mod = ToyboxMod
 
-mod.HiddenItemManager = include("scripts_toybox.libraries.hiddenitemmanager")
-mod.HiddenItemManager:Init(mod)
+
+ToyboxMod.HiddenItemManager = include("scripts_toybox.libraries.hiddenitemmanager")
+ToyboxMod.HiddenItemManager:Init(ToyboxMod)
 
 --! INCLUDE SHIT
 local mod_files = {
@@ -87,7 +87,7 @@ local function getParams(_, pl)
     heeelp = false
     return params
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, getParams)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, getParams)
 --]]
 
 --[[
@@ -108,7 +108,7 @@ local function postRenderHead(_, pl, renderpos)
     pl:GetSprite().Rotation = rotation
     return renderpos+(Vector(0,-10)-Vector(0,-10):Rotated(rotation))
 end
-mod:AddCallback(ModCallbacks.MC_PRE_RENDER_PLAYER_HEAD, postRenderHead)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_RENDER_PLAYER_HEAD, postRenderHead)
 
 ---@param pl EntityPlayer
 local function prePlayerRender(_, pl, offset)
@@ -130,12 +130,12 @@ local function prePlayerRender(_, pl, offset)
         sp.Rotation = rotation
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_RENDER, prePlayerRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_RENDER, prePlayerRender)
 
 --]]
 
 --[[] ]
-local bleh = mod:generateRng()
+local bleh = ToyboxMod:generateRng()
 local FRAMES_TO_SPIN = 150
 local NUM_SHADOWS = 3
 local DIST = 4
@@ -160,7 +160,7 @@ local function darkRedRegen(_, rock, off)
     zorking = false
     --return false
 end
-mod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, darkRedRegen)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, darkRedRegen)
 --]]
 
 --[[
@@ -194,25 +194,25 @@ PILLBONUS_FONT:Load("font/pftempestasevencondensed.fnt")
 
 ---@param slot EntitySlot
 local function reSlotUpdate(_, slot, offset)
-    mod:setEntityData(slot, "MAX_TIMEOUT", math.max(mod:getEntityData(slot, "MAX_TIMEOUT") or 0, slot:GetTimeout()))
+    ToyboxMod:setEntityData(slot, "MAX_TIMEOUT", math.max(ToyboxMod:getEntityData(slot, "MAX_TIMEOUT") or 0, slot:GetTimeout()))
 
     local tb = {}
 
     table.insert(tb, {NAME="STATE", VAL=slot:GetState()})
     table.insert(tb, {NAME="TIMEOUT", VAL=slot:GetTimeout()})
-    table.insert(tb, {NAME="MAX TIMEOUT", VAL=(mod:getEntityData(slot, "MAX_TIMEOUT") or 0)})
+    table.insert(tb, {NAME="MAX TIMEOUT", VAL=(ToyboxMod:getEntityData(slot, "MAX_TIMEOUT") or 0)})
     table.insert(tb, {NAME="PRIZE TYPE", VAL=slot:GetPrizeType()})
     table.insert(tb, {NAME="DONATION VALUE", VAL=slot:GetDonationValue()})
     table.insert(tb, {NAME="ANIMATION", VAL=slot:GetSprite():GetAnimation()})
     table.insert(tb, {NAME="WILL EXPLODE?", VAL=false})
 
-    mod:setEntityData(slot, "SLOT_RENDERS", tb)
+    ToyboxMod:setEntityData(slot, "SLOT_RENDERS", tb)
 end
-mod:AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, reSlotUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, reSlotUpdate)
 
 ---@param slot EntitySlot
 local function postSlotUpdate(_, slot, offset)
-    local oldTb = mod:getEntityData(slot, "SLOT_RENDERS")
+    local oldTb = ToyboxMod:getEntityData(slot, "SLOT_RENDERS")
 
     oldTb[1].VAL = tostring(oldTb[1].VAL).." / "..slot:GetState()
     oldTb[2].VAL = tostring(oldTb[2].VAL).." / "..slot:GetTimeout()
@@ -221,16 +221,16 @@ local function postSlotUpdate(_, slot, offset)
     oldTb[6].VAL = tostring(oldTb[6].VAL).." / "..slot:GetSprite():GetAnimation()
     oldTb[7].VAL = tostring(slot:GetDropRNG():RandomInt(50)==0)
 
-    mod:setEntityData(slot, "SLOT_RENDERS", oldTb)
+    ToyboxMod:setEntityData(slot, "SLOT_RENDERS", oldTb)
 end
-mod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate)
 
 ---@param slot EntitySlot
 local function postSlotRender(_, slot, offset)
 
     local off = 7
     local pos = Isaac.WorldToRenderPosition(slot.Position)+offset+Vector(0,off)
-    local renders = mod:getEntityData(slot, "SLOT_RENDERS") or {}
+    local renders = ToyboxMod:getEntityData(slot, "SLOT_RENDERS") or {}
 
     for _, renderData in ipairs(renders) do
         PILLBONUS_FONT:DrawStringScaled(renderData.NAME..": "..renderData.VAL, pos.X, pos.Y, 0.5,0.5, KColor(1,1,1,1))
@@ -238,9 +238,9 @@ local function postSlotRender(_, slot, offset)
         pos.Y = pos.Y+off
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_SLOT_RENDER, postSlotRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_RENDER, postSlotRender)
 
-function mod:test()
+function ToyboxMod:test()
     local slot = Isaac.FindByType(6)[1]
     if(not slot) then return end
     slot = slot:ToSlot()
@@ -278,7 +278,7 @@ local renderOrder = {
 }
 
 
-function mod:triggerSlot(prizetype)
+function ToyboxMod:triggerSlot(prizetype)
     local slot = Isaac.Spawn(6,1,0,Game():GetRoom():GetCenterPos(),Vector.Zero,nil):ToSlot()
 
     slot:SetState(2)
@@ -355,7 +355,7 @@ end
 
 local function renderResults()
     if(Isaac.GetPlayer().FrameCount>30 and not Game():IsPaused()) then
-        mod:triggerSlot()
+        ToyboxMod:triggerSlot()
     end
 
     local renderPos = Vector(130,40)
@@ -377,7 +377,7 @@ local function renderResults()
         PILLBONUS_FONT:DrawStringScaled(tostring(perc).."%", curPos.X+100, curPos.Y, 0.5, 0.5, KColor(1,1,1,1))
     end
 end
---mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderResults)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderResults)
 
 --]]
 
@@ -404,7 +404,7 @@ local function postCollectableUpdate(_, pickup)
 
     pickup:GetData().AlreadyChecked = true
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postCollectableUpdate, PickupVariant.PICKUP_COLLECTIBLE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postCollectableUpdate, PickupVariant.PICKUP_COLLECTIBLE)
 --]]
 
 --[[
@@ -443,7 +443,7 @@ local function postNewRoom()
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
 
 ---@param door GridEntityDoor
 local function postGridEntityDoorRender(_, door, offset)
@@ -454,7 +454,7 @@ local function postGridEntityDoorRender(_, door, offset)
     ogDoor:GetSprite():Render(Isaac.WorldToRenderPosition(door.Position))
     Isaac.RenderText("PENOR", Isaac.WorldToRenderPosition(door.Position).X, Isaac.WorldToRenderPosition(door.Position).Y,1,1,1,1)
 end
-mod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_DOOR_RENDER, postGridEntityDoorRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_DOOR_RENDER, postGridEntityDoorRender)
 
 ---@param ent GridEntity?
 local function collideithgrid(_, pl, idx, ent)
@@ -466,18 +466,18 @@ local function collideithgrid(_, pl, idx, ent)
 
     return true
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_GRID_COLLISION, collideithgrid)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_GRID_COLLISION, collideithgrid)
 --]]
 
 --[[
 
-mod.DARK_UPGRADE = false
+ToyboxMod.DARK_UPGRADE = false
 local hadDarkArts = false
 local darkArtsMult = 2.5
 
 ---@param pl EntityPlayer
 local function playerUpdate(_, pl)
-    if(not mod.DARK_UPGRADE) then return end
+    if(not ToyboxMod.DARK_UPGRADE) then return end
 
     local hasDarkArts = pl:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_DARK_ARTS)
 
@@ -490,7 +490,7 @@ local function playerUpdate(_, pl)
 
     hadDarkArts = hasDarkArts
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate)
 
 local function postPlayerRender(_, pl)
     local c = Capsule(pl.Position, pl.SizeMulti, 0, pl.Size)
@@ -498,7 +498,7 @@ local function postPlayerRender(_, pl)
     sh:Capsule(c)
     sh:SetTimeout(1)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postPlayerRender)
 
 --]]
 
@@ -510,9 +510,9 @@ local function kysbitch(_, ent, offset)
     sh:Capsule(c)
     sh:SetTimeout(1)
 end
-mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_SPIKES_RENDER, kysbitch)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_SPIKES_RENDER, kysbitch)
 
-function mod:testSpikeFireHitboxes(spikeidx, fireidx)
+function ToyboxMod:testSpikeFireHitboxes(spikeidx, fireidx)
     local room = Game():GetRoom()
 
     for i=-1, 1 do

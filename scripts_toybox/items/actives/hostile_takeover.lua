@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local BASEHP = 8
@@ -22,8 +22,8 @@ local TEARS_UP = 1
 local function firstHostileTakeoverPlayer()
     for i=0,Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER)) then
-            return pl, pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.HOSTILE_TAKEOVER)
+        if(pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
+            return pl, pl:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)
         end
     end
     return nil
@@ -33,13 +33,13 @@ local function spawnTarPuddle(pos, size, pl)
     pl = pl or firstHostileTakeoverPlayer()
 
     local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_BLACK, 0, pos, Vector.Zero, pl):ToEffect()
-    local visualSize = mod:clamp(size^0.75, 0.75, 2)
+    local visualSize = ToyboxMod:clamp(size^0.75, 0.75, 2)
     puddle.SpriteScale = Vector(1,1)*visualSize
 
-    mod:setEntityData(puddle, "TAKEOVER_TAR_PUDDLE", true)
-    mod:setEntityData(puddle, "TAKEOVER_PUDDLE_SCALE", visualSize)
-    mod:setEntityData(puddle, "TAKEOVER_PUDDLE_CONSUMPTION_FRAMES", 0)
-    mod:setEntityData(puddle, "TAKEOVER_PUDDLE_SIZE", size)
+    ToyboxMod:setEntityData(puddle, "TAKEOVER_TAR_PUDDLE", true)
+    ToyboxMod:setEntityData(puddle, "TAKEOVER_PUDDLE_SCALE", visualSize)
+    ToyboxMod:setEntityData(puddle, "TAKEOVER_PUDDLE_CONSUMPTION_FRAMES", 0)
+    ToyboxMod:setEntityData(puddle, "TAKEOVER_PUDDLE_SIZE", size)
 
     puddle.Timeout = -1
 
@@ -48,7 +48,7 @@ end
 
 ---@param pl EntityPlayer
 local function activateHostileTakeover(_, _, rng, pl, flags, slot, vdata)
-    mod:setEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER", STAT_DECREASE_TIMER)
+    ToyboxMod:setEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER", STAT_DECREASE_TIMER)
     pl:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 
     return {
@@ -57,21 +57,21 @@ local function activateHostileTakeover(_, _, rng, pl, flags, slot, vdata)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, activateHostileTakeover, mod.COLLECTIBLE.HOSTILE_TAKEOVER)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, activateHostileTakeover, ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)
 
 ---@param pl EntityPlayer
 local function aa(_, pl)
-    if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER)) then
-        pl:GetEffects():RemoveCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER, -1)
-        mod:setEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER", 0)
+    if(pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
+        pl:GetEffects():RemoveCollectibleEffect(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER, -1)
+        ToyboxMod:setEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER", 0)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, aa)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, aa)
 
 ---@param pl EntityPlayer
 local function postPeffectUpdate(_, pl)
-    if(not (pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER))) then return end
-    local data = mod:getEntityDataTable(pl)
+    if(not (pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER))) then return end
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.HOSTILETAKEOVER_STAT_TIMER = (data.HOSTILETAKEOVER_STAT_TIMER or 0)-1
 
     if(data.HOSTILETAKEOVER_STAT_TIMER>=0 and data.HOSTILETAKEOVER_STAT_TIMER%STAT_DECREASE_FREQ==0) then
@@ -79,24 +79,24 @@ local function postPeffectUpdate(_, pl)
     end
     data.HOSTILETAKEOVER_STAT_TIMER = math.max(data.HOSTILETAKEOVER_STAT_TIMER, 0)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, postPeffectUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, postPeffectUpdate)
 
 ---@param pl EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, pl, flag)
-    if(not (pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER))) then return end
-    local timer = (mod:getEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER") or 0)
+    if(not (pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER))) then return end
+    local timer = (ToyboxMod:getEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER") or 0)
     if(timer<=0) then return end
 
-    local numEffects = pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.HOSTILE_TAKEOVER)
+    local numEffects = pl:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)
     local statFrac = timer/STAT_DECREASE_TIMER*(1+(numEffects-1)*STACK_BONUS)
 
     if(flag==CacheFlag.CACHE_SPEED) then
         pl.MoveSpeed = pl.MoveSpeed+statFrac*SPEED_UP
     elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        mod:addBasicTearsUp(pl, statFrac*TEARS_UP)
+        ToyboxMod:addBasicTearsUp(pl, statFrac*TEARS_UP)
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        mod:addBasicDamageUp(pl, statFrac*DMG_UP)
+        ToyboxMod:addBasicDamageUp(pl, statFrac*DMG_UP)
     --elseif(flag==CacheFlag.CACHE_RANGE) then
     --    pl.TearRange = pl.TearRange+statFrac*RANGE_UP*40
     --elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
@@ -105,7 +105,7 @@ local function evalCache(_, pl, flag)
     --    pl.Luck = pl.Luck+statFrac*LUCK_UP
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 
 ---@param npc EntityNPC
@@ -116,18 +116,18 @@ local function spawnDeathPuddle(_, npc)
     local hpSize = (npc.MaxHitPoints/BASEHP)^HPSCALE_EXPO
     spawnTarPuddle(npc.Position, hpSize, pl)
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, spawnDeathPuddle)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, spawnDeathPuddle)
 
 ---@param effect EntityEffect
 local function consumeTarPuddle(_, effect)
-    local data = mod:getEntityDataTable(effect)
+    local data = ToyboxMod:getEntityDataTable(effect)
     if(not data.TAKEOVER_TAR_PUDDLE) then return end
 
     local consumerPl = nil
     local currentScale = (data.TAKEOVER_PUDDLE_SCALE or 1)*(1-(data.TAKEOVER_PUDDLE_CONSUMPTION_FRAMES or 0)/PUDDLE_CONSUME_FRAMES)
     for _, pl in ipairs(Isaac.FindInRadius(effect.Position, math.max(40, currentScale*25), EntityPartition.PLAYER)) do
         pl = pl:ToPlayer()
-        if(pl:GetEffects():HasCollectibleEffect(mod.COLLECTIBLE.HOSTILE_TAKEOVER)) then
+        if(pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
             consumerPl = pl
             break
         end
@@ -136,8 +136,8 @@ local function consumeTarPuddle(_, effect)
     effect.SpriteScale = Vector(1,1)*(data.TAKEOVER_PUDDLE_SCALE or 1)*(0.1+0.9*(1-(data.TAKEOVER_PUDDLE_CONSUMPTION_FRAMES or 0)/PUDDLE_CONSUME_FRAMES))
 
     if(not consumerPl) then return end
-    local plData = mod:getEntityDataTable(consumerPl)
-    local mul = consumerPl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.HOSTILE_TAKEOVER)
+    local plData = ToyboxMod:getEntityDataTable(consumerPl)
+    local mul = consumerPl:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)
     local scaleMul = (data.TAKEOVER_PUDDLE_SIZE or 1)/PUDDLE_CONSUME_FRAMES
 
     local oldTime = (plData.HOSTILETAKEOVER_STAT_TIMER or 0)
@@ -162,4 +162,4 @@ local function consumeTarPuddle(_, effect)
         effect:Remove()
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, consumeTarPuddle, EffectVariant.PLAYER_CREEP_BLACK)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, consumeTarPuddle, EffectVariant.PLAYER_CREEP_BLACK)

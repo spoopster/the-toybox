@@ -30,7 +30,7 @@ lowp vec3 rgbToHsl(lowp vec3 color)
     {
         sat = dif/(1.0-abs(2.0*lum-1.0));
         
-        if(cmx==color.r) hue = mod((color.g-color.b)/dif, 6.0);
+        if(cmx==color.r) hue = ToyboxMod((color.g-color.b)/dif, 6.0);
         else if(cmx==color.g) hue = (color.b-color.r)/dif+2.0;
         else hue = (color.r-color.g)/dif+4.0;
     }
@@ -41,7 +41,7 @@ lowp vec3 hslToRgb(lowp vec3 hsl)
 {
     lowp float r=0.0, g=0.0, b=0.0;
     lowp float c = (1.0-abs(2.0*hsl.b-1.0))*hsl.g;
-    lowp float x = c*(1.0-abs(mod(hsl.r, 2.0)-1.0));
+    lowp float x = c*(1.0-abs(ToyboxMod(hsl.r, 2.0)-1.0));
 
     if(hsl.r<=1.0) r=c, g=x;
     else if(hsl.r<=2.0) r=x, g=c;
@@ -58,7 +58,7 @@ void main(void)
     if(dot(gl_FragCoord.xy, ClipPlaneOut.xy) < ClipPlaneOut.z)
 		discard;
     lowp vec2 pa = vec2(1.0+PixelationAmountOut, 1.0+PixelationAmountOut) / TextureSizeOut;
-    lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - mod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
+    lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - ToyboxMod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
     lowp float time = ColorizeOut.r;
 
     // Converts color to pure green, makes it more saturated
@@ -69,13 +69,13 @@ void main(void)
     //texColor.g += 0.15;
 
     // Adds horizontal "brighter" strips
-    lowp float m = mod(time*SCROLL_SPEED+(TexCoord0.y)*NUM_STRIPS, 1.0)*2.0;
+    lowp float m = ToyboxMod(time*SCROLL_SPEED+(TexCoord0.y)*NUM_STRIPS, 1.0)*2.0;
     m = (floor(m)-0.5)*2.0;
     if(m>=0.0) texColor.g += m*STRIP_INTENSITY;
     else texColor.rgb += m*STRIP_INTENSITY;
 
     // Makes transparency flicker
-    if(mod(time, ALPHA_FREQ)<(ALPHA_FREQ*0.5)) texColor.a *= 0.85;
+    if(ToyboxMod(time, ALPHA_FREQ)<(ALPHA_FREQ*0.5)) texColor.a *= 0.85;
     else texColor.rgba *= 0.55;
 
     gl_FragColor = vec4(texColor.rgb + ColorOffsetOut * texColor.a, texColor.a);

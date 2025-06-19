@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local persistentData = Isaac.GetPersistentGameData()
 
 local MAX_STATS_PER_LINE = 10
@@ -11,33 +11,33 @@ local f = Font()
 f:Load("font/luaminioutlined.fnt")
 
 local function tearFire(_, tear, pl)
-    mod:setEntityData(tear, "ACCURACY_PL", pl)
+    ToyboxMod:setEntityData(tear, "ACCURACY_PL", pl)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, tearFire)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, tearFire)
 local function tearCollision(_, tear)
-    mod:setEntityData(tear, "ACCURACY_HIT", 1)
+    ToyboxMod:setEntityData(tear, "ACCURACY_HIT", 1)
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_COLLISION, tearCollision)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_COLLISION, tearCollision)
 local function tearDeath(_, tear)
-    local pl = mod:getEntityData(tear, "ACCURACY_PL")
+    local pl = ToyboxMod:getEntityData(tear, "ACCURACY_PL")
 
     if(pl) then
-        local data = mod:getEntityDataTable(pl)
+        local data = ToyboxMod:getEntityDataTable(pl)
 
         data.MATTMAN_CHANCE_TEARS_DIED = (data.MATTMAN_CHANCE_TEARS_DIED or 0)+1
-        if(mod:getEntityData(tear, "ACCURACY_HIT")) then
+        if(ToyboxMod:getEntityData(tear, "ACCURACY_HIT")) then
             data.MATTMAN_CHANCE_TEARS_HIT = (data.MATTMAN_CHANCE_TEARS_HIT or 0)+1
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_DEATH, tearDeath)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_DEATH, tearDeath)
 
 local function postNewRun(_, isCont)
     if(isCont) then return end
 
-    mod:setExtraData("MATTMAN_CHANCE_LAMB_KILLS", persistentData:GetEventCounter(EventCounter.LAMB_KILLS))
+    ToyboxMod:setExtraData("MATTMAN_CHANCE_LAMB_KILLS", persistentData:GetEventCounter(EventCounter.LAMB_KILLS))
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postNewRun)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postNewRun)
 
 local function getNumTears(pl)
     local params = pl:GetMultiShotParams(pl:GetWeapon(1):GetWeaponType())
@@ -69,12 +69,12 @@ local newStats = {
         return 0, (tostring(chance).."%")
     end,
     function(pos) -- GOLD PILL CHANCE
-        local chance = math.floor(mod:getGoldenChance()*1000)/10
+        local chance = math.floor(ToyboxMod:getGoldenChance()*1000)/10
         
         return 2, (tostring(chance).."%")
     end,
     function(pos) -- HORSE PILL CHANCE
-        local chance = math.floor(mod:getHorseChance()*1000)/10
+        local chance = math.floor(ToyboxMod:getHorseChance()*1000)/10
         
         return 11, (tostring(chance).."%")
     end,
@@ -145,8 +145,8 @@ local newStats = {
         return 8, tostring(math.floor(sumQualities/numQualities*100)/100)
     end,
     function(pos) -- ACCURACY STAT
-        local tearsHit = mod:getEntityData(Isaac.GetPlayer(), "MATTMAN_CHANCE_TEARS_HIT") or 0
-        local tearsDead = mod:getEntityData(Isaac.GetPlayer(), "MATTMAN_CHANCE_TEARS_DIED") or 0
+        local tearsHit = ToyboxMod:getEntityData(Isaac.GetPlayer(), "MATTMAN_CHANCE_TEARS_HIT") or 0
+        local tearsDead = ToyboxMod:getEntityData(Isaac.GetPlayer(), "MATTMAN_CHANCE_TEARS_DIED") or 0
     
         return 1, tostring(math.floor(tearsHit/math.max(1,tearsDead)*1000)/10).."%"
     end,
@@ -181,13 +181,13 @@ local newStats = {
             [0]="", "K","M","B","T","Q"
         }
     
-        return 21, tostring(tokens*1/1)..suffixes[mod:clamp(numDiv,0,#suffixes)]
+        return 21, tostring(tokens*1/1)..suffixes[ToyboxMod:clamp(numDiv,0,#suffixes)]
     end,
     function(pos) -- BABY PLUM SPARE CHANCE
         return 20, tostring(100-math.floor(persistentData:GetBestiaryKillCount(EntityType.ENTITY_BABY_PLUM,0)/math.max(persistentData:GetBestiaryEncounterCount(EntityType.ENTITY_BABY_PLUM,0))*1000)/10).."%"
     end,
     function(pos) -- LAMB KILS STAT
-        return 18, tostring((persistentData:GetEventCounter(EventCounter.LAMB_KILLS)-(mod:getExtraData("MATTMAN_CHANCE_LAMB_KILLS") or 0))*1/1)
+        return 18, tostring((persistentData:GetEventCounter(EventCounter.LAMB_KILLS)-(ToyboxMod:getExtraData("MATTMAN_CHANCE_LAMB_KILLS") or 0))*1/1)
     end,
     function(pos) -- VICTORY LAPS STAT
         return 19, tostring(Game():GetVictoryLap()*1/1)
@@ -303,7 +303,7 @@ local newStats = {
 }
 
 local function postHudRender(_)
-    if(not mod.CONFIG.MORE_STATS) then return end
+    if(not ToyboxMod.CONFIG.MORE_STATS) then return end
     if(not Game():GetHUD():IsVisible()) then return end
 
     local pos = Vector(20,12)*Options.HUDOffset + Vector(0,88)
@@ -355,4 +355,4 @@ local function postHudRender(_)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postHudRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postHudRender)

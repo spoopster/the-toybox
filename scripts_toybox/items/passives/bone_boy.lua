@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local BONE_BOY_HP = 5
@@ -20,13 +20,13 @@ local BFFS_BONE_DMG = 4
 ---@param player EntityPlayer
 local function checkFamiliars(_, player, cacheFlag)
     player:CheckFamiliar(
-        mod.FAMILIAR_VARIANT.BONE_BOY,
-        player:GetCollectibleNum(mod.COLLECTIBLE.BONE_BOY)+player:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.BONE_BOY),
-        player:GetCollectibleRNG(mod.COLLECTIBLE.BONE_BOY),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.BONE_BOY)
+        ToyboxMod.FAMILIAR_VARIANT.BONE_BOY,
+        player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BONE_BOY)+player:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_BONE_BOY),
+        player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_BONE_BOY),
+        Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_BONE_BOY)
     )
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
 
 local function angle2Dir(x)
     return math.floor((x+225)%360/90)
@@ -82,11 +82,11 @@ local function boneBoyInit(_, familiar)
 
     replaceSpriteSheets(familiar)
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, boneBoyInit, mod.FAMILIAR_VARIANT.BONE_BOY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, boneBoyInit, ToyboxMod.FAMILIAR_VARIANT.BONE_BOY)
 
 ---@param familiar EntityFamiliar
 local function boneBoyUpdate(_, familiar)
-    local data = mod:getEntityDataTable(familiar)
+    local data = ToyboxMod:getEntityDataTable(familiar)
     local sp = familiar:GetSprite()
     local rng = familiar:GetDropRNG()
     local mult = familiar:GetMultiplier()
@@ -104,7 +104,7 @@ local function boneBoyUpdate(_, familiar)
 
     if(familiar.State==0) then
         if((data.BONEBOY_TIME_SINCE_LAST_TARGET or 0)<=0 or (not (familiar.Target and familiar.Target:Exists())) or familiar.Position:DistanceSquared(familiar.TargetPosition)<=40*40) then
-            local target = mod:closestEnemy(familiar.Position) or familiar.Player or Isaac.GetPlayer()
+            local target = ToyboxMod:closestEnemy(familiar.Position) or familiar.Player or Isaac.GetPlayer()
             familiar.Target = target
             familiar.TargetPosition = target.Position
 
@@ -180,7 +180,7 @@ local function boneBoyUpdate(_, familiar)
                 local liveFrames = math.ceil(dir:Length()/bone.Velocity:Length())
                 bone.FallingAcceleration = 2
                 bone.FallingSpeed = -4*(bone.FallingAcceleration+0.1)
-                mod:setEntityData(bone, "BONEBOY_HOLY_BONE", true)
+                ToyboxMod:setEntityData(bone, "BONEBOY_HOLY_BONE", true)
             end
 
             if((data.BONEBOY_BONES_LEFT or 0)>0) then
@@ -242,7 +242,7 @@ local function boneBoyUpdate(_, familiar)
 
         if(sp:IsFinished("Crumple") and familiar.SubType & (1<<1)~=0) then
             sp:Play("LevelDown", true)
-            sfx:Play(mod.SOUND_EFFECT.POWERDOWN)
+            sfx:Play(ToyboxMod.SOUND_EFFECT.POWERDOWN)
         end
 
         if(sp:IsEventTriggered("LevelDown")) then
@@ -276,7 +276,7 @@ local function boneBoyUpdate(_, familiar)
     elseif(familiar.State==3) then
         if(sp:GetAnimation()~="LevelUp") then
             sp:Play("LevelUp", true)
-            sfx:Play(mod.SOUND_EFFECT.POWERUP)
+            sfx:Play(ToyboxMod.SOUND_EFFECT.POWERUP)
         end
         if(sp:IsEventTriggered("LevelUp")) then
             familiar.SubType = familiar.SubType | (1<<1)
@@ -293,7 +293,7 @@ local function boneBoyUpdate(_, familiar)
 
     data.BONEBOY_DAMAGE_COOLDOWN = math.max(0, (data.BONEBOY_DAMAGE_COOLDOWN or 0)-1)
 end
-mod:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_UPDATE, boneBoyUpdate, mod.FAMILIAR_VARIANT.BONE_BOY)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_UPDATE, boneBoyUpdate, ToyboxMod.FAMILIAR_VARIANT.BONE_BOY)
 
 ---@param familiar EntityFamiliar
 local function postBoneBoyUpdate(_, familiar)
@@ -301,12 +301,12 @@ local function postBoneBoyUpdate(_, familiar)
         familiar.SpriteScale = familiar.SpriteScale*0.8
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postBoneBoyUpdate, mod.FAMILIAR_VARIANT.BONE_BOY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postBoneBoyUpdate, ToyboxMod.FAMILIAR_VARIANT.BONE_BOY)
 
 ---@param ent EntityFamiliar
 local function bonerTakeDmg(_, ent, am, flags, source, frames)
-    if(ent.Variant~=mod.FAMILIAR_VARIANT.BONE_BOY) then return end
-    local data = mod:getEntityDataTable(ent)
+    if(ent.Variant~=ToyboxMod.FAMILIAR_VARIANT.BONE_BOY) then return end
+    local data = ToyboxMod:getEntityDataTable(ent)
     if(ent.HitPoints<=1 or (data.BONEBOY_DAMAGE_COOLDOWN or 0)>0) then return false end
 
     ent.HitPoints = ent.HitPoints-1
@@ -321,10 +321,10 @@ local function bonerTakeDmg(_, ent, am, flags, source, frames)
 
     return { Damage=0, DamageCountdown=0 }
 end
-mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.IMPORTANT, bonerTakeDmg, EntityType.ENTITY_FAMILIAR)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.IMPORTANT, bonerTakeDmg, EntityType.ENTITY_FAMILIAR)
 
 local function useBookOfTheDead(_, item, rng, player, flags, slot, vdata)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.BONE_BOY)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.BONE_BOY)) do
         fam = fam:ToFamiliar()
 
         if(fam.State==1) then
@@ -333,21 +333,21 @@ local function useBookOfTheDead(_, item, rng, player, flags, slot, vdata)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useBookOfTheDead, CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useBookOfTheDead, CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD)
 
 ---@param tear EntityTear
 local function postBoneTearUpdate(_, tear)
-    if(not mod:getEntityData(tear, "BONEBOY_HOLY_BONE")) then return end
+    if(not ToyboxMod:getEntityData(tear, "BONEBOY_HOLY_BONE")) then return end
 
     local haemo = Isaac.Spawn(1000,111,0,tear.Position+Vector(0,tear.Height),Vector.Zero,tear):ToEffect()
     haemo.Scale = 0.5
     haemo.Color = Color(0,0,0,1,0.9,0.5,0)
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postBoneTearUpdate, TearVariant.BONE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, postBoneTearUpdate, TearVariant.BONE)
 
 ---@param tear EntityTear
 local function postBoneTearDeath(_, tear)
-    if(not mod:getEntityData(tear, "BONEBOY_HOLY_BONE")) then return end
+    if(not ToyboxMod:getEntityData(tear, "BONEBOY_HOLY_BONE")) then return end
 
     local fire = Isaac.Spawn(1000,52,0, tear.Position, Vector.Zero, tear.SpawnerEntity):ToEffect()
 
@@ -357,4 +357,4 @@ local function postBoneTearDeath(_, tear)
     fire.Timeout = 2*30
     fire:Update()
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_DEATH, postBoneTearDeath, TearVariant.BONE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_DEATH, postBoneTearDeath, TearVariant.BONE)

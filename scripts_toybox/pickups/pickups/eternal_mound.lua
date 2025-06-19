@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local NUM_HEARTS = 24
@@ -93,7 +93,7 @@ local function moundUpdate(_, pickup)
         sfx:Play(SoundEffect.SOUND_HEARTBEAT)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, moundUpdate, mod.PICKUP_VARIANT.ETERNAL_MOUND)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, moundUpdate, ToyboxMod.PICKUP_VARIANT.ETERNAL_MOUND)
 
 ---@param pickup EntityPickup
 ---@param coll Entity
@@ -116,4 +116,4 @@ local function preMoundCollision(_, pickup, coll, low)
 
     return true
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preMoundCollision, mod.PICKUP_VARIANT.ETERNAL_MOUND)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preMoundCollision, ToyboxMod.PICKUP_VARIANT.ETERNAL_MOUND)

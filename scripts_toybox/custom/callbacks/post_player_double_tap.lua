@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local DIRECTION_FLUSH_MOD = 10
 local LAST_FIRE_DIRECTIONS = {}
@@ -50,7 +50,7 @@ local function postPlayerUpdate(_, player)
     end
 
     if shouldActivateDoubletap(player) then
-        Isaac.RunCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_DOUBLE_TAP, player)
+        Isaac.RunCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_DOUBLE_TAP, player)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate)

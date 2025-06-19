@@ -1,6 +1,6 @@
-local mod = ToyboxMod
 
-function mod:unlock(unlock, force)
+
+function ToyboxMod:unlock(unlock, force)
     local pgd = Isaac.GetPersistentGameData()
     if(not force) then
         if(not Game():AchievementUnlocksDisallowed()) then
@@ -13,12 +13,12 @@ function mod:unlock(unlock, force)
     end
 end
 
-function mod:cloneTable(t)
+function ToyboxMod:cloneTable(t)
     local tClone = {}
     for key, val in pairs(t) do
         if(type(val)=="table") then
             tClone[key]={}
-            for key2, val2 in pairs(mod:cloneTable(val)) do
+            for key2, val2 in pairs(ToyboxMod:cloneTable(val)) do
                 tClone[key][key2]=val2
             end
         else
@@ -27,11 +27,11 @@ function mod:cloneTable(t)
     end
     return tClone
 end
-function mod:cloneTableWithoutDeleteing(table1, table2)
+function ToyboxMod:cloneTableWithoutDeleteing(table1, table2)
     for key, val in pairs(table2) do
         if(type(val)=="table") then
             table1[key] = {}
-            mod:cloneTableWithoutDeleteing(table1[key], table2[key])
+            ToyboxMod:cloneTableWithoutDeleteing(table1[key], table2[key])
         else
             table1[key]=val
         end
@@ -39,7 +39,7 @@ function mod:cloneTableWithoutDeleteing(table1, table2)
 end
 
 ---@param v Vector
-function mod:vectorToVectorTable(v)
+function ToyboxMod:vectorToVectorTable(v)
     return
     {
         X = v.X,
@@ -48,12 +48,12 @@ function mod:vectorToVectorTable(v)
     }
 end
 ---@param t table
-function mod:vectorTableToVector(t)
+function ToyboxMod:vectorTableToVector(t)
     return Vector(t.X, t.Y)
 end
 
 ---@param c Color
-function mod:colorToColorTable(c)
+function ToyboxMod:colorToColorTable(c)
     return
     {
         R = c.R,
@@ -67,21 +67,21 @@ function mod:colorToColorTable(c)
     }
 end
 ---@param t table
-function mod:colorTableToColor(t)
+function ToyboxMod:colorTableToColor(t)
     return Color(t.R, t.G, t.B, t.A, t.RO, t.GO, t.BO)
 end
 
 ---@param player EntityPlayer
-function mod:isMilcom(player)
-    if(player:GetPlayerType()==mod.PLAYER_TYPE.MILCOM_A) then return true end
-    if(player:GetPlayerType()==mod.PLAYER_TYPE.MILCOM_B) then return true end
+function ToyboxMod:isMilcom(player)
+    if(player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.MILCOM_A) then return true end
+    if(player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.MILCOM_B) then return true end
     return false
 end
 
 ---@param player EntityPlayer
-function mod:isAtlas(player)
-    if(mod:isAtlasA(player)) then return true end
-    if(player:GetPlayerType()==mod.PLAYER_TYPE.ATLAS_B) then return true end
+function ToyboxMod:isAtlas(player)
+    if(ToyboxMod:isAtlasA(player)) then return true end
+    if(player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.ATLAS_B) then return true end
     return false
 end
 
@@ -90,22 +90,22 @@ end
 ---@param lower number Lower bound of the range
 ---@return number clampedVal The clamped value
 ---Clamps a given value into a range
-function mod:clamp(val, lower, upper)
+function ToyboxMod:clamp(val, lower, upper)
     return math.min(upper, math.max(val, lower))
 end
 
-function mod:lerp(a, b, f)
+function ToyboxMod:lerp(a, b, f)
     return a*(1-f)+b*f
 end
 
 ---@param rng RNG
 ---@param a number
 ---@param b number
-function mod:randomRange(rng, a, b)
+function ToyboxMod:randomRange(rng, a, b)
     return a+rng:RandomFloat()*(b-a)
 end
 
-function mod:sign(a)
+function ToyboxMod:sign(a)
     if(a<0) then return -1 end
     return 1
 end
@@ -113,20 +113,20 @@ end
 ---@param t table The table to count
 ---@return number count The number of elements in the table
 ---Counts the number of elements in a table
-function mod:countElements(t)
+function ToyboxMod:countElements(t)
     local count = 0
     for _, _ in pairs(t) do count = count+1 end
 
     return count
 end
 
-function mod:getPlayerFromEnt(ent)
+function ToyboxMod:getPlayerFromEnt(ent)
     local sp = ent.SpawnerEntity
     if(sp==nil) then return nil end
     if(sp:ToPlayer()) then return sp:ToPlayer()
     elseif(sp:ToFamiliar() and sp:ToFamiliar().Player) then
         local fam = sp:ToFamiliar()
-        if(mod.TEAR_COPYING_FAMILIARS[fam.Variant]) then return fam.Player
+        if(ToyboxMod.TEAR_COPYING_FAMILIARS[fam.Variant]) then return fam.Player
         else return nil end
     end
 
@@ -135,21 +135,21 @@ end
 
 ---@param player EntityPlayer
 ---@return number num
-function mod:getPlayerNumFromPlayerEnt(player)
+function ToyboxMod:getPlayerNumFromPlayerEnt(player)
     for i=0, Game():GetNumPlayers()-1 do
         if(GetPtrHash(player)==GetPtrHash(Isaac.GetPlayer(i))) then return i end
     end
     return 0
 end
 
-function mod:getScreenCenter()
+function ToyboxMod:getScreenCenter()
     return (Game():GetRoom():GetRenderSurfaceTopLeft()*2+Vector(442,286))/2
 end
-function mod:getScreenBottomRight()
+function ToyboxMod:getScreenBottomRight()
     return Game():GetRoom():GetRenderSurfaceTopLeft()*2+Vector(442,286)
 end
 
-function mod:addCustomStrawman(playerType, cIndex)
+function ToyboxMod:addCustomStrawman(playerType, cIndex)
     playerType=playerType or 0
     cIndex=cIndex or 0
     local LastPlayerIndex=Game():GetNumPlayers()-1
@@ -163,24 +163,24 @@ function mod:addCustomStrawman(playerType, cIndex)
 end
 
 ---true players just means they're not strawman-like characters
-function mod:isTruePlayer(player)
+function ToyboxMod:isTruePlayer(player)
     return (player.Parent==nil)
 end
 
-function mod:getNumberOfTruePlayers()
+function ToyboxMod:getNumberOfTruePlayers()
     local c = 0
     for _, player in ipairs(Isaac.FindByType(1)) do
-        if(mod:isTruePlayer(player)) then c=c+1 end
+        if(ToyboxMod:isTruePlayer(player)) then c=c+1 end
     end
     return c
 end
 
-function mod:getTruePlayers()
+function ToyboxMod:getTruePlayers()
     local idx = 0
     local p = {}
     for i=0, Game():GetNumPlayers()-1 do
         local player = Isaac.GetPlayer(i)
-        if(mod:isTruePlayer(player)) then
+        if(ToyboxMod:isTruePlayer(player)) then
             p[idx] = player
             idx=idx+1
         end
@@ -189,8 +189,8 @@ function mod:getTruePlayers()
     return p
 end
 
-function mod:getTruePlayerNumFromPlayerEnt(player)
-    for pIdx, p in pairs(mod:getTruePlayers()) do
+function ToyboxMod:getTruePlayerNumFromPlayerEnt(player)
+    for pIdx, p in pairs(ToyboxMod:getTruePlayers()) do
         if(GetPtrHash(player)==GetPtrHash(p)) then return pIdx end
     end
 
@@ -200,7 +200,7 @@ end
 ---@param f Font
 ---@param str string
 ---@param maxlength number
-function mod:separateStringIntoLines(f, str, maxlength)
+function ToyboxMod:separateStringIntoLines(f, str, maxlength)
     local fStrings = {}
     local splitStrings = {}
 
@@ -225,7 +225,7 @@ function mod:separateStringIntoLines(f, str, maxlength)
 end
 
 ---@param pos Vector
-function mod:closestPlayer(pos)
+function ToyboxMod:closestPlayer(pos)
 	local entities = Isaac.FindByType(1)
 	local closestEnt = Isaac.GetPlayer()
 	local closestDist = 2^32
@@ -241,124 +241,124 @@ function mod:closestPlayer(pos)
 	return closestEnt
 end
 
-function mod:toTps(n)
+function ToyboxMod:toTps(n)
     return 30/(n+1)
 end
-function mod:toFireDelay(n)
+function ToyboxMod:toFireDelay(n)
     return (30/n)-1
 end
-function mod:getTps(player)
+function ToyboxMod:getTps(player)
     return 30/(player.MaxFireDelay+1)
 end
-function mod:addTps(player, n)
+function ToyboxMod:addTps(player, n)
     return (30/(30/(player.MaxFireDelay+1)+n))-1
 end
 
-function mod:renderingAboveWater()
+function ToyboxMod:renderingAboveWater()
     return Game():GetRoom():GetRenderMode()==RenderMode.RENDER_NORMAL or Game():GetRoom():GetRenderMode()==RenderMode.RENDER_WATER_ABOVE
 end
 
-function mod:getKeyFromVal(table, val)
+function ToyboxMod:getKeyFromVal(table, val)
     for key, v in pairs(table) do
         if(v==val) then return key end
     end
     return nil
 end
 
-function mod:setBaited(e, s, d)
+function ToyboxMod:setBaited(e, s, d)
     e:AddBaited(EntityRef(s),1)
     e:AddEntityFlags(EntityFlag.FLAG_BAITED)
     e:SetBaitedCountdown(d)
 end
-function mod:getBaitedFrames(e) return e:GetBaitedCountdown() end
-function mod:setBleeding(e, s, d)
+function ToyboxMod:getBaitedFrames(e) return e:GetBaitedCountdown() end
+function ToyboxMod:setBleeding(e, s, d)
     e:AddBleeding(EntityRef(s), 1)
     e:AddEntityFlags(EntityFlag.FLAG_BLEED_OUT)
     e:SetBleedingCountdown(d)
 end
-function mod:getBleedingFrames(e) return e:GetBaitedCountdown() end
-function mod:setBrimstoneMark(e, s, d)
+function ToyboxMod:getBleedingFrames(e) return e:GetBaitedCountdown() end
+function ToyboxMod:setBrimstoneMark(e, s, d)
     e:AddBrimstoneMark(EntityRef(s),1)
     e:AddEntityFlags(EntityFlag.FLAG_BRIMSTONE_MARKED)
     e:SetBrimstoneMarkCountdown(d)
 end
-function mod:getBrimstoneMarkFrames(e) return e:GetBaitedCountdown() end
-function mod:setBurn(e, s, d, dmg)
+function ToyboxMod:getBrimstoneMarkFrames(e) return e:GetBaitedCountdown() end
+function ToyboxMod:setBurn(e, s, d, dmg)
     e:AddBurn(EntityRef(s),1, dmg)
     e:AddEntityFlags(EntityFlag.FLAG_BURN)
     e:SetBurnCountdown(d)
 end
-function mod:getBurnFrames(e) return e:GetBleedingCountdown() end
-function mod:setCharmed(e, s, d)
+function ToyboxMod:getBurnFrames(e) return e:GetBleedingCountdown() end
+function ToyboxMod:setCharmed(e, s, d)
     e:AddCharmed(EntityRef(s),1)
     e:AddEntityFlags(EntityFlag.FLAG_CHARM)
     e:SetCharmedCountdown(d)
 end
-function mod:getCharmedFrames(e) return e:GetCharmedCountdown() end
-function mod:setConfusion(e, s, d, ignoreBoss)
+function ToyboxMod:getCharmedFrames(e) return e:GetCharmedCountdown() end
+function ToyboxMod:setConfusion(e, s, d, ignoreBoss)
     e:AddConfusion(EntityRef(s),1,ignoreBoss or false)
     e:AddEntityFlags(EntityFlag.FLAG_CONFUSION)
     e:SetConfusionCountdown(d)
 end
-function mod:getConfusionFrames(e) return e:GetConfusionCountdown() end
-function mod:setFear(e, s, d)
+function ToyboxMod:getConfusionFrames(e) return e:GetConfusionCountdown() end
+function ToyboxMod:setFear(e, s, d)
     e:AddFear(EntityRef(s),1)
     e:AddEntityFlags(EntityFlag.FLAG_FEAR)
     e:SetFearCountdown(d)
 end
-function mod:getFearFrames(e) return e:GetFearCountdown() end
-function mod:setFreeze(e, s, d)
+function ToyboxMod:getFearFrames(e) return e:GetFearCountdown() end
+function ToyboxMod:setFreeze(e, s, d)
     e:AddFreeze(EntityRef(s),1)
     e:AddEntityFlags(EntityFlag.FLAG_FREEZE)
     e:SetFreezeCountdown(d)
 end
-function mod:getFreezeFrames(e) return e:GetFreezeCountdown() end
-function mod:setIce(e, s, d)
+function ToyboxMod:getFreezeFrames(e) return e:GetFreezeCountdown() end
+function ToyboxMod:setIce(e, s, d)
     e:AddIce(EntityRef(s),1)
     e:AddEntityFlags(EntityFlag.FLAG_ICE)
     e:SetIceCountdown(d)
 end
-function mod:getIceFrames(e) return e:GetIceCountdown() end
-function mod:setKnockback(e, s, d, direction, takeImpact)
+function ToyboxMod:getIceFrames(e) return e:GetIceCountdown() end
+function ToyboxMod:setKnockback(e, s, d, direction, takeImpact)
     e:AddKnockback(s,direction,1,takeImpact)
     e:SetKnockbackCountdown(d)
 end
-function mod:getKnockbackFrames(e) return e:GetKnockbackCountdown() end
-function mod:setMagnetized(e, s, d)
+function ToyboxMod:getKnockbackFrames(e) return e:GetKnockbackCountdown() end
+function ToyboxMod:setMagnetized(e, s, d)
     e:AddMagnetized(EntityRef(s),1)
     e:AddEntityFlags(EntityFlag.FLAG_MAGNETIZED)
     e:SetMagnetizedCountdown(d)
 end
-function mod:getMagnetizedFrames(e) return e:GetMagnetizedCountdown() end
-function mod:setMidasFreeze(e, s, d)
+function ToyboxMod:getMagnetizedFrames(e) return e:GetMagnetizedCountdown() end
+function ToyboxMod:setMidasFreeze(e, s, d)
     e:AddMidasFreeze(EntityRef(s),d-e:GetMidasFreezeCountdown())
 end
-function mod:getMidasFreezeFrames(e) return e:GetMidasFreezeCountdown() end
-function mod:setPoison(e, s, d, dmg)
+function ToyboxMod:getMidasFreezeFrames(e) return e:GetMidasFreezeCountdown() end
+function ToyboxMod:setPoison(e, s, d, dmg)
     e:AddPoison(EntityRef(s), 1, dmg)
     e:AddEntityFlags(EntityFlag.FLAG_POISON)
     e:SetPoisonCountdown(d)
 end
-function mod:getPoisonFrames(e) return e:GetPoisonCountdown() end
-function mod:setShrink(e, s, d)
+function ToyboxMod:getPoisonFrames(e) return e:GetPoisonCountdown() end
+function ToyboxMod:setShrink(e, s, d)
     e:AddShrink(EntityRef(s),1)
     e:AddEntityFlags(EntityFlag.FLAG_SHRINK)
     e:SetShrinkCountdown(d)
 end
-function mod:getShrinkFrames(e) return e:GetShrinkCountdown() end
-function mod:setSlowing(e, s, d, val, color)
+function ToyboxMod:getShrinkFrames(e) return e:GetShrinkCountdown() end
+function ToyboxMod:setSlowing(e, s, d, val, color)
     e:AddSlowing(EntityRef(s), 1, val, color)
     e:SetSlowingCountdown(d)
 end
-function mod:getSlowingFrames(e) return e:GetSlowingCountdown() end
-function mod:setWeakness(e, s, d)
+function ToyboxMod:getSlowingFrames(e) return e:GetSlowingCountdown() end
+function ToyboxMod:setWeakness(e, s, d)
     e:AddWeakness(EntityRef(s), 1)
     e:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
     e:SetWeaknessCountdown(d)
 end
-function mod:getWeaknessFrames(e) return e:GetWeaknessCountdown() end
+function ToyboxMod:getWeaknessFrames(e) return e:GetWeaknessCountdown() end
 
-function mod:getHeartHudPosition(playerNum)
+function ToyboxMod:getHeartHudPosition(playerNum)
     if(playerNum==0) then
         return Vector(48,11)+Vector(20,12)*Options.HUDOffset
     elseif(playerNum==1) then
@@ -372,24 +372,25 @@ function mod:getHeartHudPosition(playerNum)
 end
 
 ---@param entity Entity
-function mod:isValidEnemy(entity)
-    return (entity:IsEnemy() and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))
+function ToyboxMod:isValidEnemy(entity)
+    entity = entity:ToNPC()
+    return entity and (entity:IsEnemy() and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))
 end
-function mod:getAllValidEnemies()
+function ToyboxMod:getAllValidEnemies()
     local t = {}
     for i, e in ipairs(Isaac.GetRoomEntities()) do
-        if(mod:isValidEnemy(e)) then table.insert(t, e:ToNPC()) end
+        if(ToyboxMod:isValidEnemy(e)) then table.insert(t, e:ToNPC()) end
     end
     return t
 end
 
-function mod:closestEnemy(pos)
+function ToyboxMod:closestEnemy(pos)
 	local entities = Isaac.GetRoomEntities()
 	local closestEnt = nil
 	local closestDist = 2^32
 
 	for i = 1, #entities do
-		if mod:isValidEnemy(entities[i]) then
+		if ToyboxMod:isValidEnemy(entities[i]) then
 			local dist = (entities[i].Position - pos):LengthSquared()
 			if dist < closestDist then
 				closestDist = dist
@@ -400,13 +401,13 @@ function mod:closestEnemy(pos)
 	return closestEnt
 end
 
-function mod:closestVisibleEnemy(pos)
+function ToyboxMod:closestVisibleEnemy(pos)
 	local entities = Isaac.GetRoomEntities()
 	local closestEnt = nil
 	local closestDist = 2^32
 
 	for i = 1, #entities do
-		if(mod:isValidEnemy(entities[i]) and Game():GetRoom():CheckLine(pos, entities[i].Position, 1)) then
+		if(ToyboxMod:isValidEnemy(entities[i]) and Game():GetRoom():CheckLine(pos, entities[i].Position, 1)) then
 			local dist = (entities[i].Position - pos):LengthSquared()
 			if dist < closestDist then
 				closestDist = dist
@@ -417,7 +418,7 @@ function mod:closestVisibleEnemy(pos)
 	return closestEnt
 end
 
-function mod:getEntFromPtrHash(entity)
+function ToyboxMod:getEntFromPtrHash(entity)
 	if entity then
 		if entity.Entity then entity = entity.Entity end
 		for _, e in pairs(Isaac.FindByType(entity.Type, entity.Variant, entity.SubType)) do
@@ -429,11 +430,11 @@ function mod:getEntFromPtrHash(entity)
 	return nil
 end
 
-function mod:getPlayerFromTear(tear)
+function ToyboxMod:getPlayerFromTear(tear)
 	local pEnt = tear.Parent or tear.SpawnerEntity
 	if(pEnt) then
 		if(pEnt.Type==EntityType.ENTITY_PLAYER) then
-			return mod:getEntFromPtrHash(pEnt):ToPlayer(), false
+			return ToyboxMod:getEntFromPtrHash(pEnt):ToPlayer(), false
 		elseif(pEnt.Type==EntityType.ENTITY_FAMILIAR and pEnt.Variant==FamiliarVariant.INCUBUS) then
             if(pEnt.Variant==FamiliarVariant.INCUBUS) then
                 return pEnt:ToFamiliar().Player:ToPlayer(), true
@@ -445,13 +446,13 @@ function mod:getPlayerFromTear(tear)
 	return nil, false
 end
 
-function mod:addInvincibility(player, amount)
+function ToyboxMod:addInvincibility(player, amount)
     player:SetMinDamageCooldown(player:GetDamageCooldown()+amount)
 end
 
 ---@param seed integer?
 ---@return RNG
-function mod:generateRng(seed)
+function ToyboxMod:generateRng(seed)
     seed = seed or Random()
     if(seed<=0) then seed=1 end
 
@@ -461,16 +462,16 @@ function mod:generateRng(seed)
     return rng
 end
 
-function mod:getLuckAffectedChance(luck, baseChance, maxLuck, maxChance)
+function ToyboxMod:getLuckAffectedChance(luck, baseChance, maxLuck, maxChance)
     local f = luck/maxLuck
-    f = mod:clamp(f, -1, 1)
+    f = ToyboxMod:clamp(f, -1, 1)
 
     if(f==0) then return baseChance;
-    elseif(f<0) then return mod:lerp(baseChance,0,-f)
-    else return mod:lerp(baseChance,maxChance or 1,f) end
+    elseif(f<0) then return ToyboxMod:lerp(baseChance,0,-f)
+    else return ToyboxMod:lerp(baseChance,maxChance or 1,f) end
 end
 
-function mod:getTearPoofVariantFromTear(tear)
+function ToyboxMod:getTearPoofVariantFromTear(tear)
     local s = tear:ToTear().Scale
     local h = tear:ToTear().Height
 
@@ -487,7 +488,7 @@ function mod:getTearPoofVariantFromTear(tear)
 	end
 end
 
-function mod:getRandomFreePos()
+function ToyboxMod:getRandomFreePos()
     local r = Game():GetRoom()
     local p
     local failsafe = 1000
@@ -500,11 +501,11 @@ function mod:getRandomFreePos()
     return p
 end
 
-function mod:isRoomClear()
+function ToyboxMod:isRoomClear()
     return (Game():GetRoom():IsClear() and not Game():GetRoom():IsAmbushActive())
 end
 
-function mod:isTearCopyingFamiliar(fam)
+function ToyboxMod:isTearCopyingFamiliar(fam)
     local copyFam = {
         [FamiliarVariant.INCUBUS]=true,
         [FamiliarVariant.SPRINKLER]=true,
@@ -517,12 +518,12 @@ function mod:isTearCopyingFamiliar(fam)
     return (copyFam[fam.Variant]==true)
 end
 
-function mod:trinketIsTrinketType(pickup, trinkettype)
+function ToyboxMod:trinketIsTrinketType(pickup, trinkettype)
     return (pickup.SubType==trinkettype) or (pickup.SubType==trinkettype+TrinketType.TRINKET_GOLDEN_FLAG)
 end
 
 ---@param player EntityPlayer
-function mod:isInHallowedAura(player)
+function ToyboxMod:isInHallowedAura(player)
     local hallowedAuraNums = 0
     local starAuraNums = 0
 
@@ -543,7 +544,7 @@ function mod:isInHallowedAura(player)
     return {hallowedAuraNums,starAuraNums}
 end
 ---@param player EntityPlayer
-function mod:isInHallowedCreep(player)
+function ToyboxMod:isInHallowedCreep(player)
     local auranum = 0
     for _, effect in pairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_LIQUID_POOP)) do
         effect = effect:ToEffect()
@@ -555,9 +556,9 @@ function mod:isInHallowedCreep(player)
     return auranum
 end
 
-function mod:getVanillaDamageMultAtPriority(player, priority)
+function ToyboxMod:getVanillaDamageMultAtPriority(player, priority)
     local mult = 1
-    local auraData = mod:isInHallowedAura(player)
+    local auraData = ToyboxMod:isInHallowedAura(player)
     if(priority<=1) then
         if(player:HasCollectible(CollectibleType.COLLECTIBLE_ODD_MUSHROOM_THIN)) then mult = mult*0.9 end
     end
@@ -625,13 +626,13 @@ function mod:getVanillaDamageMultAtPriority(player, priority)
     end
     return mult
 end
-function mod:addBasicDamageUp(player, dmg)
-    player.Damage = player.Damage+dmg*mod:getVanillaDamageMultAtPriority(player,0)
+function ToyboxMod:addBasicDamageUp(player, dmg)
+    player.Damage = player.Damage+dmg*ToyboxMod:getVanillaDamageMultAtPriority(player,0)
 end
 
 --thank you rat rat rat rat rat rat rat rat!!!!
 ---@param player EntityPlayer
-function mod:getVanillaTearMultiplier(player)
+function ToyboxMod:getVanillaTearMultiplier(player)
     local mult = 1.0
 
     if player:HasWeaponType(2) then
@@ -673,29 +674,29 @@ function mod:getVanillaTearMultiplier(player)
     elseif(epiphora>=90) then mult = mult*(4/3) end
     mult = mult*player:GetD8FireDelayModifier()
 
-    local creepdata = mod:isInHallowedCreep(player)
-    local auraData = mod:isInHallowedAura(player)
+    local creepdata = ToyboxMod:isInHallowedCreep(player)
+    local auraData = ToyboxMod:isInHallowedAura(player)
     if(auraData[1]>0 or auraData[2]>0 or creepdata>0) then mult = mult*2.5 end
 
     return mult
 end
-function mod:addBasicTearsUp(player, tears)
-    player.MaxFireDelay = mod:addTps(player, tears*mod:getVanillaTearMultiplier(player))
+function ToyboxMod:addBasicTearsUp(player, tears)
+    player.MaxFireDelay = ToyboxMod:addTps(player, tears*ToyboxMod:getVanillaTearMultiplier(player))
 end
 
 local SPEED_MULT = 10
 
 ---@param entity Entity
-function mod:isScared(entity)
+function ToyboxMod:isScared(entity)
     return (entity:HasEntityFlags(EntityFlag.FLAG_FEAR) or entity:HasEntityFlags(EntityFlag.FLAG_SHRINK))
 end
 
 ---@param entity Entity
-function mod:isConfused(entity)
+function ToyboxMod:isConfused(entity)
     return (entity:HasEntityFlags(EntityFlag.FLAG_CONFUSION))
 end
 
-function mod:getWalkAnimPlaybackSpeed(entity, speed, isMoving)
+function ToyboxMod:getWalkAnimPlaybackSpeed(entity, speed, isMoving)
     if(not isMoving) then return 1 end
 
     return entity.Velocity:Length()/(speed)
@@ -703,8 +704,8 @@ end
 
 ---@param entity EntityNPC
 ---@param speed number
-function mod:walkAnimLogic(entity, speed, walkAnimTb)
-    local isWalking = mod:isNpcWalking(entity)
+function ToyboxMod:walkAnimLogic(entity, speed, walkAnimTb)
+    local isWalking = ToyboxMod:isNpcWalking(entity)
     if(isWalking and entity.Velocity:LengthSquared()>0.01) then
         local currAnim = entity:GetSprite():GetAnimation()
 
@@ -723,11 +724,11 @@ function mod:walkAnimLogic(entity, speed, walkAnimTb)
         end
     end
 
-    entity:GetSprite().PlaybackSpeed = mod:getWalkAnimPlaybackSpeed(entity, speed, isWalking)
+    entity:GetSprite().PlaybackSpeed = ToyboxMod:getWalkAnimPlaybackSpeed(entity, speed, isWalking)
 end
 
 ---@param entity EntityNPC
-function mod:isNpcWalking(entity)
+function ToyboxMod:isNpcWalking(entity)
     local anim = entity:GetSprite():GetAnimation()
 
     if(string.sub(anim,1,4)~="Walk" or entity.FrameCount==1) then return false end
@@ -737,13 +738,13 @@ end
 ---@param entity EntityNPC
 ---@param target Entity|Vector
 ---@param speed number
-function mod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldCheckDist, isConstantlyAfraid)
-    if(mod:isNpcWalking(entity)) then
+function ToyboxMod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldCheckDist, isConstantlyAfraid)
+    if(ToyboxMod:isNpcWalking(entity)) then
         local targetPos = ((target.X~=nil) and target) or target.Position
-        local newPos = mod:getEntityData(entity, "targetPos")
+        local newPos = ToyboxMod:getEntityData(entity, "targetPos")
 
-        local isScared = mod:isScared(entity)
-        local isConfused = mod:isConfused(entity)
+        local isScared = ToyboxMod:isScared(entity)
+        local isConfused = ToyboxMod:isConfused(entity)
 
         if(isConstantlyAfraid) then
             if(shouldCheckDist) then
@@ -758,7 +759,7 @@ function mod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldCheckDi
             end
         end
 
-        local gridCountdown = mod:getEntityData(entity, "gridCountdown") or 0
+        local gridCountdown = ToyboxMod:getEntityData(entity, "gridCountdown") or 0
 
         if(isScared) then
             newPos = entity.Position+(entity.Position-targetPos)
@@ -770,7 +771,7 @@ function mod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldCheckDi
             newPos = target.Position
         end
 
-        mod:setEntityData(entity, "targetPos", newPos)
+        ToyboxMod:setEntityData(entity, "targetPos", newPos)
 
         if(entity.Pathfinder:HasPathToPos(newPos, false) or (isScared or isConfused)) then
             local distCheck = true
@@ -782,15 +783,15 @@ function mod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldCheckDi
             if((entity:CollidesWithGrid() or gridCountdown>0) and distCheck) then
 
                 entity.Pathfinder:FindGridPath(newPos, speed, 1, false)
-                mod:setEntityData(entity, "gridCountdown", gridCountdown)
-            else return mod:lerp(entity.Velocity, (newPos - entity.Position):Resized(speed*SPEED_MULT), lerpVal) end
+                ToyboxMod:setEntityData(entity, "gridCountdown", gridCountdown)
+            else return ToyboxMod:lerp(entity.Velocity, (newPos - entity.Position):Resized(speed*SPEED_MULT), lerpVal) end
         else return entity.Velocity*0.5 end
     end
 
-    mod:walkAnimLogic(entity, speed)
+    ToyboxMod:walkAnimLogic(entity, speed)
 end
 
-function mod:angleDifference(a1, a2)
+function ToyboxMod:angleDifference(a1, a2)
     local dif = (a2-a1)%360
     if(dif>180) then return dif-360 end
     return dif
@@ -802,7 +803,7 @@ local SHOOT_ACTIONS = {
     ButtonAction.ACTION_SHOOTUP,
     ButtonAction.ACTION_SHOOTRIGHT,
 }
-function mod:isHoldingShootingInput(player)
+function ToyboxMod:isHoldingShootingInput(player)
     local idx = player.ControllerIndex
     for _, action in pairs(SHOOT_ACTIONS) do
         if(Input.IsActionPressed(action, idx)) then
@@ -812,12 +813,12 @@ function mod:isHoldingShootingInput(player)
     return false
 end
 
-function mod:isPlayerShooting(player)
-    return (player:GetShootingInput():LengthSquared()>0.001) or mod:isHoldingShootingInput(player)
+function ToyboxMod:isPlayerShooting(player)
+    return (player:GetShootingInput():LengthSquared()>0.001) or ToyboxMod:isHoldingShootingInput(player)
 end
 
 ---@param bomb EntityBomb
-function mod:getBombRadius(bomb)
+function ToyboxMod:getBombRadius(bomb)
     local radius
     if(bomb.Variant==BombVariant.BOMB_GIGA or bomb.Variant==BombVariant.BOMB_ROCKET_GIGA or bomb.Flags & TearFlags.TEAR_GIGA_BOMB ~= TearFlags.TEAR_NORMAL) then
         radius = 130.0

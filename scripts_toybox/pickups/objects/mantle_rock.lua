@@ -1,27 +1,27 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local SHOCKWAVE_DMG = 10
 
 ---@param player EntityPlayer
 local function useMantle(_, _, player, _)
-    if(mod:isAtlasA(player)) then
-        mod:giveMantle(player, mod.MANTLE_DATA.DEFAULT.ID)
+    if(ToyboxMod:isAtlasA(player)) then
+        ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.DEFAULT.ID)
     else
-        local data = mod:getEntityDataTable(player)
+        local data = ToyboxMod:getEntityDataTable(player)
         data.MANTLEROCK_ACTIVE = (data.MANTLEROCK_ACTIVE or 0)+1
-        mod.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_TERRA, nil, 1, "TOYBOX")
+        ToyboxMod.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_TERRA, nil, 1, "TOYBOX")
         sfx:Play(SoundEffect.SOUND_ROCK_CRUMBLE)
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, mod.CONSUMABLE.MANTLE_ROCK)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CONSUMABLE.MANTLE_ROCK)
 
 ---@param player EntityPlayer
 local function postNewRoom(_, player)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     data.MANTLEROCK_ACTIVE = 0
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postNewRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postNewRoom)
 
 ---@param player Entity
 ---@param source EntityRef
@@ -30,7 +30,7 @@ local function fireShockwaves(_, player, dmg, flags, source)
     if(source.Type==6) then return end
     if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
 
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     if(data.MANTLEROCK_ACTIVE and data.MANTLEROCK_ACTIVE>0) then
         local ent = source.Entity
         if(ent and not ent:ToNPC()) then
@@ -54,19 +54,19 @@ local function fireShockwaves(_, player, dmg, flags, source)
             DestroyGrid=1,
         }
         for i=1, data.MANTLEROCK_ACTIVE*dmg do
-            mod:spawnCustomObjects(spawnData)
+            ToyboxMod:spawnCustomObjects(spawnData)
         end
 
         local poof = Isaac.Spawn(1000,16,2,player.Position,Vector.Zero,player):ToEffect()
         poof.Color = Color(0.75,0.75,0.75,0.65)
-        sfx:Play(mod.SOUND_EFFECT.ATLASA_ROCKBREAK)
+        sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK)
     end
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, fireShockwaves, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, fireShockwaves, EntityType.ENTITY_PLAYER)
 
-if(mod.ATLAS_A_MANTLESUBTYPES) then mod.ATLAS_A_MANTLESUBTYPES[mod.CONSUMABLE.MANTLE_ROCK] = true end
+if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CONSUMABLE.MANTLE_ROCK] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE.MANTLE_ROCK).Weight = (mod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.MANTLE_ROCK).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

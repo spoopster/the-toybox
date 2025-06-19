@@ -1,7 +1,7 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
-mod.TEAR_REPLACEMENT_ITEMS = {
+ToyboxMod.TEAR_REPLACEMENT_ITEMS = {
     {CollectibleType.COLLECTIBLE_TECH_X, 1},
     {CollectibleType.COLLECTIBLE_BRIMSTONE, 1},
     {CollectibleType.COLLECTIBLE_MOMS_KNIFE, 1},
@@ -13,11 +13,11 @@ mod.TEAR_REPLACEMENT_ITEMS = {
     --{CollectibleType.COLLECTIBLE_TRISAGION, 1},
 }
 if(REVEL) then
-    table.insert(mod.TEAR_REPLACEMENT_ITEMS, {REVEL.ITEM.BURNBUSH.id, 1})
+    table.insert(ToyboxMod.TEAR_REPLACEMENT_ITEMS, {REVEL.ITEM.BURNBUSH.id, 1})
 end
 
 local REPLACEMENT_ITEM_PICKER = WeightedOutcomePicker()
-for _, item in ipairs(mod.TEAR_REPLACEMENT_ITEMS) do
+for _, item in ipairs(ToyboxMod.TEAR_REPLACEMENT_ITEMS) do
     REPLACEMENT_ITEM_PICKER:AddOutcomeFloat(item[1], item[2], 100)
 end
 
@@ -28,7 +28,7 @@ local function artOfWarUse(_, _, rng, pl, flags, slot, vdata)
 
     pl:AddInnateCollectible(pickedItem, 1)
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.ART_OF_WAR_ITEMS = data.ART_OF_WAR_ITEMS or {}
     data.ART_OF_WAR_ITEMS[pickedItem] = (data.ART_OF_WAR_ITEMS[pickedItem] or 0)+1
 
@@ -41,12 +41,12 @@ local function artOfWarUse(_, _, rng, pl, flags, slot, vdata)
         Remove = false,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, artOfWarUse, mod.COLLECTIBLE.ART_OF_WAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, artOfWarUse, ToyboxMod.COLLECTIBLE_ART_OF_WAR)
 
 local function postPlayerNewRoom(_)
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        local data = mod:getEntityDataTable(pl)
+        local data = ToyboxMod:getEntityDataTable(pl)
 
         if(data.ART_OF_WAR_ITEMS) then
             for item, num in pairs(data.ART_OF_WAR_ITEMS) do
@@ -60,4 +60,4 @@ local function postPlayerNewRoom(_)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postPlayerNewRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postPlayerNewRoom)

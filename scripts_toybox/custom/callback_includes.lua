@@ -1,5 +1,5 @@
-local mod = ToyboxMod
-mod.CALLBACK_BOMBS_FIRED = {}
+
+ToyboxMod.CALLBACK_BOMBS_FIRED = {}
 
 local t = {
     "scripts_toybox.custom.callbacks.post_player_bomb_detonate",

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local SACRED_CHANCE = 1/30
@@ -13,35 +13,35 @@ local BASE_AURA_RADIUS = 60
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not mod:isAtlasA(player)) then return end
+    if(not ToyboxMod:isAtlasA(player)) then return end
 
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.HOLY.ID)
+    local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.HOLY.ID)
 
     if(flag==CacheFlag.CACHE_RANGE) then
         player.TearRange = player.TearRange+RANGE_UP*numMantles*40
     end
-    if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.HOLY.ID)) then
+    if(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.HOLY.ID)) then
         if(flag==CacheFlag.CACHE_FLYING) then
             player.CanFly = true
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 local function makeHolyAura(_, pl)
-    if(not (mod:isAtlasA(pl) and mod:atlasHasTransformation(pl, mod.MANTLE_DATA.HOLY.ID))) then
-        local ent = mod:getEntityData(pl, "HOLY_AURA")
+    if(not (ToyboxMod:isAtlasA(pl) and ToyboxMod:atlasHasTransformation(pl, ToyboxMod.MANTLE_DATA.HOLY.ID))) then
+        local ent = ToyboxMod:getEntityData(pl, "HOLY_AURA")
         if(ent) then
             ent:Die()
-            mod:setEntityData(pl, "HOLY_AURA", nil)
+            ToyboxMod:setEntityData(pl, "HOLY_AURA", nil)
         end
 
         return
     end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     if(not (data.HOLY_AURA and data.HOLY_AURA:Exists())) then
-        local aura = Isaac.Spawn(1000,mod.EFFECT_VARIANT.AURA,mod.EFFECT_AURA_SUBTYPE.HOLY_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
+        local aura = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.HOLY_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
         aura.DepthOffset = -1000
         aura:FollowParent(pl)
     
@@ -52,15 +52,15 @@ local function makeHolyAura(_, pl)
         data.HOLY_AURA = aura
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, makeHolyAura)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, makeHolyAura)
 
 ---@param effect EntityEffect
 local function holyAuraUpdate(_, effect)
-    if(effect.SubType~=mod.EFFECT_AURA_SUBTYPE.HOLY_MANTLE) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.HOLY_MANTLE) then return end
 
     if(effect.FrameCount%AURA_FREQ==0) then
         for _, npc in ipairs(Isaac.FindInRadius(effect.Position, effect.Scale*BASE_AURA_RADIUS, EntityPartition.ENEMY)) do
-            if(npc:ToNPC() and mod:isValidEnemy(npc:ToNPC())) then
+            if(npc:ToNPC() and ToyboxMod:isValidEnemy(npc:ToNPC())) then
                 npc:TakeDamage(AURA_DMG, 0, EntityRef(effect.Parent), 3)
             end
         end
@@ -86,14 +86,14 @@ local function holyAuraUpdate(_, effect)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, holyAuraUpdate, mod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, holyAuraUpdate, ToyboxMod.EFFECT_VARIANT.AURA)
 
 --ADDING THE HOMING TEARFLAG + DMG BONUS ON DIFFERENT WEAPONS
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    local chance = SACRED_CHANCE*mod:getNumMantlesByType(p, mod.MANTLE_DATA.HOLY.ID)
+    local chance = SACRED_CHANCE*ToyboxMod:getNumMantlesByType(p, ToyboxMod.MANTLE_DATA.HOLY.ID)
     if(e:GetDropRNG():RandomFloat()<chance) then
         e:AddTearFlags(TearFlags.TEAR_HOMING)
         e.CollisionDamage = e.CollisionDamage*2
@@ -101,11 +101,11 @@ function(_, e)
 end
 )
 
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    local chance = SACRED_CHANCE*mod:getNumMantlesByType(p, mod.MANTLE_DATA.HOLY.ID)
+    local chance = SACRED_CHANCE*ToyboxMod:getNumMantlesByType(p, ToyboxMod.MANTLE_DATA.HOLY.ID)
     if(e:GetDropRNG():RandomFloat()<chance) then
         e:AddTearFlags(TearFlags.TEAR_HOMING)
         e.ExplosionDamage = e.ExplosionDamage*2
@@ -113,11 +113,11 @@ function(_, e)
 end
 )
 
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_LASER,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_LASER,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    local chance = SACRED_CHANCE*mod:getNumMantlesByType(p, mod.MANTLE_DATA.HOLY.ID)
+    local chance = SACRED_CHANCE*ToyboxMod:getNumMantlesByType(p, ToyboxMod.MANTLE_DATA.HOLY.ID)
     if(e:GetDropRNG():RandomFloat()<chance) then
         e:AddTearFlags(TearFlags.TEAR_HOMING)
         e.CollisionDamage = e.CollisionDamage*2
@@ -125,11 +125,11 @@ function(_, e)
 end
 )
 
-mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    local chance = SACRED_CHANCE*mod:getNumMantlesByType(p, mod.MANTLE_DATA.HOLY.ID)
+    local chance = SACRED_CHANCE*ToyboxMod:getNumMantlesByType(p, ToyboxMod.MANTLE_DATA.HOLY.ID)
     if(e:GetDropRNG():RandomFloat()<chance) then
         e:AddTearFlags(TearFlags.TEAR_HOMING)
         e.CollisionDamage = e.CollisionDamage*2
@@ -139,8 +139,8 @@ end
 
 ---@param player EntityPlayer
 local function playMantleSFX(_, player, mantle)
-    if(not mod:isAtlasA(player)) then return end
+    if(not ToyboxMod:isAtlasA(player)) then return end
 
-    sfx:Play(mod.SOUND_EFFECT.ATLASA_ROCKBREAK)
+    sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, mod.MANTLE_DATA.HOLY.ID)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, ToyboxMod.MANTLE_DATA.HOLY.ID)

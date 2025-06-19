@@ -1,30 +1,30 @@
-local mod = ToyboxMod
+
 
 local TINT_AURA_SIZE = 1
 
 ---@param roomPos Vector
 ---@param tintedType integer
-function mod:makeTintedRoom(roomPos, tintedType)
+function ToyboxMod:makeTintedRoom(roomPos, tintedType)
     if(type(roomPos)~="number") then
-        roomPos = mod:positionVectorToGridIndex(roomPos)
+        roomPos = ToyboxMod:positionVectorToGridIndex(roomPos)
     end
 
-    local data = mod:getExtraDataTable()
+    local data = ToyboxMod:getExtraDataTable()
     data.TINTED_ROOM_POSITIONS = data.TINTED_ROOM_POSITIONS or {}
 
     local level = Game():GetLevel()
     local room = level:GetRoomByIdx(roomPos)
     if(room.Data and room.GridIndex>=0) then
-        local topLeftPos = mod:gridIndexToPositionVector(room.GridIndex)
-        local roomSize = mod.ROOM_DIMENSIONS[room.Data.Shape]
+        local topLeftPos = ToyboxMod:gridIndexToPositionVector(room.GridIndex)
+        local roomSize = ToyboxMod.ROOM_DIMENSIONS[room.Data.Shape]
 
         local alreadyAddedToTintedAura = {}
         for rx=topLeftPos.X, topLeftPos.X+roomSize.X-1 do
             for ry=topLeftPos.Y, topLeftPos.Y+roomSize.Y-1 do
-                if(level:GetRoomByIdx(mod:positionVectorToGridIndex(Vector(rx,ry))).SafeGridIndex==room.SafeGridIndex) then
+                if(level:GetRoomByIdx(ToyboxMod:positionVectorToGridIndex(Vector(rx,ry))).SafeGridIndex==room.SafeGridIndex) then
                     for ax=-TINT_AURA_SIZE, TINT_AURA_SIZE do
                         for ay=-TINT_AURA_SIZE, TINT_AURA_SIZE do
-                            local newidx = level:GetRoomByIdx(mod:positionVectorToGridIndex(Vector(rx+ax,ry+ay))).SafeGridIndex
+                            local newidx = level:GetRoomByIdx(ToyboxMod:positionVectorToGridIndex(Vector(rx+ax,ry+ay))).SafeGridIndex
                             if(not alreadyAddedToTintedAura[newidx]) then
                                 alreadyAddedToTintedAura[newidx] = true
                                 
@@ -46,9 +46,9 @@ end
 
 
 local function resetTintedRoomsOnLevelGen(_)
-    mod:setExtraData("TINTED_ROOM_POSITIONS", {})
+    ToyboxMod:setExtraData("TINTED_ROOM_POSITIONS", {})
 end
-mod:AddCallback(ModCallbacks.MC_POST_LEVEL_LAYOUT_GENERATED, resetTintedRoomsOnLevelGen)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_LEVEL_LAYOUT_GENERATED, resetTintedRoomsOnLevelGen)
 
 
 
@@ -56,9 +56,9 @@ mod:AddCallback(ModCallbacks.MC_POST_LEVEL_LAYOUT_GENERATED, resetTintedRoomsOnL
 ---@param player EntityPlayer
 local function test(_, _, rng, player, flags)
     local numblablabla = 0
-    for _, _ in pairs(mod.TINTED_ROOM) do numblablabla = numblablabla+1 end
+    for _, _ in pairs(ToyboxMod.TINTED_ROOM) do numblablabla = numblablabla+1 end
 
     local sel = rng:RandomInt(numblablabla)
-    mod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel))
+    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel))
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, test)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)

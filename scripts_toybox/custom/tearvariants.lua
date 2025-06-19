@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --#region --! METEOR TEARS
@@ -25,12 +25,12 @@ local function meteorTearUpdate(_, tear)
     tear.Rotation = tear.Velocity:GetAngleDegrees()%360
     s.Rotation = tear.Rotation
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, meteorTearUpdate, mod.TEAR_VARIANT.METEOR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, meteorTearUpdate, ToyboxMod.TEAR_VARIANT.METEOR)
 
 local function meteorTearSplat(_, tear)
     if(Game():IsPaused()) then return end
 
-    if(tear.Variant==mod.TEAR_VARIANT.METEOR) then
+    if(tear.Variant==ToyboxMod.TEAR_VARIANT.METEOR) then
         tear = tear:ToTear()
 
         sfx:Play(SoundEffect.SOUND_STONE_IMPACT, 0.4, 0, false, 1)
@@ -42,7 +42,7 @@ local function meteorTearSplat(_, tear)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, meteorTearSplat, EntityType.ENTITY_TEAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, meteorTearSplat, EntityType.ENTITY_TEAR)
 --#endregion
 
 --#region --! BULLETS TEARS
@@ -69,16 +69,16 @@ local function bulletTearUpdate(_, tear)
     tear.Rotation = tear.Velocity:GetAngleDegrees()%360
     s.Rotation = tear.Rotation
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, bulletTearUpdate, mod.TEAR_VARIANT.BULLET)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, bulletTearUpdate, ToyboxMod.TEAR_VARIANT.BULLET)
 
 local function bulletTearSplat(_, tear)
     if(Game():IsPaused()) then return end
 
-    if(tear.Variant==mod.TEAR_VARIANT.BULLET) then
+    if(tear.Variant==ToyboxMod.TEAR_VARIANT.BULLET) then
         tear = tear:ToTear()
 
         sfx:Play(SoundEffect.SOUND_PLOP, 0.1, 0, false, 1)
-        sfx:Play(mod.SOUND_EFFECT.BULLET_HIT, 0.5, 0, false, 1)
+        sfx:Play(ToyboxMod.SOUND_EFFECT.BULLET_HIT, 0.5, 0, false, 1)
         for _=1, math.floor(2*tear.Scale) do
             local particle = Isaac.Spawn(1000, EffectVariant.TOOTH_PARTICLE, 1, tear.Position, Vector.FromAngle(math.random(360)), nil)
             particle:Update()
@@ -89,7 +89,7 @@ local function bulletTearSplat(_, tear)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, bulletTearSplat, EntityType.ENTITY_TEAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, bulletTearSplat, EntityType.ENTITY_TEAR)
 --#endregion
 
 --#region --! SOUNDWAVE TEAR
@@ -101,7 +101,7 @@ local function soundwaveTearUpdate(_, tear)
     local s = tear:GetSprite()
     if(s:GetAnimation()~="RegularTear6") then s:Play("RegularTear6", true) end
 
-    tear.Rotation = mod:getEntityData(tear, "EVIL_WAVE_ROTATION") or tear.Velocity:GetAngleDegrees()%360
+    tear.Rotation = ToyboxMod:getEntityData(tear, "EVIL_WAVE_ROTATION") or tear.Velocity:GetAngleDegrees()%360
     s.Rotation = tear.Rotation
 
     if(tear.FrameCount>=SOUNDWAVE_TEAR_LIFESPAN-SOUNDWAVE_TEAR_FADEOUT) then
@@ -111,7 +111,7 @@ local function soundwaveTearUpdate(_, tear)
         if(tear.FrameCount==SOUNDWAVE_TEAR_LIFESPAN) then tear:Remove() end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, soundwaveTearUpdate, mod.TEAR_VARIANT.SOUNDWAVE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, soundwaveTearUpdate, ToyboxMod.TEAR_VARIANT.SOUNDWAVE)
 
 ---@param tear EntityTear
 local function soundwaveTearRender(_, tear, offset)
@@ -122,7 +122,7 @@ local function soundwaveTearRender(_, tear, offset)
         s:Render(Isaac.WorldToScreen(tear.Position+Vector(rng:RandomFloat()-0.5,rng:RandomFloat()-0.5)*13+offset+Vector(0,tear.Height)-Game():GetRoom():GetRenderScrollOffset()))
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_RENDER, soundwaveTearRender, mod.TEAR_VARIANT.SOUNDWAVE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_RENDER, soundwaveTearRender, ToyboxMod.TEAR_VARIANT.SOUNDWAVE)
 --#endregion
 
 --#region --! CASH 1 BILLION PAPER
@@ -145,12 +145,12 @@ local function paperTearUpdate(_, tear)
 
     if(tear:GetSprite():GetAnimation()~=anim) then tear:GetSprite():Play(anim, true) end
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, paperTearUpdate, mod.TEAR_VARIANT.PAPER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, paperTearUpdate, ToyboxMod.TEAR_VARIANT.PAPER)
 
 local function paperTearSplat(_, tear)
     if(Game():IsPaused()) then return end
 
-    if(tear.Variant==mod.TEAR_VARIANT.PAPER) then
+    if(tear.Variant==ToyboxMod.TEAR_VARIANT.PAPER) then
         tear = tear:ToTear()
 
         for _=1, math.floor(2*tear.Scale) do
@@ -163,5 +163,5 @@ local function paperTearSplat(_, tear)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, paperTearSplat, EntityType.ENTITY_TEAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, paperTearSplat, EntityType.ENTITY_TEAR)
 --#endregion

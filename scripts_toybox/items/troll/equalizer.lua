@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local PICKUP_TABLE = {
@@ -30,7 +30,7 @@ STAT_PICKER:AddOutcomeWeight(5, 1)
 STAT_PICKER:AddOutcomeWeight(6, 1)
 
 local function pickPickupStat(rng)
-    local extraData = mod:getExtraDataTable()
+    local extraData = ToyboxMod:getExtraDataTable()
 
     local prevPickup = extraData.EQUALIZER_PICKUP
     local prevStat = extraData.EQUALIZER_STAT
@@ -43,24 +43,24 @@ local function pickPickupStat(rng)
     end
 
     local toDisplay = PICKUP_TABLE[extraData.EQUALIZER_PICKUP].Name.." = "..STAT_TABLE[extraData.EQUALIZER_STAT].Name
-    local item = Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.EQUALIZER)
+    local item = Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)
     item.Description = toDisplay
 end
 
 
 local function postGameStarted(_, isCont)
     if(not isCont) then
-        pickPickupStat(mod:generateRng())
+        pickPickupStat(ToyboxMod:generateRng())
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted)
 
 ---@param player EntityPlayer
 local function useEqualizer(_, _, rng, player, flags)
     pickPickupStat(rng)
     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 
-    local item = Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.EQUALIZER)
+    local item = Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)
     Game():GetHUD():ShowItemText(player, item)
 
     sfx:Play(SoundEffect.SOUND_POWERUP1)
@@ -71,18 +71,18 @@ local function useEqualizer(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useEqualizer, mod.COLLECTIBLE.EQUALIZER)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useEqualizer, ToyboxMod.COLLECTIBLE_EQUALIZER)
 
 ---@param player EntityPlayer
 local function evalCache(_, player, flags)
-    if(not player:HasCollectible(mod.COLLECTIBLE.EQUALIZER)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)) then return end
 
-    if(not PICKUP_TABLE[mod:getExtraData("EQUALIZER_PICKUP")]) then
-        pickPickupStat(player:GetCollectibleRNG(mod.COLLECTIBLE.EQUALIZER))
+    if(not PICKUP_TABLE[ToyboxMod:getExtraData("EQUALIZER_PICKUP")]) then
+        pickPickupStat(player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_EQUALIZER))
     end
 
-    local pickupData = mod:getExtraData("EQUALIZER_PICKUP")
-    local statData = mod:getExtraData("EQUALIZER_STAT")
+    local pickupData = ToyboxMod:getExtraData("EQUALIZER_PICKUP")
+    local statData = ToyboxMod:getExtraData("EQUALIZER_STAT")
     if(flags~=CacheFlag[STAT_TABLE[statData].Cache]) then return end
 
     local statMult = STAT_TABLE[statData].StatVal*PICKUP_TABLE[pickupData].StatMult*player[PICKUP_TABLE[pickupData].NumFunc](player)
@@ -90,9 +90,9 @@ local function evalCache(_, player, flags)
     if(statData=="SPEED") then
         player.MoveSpeed = player.MoveSpeed+statMult
     elseif(statData=="TEARS") then
-        mod:addBasicTearsUp(player, statMult)
+        ToyboxMod:addBasicTearsUp(player, statMult)
     elseif(statData=="DAMAGE") then
-        mod:addBasicDamageUp(player, statMult)
+        ToyboxMod:addBasicDamageUp(player, statMult)
     elseif(statData=="RANGE") then
         player.TearRange = player.TearRange+40*statMult
     elseif(statData=="SHOTSPEED") then
@@ -101,21 +101,21 @@ local function evalCache(_, player, flags)
         player.Luck = player.Luck+statMult
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 local function updatePickups(_)
-    local extraData = mod:getExtraDataTable()
+    local extraData = ToyboxMod:getExtraDataTable()
     local pl = Isaac.GetPlayer()
 
     local numCoins = pl:GetNumCoins()
     local numBombs = pl:GetNumBombs()
     local numKeys = pl:GetNumKeys()
 
-    if(PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.EQUALIZER)) then
+    if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)) then
         if(numCoins~=extraData.EQUALIZER_COINS or numBombs~=extraData.EQUALIZER_BOMBS or numKeys~=extraData.EQUALIZER_KEYS) then
            for i=0, Game():GetNumPlayers()-1 do
                 local player = Isaac.GetPlayer(i)
-                if(player:HasCollectible(mod.COLLECTIBLE.EQUALIZER)) then
+                if(player:HasCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)) then
                     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
                 end
            end
@@ -126,4 +126,4 @@ local function updatePickups(_)
     extraData.EQUALIZER_BOMBS = numBombs
     extraData.EQUALIZER_KEYS = numKeys
 end
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, updatePickups)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, updatePickups)

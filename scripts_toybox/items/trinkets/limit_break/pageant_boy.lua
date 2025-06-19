@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 --* Penny spawns have a chance to become double pennies or nickels
 
 local SPECIAL_CHANCE = 15*0.01
@@ -12,7 +12,7 @@ local function coinInit(_, pickup)
     local numBoosts = 0
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        if(mod:playerHasLimitBreak(pl)) then numBoosts = numBoosts+pl:GetCollectibleNum(CollectibleType.COLLECTIBLE_PAGEANT_BOY) end
+        if(ToyboxMod:playerHasLimitBreak(pl)) then numBoosts = numBoosts+pl:GetCollectibleNum(CollectibleType.COLLECTIBLE_PAGEANT_BOY) end
     end
     if(numBoosts<=0) then return end
 
@@ -22,4 +22,4 @@ local function coinInit(_, pickup)
         else pickup:Morph(5,20,4) end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, coinInit, PickupVariant.PICKUP_COIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, coinInit, PickupVariant.PICKUP_COIN)

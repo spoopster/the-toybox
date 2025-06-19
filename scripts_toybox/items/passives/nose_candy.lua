@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local ENUM_NUMTOSTAT = {"FIREDELAY", "DAMAGE", "RANGE", "SHOTSPEED", "LUCK"}
 local ENUM_STATPICKER = WeightedOutcomePicker()
@@ -15,14 +15,14 @@ local ENUM_LEVEL_STATDOWNBONUS = -0.05
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE.NOSE_CANDY)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_NOSE_CANDY)) then return end
 
-    local statTable = mod:getEntityData(player, "NOSE_CANDY_STATBONUSES")
+    local statTable = ToyboxMod:getEntityData(player, "NOSE_CANDY_STATBONUSES")
 
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+statTable.SPEED
     elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        mod:addBasicTearsUp(player, statTable.FIREDELAY)
+        ToyboxMod:addBasicTearsUp(player, statTable.FIREDELAY)
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
         player.Damage = player.Damage*(1+statTable.DAMAGE/2)
     elseif(flag==CacheFlag.CACHE_RANGE) then
@@ -33,16 +33,16 @@ local function evalCache(_, player, flag)
         player.Luck = player.Luck+statTable.LUCK
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function addNoseCandyBonuses(_, player)
     if(player.FrameCount==0) then return end
-    if(not player:HasCollectible(mod.COLLECTIBLE.NOSE_CANDY)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_NOSE_CANDY)) then return end
 
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.NOSE_CANDY)
-    local statTable = mod:getEntityDataTable(player).NOSE_CANDY_STATBONUSES
-    local num = player:GetCollectibleNum(mod.COLLECTIBLE.NOSE_CANDY)
+    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_NOSE_CANDY)
+    local statTable = ToyboxMod:getEntityDataTable(player).NOSE_CANDY_STATBONUSES
+    local num = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_NOSE_CANDY)
 
     local statToUp = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
     local statToDown = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
@@ -62,4 +62,4 @@ local function addNoseCandyBonuses(_, player)
 
     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, addNoseCandyBonuses)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, addNoseCandyBonuses)

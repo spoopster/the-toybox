@@ -1,20 +1,20 @@
-local mod = ToyboxMod
+
 local MODEntityData = {}
 local MODExtraData = {}             --! ONE=RUN ONLY, NOT ENTITY DEPENDENT
 local MODPersistentData = {}        --! PERSISTS ACROSS RUNS
 local MODGridEntityData = {}
 
-function mod:getGridEntityDataTable(entity)
+function ToyboxMod:getGridEntityDataTable(entity)
     if(not MODGridEntityData[entity:GetSaveState().SpawnSeed]) then MODGridEntityData[entity:GetSaveState().SpawnSeed]={} end
 
     return MODGridEntityData[entity:GetSaveState().SpawnSeed]
 end
-function mod:getGridEntityData(entity, key)
+function ToyboxMod:getGridEntityData(entity, key)
     if(not MODGridEntityData[entity:GetSaveState().SpawnSeed]) then MODGridEntityData[entity:GetSaveState().SpawnSeed]={} end
 
     return MODGridEntityData[entity:GetSaveState().SpawnSeed][key]
 end
-function mod:setGridEntityData(entity, key, val)
+function ToyboxMod:setGridEntityData(entity, key, val)
     local exists = true
     if(not MODGridEntityData[entity:GetSaveState().SpawnSeed]) then
         MODGridEntityData[entity:GetSaveState().SpawnSeed]={}
@@ -25,7 +25,7 @@ function mod:setGridEntityData(entity, key, val)
 
     return exists
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, math.huge,
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, math.huge,
     function()
         MODGridEntityData = {}
     end
@@ -35,7 +35,7 @@ local function getEntIndex(ent)
     return tostring(ent.InitSeed)
 end
 
-function mod:getEntityDataTable(entity)
+function ToyboxMod:getEntityDataTable(entity)
     -- [[
     if(not entity:GetData().TOYBOXDATA) then entity:GetData().TOYBOXDATA = {} end
     return entity:GetData().TOYBOXDATA
@@ -48,7 +48,7 @@ function mod:getEntityDataTable(entity)
     return MODEntityData[idx]
     --]]
 end
-function mod:getEntityData(entity, key)
+function ToyboxMod:getEntityData(entity, key)
     -- [[
     if(not entity:GetData().TOYBOXDATA) then entity:GetData().TOYBOXDATA = {} end
     return entity:GetData().TOYBOXDATA[key]
@@ -61,7 +61,7 @@ function mod:getEntityData(entity, key)
     return MODEntityData[idx][key]
     --]]
 end
-function mod:setEntityData(entity, key, val)
+function ToyboxMod:setEntityData(entity, key, val)
     -- [[
     if(not entity:GetData().TOYBOXDATA) then entity:GetData().TOYBOXDATA = {} end
     entity:GetData().TOYBOXDATA[key] = val
@@ -82,7 +82,7 @@ function mod:setEntityData(entity, key, val)
 end
 
 --[[
-mod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, math.huge,
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, math.huge,
     function(_, entity)
         if(Game():IsPaused()) then return end
 
@@ -90,31 +90,31 @@ mod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, math.huge,
         MODEntityData[idx] = nil
     end
 )
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, math.huge,
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, math.huge,
     function()
         MODEntityData = {}
     end
 )
 --]]
 
-function mod:getExtraDataTable()
+function ToyboxMod:getExtraDataTable()
     return MODExtraData or {}
 end
-function mod:getExtraData(key)
+function ToyboxMod:getExtraData(key)
     return (MODExtraData or {})[key]
 end
-function mod:setExtraData(key, val)
+function ToyboxMod:setExtraData(key, val)
     MODExtraData = MODExtraData or {}
     MODExtraData[key] = val
 end
 
-function mod:getPersistentDataTable()
+function ToyboxMod:getPersistentDataTable()
     return MODPersistentData or {}
 end
-function mod:getPersistentData(key)
+function ToyboxMod:getPersistentData(key)
     return (MODPersistentData or {})[key]
 end
-function mod:setPersistentData(key, val)
+function ToyboxMod:setPersistentData(key, val)
     MODPersistentData = MODPersistentData or {}
     MODPersistentData[key] = val
 end

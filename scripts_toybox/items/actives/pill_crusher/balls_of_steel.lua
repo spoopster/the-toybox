@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local HEALTH_PERCENT = 0.2
@@ -9,7 +9,7 @@ local ADD_MAX = 50
 local SOULHEART_GULPCOL = Color(1,1,1,1)
 SOULHEART_GULPCOL:SetColorize(1.5,1.5,3,1)
 
-mod:addPillCrusherEffect(PillEffect.PILLEFFECT_BALLS_OF_STEEL,
+ToyboxMod:addPillCrusherEffect(PillEffect.PILLEFFECT_BALLS_OF_STEEL,
 function(_, player, isHorse, rng)
     for _, ent in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
         ent = ent:ToNPC()

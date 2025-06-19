@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --! Make thi shit work daamn!
@@ -49,18 +49,18 @@ local function useBloodRitual(_, _, rng, player, flags)
     if(flags & UseFlag.USE_CARBATTERY == 0) then
         local isCarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
 
-        mod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #(mod:getEntityData(player, "BLOOD_RITUAL_DATA") or {}))
+        ToyboxMod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #(ToyboxMod:getEntityData(player, "BLOOD_RITUAL_DATA") or {}))
 
-        local ritualData = mod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
+        local ritualData = ToyboxMod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
         local numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS or ENUM_NUMFAMILIARS)
         if(#ritualData>0) then numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS_EXTRA or ENUM_NUMFAMILIARS_EXTRA) end
 
         for _=1, numFam do
             table.insert(ritualData, #ritualData+1, ENUM_EVILFAM_PICKER:PickOutcome(rng))
         end
-        mod:setEntityData(player, "BLOOD_RITUAL_DATA", ritualData)
+        ToyboxMod:setEntityData(player, "BLOOD_RITUAL_DATA", ritualData)
 
-        local pentagram = Isaac.Spawn(1000, mod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
+        local pentagram = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
         pentagram.DepthOffset = -1000
 
         sfx:Play(SoundEffect.SOUND_DEVIL_CARD)
@@ -74,14 +74,14 @@ local function useBloodRitual(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodRitual, mod.COLLECTIBLE.BLOOD_RITUAL)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodRitual, ToyboxMod.COLLECTIBLE_BLOOD_RITUAL)
 
 ---@param player EntityPlayer
 local function removeBloodRitualEffect(_, player)
-    mod:setEntityData(player, "BLOOD_RITUAL_DATA", {})
+    ToyboxMod:setEntityData(player, "BLOOD_RITUAL_DATA", {})
     player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, removeBloodRitualEffect)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, removeBloodRitualEffect)
 
 local function getBloodRitualIndex(rng, num, invalidIds)
     local selIdx = rng:RandomInt(num)+1
@@ -101,9 +101,9 @@ end
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    local ritualData = mod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
-    if(#ritualData==0 or #ritualData==(mod:getEntityData(player, "BLOOD_RITUAL_PREVNUM") or 0)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.BLOOD_RITUAL)
+    local ritualData = ToyboxMod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
+    if(#ritualData==0 or #ritualData==(ToyboxMod:getEntityData(player, "BLOOD_RITUAL_PREVNUM") or 0)) then return end
+    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_BLOOD_RITUAL)
 
     local itemCounts = {}
     local invalidFIndex = {}
@@ -123,7 +123,7 @@ local function evalCache(_, player, flag)
             if(fidx<=numf) then
                 local fIndex = getBloodRitualIndex(rng, numFamiliars, invalidFIndex)
                 invalidFIndex[fIndex] = true
-                mod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
+                ToyboxMod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
             end
         end
     end
@@ -135,15 +135,15 @@ local function evalCache(_, player, flag)
         addFam(famVar,-1, cNum, num, c, famVar==FamiliarVariant.TWISTED_BABY)
     end
 
-    mod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #ritualData)
+    ToyboxMod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #ritualData)
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
 
 ---@param familiar EntityFamiliar
 local function bloodRitualOrbit(_, familiar)
-    if(not mod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
+    if(not ToyboxMod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
     local p = familiar.Player
-    local offset = #(mod:getEntityData(p, "BLOOD_RITUAL_DATA") or {})
+    local offset = #(ToyboxMod:getEntityData(p, "BLOOD_RITUAL_DATA") or {})
 
     if(familiar.OrbitLayer~=ENUM_ORBIT_LAYER) then
         familiar:AddToOrbit(ENUM_ORBIT_LAYER)
@@ -152,23 +152,23 @@ local function bloodRitualOrbit(_, familiar)
     familiar.OrbitDistance = ENUM_ORBIT_DIST
     familiar.OrbitSpeed = ENUM_ORBIT_SPEED
 
-    local orbPos = p.Position+p.Velocity+Vector.FromAngle(familiar.FrameCount*familiar.OrbitSpeed+mod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")*360)*familiar.OrbitDistance
+    local orbPos = p.Position+p.Velocity+Vector.FromAngle(familiar.FrameCount*familiar.OrbitSpeed+ToyboxMod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")*360)*familiar.OrbitDistance
 
     familiar.Velocity = (orbPos-familiar.Position)/ENUM_ORBIT_EASING
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bloodRitualOrbit)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bloodRitualOrbit)
 
 ---@param familiar EntityFamiliar
 local function bloodRitualPriority(_, familiar)
-    if(not mod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
+    if(not ToyboxMod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
 
     return -100
 end
-mod:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, bloodRitualPriority)
+ToyboxMod:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, bloodRitualPriority)
 
 
 ---@param effect EntityEffect
 local function pentagramUpdate(_, effect)
     if(effect:GetSprite():IsFinished("Idle")) then effect:Remove() end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, pentagramUpdate, mod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, pentagramUpdate, ToyboxMod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM)

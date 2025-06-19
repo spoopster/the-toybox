@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local AOE_DMG_MULT = 0.5
@@ -13,7 +13,7 @@ local EXPLODE_COLOR = Color(1.25,1.25,1.2,1,0.12,0.12,0.09)
 local function dealAOEdmg(_, ent, dmg, flags, source, cooldown)
     if(flags & DamageFlag.DAMAGE_CLONES ~= 0) then return end
 
-    local numSaltpeters = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.SALTPETER)
+    local numSaltpeters = PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_SALTPETER)
     if(numSaltpeters<=0) then return end
 
     local dmgMult = AOE_DMG_MULT*numSaltpeters
@@ -24,12 +24,12 @@ local function dealAOEdmg(_, ent, dmg, flags, source, cooldown)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, dealAOEdmg)
+ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, dealAOEdmg)
 
 
 ---@param player EntityPlayer
 local function getTriggerChance(player, chancemult)
-    local itemNum = player:GetCollectibleNum(mod.COLLECTIBLE.SALTPETER)
+    local itemNum = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_SALTPETER)
     if(itemNum<=0) then return 0 end
     return chancemult*math.min(1, EXPLODE_CHANCE+(itemNum-1)*EXPLODE_STACK_CHANCE)
 end
@@ -37,31 +37,31 @@ end
 ---@param ent Entity
 local function saltpeterExplode(_, ent, amount, flags, ref, frames)
     if(flags & DamageFlag.DAMAGE_CLONES ~= 0) then return end
-    if(not (ref.Entity and mod:getEntityData(ref.Entity, "SALTPETER_EXPLODE"))) then return end
+    if(not (ref.Entity and ToyboxMod:getEntityData(ref.Entity, "SALTPETER_EXPLODE"))) then return end
 
     Isaac.Explode(ent.Position, nil, EXPLODE_DMG)
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, saltpeterExplode)
+ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, saltpeterExplode)
 
 --#region --! TEARS
 
 ---@param tear EntityTear
 ---@param player EntityPlayer
 local function saltFireTear(_, tear, player, isLudo)
-    if(not player:HasCollectible(mod.COLLECTIBLE.SALTPETER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.SALTPETER)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_SALTPETER)) then return end
+    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SALTPETER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, (isLudo and 0.75 or 1))) then return end
 
     tear.Color = EXPLODE_COLOR
-    mod:setEntityData(tear, "SALTPETER_EXPLODE", true)
+    ToyboxMod:setEntityData(tear, "SALTPETER_EXPLODE", true)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, saltFireTear)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, saltFireTear)
 
 local function resetLudoData(_, tear)
-    mod:setEntityData(tear, "SALTPETER_EXPLODE", false)
+    ToyboxMod:setEntityData(tear, "SALTPETER_EXPLODE", false)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.RESET_LUDOVICO_DATA, resetLudoData)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.RESET_LUDOVICO_DATA, resetLudoData)
 
 --#endregion
 
@@ -70,31 +70,31 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.RESET_LUDOVICO_DATA, resetLudoData)
 ---@param bomb EntityBomb
 ---@param player EntityPlayer
 local function saltFireBomb(_, bomb, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE.SALTPETER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.SALTPETER)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_SALTPETER)) then return end
+    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SALTPETER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, 1.5)) then return end
 
     bomb.Color = EXPLODE_COLOR
-    mod:setEntityData(bomb, "SALTPETER_EXPLODE", true)
+    ToyboxMod:setEntityData(bomb, "SALTPETER_EXPLODE", true)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_BOMB, saltFireBomb)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_BOMB, saltFireBomb)
 
 ---@param bomb EntityBomb
 ---@param player EntityPlayer
 local function saltBombExplode(_, bomb, player, isIncubus)
-    if(not mod:getEntityData(bomb, "SALTPETER_EXPLODE")) then return end
+    if(not ToyboxMod:getEntityData(bomb, "SALTPETER_EXPLODE")) then return end
 
     Isaac.Explode(bomb.Position, player, EXPLODE_DMG)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_BOMB_DETONATE, saltBombExplode)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_BOMB_DETONATE, saltBombExplode)
 
 ---@param bomb EntityBomb
 ---@param ogbomb EntityBomb
 local function saltCopyScatterData(_, bomb, ogbomb)
-    mod:setEntityData(bomb, "SALTPETER_EXPLODE", mod:getEntityData(ogbomb, "SALTPETER_EXPLODE"))
+    ToyboxMod:setEntityData(bomb, "SALTPETER_EXPLODE", ToyboxMod:getEntityData(ogbomb, "SALTPETER_EXPLODE"))
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, saltCopyScatterData)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, saltCopyScatterData)
 
 --#endregion
 
@@ -103,31 +103,31 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, saltCopyScatterData
 ---@param rocket EntityEffect
 ---@param player EntityPlayer
 local function saltFireRocket(_, rocket, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE.SALTPETER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.SALTPETER)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_SALTPETER)) then return end
+    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SALTPETER)
 
     if(rng:RandomFloat()>=getTriggerChance(player, 1.5)) then return end
 
-    mod:setEntityData(rocket, "SALTPETER_EXPLODE", true)
-    mod:setEntityData(rocket, "EXPLOSION_COLOR", EXPLODE_COLOR)
+    ToyboxMod:setEntityData(rocket, "SALTPETER_EXPLODE", true)
+    ToyboxMod:setEntityData(rocket, "EXPLOSION_COLOR", EXPLODE_COLOR)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_ROCKET, saltFireRocket)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_ROCKET, saltFireRocket)
 ---@param rocket EntityEffect
 ---@param target EntityEffect
 local function saltCopyTargetData(_, rocket, target)
-    mod:setEntityData(rocket, "SALTPETER_EXPLODE", mod:getEntityData(target, "SALTPETER_EXPLODE"))
+    ToyboxMod:setEntityData(rocket, "SALTPETER_EXPLODE", ToyboxMod:getEntityData(target, "SALTPETER_EXPLODE"))
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.ROCKET_COPY_TARGET_DATA, saltCopyTargetData)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.ROCKET_COPY_TARGET_DATA, saltCopyTargetData)
 
 ---@param rocket EntityEffect
 ---@param player EntityPlayer
 local function saltRocketExplode(_, rocket, expl, player)
-    if(not mod:getEntityData(rocket, "SALTPETER_EXPLODE")) then return end
+    if(not ToyboxMod:getEntityData(rocket, "SALTPETER_EXPLODE")) then return end
     if(not (rocket.Position:Distance(expl.Position)<0.01)) then return end
 
     Isaac.Explode(bomb.Position, player, EXPLODE_DMG)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ROCKET_EXPLODE, saltRocketExplode)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ROCKET_EXPLODE, saltRocketExplode)
 
 --#endregion
 
@@ -136,14 +136,14 @@ mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ROCKET_EXPLODE, saltRocketExplode)
 ---@param player EntityPlayer
 ---@param ent Entity
 local function postLaserDamage(_, dmgtype, player, ent, dmg, flags)
-    if(not (dmgtype==mod.DAMAGE_TYPE.LASER or dmgtype==mod.DAMAGE_TYPE.KNIFE)) then return end
+    if(not (dmgtype==ToyboxMod.DAMAGE_TYPE.LASER or dmgtype==ToyboxMod.DAMAGE_TYPE.KNIFE)) then return end
 
-    if(not player:HasCollectible(mod.COLLECTIBLE.SALTPETER)) then return end
-    local rng = player:GetCollectibleRNG(mod.COLLECTIBLE.SALTPETER)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_SALTPETER)) then return end
+    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SALTPETER)
     if(rng:RandomFloat()>=getTriggerChance(player, 0.8)) then return end
 
     Isaac.Explode(bomb.Position, player, EXPLODE_DMG)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_EXTRA_DMG, postLaserDamage)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_EXTRA_DMG, postLaserDamage)
 
 --#endregion

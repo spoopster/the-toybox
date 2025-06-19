@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --- !!! TODO: update toybox to rep+ to use rgon nightly TriggerRestock feature
@@ -10,18 +10,18 @@ local HEART_UPGRADE_TABLE = {
     [HeartSubType.HEART_FULL] = HeartSubType.HEART_DOUBLEPACK,
     [HeartSubType.HEART_HALF_SOUL] = HeartSubType.HEART_SOUL,
 
-    [HeartSubType.HEART_DOUBLEPACK] = mod.PICKUP_SUBTYPE.HEART_QUAD,
-    [HeartSubType.HEART_SOUL] = mod.PICKUP_SUBTYPE.HEART_SOUL_DOUBLE,
-    [HeartSubType.HEART_BLACK] = mod.PICKUP_SUBTYPE.HEART_BLACK_DOUBLE,
-    [HeartSubType.HEART_ROTTEN] = mod.PICKUP_SUBTYPE.HEART_ROTTEN_DOUBLE,
-    [HeartSubType.HEART_ETERNAL] = mod.PICKUP_SUBTYPE.HEART_ETERNAL_FULL,
-    [HeartSubType.HEART_BLENDED] = mod.PICKUP_SUBTYPE.HEART_BLENDED_DOUBLE,
-    [HeartSubType.HEART_GOLDEN] = mod.PICKUP_SUBTYPE.HEART_GOLD_DOUBLE,
-    [HeartSubType.HEART_BONE] = mod.PICKUP_SUBTYPE.HEART_BONE_DOUBLE,
+    [HeartSubType.HEART_DOUBLEPACK] = ToyboxMod.PICKUP_SUBTYPE.HEART_QUAD,
+    [HeartSubType.HEART_SOUL] = ToyboxMod.PICKUP_SUBTYPE.HEART_SOUL_DOUBLE,
+    [HeartSubType.HEART_BLACK] = ToyboxMod.PICKUP_SUBTYPE.HEART_BLACK_DOUBLE,
+    [HeartSubType.HEART_ROTTEN] = ToyboxMod.PICKUP_SUBTYPE.HEART_ROTTEN_DOUBLE,
+    [HeartSubType.HEART_ETERNAL] = ToyboxMod.PICKUP_SUBTYPE.HEART_ETERNAL_FULL,
+    [HeartSubType.HEART_BLENDED] = ToyboxMod.PICKUP_SUBTYPE.HEART_BLENDED_DOUBLE,
+    [HeartSubType.HEART_GOLDEN] = ToyboxMod.PICKUP_SUBTYPE.HEART_GOLD_DOUBLE,
+    [HeartSubType.HEART_BONE] = ToyboxMod.PICKUP_SUBTYPE.HEART_BONE_DOUBLE,
 }
 
 local UPGRADED_HEART_LOGIC = {
-    [mod.PICKUP_SUBTYPE.HEART_QUAD] = {
+    [ToyboxMod.PICKUP_SUBTYPE.HEART_QUAD] = {
         ---@param pl EntityPlayer
         Condition=function(pl)
             return pl:CanPickRedHearts() or pl:HasTrinket(TrinketType.TRINKET_APPLE_OF_SODOM)
@@ -50,8 +50,8 @@ local UPGRADED_HEART_LOGIC = {
             end
         end,
         AddVal=8, Sfx=SoundEffect.SOUND_BOSS2_BUBBLES},
-    [mod.PICKUP_SUBTYPE.HEART_SOUL_DOUBLE] = {Condition="CanPickSoulHearts", AddFunc="AddSoulHearts", AddVal=4, Sfx=SoundEffect.SOUND_HOLY},
-    [mod.PICKUP_SUBTYPE.HEART_BLACK_DOUBLE] = {
+    [ToyboxMod.PICKUP_SUBTYPE.HEART_SOUL_DOUBLE] = {Condition="CanPickSoulHearts", AddFunc="AddSoulHearts", AddVal=4, Sfx=SoundEffect.SOUND_HOLY},
+    [ToyboxMod.PICKUP_SUBTYPE.HEART_BLACK_DOUBLE] = {
         Condition="CanPickBlackHearts",
         ---@param pl EntityPlayer
         ---@param val number
@@ -71,9 +71,9 @@ local UPGRADED_HEART_LOGIC = {
             end
         end,
         AddVal=4, Sfx=SoundEffect.SOUND_UNHOLY},
-    [mod.PICKUP_SUBTYPE.HEART_ROTTEN_DOUBLE] = {Condition="CanPickRottenHearts", AddFunc="AddRottenHearts", AddVal=4, Sfx=SoundEffect.SOUND_ROTTEN_HEART},
-    [mod.PICKUP_SUBTYPE.HEART_ETERNAL_FULL] = {AddFunc="AddEternalHearts", AddVal=2, Sfx=SoundEffect.SOUND_SUPERHOLY},
-    [mod.PICKUP_SUBTYPE.HEART_BLENDED_DOUBLE] = {
+    [ToyboxMod.PICKUP_SUBTYPE.HEART_ROTTEN_DOUBLE] = {Condition="CanPickRottenHearts", AddFunc="AddRottenHearts", AddVal=4, Sfx=SoundEffect.SOUND_ROTTEN_HEART},
+    [ToyboxMod.PICKUP_SUBTYPE.HEART_ETERNAL_FULL] = {AddFunc="AddEternalHearts", AddVal=2, Sfx=SoundEffect.SOUND_SUPERHOLY},
+    [ToyboxMod.PICKUP_SUBTYPE.HEART_BLENDED_DOUBLE] = {
         ---@param pl EntityPlayer
         Condition=function(pl)
             return pl:CanPickRedHearts() or pl:CanPickSoulHearts()
@@ -94,8 +94,8 @@ local UPGRADED_HEART_LOGIC = {
         end,
         AddVal = 4,
     },
-    [mod.PICKUP_SUBTYPE.HEART_GOLD_DOUBLE] = {Condition="CanPickGoldenHearts", AddFunc="AddGoldenHearts", AddVal=2, DropSfx=466, Sfx=SoundEffect.SOUND_GOLD_HEART},
-    [mod.PICKUP_SUBTYPE.HEART_BONE_DOUBLE] = {Condition="CanPickBoneHearts", AddFunc="AddBoneHearts", AddVal=2, DropSfx=467, Sfx=SoundEffect.SOUND_BONE_HEART},
+    [ToyboxMod.PICKUP_SUBTYPE.HEART_GOLD_DOUBLE] = {Condition="CanPickGoldenHearts", AddFunc="AddGoldenHearts", AddVal=2, DropSfx=466, Sfx=SoundEffect.SOUND_GOLD_HEART},
+    [ToyboxMod.PICKUP_SUBTYPE.HEART_BONE_DOUBLE] = {Condition="CanPickBoneHearts", AddFunc="AddBoneHearts", AddVal=2, DropSfx=467, Sfx=SoundEffect.SOUND_BONE_HEART},
 }
 
 ---@param pl EntityPlayer
@@ -186,7 +186,7 @@ local function heartInit(_, pickup)
     if(UPGRADING_HEART) then return end
     if(not HEART_UPGRADE_TABLE[pickup.SubType]) then return end
 
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.CARAMEL_APPLE)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CARAMEL_APPLE)) then return end
     if(pickup:GetSprite():GetAnimation()~="Appear") then return end
 
     if(pickup:GetDropRNG():RandomFloat()<HEART_UPGRADE_CHANCE) then
@@ -195,7 +195,7 @@ local function heartInit(_, pickup)
         UPGRADING_HEART = false
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, heartInit, PickupVariant.PICKUP_HEART)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, heartInit, PickupVariant.PICKUP_HEART)
 
 local function heartUpdate(_, pickup)
     if(not UPGRADED_HEART_LOGIC[pickup.SubType]) then return end
@@ -208,7 +208,7 @@ local function heartUpdate(_, pickup)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, heartUpdate, PickupVariant.PICKUP_HEART)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, heartUpdate, PickupVariant.PICKUP_HEART)
 
 ---@param pickup EntityPickup
 ---@param coll Entity
@@ -252,17 +252,17 @@ local function preHeartCollision(_, pickup, coll, low)
 
     return true
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preHeartCollision, PickupVariant.PICKUP_HEART)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preHeartCollision, PickupVariant.PICKUP_HEART)
 
 if(FiendFolio) then
     local FIEND_FOLIO_UPGRADE_TABLE = {
         [FiendFolio.PICKUP.VARIANT.HALF_BLACK_HEART] = HeartSubType.HEART_BLACK,
-        [FiendFolio.PICKUP.VARIANT.BLENDED_BLACK_HEART] = mod.PICKUP_SUBTYPE.HEART_BLENDEDBLACK_DOUBLE,
-        [FiendFolio.PICKUP.VARIANT.IMMORAL_HEART] = mod.PICKUP_SUBTYPE.HEART_IMMORAL_DOUBLE,
+        [FiendFolio.PICKUP.VARIANT.BLENDED_BLACK_HEART] = ToyboxMod.PICKUP_SUBTYPE.HEART_BLENDEDBLACK_DOUBLE,
+        [FiendFolio.PICKUP.VARIANT.IMMORAL_HEART] = ToyboxMod.PICKUP_SUBTYPE.HEART_IMMORAL_DOUBLE,
         [FiendFolio.PICKUP.VARIANT.HALF_IMMORAL_HEART] = FiendFolio.PICKUP.VARIANT.IMMORAL_HEART,
-        [FiendFolio.PICKUP.VARIANT.BLENDED_IMMORAL_HEART] = mod.PICKUP_SUBTYPE.HEART_BLENDEDIMMORAL_DOUBLE,
-        [FiendFolio.PICKUP.VARIANT.MORBID_HEART] = mod.PICKUP_SUBTYPE.HEART_MORBID_DOUBLE,
-        [FiendFolio.PICKUP.VARIANT.TWOTHIRDS_MORBID_HEART] = mod.PICKUP_SUBTYPE.HEART_MORBID_FOURTHIRDS,
+        [FiendFolio.PICKUP.VARIANT.BLENDED_IMMORAL_HEART] = ToyboxMod.PICKUP_SUBTYPE.HEART_BLENDEDIMMORAL_DOUBLE,
+        [FiendFolio.PICKUP.VARIANT.MORBID_HEART] = ToyboxMod.PICKUP_SUBTYPE.HEART_MORBID_DOUBLE,
+        [FiendFolio.PICKUP.VARIANT.TWOTHIRDS_MORBID_HEART] = ToyboxMod.PICKUP_SUBTYPE.HEART_MORBID_FOURTHIRDS,
         [FiendFolio.PICKUP.VARIANT.THIRD_MORBID_HEART] = FiendFolio.PICKUP.VARIANT.TWOTHIRDS_MORBID_HEART,
     }
 
@@ -271,7 +271,7 @@ if(FiendFolio) then
         if(UPGRADING_HEART) then return end
         if(not FIEND_FOLIO_UPGRADE_TABLE[pickup.Variant]) then return end
 
-        if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.CARAMEL_APPLE)) then return end
+        if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CARAMEL_APPLE)) then return end
         if(pickup:GetSprite():GetAnimation()~="Appear") then return end
 
         if(pickup:GetDropRNG():RandomFloat()<HEART_UPGRADE_CHANCE) then
@@ -280,11 +280,11 @@ if(FiendFolio) then
             UPGRADING_HEART = false
         end
     end
-    mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, ffHeartInit)
+    ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, ffHeartInit)
 
     ---@param pickup EntityPickup
     local function redRibbonUpdate(_, pickup)
-        if(pickup.SubType~=mod.PICKUP_SUBTYPE.HEART_ETERNAL_FULL) then return end
+        if(pickup.SubType~=ToyboxMod.PICKUP_SUBTYPE.HEART_ETERNAL_FULL) then return end
 
         local sp = pickup:GetSprite()
         local ribbonEffect = math.min(PlayerManager.GetTotalTrinketMultiplier(TrinketType.TRINKET_RED_RIBBON), 2)
@@ -308,18 +308,18 @@ if(FiendFolio) then
             pickup:GetData().isFullFromRR = ribbonEffect
         end
     end
-    mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, redRibbonUpdate, PickupVariant.PICKUP_HEART)
+    ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, redRibbonUpdate, PickupVariant.PICKUP_HEART)
 
     ---@param pl EntityPlayer
     ---@param val integer
-    UPGRADED_HEART_LOGIC[mod.PICKUP_SUBTYPE.HEART_ETERNAL_FULL].AddFunc = function(pl, val)
+    UPGRADED_HEART_LOGIC[ToyboxMod.PICKUP_SUBTYPE.HEART_ETERNAL_FULL].AddFunc = function(pl, val)
         local ribbonEffect = math.min(PlayerManager.GetTotalTrinketMultiplier(TrinketType.TRINKET_RED_RIBBON), 2)
         local toAdd = val*(1<<ribbonEffect)
 
         pl:AddEternalHearts(toAdd)
     end
 
-    UPGRADED_HEART_LOGIC[mod.PICKUP_SUBTYPE.HEART_BLENDEDBLACK_DOUBLE] = {
+    UPGRADED_HEART_LOGIC[ToyboxMod.PICKUP_SUBTYPE.HEART_BLENDEDBLACK_DOUBLE] = {
         ---@param pl EntityPlayer
         Condition=function(pl)
             return pl:CanPickRedHearts() or pl:CanPickBlackHearts()
@@ -340,7 +340,7 @@ if(FiendFolio) then
         end,
         AddVal = 4,
     }
-    UPGRADED_HEART_LOGIC[mod.PICKUP_SUBTYPE.HEART_IMMORAL_DOUBLE] = {
+    UPGRADED_HEART_LOGIC[ToyboxMod.PICKUP_SUBTYPE.HEART_IMMORAL_DOUBLE] = {
         ---@param pl EntityPlayer
         Condition=function(pl)
             return FiendFolio:CanPickImmoralHearts(pl)
@@ -352,7 +352,7 @@ if(FiendFolio) then
         end,
         AddVal = 4, Sfx=FiendFolio.Sounds.FiendHeartPickup, DropSfx=FiendFolio.Sounds.FiendHeartDrop,
     }
-    UPGRADED_HEART_LOGIC[mod.PICKUP_SUBTYPE.HEART_BLENDEDIMMORAL_DOUBLE] = {
+    UPGRADED_HEART_LOGIC[ToyboxMod.PICKUP_SUBTYPE.HEART_BLENDEDIMMORAL_DOUBLE] = {
         ---@param pl EntityPlayer
         Condition=function(pl)
             return pl:CanPickRedHearts() or FiendFolio:CanPickImmoralHearts(pl)
@@ -373,7 +373,7 @@ if(FiendFolio) then
         end,
         AddVal = 4, DropSfx=FiendFolio.Sounds.FiendHeartDrop,
     }
-    UPGRADED_HEART_LOGIC[mod.PICKUP_SUBTYPE.HEART_MORBID_DOUBLE] = {
+    UPGRADED_HEART_LOGIC[ToyboxMod.PICKUP_SUBTYPE.HEART_MORBID_DOUBLE] = {
         ---@param pl EntityPlayer
         Condition=function(pl)
             return FiendFolio:CanPickMorbidHearts(pl)
@@ -385,7 +385,7 @@ if(FiendFolio) then
         end,
         AddVal = 6, Sfx=SoundEffect.SOUND_ROTTEN_HEART,
     }
-    UPGRADED_HEART_LOGIC[mod.PICKUP_SUBTYPE.HEART_MORBID_FOURTHIRDS] = {
+    UPGRADED_HEART_LOGIC[ToyboxMod.PICKUP_SUBTYPE.HEART_MORBID_FOURTHIRDS] = {
         ---@param pl EntityPlayer
         Condition=function(pl)
             return FiendFolio:CanPickMorbidHearts(pl)
@@ -529,7 +529,7 @@ local ENUM_HEARTS = {
     },
 }
 
-function mod:addCaramelAppleHeart(heartSubType, color, testFunc, addFunc)
+function ToyboxMod:addCaramelAppleHeart(heartSubType, color, testFunc, addFunc)
     ENUM_HEARTS[heartSubType] = {
         Color = color,
         TestFunc = testFunc,
@@ -543,7 +543,7 @@ if(FiendFolio) then
     local ENUM_MORBIDHEART_COL = Color(1,1,1,1)
     ENUM_MORBIDHEART_COL:SetColorize(0.8,1.2,0.8,1)
 
-    mod:addCaramelAppleHeart(
+    ToyboxMod:addCaramelAppleHeart(
         FiendFolio.PICKUP.VARIANT.HALF_BLACK_HEART,
         ENUM_BLACKHEART_COL,
         function(player)
@@ -553,7 +553,7 @@ if(FiendFolio) then
             player:AddBlackHearts(1)
         end
     )
-    mod:addCaramelAppleHeart(
+    ToyboxMod:addCaramelAppleHeart(
         FiendFolio.PICKUP.VARIANT.BLENDED_BLACK_HEART,
         {ENUM_REDHEART_COL, ENUM_BLACKHEART_COL},
         function(player)
@@ -564,7 +564,7 @@ if(FiendFolio) then
             player:AddBlackHearts(1)
         end
     )
-    mod:addCaramelAppleHeart(
+    ToyboxMod:addCaramelAppleHeart(
         FiendFolio.PICKUP.VARIANT.IMMORAL_HEART,
         ENUM_IMMORALHEART_COL,
         function(player)
@@ -574,7 +574,7 @@ if(FiendFolio) then
             FiendFolio:AddImmoralHearts(player, 1)
         end
     )
-    mod:addCaramelAppleHeart(
+    ToyboxMod:addCaramelAppleHeart(
         FiendFolio.PICKUP.VARIANT.HALF_IMMORAL_HEART,
         ENUM_IMMORALHEART_COL,
         function(player)
@@ -584,7 +584,7 @@ if(FiendFolio) then
             FiendFolio:AddImmoralHearts(player, 1)
         end
     )
-    mod:addCaramelAppleHeart(
+    ToyboxMod:addCaramelAppleHeart(
         FiendFolio.PICKUP.VARIANT.BLENDED_IMMORAL_HEART,
         ENUM_IMMORALHEART_COL,
         function(player)
@@ -595,7 +595,7 @@ if(FiendFolio) then
             FiendFolio:AddImmoralHearts(player, 1)
         end
     )
-    mod:addCaramelAppleHeart(
+    ToyboxMod:addCaramelAppleHeart(
         FiendFolio.PICKUP.VARIANT.MORBID_HEART,
         ENUM_MORBIDHEART_COL,
         function(player)
@@ -605,7 +605,7 @@ if(FiendFolio) then
             FiendFolio:AddMorbidHearts(player, 1)
         end
     )
-    mod:addCaramelAppleHeart(
+    ToyboxMod:addCaramelAppleHeart(
         FiendFolio.PICKUP.VARIANT.TWOTHIRDS_MORBID_HEART,
         ENUM_MORBIDHEART_COL,
         function(player)
@@ -615,7 +615,7 @@ if(FiendFolio) then
             FiendFolio:AddMorbidHearts(player, 1)
         end
     )
-    mod:addCaramelAppleHeart(
+    ToyboxMod:addCaramelAppleHeart(
         FiendFolio.PICKUP.VARIANT.THIRD_MORBID_HEART,
         ENUM_MORBIDHEART_COL,
         function(player)
@@ -630,29 +630,29 @@ end
 ---@param pickup EntityPickup
 ---@param player EntityPlayer?
 local function collideWithHearts(_, pickup, player)
-    if(not (player and player:ToPlayer() and player:ToPlayer():HasCollectible(mod.COLLECTIBLE.CARAMEL_APPLE))) then return end
+    if(not (player and player:ToPlayer() and player:ToPlayer():HasCollectible(ToyboxMod.COLLECTIBLE_CARAMEL_APPLE))) then return end
     player = player:ToPlayer()
 
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
 
     if((pickup.Variant==10 and ENUM_HEARTS[pickup.SubType]) or (pickup.Variant>12 and ENUM_HEARTS[pickup.Variant])) then
         data.CARAMEL_APPLE_DATA = data.CARAMEL_APPLE_DATA or {}
         data.CARAMEL_APPLE_DATA[#data.CARAMEL_APPLE_DATA+1] = (pickup.Variant==10 and pickup.SubType or pickup.Variant)
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.EARLY, collideWithHearts)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.EARLY, collideWithHearts)
 
 ---@param player EntityPlayer
 local function addHeartEffects(_, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE.CARAMEL_APPLE)) then return end
-    local hpData = mod:getEntityData(player, "CARAMEL_APPLE_DATA") or {}
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_CARAMEL_APPLE)) then return end
+    local hpData = ToyboxMod:getEntityData(player, "CARAMEL_APPLE_DATA") or {}
 
     local addedHearts = {}
 
     for k, st in pairs(hpData) do
         local hTable = ENUM_HEARTS[st]
         if(hTable) then
-            if(hTable.TestFunc(player) and player:GetCollectibleRNG(mod.COLLECTIBLE.CARAMEL_APPLE):RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then
+            if(hTable.TestFunc(player) and player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CARAMEL_APPLE):RandomFloat()<ENUM_BONUSHEALTH_CHANCE) then
                 if(type(hTable.Color)=="table") then
                     for _, col in ipairs(hTable.Color) do addedHearts[#addedHearts+1] = col end
                 else
@@ -666,7 +666,7 @@ local function addHeartEffects(_, player)
         hpData[k] = nil
     end
 
-    mod:setEntityData(player, "CARAMEL_APPLE_DATA", hpData)
+    ToyboxMod:setEntityData(player, "CARAMEL_APPLE_DATA", hpData)
 
     for i, c in ipairs(addedHearts) do
         local offset = ((i-1/2)-(#addedHearts/2))
@@ -681,5 +681,5 @@ local function addHeartEffects(_, player)
         sfx:Play(SoundEffect.SOUND_VAMP_GULP)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, addHeartEffects)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, addHeartEffects)
 --]]

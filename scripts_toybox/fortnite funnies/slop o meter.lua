@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local function slopOMeter()
     local itemQuals = {[0]=0, [1]=0, [2]=0, [3]=0, [4]=0}
@@ -6,13 +6,15 @@ local function slopOMeter()
     local maxQual = 4
     local totalItems = 0
 
-    for _, id in pairs(mod.COLLECTIBLE) do
-        local conf = Isaac.GetItemConfig():GetCollectible(id)
-        if(conf and not conf.Hidden) then
-            itemQuals[conf.Quality] = (itemQuals[conf.Quality] or 0)+1
-            minQual = math.min(minQual, conf.Quality)
-            maxQual = math.max(maxQual, conf.Quality)
-            totalItems = totalItems+1
+    for key, id in pairs(ToyboxMod) do
+        if(string.find(key, "COLLECTIBLE_")) then
+            local conf = Isaac.GetItemConfig():GetCollectible(id)
+            if(conf and not conf.Hidden) then
+                itemQuals[conf.Quality] = (itemQuals[conf.Quality] or 0)+1
+                minQual = math.min(minQual, conf.Quality)
+                maxQual = math.max(maxQual, conf.Quality)
+                totalItems = totalItems+1
+            end
         end
     end
 

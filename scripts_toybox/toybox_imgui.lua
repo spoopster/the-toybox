@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local function getOptionID(name)
 	return "ToyboxOption"..name
@@ -26,13 +26,13 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.MOD_CHAMPION_CHANCE)
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.MOD_CHAMPION_CHANCE)
 			end
 		)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Edited,
 			function(v)
-				mod.CONFIG.MOD_CHAMPION_CHANCE = v
+				ToyboxMod.CONFIG.MOD_CHAMPION_CHANCE = v
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
@@ -51,13 +51,13 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.MANTLE_WEIGHT)
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.MANTLE_WEIGHT)
 			end
 		)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Edited,
 			function(v)
-				mod.CONFIG.MANTLE_WEIGHT = v
+				ToyboxMod.CONFIG.MANTLE_WEIGHT = v
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
@@ -76,13 +76,13 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.ALPHABETBOX_EID_DISPLAYS)
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.ALPHABETBOX_EID_DISPLAYS)
 			end
 		)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Edited,
 			function(v)
-				mod.CONFIG.ALPHABETBOX_EID_DISPLAYS = v
+				ToyboxMod.CONFIG.ALPHABETBOX_EID_DISPLAYS = v
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
@@ -108,13 +108,13 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.MORE_STATS)
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.MORE_STATS)
 			end
 		)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Edited,
 			function(v)
-				mod.CONFIG.MORE_STATS = v
+				ToyboxMod.CONFIG.MORE_STATS = v
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
@@ -133,13 +133,13 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, mod.CONFIG.EPIC_ITEM_MODE)
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.EPIC_ITEM_MODE)
 			end
 		)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Edited,
 			function(v)
-				mod.CONFIG.EPIC_ITEM_MODE = v
+				ToyboxMod.CONFIG.EPIC_ITEM_MODE = v
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
@@ -173,7 +173,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 			ImGuiCallback.Edited,
 			function(v)
 				Isaac.SetCompletionMark(playerType, compType, v)
-				mod:checkUnlocks(true)
+				ToyboxMod:checkUnlocks(true)
 			end
 		)
 		ImGui.SetTooltip(optionID, unlockName)
@@ -189,7 +189,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 			ImGuiCallback.Clicked,
 			function()
 				Isaac.FillCompletionMarks(playerType)
-				mod:checkUnlocks(true)
+				ToyboxMod:checkUnlocks(true)
 			end
 		)
 		ImGui.SetTooltip(getOptionID(playerName.."All Marks"), unlockTable.ALL_MARKS)
@@ -214,7 +214,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddText("ToyboxUnlocksWindow", "", true, "")
 	end
 
-	addPlayerUnlocks(mod.PLAYER_TYPE.ATLAS_A, "ATLAS",
+	addPlayerUnlocks(ToyboxMod.PLAYER_TYPE.ATLAS_A, "ATLAS",
 		{
 			[CompletionType.BOSS_RUSH] = "Unlocks \"Rock Candy\".",
 			[CompletionType.MOMS_HEART] = "Doesn't unlock anything for now.",
@@ -232,7 +232,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		}
 	)
 
-	addPlayerUnlocks(mod.PLAYER_TYPE.JONAS_A, "JONAS",
+	addPlayerUnlocks(ToyboxMod.PLAYER_TYPE.JONAS_A, "JONAS",
 		{
 			[CompletionType.BOSS_RUSH] = "Unlocks \"Jonas' Lock\".",
 			[CompletionType.MOMS_HEART] = "Doesn't unlock anything for now.",

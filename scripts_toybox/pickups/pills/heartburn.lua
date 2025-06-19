@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local EFFECT_DURATION = 30*30
@@ -21,22 +21,22 @@ local UPDATE_BURN_FRAME = 0
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
 
-    mod:setEntityData(player, "HEARTBURN_DURATION", EFFECT_DURATION)
-    mod:setEntityData(player, "HEARTBURN_HURT_DURATION", (isHorse and HURT_DURATION_HORSE or HURT_DURATION))
-    mod:setEntityData(player, "HEARTBURN_HURT_FRAMES", 0)
+    ToyboxMod:setEntityData(player, "HEARTBURN_DURATION", EFFECT_DURATION)
+    ToyboxMod:setEntityData(player, "HEARTBURN_HURT_DURATION", (isHorse and HURT_DURATION_HORSE or HURT_DURATION))
+    ToyboxMod:setEntityData(player, "HEARTBURN_HURT_FRAMES", 0)
 
     --[[
-    mod:setEntityData(player, "HEARTBURN_MODE", (isHorse and 2 or 1))
+    ToyboxMod:setEntityData(player, "HEARTBURN_MODE", (isHorse and 2 or 1))
     --]]
 
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.HEARTBURN)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.HEARTBURN)
 
 ---@param player EntityPlayer
 local function playerHeartburnEffectUpdate(_, player)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     if(not (data.HEARTBURN_DURATION and data.HEARTBURN_DURATION>0)) then return end
 
     data.HEARTBURN_HURT_FRAMES = (data.HEARTBURN_HURT_FRAMES or 0)
@@ -70,11 +70,11 @@ local function playerHeartburnEffectUpdate(_, player)
 
     data.HEARTBURN_DURATION = (data.HEARTBURN_DURATION or 1)-1
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, playerHeartburnEffectUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, playerHeartburnEffectUpdate)
 
 ---@param player EntityPlayer
 local function renderFireEffect(_, player, offset)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     if(player:IsDead()) then return end
     if(not (data.HEARTBURN_DURATION and data.HEARTBURN_DURATION>0)) then return end
 
@@ -88,13 +88,13 @@ local function renderFireEffect(_, player, offset)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, renderFireEffect)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, renderFireEffect)
 
 --[[] ]
 
 ---@param player EntityPlayer
 local function sillySillyGoofyGoofy(_, player)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     if(not (data.HEARTBURN_DURATION and data.HEARTBURN_DURATION>0)) then return end
 
     for _, tear in ipairs(Isaac.FindInRadius(player.Position,player.Size,EntityPartition.TEAR)) do
@@ -108,6 +108,6 @@ local function sillySillyGoofyGoofy(_, player)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, sillySillyGoofyGoofy)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, sillySillyGoofyGoofy)
 
 --]]

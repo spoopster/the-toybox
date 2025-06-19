@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local TEARS_UP = 0.3
@@ -16,25 +16,25 @@ end
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not mod:isAtlasA(player)) then return end
+    if(not ToyboxMod:isAtlasA(player)) then return end
 
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.SALT.ID)
+    local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.SALT.ID)
     if(flag==CacheFlag.CACHE_FIREDELAY) then
-        mod:addBasicTearsUp(player, TEARS_UP*numMantles)
+        ToyboxMod:addBasicTearsUp(player, TEARS_UP*numMantles)
 
-        if((mod:getAtlasAData(player, "SALT_CHARIOT_ENABLED") or 0)~=0) then
-            player.MaxFireDelay = mod:toFireDelay(ACTIVE_TEARS_MULT*mod:toTps(player.MaxFireDelay))
+        if((ToyboxMod:getAtlasAData(player, "SALT_CHARIOT_ENABLED") or 0)~=0) then
+            player.MaxFireDelay = ToyboxMod:toFireDelay(ACTIVE_TEARS_MULT*ToyboxMod:toTps(player.MaxFireDelay))
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function toggleAutofire(_, player)
-    if(not mod:isAtlasA(player)) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.SALT.ID)) then return end
-    local data = mod:getAtlasATable(player)
-    local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_SALT)
+    if(not ToyboxMod:isAtlasA(player)) then return end
+    if(not ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.SALT.ID)) then return end
+    local data = ToyboxMod:getAtlasATable(player)
+    local rng = player:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_SALT)
 
     data.SALT_CHARIOT_ENABLED = data.SALT_CHARIOT_ENABLED or 0
     if(data.SALT_CHARIOT_ENABLED>0) then
@@ -49,14 +49,14 @@ local function toggleAutofire(_, player)
 
         if(data.SALT_CHARIOT_ENABLED==-1) then
             data.SALT_CHARIOT_ENABLED = DEACTIVATE_FREEZE_DURATION
-            player:TryRemoveNullCostume(mod.MANTLE_DATA.SALT.CHARIOT_COSTUME)
+            player:TryRemoveNullCostume(ToyboxMod.MANTLE_DATA.SALT.CHARIOT_COSTUME)
 
             sfx:Play(SoundEffect.SOUND_ROCK_CRUMBLE,1,1,false,1)
             NUM_GIBS = 3
             NUM_DUST = 2
         elseif(data.SALT_CHARIOT_ENABLED>=0) then
             data.SALT_CHARIOT_ENABLED = -1
-            player:AddNullCostume(mod.MANTLE_DATA.SALT.CHARIOT_COSTUME)
+            player:AddNullCostume(ToyboxMod.MANTLE_DATA.SALT.CHARIOT_COSTUME)
 
             
             player:SetColor(Color(1,1,1,1,0.3,0.3,0.3),10,1,true,false)
@@ -94,10 +94,10 @@ local function toggleAutofire(_, player)
         moveInput.Y = getTriggeredInputValue(ButtonAction.ACTION_DOWN, cIdx)-getTriggeredInputValue(ButtonAction.ACTION_UP, cIdx)
 
         player.Position = player.Position+moveInput*5
-        player.Velocity = mod:lerp(player.Velocity, -moveInput*3, 0.75)
+        player.Velocity = ToyboxMod:lerp(player.Velocity, -moveInput*3, 0.75)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, toggleAutofire)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, toggleAutofire)
 
 
 local MOVE_ACTIONS = {
@@ -113,9 +113,9 @@ local MOVE_ACTIONS = {
 local function cancelMovementInput(_, ent, hook, action)
     if(not (ent and ent:ToPlayer())) then return end
     local pl = ent:ToPlayer()
-    if(not (mod:isAtlasA(pl) and mod:atlasHasTransformation(pl, mod.MANTLE_DATA.SALT.ID))) then return end
+    if(not (ToyboxMod:isAtlasA(pl) and ToyboxMod:atlasHasTransformation(pl, ToyboxMod.MANTLE_DATA.SALT.ID))) then return end
 
-    if((mod:getAtlasAData(pl, "SALT_CHARIOT_ENABLED") or 0)~=0) then
+    if((ToyboxMod:getAtlasAData(pl, "SALT_CHARIOT_ENABLED") or 0)~=0) then
         if(MOVE_ACTIONS[action]) then
             if(hook==InputHook.IS_ACTION_PRESSED or hook==InputHook.IS_ACTION_TRIGGERED) then
                 return false
@@ -125,15 +125,15 @@ local function cancelMovementInput(_, ent, hook, action)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, cancelMovementInput)
+ToyboxMod:AddCallback(ModCallbacks.MC_INPUT_ACTION, cancelMovementInput)
 
 --[[
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    if(mod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
-    local n = mod:closestEnemy(p.Position)
+    if(ToyboxMod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
+    local n = ToyboxMod:closestEnemy(p.Position)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
 
@@ -142,12 +142,12 @@ function(_, e)
 end
 )
 
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    if(mod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
-    local n = mod:closestEnemy(p.Position)
+    if(ToyboxMod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
+    local n = ToyboxMod:closestEnemy(p.Position)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
 
@@ -156,12 +156,12 @@ function(_, e)
 end
 )
 
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_LASER,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_LASER,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    if(mod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
-    local n = mod:closestEnemy(p.Position)
+    if(ToyboxMod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
+    local n = ToyboxMod:closestEnemy(p.Position)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
 
@@ -169,12 +169,12 @@ function(_, e)
 end
 )
 
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_X_LASER,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_X_LASER,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    if(mod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
-    local n = mod:closestEnemy(p.Position)
+    if(ToyboxMod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
+    local n = ToyboxMod:closestEnemy(p.Position)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
 
@@ -183,12 +183,12 @@ function(_, e)
 end
 )
 
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_BRIMSTONE,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BRIMSTONE,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    if(mod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
-    local n = mod:closestEnemy(p.Position)
+    if(ToyboxMod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
+    local n = ToyboxMod:closestEnemy(p.Position)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
 
@@ -196,12 +196,12 @@ function(_, e)
 end
 )
 
-mod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE,
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE,
 function(_, e)
-    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and mod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
+    if(not (e.SpawnerEntity and e.SpawnerEntity:ToPlayer() and ToyboxMod:isAtlasA(e.SpawnerEntity:ToPlayer()))) then return end
     local p = e.SpawnerEntity:ToPlayer()
-    if(mod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
-    local n = mod:closestEnemy(p.Position)
+    if(ToyboxMod:getAtlasAData(p, "SALT_CHARIOT_ENABLED")~=true) then return end
+    local n = ToyboxMod:closestEnemy(p.Position)
     if(not n) then return end
     local a = (n.Position-p.Position):GetAngleDegrees()
     

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local GRID_SIZE = 40
 
@@ -9,7 +9,7 @@ local FETUS_QUAKE_CHANCE = 0.25
 
 ---@param bomb EntityBomb
 local function replaceAnm2(bomb)
-    if(not mod:getEntityData(bomb, "QUAKE_BOMB")) then return end
+    if(not ToyboxMod:getEntityData(bomb, "QUAKE_BOMB")) then return end
 
     local sp = bomb:GetSprite()
     
@@ -25,38 +25,38 @@ end
 ---@param pl EntityPlayer
 ---@param bomb EntityBomb
 local function fireQuakeBomb(_, bomb, pl, isScatter)
-    if(pl:HasCollectible(mod.COLLECTIBLE.QUAKE_BOMBS) and not isScatter) then
-        if(pl:GetCollectibleRNG(mod.COLLECTIBLE.QUAKE_BOMBS):RandomFloat()<FETUS_QUAKE_CHANCE) then
-            mod:setEntityData(bomb, "QUAKE_BOMB", true)
+    if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_QUAKE_BOMBS) and not isScatter) then
+        if(pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_QUAKE_BOMBS):RandomFloat()<FETUS_QUAKE_CHANCE) then
+            ToyboxMod:setEntityData(bomb, "QUAKE_BOMB", true)
             if(pl:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)) then
-                mod:setEntityData(bomb, "QUAKE_BOMBER_BOY", true)
+                ToyboxMod:setEntityData(bomb, "QUAKE_BOMBER_BOY", true)
             end
             replaceAnm2(bomb)
         end
     end
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_FIRE_BOMB, fireQuakeBomb)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_BOMB, fireQuakeBomb)
 ---@param bomb EntityBomb
 ---@param ogbomb EntityBomb
 local function copyQuakeData(_, bomb, ogbomb)
-    mod:setEntityData(bomb, "QUAKE_BOMB", mod:getEntityData(ogbomb, "QUAKE_BOMB"))
-    mod:setEntityData(bomb, "QUAKE_BOMBER_BOY", mod:getEntityData(ogbomb, "QUAKE_BOMBER_BOY"))
+    ToyboxMod:setEntityData(bomb, "QUAKE_BOMB", ToyboxMod:getEntityData(ogbomb, "QUAKE_BOMB"))
+    ToyboxMod:setEntityData(bomb, "QUAKE_BOMBER_BOY", ToyboxMod:getEntityData(ogbomb, "QUAKE_BOMBER_BOY"))
     replaceAnm2(bomb)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, copyQuakeData)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, copyQuakeData)
 
 ---@param pl EntityPlayer
 ---@param bomb EntityBomb
 local function placeQuakeBomb(_, pl, bomb)
-    if(pl:HasCollectible(mod.COLLECTIBLE.QUAKE_BOMBS)) then
-        mod:setEntityData(bomb, "QUAKE_BOMB", true)
+    if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_QUAKE_BOMBS)) then
+        ToyboxMod:setEntityData(bomb, "QUAKE_BOMB", true)
         if(pl:HasCollectible(CollectibleType.COLLECTIBLE_BOMBER_BOY)) then
-            mod:setEntityData(bomb, "QUAKE_BOMBER_BOY", true)
+            ToyboxMod:setEntityData(bomb, "QUAKE_BOMBER_BOY", true)
         end
         replaceAnm2(bomb)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_USE_BOMB, placeQuakeBomb)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_USE_BOMB, placeQuakeBomb)
 
 local destrucibleGrids = {
     [GridEntityType.GRID_ROCK] = true,
@@ -91,7 +91,7 @@ local function squareIntersectCircle(pos, radius, posSq)
 end
 
 local function destroyQuakedGrids(timer)
-    local quakeLayers = mod:getEntityData(timer, "QUAKE_TIMER_LAYERS")
+    local quakeLayers = ToyboxMod:getEntityData(timer, "QUAKE_TIMER_LAYERS")
     if(not quakeLayers) then return end
 
     local room = Game():GetRoom()
@@ -119,7 +119,7 @@ local function destroyQuakedGrids(timer)
             quakeLayers.INVALID[indexToQuake] = 1
         end
     end
-    mod:setEntityData(timer, "QUAKE_TIMER_LAYERS", quakeLayers)
+    ToyboxMod:setEntityData(timer, "QUAKE_TIMER_LAYERS", quakeLayers)
 end
 
 local function updateStoredGrids()
@@ -139,24 +139,24 @@ local function updateStoredGrids()
             end
         end
     end
-    mod:setExtraData("QUAKEBOMBS_GRIDS", grids)
+    ToyboxMod:setExtraData("QUAKEBOMBS_GRIDS", grids)
 end
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, updateStoredGrids)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, updateStoredGrids)
 
 ---@param bomb EntityBomb
 local function quakeBombUpdate(_, bomb)
-    if(not mod:getEntityData(bomb, "QUAKE_BOMB")) then return end
+    if(not ToyboxMod:getEntityData(bomb, "QUAKE_BOMB")) then return end
     
     Game():ShakeScreen(10)
 
     local quakeLayers = {[0]={}, ["INVALID"]={}}
-    local bombRadius = mod:getBombRadius(bomb)
+    local bombRadius = ToyboxMod:getBombRadius(bomb)
 
     local room = Game():GetRoom()
     local function getInitialGridsToDestroy(pos)
         local gridsRadius = math.ceil(bombRadius/40)
         local gridAlignedPos = room:GetGridPosition(room:GetGridIndex(pos))
-        local previousGrids = mod:getExtraData("QUAKEBOMBS_GRIDS") or {}
+        local previousGrids = ToyboxMod:getExtraData("QUAKEBOMBS_GRIDS") or {}
 
         for x=-gridsRadius, gridsRadius do
             for y=-gridsRadius, gridsRadius do
@@ -179,7 +179,7 @@ local function quakeBombUpdate(_, bomb)
     end
 
     getInitialGridsToDestroy(bomb.Position)
-    if(mod:getEntityData(bomb, "QUAKE_BOMBER_BOY")) then
+    if(ToyboxMod:getEntityData(bomb, "QUAKE_BOMBER_BOY")) then
         for i=1, 2 do
             for j=0, 3 do
                 getInitialGridsToDestroy(bomb.Position+Vector.FromAngle(j*90)*i*GRID_SIZE*1.5*bomb.RadiusMultiplier)
@@ -188,6 +188,6 @@ local function quakeBombUpdate(_, bomb)
     end
 
     local timer = Isaac.CreateTimer(destroyQuakedGrids, QUAKE_TIMER, QUAKE_LAYERS, false)
-    mod:setEntityData(timer, "QUAKE_TIMER_LAYERS", quakeLayers)
+    ToyboxMod:setEntityData(timer, "QUAKE_TIMER_LAYERS", quakeLayers)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_BOMB_DETONATE, quakeBombUpdate)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_BOMB_DETONATE, quakeBombUpdate)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local POP_OUT_PLAYER_SAFEDIST = 80
@@ -22,7 +22,7 @@ local VALID_ROCKS = {
 
 ---@param npc EntityNPC
 local function stumpyInit(_, npc)
-    if(not (npc.Variant==mod.VAR_STUMPY)) then return end
+    if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
 
     npc:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
     npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
@@ -32,13 +32,13 @@ local function stumpyInit(_, npc)
     npc.StateFrame = IDLE_WAIT_DURATION
     npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, stumpyInit, mod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, stumpyInit, ToyboxMod.NPC_MAIN)
 
 ---@param npc EntityNPC
 local function stumpyUpdte(_, npc)
-    if(not (npc.Variant==mod.VAR_STUMPY)) then return end
+    if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
     local sp = npc:GetSprite()
-    local data = mod:getEntityDataTable(npc)
+    local data = ToyboxMod:getEntityDataTable(npc)
 
     npc.Velocity = Vector.Zero
     npc:UpdateDirtColor(true)
@@ -155,7 +155,7 @@ local function stumpyUpdte(_, npc)
             proj.FallingAccel = 1.2*heightScale-0.1
             proj.FallingSpeed = -17.5*heightScale
             proj.Height = proj.Height-20
-            mod:setEntityData(proj, "STUMPY_ROCKPROJ", true)
+            ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", true)
 
             data.STUMPY_ROCKDESC = nil
             data.STUMPY_ROCKSPRITE = nil
@@ -196,26 +196,26 @@ local function stumpyUpdte(_, npc)
 
     npc.StateFrame = npc.StateFrame+1
 end
-mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, stumpyUpdte, mod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, stumpyUpdte, ToyboxMod.NPC_MAIN)
 
 ---@param npc EntityNPC
 local function renderRockOnStumpy(_, npc, offset)
-    if(not (npc.Variant==mod.VAR_STUMPY)) then return end
+    if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
     local sp = npc:GetSprite()
-    local data = mod:getEntityDataTable(npc)
+    local data = ToyboxMod:getEntityDataTable(npc)
 
     if(not data.STUMPY_ROCKSPRITE) then return end
     local renderPos = Isaac.WorldToRenderPosition(npc.Position)+offset+sp:GetNullFrame("rockpos"):GetPos()*1.2
     data.STUMPY_ROCKSPRITE:Render(renderPos)
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_NPC_RENDER, math.huge, renderRockOnStumpy, mod.NPC_MAIN)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_NPC_RENDER, math.huge, renderRockOnStumpy, ToyboxMod.NPC_MAIN)
 
 local function spawnRockOnDeath(_, npc)
-    if(not (npc.Variant==mod.VAR_STUMPY)) then return end
+    if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
     npc = npc:ToNPC()
 
     local sp = npc:GetSprite()
-    local data = mod:getEntityDataTable(npc)
+    local data = ToyboxMod:getEntityDataTable(npc)
 
     if(data.STUMPY_ROCKSPRITE) then
         local proj = npc:FireGridEntity(data.STUMPY_ROCKSPRITE, data.STUMPY_ROCKDESC, Vector.Zero, Game():GetRoom():GetBackdropType())
@@ -224,13 +224,13 @@ local function spawnRockOnDeath(_, npc)
         proj.FallingAccel = 0.75
         proj.FallingSpeed = -5
         proj.Height = proj.Height-sp:GetNullFrame("rockpos"):GetPos().Y
-        mod:setEntityData(proj, "STUMPY_ROCKPROJ", true)
+        ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", true)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, spawnRockOnDeath, mod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, spawnRockOnDeath, ToyboxMod.NPC_MAIN)
 
 local function rockProjectileDeath(_, proj)
-    if(not mod:getEntityData(proj, "STUMPY_ROCKPROJ")) then return end
+    if(not ToyboxMod:getEntityData(proj, "STUMPY_ROCKPROJ")) then return end
 
     local spawnData = {
         SpawnType = "CIRCLELINE",
@@ -248,6 +248,6 @@ local function rockProjectileDeath(_, proj)
         DamageCooldown = 10,
         DestroyGrid = 1,
     }
-    mod:spawnCustomObjects(spawnData)
+    ToyboxMod:spawnCustomObjects(spawnData)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PROJECTILE_DEATH, rockProjectileDeath)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PROJECTILE_DEATH, rockProjectileDeath)

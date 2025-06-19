@@ -1,10 +1,10 @@
-local mod = ToyboxMod
+
 local enums = require("scripts_toybox.modcompat.eid.stored")
 
 --- ITEMS ---
 
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.COCONUT_OIL,
+    ID = ToyboxMod.COLLECTIBLE_COCONUT_OIL,
     Name = "Coconut Oil",
     Description = {
         "\1 +0.5 Tears",
@@ -13,7 +13,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.CONDENSED_MILK,
+    ID = ToyboxMod.COLLECTIBLE_CONDENSED_MILK,
     Name = "Condensed Milk",
     Description = {
         "\1 x1.2 Tears",
@@ -39,7 +39,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.GOAT_MILK,
+    ID = ToyboxMod.COLLECTIBLE_GOAT_MILK,
     Name = "Goat Milk",
     Description = {
         "\1 +0.5 tears",
@@ -54,7 +54,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.NOSE_CANDY,
+    ID = ToyboxMod.COLLECTIBLE_NOSE_CANDY,
     Name = "Nose Candy",
     Description = {
         "\1 Every floor, you get +0.2 speed",
@@ -71,7 +71,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.LION_SKULL,
+    ID = ToyboxMod.COLLECTIBLE_LION_SKULL,
     Name = "Lion Skull",
     Description = {
         "\1 +0.15 Damage on room clear",
@@ -87,7 +87,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.CARAMEL_APPLE,
+    ID = ToyboxMod.COLLECTIBLE_CARAMEL_APPLE,
     Name = "Caramel Apple",
     Description = {
         "\1 +1 Health",
@@ -102,7 +102,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PAINKILLERS,
+    ID = ToyboxMod.COLLECTIBLE_PAINKILLERS,
     Name = "Painkillers",
     Description = {
         "\2 Invincibility frames after taking damage are 90% shorter",
@@ -119,7 +119,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.TECH_IX,
+    ID = ToyboxMod.COLLECTIBLE_TECH_IX,
     Name = "Tech IX",
     Description = {
         "While firing, you get a {{Collectible395}} Tech X ring around you",
@@ -134,7 +134,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.FATAL_SIGNAL,
+    ID = ToyboxMod.COLLECTIBLE_FATAL_SIGNAL,
     Name = "Fatal Signal",
     Description = {
         "\1 +1 Health",
@@ -142,7 +142,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PEPPER_X,
+    ID = ToyboxMod.COLLECTIBLE_PEPPER_X,
     Name = "Pepper X",
     Description = {
         "9% chance to shoot a meteor tear that spawns fire upon contact",
@@ -158,7 +158,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.METEOR_SHOWER,
+    ID = ToyboxMod.COLLECTIBLE_METEOR_SHOWER,
     Name = "Meteor Shower",
     Description = {
         "In active rooms, every 4 seconds spawns a meteor that falls from the sky",
@@ -174,7 +174,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BLESSED_RING,
+    ID = ToyboxMod.COLLECTIBLE_BLESSED_RING,
     Name = "Blessed Ring",
     Description = {
         "In active rooms, every 7 seconds 2 random enemies are struck by a beam of light",
@@ -188,7 +188,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.FOUR_FOUR,
+    ID = ToyboxMod.COLLECTIBLE_FOUR_FOUR,
     Name = "4 4",
     Description = {
         "Double tap to shoot out a spread of spectral piercing sound waves that confuse enemies, has a 10 second cooldown",
@@ -205,7 +205,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.EYESTRAIN,
+    ID = ToyboxMod.COLLECTIBLE_EYESTRAIN,
     Name = "Eyestrain",
     Description = {
         "\1 +1 Damage",
@@ -213,7 +213,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.SIGIL_OF_GREED,
+    ID = ToyboxMod.COLLECTIBLE_SIGIL_OF_GREED,
     Name = "Sigil of Greed",
     Description = {
         "{{Chargeable}} Firing for 6.66 seconds charges up a golden sigil",
@@ -223,7 +223,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.EVIL_ROCK,
+    ID = ToyboxMod.COLLECTIBLE_EVIL_ROCK,
     Name = "Evil Rock",
     Description = {
         "Tinted rocks are darker and easier to see",
@@ -235,7 +235,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.ONYX,
+    ID = ToyboxMod.COLLECTIBLE_ONYX,
     Name = "Onyx",
     Description = {
         "\1 +1.2 Damage",
@@ -245,7 +245,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.DADS_PRESCRIPTION,
+    ID = ToyboxMod.COLLECTIBLE_DADS_PRESCRIPTION,
     Name = "Dad's Prescription",
     Description = {
         "{{Pill}} Entering a special room spawns a pill",
@@ -259,7 +259,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.HORSE_TRANQUILIZER,
+    ID = ToyboxMod.COLLECTIBLE_HORSE_TRANQUILIZER,
     Name = "Horse Tranquilizer",
     Description = {
         "{{ToyboxHorsePill}} Spawns a horse pill",
@@ -275,19 +275,19 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.SILK_BAG,
+    ID = ToyboxMod.COLLECTIBLE_SILK_BAG,
     Name = "Silk Bag",
     Description = {
-        "{{Card"..mod.CONSUMABLE.LAUREL.."}} Spawns 1 Laurel every 6 rooms",
+        "{{Card"..ToyboxMod.CONSUMABLE.LAUREL.."}} Spawns 1 Laurel every 6 rooms",
         "{{Blank}} Laurels give 5 seconds of invincibility when used",
     },
     Modifiers = {
         {
             Condition = function(descObj)
-                return (mod:getPersistentData("HAS_SEEN_YANNY")==1)
+                return (ToyboxMod:getPersistentData("HAS_SEEN_YANNY")==1)
             end,
             ToModify = {
-                "{{Card"..mod.CONSUMABLE.YANNY.."}} 0.1% chance to spawn a Yanny instead of a Laurel",
+                "{{Card"..ToyboxMod.CONSUMABLE.YANNY.."}} 0.1% chance to spawn a Yanny instead of a Laurel",
                 "{{Blank}} Yannies deal 30 damage to all enemies in the room when used",
             }
         },
@@ -302,16 +302,16 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.ROCK_CANDY,
+    ID = ToyboxMod.COLLECTIBLE_ROCK_CANDY,
     Name = "Rock Candy",
     Description = {
         "\1 +0.7 Damage",
         "\1 +0.16 Shotspeed",
-        "{{Card"..mod.CONSUMABLE.MANTLE_ROCK.."}} Spawns a random Mantle consumable",
+        "{{Card"..ToyboxMod.CONSUMABLE.MANTLE_ROCK.."}} Spawns a random Mantle consumable",
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.MISSING_PAGE_3,
+    ID = ToyboxMod.COLLECTIBLE_MISSING_PAGE_3,
     Name = "Missing Page 3",
     Description = {
         "{{DeathMark}} Enemies have a 4% chance to spawn as a Skull champion",
@@ -339,7 +339,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.GLASS_VESSEL,
+    ID = ToyboxMod.COLLECTIBLE_GLASS_VESSEL,
     Name = "Glass Vessel",
     Description = {
         "Grants a glass shield that negates one hit",
@@ -372,7 +372,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BONE_BOY,
+    ID = ToyboxMod.COLLECTIBLE_BONE_BOY,
     Name = "Bone Boy",
     Description = {
         "{{DeathMark}} Grants a Bony familiar that loves to party!",
@@ -408,7 +408,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.STEEL_SOUL,
+    ID = ToyboxMod.COLLECTIBLE_STEEL_SOUL,
     Name = "Steel Soul",
     Description = {
         "{{SoulHeart}} +1 Soul Heart",
@@ -423,7 +423,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BOBS_HEART,
+    ID = ToyboxMod.COLLECTIBLE_BOBS_HEART,
     Name = "Bob's Heart",
     Description = {
         "Grants immunity to explosions",
@@ -439,7 +439,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.CLOWN_PHD,
+    ID = ToyboxMod.COLLECTIBLE_CLOWN_PHD,
     Name = "Clown PHD",
     Description = {
         "{{Pill}} When used, pills have a random effect",
@@ -455,7 +455,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.GIANT_CAPSULE,
+    ID = ToyboxMod.COLLECTIBLE_GIANT_CAPSULE,
     Name = "Giant Capsule",
     Description = {
         "Using a consumable spawns a virus orbital that disappears after 40 seconds",
@@ -472,7 +472,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.LOVE_LETTER,
+    ID = ToyboxMod.COLLECTIBLE_LOVE_LETTER,
     Name = "Love Letter",
     Description = {
         "{{Charm}} 10% chance to shoot charming tears",
@@ -489,7 +489,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.QUAKE_BOMBS,
+    ID = ToyboxMod.COLLECTIBLE_QUAKE_BOMBS,
     Name = "Quake Bombs",
     Description = {
         "{{Bomb}} +5 Bombs",
@@ -505,7 +505,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.ATHEISM,
+    ID = ToyboxMod.COLLECTIBLE_ATHEISM,
     Name = "Atheism",
     Description = {
         "{{AngelDevilChance}} +15% Devil/Angel deal chance",
@@ -523,7 +523,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.MAYONAISE,
+    ID = ToyboxMod.COLLECTIBLE_MAYONAISE,
     Name = "A Spoonful of Mayonnaise",
     Description = {
         "\1 +0.15 Shotspeed",
@@ -531,7 +531,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.AWESOME_FRUIT,
+    ID = ToyboxMod.COLLECTIBLE_AWESOME_FRUIT,
     Name = "Awesome Fruit",
     Description = {
         "\1 +1 Health",
@@ -540,7 +540,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.JONAS_MASK,
+    ID = ToyboxMod.COLLECTIBLE_JONAS_MASK,
     Name = "Jonas' Mask",
     Description = {
         "Gives 1 of 3 shadow familiars:",
@@ -551,7 +551,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.SALTPETER,
+    ID = ToyboxMod.COLLECTIBLE_SALTPETER,
     Name = "Saltpeter",
     Description = {
         "When enemies take damage, nearby enemies are hurt for 50% of that damage",
@@ -567,7 +567,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.DR_BUM,
+    ID = ToyboxMod.COLLECTIBLE_DR_BUM,
     Name = "Dr. Bum",
     Description = {
         "{{Card}} Picks up cards, runes, and objects and turns them into {{Pill}} pills",
@@ -575,7 +575,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PREFERRED_OPTIONS,
+    ID = ToyboxMod.COLLECTIBLE_PREFERRED_OPTIONS,
     Name = "Preferred Options",
     Description = {
         "{{BossRoom}} You may choose between 2 items after beating a boss",
@@ -591,7 +591,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PLASMA_GLOBE,
+    ID = ToyboxMod.COLLECTIBLE_PLASMA_GLOBE,
     Name = "Plasma Globe",
     Description = {
         "\2 -0.2 Shotspeed",
@@ -600,7 +600,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.CURSED_EULOGY,
+    ID = ToyboxMod.COLLECTIBLE_CURSED_EULOGY,
     Name = "Cursed Eulogy",
     Description = {
         "{{BlackHeart}} +1 Black Heart",
@@ -615,7 +615,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BLESSED_BOMBS,
+    ID = ToyboxMod.COLLECTIBLE_BLESSED_BOMBS,
     Name = "Blessed Bombs",
     Description = {
         "{{Bomb}} +5 Bombs",
@@ -627,7 +627,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.HEMORRHAGE,
+    ID = ToyboxMod.COLLECTIBLE_HEMORRHAGE,
     Name = "Haemorrhage",
     Description = {
         "{{EmptyBoneHeart}} +1 Bone Heart",
@@ -635,7 +635,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.FISH,
+    ID = ToyboxMod.COLLECTIBLE_FISH,
     Name = "Fish",
     Description = {
         "\1 Doubles all blue fly/spider spawns",
@@ -643,10 +643,10 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BOBS_THESIS,
+    ID = ToyboxMod.COLLECTIBLE_BOBS_THESIS,
     Name = "Bob's Thesis",
     Description = {
-        "All item spawns are replaced by {{Collectible"..mod.COLLECTIBLE.PLACEHOLDER.."}} Placeholder",
+        "All item spawns are replaced by {{Collectible"..ToyboxMod.COLLECTIBLE_PLACEHOLDER.."}} Placeholder",
         --"{{Blank}} {{ColorGray}}Placeholder gives an all stats up, but turns into a random item at the start of next floor{{CR}}",
         "Placeholder gives an all stats up, but turns into a random item at the start of next floor",
     },
@@ -660,7 +660,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PLACEHOLDER,
+    ID = ToyboxMod.COLLECTIBLE_PLACEHOLDER,
     Name = "Placeholder",
     Description = {
         "\1 +0.15 Speed",
@@ -685,7 +685,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PLIERS,
+    ID = ToyboxMod.COLLECTIBLE_PLIERS,
     Name = "Pliers",
     Description = {
         "\1 +0.7 Tears for the room",
@@ -702,7 +702,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BLOOD_RITUAL,
+    ID = ToyboxMod.COLLECTIBLE_BLOOD_RITUAL,
     Name = "Blood Ritual",
     Description = {
         "Spawns 3 {{DevilChanceSmall}} evil familiars for the room that orbit around you",
@@ -719,7 +719,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.SUNK_COSTS,
+    ID = ToyboxMod.COLLECTIBLE_SUNK_COSTS,
     Name = "Sunk Costs",
     Description = {
         "{{Coin}} +5 coins",
@@ -735,7 +735,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.ASCENSION,
+    ID = ToyboxMod.COLLECTIBLE_ASCENSION,
     Name = "Ascension",
     Description = {
         "{{Timer}} For the next 3 seconds: gain flight and spectral tears",
@@ -752,7 +752,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.GILDED_APPLE,
+    ID = ToyboxMod.COLLECTIBLE_GILDED_APPLE,
     Name = "Gilded Apple",
     Description = {
         "{{GoldenHeart}} +1 Golden Heart",
@@ -767,7 +767,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PEZ_DISPENSER,
+    ID = ToyboxMod.COLLECTIBLE_PEZ_DISPENSER,
     Name = "Candy Dispenser",
     Description = {
         "{{Card}} Can store up to 2 consumables of any type",
@@ -793,7 +793,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.ALPHABET_BOX,
+    ID = ToyboxMod.COLLECTIBLE_ALPHABET_BOX,
     Name = "Alphabet Box",
     Description = {
         "Rerolls all items in the room into the next item in alphabetical order",
@@ -808,7 +808,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.HOSTILE_TAKEOVER,
+    ID = ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER,
     Name = "Hostile Takeover",
     Description = {
         "{{Timer}} For the room:",
@@ -831,7 +831,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BLOODY_WHISTLE,
+    ID = ToyboxMod.COLLECTIBLE_BLOODY_WHISTLE,
     Name = "Bloody Whistle",
     Description = {
         "Spawns a pool of blood creep",
@@ -840,14 +840,14 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.D,
+    ID = ToyboxMod.COLLECTIBLE_D,
     Name = "D0",
     Description = {
         "{{Timer}} Adds anywhere from +3 minutes to -3 minutes to the game's timer",
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.ASTEROID_BELT,
+    ID = ToyboxMod.COLLECTIBLE_ASTEROID_BELT,
     Name = "Asteroid Belt",
     Description = {
         "Gain 8 orbital rocks that block projectiles and deal 1 damage",
@@ -864,7 +864,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BARBED_WIRE,
+    ID = ToyboxMod.COLLECTIBLE_BARBED_WIRE,
     Name = "Barbed Wire",
     Description = {
         "When a projectile gets near you, the enemy who fired it takes 1.5 damage",
@@ -878,7 +878,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.COFFEE_CUP,
+    ID = ToyboxMod.COLLECTIBLE_COFFEE_CUP,
     Name = "Coffee Cup",
     Description = {
         "\1 +0.2 Speed",
@@ -886,7 +886,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.LAST_BEER,
+    ID = ToyboxMod.COLLECTIBLE_LAST_BEER,
     Name = "Last Beer",
     Description = {
         "{{Timer}} +10% chance to fire an additional tear for each enemy killed in the room",
@@ -901,7 +901,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.CONJUNCTIVITIS,
+    ID = ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS,
     Name = "Conjunctivitis",
     Description = {
         "\1 +0.5 Damage for the right eye",
@@ -917,7 +917,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.FOOD_STAMPS,
+    ID = ToyboxMod.COLLECTIBLE_FOOD_STAMPS,
     Name = "Food Stamps",
     Description = {
         "{{Heart}} All future items give +1 Health",
@@ -931,7 +931,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.GOLDEN_CALF,
+    ID = ToyboxMod.COLLECTIBLE_GOLDEN_CALF,
     Name = "Golden Calf",
     Description = {
         "{{Charm}} On death, enemies have a 10% chance to respawn as a friendly copy with halved health",
@@ -946,7 +946,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.ART_OF_WAR,
+    ID = ToyboxMod.COLLECTIBLE_ART_OF_WAR,
     Name = "Art of War",
     Description = {
         "{{Timer}} Grants a random tear replacement item for the room",
@@ -959,7 +959,7 @@ enums.FUNCTIONS.AddItem({
             end,
             ToModify = function(descObj)
                 local s = "{{Blank}} "
-                for _, item in ipairs(mod.TEAR_REPLACEMENT_ITEMS) do
+                for _, item in ipairs(ToyboxMod.TEAR_REPLACEMENT_ITEMS) do
                     s = s.."{{Collectible"..item[1].."}} "
                 end
 
@@ -969,7 +969,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BIG_BANG,
+    ID = ToyboxMod.COLLECTIBLE_BIG_BANG,
     Name = "Big Bang",
     Description = {
         "!!! SINGLE USE !!!",
@@ -977,7 +977,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.CHOCOLATE_BAR,
+    ID = ToyboxMod.COLLECTIBLE_CHOCOLATE_BAR,
     Name = "Chocolate Bar",
     Description = {
         "{{Timer}} +1 Health for the room",
@@ -995,7 +995,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.EXORCISM_KIT,
+    ID = ToyboxMod.COLLECTIBLE_EXORCISM_KIT,
     Name = "Exorcism Kit",
     Description = {
         "Instantly kills the nearest enemy and all other enemies of the same type and variant",
@@ -1003,14 +1003,14 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.RETROFALL,
+    ID = ToyboxMod.COLLECTIBLE_RETROFALL,
     Name = "RETROFALL",
     Description = {
         "{{Collectible105}} All non-timed active items have 6 charges and reroll pedestal items in the room",
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BRUNCH,
+    ID = ToyboxMod.COLLECTIBLE_BRUNCH,
     Name = "Brunch",
     Description = {
         "\1 +1 Health",
@@ -1040,7 +1040,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.TOAST,
+    ID = ToyboxMod.COLLECTIBLE_TOAST,
     Name = "Toast",
     Description = {
         "\1 +1 Health",
@@ -1070,7 +1070,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.DELIVERY_BOX,
+    ID = ToyboxMod.COLLECTIBLE_DELIVERY_BOX,
     Name = "Delivery Box",
     Description = {
         "{{Coin}} Pay 3 coins to spawn a {{Bomb}} Bomb or {{Key}} Key",
@@ -1078,7 +1078,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.LUCKY_PEBBLES,
+    ID = ToyboxMod.COLLECTIBLE_LUCKY_PEBBLES,
     Name = "Lucky Pebbles",
     Description = {
         "\1 +1 Health",
@@ -1087,14 +1087,14 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.MOMS_PHOTOBOOK,
+    ID = ToyboxMod.COLLECTIBLE_MOMS_PHOTOBOOK,
     Name = "Mom's Photobook",
     Description = {
         "{{Confusion}} Confuses all enemies in the room for 5 seconds",
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.FINGER_TRAP,
+    ID = ToyboxMod.COLLECTIBLE_FINGER_TRAP,
     Name = "Finger Trap",
     Description = {
         "\1 +0.5 Tears",
@@ -1102,7 +1102,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.HEMOLYMPH,
+    ID = ToyboxMod.COLLECTIBLE_HEMOLYMPH,
     Name = "Hemolymph",
     Description = {
         "If you have full health, you may pick up Red Hearts to:",
@@ -1111,14 +1111,14 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.SOLAR_PANEL,
+    ID = ToyboxMod.COLLECTIBLE_SOLAR_PANEL,
     Name = "Solar Panel",
     Description = {
         "{{Battery}} Entering a non-hostile room for the first time adds 1 active charge",
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.SURPRISE_EGG,
+    ID = ToyboxMod.COLLECTIBLE_SURPRISE_EGG,
     Name = "Surprise Egg",
     Description = {
         "\1 +1 Health",
@@ -1127,7 +1127,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.COLOSSAL_ORB,
+    ID = ToyboxMod.COLLECTIBLE_COLOSSAL_ORB,
     Name = "Colossal Orb",
     Description = {
         "{{HealingRed}} +1 Health",
@@ -1138,7 +1138,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.BABY_SHOES,
+    ID = ToyboxMod.COLLECTIBLE_BABY_SHOES,
     Name = "Baby Shoes",
     Description = {
         "\1 +0.1 Speed",
@@ -1146,14 +1146,14 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.SACK_OF_CHESTS,
+    ID = ToyboxMod.COLLECTIBLE_SACK_OF_CHESTS,
     Name = "Sack of Chests",
     Description = {
         "Spawns a random chest every 9-10 rooms",
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.EFFIGY,
+    ID = ToyboxMod.COLLECTIBLE_EFFIGY,
     Name = "Effigy",
     Description = {
         "On room entry, tries to turn into a champion copy of a random enemy in the room",
@@ -1161,7 +1161,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.GAMBLING_ADDICTION,
+    ID = ToyboxMod.COLLECTIBLE_GAMBLING_ADDICTION,
     Name = "Gambling Addiction",
     Description = {
         "Upon killing an enemy, 25% chance to spawn one of the following:",
@@ -1175,12 +1175,21 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PYRAMID_SCHEME,
+    ID = ToyboxMod.COLLECTIBLE_PYRAMID_SCHEME,
     Name = "Pyramid Scheme",
     Description = {
         "{{TreasureRoom}} In Treasure Rooms, a special donation machine will spawn",
         "Donating has a 7.5% chance to explode it and drop 1-3 Coins",
         "{{Coin}} Exploding it manually makes it drop 2x the Coins donated to it"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP,
+    Name = "Pythagoras' Cup",
+    Description = {
+        "!!! SINGLE USE !!!",
+        "Gives a cup that makes all items spawn as a choice between 3 items",
+        "Picking up more than 3 items on the same floor makes the cup spill, removing itself and all items picked up after using this"
     },
 })
 
@@ -1192,10 +1201,10 @@ enums.FUNCTIONS.AddItem({
     Modifiers = {
         {
             Condition = function(descObj)
-                return PlayerManager.AnyoneIsPlayerType(mod.PLAYER_TYPE.JONAS_A)
+                return PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.JONAS_A)
             end,
             ToModify = {
-                "{{Player"..mod.PLAYER_TYPE.JONAS_A.."}} {{ColorJonas}}Frozen enemies can only drop pills when shattered{{CR}}",
+                "{{Player"..ToyboxMod.PLAYER_TYPE.JONAS_A.."}} {{ColorJonas}}Frozen enemies can only drop pills when shattered{{CR}}",
             }
         },
     }
@@ -1205,7 +1214,7 @@ enums.FUNCTIONS.AddItem({
 --- TRINKETS ---
 
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.WONDER_DRUG,
+    ID = ToyboxMod.TRINKET_WONDER_DRUG,
     Name = "Wonder Drug",
     Description = {
         "{{ToyboxGoldenPill}} Doubles the chance for gold pills to spawn",
@@ -1229,7 +1238,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.ANTIBIOTICS,
+    ID = ToyboxMod.TRINKET_ANTIBIOTICS,
     Name = "Antibiotics",
     Description = {
         "{{Pill}} Using a pill has a 20% chance to use it 2 times",
@@ -1253,7 +1262,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.AMBER_FOSSIL,
+    ID = ToyboxMod.TRINKET_AMBER_FOSSIL,
     Name = "Amber Fossil",
     Description = {
         "Blue flies have a 33% chance to be converted into a random locust",
@@ -1276,7 +1285,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.SINE_WORM,
+    ID = ToyboxMod.TRINKET_SINE_WORM,
     Name = "Sine Worm",
     Description = {
         "\1 +0.4 Tears",
@@ -1303,7 +1312,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.BIG_BLIND,
+    ID = ToyboxMod.TRINKET_BIG_BLIND,
     Name = "Big Blind",
     Description = {
         "{{Coin}} Every COUNTER damage dealt to enemies, spawn a coin",
@@ -1323,9 +1332,9 @@ enums.FUNCTIONS.AddTrinket({
                 else
                     mult = 1
                 end
-                --mult = mult+(descObj.Entity and Isaac.GetPlayer():GetTrinketMultiplier(mod.TRINKET.BIG_BLIND) or 0)
+                --mult = mult+(descObj.Entity and Isaac.GetPlayer():GetTrinketMultiplier(ToyboxMod.TRINKET_BIG_BLIND) or 0)
 
-                local counter = mod:getBigBlindDamageRequirement(Isaac.GetPlayer())/mult
+                local counter = ToyboxMod:getBigBlindDamageRequirement(Isaac.GetPlayer())/mult
                 counter = tostring(math.floor(counter))
 
                 local replaceString = (color or "")..counter..(color and "{{CR}}" or "")
@@ -1336,7 +1345,7 @@ enums.FUNCTIONS.AddTrinket({
     }
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.JONAS_LOCK,
+    ID = ToyboxMod.TRINKET_JONAS_LOCK,
     Name = "Jonas' Lock",
     Description = {
         "{{Pill}} Using a pill grants a stat bonus equivalent to 50% of a random \"stat up\" pill's effect",
@@ -1360,7 +1369,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.BATH_WATER,
+    ID = ToyboxMod.TRINKET_BATH_WATER,
     Name = "Bath Water",
     Description = {
         "Familiar that shatters when you take damage and spawns a pool of creep, once per room",
@@ -1368,7 +1377,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.BLACK_RUNE_SHARD,
+    ID = ToyboxMod.TRINKET_BLACK_RUNE_SHARD,
     Name = "Black Rune Shard",
     Description = {
         "{{Coin}} Blue flies and spiders have a 33% chance to be replaced by a coin",
@@ -1402,7 +1411,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.SUPPOSITORY,
+    ID = ToyboxMod.TRINKET_SUPPOSITORY,
     Name = "Suppository",
     Description = {
         "{{Pill}} Poop drops have a 20% chance to be replaced by a pill",
@@ -1425,7 +1434,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.DIVIDED_JUSTICE,
+    ID = ToyboxMod.TRINKET_DIVIDED_JUSTICE,
     Name = "Divided Justice",
     Description = {
         "Common heart, coin, bomb, and key drops have a 10% chance to be replaced by a Smorgasbord",
@@ -1449,7 +1458,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.KILLSCREEN,
+    ID = ToyboxMod.TRINKET_KILLSCREEN,
     Name = "Killscreen",
     Description = {
         "Enemies on the right side of the room take 1 damage every 0.5 seconds",
@@ -1472,7 +1481,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.MIRROR_SHARD,
+    ID = ToyboxMod.TRINKET_MIRROR_SHARD,
     Name = "Mirror Shard",
     Description = {
         "\2 -13 Luck",
@@ -1496,7 +1505,7 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = mod.TRINKET.LUCKY_TOOTH,
+    ID = ToyboxMod.TRINKET_LUCKY_TOOTH,
     Name = "Lucky Tooth",
     Description = {
         "\1 Beggars have a flat +33% chance to payout",
@@ -1520,7 +1529,7 @@ enums.FUNCTIONS.AddTrinket({
 })
 
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.PRISMSTONE,
+    ID = ToyboxMod.CONSUMABLE.PRISMSTONE,
     Name = "Prismstone",
     Description = {
         "{{Rune}} Spawns 3 runes or soul stones",
@@ -1528,21 +1537,21 @@ enums.FUNCTIONS.AddCard({
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.FOIL_CARD,
+    ID = ToyboxMod.CONSUMABLE.FOIL_CARD,
     Name = "Foil Card",
     Description = {
         "{{Coin}} Spawns a golden heart, penny, key or bomb",
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.LAUREL,
+    ID = ToyboxMod.CONSUMABLE.LAUREL,
     Name = "Laurel",
     Description = {
         "Gives 5 seconds of invincibility when used",
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.YANNY,
+    ID = ToyboxMod.CONSUMABLE.YANNY,
     Name = "Yanny",
     Description = {
         "Deals 30 damage to all enemies in the room when used",
@@ -1550,7 +1559,7 @@ enums.FUNCTIONS.AddCard({
 })
 
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_ROCK,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_ROCK,
     Name = "Rock Mantle",
     Description = {
         "{{Timer}} For the room:",
@@ -1560,13 +1569,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
                 "Does nothing",
@@ -1577,7 +1586,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_POOP,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_POOP,
     Name = "Poop Mantle",
     Description = {
         "Hold up a throwable poop",
@@ -1586,13 +1595,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
                 "50% chance to spawn 2 blue flies on room clear",
@@ -1606,7 +1615,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_BONE,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_BONE,
     Name = "Bone Mantle",
     Description = {
         "{{Charm}} Spawns a friendly Bony",
@@ -1615,13 +1624,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "\1 3 HP",
                 "+10% chance to spawn a bone orbital on kill",
@@ -1634,7 +1643,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_DARK,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_DARK,
     Name = "Dark Mantle",
     Description = {
         "Deals 10 damage to all enemies on the floor",
@@ -1643,13 +1652,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
                 "\1 +0.4 Damage",
@@ -1662,7 +1671,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_HOLY,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_HOLY,
     Name = "Holy Mantle",
     Description = {
         "{{EternalHeart}} +1 Eternal Heart",
@@ -1671,13 +1680,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
                 "\1 +0.5 Range",
@@ -1690,7 +1699,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_SALT,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_SALT,
     Name = "Salt Mantle",
     Description = {
         "{{Timer}} Gives the effect of a random \"Tears Up\" item for the room",
@@ -1698,13 +1707,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
                 "\1 +0.33 Tears",
@@ -1716,7 +1725,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_GLASS,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_GLASS,
     Name = "Glass Mantle",
     Description = {
         "{{Timer}} For the room:",
@@ -1726,13 +1735,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "\2 1 HP",
                 "\1 +0.5 Damage",
@@ -1746,7 +1755,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_METAL,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_METAL,
     Name = "Metal Mantle",
     Description = {
         "{{SoulHeart}} +1 Soul Heart",
@@ -1755,13 +1764,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "\1 3 HP",
                 "\2 -0.1 Speed",
@@ -1774,7 +1783,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = mod.CONSUMABLE.MANTLE_GOLD,
+    ID = ToyboxMod.CONSUMABLE.MANTLE_GOLD,
     Name = "Gold Mantle",
     Description = {
         "{{Coin}} Removes 1 coin, spawns a random pickup",
@@ -1783,13 +1792,13 @@ enums.FUNCTIONS.AddCard({
     Modifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
-            Condition = mod.isAnyPlayerAtlasA,
+            Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
                 "\1 +1 Luck",
@@ -1803,7 +1812,7 @@ enums.FUNCTIONS.AddCard({
 })
 
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.DYSLEXIA,
+    ID = ToyboxMod.PILL_EFFECT.DYSLEXIA,
     Name = "Dyslexia",
     Description = {
         "{{Timer}} You fire backwards for 30 seconds",
@@ -1818,7 +1827,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.I_BELIEVE,
+    ID = ToyboxMod.PILL_EFFECT.I_BELIEVE,
     Name = "I Believe I Can Fly!",
     Description = {
         "{{Timer}} Flight for the room",
@@ -1832,7 +1841,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.DEMENTIA,
+    ID = ToyboxMod.PILL_EFFECT.DEMENTIA,
     Name = "Dementia",
     Description = {
         "Rerolls the current pill pool",
@@ -1847,7 +1856,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.PARASITE,
+    ID = ToyboxMod.PILL_EFFECT.PARASITE,
     Name = "Parasite!",
     Description = {
         "Spawns 1 blue fly for every enemy in the room, along with 2 additional blue flies",
@@ -1862,7 +1871,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.OSSIFICATION,
+    ID = ToyboxMod.PILL_EFFECT.OSSIFICATION,
     Name = "Ossification",
     Description = {
         "Turns 1 heart container into an {{EmptyBoneHeart}} empty bone heart",
@@ -1876,7 +1885,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.YOUR_SOUL_IS_MINE,
+    ID = ToyboxMod.PILL_EFFECT.YOUR_SOUL_IS_MINE,
     Name = "Your Soul is Mine",
     Description = {
         "Turns all of your Soul Hearts into {{BlackHeart}} Black Hearts",
@@ -1892,7 +1901,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.FOOD_POISONING,
+    ID = ToyboxMod.PILL_EFFECT.FOOD_POISONING,
     Name = "Food Poisoning",
     Description = {
         "Spawns a poisonous cloud at your position",
@@ -1908,7 +1917,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.CAPSULE,
+    ID = ToyboxMod.PILL_EFFECT.CAPSULE,
     Name = "Capsule",
     Description = {
         "Gives a random smelted trinket",
@@ -1922,7 +1931,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.HEARTBURN,
+    ID = ToyboxMod.PILL_EFFECT.HEARTBURN,
     Name = "Heartburn",
     Description = {
         "{{Timer}} You are on fire for the next 30 seconds",
@@ -1938,7 +1947,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.COAGULANT,
+    ID = ToyboxMod.PILL_EFFECT.COAGULANT,
     Name = "Coagulant",
     Description = {
         "Spawns a blood clot",
@@ -1953,7 +1962,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.FENT,
+    ID = ToyboxMod.PILL_EFFECT.FENT,
     Name = "Fent",
     Description = {
         "{{Collectible582}} Uses Wavy Cap once",
@@ -1974,7 +1983,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.ARTHRITIS,
+    ID = ToyboxMod.PILL_EFFECT.ARTHRITIS,
     Name = "Arthritis",
     Description = {
         "{{Timer}} For the next 10 seconds, you gain a 3x tears multiplier but you can only fire in 1 direction",
@@ -1988,7 +1997,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.MUSCLE_ATROPHY,
+    ID = ToyboxMod.PILL_EFFECT.MUSCLE_ATROPHY,
     Name = "Muscle Atrophy",
     Description = {
         "\2 Your damage is lowered to 0.5 and slowly recovers over the next 18 seconds",
@@ -2008,7 +2017,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.VITAMINS,
+    ID = ToyboxMod.PILL_EFFECT.VITAMINS,
     Name = "Vitamins!",
     Description = {
         "{{Timer}} Gives temporary stats that fade over the next 24 seconds:",
@@ -2033,7 +2042,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.DMG_UP,
+    ID = ToyboxMod.PILL_EFFECT.DMG_UP,
     Name = "Damage Up",
     Description = {
         "\1 +0.45 Damage",
@@ -2048,7 +2057,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = mod.PILL_EFFECT.DMG_DOWN,
+    ID = ToyboxMod.PILL_EFFECT.DMG_DOWN,
     Name = "Damage Down",
     Description = {
         "\2 -0.35 Damage",
@@ -2065,7 +2074,7 @@ enums.FUNCTIONS.AddPill({
 
 
 enums.FUNCTIONS.AddPlayer({
-    ID = mod.PLAYER_TYPE.ATLAS_A,
+    ID = ToyboxMod.PLAYER_TYPE.ATLAS_A,
     Name = "Atlas",
     Description = {
         "Your health is made of \"mantles\" with various effects, which may replace hearts",
@@ -2079,7 +2088,7 @@ enums.FUNCTIONS.AddPlayer({
     }
 })
 enums.FUNCTIONS.AddPlayer({
-    ID = mod.PLAYER_TYPE.ATLAS_A_TAR,
+    ID = ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR,
     Name = "Atlas",
     Description = {
         "Your health is made of \"mantles\" with various effects, which may replace hearts",
@@ -2093,7 +2102,7 @@ enums.FUNCTIONS.AddPlayer({
     }
 })
 enums.FUNCTIONS.AddPlayer({
-    ID = mod.PLAYER_TYPE.JONAS_A,
+    ID = ToyboxMod.PLAYER_TYPE.JONAS_A,
     Name = "Jonas",
     Description = {
         "Pill pool gets rerolled and unidentified at the start of every floor",
@@ -2109,7 +2118,7 @@ enums.FUNCTIONS.AddPlayer({
     }
 })
 enums.FUNCTIONS.AddPlayer({
-    ID = mod.PLAYER_TYPE.MILCOM_A,
+    ID = ToyboxMod.PLAYER_TYPE.MILCOM_A,
     Name = "Milcom",
     Description = {
         "{{Coin}} Bombs and keys instead give coins when gained, and consume coins when used",
@@ -2132,25 +2141,25 @@ enums.FUNCTIONS.AddGlobalModifier({
             Condition = function(descObj)
                 if(not descObj.Entity) then return false end
                 if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
-                if((mod.CONFIG.ALPHABETBOX_EID_DISPLAYS or 0)<=0) then return false end
+                if((ToyboxMod.CONFIG.ALPHABETBOX_EID_DISPLAYS or 0)<=0) then return false end
 
-                return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.ALPHABET_BOX)
+                return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_ALPHABET_BOX)
             end,
             ToModify = function(descObj)
-                local boxDesc = "{{Collectible"..mod.COLLECTIBLE.ALPHABET_BOX.."}} :"
+                local boxDesc = "{{Collectible"..ToyboxMod.COLLECTIBLE_ALPHABET_BOX.."}} :"
 
-                local idx = mod:getNextAlphabetItem(descObj.ObjSubType, false)
-                for i=1, mod.CONFIG.ALPHABETBOX_EID_DISPLAYS do
+                local idx = ToyboxMod:getNextAlphabetItem(descObj.ObjSubType, false)
+                for i=1, ToyboxMod.CONFIG.ALPHABETBOX_EID_DISPLAYS do
                     if(i~=1) then boxDesc = boxDesc.." -> " end
 
                     if(idx==-1) then
                         boxDesc = boxDesc.."Item disappears"
                         break
                     else
-                        boxDesc = boxDesc.."{{Collectible"..mod.ABOX_ITEMS_ALPHABETICAL[idx][2].."}}"
+                        boxDesc = boxDesc.."{{Collectible"..ToyboxMod.ABOX_ITEMS_ALPHABETICAL[idx][2].."}}"
                     end
                     
-                    idx = mod:getNextAlphabetItem(mod.ABOX_ITEMS_ALPHABETICAL[idx][2], false)
+                    idx = ToyboxMod:getNextAlphabetItem(ToyboxMod.ABOX_ITEMS_ALPHABETICAL[idx][2], false)
                 end
 
                 return boxDesc
@@ -2165,10 +2174,10 @@ enums.FUNCTIONS.AddGlobalModifier({
             Condition = function(descObj)
                 if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
 
-                return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.FOOD_STAMPS)
+                return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
             end,
             ToModify = {
-                "{{Collectible"..mod.COLLECTIBLE.FOOD_STAMPS.."}} {{Heart}} +1 Health",
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_FOOD_STAMPS.."}} {{Heart}} +1 Health",
             }
         }
     }
@@ -2179,12 +2188,12 @@ enums.FUNCTIONS.AddGlobalModifier({
         {
             Condition = function(descObj)
                 if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
-                if(not mod:canApplyRetrofall(descObj.ObjSubType)) then return false end
+                if(not ToyboxMod:canApplyRetrofall(descObj.ObjSubType)) then return false end
 
-                return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.RETROFALL)
+                return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL)
             end,
             ToModify = {
-                "{{Collectible"..mod.COLLECTIBLE.RETROFALL.."}} Rerolls pedestal items in the room",
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_RETROFALL.."}} Rerolls pedestal items in the room",
             }
         }
     }
@@ -2193,7 +2202,7 @@ enums.FUNCTIONS.AddGlobalModifier({
 --- JOKES ---
 
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.URANIUM,
+    ID = ToyboxMod.COLLECTIBLE_URANIUM,
     Name = "Uranium",
     Description = {
         "Nearby rocks are irradiated and will destroy after a short duration",
@@ -2201,7 +2210,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.CATHARSIS,
+    ID = ToyboxMod.COLLECTIBLE_CATHARSIS,
     Name = "Catharsis",
     Description = {
         "\1 +1 Tears",
@@ -2209,7 +2218,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.EQUALIZER,
+    ID = ToyboxMod.COLLECTIBLE_EQUALIZER,
     Name = "Equalizer",
     Description = {
         "{{Coin}} +3 Coins",
@@ -2220,7 +2229,7 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.ZERO_GRAVITY,
+    ID = ToyboxMod.COLLECTIBLE_ZERO_GRAVITY,
     Name = "Zero-Gravity",
     Description = {
         "\1 +1.5 Damage",
@@ -2230,14 +2239,14 @@ enums.FUNCTIONS.AddItem({
 })
 
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.COMPRESSED_DICE,
+    ID = ToyboxMod.COLLECTIBLE_COMPRESSED_DICE,
     Name = "Compressed Dice",
     Description = {
         "Starts a new run with a random character and difficulty",
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = mod.COLLECTIBLE.PORTABLE_TELLER,
+    ID = ToyboxMod.COLLECTIBLE_PORTABLE_TELLER,
     Name = "Portable Teller",
     Description = {
         "{{Coin}} Spend 1 coin to display a fortune or a chance to spawn a trinket, card or soul heart",

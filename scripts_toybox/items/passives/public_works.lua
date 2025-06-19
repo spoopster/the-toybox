@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 --local AURA_SPRITE = Sprite("gfx/ui/tb_ui_public_works.anm2", true)
 local AURA_SPRITE_SMALL = Sprite("gfx/ui/minimap1.anm2", true)
@@ -90,7 +90,7 @@ local function mapUpdateBuffer()
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_MINIMAP_UPDATE, mapUpdateBuffer)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_MINIMAP_UPDATE, mapUpdateBuffer)
 
 local function tryRenderAuraAtLevelIdxSmall(idx, centerPos, centerSize)
     if(not aurabuffer[idx]) then return end
@@ -265,4 +265,4 @@ local function mapRenderAuras()
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_MINIMAP_RENDER, mapRenderAuras)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_MINIMAP_RENDER, mapRenderAuras)

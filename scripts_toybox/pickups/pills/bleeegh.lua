@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local DURATION = 5*60
@@ -10,7 +10,7 @@ local DMG_HORSE = 3.5
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
 
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     data.BLEEEGH_HORSE = isHorse
     data.BLEEEGH_DURATION = (isHorse and DURATION_HORSE or DURATION)
 
@@ -19,11 +19,11 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play(11)
     sfx:Play(6)
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.BLEEEGH)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.BLEEEGH)
 
 ---@param player EntityPlayer
 local function bleeeghUpdate(_, player)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     data.BLEEEGH_DURATION = (data.BLEEEGH_DURATION or 0)
     if(data.BLEEEGH_DURATION<=0) then
         if(data.BLEEEGH_ENT and data.BLEEEGH_ENT:Exists() and not data.BLEEEGH_ENT:IsDead()) then data.BLEEEGH_ENT:Die() end
@@ -32,13 +32,13 @@ local function bleeeghUpdate(_, player)
             local laser = EntityLaser.ShootAngle(LaserVariant.THICK_BROWN, player.Position, player:GetAimDirection():GetAngleDegrees(), math.ceil(data.BLEEEGH_DURATION/2), Vector(0,-15), player)
             laser.Parent = player
             laser.CollisionDamage = (data.BLEEEGH_HORSE and DMG_HORSE or DMG)
-            mod:setEntityData(laser, "BLEEEGH_LASER", true)
+            ToyboxMod:setEntityData(laser, "BLEEEGH_LASER", true)
             sfx:Play(SoundEffect.SOUND_POOP_LASER, 0, 10)
 
             data.BLEEEGH_ENT = laser
         else
             if(player:GetAimDirection():Length()>0.01) then
-                local angleDif = mod:angleDifference(data.BLEEEGH_ENT.AngleDegrees, player:GetAimDirection():GetAngleDegrees())
+                local angleDif = ToyboxMod:angleDifference(data.BLEEEGH_ENT.AngleDegrees, player:GetAimDirection():GetAngleDegrees())
                 data.BLEEEGH_ENT.AngleDegrees = data.BLEEEGH_ENT.AngleDegrees+angleDif*0.07
             end
 
@@ -48,4 +48,4 @@ local function bleeeghUpdate(_, player)
         data.BLEEEGH_DURATION = data.BLEEEGH_DURATION-1
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, bleeeghUpdate, 0)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, bleeeghUpdate, 0)

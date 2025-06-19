@@ -1,12 +1,12 @@
-local mod = ToyboxMod
+
 
 local FIRST_REQ = 10
 local SUM_INCREASE = 6
 local COIN_SPEED = 8
 local godimkillingmyself = false
 
-function mod:getBigBlindDamageRequirement(pl)
-    local data = mod:getEntityDataTable(pl)
+function ToyboxMod:getBigBlindDamageRequirement(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.BIG_BLIND_COUNTERS_FINISHED = (data.BIG_BLIND_COUNTERS_FINISHED or 0)
 
     local gaussSum = (data.BIG_BLIND_COUNTERS_FINISHED*(data.BIG_BLIND_COUNTERS_FINISHED+1)/2)
@@ -16,38 +16,38 @@ end
 
 ---@param ent Entity
 local function addToCounter(_, ent, amount, _, _, _)
-    if(not (ent and ent:Exists() and mod:isValidEnemy(ent))) then return end
+    if(not (ent and ent:Exists() and ToyboxMod:isValidEnemy(ent))) then return end
 
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
 
-        if(pl:HasTrinket(mod.TRINKET.BIG_BLIND)) then
-            local rng = pl:GetTrinketRNG(mod.TRINKET.BIG_BLIND)
-            local data = mod:getEntityDataTable(pl)
+        if(pl:HasTrinket(ToyboxMod.TRINKET_BIG_BLIND)) then
+            local rng = pl:GetTrinketRNG(ToyboxMod.TRINKET_BIG_BLIND)
+            local data = ToyboxMod:getEntityDataTable(pl)
             data.BIG_BLIND_COUNTER = (data.BIG_BLIND_COUNTER or 0)+amount
 
             print(data.BIG_BLIND_COUNTER)
 
-            local req = mod:getBigBlindDamageRequirement(pl)/pl:GetTrinketMultiplier(mod.TRINKET.BIG_BLIND)
+            local req = ToyboxMod:getBigBlindDamageRequirement(pl)/pl:GetTrinketMultiplier(ToyboxMod.TRINKET_BIG_BLIND)
             while(data.BIG_BLIND_COUNTER>=req) do
                 local coin = Isaac.Spawn(5,20,1,ent.Position,Vector.FromAngle(rng:RandomInt(360)):Resized(COIN_SPEED),pl):ToPickup()
 
                 data.BIG_BLIND_COUNTER = data.BIG_BLIND_COUNTER-req
                 data.BIG_BLIND_COUNTERS_FINISHED = (data.BIG_BLIND_COUNTERS_FINISHED or 0)+1
 
-                req = mod:getBigBlindDamageRequirement(pl)/pl:GetTrinketMultiplier(mod.TRINKET.BIG_BLIND)
+                req = ToyboxMod:getBigBlindDamageRequirement(pl)/pl:GetTrinketMultiplier(ToyboxMod.TRINKET_BIG_BLIND)
 
-                if(mod:getPersistentData("IS_CONBOI")==1) then
-                    mod:setExtraData("BIGBLIND_CONBOI_ACTIVE", 1)
+                if(ToyboxMod:getPersistentData("IS_CONBOI")==1) then
+                    ToyboxMod:setExtraData("BIGBLIND_CONBOI_ACTIVE", 1)
                 end
             end
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, addToCounter)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, addToCounter)
 
 --* display
-mod.CONBOI_TEXT = {
+ToyboxMod.CONBOI_TEXT = {
     "ConBoi is bad at balatro  Very bad actually  Like unimaginable levels of throwing are happening  The",
     " most complex variables are being calculated in his head just to figure out the dumbest way to lose ",
     "                                                      :::::::::::                                   ",
@@ -145,12 +145,12 @@ local FINALSTRINGS
 local f = Font()
 f:Load("font/terminus.fnt")
 
-function mod:triggerConboi(rng)
-    local data = mod:getExtraDataTable()
+function ToyboxMod:triggerConboi(rng)
+    local data = ToyboxMod:getExtraDataTable()
     if(data.BIGBLIND_CONBOI_ACTIVE~=1) then return end
     if(UNFILLED_INDEXES==nil or FINALSTRINGS==nil or RESET_TABLES==true) then return end
     if(#UNFILLED_INDEXES==0) then return end
-    rng = rng or mod:generateRng()
+    rng = rng or ToyboxMod:generateRng()
 
     local selectedIndex = rng:RandomInt(#UNFILLED_INDEXES)+1
     local charPos = UNFILLED_INDEXES[selectedIndex]
@@ -158,7 +158,7 @@ function mod:triggerConboi(rng)
 
     local linePos = 1
     while(charPos>0) do
-        local selString = mod.CONBOI_TEXT[linePos]
+        local selString = ToyboxMod.CONBOI_TEXT[linePos]
         local _, len = string.gsub(selString, "[^ ]", function() end)
         if(charPos-len<=0) then break end
 
@@ -167,7 +167,7 @@ function mod:triggerConboi(rng)
     end
 
     local charsCounted = 0
-    local str = mod.CONBOI_TEXT[linePos]
+    local str = ToyboxMod.CONBOI_TEXT[linePos]
     str = string.gsub(str, "[^ ]", function(c)
         charsCounted = charsCounted+1
         if(charsCounted<=charPos) then return nil
@@ -183,7 +183,7 @@ function mod:triggerConboi(rng)
 end
 
 local function postRender()
-    local data = mod:getExtraDataTable()
+    local data = ToyboxMod:getExtraDataTable()
     if(data.BIGBLIND_CONBOI_ACTIVE~=1) then return end
 
     if(not Game():IsPaused()) then
@@ -192,17 +192,17 @@ local function postRender()
             FINALSTRINGS = {}
     
             local numValidChars, charsInString = 0, 0
-            for _, str in ipairs(mod.CONBOI_TEXT) do
+            for _, str in ipairs(ToyboxMod.CONBOI_TEXT) do
                 _, charsInString = string.gsub(str, "[^ ]", " ")
                 numValidChars = numValidChars+charsInString
             end
             for i=1, numValidChars do UNFILLED_INDEXES[i] = i end
-            for i, _ in ipairs(mod.CONBOI_TEXT) do FINALSTRINGS[i] = EMPTY_STRING end
+            for i, _ in ipairs(ToyboxMod.CONBOI_TEXT) do FINALSTRINGS[i] = EMPTY_STRING end
 
             RESET_TABLES = false
         end
 
-        for _=1, 6 do mod:triggerConboi() end
+        for _=1, 6 do ToyboxMod:triggerConboi() end
     end
 
     if(not (FINALSTRINGS and FINALSTRINGS~=0)) then return end
@@ -212,9 +212,9 @@ local function postRender()
         RENDER_POS = RENDER_POS+LINE_OFFSET
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postRender)
 
 local function resetTables(_)
     RESET_TABLES = true
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, resetTables)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, resetTables)

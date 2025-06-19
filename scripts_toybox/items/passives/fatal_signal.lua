@@ -1,8 +1,8 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local function getGlitchedItem(player)
-    return ProceduralItemManager.CreateProceduralItem(player:GetCollectibleRNG(mod.COLLECTIBLE.FATAL_SIGNAL):RandomInt(2^32-1)+1, 0)
+    return ProceduralItemManager.CreateProceduralItem(player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_FATAL_SIGNAL):RandomInt(2^32-1)+1, 0)
 end
 
 ---@param player EntityPlayer
@@ -19,4 +19,4 @@ local function postAddItem(_, item, charge, firstTime, slot, vData, player)
     sfx:Play(SoundEffect.SOUND_EDEN_GLITCH)
     sfx:Play(SoundEffect.SOUND_STATIC)
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddItem, mod.COLLECTIBLE.FATAL_SIGNAL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddItem, ToyboxMod.COLLECTIBLE_FATAL_SIGNAL)

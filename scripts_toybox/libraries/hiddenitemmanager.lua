@@ -64,15 +64,15 @@ local function AddLateCallback(callbackID, func, param)
 	AddCallback(callbackID, func, param, kLateCallbackPriority)
 end
 
-function HiddenItemManager:Init(mod)
-	HiddenItemManager.Mod = mod
-	HiddenItemManager.WispTag = "HiddenItemManager:" .. mod.Name
+function HiddenItemManager:Init(ToyboxMod)
+	HiddenItemManager.Mod = ToyboxMod
+	HiddenItemManager.WispTag = "HiddenItemManager:" .. ToyboxMod.Name
 	
-	if not mod.AddedHiddenItemManagerCallbacks then
+	if not ToyboxMod.AddedHiddenItemManagerCallbacks then
 		for _, tab in ipairs(Callbacks) do
-			mod:AddPriorityCallback(tab.Callback, tab.Priority, tab.Func, tab.Param)
+			ToyboxMod:AddPriorityCallback(tab.Callback, tab.Priority, tab.Func, tab.Param)
 		end
-		mod.AddedHiddenItemManagerCallbacks = true
+		ToyboxMod.AddedHiddenItemManagerCallbacks = true
 	else
 		LOG_ERROR("More than one instance initialized!")
 	end
@@ -336,7 +336,7 @@ end
 -- Spawns a hidden item wisp.
 local function SpawnWisp(player, itemID, duration, group, removeOnNewRoom, removeOnNewLevel)
 	if not HiddenItemManager.Mod then
-		LOG_ERROR("Not initialized! Did you forget to call `hiddenItemManager:Init(mod)`?")
+		LOG_ERROR("Not initialized! Did you forget to call `hiddenItemManager:Init(ToyboxMod)`?")
 	end
 	group = GetGroup(group)
 	if not itemID or itemID < 1 then
@@ -501,7 +501,7 @@ function HiddenItemManager:GetSaveData()
 	}
 end
 
--- Should be called whenever you load the SaveData for your mod to re-initialize any existing item wisps.
+-- Should be called whenever you load the SaveData for your ToyboxMod to re-initialize any existing item wisps.
 -- Give it the table returned by HiddenItemManager:GetSaveData().
 function HiddenItemManager:LoadData(saveData)
 	if saveData then
@@ -670,7 +670,7 @@ function HiddenItemManager:PostUpdate()
 	end
 	
 	-- When wisps disappear unexpectedly, try to respawn them at least a few times.
-	-- We won't try forever, however, to avoid infinite fights with another mod.
+	-- We won't try forever, however, to avoid infinite fights with another ToyboxMod.
 	for oldKey, data in pairs(wispsToRespawn) do
 		local player = GetPlayer(data)
 		RemoveWisp(oldKey)

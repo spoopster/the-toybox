@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local HP_SPRITE = Sprite()
 HP_SPRITE:Load("gfx/ui/tb_ui_mantlehearts.anm2", true)
@@ -22,7 +22,7 @@ local PICKUP_PRICE_TO_MANTLE_PRICE = {
 
 ---@param pickup EntityPickup
 local function pickupRenderAtlasPrice(_, pickup, offset)
-    if(not mod:isAnyPlayerAtlasA()) then return end
+    if(not ToyboxMod:isAnyPlayerAtlasA()) then return end
     if(not pickup:IsShopItem()) then return end
     if(pickup.Price>=0) then return end
 
@@ -40,48 +40,48 @@ local function pickupRenderAtlasPrice(_, pickup, offset)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, pickupRenderAtlasPrice, PickupVariant.PICKUP_COLLECTIBLE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, pickupRenderAtlasPrice, PickupVariant.PICKUP_COLLECTIBLE)
 
 ---@param pl EntityPlayer
 local function removeMantlePrice(_, pickup, pl, price)
-    if(not (pl and pl:ToPlayer() and mod:isAtlasA(pl:ToPlayer()))) then return end
+    if(not (pl and pl:ToPlayer() and ToyboxMod:isAtlasA(pl:ToPlayer()))) then return end
     if(pl:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)) then return end
     if(price>=0) then return end
 
     local mantlePrice = PICKUP_PRICE_TO_MANTLE_PRICE[price] or 1
     if(mantlePrice<=0) then return end
 
-    if(mod:atlasHasTransformation(pl, mod.MANTLE_DATA.TAR.ID)) then
-        mod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 1)
+    if(ToyboxMod:atlasHasTransformation(pl, ToyboxMod.MANTLE_DATA.TAR.ID)) then
+        ToyboxMod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 1)
 
         return
     end
 
-    local data = mod:getAtlasATable(pl)
-    local rIdx = mod:getRightmostMantleIdx(pl)
+    local data = ToyboxMod:getAtlasATable(pl)
+    local rIdx = ToyboxMod:getRightmostMantleIdx(pl)
     local dmgToAdd = 0
     for i=rIdx, math.max(1,(rIdx-mantlePrice+1) or 1), -1 do
         dmgToAdd = dmgToAdd+data.MANTLES[i].HP
     end
 
-    mod:addMantleHp(pl, -dmgToAdd)
+    ToyboxMod:addMantleHp(pl, -dmgToAdd)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_SHOP_PURCHASE, removeMantlePrice)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_SHOP_PURCHASE, removeMantlePrice)
 
 ---@param pl EntityPlayer
 local function killMarkedForDeathTar(_, pl)
-    if(not mod:isAtlasA(pl)) then return end
+    if(not ToyboxMod:isAtlasA(pl)) then return end
 
-    if(mod:getAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL")==1) then
-        if(mod:atlasHasTransformation(pl, mod.MANTLE_DATA.TAR.ID)) then
+    if(ToyboxMod:getAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL")==1) then
+        if(ToyboxMod:atlasHasTransformation(pl, ToyboxMod.MANTLE_DATA.TAR.ID)) then
             if(not pl.QueuedItem.Item) then
                 pl:PlayExtraAnimation("Death")
                 pl:Kill()
-                mod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 0)
+                ToyboxMod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 0)
             end
         else
-            mod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 0)
+            ToyboxMod:setAtlasAData(pl, "MARKED_FOR_DEATH_DEVILDEAL", 0)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, killMarkedForDeathTar)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, killMarkedForDeathTar)

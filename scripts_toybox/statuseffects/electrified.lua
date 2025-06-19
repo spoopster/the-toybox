@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local ELECTRIFIED_LASER_FREQ = 14
 local ELECTRIFIED_LASER_LENGTH = {Min=70, Max=130}
@@ -12,8 +12,8 @@ local function convBool(b)
 end
 
 ---@param player EntityPlayer?
-function mod:addElectrified(npc, player, amount, damage, rng)
-    local d = mod:getEntityDataTable(npc)
+function ToyboxMod:addElectrified(npc, player, amount, damage, rng)
+    local d = ToyboxMod:getEntityDataTable(npc)
     local oldData = d.STATUS_ELECTRIFIED_DATA or {}
     player = player or oldData.PLAYER or Isaac.GetPlayer()
 
@@ -28,28 +28,28 @@ function mod:addElectrified(npc, player, amount, damage, rng)
         DAMAGE = damage or oldData.DAMAGE or ELECTRIFIED_LASER_DAMAGE,
         ACTIVE_LASER_ENT = oldData.ACTIVE_LASER_ENT,
         RANGE = (range or oldData.RANGE or ELECTRIFIED_LASER_RANGE),
-        RNG = rng or mod:generateRng(),
+        RNG = rng or ToyboxMod:generateRng(),
         DAMAGE_MULT = dmgMult,
         DIST_MULT = rangeMult,
         FREQ_MULT = sparkFreqMod,
         NUM_SPARKS = numSparks,
     }
 end
-function mod:hasElectrified(npc)
-    local d = mod:getEntityData(npc, "STATUS_ELECTRIFIED_DATA")
+function ToyboxMod:hasElectrified(npc)
+    local d = ToyboxMod:getEntityData(npc, "STATUS_ELECTRIFIED_DATA")
     return (d and d.DURATION>0)
 end
 
-mod:addCustomStatusEffect(
+ToyboxMod:addCustomStatusEffect(
     "Electrified",
     Color(1,1,1,1,0.15,0.15,0.35),
     function(npc)
-        return mod:hasElectrified(npc)
+        return ToyboxMod:hasElectrified(npc)
     end
 )
 
 local function postNpcUpdate(_, npc)
-    local d = mod:getEntityData(npc, "STATUS_ELECTRIFIED_DATA")
+    local d = ToyboxMod:getEntityData(npc, "STATUS_ELECTRIFIED_DATA")
     if(d==nil) then return end
 
     if(npc.FrameCount%math.max(1,math.floor(ELECTRIFIED_LASER_FREQ*d.FREQ_MULT))==0) then
@@ -70,15 +70,15 @@ local function postNpcUpdate(_, npc)
     if(d.DURATION<=0) then
         d=nil
     end
-    mod:setEntityData(npc, "STATUS_ELECTRIFIED_DATA", d)
+    ToyboxMod:setEntityData(npc, "STATUS_ELECTRIFIED_DATA", d)
 end
-mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNpcUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, postNpcUpdate)
 
 ---@param laser EntityLaser
 local function postLaserUpdate(_, laser)
     if(laser:IsDead()) then return end
-    if(not mod:getEntityData(laser, "ELECTRIFIED_LASER")) then return end
-    local ent = mod:getEntityData(laser, "ELECTRIFIED_LASER_ENEMYPARENT")
+    if(not ToyboxMod:getEntityData(laser, "ELECTRIFIED_LASER")) then return end
+    local ent = ToyboxMod:getEntityData(laser, "ELECTRIFIED_LASER_ENEMYPARENT")
     if(not (ent and ent:Exists())) then laser:Die() end
 end
-mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, postLaserUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, postLaserUpdate)

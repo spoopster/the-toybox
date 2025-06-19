@@ -753,6 +753,22 @@
     tags="offensive summonable"
     cache=""
 />
+<active id="89" name="Pythagoras' Cup"
+    description="All you've ever wanted...?"
+    gfx="tb_pythagoras_cup.png"
+    quality="2"
+    tags="offensive summonable"
+    cache=""
+
+    maxcharges="0"
+/>
+<familiar id="90" name="Pythagoras' Cup "
+    description="All you've ever wanted...?"
+    gfx="tb_pythagoras_cup.png"
+    quality="2"
+    tags="offensive"
+    cache="uniquefamiliar"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 --im tired of making this
 
 local function getItemAtPos(pos)
@@ -11,15 +11,15 @@ end
 
 local function markRoomAsDone(_, rng)
     if(Game():GetRoom():GetType()~=RoomType.ROOM_BOSS) then return end
-    mod:setExtraData("PREFERRED_OPTIONS_MARKROOMFORCLEAR", 1)
+    ToyboxMod:setExtraData("PREFERRED_OPTIONS_MARKROOMFORCLEAR", 1)
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, math.huge, markRoomAsDone)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, math.huge, markRoomAsDone)
 
 local function spawnNewItem(_)
-    if(mod:getExtraData("PREFERRED_OPTIONS_MARKROOMFORCLEAR")~=1) then return end
-    mod:setExtraData("PREFERRED_OPTIONS_MARKROOMFORCLEAR", 0)
+    if(ToyboxMod:getExtraData("PREFERRED_OPTIONS_MARKROOMFORCLEAR")~=1) then return end
+    ToyboxMod:setExtraData("PREFERRED_OPTIONS_MARKROOMFORCLEAR", 0)
 
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.PREFERRED_OPTIONS)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_PREFERRED_OPTIONS)) then return end
 
     local room = Game():GetRoom()
     if(room:GetType()~=RoomType.ROOM_BOSS) then return end
@@ -42,21 +42,21 @@ local function spawnNewItem(_)
         pickupIndex = leftItem.OptionsPickupIndex
     end
 
-    local newItem = Isaac.Spawn(5,100,(mod:getExtraData("PREFERRED_OPTIONS_LASTITEM") or CollectibleType.COLLECTIBLE_BREAKFAST),posToSpawn,Vector.Zero,nil):ToPickup()
+    local newItem = Isaac.Spawn(5,100,(ToyboxMod:getExtraData("PREFERRED_OPTIONS_LASTITEM") or CollectibleType.COLLECTIBLE_BREAKFAST),posToSpawn,Vector.Zero,nil):ToPickup()
     newItem.OptionsPickupIndex = pickupIndex
-    newItem.Price = (mod:getExtraData("PREFERRED_OPTIONS_LASTPRICE") or 0)
+    newItem.Price = (ToyboxMod:getExtraData("PREFERRED_OPTIONS_LASTPRICE") or 0)
     if(newItem.Price<0) then
         newItem.ShopItemId = -2
     end
 
     newItem:GetSprite():GetLayer("head"):SetCustomShader("spriteshaders/hologramshader")
-    mod:setEntityData(newItem, "PREFERREDOPTIONS_HOLOGRAM", 1)
+    ToyboxMod:setEntityData(newItem, "PREFERREDOPTIONS_HOLOGRAM", 1)
 end
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, spawnNewItem)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, spawnNewItem)
 
 ---@param pickup EntityPickup
 local function updateHologramVisual(_, pickup)
-    if(not mod:getEntityData(pickup, "PREFERREDOPTIONS_HOLOGRAM")) then return end
+    if(not ToyboxMod:getEntityData(pickup, "PREFERREDOPTIONS_HOLOGRAM")) then return end
 
     local scaledFramec = pickup.FrameCount/30
     local layer = pickup:GetSprite():GetLayer("head")
@@ -65,7 +65,7 @@ local function updateHologramVisual(_, pickup)
 
     layer:SetColor(ogColor)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, updateHologramVisual, PickupVariant.PICKUP_COLLECTIBLE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, updateHologramVisual, PickupVariant.PICKUP_COLLECTIBLE)
 
 -- UPDATING PREFERRED ITEM 
 
@@ -77,8 +77,8 @@ local function setNewPrefferedItem(id, price)
 
     --print("New preferred item:", id, price)
 
-    mod:setExtraData("PREFERRED_OPTIONS_LASTITEM", id)
-    mod:setExtraData("PREFERRED_OPTIONS_LASTPRICE", price)
+    ToyboxMod:setExtraData("PREFERRED_OPTIONS_LASTITEM", id)
+    ToyboxMod:setExtraData("PREFERRED_OPTIONS_LASTPRICE", price)
 end
 
 ---@param collider Entity
@@ -95,10 +95,10 @@ local function preferFreePickup(_, pickup, collider, low)
 
     setNewPrefferedItem(pickup.SubType, pickup.Price)
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, math.huge, preferFreePickup, 100)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, math.huge, preferFreePickup, 100)
 
 ---@param pl EntityPlayer
 local function preferShopPickup(_, pickup, pl, price)
     setNewPrefferedItem(pl.QueuedItem.Item.ID, price)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_SHOP_PURCHASE, preferShopPickup, 100)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_SHOP_PURCHASE, preferShopPickup, 100)

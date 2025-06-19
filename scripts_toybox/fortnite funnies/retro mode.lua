@@ -1,9 +1,9 @@
-local mod = ToyboxMod
+
 
 local function makeItemRetro(_, pickup)
-    if(mod.CONFIG.EPIC_ITEM_MODE==mod.ENUMS.ITEM_SHADER_RETRO) then
+    if(ToyboxMod.CONFIG.EPIC_ITEM_MODE==ToyboxMod.ENUMS.ITEM_SHADER_RETRO) then
         pickup:GetSprite():GetLayer("head"):SetCustomShader("spriteshaders/hologramshader")
-        mod:setEntityData(pickup, "PREFERREDOPTIONS_HOLOGRAM", 1)
+        ToyboxMod:setEntityData(pickup, "PREFERREDOPTIONS_HOLOGRAM", 1)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, makeItemRetro, PickupVariant.PICKUP_COLLECTIBLE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, makeItemRetro, PickupVariant.PICKUP_COLLECTIBLE)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local itemAnm2 = "gfx/ui/tb_ui_goldenschoolbag_item.anm2"
 
@@ -22,7 +22,7 @@ local function getNewItemSprite(id)
 end
 
 local function addGoldenSchoolbagItem(pl, item, charge)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.GOLDEN_SCHOOLBAG_DATA = data.GOLDEN_SCHOOLBAG_DATA or {}
 
     table.insert(data.GOLDEN_SCHOOLBAG_DATA, {
@@ -35,10 +35,10 @@ end
 ---@param item CollectibleType
 ---@param pl EntityPlayer
 local function postAddCollectible(_, item, charge, _, _, _, pl)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.GOLDEN_SCHOOLBAG_DATA = data.GOLDEN_SCHOOLBAG_DATA or {}
 
-    if(item==mod.COLLECTIBLE.GOLDEN_SCHOOLBAG) then
+    if(item==ToyboxMod.COLLECTIBLE_GOLDEN_SCHOOLBAG) then
         for _, slot in ipairs({ActiveSlot.SLOT_PRIMARY, ActiveSlot.SLOT_SECONDARY}) do
             local active = pl:GetActiveItem(slot)
             if(active~=0) then
@@ -48,7 +48,7 @@ local function postAddCollectible(_, item, charge, _, _, _, pl)
                 pl:RemoveCollectible(active)
             end
         end
-    elseif(pl:HasCollectible(mod.COLLECTIBLE.GOLDEN_SCHOOLBAG)) then
+    elseif(pl:HasCollectible(ToyboxMod.COLLECTIBLE_GOLDEN_SCHOOLBAG)) then
         local conf = Isaac.GetItemConfig():GetCollectible(item)
         if(conf and conf.Type==ItemType.ITEM_ACTIVE) then
             addGoldenSchoolbagItem(pl, item, conf.MaxCharges)
@@ -56,12 +56,12 @@ local function postAddCollectible(_, item, charge, _, _, _, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, postAddCollectible)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, postAddCollectible)
 
 ---@param pl EntityPlayer
 local function postplayerupdate(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.GOLDEN_SCHOOLBAG)) then return end
-    local data = mod:getEntityDataTable(pl)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_GOLDEN_SCHOOLBAG)) then return end
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.GOLDEN_SCHOOLBAG_DATA = data.GOLDEN_SCHOOLBAG_DATA or {}
     local size = #data.GOLDEN_SCHOOLBAG_DATA
 
@@ -83,13 +83,13 @@ local function postplayerupdate(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postplayerupdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postplayerupdate)
 
 local function postrererrrrrrrrrreeerrrrrrwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrwererfftrerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr(_)
     local pl = Isaac.GetPlayer()
-    if(not pl:HasCollectible(mod.COLLECTIBLE.GOLDEN_SCHOOLBAG)) then return end
-    local schoolbagData = mod:getEntityDataTable(Isaac.GetPlayer()).GOLDEN_SCHOOLBAG_DATA or {}
-    local chosenIdx = mod:getEntityDataTable(Isaac.GetPlayer()).GOLDEN_SCHOOLBAG_IDX or 1
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_GOLDEN_SCHOOLBAG)) then return end
+    local schoolbagData = ToyboxMod:getEntityDataTable(Isaac.GetPlayer()).GOLDEN_SCHOOLBAG_DATA or {}
+    local chosenIdx = ToyboxMod:getEntityDataTable(Isaac.GetPlayer()).GOLDEN_SCHOOLBAG_IDX or 1
 
     local conf = Isaac.GetItemConfig()
 
@@ -126,14 +126,14 @@ local function postrererrrrrrrrrreeerrrrrrwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrwere
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postrererrrrrrrrrreeerrrrrrwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrwererfftrerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postrererrrrrrrrrreeerrrrrrwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrwererfftrerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr)
 
 
 local function precleanaward(_)
     local pl = Isaac.GetPlayer()
-    if(not pl:HasCollectible(mod.COLLECTIBLE.GOLDEN_SCHOOLBAG)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_GOLDEN_SCHOOLBAG)) then return end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.GOLDEN_SCHOOLBAG_DATA = data.GOLDEN_SCHOOLBAG_DATA or {}
 
     local conf = Isaac.GetItemConfig()
@@ -156,12 +156,12 @@ local function precleanaward(_)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, precleanaward)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, precleanaward)
 
 local function postplayerupdate33(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.GOLDEN_SCHOOLBAG)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_GOLDEN_SCHOOLBAG)) then return end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.GOLDEN_SCHOOLBAG_DATA = data.GOLDEN_SCHOOLBAG_DATA or {}
 
     local conf = Isaac.GetItemConfig()
@@ -183,4 +183,4 @@ local function postplayerupdate33(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postplayerupdate33)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postplayerupdate33)

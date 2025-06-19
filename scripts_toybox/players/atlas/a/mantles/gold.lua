@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --! add the funny sparkles (both transf and mantle)
@@ -10,25 +10,25 @@ local MANTLEFREEZE_DISTANCE = 100
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not mod:isAtlasA(player)) then return end
+    if(not ToyboxMod:isAtlasA(player)) then return end
 
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.GOLD.ID)
+    local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.GOLD.ID)
 
     if(flag==CacheFlag.CACHE_LUCK) then
         player.Luck = player.Luck+LUCK_UP*numMantles
     end
-    if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID)) then
+    if(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.GOLD.ID)) then
         if(flag==CacheFlag.CACHE_TEARFLAG) then
             player.TearFlags = player.TearFlags | TearFlags.TEAR_GREED_COIN
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function mantleDestroyed(_, player, mantle)
-    if(not mod:isAtlasA(player)) then return end
-    if(not (mod:atlasHasTransformation(player, mod.MANTLE_DATA.GOLD.ID) or mantle==mod.MANTLE_DATA.GOLD.ID)) then return end
+    if(not ToyboxMod:isAtlasA(player)) then return end
+    if(not (ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.GOLD.ID) or mantle==ToyboxMod.MANTLE_DATA.GOLD.ID)) then return end
 
     for _, ent in ipairs(Isaac.FindInRadius(player.Position, MANTLEFREEZE_DISTANCE, EntityPartition.ENEMY)) do
         if(ent:IsVulnerableEnemy() and not ent:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
@@ -36,7 +36,7 @@ local function mantleDestroyed(_, player, mantle)
         end
     end
 
-    local shatter = Isaac.Spawn(1000, mod.EFFECT_VARIANT.GOLDMANTLE_BREAK, 0, player.Position, Vector.Zero, player):ToEffect()
+    local shatter = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.GOLDMANTLE_BREAK, 0, player.Position, Vector.Zero, player):ToEffect()
     shatter.DepthOffset = 100
     shatter:GetSprite().PlaybackSpeed = 1.4
     shatter.SpriteOffset = Vector(0,-10)
@@ -50,13 +50,13 @@ local function mantleDestroyed(_, player, mantle)
     end
 
     sfx:Play(SoundEffect.SOUND_METAL_BLOCKBREAK)
-    sfx:Play(mod.SOUND_EFFECT.ATLASA_METALBREAK, 1.4)
+    sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_METALBREAK, 1.4)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 
 ---@param effect EntityEffect
 local function updateGoldMantleShatter(_, effect)
     if(effect.FrameCount==0) then effect:GetSprite():Play("Idle", true) end
     if(effect:GetSprite():IsFinished("Idle")) then effect:Remove() end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateGoldMantleShatter, mod.EFFECT_VARIANT.GOLDMANTLE_BREAK)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateGoldMantleShatter, ToyboxMod.EFFECT_VARIANT.GOLDMANTLE_BREAK)

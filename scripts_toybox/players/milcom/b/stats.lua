@@ -1,10 +1,10 @@
-local mod = ToyboxMod
+
 
 ---@param player EntityPlayer
 local function milcomBInit(_, player)
-    if(player:GetPlayerType()==mod.PLAYER_TYPE.MILCOM_B) then
+    if(player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.MILCOM_B) then
         local pgd = Isaac.GetPersistentGameData()
-        if(not pgd:Unlocked(mod.ACHIEVEMENT.MILCOM_B)) then
+        if(not pgd:Unlocked(ToyboxMod.ACHIEVEMENT.MILCOM_B)) then
             player:ChangePlayerType(0)
             player:AddMaxHearts(6)
             player:AddHearts(6)
@@ -14,4 +14,4 @@ local function milcomBInit(_, player)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, milcomBInit)
+ToyboxMod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, milcomBInit)

@@ -1,12 +1,12 @@
-local mod = ToyboxMod
 
-function mod:playerHasLimitBreak(player)
+
+function ToyboxMod:playerHasLimitBreak(player)
     return true
 end
-function mod:anyPlayerHasLimitBreak()
+function ToyboxMod:anyPlayerHasLimitBreak()
     return true
 end
-mod.TRINKET.LIMIT_BREAK = 1
+ToyboxMod.TRINKET_LIMIT_BREAK = 1
 
 local t = {
     "scripts_toybox.items.trinkets.limit_break.the_wiz",

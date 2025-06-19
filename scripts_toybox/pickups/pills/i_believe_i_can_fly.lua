@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local HORSE_INVINCIBILITY = 7*30
@@ -7,7 +7,7 @@ local HORSE_INVINCIBILITY = 7*30
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
     
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     player:UseCard(Card.CARD_HANGED_MAN, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
     if(isHorse) then
         local eff = player:GetEffects()
@@ -23,4 +23,4 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     sfx:Play(SoundEffect.SOUND_POWERUP_SPEWER)
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.I_BELIEVE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.I_BELIEVE)

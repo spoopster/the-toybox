@@ -1,15 +1,15 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 ---@param pl Entity
 local function dsadasdad(_, pl, dmg)
     pl = pl:ToPlayer()
-    mod:setEntityData(pl, "JUST_GOT_HURT", 1)
+    ToyboxMod:setEntityData(pl, "JUST_GOT_HURT", 1)
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, CallbackPriority.LATE, dsadasdad, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, CallbackPriority.LATE, dsadasdad, EntityType.ENTITY_PLAYER)
 
 local function initHeartTable(pl)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.UI_HEART_DATA = {INITIALIZED=false}
 end
 local function initHeartData(pl, pos, idx)
@@ -24,16 +24,16 @@ local function initHeartData(pl, pos, idx)
         PLAYSFX = false,
     }
 end
-function mod:invalidateTables()
+function ToyboxMod:invalidateTables()
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        mod:setEntityData(pl, "UI_HEART_DATA", nil)
+        ToyboxMod:setEntityData(pl, "UI_HEART_DATA", nil)
     end
 end
-function mod:setHeartValue(key, val)
+function ToyboxMod:setHeartValue(key, val)
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        local data = mod:getEntityDataTable(pl)
+        local data = ToyboxMod:getEntityDataTable(pl)
 
         for idx, d in ipairs(data.UI_HEART_DATA) do
             d[key] = val
@@ -46,7 +46,7 @@ local function postHudRender()
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         local hud = Game():GetHUD():GetPlayerHUD(i)
-        local data = mod:getEntityDataTable(pl)
+        local data = ToyboxMod:getEntityDataTable(pl)
         local hData = data.UI_HEART_DATA
 
         if(hData==nil) then
@@ -59,7 +59,7 @@ local function postHudRender()
         if(data.JUST_GOT_HURT and data.JUST_GOT_HURT>0) then
             data.JUST_GOT_HURT = nil
 
-            local rng = mod:generateRng()
+            local rng = ToyboxMod:generateRng()
             for idx, d in ipairs(hData) do
                 d.VEL = d.VEL+Vector(10,1)*Vector.FromAngle(--[[rng:RandomInt(40)+250]] rng:RandomInt(360)):Resized((rng:RandomFloat()*0.5+0.5)*3)
                 d.GRAVITY = 0.8+rng:RandomFloat()*0.1
@@ -92,7 +92,7 @@ local function postHudRender()
                 local dif = mousePos-hData[data.CUR_HELD_HEART].POS
                 if(dif:Length()>MAX_DIF_LENGTH) then dif = dif:Resized(MAX_DIF_LENGTH) end
 
-                hData[data.CUR_HELD_HEART].VEL = mod:lerp(hData[data.CUR_HELD_HEART].VEL, dif, 0.75)
+                hData[data.CUR_HELD_HEART].VEL = ToyboxMod:lerp(hData[data.CUR_HELD_HEART].VEL, dif, 0.75)
                 hData[data.CUR_HELD_HEART].GRAVITYFRAMES = 0
             end
         else
@@ -107,12 +107,12 @@ local function postHudRender()
         ::invalidPlayer::
     end
 end
-mod:AddCallback(ModCallbacks.MC_HUD_RENDER, postHudRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_HUD_RENDER, postHudRender)
 
 ---@param sprite Sprite
 ---@param pl EntityPlayer
 local function preRenderHearts(_, _, sprite, pos, _, pl)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     local hData = data.UI_HEART_DATA
     local hud = Game():GetHUD():GetPlayerHUD(pl:GetPlayerIndex())
     local hearts = hud:GetHearts()
@@ -169,4 +169,4 @@ local function preRenderHearts(_, _, sprite, pos, _, pl)
 
     return true
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_HEARTS, math.huge, preRenderHearts)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_HEARTS, math.huge, preRenderHearts)

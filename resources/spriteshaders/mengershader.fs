@@ -88,7 +88,7 @@ lowp float sdMengerSponge(lowp vec3 rayPos, lowp float sidelength, lowp mat3 tra
         lowp float boxedWidth = sidelength / scale;
         lowp float translation = -boxedWidth / 2.0;
         lowp vec3 ray = rayPos - translation;
-        lowp vec3 repeatedPos = mod(ray, boxedWidth);
+        lowp vec3 repeatedPos = ToyboxMod(ray, boxedWidth);
         repeatedPos += translation;
         repeatedPos *= scale;
         
@@ -105,7 +105,7 @@ int calcMengerSponge(lowp vec2 coord)
     lowp vec3 rayDir = vec3(coord.x, coord.y-0.15, 1.0);
     rayDir = normalize(rayDir);
 
-    lowp mat3 transform = rotateY(0.5)*rotateX(mod(ColorizeOut.r, FUCKING_PI));
+    lowp mat3 transform = rotateY(0.5)*rotateX(ToyboxMod(ColorizeOut.r, FUCKING_PI));
 
     lowp float dist = 0.0;
     bool hit = false;
@@ -139,7 +139,7 @@ void main(void)
     if(dot(gl_FragCoord.xy, ClipPlaneOut.xy) < ClipPlaneOut.z)
 		discard;
     lowp vec2 pa = vec2(1.0+PixelationAmountOut, 1.0+PixelationAmountOut) / TextureSizeOut;
-    lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - mod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
+    lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - ToyboxMod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
     gl_FragColor = texColor;
     //*
 

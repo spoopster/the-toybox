@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 --* add ghost costume
 --* add dead player on ground dead dead dead
@@ -12,7 +12,7 @@ local GRAYING_VAL = 0
 
 ---@param player EntityPlayer
 local function stopAscension(player)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     if(data.ASCENSION_ISACTIVE~=true) then return end
 
     local soulEffect = Isaac.Spawn(1000,16,10,player.Position,Vector.Zero,player)
@@ -27,7 +27,7 @@ local function stopAscension(player)
     data.ASCENSION_EFFECT = nil
     SHADER_PLAYER = nil
 
-    player:GetEffects():RemoveCollectibleEffect(mod.COLLECTIBLE.ASCENSION, player:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.ASCENSION))
+    player:GetEffects():RemoveCollectibleEffect(ToyboxMod.COLLECTIBLE_ASCENSION, player:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_ASCENSION))
     player:SetMinDamageCooldown(END_INVINCIBILITY)
 end
 
@@ -36,14 +36,14 @@ local function useAscenson(_, _, rng, player, flags)
     if(flags & UseFlag.USE_CARBATTERY == 0) then
         local isCarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
 
-        local data = mod:getEntityDataTable(player)
+        local data = ToyboxMod:getEntityDataTable(player)
         if(data.ASCENSION_ISACTIVE~=true) then
             data.ASCENSION_ISACTIVE = true
             data.ASCENSION_LENGTH = ASCENSION_DURATION*(isCarbattery and 2 or 1)
             data.ASCENSION_ORIGINALPOS = player.Position
             data.ASCENSION_JUSTUSEDASCENSION = true
 
-            data.ASCENSION_EFFECT = Isaac.Spawn(1000,mod.EFFECT_VARIANT.ASCENSION_PLAYER_DEATH,0,player.Position,Vector.Zero,player):ToEffect()
+            data.ASCENSION_EFFECT = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.ASCENSION_PLAYER_DEATH,0,player.Position,Vector.Zero,player):ToEffect()
             data.ASCENSION_EFFECT:GetSprite():Load(player:GetSprite():GetFilename(), true)
             data.ASCENSION_EFFECT:GetSprite():ReplaceSpritesheet(12, EntityConfig.GetPlayer(player:GetPlayerType()):GetSkinPath(), true)
             data.ASCENSION_EFFECT:GetSprite():GetLayer("ghost"):SetVisible(false)
@@ -64,12 +64,12 @@ local function useAscenson(_, _, rng, player, flags)
         ShowAnim = false,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useAscenson, mod.COLLECTIBLE.ASCENSION)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useAscenson, ToyboxMod.COLLECTIBLE_ASCENSION)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(mod:getEntityData(player, "ASCENSION_ISACTIVE")~=true) then return end
+    if(ToyboxMod:getEntityData(player, "ASCENSION_ISACTIVE")~=true) then return end
 
     if(flag==CacheFlag.CACHE_FLYING) then
         player.CanFly = true
@@ -77,11 +77,11 @@ local function evalCache(_, player, flag)
         player.TearFlags = player.TearFlags | TearFlags.TEAR_SPECTRAL
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function updateAscension(_, player)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     if(data.ASCENSION_ISACTIVE~=true) then return end
     if(data.ASCENSION_JUSTUSEDASCENSION==true) then
         data.ASCENSION_JUSTUSEDASCENSION = nil
@@ -91,32 +91,32 @@ local function updateAscension(_, player)
     data.ASCENSION_LENGTH = (data.ASCENSION_LENGTH or 0)-1
     if(data.ASCENSION_LENGTH<=0) then stopAscension(player) end
 
-    local isUsingPrimaryAscension = (Input.IsActionTriggered(ButtonAction.ACTION_ITEM, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)==mod.COLLECTIBLE.ASCENSION)
-    local isUsingPocketAscension = (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_POCKET)==mod.COLLECTIBLE.ASCENSION)
+    local isUsingPrimaryAscension = (Input.IsActionTriggered(ButtonAction.ACTION_ITEM, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)==ToyboxMod.COLLECTIBLE_ASCENSION)
+    local isUsingPocketAscension = (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_POCKET)==ToyboxMod.COLLECTIBLE_ASCENSION)
 
     if(data.ASCENSION_ISACTIVE==true and (isUsingPrimaryAscension or isUsingPocketAscension)) then
         stopAscension(player)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateAscension, 0)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateAscension, 0)
 
 local function postNewRoom()
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.ASCENSION)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_ASCENSION)) then return end
 
     for i=0, Game():GetNumPlayers() do
         local pl = Isaac.GetPlayer(i)
-        mod:setEntityData(pl, "ASCENSION_ORIGINALPOS", nil)
+        ToyboxMod:setEntityData(pl, "ASCENSION_ORIGINALPOS", nil)
         stopAscension(pl)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
 
 local function getShaderParams(_, name)
-    if(name==mod.SHADERS.ASCENSION) then
+    if(name==ToyboxMod.SHADERS.ASCENSION) then
         if(SHADER_PLAYER==nil and math.abs(SHADER_VAL)<=0.01) then return {ShouldActivateIn=0.0,IntensityIn=0.0,GrayingIn=0.0} end
 
-        if(SHADER_PLAYER and mod:getEntityData(SHADER_PLAYER, "ASCENSION_ISACTIVE")==true) then
-            local data = mod:getEntityDataTable(SHADER_PLAYER)
+        if(SHADER_PLAYER and ToyboxMod:getEntityData(SHADER_PLAYER, "ASCENSION_ISACTIVE")==true) then
+            local data = ToyboxMod:getEntityDataTable(SHADER_PLAYER)
             local fl = (-1+data.ASCENSION_LENGTH/(ASCENSION_DURATION*(SHADER_PLAYER:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) and 2 or 1)))
             local t = 0.04
             if(fl>=-t) then
@@ -126,9 +126,9 @@ local function getShaderParams(_, name)
             end
 
             fl = -(1-(1-math.abs(fl))^2)
-            SHADER_VAL = mod:lerp(SHADER_VAL,fl-0.1,0.1)
+            SHADER_VAL = ToyboxMod:lerp(SHADER_VAL,fl-0.1,0.1)
         else
-            SHADER_VAL = mod:lerp(SHADER_VAL,0,0.3)
+            SHADER_VAL = ToyboxMod:lerp(SHADER_VAL,0,0.3)
             if(math.abs(SHADER_VAL)<=0.01) then SHADER_VAL = 0 end
 
             GRAYING_VAL = SHADER_VAL
@@ -141,7 +141,7 @@ local function getShaderParams(_, name)
         }
     end
 end
-mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, getShaderParams)
+ToyboxMod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, getShaderParams)
 
 --! removes ascension from the pool when anyone is playing as the losts!!
 --* not rlly needed
@@ -149,7 +149,7 @@ mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, getShaderParams)
 ---@param player EntityPlayer
 local function initRemoveAscension(_, player)
     if(player:GetPlayerType()==PlayerType.PLAYER_THELOST or player:GetPlayerType()==PlayerType.PLAYER_THELOST_B) then
-        Game():GetItemPool():RemoveCollectible(mod.COLLECTIBLE.ASCENSION)
+        Game():GetItemPool():RemoveCollectible(ToyboxMod.COLLECTIBLE_ASCENSION)
     end
 end
---mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, initRemoveAscension, 0)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, initRemoveAscension, 0)

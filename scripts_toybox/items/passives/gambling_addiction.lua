@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local SPIN_RESULT_DELAY = 30
@@ -40,16 +40,16 @@ local function dir2Angle(x)
 end
 
 ---@param pl EntityPlayer
-function mod:rollForReward(pl)
-    local data = mod:getEntityDataTable(pl)
+function ToyboxMod:rollForReward(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.GAMBLING_ADDICTION_QUEUED_SPINS = (data.GAMBLING_ADDICTION_QUEUED_SPINS or 0)+1
 end
 
 ---@param pl EntityPlayer
 local function updateAddictionRoll(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.GAMBLING_ADDICTION)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_GAMBLING_ADDICTION)) then return end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
 
     if(data.GAMBLING_ADDICTION_TIMER==0) then
         data.GAMBLING_ADDICTION_QUEUED_SPINS = data.GAMBLING_ADDICTION_QUEUED_SPINS or 0
@@ -61,7 +61,7 @@ local function updateAddictionRoll(_, pl)
 
             pl:SetHeadDirection(Direction.DOWN, SPIN_RESULT_DELAY, true)
             pl:SetCanShoot(false)
-            --pl:TryRemoveCollectibleCostume(mod.COLLECTIBLE.GAMBLING_ADDICTION)
+            --pl:TryRemoveCollectibleCostume(ToyboxMod.COLLECTIBLE_GAMBLING_ADDICTION)
             sfx:Play(SoundEffect.SOUND_COIN_SLOT)
         end
     else
@@ -70,7 +70,7 @@ local function updateAddictionRoll(_, pl)
             pl:TryRemoveNullCostume(SPIN_COSTUME)
             pl:UpdateCanShoot()
 
-            local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE.GAMBLING_ADDICTION)
+            local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_GAMBLING_ADDICTION)
             local nothingChance = (pl:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT) and NOTHING_CHANCE_FOOT or NOTHING_CHANCE)
 
             if(rng:RandomFloat()<nothingChance) then
@@ -116,27 +116,27 @@ local function updateAddictionRoll(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, updateAddictionRoll)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, updateAddictionRoll)
 
 local function tryRollMachine(_, npc)
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
 
-        if(pl:HasCollectible(mod.COLLECTIBLE.GAMBLING_ADDICTION)) then
-            local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE.GAMBLING_ADDICTION)
+        if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_GAMBLING_ADDICTION)) then
+            local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_GAMBLING_ADDICTION)
 
             if(rng:RandomFloat()<ROLL_CHANCE) then
-                mod:rollForReward(pl)
+                ToyboxMod:rollForReward(pl)
             end
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, tryRollMachine)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, tryRollMachine)
 
 
 ---@param pickup EntityPickup
 local function replaceItemSprite(_, pickup)
-    if(pickup.SubType~=mod.COLLECTIBLE.GAMBLING_ADDICTION) then return end
+    if(pickup.SubType~=ToyboxMod.COLLECTIBLE_GAMBLING_ADDICTION) then return end
 
     local sp = pickup:GetSprite()
     if(sp:GetLayer(1):GetSpritesheetPath()=="gfx/items/collectibles/tb_gambling_addiction.png") then
@@ -149,7 +149,7 @@ local function replaceItemSprite(_, pickup)
         sp:StopOverlay()
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, replaceItemSprite, PickupVariant.PICKUP_COLLECTIBLE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, replaceItemSprite, PickupVariant.PICKUP_COLLECTIBLE)
 
 ---@param pl EntityPlayer
 local function updateAddictionSprite(_, pl)
@@ -166,4 +166,4 @@ local function updateAddictionSprite(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateAddictionSprite)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateAddictionSprite)

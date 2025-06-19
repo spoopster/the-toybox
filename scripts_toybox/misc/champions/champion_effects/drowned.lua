@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local function angle2Dir(x)
     return math.floor((x+225)%360/90)
@@ -12,7 +12,7 @@ end
 
 ---@param npc EntityNPC
 local function drownedChampionDie(_, npc)
-    mod.DENY_CHAMP_ROLL = true
+    ToyboxMod.DENY_CHAMP_ROLL = true
     local drownedCharger = Isaac.Spawn(23,1,0,npc.Position,Vector.Zero,npc):ToNPC()
     drownedCharger:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 
@@ -30,9 +30,9 @@ local function drownedChampionDie(_, npc)
     drownedCharger.V2 = drownedCharger.Position
     drownedCharger.V1 = chargeDir:Resized(chargeSpeed)
 
-    mod.DENY_CHAMP_ROLL = false
+    ToyboxMod.DENY_CHAMP_ROLL = false
 
     local projParams = ProjectileParams()
     npc:FireProjectilesEx(npc.Position,Vector(12,0),ProjectileMode.CROSS,projParams)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_CUSTOM_CHAMPION_DEATH, drownedChampionDie, mod.CUSTOM_CHAMPIONS.DROWNED.Idx)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_CUSTOM_CHAMPION_DEATH, drownedChampionDie, ToyboxMod.CUSTOM_CHAMPIONS.DROWNED.Idx)

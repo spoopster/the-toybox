@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local STACK_PLACEHOLDER_REROLLS = 1
@@ -20,25 +20,25 @@ local PLACEHOLDER_LUCK = 1
 local function getCollectibleSpawn(_, poolType, dec, seed)
     if(PLACEHOLDER_GIVING_ITEM) then return end
 
-    if(PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.BOBS_THESIS)) then
-        return mod.COLLECTIBLE.PLACEHOLDER
+    if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_BOBS_THESIS)) then
+        return ToyboxMod.COLLECTIBLE_PLACEHOLDER
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, CallbackPriority.IMPORTANT, getCollectibleSpawn)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, CallbackPriority.IMPORTANT, getCollectibleSpawn)
 
 ---@param pl EntityPlayer
 ---@param flag CacheFlag
 local function givePlaceholderStats(_, pl, flag)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.PLACEHOLDER)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_PLACEHOLDER)) then return end
 
-    local mult = pl:GetCollectibleNum(mod.COLLECTIBLE.PLACEHOLDER)*math.max(1, pl:GetCollectibleNum(mod.COLLECTIBLE.BOBS_THESIS))
+    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_PLACEHOLDER)*math.max(1, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BOBS_THESIS))
 
     if(flag==CacheFlag.CACHE_SPEED) then
         pl.MoveSpeed = pl.MoveSpeed+mult*PLACEHOLDER_SPEED
     elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        mod:addBasicTearsUp(pl, mult*PLACEHOLDER_TEARS)
+        ToyboxMod:addBasicTearsUp(pl, mult*PLACEHOLDER_TEARS)
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        mod:addBasicDamageUp(pl, mult*PLACEHOLDER_DMG)
+        ToyboxMod:addBasicDamageUp(pl, mult*PLACEHOLDER_DMG)
     elseif(flag==CacheFlag.CACHE_RANGE) then
         pl.TearRange = pl.TearRange+mult*40*PLACEHOLDER_RANGE
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
@@ -47,21 +47,21 @@ local function givePlaceholderStats(_, pl, flag)
         pl.Luck = pl.Luck+mult*PLACEHOLDER_LUCK
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, givePlaceholderStats)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, givePlaceholderStats)
 
 ---@param pl EntityPlayer
 local function stopHoldingThePlaces(_, pl)
     if(pl.FrameCount==0) then return end
-    if(not pl:HasCollectible(mod.COLLECTIBLE.PLACEHOLDER)) then return end
-    local data = mod:getEntityDataTable(pl)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_PLACEHOLDER)) then return end
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.PLACEHOLDER_POOLS = data.PLACEHOLDER_POOLS or {}
 
     local history = pl:GetHistory():GetCollectiblesHistory()
     for i=1, #history do
         local item = history[i]
-        if(item:GetItemID()==mod.COLLECTIBLE.PLACEHOLDER) then
+        if(item:GetItemID()==ToyboxMod.COLLECTIBLE_PLACEHOLDER) then
             table.insert(data.PLACEHOLDER_POOLS, item:GetItemPoolType())
-            pl:RemoveCollectible(mod.COLLECTIBLE.PLACEHOLDER)
+            pl:RemoveCollectible(ToyboxMod.COLLECTIBLE_PLACEHOLDER)
         end
     end
 
@@ -70,11 +70,11 @@ local function stopHoldingThePlaces(_, pl)
         data.PLACEHOLDER_FREQ = PLACEHOLDER_FAST_THRESHOLD/(#data.PLACEHOLDER_POOLS)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, stopHoldingThePlaces)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, stopHoldingThePlaces)
 
 ---@param pl EntityPlayer
 local function giveThePlaces(_, pl)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.PLACEHOLDER_POOLS = data.PLACEHOLDER_POOLS or {}
     if(not data.PLACEHOLDER_POOLS[1]) then return end
     if(pl.FrameCount%(data.PLACEHOLDER_FREQ or PLACEHOLDER_GIVE_ITEM_FREQ)~=0) then return end
@@ -85,7 +85,7 @@ local function giveThePlaces(_, pl)
     local conf = Isaac.GetItemConfig()
 
     PLACEHOLDER_GIVING_ITEM = true
-    local numRolls = math.max(0, pl:GetCollectibleNum(mod.COLLECTIBLE.BOBS_THESIS)-1)*STACK_PLACEHOLDER_REROLLS
+    local numRolls = math.max(0, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BOBS_THESIS)-1)*STACK_PLACEHOLDER_REROLLS
 
     local chosenItem = Game():GetItemPool():GetCollectible(poolType, false)
     local chosenQuality = conf:GetCollectible(chosenItem).Quality
@@ -111,4 +111,4 @@ local function giveThePlaces(_, pl)
     pl:AnimateCollectible(chosenItem)
     sfx:Play(SoundEffect.SOUND_POWERUP1)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, giveThePlaces)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, giveThePlaces)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 --* Lets you switch between Portable Slot and Portable Teller (works like slot but has fortune teller pool)
 
 local tellerOutcomes = {
@@ -13,21 +13,21 @@ local tellerOutcomes = {
         local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,350,0,pos,Vector.Zero,player):ToPickup()
 
-        player:AnimateCollectible(mod.COLLECTIBLE.PORTABLE_TELLER, "UseItem")
+        player:AnimateCollectible(ToyboxMod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
     end,
     ---@param player EntityPlayer
     [2] = function(player) -- SOUL HEART
         local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,10,3,pos,Vector.Zero,player):ToPickup()
 
-        player:AnimateCollectible(mod.COLLECTIBLE.PORTABLE_TELLER, "UseItem")
+        player:AnimateCollectible(ToyboxMod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
     end,
     ---@param player EntityPlayer
     [3] = function(player) -- CARD
         local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,300,0,pos,Vector.Zero,player):ToPickup()
 
-        player:AnimateCollectible(mod.COLLECTIBLE.PORTABLE_TELLER, "UseItem")
+        player:AnimateCollectible(ToyboxMod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
     end,
 }
 local tellerPicker = WeightedOutcomePicker()
@@ -50,15 +50,15 @@ local function useTeller(_, item, rng, player, flags, slot, vdata)
         ShowAnim = false,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useTeller, mod.COLLECTIBLE.PORTABLE_TELLER)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useTeller, ToyboxMod.COLLECTIBLE_PORTABLE_TELLER)
 
 ---@param player EntityPlayer
 local function playerUpdate(_, player)
-    if(not mod:playerHasLimitBreak(player)) then
-        if(player:HasCollectible(mod.COLLECTIBLE.PORTABLE_TELLER)) then
+    if(not ToyboxMod:playerHasLimitBreak(player)) then
+        if(player:HasCollectible(ToyboxMod.COLLECTIBLE_PORTABLE_TELLER)) then
             for _, slot in pairs(ActiveSlot) do
-                if(player:GetActiveItem(slot)==mod.COLLECTIBLE.PORTABLE_TELLER) then
-                    player:RemoveCollectible(mod.COLLECTIBLE.PORTABLE_TELLER, true, slot, true)
+                if(player:GetActiveItem(slot)==ToyboxMod.COLLECTIBLE_PORTABLE_TELLER) then
+                    player:RemoveCollectible(ToyboxMod.COLLECTIBLE_PORTABLE_TELLER, true, slot, true)
                     player:AddCollectible(CollectibleType.COLLECTIBLE_PORTABLE_SLOT, 0, false, slot, 0)
                 end
             end
@@ -71,15 +71,15 @@ local function playerUpdate(_, player)
         local slotsToCheck = { ActiveSlot.SLOT_PRIMARY, ActiveSlot.SLOT_POCKET }
         for _, slot in ipairs(slotsToCheck) do
             local itemInSlot = player:GetActiveItem(slot)
-            if(itemInSlot==CollectibleType.COLLECTIBLE_PORTABLE_SLOT or itemInSlot==mod.COLLECTIBLE.PORTABLE_TELLER) then
-                local itemToAdd = (itemInSlot==CollectibleType.COLLECTIBLE_PORTABLE_SLOT and mod.COLLECTIBLE.PORTABLE_TELLER or CollectibleType.COLLECTIBLE_PORTABLE_SLOT)
+            if(itemInSlot==CollectibleType.COLLECTIBLE_PORTABLE_SLOT or itemInSlot==ToyboxMod.COLLECTIBLE_PORTABLE_TELLER) then
+                local itemToAdd = (itemInSlot==CollectibleType.COLLECTIBLE_PORTABLE_SLOT and ToyboxMod.COLLECTIBLE_PORTABLE_TELLER or CollectibleType.COLLECTIBLE_PORTABLE_SLOT)
                 player:RemoveCollectible(itemInSlot, true, slot, true)
                 player:AddCollectible(itemToAdd, 0, false, slot, 0)
             end
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate)
 
 --[[] ]
 local slotOutcomes = {
@@ -159,7 +159,7 @@ slotPicker:AddOutcomeFloat(8, 1.57, 100)
 ---@param player EntityPlayer
 ---@param rng RNG
 local function useSlot(_, item, rng, player, flags, slot, vdata)
-    if(not mod:playerHasLimitBreak(player)) then return end
+    if(not ToyboxMod:playerHasLimitBreak(player)) then return end
 
     local outcome = slotPicker:PickOutcome(rng)
     if(outcome==0) then outcome = slotPicker:PickOutcome(rng) end
@@ -167,5 +167,5 @@ local function useSlot(_, item, rng, player, flags, slot, vdata)
 
     return true
 end
-mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, useSlot, CollectibleType.COLLECTIBLE_PORTABLE_SLOT)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, useSlot, CollectibleType.COLLECTIBLE_PORTABLE_SLOT)
 --]]

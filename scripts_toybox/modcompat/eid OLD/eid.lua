@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 if(not EID) then return end
 
@@ -30,10 +30,10 @@ EID:addIcon("ToyboxGoldenPill", "Icons", 2, 16, 16, 5, 6, miscIconSprites)
 EID:addIcon("ToyboxHorsePill", "Icons", 3, 16, 16, 5, 6, miscIconSprites)
 EID:addIcon("ToyboxGoldenHorsePill", "Icons", 4, 16, 16, 5, 6, miscIconSprites)
 
-EID:addIcon("Player"..mod.PLAYER_TYPE.ATLAS_A, "AtlasA", 0, 16, 16, 5, 6, playerIconSprites)
-EID:addIcon("Player"..mod.PLAYER_TYPE.ATLAS_A_TAR, "AtlasATar", 0, 16, 16, 5, 6, playerIconSprites)
-EID:addIcon("Player"..mod.PLAYER_TYPE.JONAS_A, "JonasA", 0, 16, 16, 5, 6, playerIconSprites)
-EID:addIcon("Player"..mod.PLAYER_TYPE.MILCOM_A, "MilcomA", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..ToyboxMod.PLAYER_TYPE.ATLAS_A, "AtlasA", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR, "AtlasATar", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..ToyboxMod.PLAYER_TYPE.JONAS_A, "JonasA", 0, 16, 16, 5, 6, playerIconSprites)
+EID:addIcon("Player"..ToyboxMod.PLAYER_TYPE.MILCOM_A, "MilcomA", 0, 16, 16, 5, 6, playerIconSprites)
 
 --* stolen from EID, they should expose this in the api itd be cool
 local function SwagColors(colors, maxAnimTime)
@@ -97,14 +97,14 @@ local function atlasMantleDescription(descData, id)
     EID:addDescriptionModifier(
         descData.Name .. " MantleDescMod",
         function(entity)
-            return (entity.ObjType==5 and entity.ObjVariant==300 and entity.ObjSubType==id) and (#mod:getAllAtlasA()<Game():GetNumPlayers())
+            return (entity.ObjType==5 and entity.ObjVariant==300 and entity.ObjSubType==id) and (#ToyboxMod:getAllAtlasA()<Game():GetNumPlayers())
         end,
         function(entity)
             if(not descs.CARDS[entity.ObjSubType].NonAtlasDescription) then return entity end
 
             local extraDesc = turnStringTableToEIDDesc(descs.CARDS[entity.ObjSubType].NonAtlasDescription)
 
-            if(#mod:getAllAtlasA()==0) then
+            if(#ToyboxMod:getAllAtlasA()==0) then
                 entity.Description=""
             else
                 entity.Description = entity.Description
@@ -275,7 +275,7 @@ for og, md in pairs(bundleModifiers) do
                         table.insert(descs[og][key].DescriptionModifiers,
                             {
                                 Condition = baseData.BaseCondition,
-                                TextToModify = mod:cloneTable(modifData.TextToModify)
+                                TextToModify = ToyboxMod:cloneTable(modifData.TextToModify)
                             }
                         )
                     end
@@ -319,7 +319,7 @@ for og, md in pairs(bundleModifiers) do
                     table.insert(descs[og][key].DescriptionModifiers,
                         {
                             Condition = finalCondition,
-                            TextToModify = mod:cloneTable(modifData.TextToModify)
+                            TextToModify = ToyboxMod:cloneTable(modifData.TextToModify)
                         }
                     )
                 end
@@ -342,24 +342,24 @@ for key, data in pairs(descs.ITEMS) do
             if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
             if(descObj.Entity==nil) then return false end
             
-            return PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.ALPHABET_BOX)
+            return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_ALPHABET_BOX)
         end,
         function(descObj)
-            if(mod.CONFIG.ALPHABETBOX_EID_DISPLAYS>0) then
-                local boxDesc = "{{Collectible"..mod.COLLECTIBLE.ALPHABET_BOX.."}} :"
+            if(ToyboxMod.CONFIG.ALPHABETBOX_EID_DISPLAYS>0) then
+                local boxDesc = "{{Collectible"..ToyboxMod.COLLECTIBLE_ALPHABET_BOX.."}} :"
 
-                local idx = mod:getNextAlphabetItem(descObj.ObjSubType, false)
-                for i=1, mod.CONFIG.ALPHABETBOX_EID_DISPLAYS do
+                local idx = ToyboxMod:getNextAlphabetItem(descObj.ObjSubType, false)
+                for i=1, ToyboxMod.CONFIG.ALPHABETBOX_EID_DISPLAYS do
                     if(i~=1) then boxDesc = boxDesc.." -> " end
 
                     if(idx==-1) then
                         boxDesc = boxDesc.."Item disappears"
                         break
                     else
-                        boxDesc = boxDesc.."{{Collectible"..mod.ABOX_ITEMS_ALPHABETICAL[idx][2].."}}"
+                        boxDesc = boxDesc.."{{Collectible"..ToyboxMod.ABOX_ITEMS_ALPHABETICAL[idx][2].."}}"
                     end
                     
-                    idx = mod:getNextAlphabetItem(mod.ABOX_ITEMS_ALPHABETICAL[idx][2], false)
+                    idx = ToyboxMod:getNextAlphabetItem(ToyboxMod.ABOX_ITEMS_ALPHABETICAL[idx][2], false)
                 end
 
                 descObj.Description = descObj.Description.."#"..boxDesc

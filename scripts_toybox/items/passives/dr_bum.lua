@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local NUM_REQ = 1
 local SEARCH_RADIUS = 4.5*40
@@ -15,7 +15,7 @@ local function getDrBumPill(fam)
     local pool = Game():GetItemPool()
     local conf = Isaac.GetItemConfig()
 
-    local rng = fam.Player:GetCollectibleRNG(mod.COLLECTIBLE.DR_BUM)
+    local rng = fam.Player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_DR_BUM)
     local mult = fam:GetMultiplier()
 
     local pill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:RandomInt(1<<32-1))))
@@ -24,10 +24,10 @@ local function getDrBumPill(fam)
         local newPill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:RandomInt(1<<32-1))))
         local newSub = conf:GetPillEffect(newPill).EffectSubClass
 
-        if(newSub==mod.PILL_SUBCLASS.GOOD and (currentSub==mod.PILL_SUBCLASS.BAD or currentSub==mod.PILL_SUBCLASS.NEUTRAL)) then
+        if(newSub==ToyboxMod.PILL_SUBCLASS.GOOD and (currentSub==ToyboxMod.PILL_SUBCLASS.BAD or currentSub==ToyboxMod.PILL_SUBCLASS.NEUTRAL)) then
             pill = newPill
             currentSub = newSub
-        elseif(newSub==mod.PILL_SUBCLASS.NEUTRAL and currentSub==mod.PILL_SUBCLASS.BAD) then
+        elseif(newSub==ToyboxMod.PILL_SUBCLASS.NEUTRAL and currentSub==ToyboxMod.PILL_SUBCLASS.BAD) then
             pill = newPill
             currentSub = newSub
         end
@@ -39,13 +39,13 @@ end
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     pl:CheckFamiliar(
-        mod.FAMILIAR_VARIANT.DR_BUM,
-        pl:GetCollectibleNum(mod.COLLECTIBLE.DR_BUM),
-        pl:GetCollectibleRNG(mod.COLLECTIBLE.DR_BUM),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.DR_BUM)
+        ToyboxMod.FAMILIAR_VARIANT.DR_BUM,
+        pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_DR_BUM),
+        pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_DR_BUM),
+        Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_DR_BUM)
     )
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
 
 ---@param fam EntityFamiliar
 local function drBumInit(_, fam)
@@ -53,7 +53,7 @@ local function drBumInit(_, fam)
     fam.State = 0
     fam.Coins = 0
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, drBumInit, mod.FAMILIAR_VARIANT.DR_BUM)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, drBumInit, ToyboxMod.FAMILIAR_VARIANT.DR_BUM)
 
 ---@param fam EntityFamiliar
 local function drBumUpdate(_, fam)
@@ -95,7 +95,7 @@ local function drBumUpdate(_, fam)
                 sp:Play("PreSpawn", true)
             end
         else
-            fam.Velocity = mod:lerp(fam.Velocity, dir:Resized(FOLLOW_SPEED), 0.3)
+            fam.Velocity = ToyboxMod:lerp(fam.Velocity, dir:Resized(FOLLOW_SPEED), 0.3)
         end
     elseif(fam.State==2) then
         if(not fam.Target) then
@@ -105,7 +105,7 @@ local function drBumUpdate(_, fam)
         end
 
         local dir = fam.Target.Position-fam.Position
-        fam.Velocity = mod:lerp(fam.Velocity, dir:Resized(TAKE_SPEED), 0.2)
+        fam.Velocity = ToyboxMod:lerp(fam.Velocity, dir:Resized(TAKE_SPEED), 0.2)
         if(dir:Length()<3) then
             fam.Target.Velocity = Vector.Zero
             fam.Target:ToPickup().Touched = true
@@ -136,4 +136,4 @@ local function drBumUpdate(_, fam)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, drBumUpdate, mod.FAMILIAR_VARIANT.DR_BUM)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, drBumUpdate, ToyboxMod.FAMILIAR_VARIANT.DR_BUM)

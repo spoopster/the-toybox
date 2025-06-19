@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 ---@param rng RNG
@@ -14,7 +14,7 @@ local function bigBangUse(_, _, rng, pl, flags, slot, vdata)
         end
     end
 
-    ItemOverlay.Show(mod.GIANTBOOK.BIG_BANG, 3, pl)
+    ItemOverlay.Show(ToyboxMod.GIANTBOOK.BIG_BANG, 3, pl)
     sfx:Play(SoundEffect.SOUND_DOGMA_BRIMSTONE_SHOOT)
     
     return {
@@ -23,4 +23,4 @@ local function bigBangUse(_, _, rng, pl, flags, slot, vdata)
         Remove = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, bigBangUse, mod.COLLECTIBLE.BIG_BANG)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, bigBangUse, ToyboxMod.COLLECTIBLE_BIG_BANG)

@@ -1,20 +1,20 @@
-local mod = ToyboxMod
+
 
 local CHANCE_INCREASE = 1 -- increase per mult
 
-mod:addGoldenChance(
+ToyboxMod:addGoldenChance(
     function(val)
-        return val*(1+CHANCE_INCREASE*PlayerManager.GetTotalTrinketMultiplier(mod.TRINKET.WONDER_DRUG))
+        return val*(1+CHANCE_INCREASE*PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_WONDER_DRUG))
     end,
     function()
-        return PlayerManager.AnyoneHasTrinket(mod.TRINKET.WONDER_DRUG)
+        return PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_WONDER_DRUG)
     end
 )
-mod:addHorseChance(
+ToyboxMod:addHorseChance(
     function(val)
-        return val*(1+CHANCE_INCREASE*PlayerManager.GetTotalTrinketMultiplier(mod.TRINKET.WONDER_DRUG))
+        return val*(1+CHANCE_INCREASE*PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_WONDER_DRUG))
     end,
     function()
-        return PlayerManager.AnyoneHasTrinket(mod.TRINKET.WONDER_DRUG)
+        return PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_WONDER_DRUG)
     end
 )

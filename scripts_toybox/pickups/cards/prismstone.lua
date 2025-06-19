@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local NUM_RUNES = 3
@@ -7,7 +7,7 @@ local SPAWN_SPEED = 3
 ---@param pl EntityPlayer
 local function usePrismstone(_, _, pl, _)
     local pool = Game():GetItemPool()
-    local rng = pl:GetCardRNG(mod.CONSUMABLE.PRISMSTONE)
+    local rng = pl:GetCardRNG(ToyboxMod.CONSUMABLE.PRISMSTONE)
 
     local angleOffset = rng:RandomInt(math.floor(360/NUM_RUNES))
 
@@ -25,4 +25,4 @@ local function usePrismstone(_, _, pl, _)
         rune.OptionsPickupIndex = nextPickupGroup
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, usePrismstone, mod.CONSUMABLE.PRISMSTONE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, usePrismstone, ToyboxMod.CONSUMABLE.PRISMSTONE)

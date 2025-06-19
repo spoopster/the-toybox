@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local copyingFamiliar
@@ -6,7 +6,7 @@ local copyingFamiliar
 ---@param fam EntityFamiliar
 local function familiarCopy(_, fam)
     if(Isaac.GetPlayer().FrameCount==0) then return end
-    if(not fam.Player:HasCollectible(mod.COLLECTIBLE.FISH)) then return end
+    if(not fam.Player:HasCollectible(ToyboxMod.COLLECTIBLE_FISH)) then return end
 
     if(copyingFamiliar) then return end
     copyingFamiliar = true
@@ -20,28 +20,28 @@ local function familiarCopy(_, fam)
 
     copyingFamiliar = false
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarCopy, FamiliarVariant.BLUE_SPIDER)
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarCopy, FamiliarVariant.BLUE_FLY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarCopy, FamiliarVariant.BLUE_SPIDER)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarCopy, FamiliarVariant.BLUE_FLY)
 
 ---@param pl Entity
 local function playerHurtAddBlueFam(_, pl, _, flags, source)
     pl = pl:ToPlayer()
-    if(not pl:HasCollectible(mod.COLLECTIBLE.FISH)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_FISH)) then return end
 
     pl:AddBlueFlies(1, pl.Position, nil)
     pl:AddBlueSpider(pl.Position)
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, playerHurtAddBlueFam, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, playerHurtAddBlueFam, EntityType.ENTITY_PLAYER)
 
 ---@param pl EntityPlayer
 local function checkTrinketCombo(_, pl, trAdded, firstTime)
     while(pl:HasTrinket(TrinketType.TRINKET_FISH_HEAD) and pl:HasTrinket(TrinketType.TRINKET_FISH_TAIL)) do
         pl:TryRemoveTrinket(TrinketType.TRINKET_FISH_HEAD)
         pl:TryRemoveTrinket(TrinketType.TRINKET_FISH_TAIL)
-        pl:AddCollectible(mod.COLLECTIBLE.FISH)
+        pl:AddCollectible(ToyboxMod.COLLECTIBLE_FISH)
 
-        pl:AnimateCollectible(mod.COLLECTIBLE.FISH)
+        pl:AnimateCollectible(ToyboxMod.COLLECTIBLE_FISH)
         sfx:Play(SoundEffect.SOUND_POWERUP1)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_ADDED, checkTrinketCombo)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_ADDED, checkTrinketCombo)

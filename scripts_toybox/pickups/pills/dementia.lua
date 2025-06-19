@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local function getRandomVal(rng, tb, blacklist)
@@ -11,10 +11,10 @@ end
 
 ---@param player EntityPlayer
 local function usePill(_, effect, player, flags, color)
-    local dataTable = mod:getExtraDataTable()
+    local dataTable = ToyboxMod:getExtraDataTable()
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
 
-    mod:calcPillPool(mod:generateRng())
+    ToyboxMod:calcPillPool(ToyboxMod:generateRng())
 
     if(isHorse) then
         local itemConfig = Isaac.GetItemConfig()
@@ -25,16 +25,16 @@ local function usePill(_, effect, player, flags, color)
         for col, pill in pairs(dataTable.CUSTOM_PILL_POOL) do
             local pdata = itemConfig:GetPillEffect(pill.DEFAULT)
             if(pdata) then
-                if(pdata.EffectSubClass==mod.PILL_SUBCLASS.GOOD) then pillBlacklists.GOOD[pill.DEFAULT] = 0
-                elseif(pdata.EffectSubClass==mod.PILL_SUBCLASS.BAD) then pillBlacklists.BAD[pill.DEFAULT] = 0
+                if(pdata.EffectSubClass==ToyboxMod.PILL_SUBCLASS.GOOD) then pillBlacklists.GOOD[pill.DEFAULT] = 0
+                elseif(pdata.EffectSubClass==ToyboxMod.PILL_SUBCLASS.BAD) then pillBlacklists.BAD[pill.DEFAULT] = 0
                 else
                     toReroll[col] = pill.DEFAULT
                 end
             end
         end
 
-        local goodPills = dataTable.PILLS_GOOD or mod:getAllPillEffects(mod.PHD_TYPE.GOOD)
-        local badPills = dataTable.PILLS_BAD or mod:getAllPillEffects(mod.PHD_TYPE.BAD)
+        local goodPills = dataTable.PILLS_GOOD or ToyboxMod:getAllPillEffects(ToyboxMod.PHD_TYPE.GOOD)
+        local badPills = dataTable.PILLS_BAD or ToyboxMod:getAllPillEffects(ToyboxMod.PHD_TYPE.BAD)
         for col, pill in pairs(toReroll) do
             local chosenPill
             if(rng:RandomInt(2)==0) then
@@ -46,14 +46,14 @@ local function usePill(_, effect, player, flags, color)
             end
 
             dataTable.CUSTOM_PILL_POOL[col].DEFAULT = chosenPill
-            dataTable.CUSTOM_PILL_POOL[col].GOOD = mod:convertPhdPillEffect(nil, chosenPill, mod.PHD_TYPE.GOOD, rng)
-            dataTable.CUSTOM_PILL_POOL[col].BAD = mod:convertPhdPillEffect(nil, chosenPill, mod.PHD_TYPE.BAD, rng)
+            dataTable.CUSTOM_PILL_POOL[col].GOOD = ToyboxMod:convertPhdPillEffect(nil, chosenPill, ToyboxMod.PHD_TYPE.GOOD, rng)
+            dataTable.CUSTOM_PILL_POOL[col].BAD = ToyboxMod:convertPhdPillEffect(nil, chosenPill, ToyboxMod.PHD_TYPE.BAD, rng)
         end
     end
 
-    mod:unidentifyPillPool()
+    ToyboxMod:unidentifyPillPool()
 
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.DEMENTIA)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.DEMENTIA)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local ROCK_DECAY_RADIUS = 40*1.5
 local ROCK_DECAY_DURATION = 50
@@ -37,10 +37,10 @@ end
 
 ---@param pl EntityPlayer
 local function decayRocks(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.URANIUM)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_URANIUM)) then return end
 
     ---ENEMY SMOG
-    local plData = mod:getEntityDataTable(pl)
+    local plData = ToyboxMod:getEntityDataTable(pl)
     if(not (plData.SMOG_AURA and plData.SMOG_AURA:Exists())) then
         local aura = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SMOKE_CLOUD, 0, pl.Position, pl.Velocity, pl):ToEffect()
         aura:FollowParent(pl)
@@ -71,7 +71,7 @@ local function decayRocks(_, pl)
 
                 if(isVisibleRock) then
                     local grid = room:GetGridEntity(rockIdx)
-                    local gridData = mod:getGridEntityDataTable(grid)
+                    local gridData = ToyboxMod:getGridEntityDataTable(grid)
                     gridData.DECAY_VAL = (gridData.DECAY_VAL or 0)+1
 
                     if(gridData.DECAY_VAL>=ROCK_DECAY_DURATION) then
@@ -84,14 +84,14 @@ local function decayRocks(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, decayRocks)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, decayRocks)
 
 ---@param grid GridEntity
 local function postGridUpdate(_, grid)
-    if(not mod:getGridEntityData(grid, "DECAY_VAL")) then return end
+    if(not ToyboxMod:getGridEntityData(grid, "DECAY_VAL")) then return end
     if(not isDestructibleGrid(grid:GetGridIndex())) then return end
 
-    local decayIntensity = (mod:getGridEntityData(grid, "DECAY_VAL")/ROCK_DECAY_DURATION)^5
+    local decayIntensity = (ToyboxMod:getGridEntityData(grid, "DECAY_VAL")/ROCK_DECAY_DURATION)^5
 
     local decayColor = Color.Lerp(Color.Default, Color(0.7,1,0.7,1,0.1,0.3,0.1,0,0.5,0,1), decayIntensity)
     local pulseFreq = 4
@@ -101,4 +101,4 @@ local function postGridUpdate(_, grid)
 
     grid:GetSprite():GetLayer("layer0"):SetColor(decayColor)
 end
-mod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_ROCK_UPDATE, postGridUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_ROCK_UPDATE, postGridUpdate)

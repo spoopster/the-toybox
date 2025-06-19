@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local CHASE_SPEED = 21
 local CHASE_LERP = 0.05
@@ -9,16 +9,16 @@ local PROJ_SPEED = 10
 
 ---@param npc EntityNPC
 local function redMegalodonInit(_, npc)
-    if(not (npc.Variant==mod.BOSS_RED_MEGALODON)) then return end
+    if(not (npc.Variant==ToyboxMod.BOSS_RED_MEGALODON)) then return end
 
     npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
     npc:GetSprite():Play("Idle")
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, redMegalodonInit, mod.NPC_BOSS)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, redMegalodonInit, ToyboxMod.NPC_BOSS)
 
 ---@param npc EntityNPC
 local function redMegalodonUpdate(_, npc)
-    if(not (npc.Variant==mod.BOSS_RED_MEGALODON)) then return end
+    if(not (npc.Variant==ToyboxMod.BOSS_RED_MEGALODON)) then return end
 
     npc.Target = npc:GetPlayerTarget()
 
@@ -26,7 +26,7 @@ local function redMegalodonUpdate(_, npc)
     if(npc.Target) then
         velDir = (npc.Target.Position-npc.Position):Normalized()
     end
-    npc.Velocity = mod:lerp(npc.Velocity, velDir*CHASE_SPEED, CHASE_LERP)
+    npc.Velocity = ToyboxMod:lerp(npc.Velocity, velDir*CHASE_SPEED, CHASE_LERP)
 
     if(npc.FrameCount%PROJ_FREQ==0) then
         for i=1,PROJ_NUM do
@@ -36,4 +36,4 @@ local function redMegalodonUpdate(_, npc)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, redMegalodonUpdate, mod.NPC_BOSS)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, redMegalodonUpdate, ToyboxMod.NPC_BOSS)

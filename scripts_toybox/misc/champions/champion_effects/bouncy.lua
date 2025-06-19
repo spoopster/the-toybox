@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local BOUNCE_SPEED = 11
@@ -12,18 +12,18 @@ end
 
 ---@param npc EntityNPC
 local function bouncyCollision(_, npc, coll, low)
-    if(mod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")~=mod.CUSTOM_CHAMPIONS.JELLY.Idx) then return end
+    if(ToyboxMod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")~=ToyboxMod.CUSTOM_CHAMPIONS.JELLY.Idx) then return end
 
     local dir = -(coll.Position-npc.Position):Resized(BOUNCE_SPEED)
     makeBounce(npc, dir)
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_COLLISION, bouncyCollision)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_COLLISION, bouncyCollision)
 
 ---@param npc EntityNPC
 local function bouncyGridCollision(_, npc, idx, gridEnt)
-    if(mod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")~=mod.CUSTOM_CHAMPIONS.JELLY.Idx) then return end
+    if(ToyboxMod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")~=ToyboxMod.CUSTOM_CHAMPIONS.JELLY.Idx) then return end
 
     local dir = -(gridEnt.Position-npc.Position):Resized(BOUNCE_SPEED)
     makeBounce(npc, dir)
 end
-mod:AddCallback(ModCallbacks.MC_NPC_GRID_COLLISION, bouncyGridCollision)
+ToyboxMod:AddCallback(ModCallbacks.MC_NPC_GRID_COLLISION, bouncyGridCollision)

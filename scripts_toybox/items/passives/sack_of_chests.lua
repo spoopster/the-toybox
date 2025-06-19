@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local ROOM_FREQ = 10
 
@@ -17,19 +17,19 @@ CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_HAUNTEDCHEST, 0.1)
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     pl:CheckFamiliar(
-        mod.FAMILIAR_VARIANT.SACK_OF_CHESTS,
-        pl:GetCollectibleNum(mod.COLLECTIBLE.SACK_OF_CHESTS),
-        pl:GetCollectibleRNG(mod.COLLECTIBLE.SACK_OF_CHESTS),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.SACK_OF_CHESTS)
+        ToyboxMod.FAMILIAR_VARIANT.SACK_OF_CHESTS,
+        pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_SACK_OF_CHESTS),
+        pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SACK_OF_CHESTS),
+        Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_SACK_OF_CHESTS)
     )
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
 
 ---@param fam EntityFamiliar
 local function familiarInit(_, fam)
     fam:AddToFollowers()
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarInit, mod.FAMILIAR_VARIANT.SACK_OF_CHESTS)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarInit, ToyboxMod.FAMILIAR_VARIANT.SACK_OF_CHESTS)
 
 ---@param fam EntityFamiliar
 local function familiarUpdate(_, fam)
@@ -48,4 +48,4 @@ local function familiarUpdate(_, fam)
         sp:Play("Spawn", true)
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, familiarUpdate, mod.FAMILIAR_VARIANT.SACK_OF_CHESTS)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, familiarUpdate, ToyboxMod.FAMILIAR_VARIANT.SACK_OF_CHESTS)

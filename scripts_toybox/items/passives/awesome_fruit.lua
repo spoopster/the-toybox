@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 ---@param pl EntityPlayer
 local function postAddAwesomeFruit(_, _, _, firstTime, _, _, pl)
@@ -8,7 +8,7 @@ local function postAddAwesomeFruit(_, _, _, firstTime, _, _, pl)
         pl:IncrementPlayerFormCounter(i, 1)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddAwesomeFruit, mod.COLLECTIBLE.AWESOME_FRUIT)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddAwesomeFruit, ToyboxMod.COLLECTIBLE_AWESOME_FRUIT)
 
 --[[
 

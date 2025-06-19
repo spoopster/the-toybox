@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local MENU_SIZE = Vector(480, 270)
 local PADDING = 250
@@ -86,4 +86,4 @@ local function postMenuRender(_)
     end
     counter = counter+1
 end
-mod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, postMenuRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, postMenuRender)

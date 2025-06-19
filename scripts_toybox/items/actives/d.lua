@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local TIME_MIN = -3
 local TIME_MAX = 3
@@ -15,4 +15,4 @@ local function useD(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useD, mod.COLLECTIBLE.D)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useD, ToyboxMod.COLLECTIBLE_D)

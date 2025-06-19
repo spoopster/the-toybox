@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local NUM_TOMES = 1
 local PAPER_SPAWN_FREQ = 90
@@ -16,7 +16,7 @@ local ANGLE_SPEED = 2.3
 local ORBIT_DIST = Vector(60,45)
 
 local function spawnPaper(fam, vel)
-    local paper = Isaac.Spawn(EntityType.ENTITY_TEAR, mod.TEAR_VARIANT.PAPER, 0, fam.Position, vel, fam):ToTear()
+    local paper = Isaac.Spawn(EntityType.ENTITY_TEAR, ToyboxMod.TEAR_VARIANT.PAPER, 0, fam.Position, vel, fam):ToTear()
     paper.FallingAcceleration = -0.075
     paper:AddTearFlags(TearFlags.TEAR_SPECTRAL)
     paper.CollisionDamage = PAPER_TEAR_DMG
@@ -27,28 +27,28 @@ end
 ---@param player EntityPlayer
 local function checkFamiliars(_, player, cacheFlag)
     player:CheckFamiliar(
-        mod.FAMILIAR_VARIANT.TOME,
-        NUM_TOMES*(player:GetCollectibleNum(mod.COLLECTIBLE.SCATTERED_TOME)+player:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.SCATTERED_TOME)),
-        player:GetCollectibleRNG(mod.COLLECTIBLE.SCATTERED_TOME),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.SCATTERED_TOME)
+        ToyboxMod.FAMILIAR_VARIANT.TOME,
+        NUM_TOMES*(player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_SCATTERED_TOME)+player:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_SCATTERED_TOME)),
+        player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SCATTERED_TOME),
+        Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_SCATTERED_TOME)
     )
-    if(player:HasCollectible(mod.COLLECTIBLE.SCATTERED_TOME)) then
+    if(player:HasCollectible(ToyboxMod.COLLECTIBLE_SCATTERED_TOME)) then
         local tomes = {}
         local plaerHash = GetPtrHash(player)
-        for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.TOME)) do
+        for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.TOME)) do
             if(GetPtrHash(ent:ToFamiliar().Player)==plaerHash) then table.insert(tomes, ent) end
         end
 
         for i, tome in ipairs(tomes) do
-            if(not mod:getEntityData(tome, "STUPID_POS")) then
-                mod:setEntityData(tome, "TOME_ANGLE_OFFSET", 360*i/#tomes)
-                mod:setEntityData(tome, "TOME_ANGLE", 0)
-                mod:setEntityData(tome, "TOME_FRAMES", 0)
+            if(not ToyboxMod:getEntityData(tome, "STUPID_POS")) then
+                ToyboxMod:setEntityData(tome, "TOME_ANGLE_OFFSET", 360*i/#tomes)
+                ToyboxMod:setEntityData(tome, "TOME_ANGLE", 0)
+                ToyboxMod:setEntityData(tome, "TOME_FRAMES", 0)
             end
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
 
 ---@param familiar EntityFamiliar
 local function postTomeInit(_, familiar)
@@ -58,18 +58,18 @@ local function postTomeInit(_, familiar)
 
     familiar:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 
-    local data = mod:getEntityDataTable(familiar)
+    local data = ToyboxMod:getEntityDataTable(familiar)
 
     data.TOME_ANGLE = 0
     data.TOME_ANGLE_OFFSET = 0
     data.TOME_FRAMES = 0
     data.STUPID_POS = false
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postTomeInit, mod.FAMILIAR_VARIANT.TOME)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postTomeInit, ToyboxMod.FAMILIAR_VARIANT.TOME)
 
 ---@param familiar EntityFamiliar
 local function postTomeUpdate(_, familiar)
-    local data = mod:getEntityDataTable(familiar)
+    local data = ToyboxMod:getEntityDataTable(familiar)
     local player = (familiar.Player or Isaac.GetPlayer()):ToPlayer()
 
     local hasBffs = player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)
@@ -88,7 +88,7 @@ local function postTomeUpdate(_, familiar)
     else
         data.TOME_ANGLE = (data.TOME_ANGLE or 0)+ANGLE_SPEED*(hasSpin2Win and 5 or 1)
         local pos = Vector.FromAngle(data.TOME_ANGLE+(data.TOME_ANGLE_OFFSET or 0))*ORBIT_DIST+player.Position+player.Velocity
-        familiar.Velocity = mod:lerp(familiar.Velocity, pos-familiar.Position, 0.75)
+        familiar.Velocity = ToyboxMod:lerp(familiar.Velocity, pos-familiar.Position, 0.75)
     end
 
     familiar.SpriteRotation = data.TOME_ANGLE+(data.TOME_ANGLE_OFFSET or 0)
@@ -108,22 +108,22 @@ local function postTomeUpdate(_, familiar)
 
     data.TOME_FRAMES = (data.TOME_FRAMES or 0)+1
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postTomeUpdate, mod.FAMILIAR_VARIANT.TOME)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postTomeUpdate, ToyboxMod.FAMILIAR_VARIANT.TOME)
 
 local function doShittyPosStuffToMakeItNotJitterIHateYouStupidGame(_)
-    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.TOME)) do
-        mod:setEntityData(ent, "STUPID_POS", true)
+    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.TOME)) do
+        ToyboxMod:setEntityData(ent, "STUPID_POS", true)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, doShittyPosStuffToMakeItNotJitterIHateYouStupidGame)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, doShittyPosStuffToMakeItNotJitterIHateYouStupidGame)
 
 ---@param tear EntityTear
 local function paperTearUpdate(_, tear)
-    local nearestEnemy = mod:closestEnemy(tear.Position)
+    local nearestEnemy = ToyboxMod:closestEnemy(tear.Position)
     local vel
     if(nearestEnemy==nil) then vel=Vector.Zero
     else vel=(nearestEnemy.Position-tear.Position):Resized(PAPER_TEAR_HOMESPEED) end
 
-    tear.Velocity = mod:lerp(tear.Velocity, vel, 0.04)
+    tear.Velocity = ToyboxMod:lerp(tear.Velocity, vel, 0.04)
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, paperTearUpdate, mod.TEAR_VARIANT.PAPER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, paperTearUpdate, ToyboxMod.TEAR_VARIANT.PAPER)

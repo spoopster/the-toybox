@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local AURA_SCALE_POW = 0.3
 local BASE_AURA_SIZE = 13
@@ -11,7 +11,7 @@ local FADE_DURATION = 5
 
 ---@param npc EntityNPC
 local function addFearAuraVisual(_, npc)
-    local aura = Isaac.Spawn(1000, mod.EFFECT_VARIANT.AURA, mod.EFFECT_AURA_SUBTYPE.ENEMY_FEAR, npc.Position, Vector.Zero, npc):ToEffect()
+    local aura = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.AURA, ToyboxMod.EFFECT_AURA_SUBTYPE.ENEMY_FEAR, npc.Position, Vector.Zero, npc):ToEffect()
     aura.DepthOffset = -1000
     aura:FollowParent(npc)
     aura:GetSprite():GetLayer(0):GetBlendMode():SetMode(BlendType.OVERLAY)
@@ -21,11 +21,11 @@ local function addFearAuraVisual(_, npc)
 
     aura:GetSprite():Play("Appear", true)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_CUSTOM_CHAMPION_INIT, addFearAuraVisual, mod.CUSTOM_CHAMPIONS.FEAR.Idx)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_CUSTOM_CHAMPION_INIT, addFearAuraVisual, ToyboxMod.CUSTOM_CHAMPIONS.FEAR.Idx)
 
 ---@param npc EntityNPC
 local function toggleFearColor(_, npc)
-    if(mod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")~=mod.CUSTOM_CHAMPIONS.FEAR.Idx) then return end
+    if(ToyboxMod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")~=ToyboxMod.CUSTOM_CHAMPIONS.FEAR.Idx) then return end
 
     local totalTimer = ACTIVE_DURATION+INACTIVE_DURATION
     local modVal = npc.FrameCount%totalTimer
@@ -33,20 +33,20 @@ local function toggleFearColor(_, npc)
     if(modVal>=ACTIVE_DURATION-FADE_DURATION and modVal<=ACTIVE_DURATION+FADE_DURATION) then
         local lerpVal = (ACTIVE_DURATION-modVal)/(2*FADE_DURATION)+0.5
 
-        npc.Color = Color.Lerp(Color(1,1,1), mod.CUSTOM_CHAMPIONS.FEAR.Color, lerpVal)
+        npc.Color = Color.Lerp(Color(1,1,1), ToyboxMod.CUSTOM_CHAMPIONS.FEAR.Color, lerpVal)
 
         --print(lerpVal)
     elseif(modVal>=totalTimer-FADE_DURATION or modVal<=FADE_DURATION) then
         local lerpVal = 1-(modVal+2*FADE_DURATION)%totalTimer/(2*FADE_DURATION)+0.5
 
-        npc.Color = Color.Lerp(mod.CUSTOM_CHAMPIONS.FEAR.Color, Color(1,1,1), lerpVal)
+        npc.Color = Color.Lerp(ToyboxMod.CUSTOM_CHAMPIONS.FEAR.Color, Color(1,1,1), lerpVal)
     end
 end
-mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, toggleFearColor)
+ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, toggleFearColor)
 
 ---@param effect EntityEffect
 local function fearAuraLogic(_, effect)
-    if(effect.SubType~=mod.EFFECT_AURA_SUBTYPE.ENEMY_FEAR) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.ENEMY_FEAR) then return end
 
     local sp = effect:GetSprite()
     if(sp:IsFinished("Appear")) then
@@ -62,11 +62,11 @@ local function fearAuraLogic(_, effect)
     if(modVal>=ACTIVE_DURATION-FADE_DURATION and modVal<=ACTIVE_DURATION+FADE_DURATION) then
         local lerpVal = (ACTIVE_DURATION-modVal)/(2*FADE_DURATION)+0.5
 
-        alpha = alpha*mod:lerp(0,1,lerpVal)
+        alpha = alpha*ToyboxMod:lerp(0,1,lerpVal)
     elseif(modVal>=totalTimer-FADE_DURATION or modVal<=FADE_DURATION) then
         local lerpVal = 1-(modVal+2*FADE_DURATION)%totalTimer/(2*FADE_DURATION)+0.5
 
-        alpha = alpha*mod:lerp(1,0,lerpVal)
+        alpha = alpha*ToyboxMod:lerp(1,0,lerpVal)
 
         effect.State = 1
     elseif(modVal>ACTIVE_DURATION+FADE_DURATION and modVal<totalTimer-FADE_DURATION) then
@@ -95,4 +95,4 @@ local function fearAuraLogic(_, effect)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fearAuraLogic, mod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fearAuraLogic, ToyboxMod.EFFECT_VARIANT.AURA)

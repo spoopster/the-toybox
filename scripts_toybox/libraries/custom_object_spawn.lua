@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 --! make circle type use a timer for delayed circle spawn
 --! make line and circleline have a second extrafunction for the timer effect
 
@@ -66,7 +66,7 @@ local function getGridColl(pos)
     return 0
 end
 
-function mod:spawnCustomObjects(objData)
+function ToyboxMod:spawnCustomObjects(objData)
     objData = objData or {}
     local newData = {
         SpawnType = objData.SpawnType or "SINGLE",
@@ -101,11 +101,11 @@ function mod:spawnCustomObjects(objData)
     elseif(newData.Amount>1 and newData.SpawnType=="CIRCLE") then newData.Amount = 1 end
 
     if(newData.SpawnType=="SINGLE") then
-        mod:spawnSingleObject(newData)
+        ToyboxMod:spawnSingleObject(newData)
     elseif(newData.SpawnType=="LINE") then
         local function timerLogic(effect)
             local rng = effect:GetDropRNG()
-            local oData = mod:getEntityData(effect, "COBJ_DATA")
+            local oData = ToyboxMod:getEntityData(effect, "COBJ_DATA")
             if(oData==nil) then
                 effect:Remove()
                 return
@@ -114,7 +114,7 @@ function mod:spawnCustomObjects(objData)
             if(oData.Index>0) then oData.Position = oData.Position+oData.Distance:Rotated( (rng:RandomFloat()-0.5)*oData.AngleVariation ) end
             local c = getGridColl(oData.Position)
             if(c<=oData.DestroyGrid) then
-                local obj = mod:spawnSingleObject(oData)
+                local obj = ToyboxMod:spawnSingleObject(oData)
 
                 if(oData.TimerExtraFunction) then oData.TimerExtraFunction(effect, oData.Index, oData.CircleIndex) end
                 oData.Index = oData.Index+1
@@ -123,17 +123,17 @@ function mod:spawnCustomObjects(objData)
                 effect:Remove()
                 return
             end
-            mod:setEntityData(effect, "COBJ_DATA", oData)
+            ToyboxMod:setEntityData(effect, "COBJ_DATA", oData)
         end
         local t =  Isaac.CreateTimer(timerLogic, newData.Delay, newData.Amount, false)
-        mod:setEntityData(t, "COBJ_DATA", newData)
+        ToyboxMod:setEntityData(t, "COBJ_DATA", newData)
         t:Update()
     elseif(newData.SpawnType=="CIRCLE") then
-        mod:spawnCircleObject(newData)
+        ToyboxMod:spawnCircleObject(newData)
     elseif(newData.SpawnType=="CIRCLELINE") then
         local function timerLogic(effect)
             local rng = effect:GetDropRNG()
-            local oData = mod:getEntityData(effect, "COBJ_DATA")
+            local oData = ToyboxMod:getEntityData(effect, "COBJ_DATA")
             if(oData==nil) then
                 effect:Remove()
                 return
@@ -142,7 +142,7 @@ function mod:spawnCustomObjects(objData)
             if(oData.CircleIndex>0) then oData.Radius = oData.Radius+oData.Distance end
             local c = getGridColl(oData.OGPosition)
             if(c<=oData.DestroyGrid) then
-                local obj = mod:spawnCircleObject(oData)
+                local obj = ToyboxMod:spawnCircleObject(oData)
 
                 if(oData.TimerExtraFunction) then oData.TimerExtraFunction(effect, oData.Index, oData.CircleIndex) end
                 oData.CircleIndex = oData.CircleIndex+1
@@ -151,36 +151,36 @@ function mod:spawnCustomObjects(objData)
                 effect:Remove()
                 return
             end
-            mod:setEntityData(effect, "COBJ_DATA", oData)
+            ToyboxMod:setEntityData(effect, "COBJ_DATA", oData)
         end
         local t = Isaac.CreateTimer(timerLogic, newData.Delay, newData.Amount, false)
-        mod:setEntityData(t, "COBJ_DATA", newData)
+        ToyboxMod:setEntityData(t, "COBJ_DATA", newData)
         t:Update()
     end
 end
 
-function mod:spawnSingleObject(objData)
+function ToyboxMod:spawnSingleObject(objData)
     local c = getGridColl(objData.Position)
     if(c<=objData.DestroyGrid) then
         local obj = Isaac.Spawn(objData.SpawnData[1], objData.SpawnData[2], objData.SpawnData[3], objData.Position, Vector(0,0), objData.SpawnerEntity)
         obj.CollisionDamage = objData.Damage
         obj.Color = objData.Color
 
-        local data = mod:getEntityDataTable(obj)
-        data.COBJ_DATA = mod:cloneTable(objData)
+        local data = ToyboxMod:getEntityDataTable(obj)
+        data.COBJ_DATA = ToyboxMod:cloneTable(objData)
         if(data.COBJ_DATA.ExtraFunction) then data.COBJ_DATA.ExtraFunction(obj, data.COBJ_DATA.Index, data.COBJ_DATA.CircleIndex) end
 
         data.COBJ_CUSTOM_OBJ = true
     end
 end
-function mod:spawnCircleObject(objData)
-    local rng = mod:generateRng()
+function ToyboxMod:spawnCircleObject(objData)
+    local rng = ToyboxMod:generateRng()
     objData.Index = 0
     for i=0, objData.RadiusCount-1 do
         local pos = objData.OGPosition+objData.Radius*Vector.FromAngle(360*(objData.Index/objData.RadiusCount)+(rng:RandomFloat()-0.5)*objData.AngleVariation)
         if(Game():GetRoom():IsPositionInRoom(pos, 0)) then
             objData.Position = pos
-            mod:spawnSingleObject(objData)
+            ToyboxMod:spawnSingleObject(objData)
         end
 
         objData.Index = objData.Index+1
@@ -191,31 +191,31 @@ local function customObjDamage(_, tookDmg, _, _, source)
     if(not (source.Entity)) then return end
 
     local e = source.Entity
-    local data = mod:getEntityData(e, "COBJ_DATA")
+    local data = ToyboxMod:getEntityData(e, "COBJ_DATA")
     if(data) then
         if(e.SpawnerEntity and GetPtrHash(e.SpawnerEntity)==GetPtrHash(tookDmg)) then return false end
         if(data.PlayerFriendly and tookDmg.Type==EntityType.ENTITY_PLAYER) then return false end
     end
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, customObjDamage)
+ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, customObjDamage)
 
 local function customObjPlayerDamage(_, tookDmg, _, _, source)
     if(not (source.Entity)) then return end
 
     local e = source.Entity
-    local data = mod:getEntityData(e, "COBJ_DATA")
+    local data = ToyboxMod:getEntityData(e, "COBJ_DATA")
     if(data) then
         if(e.SpawnerEntity and GetPtrHash(e.SpawnerEntity)==GetPtrHash(tookDmg)) then return false end
         if(data.PlayerFriendly) then return false end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, customObjPlayerDamage)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, customObjPlayerDamage)
 
 
 
 --! SPECIAL SHOCKWAVE LOGIC!!!
 local function specialShockwaveUpdate(_, effect)
-    local objData = mod:getEntityDataTable(effect).COBJ_DATA
+    local objData = ToyboxMod:getEntityDataTable(effect).COBJ_DATA
     if(not objData) then return end
 
     if(objData.DestroyGrid and objData.DestroyGrid>=1) then
@@ -241,4 +241,4 @@ local function specialShockwaveUpdate(_, effect)
         objData.CooldownFrames = objData.CooldownFrames-1
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, specialShockwaveUpdate, EffectVariant.ROCK_EXPLOSION)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, specialShockwaveUpdate, EffectVariant.ROCK_EXPLOSION)

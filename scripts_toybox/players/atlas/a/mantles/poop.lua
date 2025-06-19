@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --* better visual for heal pls
@@ -6,7 +6,7 @@ local sfx = SFXManager()
 local MANTLE_FLY_NUM = 2
 local MANTLE_FLY_CHANCE = 0.5
 local MANTLE_POOP_CHANCE = 0.1*1/3
-local MANTLE_POOP_RNG = mod:generateRng()
+local MANTLE_POOP_RNG = ToyboxMod:generateRng()
 
 local TRANSF_EXTRADROP_CHANCE = 0.1
 local TRANSF_DROP_PICKER = WeightedOutcomePicker()
@@ -32,26 +32,26 @@ TRANSF_DROP_PICKER:AddOutcomeFloat(8, 0.02, 100)
 --! MANTLE
 ---@param player EntityPlayer
 local function addPoopFlies(_, player)
-    if(not mod:isAtlasA(player)) then return end
-    local data = mod:getAtlasATable(player)
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.POOP.ID)
-    local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_POOP)
+    if(not ToyboxMod:isAtlasA(player)) then return end
+    local data = ToyboxMod:getAtlasATable(player)
+    local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.POOP.ID)
+    local rng = player:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_POOP)
 
     for _=1, numMantles do
         if(rng:RandomFloat()<MANTLE_FLY_CHANCE) then player:AddBlueFlies(MANTLE_FLY_NUM, player.Position, nil) end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, addPoopFlies)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, addPoopFlies)
 
 local function replaceRockSpawn(_, t,v,vardata,idx,seed)
     local finalChance = 0
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        if(mod:isAtlasA(pl)) then finalChance = finalChance+mod:getNumMantlesByType(pl, mod.MANTLE_DATA.POOP.ID) end
+        if(ToyboxMod:isAtlasA(pl)) then finalChance = finalChance+ToyboxMod:getNumMantlesByType(pl, ToyboxMod.MANTLE_DATA.POOP.ID) end
     end
     finalChance = finalChance*MANTLE_POOP_CHANCE
 
-    MANTLE_POOP_RNG = MANTLE_POOP_RNG or mod:generateRng()
+    MANTLE_POOP_RNG = MANTLE_POOP_RNG or ToyboxMod:generateRng()
     if(MANTLE_POOP_RNG:RandomFloat()<finalChance) then
         return {
             GridEntityType.GRID_POOP,
@@ -61,15 +61,15 @@ local function replaceRockSpawn(_, t,v,vardata,idx,seed)
         }
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_ROOM_GRID_ENTITY_SPAWN, replaceRockSpawn, GridEntityType.GRID_ROCK)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_GRID_ENTITY_SPAWN, replaceRockSpawn, GridEntityType.GRID_ROCK)
 
 --! TRANSF
 local function poopHeal(_, poop)
     local shouldDoTransfEffect = nil
-    for _, player in ipairs(mod:getAllAtlasA()) do
+    for _, player in ipairs(ToyboxMod:getAllAtlasA()) do
         player = player:ToPlayer()
-        if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
-            local didHeal = mod:addMantleHp(player, 1)
+        if(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.POOP.ID)) then
+            local didHeal = ToyboxMod:addMantleHp(player, 1)
             shouldDoTransfEffect = {player, didHeal}
 
             if(didHeal) then
@@ -88,17 +88,17 @@ local function poopHeal(_, poop)
         end
     end
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_POOP_DESTROY, poopHeal)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DESTROY, poopHeal)
 
 local function changePoopPickupPool(_, pickup, poop)
     local isAtlasPoop = false
-    for _, player in ipairs(mod:getAllAtlasA()) do
+    for _, player in ipairs(ToyboxMod:getAllAtlasA()) do
         player = player:ToPlayer()
-        if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.POOP.ID)) then
+        if(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.POOP.ID)) then
             isAtlasPoop = true
         end
     end
-    local rng = mod:generateRng(poop.Desc.SpawnSeed)
+    local rng = ToyboxMod:generateRng(poop.Desc.SpawnSeed)
 
     if(isAtlasPoop and (pickup or rng:RandomFloat()<TRANSF_EXTRADROP_CHANCE)) then
         return {
@@ -108,4 +108,4 @@ local function changePoopPickupPool(_, pickup, poop)
         }
     end
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POOP_SPAWN_DROP, changePoopPickupPool)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POOP_SPAWN_DROP, changePoopPickupPool)

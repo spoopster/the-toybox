@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 --TODO:
 --  the "drill" effect in the challenge rooms
@@ -49,13 +49,13 @@ local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
         local ogIdx = Game():GetLevel():GetCurrentRoomIndex()
 
         Ambush.SetMaxChallengeWaves(math.max(1, math.ceil(ogPrice/PRICE_PER_WAVE)))
-        mod:setExtraData("DRILLDATA", nil)
+        ToyboxMod:setExtraData("DRILLDATA", nil)
 
         Isaac.ExecuteCommand("goto s.challenge.0")
         Game():StartRoomTransition(GridRooms.ROOM_DEBUG_IDX, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT)
         
 
-        mod:setExtraData("DRILLDATA", {
+        ToyboxMod:setExtraData("DRILLDATA", {
             IS_ACTIVE = 1,
             FORCE_SET_AMBUSH = 1,
             ITEM_ID = spawnData,
@@ -72,10 +72,10 @@ local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, gildedAppleUse, mod.COLLECTIBLE.DRILL)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, gildedAppleUse, ToyboxMod.COLLECTIBLE_DRILL)
 
 local function postUpdate(_)
-    local data = mod:getExtraDataTable().DRILLDATA
+    local data = ToyboxMod:getExtraDataTable().DRILLDATA
     if(not data) then return end
     if(data.IS_ACTIVE~=1) then return end
 
@@ -83,10 +83,10 @@ local function postUpdate(_)
 
     if(data.IGNORE_RESET_DATA~=0) then
         data.IGNORE_RESET_DATA = 0
-        mod:setExtraData("DRILLDATA", data)
+        ToyboxMod:setExtraData("DRILLDATA", data)
     elseif(Game():GetRoom():GetType()~=RoomType.ROOM_CHALLENGE) then
         Ambush.SetMaxChallengeWaves(3)
-        mod:setExtraData("DRILLDATA", nil)
+        ToyboxMod:setExtraData("DRILLDATA", nil)
     end
 
     if(Game():GetRoom():GetType()~=RoomType.ROOM_CHALLENGE) then
@@ -111,12 +111,12 @@ local function postUpdate(_)
         end
     end
 
-    mod:setExtraData("DRILLDATA", data)
+    ToyboxMod:setExtraData("DRILLDATA", data)
 end
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)
 
 local function preNewRoom(_)
-    local data = mod:getExtraDataTable().DRILLDATA
+    local data = ToyboxMod:getExtraDataTable().DRILLDATA
     if(not data) then return end
 
     if(data.IS_ACTIVE==-1) then
@@ -129,15 +129,15 @@ local function preNewRoom(_)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_NEW_ROOM, preNewRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NEW_ROOM, preNewRoom)
 
 local function preIdxUpdate(_)
-    mod:setExtraData("DRILL_PREIDX", Game():GetLevel():GetCurrentRoomIndex())
+    ToyboxMod:setExtraData("DRILL_PREIDX", Game():GetLevel():GetCurrentRoomIndex())
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, preIdxUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, preIdxUpdate)
 
 local function getFreePickupPrice(_, var, st, id, price)
     if(id==FREE_PICKUP_ID) then return PickupPrice.PRICE_FREE end
 end
-mod:AddCallback(ModCallbacks.MC_GET_SHOP_ITEM_PRICE, getFreePickupPrice)
+ToyboxMod:AddCallback(ModCallbacks.MC_GET_SHOP_ITEM_PRICE, getFreePickupPrice)
 --]]

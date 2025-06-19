@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local DEATH_CHAMP_CHANCE = 4*0.01 --4%
 local HARD_BLACK_CHANCE = 0.33
@@ -9,7 +9,7 @@ local function npcInit(_, npc)
     local conf = EntityConfig.GetEntity(npc.Type, npc.Variant, npc.SubType)
     if(not (conf and conf:CanBeChampion())) then return end
 
-    local pageNum = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.MISSING_PAGE_3)
+    local pageNum = PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_MISSING_PAGE_3)
     if(pageNum<=0) then return end
 
     local rng = npc:GetDropRNG()
@@ -23,13 +23,13 @@ local function npcInit(_, npc)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, npcInit)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, npcInit)
 
 ---@param npc EntityNPC
 local function npcDeath(_, npc)
     if(not (npc:IsChampion() and npc:GetChampionColorIdx()==ChampionColor.DEATH)) then return end
 
-    if(PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.MISSING_PAGE_3)) then
+    if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_MISSING_PAGE_3)) then
         local chance = 1
         if(Game():IsHardMode()) then chance = HARD_BLACK_CHANCE end
 
@@ -38,4 +38,4 @@ local function npcDeath(_, npc)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, npcDeath)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, npcDeath)

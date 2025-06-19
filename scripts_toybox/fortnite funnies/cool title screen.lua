@@ -1,6 +1,6 @@
-local mod = ToyboxMod
+
 local conf = Isaac.GetItemConfig()
-if(not mod.CONFIG.AWESOME_FUCKING_TITLESCREEN) then return end
+if(not ToyboxMod.CONFIG.AWESOME_FUCKING_TITLESCREEN) then return end
 
 local CHANGED_MENU_SPRITE = false
 
@@ -23,15 +23,17 @@ local BIG_ITEMS = {
 }
 
 local ITEM_FILENAMES = {}
-for _, id in pairs(mod.COLLECTIBLE) do
-    local iconf = conf:GetCollectible(id)
-    if(not iconf.Hidden) then
-        table.insert(ITEM_FILENAMES, iconf.GfxFileName)
+
+for key, id in pairs(ToyboxMod) do
+    local iconf
+    if(string.find(key, "COLLECTIBLE_")) then
+        iconf = conf:GetCollectible(id)
     end
-end
-for _, id in pairs(mod.TRINKET) do
-    local iconf = conf:GetTrinket(id)
-    if(not iconf.Hidden) then
+    if(string.find(key, "TRINKET_")) then
+        iconf = conf:GetTrinket(id)
+    end
+
+    if(iconf and not iconf.Hidden) then
         table.insert(ITEM_FILENAMES, iconf.GfxFileName)
     end
 end
@@ -121,4 +123,4 @@ local function postMenuRender(_)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, postMenuRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, postMenuRender)

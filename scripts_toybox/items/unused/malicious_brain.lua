@@ -1,6 +1,6 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
---! this is the worst code ive written for this mod
+--! this is the worst code ive written for this ToyboxMod
 --* add overlay for adrenaline
 --* add sfx pleas
 
@@ -37,13 +37,13 @@ end
 ---@param player EntityPlayer
 local function checkFamiliars(_, player, cacheFlag)
     player:CheckFamiliar(
-        mod.FAMILIAR_VARIANT.HYPNOS,
-        (player:HasCollectible(mod.COLLECTIBLE.MALICIOUS_BRAIN) and 1 or 0),
-        player:GetCollectibleRNG(mod.COLLECTIBLE.MALICIOUS_BRAIN),
-        Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.MALICIOUS_BRAIN)
+        ToyboxMod.FAMILIAR_VARIANT.HYPNOS,
+        (player:HasCollectible(ToyboxMod.COLLECTIBLE_MALICIOUS_BRAIN) and 1 or 0),
+        player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_MALICIOUS_BRAIN),
+        Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_MALICIOUS_BRAIN)
     )
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, checkFamiliars, CacheFlag.CACHE_FAMILIARS)
 
 ---@param familiar EntityFamiliar
 local function postHypnosInit(_, familiar)
@@ -52,7 +52,7 @@ local function postHypnosInit(_, familiar)
     sprite.Offset = Vector(0, -22)
     sprite:GetLayer("goozma"):SetCustomShader("spriteshaders/goozmashader")
 
-    local data = mod:getEntityDataTable(familiar)
+    local data = ToyboxMod:getEntityDataTable(familiar)
     data.BRAIN_ANGLE = 0
     data.BRAIN_ANGLE_OFFSET = 0
     data.BRAIN_RAGECOUNTER = 0
@@ -61,11 +61,11 @@ local function postHypnosInit(_, familiar)
     data.BRAIN_ACTIVERAGELASER = nil
     data.STUPID_POS = false
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postHypnosInit, mod.FAMILIAR_VARIANT.HYPNOS)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postHypnosInit, ToyboxMod.FAMILIAR_VARIANT.HYPNOS)
 
 ---@param familiar EntityFamiliar
 local function postHypnosUpdate(_, familiar)
-    local data = mod:getEntityDataTable(familiar)
+    local data = ToyboxMod:getEntityDataTable(familiar)
     local player = (familiar.Player or Isaac.GetPlayer()):ToPlayer()
     local sprite = familiar:GetSprite()
 
@@ -90,20 +90,20 @@ local function postHypnosUpdate(_, familiar)
         familiar.Position = Vector.FromAngle(data.BRAIN_ANGLE+(data.BRAIN_ANGLE_OFFSET or 0))*ORBIT_DIST+player.Position+player.Velocity
         data.STUPID_POS = false
     else
-        data.BRAIN_ANGLE = (data.BRAIN_ANGLE or 0)+mod:lerp(ANGLE_SPEED,ANGLE_SPEED_MAX,(data.BRAIN_RAGECOUNTER<0 and 1 or math.min(1,data.BRAIN_RAGECOUNTER/RAGE_THRESHOLD)))*(hasSpin2Win and 5 or 1)
+        data.BRAIN_ANGLE = (data.BRAIN_ANGLE or 0)+ToyboxMod:lerp(ANGLE_SPEED,ANGLE_SPEED_MAX,(data.BRAIN_RAGECOUNTER<0 and 1 or math.min(1,data.BRAIN_RAGECOUNTER/RAGE_THRESHOLD)))*(hasSpin2Win and 5 or 1)
         local pos = Vector.FromAngle(data.BRAIN_ANGLE+(data.BRAIN_ANGLE_OFFSET or 0))*ORBIT_DIST+player.Position+player.Velocity
-        familiar.Velocity = mod:lerp(familiar.Velocity, pos-familiar.Position, 0.75)
+        familiar.Velocity = ToyboxMod:lerp(familiar.Velocity, pos-familiar.Position, 0.75)
     end
 
     --! RAGE COUNTER UPDATE
     if(data.BRAIN_RAGECOUNTER<0) then
         if(data.BRAIN_RAGECOUNTER~=-9999) then
-            data.BRAIN_RAGECOUNTER = data.BRAIN_RAGECOUNTER+(mod:isRoomClear() and 0.25 or 1)
+            data.BRAIN_RAGECOUNTER = data.BRAIN_RAGECOUNTER+(ToyboxMod:isRoomClear() and 0.25 or 1)
             if(not (data.BRAIN_ACTIVERAGELASER and data.BRAIN_ACTIVERAGELASER:Exists())) then
                 local tPos = familiar.Position
-                local cl = mod:closestEnemy(familiar.Position)
+                local cl = ToyboxMod:closestEnemy(familiar.Position)
                 if(cl) then tPos = cl.Position end
-                mod:setEntityData(familiar, "TTARGETPOSiton", tPos)
+                ToyboxMod:setEntityData(familiar, "TTARGETPOSiton", tPos)
 
                 if(data.BRAIN_STRESSACTIVE) then
                     local laser = Isaac.Spawn(7,LaserVariant.GIANT_RED,0,familiar.Position,familiar.Velocity,familiar):ToLaser()
@@ -114,11 +114,11 @@ local function postHypnosUpdate(_, familiar)
                     laser.Mass = 0
 
                     local ag = (tPos-laser.Position):GetAngleDegrees()
-                    local agDif = mod:angleDifference(laser.AngleDegrees, ag)
+                    local agDif = ToyboxMod:angleDifference(laser.AngleDegrees, ag)
                     laser:SetActiveRotation(0, agDif, agDif, false)
                     
-                    mod:setEntityData(laser, "MALICIOUS_BRAIN_LASER", -2)
-                    mod:setEntityData(laser, "STRESSED_OUT", true)
+                    ToyboxMod:setEntityData(laser, "MALICIOUS_BRAIN_LASER", -2)
+                    ToyboxMod:setEntityData(laser, "STRESSED_OUT", true)
                     data.BRAIN_ACTIVERAGELASER = laser
                 else
                     for i=0, RAGE_NUMLASERS-1 do
@@ -129,12 +129,12 @@ local function postHypnosUpdate(_, familiar)
                         laser.Timeout = 9999
 
                         local ag = (tPos-laser.Position):GetAngleDegrees()
-                        local agDif = mod:angleDifference(laser.AngleDegrees, ag)
+                        local agDif = ToyboxMod:angleDifference(laser.AngleDegrees, ag)
                         laser:SetActiveRotation(0, agDif, agDif, false)
                         laser:SetMaxDistance(laser.Position:Distance(tPos)+3)
                         
-                        mod:setEntityData(laser, "MALICIOUS_BRAIN_LASER", i)
-                        if(data.BRAIN_STRESSACTIVE) then mod:setEntityData(laser, "STRESSED_OUT", true) end
+                        ToyboxMod:setEntityData(laser, "MALICIOUS_BRAIN_LASER", i)
+                        if(data.BRAIN_STRESSACTIVE) then ToyboxMod:setEntityData(laser, "STRESSED_OUT", true) end
                     end
 
                     local circleLaser = Isaac.Spawn(7,2,3,familiar.Position,familiar.Velocity,familiar):ToLaser()
@@ -143,8 +143,8 @@ local function postHypnosUpdate(_, familiar)
                     circleLaser.Parent = familiar
                     circleLaser.DisableFollowParent = false
                     circleLaser.Timeout = 9999
-                    mod:setEntityData(circleLaser, "MALICIOUS_BRAIN_LASER", -1)
-                    if(data.BRAIN_STRESSACTIVE) then mod:setEntityData(circleLaser, "STRESSED_OUT", true) end
+                    ToyboxMod:setEntityData(circleLaser, "MALICIOUS_BRAIN_LASER", -1)
+                    if(data.BRAIN_STRESSACTIVE) then ToyboxMod:setEntityData(circleLaser, "STRESSED_OUT", true) end
 
                     data.BRAIN_ACTIVERAGELASER = circleLaser
                 end
@@ -159,19 +159,19 @@ local function postHypnosUpdate(_, familiar)
             data.BRAIN_RAGECOUNTER = -RAGE_DURATION
             if(hasBffs) then data.BRAIN_STRESSACTIVE = true end
         end
-    elseif(not mod:isRoomClear()) then
-        local closest = mod:closestEnemy(player.Position)
+    elseif(not ToyboxMod:isRoomClear()) then
+        local closest = ToyboxMod:closestEnemy(player.Position)
         local fl = 1
         if(closest~=nil) then
             local dist = player.Position:Distance(closest.Position)
-            fl = mod:clamp( (dist-RAGE_CHARGE_DISTMIN)/(RAGE_CHARGE_DISTMAX-RAGE_CHARGE_DISTMIN), 0, 1)
+            fl = ToyboxMod:clamp( (dist-RAGE_CHARGE_DISTMIN)/(RAGE_CHARGE_DISTMAX-RAGE_CHARGE_DISTMIN), 0, 1)
         end
-        data.BRAIN_RAGECOUNTER = math.min(RAGE_THRESHOLD, data.BRAIN_RAGECOUNTER+RAGE_THRESHOLD*0.01*mod:lerp(RAGE_CHARGE_MAXINCREASE,RAGE_CHARGE_MININCREASE,fl))
+        data.BRAIN_RAGECOUNTER = math.min(RAGE_THRESHOLD, data.BRAIN_RAGECOUNTER+RAGE_THRESHOLD*0.01*ToyboxMod:lerp(RAGE_CHARGE_MAXINCREASE,RAGE_CHARGE_MININCREASE,fl))
     end
 
     --! RAGE COUNTER UPDATE
     data.BRAIN_ADRENALINECOUNTER = data.BRAIN_ADRENALINECOUNTER or 0
-    if(Game():GetRoom():GetType()==RoomType.ROOM_BOSS and not mod:isRoomClear()) then
+    if(Game():GetRoom():GetType()==RoomType.ROOM_BOSS and not ToyboxMod:isRoomClear()) then
         data.BRAIN_ADRENALINECOUNTER = Game():GetRoom():GetFrameCount()
         if((data.BRAIN_ADRENALINECOUNTER%4==0 and data.BRAIN_ADRENALINECOUNTER<=ADRENALE_DURATION) or data.BRAIN_ADRENALINECOUNTER==ADRENALE_DURATION) then
             player:AddCacheFlags(CacheFlag.CACHE_DAMAGE,true)
@@ -195,24 +195,24 @@ local function postHypnosUpdate(_, familiar)
         familiar:GetSprite().Color:SetColorize(1,1,1,scaledframe-math.floor(scaledframe))
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postHypnosUpdate, mod.FAMILIAR_VARIANT.HYPNOS)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postHypnosUpdate, ToyboxMod.FAMILIAR_VARIANT.HYPNOS)
 
 local function fuckYouStupidBitch(_)
-    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.HYPNOS)) do
-        mod:setEntityData(ent, "STUPID_POS", true)
+    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.HYPNOS)) do
+        ToyboxMod:setEntityData(ent, "STUPID_POS", true)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, fuckYouStupidBitch)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, fuckYouStupidBitch)
 
 ---@param player EntityPlayer
 local function triggerHypnosEffects(_, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE.MALICIOUS_BRAIN)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_MALICIOUS_BRAIN)) then return end
 
     local pPtr = GetPtrHash(player)
-    for _, brain in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.HYPNOS)) do
+    for _, brain in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.HYPNOS)) do
         if(GetPtrHash(brain:ToFamiliar().Player)==pPtr) then
             local sprite = brain:GetSprite()
-            local data = mod:getEntityDataTable(brain)
+            local data = ToyboxMod:getEntityDataTable(brain)
             if((data.BRAIN_RAGECOUNTER or 0)>=RAGE_THRESHOLD) then
                 data.BRAIN_RAGECOUNTER = -9999
                 sprite:Play("RageStart", true)
@@ -227,43 +227,43 @@ local function triggerHypnosEffects(_, player)
         end
     end
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_DOUBLE_TAP, triggerHypnosEffects)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_DOUBLE_TAP, triggerHypnosEffects)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE.MALICIOUS_BRAIN)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_MALICIOUS_BRAIN)) then return end
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
         local dmgMult = 1
         local pPtr = GetPtrHash(player)
-        for _, brain in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, mod.FAMILIAR_VARIANT.HYPNOS)) do
-            local adrCnt = (mod:getEntityData(brain, "BRAIN_ADRENALINECOUNTER") or 0)
+        for _, brain in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.HYPNOS)) do
+            local adrCnt = (ToyboxMod:getEntityData(brain, "BRAIN_ADRENALINECOUNTER") or 0)
             if(GetPtrHash(brain:ToFamiliar().Player)==pPtr and adrCnt>0) then
-                dmgMult = dmgMult*mod:lerp(ADRENEL_DMGMULT, 1, math.min(adrCnt/ADRENALE_DURATION, 1))
+                dmgMult = dmgMult*ToyboxMod:lerp(ADRENEL_DMGMULT, 1, math.min(adrCnt/ADRENALE_DURATION, 1))
             end
         end
 
         player.Damage = player.Damage*dmgMult
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 --! fix the weird thing
 ---@param laser EntityLaser
 local function brainLaserUpdate(_, laser)
-    local data = mod:getEntityDataTable(laser)
+    local data = ToyboxMod:getEntityDataTable(laser)
     if(data.MALICIOUS_BRAIN_LASER==nil) then return end
 
     local sp = laser.SpawnerEntity
     if(not sp) then return end
 
-    if((mod:getEntityData(sp, "BRAIN_RAGECOUNTER") or 0)>=0 and laser:GetTimeout()>1) then
+    if((ToyboxMod:getEntityData(sp, "BRAIN_RAGECOUNTER") or 0)>=0 and laser:GetTimeout()>1) then
         laser:SetTimeout(1)
         return
     end
 
-    if(mod:getEntityData(laser, "STRESSED_OUT")) then
+    if(ToyboxMod:getEntityData(laser, "STRESSED_OUT")) then
         local shiColor = hueShift((laser.FrameCount*15)%360)
         laser.Color = Color(0,0,0,1,shiColor.R,shiColor.G,shiColor.B)
     end
@@ -273,40 +273,40 @@ local function brainLaserUpdate(_, laser)
         laser.Velocity = (newLaserPos-laser.Position)/2
         laser.Position = newLaserPos
 
-        local oldPos = mod:getEntityData(sp, "TTARGETPOSiton") or sp.Position
+        local oldPos = ToyboxMod:getEntityData(sp, "TTARGETPOSiton") or sp.Position
 
         local tPos = sp.Position
-        local closest = mod:closestEnemy(sp.Position)
+        local closest = ToyboxMod:closestEnemy(sp.Position)
         if(closest) then tPos = closest.Position end
-        if(oldPos:Distance(tPos)>=RAGE_MAXLASERANGLEROT) then tPos = mod:lerp(oldPos, tPos, 0.5) end
-        mod:setEntityData(sp, "TTARGETPOSiton", tPos)
+        if(oldPos:Distance(tPos)>=RAGE_MAXLASERANGLEROT) then tPos = ToyboxMod:lerp(oldPos, tPos, 0.5) end
+        ToyboxMod:setEntityData(sp, "TTARGETPOSiton", tPos)
 
         local ag = (tPos-laser.Position):GetAngleDegrees()
-        local agDif = mod:angleDifference(laser.AngleDegrees, ag)
+        local agDif = ToyboxMod:angleDifference(laser.AngleDegrees, ag)
         laser:SetActiveRotation(0, agDif, math.min(agDif, RAGE_MAXLASERANGLEROT), false)
         laser:SetMaxDistance(laser.Position:Distance(tPos)-16)
     elseif(data.MALICIOUS_BRAIN_LASER==-2) then -- giga stress laser
-        local oldPos = mod:getEntityData(sp, "TTARGETPOSiton") or sp.Position
+        local oldPos = ToyboxMod:getEntityData(sp, "TTARGETPOSiton") or sp.Position
 
         local tPos = sp.Position
-        local closest = mod:closestEnemy(sp.Position)
+        local closest = ToyboxMod:closestEnemy(sp.Position)
         if(closest) then tPos = closest.Position end
-        if(oldPos:Distance(tPos)>=RAGE_MAXLASERANGLEROT) then tPos = mod:lerp(oldPos, tPos, 0.5) end
-        mod:setEntityData(sp, "TTARGETPOSiton", tPos)
+        if(oldPos:Distance(tPos)>=RAGE_MAXLASERANGLEROT) then tPos = ToyboxMod:lerp(oldPos, tPos, 0.5) end
+        ToyboxMod:setEntityData(sp, "TTARGETPOSiton", tPos)
 
         local ag = (tPos-laser.Position):GetAngleDegrees()
-        local agDif = mod:angleDifference(laser.AngleDegrees, ag)
+        local agDif = ToyboxMod:angleDifference(laser.AngleDegrees, ag)
         laser:SetActiveRotation(0, agDif, math.min(agDif, RAGE_MAXLASERANGLEROT), false)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, brainLaserUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, brainLaserUpdate)
 
 local f = Font()
 f:Load("font/pftempestasevencondensed.fnt")
 
 ---@param familiar EntityFamiliar
 local function hypnoRender(_, familiar)
-    local data = mod:getEntityDataTable(familiar)
+    local data = ToyboxMod:getEntityDataTable(familiar)
     local player = (familiar.Player or Isaac.GetPlayer()):ToPlayer()
     local sprite = familiar:GetSprite()
 
@@ -328,4 +328,4 @@ local function hypnoRender(_, familiar)
     f:DrawStringScaled(tostring(time).."s", pos.X-200,pos.Y+10,1,1,tColor,400, true)
     f:DrawStringScaled(tostring(familiar.CollisionDamage), pos.X-200, pos.Y+20,1,1,pColor,400,true)
 end
---mod:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, hypnoRender, mod.FAMILIAR_VARIANT.HYPNOS)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, hypnoRender, ToyboxMod.FAMILIAR_VARIANT.HYPNOS)

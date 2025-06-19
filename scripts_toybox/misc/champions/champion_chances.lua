@@ -1,6 +1,6 @@
-local mod = ToyboxMod
 
-function mod:getVanillaChampionChance()
+
+function ToyboxMod:getVanillaChampionChance()
     local beltNum = PlayerManager.GetNumCollectibles(CollectibleType.COLLECTIBLE_CHAMPION_BELT)
     local heartNum = PlayerManager.GetTotalTrinketMultiplier(TrinketType.TRINKET_PURPLE_HEART)
 
@@ -12,11 +12,11 @@ function mod:getVanillaChampionChance()
 
     return baseChance
 end
-function mod:getChampionChance()
-    local baseChance = mod:getVanillaChampionChance()
+function ToyboxMod:getChampionChance()
+    local baseChance = ToyboxMod:getVanillaChampionChance()
 
-    local numMilcoms = #Isaac.FindByType(1,0,mod.PLAYER_TYPE.MILCOM_A)
-    baseChance = baseChance*(1+mod.MILCOM_CHAMPION_CHANCE_INC*numMilcoms)
+    local numMilcoms = #Isaac.FindByType(1,0,ToyboxMod.PLAYER_TYPE.MILCOM_A)
+    baseChance = baseChance*(1+ToyboxMod.MILCOM_CHAMPION_CHANCE_INC*numMilcoms)
     --print(baseChance)
 
     return baseChance
@@ -24,15 +24,15 @@ end
 
 
 
-mod.DENY_CHAMP_ROLL = false
+ToyboxMod.DENY_CHAMP_ROLL = false
 
 ---@param npc EntityNPC
 local function tryMakeModChampion(npc)
-    if(mod.DENY_CHAMP_ROLL) then return end
+    if(ToyboxMod.DENY_CHAMP_ROLL) then return end
     if(not EntityConfig.GetEntity(npc.Type, npc.Variant, npc.SubType):CanBeChampion()) then return end
 
-    local vanillaChance = mod:getVanillaChampionChance()
-    local chanceDif = mod:getChampionChance()-vanillaChance
+    local vanillaChance = ToyboxMod:getVanillaChampionChance()
+    local chanceDif = ToyboxMod:getChampionChance()-vanillaChance
     if(npc:GetDropRNG():RandomFloat()<chanceDif/(1-vanillaChance)) then
         npc:MakeChampion(math.max(Random(),1), -1, true)
     end
@@ -45,4 +45,4 @@ local function makeModChampions(_)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, makeModChampions)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, makeModChampions)

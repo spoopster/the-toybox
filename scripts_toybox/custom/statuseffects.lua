@@ -1,11 +1,11 @@
-local mod = ToyboxMod
+
 
 local statusSprite = Sprite("gfx/ui/tb_custom_statuses.anm2", true)
 
-mod.CUSTOM_STATUS_EFFECTS = {}
+ToyboxMod.CUSTOM_STATUS_EFFECTS = {}
 
-function mod:addCustomStatusEffect(animName, overlayColor, applyCondition)
-    table.insert(mod.CUSTOM_STATUS_EFFECTS,
+function ToyboxMod:addCustomStatusEffect(animName, overlayColor, applyCondition)
+    table.insert(ToyboxMod.CUSTOM_STATUS_EFFECTS,
         {
             ANIMATION = animName,
             COLOR = overlayColor,
@@ -14,11 +14,11 @@ function mod:addCustomStatusEffect(animName, overlayColor, applyCondition)
     )
 end
 
---mod:addCustomStatusEffect("Test2", function(npc) return true end)
+--ToyboxMod:addCustomStatusEffect("Test2", function(npc) return true end)
 
 local function npcRender(_, npc, offset)
     local toRender = {}
-    for _, data in ipairs(mod.CUSTOM_STATUS_EFFECTS) do
+    for _, data in ipairs(ToyboxMod.CUSTOM_STATUS_EFFECTS) do
         if(data.CONDITION(npc)) then
             table.insert(toRender, data.ANIMATION)
         end
@@ -38,20 +38,20 @@ local function npcRender(_, npc, offset)
         statusSprite:Render(rPos)
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_NPC_RENDER, math.huge, npcRender)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_NPC_RENDER, math.huge, npcRender)
 
 local function npcUpdate(_, npc)
     local selIdx = -1
-    for i, data in ipairs(mod.CUSTOM_STATUS_EFFECTS) do
+    for i, data in ipairs(ToyboxMod.CUSTOM_STATUS_EFFECTS) do
         if(data.CONDITION(npc)) then
             selIdx=i
         end
     end
 
     if(selIdx~=-1) then
-        npc:SetColor(mod.CUSTOM_STATUS_EFFECTS[selIdx].COLOR, 2, 1, false, false)
+        npc:SetColor(ToyboxMod.CUSTOM_STATUS_EFFECTS[selIdx].COLOR, 2, 1, false, false)
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_NPC_RENDER, math.huge, npcUpdate)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_NPC_RENDER, math.huge, npcUpdate)
 
 --

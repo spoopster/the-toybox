@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local registry = require("scripts.tcainrework.stored.id_to_iteminfo")
 
@@ -11,7 +11,7 @@ sp:GetLayer(0):SetCustomShader("spriteshaders/mengershader")
 ---@param slot ActiveSlot
 ---@param offset Vector
 local function renderActiveItem(_, pl, slot, offset, alpha, scale, chargebaroffset)
-    if(pl:GetActiveItem(slot)~=mod.COLLECTIBLE.COMPRESSED_DICE) then return end
+    if(pl:GetActiveItem(slot)~=ToyboxMod.COLLECTIBLE_COMPRESSED_DICE) then return end
     if(slot~=ActiveSlot.SLOT_PRIMARY) then return end
 
     sp.Scale = Vector(1,1)
@@ -23,7 +23,7 @@ local function renderActiveItem(_, pl, slot, offset, alpha, scale, chargebaroffs
 
     return true
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_ACTIVE_ITEM, renderActiveItem)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_ACTIVE_ITEM, renderActiveItem)
 
 ---@param rng RNG
 ---@param pl EntityPlayer
@@ -32,11 +32,11 @@ local function useCompressedDice(_, _, rng, pl)
     pl:UseActiveItem(CollectibleType.COLLECTIBLE_CLICKER)
     Isaac.StartNewGame(pl:GetPlayerType(), Challenge.CHALLENGE_NULL, rng:RandomInt(4))
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useCompressedDice, mod.COLLECTIBLE.COMPRESSED_DICE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useCompressedDice, ToyboxMod.COLLECTIBLE_COMPRESSED_DICE)
 
 ---@param pickup EntityPickup
 local function pickupRender(_, pickup, offset)
-    if(pickup.SubType~=mod.COLLECTIBLE.COMPRESSED_DICE) then return end
+    if(pickup.SubType~=ToyboxMod.COLLECTIBLE_COMPRESSED_DICE) then return end
 
     local pSp = pickup:GetSprite()
     local frameData = pSp:GetLayerFrameData(1)
@@ -52,12 +52,12 @@ local function pickupRender(_, pickup, offset)
     local layer = sp:GetLayer(0)
     layer:SetColor(Color(1,1,1,1,0,0,0,(Game():GetFrameCount()/30),0,0,0))
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, pickupRender, PickupVariant.PICKUP_COLLECTIBLE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, pickupRender, PickupVariant.PICKUP_COLLECTIBLE)
 
 ---@param pl EntityPlayer
 local function playerRender(_, pl, offset)
     local queuedItem = pl.QueuedItem
-    if(not (queuedItem.Item and queuedItem.Item.ID==mod.COLLECTIBLE.COMPRESSED_DICE)) then return end
+    if(not (queuedItem.Item and queuedItem.Item.ID==ToyboxMod.COLLECTIBLE_COMPRESSED_DICE)) then return end
 
     if(not Game():IsPaused()) then
         local heldsp = pl:GetHeldSprite()
@@ -75,4 +75,4 @@ local function playerRender(_, pl, offset)
     local layer = sp:GetLayer(0)
     layer:SetColor(Color(1,1,1,1,0,0,0,(Game():GetFrameCount()/30),0,0,0))
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, playerRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, playerRender)

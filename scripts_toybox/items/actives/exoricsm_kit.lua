@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local ENEMY_DAMAGE = 40
@@ -7,7 +7,7 @@ local HOLY_COLORMOD = ColorModifier(1, 1, 1, 0.5, 0.5, 1.5)
 ---@param rng RNG
 ---@param pl EntityPlayer
 local function exorcismUse(_, _, rng, pl, flags, slot, vdata)
-    local nearestEnemy = mod:closestEnemy(pl.Position) ---@type EntityNPC?
+    local nearestEnemy = ToyboxMod:closestEnemy(pl.Position) ---@type EntityNPC?
     if(not nearestEnemy) then
         return {
             Discharge = false,
@@ -39,4 +39,4 @@ local function exorcismUse(_, _, rng, pl, flags, slot, vdata)
         Remove = false,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, exorcismUse, mod.COLLECTIBLE.EXORCISM_KIT)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, exorcismUse, ToyboxMod.COLLECTIBLE_EXORCISM_KIT)

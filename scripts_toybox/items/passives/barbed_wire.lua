@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local HALO_SIZE = 50
@@ -6,10 +6,10 @@ local RETALIATE_DMG = 1.5
 
 ---@param pl EntityPlayer
 local function updateBarbedHalo(_, pl)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     local barbHalo = data.BARBED_HALO
 
-    if(not pl:HasCollectible(mod.COLLECTIBLE.BARBED_WIRE)) then
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_BARBED_WIRE)) then
         if(barbHalo and barbHalo:Exists()) then
             barbHalo:Remove()
             data.BARBED_HALO = nil
@@ -19,7 +19,7 @@ local function updateBarbedHalo(_, pl)
     end
 
     if(not (barbHalo and barbHalo:Exists())) then
-        barbHalo = Isaac.Spawn(EntityType.ENTITY_EFFECT, mod.EFFECT_VARIANT.BARBED_WIRE_HALO, 0, pl.Position, Vector.Zero, pl):ToEffect()
+        barbHalo = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.BARBED_WIRE_HALO, 0, pl.Position, Vector.Zero, pl):ToEffect()
         barbHalo:FollowParent(pl)
 
         data.BARBED_HALO = barbHalo
@@ -27,14 +27,14 @@ local function updateBarbedHalo(_, pl)
 
     barbHalo.SpriteRotation = (pl.FrameCount/2)%360
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateBarbedHalo)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateBarbedHalo)
 
 ---@param pl EntityPlayer
 local function checkForBarbedProjectiles(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.BARBED_WIRE)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_BARBED_WIRE)) then return end
 
     for _, proj in ipairs(Isaac.FindInRadius(pl.Position, HALO_SIZE, EntityPartition.BULLET)) do
-        local data = mod:getEntityDataTable(proj)
+        local data = ToyboxMod:getEntityDataTable(proj)
         data.BARBED_BLACKLIST = data.BARBED_BLACKLIST or {}
 
         if(not data.BARBED_BLACKLIST[pl.InitSeed]) then
@@ -42,7 +42,7 @@ local function checkForBarbedProjectiles(_, pl)
 
             local target = (proj.SpawnerEntity)
             if(target) then
-                target:TakeDamage(RETALIATE_DMG*pl:GetCollectibleNum(mod.COLLECTIBLE.BARBED_WIRE), 0, EntityRef(pl), 0)
+                target:TakeDamage(RETALIATE_DMG*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BARBED_WIRE), 0, EntityRef(pl), 0)
 
                 local spawnPos = proj.Position+proj.Velocity+Vector(0, proj:ToProjectile().Height)
                 local impact = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.IMPACT, 0, spawnPos, Vector.Zero, nil)
@@ -51,4 +51,4 @@ local function checkForBarbedProjectiles(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, checkForBarbedProjectiles)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, checkForBarbedProjectiles)

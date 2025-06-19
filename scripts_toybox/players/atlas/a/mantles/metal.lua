@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --* maybe make sfx better
@@ -32,46 +32,46 @@ local CREEP_VARIANTS = {
 }
 
 local function getBlockChance(player)
-    if(not mod:isAtlasA(player)) then return 0 end
+    if(not ToyboxMod:isAtlasA(player)) then return 0 end
 
-    return BLOCKCHANCE_MANTLE*mod:getNumMantlesByType(player, mod.MANTLE_DATA.METAL.ID)+BLOCKCHANCE_TRANSF*(mod:atlasHasTransformation(player, mod.MANTLE_DATA.METAL.ID) and 1 or 0)
+    return BLOCKCHANCE_MANTLE*ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.METAL.ID)+BLOCKCHANCE_TRANSF*(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.METAL.ID) and 1 or 0)
 end
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not mod:isAtlasA(player)) then return end
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.METAL.ID)
+    if(not ToyboxMod:isAtlasA(player)) then return end
+    local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.METAL.ID)
 
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+SPEED_UP*numMantles
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player Entity
 ---@param source EntityRef
 ---@param flags DamageFlag
 local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, frames)
-    if(not mod:isAtlasA(player:ToPlayer())) then return end
+    if(not ToyboxMod:isAtlasA(player:ToPlayer())) then return end
     player = player:ToPlayer()
 
     if(dmg>0) then
         local blockChance = getBlockChance(player)
-        if(mod:atlasHasTransformation(player, mod.MANTLE_DATA.METAL.ID)) then
+        if(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.METAL.ID)) then
             if(flags & DamageFlag.DAMAGE_SPIKES~=0 and Game():GetRoom():GetType()~=RoomType.ROOM_SACRIFICE) then blockChance = 1
             elseif(flags & DamageFlag.DAMAGE_ACID~=0) then blockChance = 1 end
         end
 
-        local rng = player:GetCardRNG(mod.CONSUMABLE.MANTLE_METAL)
+        local rng = player:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_METAL)
         if(rng:RandomFloat()<blockChance) then
             player:SetMinDamageCooldown(BLOCK_DMGCOOLDOWN*(player:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
             player:SetColor(Color(0,0,0.5,1,0.9,0.9,1),10,0,true,false)
 
-            sfx:Play(mod.SOUND_EFFECT.ATLASA_METALBLOCK)
+            sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_METALBLOCK)
 
             return false
         end
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12, cancelAtlasAMetalMantleDamage, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e12, cancelAtlasAMetalMantleDamage, EntityType.ENTITY_PLAYER)

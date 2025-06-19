@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local LASER_RING_MAXSIZE = 60 --radius
 local LASER_RING_DECREASEBY = 0.55
@@ -8,7 +8,7 @@ local LASER_SPARK_COOLDOWN = 10
 
 ---@param player Entity
 local function increaseLaserRing(player, increaseMod, decreaseMod)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
 
     if(not (data.TECH_IX_LASER_RING and data.TECH_IX_LASER_RING:Exists())) then
         data.TECH_IX_LASER_RING = Isaac.Spawn(7,2,3,player.Position,player.Velocity,player):ToLaser()
@@ -16,12 +16,12 @@ local function increaseLaserRing(player, increaseMod, decreaseMod)
         data.TECH_IX_LASER_RING.CollisionDamage = 0.8
         data.TECH_IX_LASER_RING.Parent = player
 
-        mod:setEntityData(data.TECH_IX_LASER_RING, "IS_TECH_IX_LASER", decreaseMod or 1)
+        ToyboxMod:setEntityData(data.TECH_IX_LASER_RING, "IS_TECH_IX_LASER", decreaseMod or 1)
     end
 
     local tearsMod = 0
-    if(player.Type==EntityType.ENTITY_FAMILIAR) then tearsMod = (2.73/mod:getTps(player:ToFamiliar().Player))
-    else tearsMod = (2.73/mod:getTps(player:ToPlayer())) end
+    if(player.Type==EntityType.ENTITY_FAMILIAR) then tearsMod = (2.73/ToyboxMod:getTps(player:ToFamiliar().Player))
+    else tearsMod = (2.73/ToyboxMod:getTps(player:ToPlayer())) end
 
     if(tearsMod<1) then tearsMod = tearsMod^(1/2) end
 
@@ -30,20 +30,20 @@ local function increaseLaserRing(player, increaseMod, decreaseMod)
 end
 
 local function updateLaserRing(_, laser)
-    if(not mod:getEntityData(laser, "IS_TECH_IX_LASER")) then return end
+    if(not ToyboxMod:getEntityData(laser, "IS_TECH_IX_LASER")) then return end
 
-    laser.Radius = math.max(0, laser.Radius-LASER_RING_DECREASEBY*mod:getEntityData(laser, "IS_TECH_IX_LASER"))
+    laser.Radius = math.max(0, laser.Radius-LASER_RING_DECREASEBY*ToyboxMod:getEntityData(laser, "IS_TECH_IX_LASER"))
     if(laser.Radius==0) then laser:Die() end
 
-    mod:setEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN", math.max(0, (mod:getEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN") or 0)-1))
+    ToyboxMod:setEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN", math.max(0, (ToyboxMod:getEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN") or 0)-1))
 end
-mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, updateLaserRing, LaserVariant.THIN_RED)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, updateLaserRing, LaserVariant.THIN_RED)
 
 local function laserRingCollision(_, laser, coll)
-    if(not (laser and mod:getEntityData(laser, "IS_TECH_IX_LASER"))) then return end
-    if(not (mod:isValidEnemy(coll))) then return end
+    if(not (laser and ToyboxMod:getEntityData(laser, "IS_TECH_IX_LASER"))) then return end
+    if(not (ToyboxMod:isValidEnemy(coll))) then return end
 
-    if(mod:getEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN")==0) then
+    if(ToyboxMod:getEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN")==0) then
         local p = Isaac.GetPlayer()
         if(laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()) then p = laser.SpawnerEntity:ToPlayer() end
 
@@ -58,16 +58,16 @@ local function laserRingCollision(_, laser, coll)
 
         coll:TakeDamage(laser2.CollisionDamage, 0, EntityRef(p), 0)
 
-        mod:setEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN", LASER_SPARK_COOLDOWN)
+        ToyboxMod:setEntityData(laser, "TECHIX_RING_SPARK_COOLDOWN", LASER_SPARK_COOLDOWN)
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_LASER_COLLISION, laserRingCollision)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_LASER_COLLISION, laserRingCollision)
 
 local function playerAttack(_, ent, weap, dir, cMod)
     local p = ent:ToPlayer()
     if(ent.Type==EntityType.ENTITY_FAMILIAR and ent:ToFamiliar().Player) then p = ent:ToFamiliar().Player:ToPlayer() end
 
-    if(p and p:HasCollectible(mod.COLLECTIBLE.TECH_IX)) then
+    if(p and p:HasCollectible(ToyboxMod.COLLECTIBLE_TECH_IX)) then
         local cMod2 = 1
         local t = weap:GetWeaponType()
 
@@ -83,4 +83,4 @@ local function playerAttack(_, ent, weap, dir, cMod)
         increaseLaserRing(ent, cMod, cMod2)
     end
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_PLAYER_ATTACK, playerAttack)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_ATTACK, playerAttack)

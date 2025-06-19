@@ -1,19 +1,19 @@
-local mod = ToyboxMod
+
 --* You can pick up and throw poops by using this item
 --? maybe make custom rainbow, giant and charming poop variants for the entity
 --? if possible make it hold up poop enemies bc funny
 
 local function justUsedPoop(_, item, rng, player)
-    if(not mod:playerHasLimitBreak(player)) then return end
-    mod:setEntityData(player, "JUST_USED_POOP", true)
+    if(not ToyboxMod:playerHasLimitBreak(player)) then return end
+    ToyboxMod:setEntityData(player, "JUST_USED_POOP", true)
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, justUsedPoop, CollectibleType.COLLECTIBLE_POOP)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, justUsedPoop, CollectibleType.COLLECTIBLE_POOP)
 
 ---@param pl EntityPlayer
 local function postPlayerUpdate(_, pl)
-    if(not mod:playerHasLimitBreak(pl)) then return end
-    if(mod:getEntityData(pl, "JUST_USED_POOP")) then
-        mod:setEntityData(pl, "JUST_USED_POOP", nil)
+    if(not ToyboxMod:playerHasLimitBreak(pl)) then return end
+    if(ToyboxMod:getEntityData(pl, "JUST_USED_POOP")) then
+        ToyboxMod:setEntityData(pl, "JUST_USED_POOP", nil)
         return
     end
 
@@ -83,4 +83,4 @@ local function postPlayerUpdate(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate, 0)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postPlayerUpdate, 0)

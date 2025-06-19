@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local EVIL_TINTEDROCK_COLOR = Color(1,0.9,0.9,1,0,0,0,0.9,0.8,0.8,1)
 local EVIL_TINTEDSPIDER_COLOR = Color(0.9,0.85,0.85,1,0,0,0,0.8,0.8,0.8,1)
@@ -23,7 +23,7 @@ local EVIL_TINTEDROCK_PICKUP_MORPHS = {
     },
     {
         ORIGINAL = {{5,100,0}}, -- item
-        MORPH = {{5,100,mod.COLLECTIBLE.ONYX, 1.0}}, -- obsidian chunk
+        MORPH = {{5,100,ToyboxMod.COLLECTIBLE_ONYX, 1.0}}, -- obsidian chunk
     },
 }
 
@@ -57,7 +57,7 @@ end
 ---@param rock GridEntityRock
 ---@param offset Vector
 local function renderEvilAfterimages(_, rock, offset)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.EVIL_ROCK)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EVIL_ROCK)) then return end
     if(rock.State==2) then return end
 
     local renderPos = Isaac.WorldToRenderPosition(rock.Position)+offset-Vector(0,1)
@@ -78,16 +78,16 @@ local function renderEvilAfterimages(_, rock, offset)
 
     sp.Color = EVIL_TINTEDROCK_COLOR
 end
-mod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, renderEvilAfterimages, GridEntityType.GRID_ROCKT)
-mod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, renderEvilAfterimages, GridEntityType.GRID_ROCK_SS)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, renderEvilAfterimages, GridEntityType.GRID_ROCKT)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, renderEvilAfterimages, GridEntityType.GRID_ROCK_SS)
 
 ---@param rock GridEntityRock
 ---@param type GridEntityType
 ---@param immediate boolean
 local function replaceEvilTintedRockDrops(_, rock, type, immediate)
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.EVIL_ROCK)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EVIL_ROCK)) then return end
 
-    local rng = mod:generateRng(rock:GetSaveState().SpawnSeed) ---@type RNG
+    local rng = ToyboxMod:generateRng(rock:GetSaveState().SpawnSeed) ---@type RNG
     
     for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP)) do ---@type Entity
         pickup = pickup:ToPickup() ---@cast pickup EntityPickup
@@ -97,13 +97,13 @@ local function replaceEvilTintedRockDrops(_, rock, type, immediate)
         end
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_GRID_ROCK_DESTROY, CallbackPriority.LATE, replaceEvilTintedRockDrops, GridEntityType.GRID_ROCKT)
-mod:AddPriorityCallback(ModCallbacks.MC_POST_GRID_ROCK_DESTROY, CallbackPriority.LATE, replaceEvilTintedRockDrops, GridEntityType.GRID_ROCK_SS)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_GRID_ROCK_DESTROY, CallbackPriority.LATE, replaceEvilTintedRockDrops, GridEntityType.GRID_ROCKT)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_GRID_ROCK_DESTROY, CallbackPriority.LATE, replaceEvilTintedRockDrops, GridEntityType.GRID_ROCK_SS)
 
 ---@param ent EntityNPC
 local function preTintedSpiderUpdate(_, ent)
     if(ent.Variant~=1) then return end
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.EVIL_ROCK)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EVIL_ROCK)) then return end
 
     ent.Color = EVIL_TINTEDSPIDER_COLOR
     ent.SplatColor = EVIL_TINTEDROCK_COLOR
@@ -113,4 +113,4 @@ local function preTintedSpiderUpdate(_, ent)
         return true
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preTintedSpiderUpdate, EntityType.ENTITY_ROCK_SPIDER)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, preTintedSpiderUpdate, EntityType.ENTITY_ROCK_SPIDER)

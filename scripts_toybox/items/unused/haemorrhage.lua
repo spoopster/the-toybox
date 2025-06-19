@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local FREQ_CHECK_DEFAULT = 90
@@ -14,8 +14,8 @@ local TEARS_FIRED_MAX = 20
 local DMG_MULT = 1
 
 ---@param pl EntityPlayer
-function mod:doHemorrhageEffect(pl)
-    local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE.HEMORRHAGE)
+function ToyboxMod:doHemorrhageEffect(pl)
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_HEMORRHAGE)
     local tearsNum = rng:RandomInt(TEARS_FIRED_MIN, TEARS_FIRED_MAX)
 
     for _=1, tearsNum do
@@ -39,13 +39,13 @@ local function addHaemorrhage(_, item, _, firstTime, _, _, player)
 
     player:AddBoneHearts(BONEHEART_ADD)
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, mod.COLLECTIBLE.HEMORRHAGE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, ToyboxMod.COLLECTIBLE_HEMORRHAGE)
 
 ---@param pl EntityPlayer
 local function hemorrhageEffectCheck(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.HEMORRHAGE)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_HEMORRHAGE)) then return end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.HAEMORRHAGE_COUNTDOWN = (data.HAEMORRHAGE_COUNTDOWN or 0)
 
     local freq = FREQ_CHECK_DEFAULT
@@ -65,17 +65,17 @@ local function hemorrhageEffectCheck(_, pl)
         print("Yeah")
 
         data.HEMORRHAGE_TEARS_HELD = 0
-        local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE.HEMORRHAGE)
+        local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_HEMORRHAGE)
 
-        if(rng:RandomFloat()<CHECK_CHANCE*pl:GetCollectibleNum(mod.COLLECTIBLE.HEMORRHAGE)) then
-            mod:doHemorrhageEffect(pl)
+        if(rng:RandomFloat()<CHECK_CHANCE*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_HEMORRHAGE)) then
+            ToyboxMod:doHemorrhageEffect(pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, hemorrhageEffectCheck)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, hemorrhageEffectCheck)
 
 ---@param player Entity
 local function increaseIntensity(_, player, _, flags, source)
-    mod:setEntityData(player:ToPlayer(), "HAEMORRHAGE_COUNTDOWN", HURT_INTENSITY_INCREASE_DURATION)
+    ToyboxMod:setEntityData(player:ToPlayer(), "HAEMORRHAGE_COUNTDOWN", HURT_INTENSITY_INCREASE_DURATION)
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, increaseIntensity, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, increaseIntensity, EntityType.ENTITY_PLAYER)

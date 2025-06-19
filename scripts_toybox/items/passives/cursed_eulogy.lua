@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 -- make the default collectible evil breakfast be like
@@ -14,10 +14,10 @@ POOL_PICKER:AddOutcomeWeight(ItemPoolType.POOL_RED_CHEST, 1)
 local function tryReplacePool(_, pool, dec, seed)
     if(CANCEL_CHECK_EFFECT) then return end
 
-    local totalEulogyNum = PlayerManager.GetNumCollectibles(mod.COLLECTIBLE.CURSED_EULOGY)
+    local totalEulogyNum = PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_CURSED_EULOGY)
     if(totalEulogyNum<=0) then return end
 
-    local rng = mod:generateRng(seed)
+    local rng = ToyboxMod:generateRng(seed)
 
     if(rng:RandomFloat()<totalEulogyNum*REPLACE_CHANCE) then
         local pickedPool = POOL_PICKER:PickOutcome(rng)
@@ -33,13 +33,13 @@ local function tryReplacePool(_, pool, dec, seed)
         return pickedItem
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, tryReplacePool)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, tryReplacePool)
 
 ---@param pickup EntityPickup
 local function doEvilEffect(_, pickup)
     local shouldDoEvilEffect = false
 
-    local poolSeed = mod:generateRng(pickup.InitSeed):RandomInt(2^32-1)
+    local poolSeed = ToyboxMod:generateRng(pickup.InitSeed):RandomInt(2^32-1)
     for _, seed in ipairs(MARKED_SEEDS) do
         if(seed==poolSeed) then
             shouldDoEvilEffect = true
@@ -56,9 +56,9 @@ local function doEvilEffect(_, pickup)
         pickup:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, doEvilEffect)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, doEvilEffect)
 
 local function clearSeedsTable(_)
     MARKED_SEEDS = {}
 end
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, clearSeedsTable)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, clearSeedsTable)

@@ -3,7 +3,7 @@
 ---@field Condition function?
 ---@field ToModify table
 
-local mod = ToyboxMod
+
 local STORED = {
     ITEMS = {},
     TRINKETS = {},
@@ -156,10 +156,10 @@ local AtlasTransformationSprites = Sprite("gfx/eid/tb_eid_mantleicons.anm2", tru
     EID:addIcon("AtlasATransformationTar", "TarMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
 
 local PlayerIconSprites = Sprite("gfx/eid/tb_eid_playericons.anm2", true)
-    EID:addIcon("Player"..tostring(mod.PLAYER_TYPE.ATLAS_A), "AtlasA", 0, 16, 16, 5, 6, PlayerIconSprites)
-    EID:addIcon("Player"..tostring(mod.PLAYER_TYPE.ATLAS_A_TAR), "AtlasATar", 0, 16, 16, 5, 6, PlayerIconSprites)
-    EID:addIcon("Player"..tostring(mod.PLAYER_TYPE.JONAS_A), "JonasA", 0, 16, 16, 5, 6, PlayerIconSprites)
-    EID:addIcon("Player"..tostring(mod.PLAYER_TYPE.MILCOM_A), "MilcomA", 0, 16, 16, 5, 6, PlayerIconSprites)
+    EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A), "AtlasA", 0, 16, 16, 5, 6, PlayerIconSprites)
+    EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR), "AtlasATar", 0, 16, 16, 5, 6, PlayerIconSprites)
+    EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.JONAS_A), "JonasA", 0, 16, 16, 5, 6, PlayerIconSprites)
+    EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A), "MilcomA", 0, 16, 16, 5, 6, PlayerIconSprites)
 
 local MiscIconSprites = Sprite("gfx/eid/tb_eid_miscicons.anm2", true)
     EID:addIcon("ToyboxElectrifiedStatus", "Icons", 0, 16, 16, 5, 6, MiscIconSprites)
@@ -187,10 +187,10 @@ STORED.CONSTANTS = {
     Icon_AtlasEmpty = "AtlasATransformationEmpty",
     Icon_AtlasTar = "AtlasATransformationTar",
 
-    Icon_PlayerAtlas = "Player"..tostring(mod.PLAYER_TYPE.ATLAS_A),
-    Icon_PlayerAtlasTar = "Player"..tostring(mod.PLAYER_TYPE.ATLAS_A_TAR),
-    Icon_PlayerJonas = "Player"..tostring(mod.PLAYER_TYPE.JONAS_A),
-    Icon_PlayerMilcom = "Player"..tostring(mod.PLAYER_TYPE.MILCOM_A),
+    Icon_PlayerAtlas = "Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A),
+    Icon_PlayerAtlasTar = "Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR),
+    Icon_PlayerJonas = "Player"..tostring(ToyboxMod.PLAYER_TYPE.JONAS_A),
+    Icon_PlayerMilcom = "Player"..tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A),
 
     Icon_StatusElectrified = "ToyboxElectrifiedStatus",
     Icon_StatusOverflowing = "ToyboxOverflowingStatus",

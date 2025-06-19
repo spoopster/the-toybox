@@ -1,10 +1,10 @@
-local mod = ToyboxMod
+
 --* Using an active has a chance to trigger the Necronomicon effect
 
 ---@param player EntityPlayer
 local function missingPage2UseActive(_, player, item, slot)
     if(item and item==CollectibleType.COLLECTIBLE_NECRONOMICON) then return end
-    if(not (player and player:HasCollectible(CollectibleType.COLLECTIBLE_MISSING_PAGE_2) and mod:playerHasLimitBreak(player))) then return end
+    if(not (player and player:HasCollectible(CollectibleType.COLLECTIBLE_MISSING_PAGE_2) and ToyboxMod:playerHasLimitBreak(player))) then return end
     local iConfig = Isaac.GetItemConfig():GetCollectible(item)
     if(not iConfig) then return end
 
@@ -21,4 +21,4 @@ local function missingPage2UseActive(_, player, item, slot)
         player:UseActiveItem(CollectibleType.COLLECTIBLE_NECRONOMICON)
     end
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.USE_ACTIVE_ITEM, missingPage2UseActive)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.USE_ACTIVE_ITEM, missingPage2UseActive)

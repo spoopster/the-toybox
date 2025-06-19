@@ -1,23 +1,23 @@
-local mod = ToyboxMod
+
 
 --#region DATA
 
 ---@param player EntityPlayer
-function mod:getMilcomATable(player)
-    local tb = mod:getEntityDataTable(player).MILCOM_A_DATA
-    if(tb==nil) then mod:setEntityData(player, "MILCOM_A_DATA", mod:cloneTable(mod.MILCOM_A_BASEDATA)) end
+function ToyboxMod:getMilcomATable(player)
+    local tb = ToyboxMod:getEntityDataTable(player).MILCOM_A_DATA
+    if(tb==nil) then ToyboxMod:setEntityData(player, "MILCOM_A_DATA", ToyboxMod:cloneTable(ToyboxMod.MILCOM_A_BASEDATA)) end
 
-    return mod:getEntityDataTable(player).MILCOM_A_DATA or {}
+    return ToyboxMod:getEntityDataTable(player).MILCOM_A_DATA or {}
 end
 ---@param player EntityPlayer
 ---@param key string
-function mod:getMilcomAData(player, key)
-    return mod:getMilcomATable(player)[key]
+function ToyboxMod:getMilcomAData(player, key)
+    return ToyboxMod:getMilcomATable(player)[key]
 end
 ---@param player EntityPlayer
 ---@param key string
-function mod:setMilcomAData(player, key, val)
-    mod:getMilcomATable(player)[key] = val
+function ToyboxMod:setMilcomAData(player, key, val)
+    ToyboxMod:getMilcomATable(player)[key] = val
 end
 
 --#endregion

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local prePlacedRooms = {}
 
@@ -6,7 +6,7 @@ local prePlacedRooms = {}
 local function postLayoutGenerated(_, generator)
     prePlacedRooms = {}
 end
-mod:AddCallback(ModCallbacks.MC_POST_LEVEL_LAYOUT_GENERATED, postLayoutGenerated)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_LEVEL_LAYOUT_GENERATED, postLayoutGenerated)
 
 ---@param genRoom LevelGeneratorRoom
 ---@param roomConf RoomConfigRoom
@@ -23,4 +23,4 @@ local function placeRoom(_, genRoom, roomConf, seed)
 
     table.insert(prePlacedRooms[genRoom:Shape()], roomConf)
 end
-mod:AddCallback(ModCallbacks.MC_PRE_LEVEL_PLACE_ROOM, placeRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_LEVEL_PLACE_ROOM, placeRoom)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local TEAR_CAP = 5*2
 local TEARS_UP = 1
@@ -36,10 +36,10 @@ local ignoreTearCalc = false
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     if(ignoreTearCalc) then return end
-    if(not pl:HasCollectible(mod.COLLECTIBLE.CATHARSIS)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_CATHARSIS)) then return end
     ignoreTearCalc = true
 
-    local tearsMult = mod:getVanillaTearMultiplier(pl)
+    local tearsMult = ToyboxMod:getVanillaTearMultiplier(pl)
     local ogFiredelay = pl.MaxFireDelay
     local numAdded = 0
     while(pl.MaxFireDelay==ogFiredelay) do
@@ -47,16 +47,16 @@ local function evalCache(_, pl)
         pl:AddCollectible(CollectibleType.COLLECTIBLE_SACRED_HEART, 0, false)
     end
 
-    local newTears = firedelayToTears(mod:toFireDelay(mod:toTps(pl.MaxFireDelay)/tearsMult))
+    local newTears = firedelayToTears(ToyboxMod:toFireDelay(ToyboxMod:toTps(pl.MaxFireDelay)/tearsMult))
     local finalTearsStat = newTears+0.4*numAdded
 
     for _=1, numAdded do pl:RemoveCollectible(CollectibleType.COLLECTIBLE_SACRED_HEART, true, 0, false) end
 
-    local finalTps = mod:toTps(tearsToFiredelay(finalTearsStat))*tearsMult
-    pl.MaxFireDelay = mod:toFireDelay(math.min(finalTps, TEAR_CAP*tearsMult))
+    local finalTps = ToyboxMod:toTps(tearsToFiredelay(finalTearsStat))*tearsMult
+    pl.MaxFireDelay = ToyboxMod:toFireDelay(math.min(finalTps, TEAR_CAP*tearsMult))
 
-    mod:addBasicTearsUp(pl, TEARS_UP*pl:GetCollectibleNum(mod.COLLECTIBLE.CATHARSIS))
+    ToyboxMod:addBasicTearsUp(pl, TEARS_UP*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_CATHARSIS))
 
     ignoreTearCalc = false
 end
-mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, -math.huge, evalCache, CacheFlag.CACHE_FIREDELAY)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, -math.huge, evalCache, CacheFlag.CACHE_FIREDELAY)

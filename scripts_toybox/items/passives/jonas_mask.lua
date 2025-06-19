@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --#region MASK
@@ -9,25 +9,25 @@ local NUM_TOSPAWN = 1
 local function evalCache(_, pl)
     local numFamiliers = {[0]=0, [1]=0, [2]=0}
 
-    local numCollectibles = pl:GetCollectibleNum(mod.COLLECTIBLE.JONAS_MASK)+pl:GetEffects():GetCollectibleEffectNum(mod.COLLECTIBLE.JONAS_MASK)
-    local rng = mod:generateRng(Game():GetLevel():GetDungeonPlacementSeed()+pl:GetPlayerIndex())
+    local numCollectibles = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_JONAS_MASK)+pl:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_JONAS_MASK)
+    local rng = ToyboxMod:generateRng(Game():GetLevel():GetDungeonPlacementSeed()+pl:GetPlayerIndex())
     for _=1, numCollectibles do
         local idx = rng:RandomInt(3)
         numFamiliers[idx] = numFamiliers[idx]+1
     end
 
-    local plrng = pl:GetCollectibleRNG(mod.COLLECTIBLE.JONAS_MASK)
+    local plrng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_JONAS_MASK)
     for i=0, 2 do
         pl:CheckFamiliar(
-            mod.FAMILIAR_VARIANT.MASK_SHADOW,
+            ToyboxMod.FAMILIAR_VARIANT.MASK_SHADOW,
             numFamiliers[i],
             plrng,
-            Isaac.GetItemConfig():GetCollectible(mod.COLLECTIBLE.JONAS_MASK),
+            Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_JONAS_MASK),
             i
         )
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
 --#endregion
 
 --#region FLY FAMILIAR
@@ -59,13 +59,13 @@ local function shadowFlyUpdate(fam)
     local sp = fam:GetSprite()
     local rng = fam:GetDropRNG()
 
-    local data = mod:getEntityDataTable(fam)
+    local data = ToyboxMod:getEntityDataTable(fam)
 
     if(fam.State==0) then
         if((data.SHADOW_FIRE_COOL or 0)<=0 and fam.FrameCount%SCREAM_TRYFREQ==0) then
             local enemyNum = 0
             for _, enemy in ipairs(Isaac.FindInRadius(fam.Position, SCREAM_TRYRADIUS, EntityPartition.ENEMY)) do
-                if(mod:isValidEnemy(enemy)) then
+                if(ToyboxMod:isValidEnemy(enemy)) then
                     enemyNum = enemyNum+1
                 end
             end
@@ -89,7 +89,7 @@ local function shadowFlyUpdate(fam)
         if(sp:IsEventTriggered("Scream")) then
             local poof = Isaac.Spawn(1000,144,1,fam.Position,Vector.Zero,fam):ToEffect()
             sfx:Play(SoundEffect.SOUND_DEMON_HIT)
-            --sfx:Play(mod.SOUND_EFFECT.SHADOW_SCREAM, 1, 0, false, 0.95+rng:RandomFloat()*0.1)
+            --sfx:Play(ToyboxMod.SOUND_EFFECT.SHADOW_SCREAM, 1, 0, false, 0.95+rng:RandomFloat()*0.1)
 
             local screamShockwave = Isaac.Spawn(1000, EffectVariant.SIREN_RING, 0, fam.Position, Vector.Zero, fam):ToEffect()
             screamShockwave.SpriteScale = Vector(1,1)*0.6
@@ -147,7 +147,7 @@ end
 local function shadowCrawlerUpdate(fam)
     local sp = fam:GetSprite()
     local rng = fam:GetDropRNG()
-    local data = mod:getEntityDataTable(fam)
+    local data = ToyboxMod:getEntityDataTable(fam)
 
     data.TARGET_POS = data.TARGET_POS or Vector.Zero
 
@@ -157,7 +157,7 @@ local function shadowCrawlerUpdate(fam)
         if(fam.FireCooldown%CRAWLER_ACTION_FREQ==0) then
             local target = nil
             for _, enemy in ipairs(Isaac.FindInRadius(fam.Position, CRAWLER_TARGET_DIST, EntityPartition.ENEMY)) do
-                if(mod:isValidEnemy(enemy) and Game():GetRoom():CheckLine(enemy.Position, fam.Position, LineCheckMode.ENTITY)) then
+                if(ToyboxMod:isValidEnemy(enemy) and Game():GetRoom():CheckLine(enemy.Position, fam.Position, LineCheckMode.ENTITY)) then
                     target = enemy
                 end
             end
@@ -188,7 +188,7 @@ local function shadowCrawlerUpdate(fam)
                 sp:Play("Walk", true)
             end
         elseif(fam.FireCooldown%CRAWLER_ACTION_FREQ<CRAWLER_MOVE_DUR) then
-            fam.Velocity = mod:lerp(fam.Velocity, (data.TARGET_POS or Vector.Zero):Resized(CRAWLER_SPEED), 0.6)
+            fam.Velocity = ToyboxMod:lerp(fam.Velocity, (data.TARGET_POS or Vector.Zero):Resized(CRAWLER_SPEED), 0.6)
         else
             if(sp:GetAnimation()~="Idle") then
                 sp:Play("Idle", true)
@@ -206,7 +206,7 @@ local function shadowCrawlerUpdate(fam)
         if(sp:IsEventTriggered("Land")) then
             fam.FireCooldown = CRAWLER_JUMP_FRAMES
 
-            if(not mod:isRoomClear()) then
+            if(not ToyboxMod:isRoomClear()) then
                 local poof = Isaac.Spawn(1000,144,1,fam.Position,Vector.Zero,fam):ToEffect()
                 sfx:Play(SoundEffect.SOUND_DEMON_HIT)
                 local screamShockwave = Isaac.Spawn(1000, EffectVariant.SIREN_RING, 0, fam.Position, Vector.Zero, fam):ToEffect()
@@ -218,7 +218,7 @@ local function shadowCrawlerUpdate(fam)
                 end
 
                 for _, enemy in ipairs(Isaac.FindInRadius(fam.Position, CRAWLER_EXP_RADIUS, EntityPartition.ENEMY)) do
-                    if(mod:isValidEnemy(enemy) and Game():GetRoom():CheckLine(enemy.Position, fam.Position, LineCheckMode.EXPLOSION)) then
+                    if(ToyboxMod:isValidEnemy(enemy) and Game():GetRoom():CheckLine(enemy.Position, fam.Position, LineCheckMode.EXPLOSION)) then
                         enemy:TakeDamage(CRAWLER_EXP_DAMAGE, DamageFlag.DAMAGE_EXPLOSION, EntityRef(fam), 0)
                         enemy:AddSlowing(EntityRef(fam), CRAWLER_EXP_SLOWDUR, 0.7, Color(1,0.9,0.9,1,0.3,0,0))
                     end
@@ -275,7 +275,7 @@ local function shadowUrchinUpdate(fam)
 
     fam.OrbitDistance = ORBIT_RADIUS
     fam.OrbitSpeed = ORBIT_SPEED
-    fam.Velocity = mod:lerp(fam.Velocity, (fam:GetOrbitPosition(pl.Position+pl.Velocity)-fam.Position), 0.5)
+    fam.Velocity = ToyboxMod:lerp(fam.Velocity, (fam:GetOrbitPosition(pl.Position+pl.Velocity)-fam.Position), 0.5)
 
     if(fam.State==0) then
         local projectiles = Isaac.FindInRadius(fam.Position, fam.Size, EntityPartition.BULLET)
@@ -323,15 +323,15 @@ local PARTICLE_SPAWNFREQ = 2
 
 ---@param fam EntityFamiliar
 local function shadowFamiliarInit(_, fam)
-    if(fam.SubType==mod.FAMILIAR_MASK_SHADOW_SUBTYPE.FLY) then
+    if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.FLY) then
         shadowFlyInit(fam)
-    elseif(fam.SubType==mod.FAMILIAR_MASK_SHADOW_SUBTYPE.URCHIN) then
+    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.URCHIN) then
         shadowUrchinInit(fam)
-    elseif(fam.SubType==mod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
+    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
         shadowCrawlerInit(fam)
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, shadowFamiliarInit, mod.FAMILIAR_VARIANT.MASK_SHADOW)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, shadowFamiliarInit, ToyboxMod.FAMILIAR_VARIANT.MASK_SHADOW)
 
 ---@param fam EntityFamiliar
 local function shadowFamiliarUpdate(_, fam)
@@ -345,20 +345,20 @@ local function shadowFamiliarUpdate(_, fam)
             particle.Color = Color(0,0,0,1)
             particle.SpriteScale = Vector(1,1)*0.5
 
-            if(fam.SubType==mod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
+            if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
                 particle.SpriteOffset = Vector(0,7)
             end
         end
     end
 
-    if(fam.SubType==mod.FAMILIAR_MASK_SHADOW_SUBTYPE.FLY) then
+    if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.FLY) then
         shadowFlyUpdate(fam)
-    elseif(fam.SubType==mod.FAMILIAR_MASK_SHADOW_SUBTYPE.URCHIN) then
+    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.URCHIN) then
         shadowUrchinUpdate(fam)
-    elseif(fam.SubType==mod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
+    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
         shadowCrawlerUpdate(fam)
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, shadowFamiliarUpdate, mod.FAMILIAR_VARIANT.MASK_SHADOW)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, shadowFamiliarUpdate, ToyboxMod.FAMILIAR_VARIANT.MASK_SHADOW)
 
 --#endregion

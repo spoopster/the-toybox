@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local WAS_MILCOM_EXIST = false
 
@@ -10,10 +10,10 @@ local GRAY_COLOR = KColor(0.5,0.5,0.5,1)
 local function postGameStarted(_)
     WAS_MILCOM_EXIST = false
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted)
 
 local function postRender(_)
-    local isMilcomExist = PlayerManager.AnyoneIsPlayerType(mod.PLAYER_TYPE.MILCOM_A)
+    local isMilcomExist = PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.MILCOM_A)
     local sp = Game():GetHUD():GetPickupsHUDSprite()
     if(isMilcomExist and not WAS_MILCOM_EXIST) then
         sp:ReplaceSpritesheet(0, "gfx/ui/tb_ui_milcom_hud.png", true)
@@ -24,7 +24,7 @@ local function postRender(_)
 
     if(not Game():GetHUD():IsVisible()) then return end
 
-    local pl = PlayerManager.FirstPlayerByType(mod.PLAYER_TYPE.MILCOM_A)
+    local pl = PlayerManager.FirstPlayerByType(ToyboxMod.PLAYER_TYPE.MILCOM_A)
     if(not pl) then return end
 
     local renderPos = Vector(20,12)*Options.HUDOffset + Vector(16,45) + Game().ScreenShakeOffset
@@ -51,4 +51,4 @@ local function postRender(_)
     end
     PICKUPS_FONT:DrawString(keyText, renderPos.X, renderPos.Y+12, GRAY_COLOR)
 end
-mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, postRender)

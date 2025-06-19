@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local JAM_CHANCE = 0.075
@@ -7,7 +7,7 @@ local FLAT_COIN_ADD = {1,3}
 
 
 local function spawnPyramidNoTreasure()
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.PYRAMID_SCHEME)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_PYRAMID_SCHEME)) then return end
 
     local hasTreasure = false
     local rooms = Game():GetLevel():GetRooms()
@@ -22,29 +22,29 @@ local function spawnPyramidNoTreasure()
         local room = Game():GetRoom()
         local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos()+Vector(0,-1)*40)
 
-        local pyramid = Isaac.Spawn(6,mod.SLOT_VARIANT.PYRAMID_DONATION,0,pos,Vector.Zero,nil)
+        local pyramid = Isaac.Spawn(6,ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION,0,pos,Vector.Zero,nil)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, spawnPyramidNoTreasure)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, spawnPyramidNoTreasure)
 
 local function spawnPyramidTreasure()
-    if(not PlayerManager.AnyoneHasCollectible(mod.COLLECTIBLE.PYRAMID_SCHEME)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_PYRAMID_SCHEME)) then return end
     local room = Game():GetRoom()
 
     if(room:IsFirstVisit() and room:GetType()==RoomType.ROOM_TREASURE) then
         local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos())
 
-        local pyramid = Isaac.Spawn(6,mod.SLOT_VARIANT.PYRAMID_DONATION,0,pos,Vector.Zero,nil)
+        local pyramid = Isaac.Spawn(6,ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION,0,pos,Vector.Zero,nil)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, spawnPyramidTreasure)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, spawnPyramidTreasure)
 
 ---@param slot EntitySlot
 local function postSlotInit(_, slot)
     slot:SetState(1)
     slot:SetSize(slot.Size, Vector(2,1)*slot.SizeMulti, 24)
 end
-mod:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, postSlotInit, mod.SLOT_VARIANT.PYRAMID_DONATION)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, postSlotInit, ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION)
 
 ---@param slot EntitySlot
 local function updateDonoDisplay(slot)
@@ -111,7 +111,7 @@ local function postSlotUpdate(_, slot)
         sp:Play("Broken")
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate, mod.SLOT_VARIANT.PYRAMID_DONATION)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate, ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION)
 
 ---@param slot EntitySlot
 local function slotExplosionDrops(_, slot)
@@ -142,11 +142,11 @@ local function slotExplosionDrops(_, slot)
 
     local numCoins = #coinStack
     for i, subtype in ipairs(coinStack) do
-        local dir = Vector.FromAngle(360*(i+mod:randomRange(rng,-0.5,0.5))/numCoins)*3
+        local dir = Vector.FromAngle(360*(i+ToyboxMod:randomRange(rng,-0.5,0.5))/numCoins)*3
 
         local coin = Isaac.Spawn(5,PickupVariant.PICKUP_COIN,subtype,slot.Position,dir,nil):ToPickup()
     end
 
     return false
 end
-mod:AddCallback(ModCallbacks.MC_PRE_SLOT_CREATE_EXPLOSION_DROPS, slotExplosionDrops, mod.SLOT_VARIANT.PYRAMID_DONATION)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_SLOT_CREATE_EXPLOSION_DROPS, slotExplosionDrops, ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local DMG_UP = 1.5
 local MOVE_DELAY = 60*2
@@ -16,12 +16,12 @@ local dirString = {
 
 ---@param player EntityPlayer
 local function evalCache(_, player, flags)
-    if(not player:HasCollectible(mod.COLLECTIBLE.ZERO_GRAVITY)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_ZERO_GRAVITY)) then return end
 
-    local num = player:GetCollectibleNum(mod.COLLECTIBLE.ZERO_GRAVITY)
-    mod:addBasicDamageUp(player, DMG_UP*num)
+    local num = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_ZERO_GRAVITY)
+    ToyboxMod:addBasicDamageUp(player, DMG_UP*num)
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_DAMAGE)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_DAMAGE)
 
 local function validGridColl(pl, coll)
     if(pl.CanFly and coll==GridCollisionClass.COLLISION_WALL) then
@@ -35,8 +35,8 @@ end
 
 ---@param pl EntityPlayer
 local function zeroGravPlUpdate(_, pl)
-    local data = mod:getEntityDataTable(pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.ZERO_GRAVITY)) then
+    local data = ToyboxMod:getEntityDataTable(pl)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_ZERO_GRAVITY)) then
         if(data.ZEROGRAV_CROSSHAIR and data.ZEROGRAV_CROSSHAIR:Exists()) then
             data.ZEROGRAV_CROSSHAIR:Remove()
             data.ZEROGRAV_CROSSHAIR = nil
@@ -46,7 +46,7 @@ local function zeroGravPlUpdate(_, pl)
 
     local crosshair = data.ZEROGRAV_CROSSHAIR
     if(not (crosshair and crosshair:Exists())) then
-        crosshair = Isaac.Spawn(1000, mod.EFFECT_VARIANT.ZERO_GRAV_CROSSHAIR, 0, pl.Position, Vector.Zero, pl):ToEffect()
+        crosshair = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.ZERO_GRAV_CROSSHAIR, 0, pl.Position, Vector.Zero, pl):ToEffect()
 
         crosshair.Size = pl.Size
         crosshair.SizeMulti = pl.SizeMulti
@@ -84,7 +84,7 @@ local function zeroGravPlUpdate(_, pl)
         end
         
         local maxlength = 0.513935*(pl.MoveSpeed^4)-1.19424*(pl.MoveSpeed^3)+1.71604*(pl.MoveSpeed^2)+0.862579*(pl.MoveSpeed)+2.52133
-        crosshair.Velocity = mod:lerp(crosshair.Velocity, pl:GetMovementVector()*maxlength*2, 0.25)
+        crosshair.Velocity = ToyboxMod:lerp(crosshair.Velocity, pl:GetMovementVector()*maxlength*2, 0.25)
 
         local validVel = Vector.Zero
 
@@ -130,7 +130,7 @@ local function zeroGravPlUpdate(_, pl)
         table.remove(data.ZEROGRAV_MOVEMENT_INPUTS, 1)
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_UPDATE, zeroGravPlUpdate, PlayerVariant.PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_UPDATE, zeroGravPlUpdate, PlayerVariant.PLAYER)
 
 ---@param effect EntityEffect
 local function crosshairInit(_, effect)
@@ -138,16 +138,16 @@ local function crosshairInit(_, effect)
     trail:FollowParent(effect)
     trail.ParentOffset = effect.PositionOffset+TRAIL_OFFSET
     trail.MinRadius = 0.15/(5*MOVE_DELAY/60)
-    mod:setEntityData(trail, "ZEROGRAV_TRAIL", effect)
+    ToyboxMod:setEntityData(trail, "ZEROGRAV_TRAIL", effect)
 
     trail:Update()
 
     effect.DepthOffset = -1000
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, crosshairInit, mod.EFFECT_VARIANT.ZERO_GRAV_CROSSHAIR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, crosshairInit, ToyboxMod.EFFECT_VARIANT.ZERO_GRAV_CROSSHAIR)
 
 local function trailRender(_, effect, offset)
-    local trailParent = mod:getEntityData(effect, "ZEROGRAV_TRAIL")
+    local trailParent = ToyboxMod:getEntityData(effect, "ZEROGRAV_TRAIL")
     if(not trailParent) then return end
 
     if(trailParent:Exists()) then
@@ -158,4 +158,4 @@ local function trailRender(_, effect, offset)
         effect.Color = Color(1,0,0,0)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, trailRender, EffectVariant.SPRITE_TRAIL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, trailRender, EffectVariant.SPRITE_TRAIL)

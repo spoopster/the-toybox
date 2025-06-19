@@ -1,7 +1,7 @@
-local mod = ToyboxMod
+
 local json = require("json")
 
-mod.IS_DATA_LOADED = false
+ToyboxMod.IS_DATA_LOADED = false
 local rngItem = CollectibleType.COLLECTIBLE_BOX --* milcom uses box's rng just in case !
 
 ---@param t table
@@ -15,12 +15,12 @@ local function convertTableToSaveData(t)
             end
         elseif(type(val)=="userdata" and type(val.LengthSquared)=="function") then
             data[key] = {}
-            for key1, val1 in pairs(mod:vectorToVectorTable(val)) do
+            for key1, val1 in pairs(ToyboxMod:vectorToVectorTable(val)) do
                 data[key][key1] = val1
             end
         elseif(type(val)=="userdata" and type(val.SetColorize)=="function") then
             data[key] = {}
-            for key1, val1 in pairs(mod:colorToColorTable(val)) do
+            for key1, val1 in pairs(ToyboxMod:colorToColorTable(val)) do
                 data[key][key1] = val1
             end
         else
@@ -39,9 +39,9 @@ local function convertSaveDataToTable(t)
             data[key] = {}
 
             if(val.IsVectorTable) then
-                data[key] = mod:vectorTableToVector(val)
+                data[key] = ToyboxMod:vectorTableToVector(val)
             elseif(val.IsColorTable) then
-                data[key] = mod:colorTableToColor(val)
+                data[key] = ToyboxMod:colorTableToColor(val)
             else
                 for key1, val1 in pairs(convertSaveDataToTable(val)) do
                     data[key][key1] = val1
@@ -70,7 +70,7 @@ local playerBaseData = include("scripts_toybox.savedata.players_basedata")      
 local extraBaseData = include("scripts_toybox.savedata.extras_basedata")               --! PERSISTS THROUGHOUT ONE RUN, NOT DEPENDENT ON PLAYERS
 local persistentBaseData = include("scripts_toybox.savedata.persistent_basedata")      --! PERSISTS THROUGHOUT ALL RUNS
 
-function mod:saveProgress()
+function ToyboxMod:saveProgress()
     local save = {}
 
     --save.milcomData = {}
@@ -81,66 +81,66 @@ function mod:saveProgress()
         player=player:ToPlayer()
         local seed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
 
-        save.playerData[seed] = convertDataToSaveData(mod:getEntityDataTable(player), playerBaseData)
+        save.playerData[seed] = convertDataToSaveData(ToyboxMod:getEntityDataTable(player), playerBaseData)
     end
-    save.extraData = convertDataToSaveData(mod:getExtraDataTable(), extraBaseData)
+    save.extraData = convertDataToSaveData(ToyboxMod:getExtraDataTable(), extraBaseData)
 
-    save.persistentData = convertDataToSaveData(mod:getPersistentDataTable(), persistentBaseData)
+    save.persistentData = convertDataToSaveData(ToyboxMod:getPersistentDataTable(), persistentBaseData)
 
-    save.configData = mod:cloneTable(mod.CONFIG)
+    save.configData = ToyboxMod:cloneTable(ToyboxMod.CONFIG)
 
-	mod:SaveData(json.encode(save))
+	ToyboxMod:SaveData(json.encode(save))
 end
 
-function mod:saveNewFloor()
-    if(mod.IS_DATA_LOADED) then mod:saveProgress() end
+function ToyboxMod:saveNewFloor()
+    if(ToyboxMod.IS_DATA_LOADED) then ToyboxMod:saveProgress() end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.saveNewFloor)
-function mod:saveGameExit(save)
-    mod:saveProgress()
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, ToyboxMod.saveNewFloor)
+function ToyboxMod:saveGameExit(save)
+    ToyboxMod:saveProgress()
 end
-mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.saveGameExit)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, ToyboxMod.saveGameExit)
 
 local function loadImportantData(_, slot)
-    mod.IS_DATA_LOADED = false
-    if(mod:HasData()) then
-        local sd = json.decode(Isaac.LoadModData(mod))
+    ToyboxMod.IS_DATA_LOADED = false
+    if(ToyboxMod:HasData()) then
+        local sd = json.decode(Isaac.LoadModData(ToyboxMod))
 
         if(sd and sd.configData) then
-            mod.CONFIG = mod.CONFIG or {}
-            mod:cloneTableWithoutDeleteing(mod.CONFIG, sd.configData)
+            ToyboxMod.CONFIG = ToyboxMod.CONFIG or {}
+            ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod.CONFIG, sd.configData)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, loadImportantData)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, loadImportantData)
 
-function mod:dataSaveInit(player)
-    mod.IS_DATA_LOADED = false
-    mod:cloneTableWithoutDeleteing(mod:getEntityDataTable(player), playerBaseData)
+function ToyboxMod:dataSaveInit(player)
+    ToyboxMod.IS_DATA_LOADED = false
+    ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getEntityDataTable(player), playerBaseData)
     if(#Isaac.FindByType(1)==0) then
-        mod:cloneTableWithoutDeleteing(mod:getExtraDataTable(), extraBaseData)
-        mod:cloneTableWithoutDeleteing(mod:getPersistentDataTable(), persistentBaseData)
+        ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getExtraDataTable(), extraBaseData)
+        ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getPersistentDataTable(), persistentBaseData)
     end
 
-    if(Game():GetFrameCount()~=0 and mod:HasData()) then
-        local save = json.decode(mod:LoadData())
+    if(Game():GetFrameCount()~=0 and ToyboxMod:HasData()) then
+        local save = json.decode(ToyboxMod:LoadData())
         local pSeed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
 
-        if(save.playerData[pSeed]) then mod:cloneTableWithoutDeleteing(mod:getEntityDataTable(player), convertSaveDataToTable(save.playerData[pSeed])) end
+        if(save.playerData[pSeed]) then ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getEntityDataTable(player), convertSaveDataToTable(save.playerData[pSeed])) end
         
         if(#Isaac.FindByType(1)==0) then
             if(save.extraData) then
-                mod:cloneTableWithoutDeleteing(mod:getExtraDataTable(), convertSaveDataToTable(save.extraData))
+                ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getExtraDataTable(), convertSaveDataToTable(save.extraData))
             end
-            if(save.persistentData) then mod:cloneTableWithoutDeleteing(mod:getPersistentDataTable(), convertSaveDataToTable(save.persistentData)) end
+            if(save.persistentData) then ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getPersistentDataTable(), convertSaveDataToTable(save.persistentData)) end
         end
     else
-        if(Game():GetFrameCount()==0 and mod:HasData() and #Isaac.FindByType(1)==0) then
-            local save = json.decode(mod:LoadData())
-            if(save.persistentData) then mod:cloneTableWithoutDeleteing(mod:getPersistentDataTable(), convertSaveDataToTable(save.persistentData)) end
+        if(Game():GetFrameCount()==0 and ToyboxMod:HasData() and #Isaac.FindByType(1)==0) then
+            local save = json.decode(ToyboxMod:LoadData())
+            if(save.persistentData) then ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getPersistentDataTable(), convertSaveDataToTable(save.persistentData)) end
         end
     end
 
-    mod.IS_DATA_LOADED = true
+    ToyboxMod.IS_DATA_LOADED = true
 end
-mod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_INIT, -math.huge, mod.dataSaveInit)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_INIT, -math.huge, ToyboxMod.dataSaveInit)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 --// this is the worst code i have ever written
 --// nvm
 --* i reworked the item but this code is kinda evil tbh
@@ -9,7 +9,7 @@ local alreadyUpdating = false
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE.CONDENSED_MILK)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_CONDENSED_MILK)) then return end
 
     if(flag==CacheFlag.CACHE_FIREDELAY and alreadyUpdating~="TEARS") then
         local ogDamage = player.Damage
@@ -24,7 +24,7 @@ local function evalCache(_, player, flag)
             player.Damage = 3.5
         end
 
-        local mult = FIREDELAY_MULT^player:GetCollectibleNum(mod.COLLECTIBLE.CONDENSED_MILK)
+        local mult = FIREDELAY_MULT^player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_CONDENSED_MILK)
 
         player.MaxFireDelay = player.MaxFireDelay/mult
         player.MaxFireDelay = player.MaxFireDelay*3.5/ogDamage
@@ -39,4 +39,4 @@ local function evalCache(_, player, flag)
         end
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, math.huge, evalCache)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, math.huge, evalCache)

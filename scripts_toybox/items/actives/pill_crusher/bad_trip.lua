@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local TRIP_DAMAGE = 3.5*2
@@ -6,7 +6,7 @@ local TRIP_DAMAGE = 3.5*2
 local CREEP_DAMAGE = 1
 local CREEP_TIMEOUT = 30*5
 
-mod:addPillCrusherEffect(PillEffect.PILLEFFECT_BAD_TRIP,
+ToyboxMod:addPillCrusherEffect(PillEffect.PILLEFFECT_BAD_TRIP,
 function(_, player, isHorse, rng)
     for _, ent in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
         ent = ent:ToNPC()

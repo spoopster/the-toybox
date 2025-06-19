@@ -1,10 +1,10 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 ---@param player EntityPlayer
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
-    local dataTable = mod:getExtraDataTable()
+    local dataTable = ToyboxMod:getExtraDataTable()
 
     local blackHearts = player:GetBlackHearts()
     local numSouls = player:GetSoulHearts()
@@ -31,4 +31,4 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     player:AnimateHappy()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.YOUR_SOUL_IS_MINE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.YOUR_SOUL_IS_MINE)

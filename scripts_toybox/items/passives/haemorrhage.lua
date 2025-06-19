@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local BONEHEART_ADD = 1
 
@@ -13,26 +13,26 @@ local function addHaemorrhage(_, item, _, firstTime, _, _, player)
 
     player:AddBoneHearts(BONEHEART_ADD)
 end
-mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, mod.COLLECTIBLE.HEMORRHAGE)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addHaemorrhage, ToyboxMod.COLLECTIBLE_HEMORRHAGE)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE.HEMORRHAGE)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_HEMORRHAGE)) then return end
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
-        local lerpFloat = (mod:getEntityData(player, "HAEMORRHAGE_COUNTDOWN") or 0)/INTENSITY_DURATION
+        local lerpFloat = (ToyboxMod:getEntityData(player, "HAEMORRHAGE_COUNTDOWN") or 0)/INTENSITY_DURATION
 
-        player.MaxFireDelay = mod:toFireDelay(mod:toTps(player.MaxFireDelay)*mod:lerp(1,TEARS_MULT_MAX, lerpFloat))
+        player.MaxFireDelay = ToyboxMod:toFireDelay(ToyboxMod:toTps(player.MaxFireDelay)*ToyboxMod:lerp(1,TEARS_MULT_MAX, lerpFloat))
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param pl EntityPlayer
 local function hemorrhageEffectCheck(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.HEMORRHAGE)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_HEMORRHAGE)) then return end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     data.HAEMORRHAGE_COUNTDOWN = (data.HAEMORRHAGE_COUNTDOWN or 0)
 
     if(data.HAEMORRHAGE_COUNTDOWN>0) then
@@ -45,13 +45,13 @@ local function hemorrhageEffectCheck(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, hemorrhageEffectCheck)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, hemorrhageEffectCheck)
 
 ---@param player Entity
 local function increaseIntensity(_, player, _, flags, source)
-    if(not player:ToPlayer():HasCollectible(mod.COLLECTIBLE.HEMORRHAGE)) then return end
+    if(not player:ToPlayer():HasCollectible(ToyboxMod.COLLECTIBLE_HEMORRHAGE)) then return end
 
-    mod:setEntityData(player:ToPlayer(), "HAEMORRHAGE_COUNTDOWN", INTENSITY_DURATION)
+    ToyboxMod:setEntityData(player:ToPlayer(), "HAEMORRHAGE_COUNTDOWN", INTENSITY_DURATION)
     player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY, true)
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, increaseIntensity, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, increaseIntensity, EntityType.ENTITY_PLAYER)

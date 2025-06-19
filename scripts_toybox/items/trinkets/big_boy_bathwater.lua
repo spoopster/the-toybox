@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local CREEP_COLOR = Color(0,0,0,1,141/255,145/255,159/255)
@@ -6,13 +6,13 @@ local CREEP_COLOR = Color(0,0,0,1,141/255,145/255,159/255)
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     pl:CheckFamiliar(
-        mod.FAMILIAR_VARIANT.BATH_WATER,
-        pl:GetTrinketMultiplier(mod.TRINKET.BATH_WATER),
-        pl:GetTrinketRNG(mod.TRINKET.BATH_WATER),
-        Isaac.GetItemConfig():GetTrinket(mod.TRINKET.BATH_WATER)
+        ToyboxMod.FAMILIAR_VARIANT.BATH_WATER,
+        pl:GetTrinketMultiplier(ToyboxMod.TRINKET_BATH_WATER),
+        pl:GetTrinketRNG(ToyboxMod.TRINKET_BATH_WATER),
+        Isaac.GetItemConfig():GetTrinket(ToyboxMod.TRINKET_BATH_WATER)
     )
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
 
 ---@param fam EntityFamiliar
 local function bathwaterInit(_, fam)
@@ -20,7 +20,7 @@ local function bathwaterInit(_, fam)
     fam.State = 0
     fam:AddToFollowers()
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, bathwaterInit, mod.FAMILIAR_VARIANT.BATH_WATER)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, bathwaterInit, ToyboxMod.FAMILIAR_VARIANT.BATH_WATER)
 
 ---@param fam EntityFamiliar
 local function bathwaterUpdate(_, fam)
@@ -38,7 +38,7 @@ local function bathwaterUpdate(_, fam)
             puddle.CollisionDamage = 8
             puddle.Timeout = 9*30+5
             puddle.Color = CREEP_COLOR
-            mod:setEntityData(puddle, "BATHWATER_CREEP", true)
+            ToyboxMod:setEntityData(puddle, "BATHWATER_CREEP", true)
 
             sfx:Play(SoundEffect.SOUND_GLASS_BREAK)
             fam:SetShadowSize(0)
@@ -47,11 +47,11 @@ local function bathwaterUpdate(_, fam)
         fam:FollowParent()
     end
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bathwaterUpdate, mod.FAMILIAR_VARIANT.BATH_WATER)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bathwaterUpdate, ToyboxMod.FAMILIAR_VARIANT.BATH_WATER)
 
 ---@param pl EntityPlayer
 local function resetBathwater(_, pl)
-    for _, fam in ipairs(Isaac.FindByType(3,mod.FAMILIAR_VARIANT.BATH_WATER)) do
+    for _, fam in ipairs(Isaac.FindByType(3,ToyboxMod.FAMILIAR_VARIANT.BATH_WATER)) do
         fam = fam:ToFamiliar()
         if(fam.State~=0 and GetPtrHash(fam.Player)==GetPtrHash(pl)) then
             fam.Visible = true
@@ -63,12 +63,12 @@ local function resetBathwater(_, pl)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, resetBathwater)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, resetBathwater)
 
 ---@param player Entity
 local function breakBathwater(_, player, _, flags, source)
     player = player:ToPlayer()
-    for _, fam in ipairs(Isaac.FindByType(3,mod.FAMILIAR_VARIANT.BATH_WATER)) do
+    for _, fam in ipairs(Isaac.FindByType(3,ToyboxMod.FAMILIAR_VARIANT.BATH_WATER)) do
         fam = fam:ToFamiliar()
         if(fam.State==0 and GetPtrHash(fam.Player)==GetPtrHash(player)) then
             fam.State = 1
@@ -76,13 +76,13 @@ local function breakBathwater(_, player, _, flags, source)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, breakBathwater, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, breakBathwater, EntityType.ENTITY_PLAYER)
 
 
 
 local function hfhhgh(_, effect)
-    if(mod:getEntityData(effect, "BATHWATER_CREEP")) then
+    if(ToyboxMod:getEntityData(effect, "BATHWATER_CREEP")) then
         effect.Color = CREEP_COLOR
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, hfhhgh, EffectVariant.PLAYER_CREEP_RED)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, hfhhgh, EffectVariant.PLAYER_CREEP_RED)

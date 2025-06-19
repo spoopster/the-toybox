@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local SPEED_UP = 0.16
 local CHARGES_ON_ROOM = 1
@@ -13,12 +13,12 @@ local chargeOrder = {
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not player:HasCollectible(mod.COLLECTIBLE.SOLAR_PANEL)) then return end
-    local mult = player:GetCollectibleNum(mod.COLLECTIBLE.SOLAR_PANEL)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_SOLAR_PANEL)) then return end
+    local mult = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_SOLAR_PANEL)
 
     player.MoveSpeed = player.MoveSpeed+mult*SPEED_UP
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SPEED)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SPEED)
 
 local function addChargeOnNewRoom(_)
     local room = Game():GetRoom()
@@ -26,7 +26,7 @@ local function addChargeOnNewRoom(_)
 
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        local numCharges = CHARGES_ON_ROOM*pl:GetCollectibleNum(mod.COLLECTIBLE.SOLAR_PANEL)
+        local numCharges = CHARGES_ON_ROOM*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_SOLAR_PANEL)
 
         local addedNormalCharge = false
 
@@ -54,4 +54,4 @@ local function addChargeOnNewRoom(_)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, addChargeOnNewRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, addChargeOnNewRoom)

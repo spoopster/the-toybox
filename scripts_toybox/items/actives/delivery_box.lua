@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local COINS_CONSUME = 3
 
@@ -15,7 +15,7 @@ local function useDeliveryBox(_, _, rng, pl, flag, slot, varData)
         pl:AddCoins(-COINS_CONSUME)
 
         local quantityDif = (pl:GetNumKeys()-pl:GetNumBombs())/BIAS_MAX_DIF
-        quantityDif = mod:sign(quantityDif)*math.min(math.abs(quantityDif), 1)
+        quantityDif = ToyboxMod:sign(quantityDif)*math.min(math.abs(quantityDif), 1)
 
         local pickedVariant
         if(rng:RandomFloat()<0.5+quantityDif*BIAS_MAX_CHANCE_MOD) then
@@ -34,4 +34,4 @@ local function useDeliveryBox(_, _, rng, pl, flag, slot, varData)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useDeliveryBox, mod.COLLECTIBLE.DELIVERY_BOX)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useDeliveryBox, ToyboxMod.COLLECTIBLE_DELIVERY_BOX)

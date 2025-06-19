@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 ---Finish tomorrow or remove it idk
 
 local PUSSY_COLOR = Color()
@@ -15,7 +15,7 @@ local BOMB_DMG_UP = DMG_UP*10
 ---@param pl EntityPlayer
 ---@param isTears boolean
 local function canFireRightEye(pl, isTears)
-    local rng = pl:GetCollectibleRNG(mod.COLLECTIBLE.CONJUNCTIVITIS)
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS)
 
     if(not isTears or pl:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) or pl:HasCollectible(CollectibleType.COLLECTIBLE_LUDOVICO_TECHNIQUE)) then
         return (rng:RandomInt(2)==0)
@@ -34,8 +34,8 @@ end
 
 ---@param tear EntityTear
 local function fireTear(_, tear)
-    local pl = mod:getPlayerFromEnt(tear) ---@type EntityPlayer
-    if(not (pl and pl:HasCollectible(mod.COLLECTIBLE.CONJUNCTIVITIS))) then return end
+    local pl = ToyboxMod:getPlayerFromEnt(tear) ---@type EntityPlayer
+    if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS))) then return end
     
     if(canFireRightEye(pl, (tear.SpawnerEntity:ToPlayer()~=nil))) then
         tear.Color = PUSSY_COLOR
@@ -43,31 +43,31 @@ local function fireTear(_, tear)
         tear.Velocity = tear.Velocity*(1+SPEED_UP)
         tear.Scale = tear.Scale*(1+SCALE_UP)
 
-        if(pl:GetCollectibleRNG(mod.COLLECTIBLE.CONJUNCTIVITIS):RandomFloat()<POISON_CHANCE) then
+        if(pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS):RandomFloat()<POISON_CHANCE) then
             tear:AddTearFlags(TearFlags.TEAR_POISON)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, fireTear)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, fireTear)
 
 ---@param tear EntityTear
 local function checkLudoTear(_, tear)
     if(not tear:HasTearFlags(TearFlags.TEAR_LUDOVICO)) then return end
 
-    local pl = mod:getPlayerFromEnt(tear) ---@type EntityPlayer
-    if(not (pl and pl:HasCollectible(mod.COLLECTIBLE.CONJUNCTIVITIS))) then return end
+    local pl = ToyboxMod:getPlayerFromEnt(tear) ---@type EntityPlayer
+    if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS))) then return end
 
     if(tear.FrameCount//pl.MaxFireDelay ~= (tear.FrameCount-1)//pl.MaxFireDelay) then
         if(canFireRightEye(pl, (tear.SpawnerEntity:ToPlayer()~=nil))) then
             tear.Color = PUSSY_COLOR
             tear.CollisionDamage = tear.CollisionDamage+DMG_UP
-            if(pl:GetCollectibleRNG(mod.COLLECTIBLE.CONJUNCTIVITIS):RandomFloat()<POISON_CHANCE) then
+            if(pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS):RandomFloat()<POISON_CHANCE) then
                 tear:AddTearFlags(TearFlags.TEAR_POISON)
             end
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, checkLudoTear)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, checkLudoTear)
 
 ---@param ent Entity
 ---@param dmg number
@@ -80,13 +80,13 @@ local function onLaserKnifeHit(_, ent, dmg, flags, source, frames)
     if(source.Type==EntityType.ENTITY_PLAYER and (flags & DamageFlag.DAMAGE_LASER ~= 0)) then
         pl = source.Entity:ToPlayer()
     elseif(source.Type==EntityType.ENTITY_KNIFE and (source.Variant==KnifeVariant.MOMS_KNIFE or source.Variant==KnifeVariant.SUMPTORIUM)) then
-        pl = mod:getPlayerFromEnt(source.Entity)
+        pl = ToyboxMod:getPlayerFromEnt(source.Entity)
     end
 
-    if(not (pl and pl:HasCollectible(mod.COLLECTIBLE.CONJUNCTIVITIS))) then return end
+    if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS))) then return end
 
-    if(pl:GetCollectibleRNG(mod.COLLECTIBLE.CONJUNCTIVITIS):RandomFloat()<POISON_CHANCE) then
-        ent:AddPoison(EntityRef(nil), 23, mod:lerp(dmg, 3.5, 0.5))
+    if(pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS):RandomFloat()<POISON_CHANCE) then
+        ent:AddPoison(EntityRef(nil), 23, ToyboxMod:lerp(dmg, 3.5, 0.5))
     end
 
     return {
@@ -95,21 +95,21 @@ local function onLaserKnifeHit(_, ent, dmg, flags, source, frames)
         DamageCountdown = frames,
     }
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, onLaserKnifeHit)
+ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, onLaserKnifeHit)
 
 ---@param bomb EntityBomb
 local function onFireBomb(_, bomb)
-    local pl = mod:getPlayerFromEnt(bomb)
-    if(not (pl and pl:HasCollectible(mod.COLLECTIBLE.CONJUNCTIVITIS))) then return end
+    local pl = ToyboxMod:getPlayerFromEnt(bomb)
+    if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS))) then return end
     
     if(canFireRightEye(pl, false)) then
         bomb.Color = PUSSY_COLOR
         bomb.ExplosionDamage = bomb.ExplosionDamage+BOMB_DMG_UP
         --bomb.Velocity = bomb.Velocity*(1+SPEED_UP)
         
-        if(pl:GetCollectibleRNG(mod.COLLECTIBLE.CONJUNCTIVITIS):RandomFloat()<POISON_CHANCE) then
+        if(pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS):RandomFloat()<POISON_CHANCE) then
             bomb:AddTearFlags(TearFlags.TEAR_POISON)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB, onFireBomb)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB, onFireBomb)

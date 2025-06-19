@@ -1,13 +1,13 @@
-local mod = ToyboxMod
+
 
 ---@param npc EntityNPC
 local function tryMakeModChampion(npc)
     if(not (npc:IsChampion())) then return end
 
-    if(npc:GetDropRNG():RandomFloat()<mod.CONFIG.MOD_CHAMPION_CHANCE) then
-        local outcome = mod.CUSTOM_CHAMPION_IDX_TO_NAME[mod.CUSTOM_CHAMPION_PICKER:PickOutcome(npc:GetDropRNG())]
+    if(npc:GetDropRNG():RandomFloat()<ToyboxMod.CONFIG.MOD_CHAMPION_CHANCE) then
+        local outcome = ToyboxMod.CUSTOM_CHAMPION_IDX_TO_NAME[ToyboxMod.CUSTOM_CHAMPION_PICKER:PickOutcome(npc:GetDropRNG())]
 
-        mod.DENY_CHAMP_ROLL = true
+        ToyboxMod.DENY_CHAMP_ROLL = true
         local newNpc
         while(not (newNpc and newNpc:Exists())) do
             newNpc = Isaac.Spawn(npc.Type, npc.Variant, npc.SubType, npc.Position, npc.Velocity, npc.SpawnerEntity):ToNPC()
@@ -30,12 +30,12 @@ local function tryMakeModChampion(npc)
             npc.Parent.Child = newNpc
         end
 
-        mod.DENY_CHAMP_ROLL = false
+        ToyboxMod.DENY_CHAMP_ROLL = false
         npc:Remove()
 
-        local result = mod.CUSTOM_CHAMPIONS[outcome]
+        local result = ToyboxMod.CUSTOM_CHAMPIONS[outcome]
 
-        mod:setEntityData(newNpc, "CUSTOM_CHAMPION_IDX", result.Idx)
+        ToyboxMod:setEntityData(newNpc, "CUSTOM_CHAMPION_IDX", result.Idx)
         newNpc.Color = result.Color
         newNpc.MaxHitPoints = newNpc.MaxHitPoints*result.HPMult
         newNpc.HitPoints = newNpc.HitPoints*result.HPMult
@@ -44,7 +44,7 @@ local function tryMakeModChampion(npc)
         end
         newNpc.Scale = newNpc.Scale*1.15
 
-        Isaac.RunCallbackWithParam(mod.CUSTOM_CALLBACKS.POST_CUSTOM_CHAMPION_INIT, result.Idx, newNpc, result.Idx)
+        Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.POST_CUSTOM_CHAMPION_INIT, result.Idx, newNpc, result.Idx)
     end
 end
 
@@ -55,14 +55,14 @@ local function makeModChampions(_)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, makeModChampions)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, makeModChampions)
 
 local function championProjDealDamage(_, _, amount, flags, source, frames)
     source = source.Entity
     if(not (source and source:ToProjectile())) then return end
 
     local npc = source.SpawnerEntity
-    if(not (npc and npc:ToNPC() and mod:getEntityData(npc:ToNPC(), "CUSTOM_CHAMPION_IDX"))) then return end
+    if(not (npc and npc:ToNPC() and ToyboxMod:getEntityData(npc:ToNPC(), "CUSTOM_CHAMPION_IDX"))) then return end
 
     if(amount>0) then
         return {
@@ -72,4 +72,4 @@ local function championProjDealDamage(_, _, amount, flags, source, frames)
         }
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -math.huge, championProjDealDamage, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -math.huge, championProjDealDamage, EntityType.ENTITY_PLAYER)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 -- TODO: MinimAPI bands rendering support?? one day
 
 local MINIMAP_SPRITE = Sprite("gfx/ui/tb_ui_tinted_room.anm2", true)
@@ -22,7 +22,7 @@ end
 local function getCompositeResult(tintBuffer, tintData)
     local finalColor = Color(0,0,0,TINT_ALPHA)
     for i, flag in ipairs(tintBuffer) do
-        local tempColor = mod.TINTED_ROOM_COLOR_BITWISE[flag]
+        local tempColor = ToyboxMod.TINTED_ROOM_COLOR_BITWISE[flag]
 
         local int = (tintData.Centers & flag ~= 0) and TINT_CENTER_INTENSITY or TINT_INTENSITY
         local col = Color(tempColor.Red*int, tempColor.Green*int, tempColor.Blue*int, tempColor.Alpha*TINT_ALPHA)
@@ -40,7 +40,7 @@ end
 local function tryRenderAuraAtLevelIdxSmall(renderRoom, tintData, centerPos, centerSize)
     if(renderRoom.DisplayFlags & (RoomDescriptor.DISPLAY_BOX | RoomDescriptor.DISPLAY_ICON) == RoomDescriptor.DISPLAY_NONE) then return end
 
-    local topLeftPos = mod:gridIndexToPositionVector(renderRoom.GridIndex)
+    local topLeftPos = ToyboxMod:gridIndexToPositionVector(renderRoom.GridIndex)
 
     local isInBoundsX = (centerPos.X+centerSize.X-4<=topLeftPos.X) and (centerPos.X+3>=topLeftPos.X)
     local isInBoundsY = (centerPos.Y+centerSize.X-4<=topLeftPos.Y) and (centerPos.Y+3>=topLeftPos.Y)
@@ -48,34 +48,34 @@ local function tryRenderAuraAtLevelIdxSmall(renderRoom, tintData, centerPos, cen
 
     local mapCornerPos = Vector(Isaac.GetScreenWidth(), 0)+Vector(-24,12)*Options.HUDOffset+Vector(-7,6)+Vector(-47,0)+Vector(-2,-2)
 
-    local roomSize = ROOM_GRID_SIZE*mod.ROOM_DIMENSIONS[renderRoom.Data.Shape]
+    local roomSize = ROOM_GRID_SIZE*ToyboxMod.ROOM_DIMENSIONS[renderRoom.Data.Shape]
 
     local relativePos = floorVector((ROOM_GRID_SIZE-Vector(1,1))*(Vector(3,3)-centerSize/2+topLeftPos-centerPos))
 
     local topLeftClamp = maxVectorComponents(-relativePos, 0)
     local bottomRightClamp = maxVectorComponents(relativePos+roomSize-SMALL_MINIMAP_SIZE, 0)
 
-    local anim = (mod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & mod.TINTED_ROOM_DISPLAY.GRADIENT_FLAG ~= 0) and "RoomsSmallGradient" or "RoomsSmall"
+    local anim = (ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.GRADIENT_FLAG ~= 0) and "RoomsSmallGradient" or "RoomsSmall"
     MINIMAP_SPRITE:SetFrame(anim, renderRoom.Data.Shape-1)
 
     local numTints = 0
     local tintsToRender = {}
 
-    for flag, _ in pairs(mod.TINTED_ROOM_COLOR_BITWISE) do
+    for flag, _ in pairs(ToyboxMod.TINTED_ROOM_COLOR_BITWISE) do
         if(tintData.Tints & flag ~= 0) then
             numTints = numTints+1
             table.insert(tintsToRender, flag)
         end
     end
 
-    if(mod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & mod.TINTED_ROOM_DISPLAY.COMPOSITE_FLAG ~= 0) then
+    if(ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.COMPOSITE_FLAG ~= 0) then
         MINIMAP_SPRITE.Color = getCompositeResult(tintsToRender, tintData)
         MINIMAP_SPRITE:Render(mapCornerPos+relativePos, topLeftClamp, bottomRightClamp)
     else
         for i, flag in ipairs(tintsToRender) do
             local colorInt = (tintData.Centers & flag ~= 0) and TINT_CENTER_INTENSITY or TINT_INTENSITY
 
-            local baseColor = mod.TINTED_ROOM_COLOR_BITWISE[flag]
+            local baseColor = ToyboxMod.TINTED_ROOM_COLOR_BITWISE[flag]
             local finalColor = Color(baseColor.Red*colorInt, baseColor.Green*colorInt, baseColor.Blue*colorInt, baseColor.Alpha*TINT_ALPHA)
 
             local leftColorClamp = Vector(math.ceil(roomSize.X*(i-1)/numTints),0)
@@ -95,32 +95,32 @@ local function tryRenderAuraAtLevelIdxBig(renderRoom, tintData, bounds)
 
     local mapCornerPos = Vector(Isaac.GetScreenWidth(), 0)+Vector(-24,12)*Options.HUDOffset+Vector(-1,0)*Minimap.GetDisplayedSize()+Vector(0,2)
 
-    local topLeftPos = mod:gridIndexToPositionVector(renderRoom.GridIndex)
+    local topLeftPos = ToyboxMod:gridIndexToPositionVector(renderRoom.GridIndex)
     local relativePos = floorVector((ROOM_GRID_SIZE_BIG-Vector(1,1))*(topLeftPos-Vector(bounds.Left, bounds.Up)))
 
-    local anim = (mod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & mod.TINTED_ROOM_DISPLAY.GRADIENT_FLAG ~= 0) and "RoomsBigGradient" or "RoomsBig"
+    local anim = (ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.GRADIENT_FLAG ~= 0) and "RoomsBigGradient" or "RoomsBig"
     MINIMAP_SPRITE:SetFrame(anim, renderRoom.Data.Shape-1)
 
-    local roomWidth = ROOM_GRID_SIZE_BIG.X*mod.ROOM_DIMENSIONS[renderRoom.Data.Shape].X
+    local roomWidth = ROOM_GRID_SIZE_BIG.X*ToyboxMod.ROOM_DIMENSIONS[renderRoom.Data.Shape].X
 
     local numTints = 0
     local tintsToRender = {}
 
-    for flag, _ in pairs(mod.TINTED_ROOM_COLOR_BITWISE) do
+    for flag, _ in pairs(ToyboxMod.TINTED_ROOM_COLOR_BITWISE) do
         if(tintData.Tints & flag ~= 0) then
             numTints = numTints+1
             table.insert(tintsToRender, flag)
         end
     end
 
-    if(mod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & mod.TINTED_ROOM_DISPLAY.COMPOSITE_FLAG ~= 0) then
+    if(ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.COMPOSITE_FLAG ~= 0) then
         MINIMAP_SPRITE.Color = getCompositeResult(tintsToRender, tintData)
         MINIMAP_SPRITE:Render(mapCornerPos+relativePos, topLeftClamp, bottomRightClamp)
     else
         for i, flag in ipairs(tintsToRender) do
             local colorInt = (tintData.Centers & flag ~= 0) and TINT_CENTER_INTENSITY or TINT_INTENSITY
 
-            local baseColor = mod.TINTED_ROOM_COLOR_BITWISE[flag]
+            local baseColor = ToyboxMod.TINTED_ROOM_COLOR_BITWISE[flag]
             local finalColor = Color(baseColor.Red*colorInt, baseColor.Green*colorInt, baseColor.Blue*colorInt, baseColor.Alpha*TINT_ALPHA)
 
             local leftColorClamp = Vector(math.ceil(roomWidth*(i-1)/numTints),0)
@@ -137,7 +137,7 @@ local function mapRenderAuras()
     if(level:GetCurses() & LevelCurse.CURSE_OF_THE_LOST == LevelCurse.CURSE_OF_THE_LOST) then return end
 
     if(MinimapAPI) then
-        local data = mod:getExtraDataTable()
+        local data = ToyboxMod:getExtraDataTable()
         data.TINTED_ROOM_POSITIONS = data.TINTED_ROOM_POSITIONS or {}
 
         for x=0, 12 do
@@ -149,14 +149,14 @@ local function mapRenderAuras()
                     local numTints = 0
                     local tintsToRender = {}
 
-                    for flag, _ in pairs(mod.TINTED_ROOM_COLOR_BITWISE) do
+                    for flag, _ in pairs(ToyboxMod.TINTED_ROOM_COLOR_BITWISE) do
                         if(tintData.Tints & flag ~= 0) then
                             numTints = numTints+1
                             table.insert(tintsToRender, flag)
                         end
                     end
 
-                    --if(mod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & mod.TINTED_ROOM_DISPLAY.COMPOSITE_FLAG ~= 0) then
+                    --if(ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.COMPOSITE_FLAG ~= 0) then
                         MinimapAPI:GetRoomByIdx(idx).Color = getCompositeResult(tintsToRender, tintData)
                     --else
                         -- TODO!
@@ -170,9 +170,9 @@ local function mapRenderAuras()
         if(curRoom.GridIndex<0) then return end
 
         local roomPos = Vector(currentIdx%13, currentIdx//13)
-        local roomSize = mod.ROOM_DIMENSIONS[(curRoom.Data and curRoom.Data.Shape or 1)]
+        local roomSize = ToyboxMod.ROOM_DIMENSIONS[(curRoom.Data and curRoom.Data.Shape or 1)]
 
-        local data = mod:getExtraDataTable()
+        local data = ToyboxMod:getExtraDataTable()
         data.TINTED_ROOM_POSITIONS = data.TINTED_ROOM_POSITIONS or {}
         
         if(Minimap.GetState()==MinimapState.NORMAL) then
@@ -212,4 +212,4 @@ local function mapRenderAuras()
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_MINIMAP_RENDER, mapRenderAuras)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_MINIMAP_RENDER, mapRenderAuras)

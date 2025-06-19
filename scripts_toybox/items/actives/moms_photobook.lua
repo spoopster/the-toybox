@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local CONFUSION_DURATION = 30*4
@@ -13,7 +13,7 @@ local function momsPhotobookUse(_, item, rng, pl, flags, slot, vdata)
         end
     end
 
-    ItemOverlay.Show(mod.GIANTBOOK.MOMS_PHOTOBOOK, 3, pl)
+    ItemOverlay.Show(ToyboxMod.GIANTBOOK.MOMS_PHOTOBOOK, 3, pl)
     sfx:Play(SoundEffect.SOUND_BOOK_PAGE_TURN_12)
 
     return {
@@ -22,4 +22,4 @@ local function momsPhotobookUse(_, item, rng, pl, flags, slot, vdata)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, momsPhotobookUse, mod.COLLECTIBLE.MOMS_PHOTOBOOK)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, momsPhotobookUse, ToyboxMod.COLLECTIBLE_MOMS_PHOTOBOOK)

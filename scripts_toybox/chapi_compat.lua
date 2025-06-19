@@ -1,19 +1,19 @@
-local mod = ToyboxMod
+
 
 -- i hate it here
 
-mod.CHAPI_DAMAGE_CALLBACKS = {}
+ToyboxMod.CHAPI_DAMAGE_CALLBACKS = {}
 
-function mod:addChapiDamageCallback(func, priority)
-    table.insert(mod.CHAPI_DAMAGE_CALLBACKS, {Function=func, Priority=(priority or 0)})
+function ToyboxMod:addChapiDamageCallback(func, priority)
+    table.insert(ToyboxMod.CHAPI_DAMAGE_CALLBACKS, {Function=func, Priority=(priority or 0)})
 
-    table.sort(mod.CHAPI_DAMAGE_CALLBACKS, function(a,b) return a.Priority<=b.Priority end)
+    table.sort(ToyboxMod.CHAPI_DAMAGE_CALLBACKS, function(a,b) return a.Priority<=b.Priority end)
 end
 
 if(CustomHealthAPI) then
     local function applyCHAPIDamage(_, player, dmg, flags, source, frames)
         player = player:ToPlayer()
-        local data = mod:getEntityDataTable(player)
+        local data = ToyboxMod:getEntityDataTable(player)
 
         if(data.CANCEL_CHAPI_DMG==nil) then return end
 
@@ -24,8 +24,8 @@ if(CustomHealthAPI) then
         if(data.CANCEL_CHAPI_DMG==true) then
             data.CANCEL_CHAPI_DMG = false
 
-            for _, d in ipairs(mod.CHAPI_DAMAGE_CALLBACKS) do
-                local r = d.Function(mod, player, dmg1, flags1, source, frames1)
+            for _, d in ipairs(ToyboxMod.CHAPI_DAMAGE_CALLBACKS) do
+                local r = d.Function(ToyboxMod, player, dmg1, flags1, source, frames1)
                 if(r~=nil) then
                     if(type(r)=="table") then
 
@@ -48,12 +48,12 @@ if(CustomHealthAPI) then
             }
         end
     end
-    --mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e6, applyCHAPIDamage, EntityType.ENTITY_PLAYER)
+    --ToyboxMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -1e6, applyCHAPIDamage, EntityType.ENTITY_PLAYER)
     
     ---@param player Entity
     local function cancelCHAPIDmg(player, dmg, flags, source, frames)
         player = player:ToPlayer()
-        local data = mod:getEntityDataTable(player)
+        local data = ToyboxMod:getEntityDataTable(player)
         if(data.CANCEL_CHAPI_DMG~=nil) then return end
 
         data.CANCEL_CHAPI_DMG=true
@@ -62,5 +62,5 @@ if(CustomHealthAPI) then
 
         --return true
     end
-    --CustomHealthAPI.Library.AddCallback(mod, CustomHealthAPI.Enums.Callbacks.PRE_PLAYER_DAMAGE, 1e12, cancelCHAPIDmg)
+    --CustomHealthAPI.Library.AddCallback(ToyboxMod, CustomHealthAPI.Enums.Callbacks.PRE_PLAYER_DAMAGE, 1e12, cancelCHAPIDmg)
 end

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local ENEMY_DAMAGE = 30
@@ -15,16 +15,16 @@ local function useYanny(_, _, player, _)
         enemy:TakeDamage(ENEMY_DAMAGE, 0, EntityRef(player), 0)
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, useYanny, mod.CONSUMABLE.YANNY)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useYanny, ToyboxMod.CONSUMABLE.YANNY)
 
 local function postYannyInit(_, pickup)
-    if(pickup.SubType==mod.CONSUMABLE.YANNY) then
-        mod:setPersistentData("HAS_SEEN_YANNY", 1)
+    if(pickup.SubType==ToyboxMod.CONSUMABLE.YANNY) then
+        ToyboxMod:setPersistentData("HAS_SEEN_YANNY", 1)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postYannyInit, PickupVariant.PICKUP_TAROTCARD)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, postYannyInit, PickupVariant.PICKUP_TAROTCARD)
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(mod.CONSUMABLE.YANNY).Weight = 0
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.YANNY).Weight = 0
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

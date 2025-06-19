@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 --#region DATA
 local JONAS_A_BASEDATA = {
@@ -46,69 +46,69 @@ local JONAS_A_BASEDATA = {
     --LAST_PHD_VAL = nil,
 }
 
-mod.JONAS_A_BASEDATA = JONAS_A_BASEDATA
---mod.JONAS_A_DATA = {}
+ToyboxMod.JONAS_A_BASEDATA = JONAS_A_BASEDATA
+--ToyboxMod.JONAS_A_DATA = {}
 --#endregion
 
 local canRerollPool = true
 local function resetPoolRerollPleaseee(_)
     canRerollPool = true
 end
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, resetPoolRerollPleaseee)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, resetPoolRerollPleaseee)
 
 ---@param player EntityPlayer
 local function postJonasInit(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
 
     --make pill pool
-    if(Game():GetFrameCount()==0 or not mod:getExtraData("CUSTOM_PILL_POOL")) then
-        local data = mod:getJonasATable(player)
+    if(Game():GetFrameCount()==0 or not ToyboxMod:getExtraData("CUSTOM_PILL_POOL")) then
+        local data = ToyboxMod:getJonasATable(player)
         if(canRerollPool) then
-            mod:calcPillPool(mod:generateRng())
+            ToyboxMod:calcPillPool(ToyboxMod:generateRng())
             canRerollPool = false
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postJonasInit)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postJonasInit)
 
 ---@param player EntityPlayer
 local function rerollPillPoolNewLevel(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
     if(player.FrameCount==0) then return end
 
-    local data = mod:getJonasATable(player)
+    local data = ToyboxMod:getJonasATable(player)
     if(canRerollPool) then
-        mod:calcPillPool(mod:generateRng())
-        mod:unidentifyPillPool()
+        ToyboxMod:calcPillPool(ToyboxMod:generateRng())
+        ToyboxMod:unidentifyPillPool()
         canRerollPool = false
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, rerollPillPoolNewLevel)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, rerollPillPoolNewLevel)
 
 ---@param player EntityPlayer
 local function postJonasRender(_, player)
-    if(player:GetPlayerType()~=mod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
     --! FOR TESTING PURPOSES, DELETE ON RELEASE
-    --if(mod.JONAS_A_DATA[player.InitSeed]==nil) then mod.JONAS_A_DATA[player.InitSeed] = mod:cloneTable(mod.JONAS_A_BASEDATA) end
+    --if(ToyboxMod.JONAS_A_DATA[player.InitSeed]==nil) then ToyboxMod.JONAS_A_DATA[player.InitSeed] = ToyboxMod:cloneTable(ToyboxMod.JONAS_A_BASEDATA) end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postJonasRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postJonasRender)
 
 local strokinMyShit = false
 
 local function replaceGoldPillEffect(_, pilleffect, color)
     if(strokinMyShit) then return end
 
-    local dataTable = mod:getExtraDataTable()
+    local dataTable = ToyboxMod:getExtraDataTable()
     local pillpool = dataTable.CUSTOM_PILL_POOL
     if(pillpool and pillpool~=0 and (color==PillColor.PILL_GOLD or color==PillColor.PILL_GOLD|PillColor.PILL_GIANT_FLAG)) then
         local chosenPlayer = Isaac.GetPlayer()
-        local phdVal = mod:getTotalPhdMask()
+        local phdVal = ToyboxMod:getTotalPhdMask()
 
-        if(chosenPlayer:GetPlayerType()==mod.PLAYER_TYPE.JONAS_A) then
+        if(chosenPlayer:GetPlayerType()==ToyboxMod.PLAYER_TYPE.JONAS_A) then
             --print("y")
-            local rng = mod:generateRng()
-            return mod:getRandomPillEffect(rng, chosenPlayer, phdVal, {})
+            local rng = ToyboxMod:generateRng()
+            return ToyboxMod:getRandomPillEffect(rng, chosenPlayer, phdVal, {})
         end
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, CallbackPriority.LATE-1, replaceGoldPillEffect)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, CallbackPriority.LATE-1, replaceGoldPillEffect)

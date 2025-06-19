@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local CHARGE_DURATION = math.floor(60*6.66)
@@ -12,29 +12,29 @@ local CHARGEBAR_ALPHA = 0.4
 
 ---@param p EntityPlayer
 local function playerUpdate(_, p)
-    if(not p:HasCollectible(mod.COLLECTIBLE.SIGIL_OF_GREED)) then return end
+    if(not p:HasCollectible(ToyboxMod.COLLECTIBLE_SIGIL_OF_GREED)) then return end
 
-    local data = mod:getEntityDataTable(p)
+    local data = ToyboxMod:getEntityDataTable(p)
 
     if(p:GetFireDirection()~=Direction.NO_DIRECTION or p:GetShootingInput():Length()>0.01) then
         data.SIGIL_OF_GREED_CHARGE = math.min((data.SIGIL_OF_GREED_CHARGE or 0)+1, CHARGE_DURATION)
 
         local eff = data.SIGIL_OF_GREED_EFFECTENTITY
         if(not (eff and eff:Exists())) then
-            eff = Isaac.Spawn(1000, mod.EFFECT_VARIANT.GREED_SIGIL_CHARGEBAR, 0, p.Position, Vector.Zero, p):ToEffect()
+            eff = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.GREED_SIGIL_CHARGEBAR, 0, p.Position, Vector.Zero, p):ToEffect()
             eff:FollowParent(p)
 
             eff:GetSprite():SetAnimation("Idle", true)
             eff:GetSprite():Stop(true)
             eff.SpriteScale = Vector(CHARGEBAR_SCALE,CHARGEBAR_SCALE)
-            mod:setEntityData(eff, "CHARGEBAR_STATE", 0)
-            mod:setEntityData(eff, "CHARGEBAR_STATEFRAME", 0)
-        elseif(eff and mod:getEntityData(eff, "CHARGEBAR_STATE")==-1) then
-            mod:setEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATE", 0)
-            mod:setEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATEFRAME", 0)
+            ToyboxMod:setEntityData(eff, "CHARGEBAR_STATE", 0)
+            ToyboxMod:setEntityData(eff, "CHARGEBAR_STATEFRAME", 0)
+        elseif(eff and ToyboxMod:getEntityData(eff, "CHARGEBAR_STATE")==-1) then
+            ToyboxMod:setEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATE", 0)
+            ToyboxMod:setEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATEFRAME", 0)
         end
 
-        local chPerc = (mod:getEntityData(p, "SIGIL_OF_GREED_CHARGE") or 0)/CHARGE_DURATION
+        local chPerc = (ToyboxMod:getEntityData(p, "SIGIL_OF_GREED_CHARGE") or 0)/CHARGE_DURATION
         local isFinal = (math.abs(chPerc-1)<0.01)
         local anmLength = eff:GetSprite():GetAnimationData("Idle"):GetLength()
         chPerc = math.floor(chPerc*(anmLength-1))
@@ -44,8 +44,8 @@ local function playerUpdate(_, p)
                 p:SetColor(Color(1,1,1,1,1,0.9,0.5),8,1,true,false)
                 sfx:Play(SoundEffect.SOUND_BEEP, 1, 0, false, 0.9)
             end
-            mod:setEntityData(eff, "CHARGEBAR_STATE", (isFinal and 2 or 1))
-            mod:setEntityData(eff, "CHARGEBAR_STATEFRAME", 0)
+            ToyboxMod:setEntityData(eff, "CHARGEBAR_STATE", (isFinal and 2 or 1))
+            ToyboxMod:setEntityData(eff, "CHARGEBAR_STATEFRAME", 0)
         end
 
         eff:GetSprite():SetFrame("Idle", chPerc)
@@ -58,14 +58,14 @@ local function playerUpdate(_, p)
             sfx:Play(SoundEffect.SOUND_CASH_REGISTER, 0.7)
             sfx:Play(SoundEffect.SOUND_GOLD_HEART, 0.3)
             Game():ShakeScreen(5)
-            local rng = p:GetCollectibleRNG(mod.COLLECTIBLE.SIGIL_OF_GREED)
+            local rng = p:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SIGIL_OF_GREED)
 
-            local eff = Isaac.Spawn(1000, mod.EFFECT_VARIANT.GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()
+            local eff = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()
             eff.SpriteScale = Vector(1,1)*0.5
             eff:FollowParent(p)
             
             for _, ent in ipairs(Isaac.FindInRadius(p.Position, SIGIL_RANGE, EntityPartition.ENEMY)) do
-                if(mod:isValidEnemy(ent)) then
+                if(ToyboxMod:isValidEnemy(ent)) then
                     local willDie = (ent:IsDead() or ent:HasMortalDamage() or ent.HitPoints<=SIGIL_DAMAGE)
                     local willMidas = (rng:RandomFloat()<MIDAS_CHANCE)
 
@@ -81,20 +81,20 @@ local function playerUpdate(_, p)
         end
 
         if(data.SIGIL_OF_GREED_EFFECTENTITY) then
-            local state = mod:getEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATE")
+            local state = ToyboxMod:getEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATE")
             if(not (state and state<0)) then
-                mod:setEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATE", (isFull and -2 or -1))
-                mod:setEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATEFRAME", 0)
+                ToyboxMod:setEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATE", (isFull and -2 or -1))
+                ToyboxMod:setEntityData(data.SIGIL_OF_GREED_EFFECTENTITY, "CHARGEBAR_STATEFRAME", 0)
             end
         end
 
         data.SIGIL_OF_GREED_CHARGE = 0
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate, 0)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate, 0)
 
 local function chargebarUpdate(_, e)
-    local data = mod:getEntityDataTable(e)
+    local data = ToyboxMod:getEntityDataTable(e)
 
     if(data.CHARGEBAR_STATE==1) then
         local SHRINK_DUR = 3
@@ -213,4 +213,4 @@ local function chargebarUpdate(_, e)
 
     data.CHARGEBAR_STATEFRAME = (data.CHARGEBAR_STATEFRAME or 0)+1
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, chargebarUpdate, mod.EFFECT_VARIANT.GREED_SIGIL_CHARGEBAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, chargebarUpdate, ToyboxMod.EFFECT_VARIANT.GREED_SIGIL_CHARGEBAR)

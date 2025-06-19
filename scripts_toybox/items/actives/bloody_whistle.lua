@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local CREEP_DURATION = 30*30
@@ -37,9 +37,9 @@ local function useBloodyWhistle(_, _, rng, player, flags)
     creep:SetTimeout(CREEP_DURATION)
     creep:Update()
 
-    mod:setEntityData(creep, "BLOODYWHISTLE_BLOOD_CREEP", true)
+    ToyboxMod:setEntityData(creep, "BLOODYWHISTLE_BLOOD_CREEP", true)
 
-    sfx:Play(mod.SOUND_EFFECT.BLOODY_WHISTLE)
+    sfx:Play(ToyboxMod.SOUND_EFFECT.BLOODY_WHISTLE)
 
     return {
         Discharge = true,
@@ -47,11 +47,11 @@ local function useBloodyWhistle(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodyWhistle, mod.COLLECTIBLE.BLOODY_WHISTLE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodyWhistle, ToyboxMod.COLLECTIBLE_BLOODY_WHISTLE)
 
 ---@param effect EntityEffect
 local function updateBloodCreep(_, effect)
-    if(not mod:getEntityData(effect, "BLOODYWHISTLE_BLOOD_CREEP")) then return end
+    if(not ToyboxMod:getEntityData(effect, "BLOODYWHISTLE_BLOOD_CREEP")) then return end
 
     effect.Color = CREEP_COLOR
     effect.SpriteScale = effect.SpriteScale
@@ -89,5 +89,5 @@ local function updateBloodCreep(_, effect)
     tear.FallingSpeed = -10
     tear.Height = -5
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateBloodCreep, EffectVariant.PLAYER_CREEP_LEMON_PARTY)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateBloodCreep, EffectVariant.PLAYER_CREEP_LEMON_PARTY)
 

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local P_ADD_HP = 2
@@ -14,7 +14,7 @@ local function chocolateUse(_, _, rng, pl, flags, slot, vdata)
     if(hpToAdd>0) then
         pl:AddMaxHearts(hpToAdd)
 
-        local data = mod:getEntityDataTable(pl)
+        local data = ToyboxMod:getEntityDataTable(pl)
         data.CHOCOLATE_COUNTER = (data.CHOCOLATE_COUNTER or 0)+hpToAdd
     end
     pl:AddHearts(P_ADD_HP)
@@ -45,11 +45,11 @@ local function chocolateUse(_, _, rng, pl, flags, slot, vdata)
         Remove = false,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, chocolateUse, mod.COLLECTIBLE.CHOCOLATE_BAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, chocolateUse, ToyboxMod.COLLECTIBLE_CHOCOLATE_BAR)
 
 ---@param pl EntityPlayer
 local function removeTempHP(_, pl)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     if(not data.CHOCOLATE_COUNTER) then return end
 
     local hpToRemove = math.min(data.CHOCOLATE_COUNTER, pl:GetMaxHearts()-2)
@@ -58,4 +58,4 @@ local function removeTempHP(_, pl)
     end
     data.CHOCOLATE_COUNTER = nil
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, removeTempHP)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, removeTempHP)

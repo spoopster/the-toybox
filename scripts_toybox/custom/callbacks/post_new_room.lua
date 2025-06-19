@@ -1,17 +1,17 @@
-local mod = ToyboxMod
+
 local lastWaveVal = 0
 
 local function postUpdate()
     if((Ambush.GetCurrentWave()-lastWaveVal)>0 and Ambush.GetCurrentWave()>=1) then
-        Isaac.RunCallback(mod.CUSTOM_CALLBACKS.POST_NEW_ROOM, Ambush.GetCurrentWave())
+        Isaac.RunCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_NEW_ROOM, Ambush.GetCurrentWave())
     end
 
     if(not Game():GetRoom():IsAmbushDone() and not Game():GetRoom():IsAmbushActive()) then lastWaveVal = 0
     else lastWaveVal = Ambush.GetCurrentWave() end
 end
-mod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)
 
 local function postNewRoom()
-    Isaac.RunCallback(mod.CUSTOM_CALLBACKS.POST_NEW_ROOM, -1)
+    Isaac.RunCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_NEW_ROOM, -1)
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, CallbackPriority.IMPORTANT, postNewRoom)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, CallbackPriority.IMPORTANT, postNewRoom)

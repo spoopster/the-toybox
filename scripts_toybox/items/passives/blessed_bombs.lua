@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 -- FUCK THIS SHIT! Fuck you caligulas
 
@@ -10,7 +10,7 @@ local DMG_MULT = 2
 
 ---@param bomb EntityBomb
 local function replaceAnm2(bomb)
-    if(not mod:getEntityData(bomb, "BLESSED_BOMB_PLAYER")) then return end
+    if(not ToyboxMod:getEntityData(bomb, "BLESSED_BOMB_PLAYER")) then return end
 
     local sp = bomb:GetSprite()
     
@@ -26,40 +26,40 @@ end
 ---@param pl EntityPlayer
 ---@param bomb EntityBomb
 local function playerPlaceBomb(_, pl, bomb)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.BLESSED_BOMBS)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_BLESSED_BOMBS)) then return end
 
     bomb:SetExplosionCountdown(math.floor(bomb:GetExplosionCountdown()*EXPLOSION_TIME_MULT))
-    mod:setEntityData(bomb, "BLESSED_BOMB_PLAYER", pl)
+    ToyboxMod:setEntityData(bomb, "BLESSED_BOMB_PLAYER", pl)
     replaceAnm2(bomb)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_USE_BOMB, playerPlaceBomb)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_USE_BOMB, playerPlaceBomb)
 
 
 ---@param bomb EntityBomb
 local function blessedBombUpdate(_, bomb)
-    local pl = mod:getEntityData(bomb, "BLESSED_BOMB_PLAYER")
+    local pl = ToyboxMod:getEntityData(bomb, "BLESSED_BOMB_PLAYER")
     if(not pl) then return end
 
-    local blessedAura = mod:getEntityData(bomb, "BLESSED_BOMB_AURA")
+    local blessedAura = ToyboxMod:getEntityData(bomb, "BLESSED_BOMB_AURA")
     if(not (blessedAura and blessedAura:Exists())) then
-        blessedAura = Isaac.Spawn(1000,mod.EFFECT_VARIANT.AURA,mod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED,bomb.Position,Vector.Zero,pl):ToEffect()
+        blessedAura = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED,bomb.Position,Vector.Zero,pl):ToEffect()
         blessedAura.DepthOffset = -1000
         blessedAura:FollowParent(bomb)
         --blessedAura:GetSprite():GetLayer(0):GetBlendMode():SetMode(BlendType.NORMAL)
     
-        blessedAura.Scale = mod:getBombRadius(bomb)/BASE_AURA_RADIUS
+        blessedAura.Scale = ToyboxMod:getBombRadius(bomb)/BASE_AURA_RADIUS
         blessedAura.SpriteScale = Vector(1,1)*blessedAura.Scale*BASE_AURA_RADIUS/(2*40)
     
         blessedAura:GetSprite():Play("Appear", true)
 
-        mod:setEntityData(bomb, "BLESSED_BOMB_AURA", blessedAura)
+        ToyboxMod:setEntityData(bomb, "BLESSED_BOMB_AURA", blessedAura)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, blessedBombUpdate)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, blessedBombUpdate)
 
 ---@param effect EntityEffect
 local function blessedAuraUpdate(_, effect)
-    if(effect.SubType~=mod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED) then return end
 
     local sp = effect:GetSprite()
     if(sp:IsFinished("Appear")) then
@@ -81,13 +81,13 @@ local function blessedAuraUpdate(_, effect)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, blessedAuraUpdate, mod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, blessedAuraUpdate, ToyboxMod.EFFECT_VARIANT.AURA)
 
 local function checkEnterExitBlessedRadius(_, pl)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
 
     data.BLESSED_AURAS = 0
-    for _, effect in ipairs(Isaac.FindByType(1000,mod.EFFECT_VARIANT.AURA,mod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED)) do
+    for _, effect in ipairs(Isaac.FindByType(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED)) do
         effect = effect:ToEffect()
 
         local dist = effect.Scale*effect.Scale*BASE_AURA_RADIUS*BASE_AURA_RADIUS
@@ -102,20 +102,20 @@ local function checkEnterExitBlessedRadius(_, pl)
 
     data.BLESSED_AURAS_PREV = data.BLESSED_AURAS
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, checkEnterExitBlessedRadius)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, checkEnterExitBlessedRadius)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalAuraCache(_, player, flag)
-    local aurasNum = mod:getEntityData(player, "BLESSED_AURAS") or 0
+    local aurasNum = ToyboxMod:getEntityData(player, "BLESSED_AURAS") or 0
     if(aurasNum<=0) then return end
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
         player.Damage = player.Damage*DMG_MULT
     elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        player.MaxFireDelay = mod:toFireDelay(TEAR_MULT*mod:toTps(player.MaxFireDelay))
+        player.MaxFireDelay = ToyboxMod:toFireDelay(TEAR_MULT*ToyboxMod:toTps(player.MaxFireDelay))
     elseif(flag==CacheFlag.CACHE_TEARFLAG) then
         player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalAuraCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalAuraCache)

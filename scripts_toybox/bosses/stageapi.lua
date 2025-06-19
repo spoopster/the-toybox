@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 if(not (StageAPI and StageAPI.Loaded)) then return end
 
@@ -9,7 +9,7 @@ local bosses = {
         Offset = Vector(0,0),
         Bossname = "gfx/bosses/shygals/boss_shygals_name.png",
         Rooms = StageAPI.RoomsList("ToyboxShygalsRooms", include("resources.luarooms.boss_shygals")),
-        Entity = {Type = mod.NPC_BOSS, Variant = mod.BOSS_SHYGAL},
+        Entity = {Type = ToyboxMod.NPC_BOSS, Variant = ToyboxMod.BOSS_SHYGAL},
     }),
 }
 

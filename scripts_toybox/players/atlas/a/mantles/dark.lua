@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --* needs some polish
@@ -11,20 +11,20 @@ local BASE_AURA_RADIUS = 80
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
-    if(not mod:isAtlasA(player)) then return end
+    if(not ToyboxMod:isAtlasA(player)) then return end
 
-    local numMantles = mod:getNumMantlesByType(player, mod.MANTLE_DATA.DARK.ID)
+    local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.DARK.ID)
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
-        mod:addBasicDamageUp(player, DMG_BONUS*numMantles)
+        ToyboxMod:addBasicDamageUp(player, DMG_BONUS*numMantles)
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function mantleDestroyed(_, player, mantle)
-    if(not mod:isAtlasA(player)) then return end
-    if(not (mantle==mod.MANTLE_DATA.DARK.ID or mod:atlasHasTransformation(player, mod.MANTLE_DATA.DARK.ID))) then return end
+    if(not ToyboxMod:isAtlasA(player)) then return end
+    if(not (mantle==ToyboxMod.MANTLE_DATA.DARK.ID or ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.DARK.ID))) then return end
 
     for _, enemy in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1200, EntityPartition.ENEMY)) do
         enemy:TakeDamage(LOSEMANTLE_DMG, 0, EntityRef(player), 30)
@@ -35,22 +35,22 @@ local function mantleDestroyed(_, player, mantle)
     local poof = Isaac.Spawn(1000,16,1,player.Position,Vector.Zero,nil):ToEffect()
     poof.Color = Color(0.1,0.1,0.1,1)
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 
 local function checkEnterExitDarkRadius(_, pl)
-    if(not (mod:isAtlasA(pl) and mod:atlasHasTransformation(pl, mod.MANTLE_DATA.DARK.ID))) then
-        local ent = mod:getEntityData(pl, "DARK_AURA")
+    if(not (ToyboxMod:isAtlasA(pl) and ToyboxMod:atlasHasTransformation(pl, ToyboxMod.MANTLE_DATA.DARK.ID))) then
+        local ent = ToyboxMod:getEntityData(pl, "DARK_AURA")
         if(ent) then
             ent:Die()
-            mod:setEntityData(pl, "DARK_AURA", nil)
+            ToyboxMod:setEntityData(pl, "DARK_AURA", nil)
         end
 
         return
     end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     if(not (data.DARK_AURA and data.DARK_AURA:Exists())) then
-        local darkAura = Isaac.Spawn(1000,mod.EFFECT_VARIANT.AURA,mod.EFFECT_AURA_SUBTYPE.DARK_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
+        local darkAura = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.DARK_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
         darkAura.DepthOffset = -1000
         darkAura:FollowParent(pl)
 
@@ -65,7 +65,7 @@ local function checkEnterExitDarkRadius(_, pl)
 
     data.DARK_AURA_ENEMIES = 0
     for _, npc in ipairs(Isaac.FindInRadius(data.DARK_AURA.Position, data.DARK_AURA:ToEffect().Scale*BASE_AURA_RADIUS, EntityPartition.ENEMY)) do
-        if(npc:ToNPC() and mod:isValidEnemy(npc:ToNPC())) then
+        if(npc:ToNPC() and ToyboxMod:isValidEnemy(npc:ToNPC())) then
             data.DARK_AURA_ENEMIES = data.DARK_AURA_ENEMIES+1
         end
     end
@@ -75,26 +75,26 @@ local function checkEnterExitDarkRadius(_, pl)
 
     data.DARK_AURA_ENEMIES_PREV = data.DARK_AURA_ENEMIES
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, checkEnterExitDarkRadius)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, checkEnterExitDarkRadius)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalAuraCache(_, player, flag)
-    if(not mod:isAtlasA(player)) then return end
-    if(not mod:atlasHasTransformation(player, mod.MANTLE_DATA.DARK.ID)) then return end
+    if(not ToyboxMod:isAtlasA(player)) then return end
+    if(not ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.DARK.ID)) then return end
 
-    local aurasNum = mod:getEntityData(player, "DARK_AURA_ENEMIES") or 0
+    local aurasNum = ToyboxMod:getEntityData(player, "DARK_AURA_ENEMIES") or 0
     if(aurasNum<=0) then return end
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
-        mod:addBasicDamageUp(player, AURA_DMG*aurasNum)
+        ToyboxMod:addBasicDamageUp(player, AURA_DMG*aurasNum)
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalAuraCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalAuraCache)
 
 ---@param effect EntityEffect
 local function darkAuraUpdate(_, effect)
-    if(effect.SubType~=mod.EFFECT_AURA_SUBTYPE.DARK_MANTLE) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.DARK_MANTLE) then return end
 
     local sp = effect:GetSprite()
     if(sp:IsFinished("Appear")) then
@@ -116,4 +116,4 @@ local function darkAuraUpdate(_, effect)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, darkAuraUpdate, mod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, darkAuraUpdate, ToyboxMod.EFFECT_VARIANT.AURA)

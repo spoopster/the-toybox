@@ -1,8 +1,8 @@
-local mod = ToyboxMod
+
 
 local REPLACED_CHARGE = 6
 
-function mod:canApplyRetrofall(id)
+function ToyboxMod:canApplyRetrofall(id)
     local conf = Isaac.GetItemConfig():GetCollectible(id)
     if(not (conf and conf.Type==ItemType.ITEM_ACTIVE and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return false end
 
@@ -23,20 +23,20 @@ end
 ---@param id CollectibleType
 ---@param pl EntityPlayer
 local function replaceRetroCharge(_, id, pl, vardata, current)
-    if(pl:HasCollectible(mod.COLLECTIBLE.RETROFALL) and mod:canApplyRetrofall(id)) then
+    if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL) and ToyboxMod:canApplyRetrofall(id)) then
         return REPLACED_CHARGE
     end
 end
-mod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, replaceRetroCharge)
+ToyboxMod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, replaceRetroCharge)
 
 local function giveExtraInitialCharge(_, id, charge, firstTime, slot, var, pl)
-    if(not (firstTime and pl:HasCollectible(mod.COLLECTIBLE.RETROFALL) and mod:canApplyRetrofall(id))) then return end
+    if(not (firstTime and pl:HasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL) and ToyboxMod:canApplyRetrofall(id))) then return end
 
     if(charge==Isaac.GetItemConfig():GetCollectible(id).MaxCharges) then
         return {id, REPLACED_CHARGE, firstTime, slot, var}
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, giveExtraInitialCharge)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, giveExtraInitialCharge)
 
 
 --- VANILLA/MODDED NON-THROWABLE ITEMS
@@ -46,28 +46,28 @@ mod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, giveExtraInitialCharge)
 ---@param pl EntityPlayer
 local function blablabla(_, id, rng, pl, flags, slot, vardata)
     if(slot==-1) then return end
-    if(not (pl:HasCollectible(mod.COLLECTIBLE.RETROFALL) and mod:canApplyRetrofall(id))) then return end
+    if(not (pl:HasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL) and ToyboxMod:canApplyRetrofall(id))) then return end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
 
     data.QUEUED_ITEM_USES = data.QUEUED_ITEM_USES or {}
     table.insert(data.QUEUED_ITEM_USES, {id,slot,flags,pl:GetTotalActiveCharge(slot)})
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_USE_ITEM, math.huge, blablabla)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_USE_ITEM, math.huge, blablabla)
 
 ---@param pl EntityPlayer
 local function nonThrowableReroll(_, pl)
-    if(not pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then
-        mod:setEntityData(pl, "QUEUED_ITEM_USES", nil)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL)) then
+        ToyboxMod:setEntityData(pl, "QUEUED_ITEM_USES", nil)
 
         return
     end
 
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     if(not data.QUEUED_ITEM_USES) then return end
 
     for _, itemData in ipairs(data.QUEUED_ITEM_USES) do
-        if(mod:canApplyRetrofall(itemData[1])) then
+        if(ToyboxMod:canApplyRetrofall(itemData[1])) then
             local currentCharge = pl:GetTotalActiveCharge(itemData[2])
             if(currentCharge<itemData[4]) then
                 doRetrofallReroll()
@@ -77,7 +77,7 @@ local function nonThrowableReroll(_, pl)
 
     data.QUEUED_ITEM_USES = nil
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, nonThrowableReroll)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, nonThrowableReroll)
 
 
 --- VANILLA THROWABLE ITEMS
@@ -96,20 +96,20 @@ local vanillaThrowables = {
 
 ---@param pl EntityPlayer
 local function vanillaThrowableItemReroll(_, pl)
-    local data = mod:getEntityDataTable(pl)
+    local data = ToyboxMod:getEntityDataTable(pl)
     local state = pl:GetItemState()
     data.RETRO_LAST_ITEM_STATE = data.RETRO_LAST_ITEM_STATE or state
 
-    if(state==0 and data.RETRO_LAST_ITEM_STATE~=0 and pl:HasCollectible(mod.COLLECTIBLE.RETROFALL)) then
+    if(state==0 and data.RETRO_LAST_ITEM_STATE~=0 and pl:HasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL)) then
         local isntPickupAnim = (string.find(pl:GetSprite():GetAnimation(), "PickupWalk")==nil)
-        if(isntPickupAnim and vanillaThrowables[data.RETRO_LAST_ITEM_STATE] and mod:canApplyRetrofall(data.RETRO_LAST_ITEM_STATE)) then
+        if(isntPickupAnim and vanillaThrowables[data.RETRO_LAST_ITEM_STATE] and ToyboxMod:canApplyRetrofall(data.RETRO_LAST_ITEM_STATE)) then
             doRetrofallReroll()
         end
     end
 
     data.RETRO_LAST_ITEM_STATE = state
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, vanillaThrowableItemReroll)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, vanillaThrowableItemReroll)
 
 
 --- MODDED THROWABLE ITEMS
@@ -120,7 +120,7 @@ local newMetaTable = {}
 local ogIndex = ogMetaTable.__index
 
 function newMetaTable:DischargeActiveItem(slot)
-    if(self:HasCollectible(mod.COLLECTIBLE.RETROFALL) and mod:canApplyRetrofall(ogMetaTable.GetActiveItem(self, slot))) then
+    if(self:HasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL) and ToyboxMod:canApplyRetrofall(ogMetaTable.GetActiveItem(self, slot))) then
         doRetrofallReroll()
     end
 
@@ -166,7 +166,7 @@ local retrofallDescStrings = {
 }
 
 local function renderRetrofallDesc(_)
-    if(mod.CONFIG.EPIC_ITEM_MODE~=mod.ENUMS.ITEM_SHADER_RETRO) then return end
+    if(ToyboxMod.CONFIG.EPIC_ITEM_MODE~=ToyboxMod.ENUMS.ITEM_SHADER_RETRO) then return end
 
     if(RENDER_RETROFALL>=0) then
         local streakSprite = Game():GetHUD():GetStreakSprite()
@@ -185,10 +185,10 @@ local function renderRetrofallDesc(_)
         if(streakSprite:IsFinished("Text")) then RENDER_RETROFALL = -1 end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderRetrofallDesc)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderRetrofallDesc)
 
 local function replaceRetrofallDesc(_, title, subtitle, sticky, curse)
-    if(mod.CONFIG.EPIC_ITEM_MODE~=mod.ENUMS.ITEM_SHADER_RETRO) then return end
+    if(ToyboxMod.CONFIG.EPIC_ITEM_MODE~=ToyboxMod.ENUMS.ITEM_SHADER_RETRO) then return end
 
     if(title=="RETROFALL") then
         RENDER_RETROFALL = 0
@@ -201,4 +201,4 @@ local function replaceRetrofallDesc(_, title, subtitle, sticky, curse)
         RENDER_RETROFALL = -1
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_ITEM_TEXT_DISPLAY, replaceRetrofallDesc)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ITEM_TEXT_DISPLAY, replaceRetrofallDesc)

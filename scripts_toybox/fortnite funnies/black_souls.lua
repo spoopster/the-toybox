@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local RESTART_PRESSED = false
@@ -84,7 +84,7 @@ local function tryInteractWithEntity(_, pl)
         pl:AddHearts(99)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, tryInteractWithEntity)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, tryInteractWithEntity)
 
 local font = Font()
 font:Load("font/pftempestasevencondensed.fnt")
@@ -138,4 +138,4 @@ local function postEntityRender(_, ent, offset)
         TEXTBOX_ACTIVE = false
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postEntityRender)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postEntityRender)

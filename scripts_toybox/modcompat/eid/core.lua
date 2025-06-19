@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local modName = "Toybox"
 
 if(not EID) then return end
@@ -31,7 +31,7 @@ local function getTypeMatchFunction(itemType, itemId)
 end
 
 local function formatModifier(modifier, icon, color)
-    local newModifier = mod:cloneTable(modifier)
+    local newModifier = ToyboxMod:cloneTable(modifier)
     newModifier.Type = newModifier.Type or STORED.CONSTANTS.DescriptionModifier.APPEND
     newModifier.Condition = newModifier.Condition or function(descObj) return true end
 
@@ -128,7 +128,7 @@ for id, data in pairs(STORED.ITEMS) do
             for _, modifier in ipairs(data[modifierName]) do
                 local tempNewMod = formatModifier(modifier, modifierData[2], modifierData[3])
 
-                local newModifier = mod:cloneTable(tempNewMod)
+                local newModifier = ToyboxMod:cloneTable(tempNewMod)
                 newModifier.Condition = function(descObj)
                     return STORED.CONSTANTS.ModifierCondition[modifierData[1]](descObj) and tempNewMod.Condition(descObj)
                 end
@@ -159,7 +159,7 @@ for id, data in pairs(STORED.TRINKETS) do
             for _, modifier in ipairs(data[modifierName]) do
                 local tempNewMod = formatModifier(modifier, modifierData[2], modifierData[3])
 
-                local newModifier = mod:cloneTable(tempNewMod)
+                local newModifier = ToyboxMod:cloneTable(tempNewMod)
                 newModifier.Condition = function(descObj)
                     return STORED.CONSTANTS.ModifierCondition[modifierData[1]](descObj) and tempNewMod.Condition(descObj)
                 end
@@ -196,7 +196,7 @@ for id, data in pairs(STORED.PILLS) do
         for _, modifier in ipairs(data.HorseModifiers) do
             local newModifier = formatModifier(modifier)
 
-            local horseModifier = mod:cloneTable(newModifier)
+            local horseModifier = ToyboxMod:cloneTable(newModifier)
             horseModifier.Condition = function(descObj)
                 return horseFunc(descObj) and newModifier.Condition(descObj)
             end
@@ -232,7 +232,7 @@ for id, data in pairs(STORED.CARDS) do
         for _, modifier in ipairs(data.TarotClothModifiers) do
             local newModifier = formatModifier(modifier)
 
-            local clothModifier = mod:cloneTable(newModifier)
+            local clothModifier = ToyboxMod:cloneTable(newModifier)
             clothModifier.Condition = function(descObj)
                 return clothFunc(descObj) and newModifier.Condition(descObj)
             end

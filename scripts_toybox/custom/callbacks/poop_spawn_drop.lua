@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local POOPS_WITH_DROPS = {
     [GridPoopVariant.NORMAL] = 1,
@@ -10,7 +10,7 @@ local POOPS_WITH_DROPS = {
 local function checkPoopPickup(_, poop, poopVar)
     if(POOPS_WITH_DROPS[poopVar]~=1) then return end
 
-    local data = mod:getGridEntityDataTable(poop)
+    local data = ToyboxMod:getGridEntityDataTable(poop)
 
     local selPickup
     for _, pickup in ipairs(Isaac.FindByType(5)) do
@@ -22,7 +22,7 @@ local function checkPoopPickup(_, poop, poopVar)
         end
     end
 
-    local pickupSpawnData = Isaac.RunCallback(mod.CUSTOM_CALLBACKS.POOP_SPAWN_DROP, selPickup, poop)
+    local pickupSpawnData = Isaac.RunCallback(ToyboxMod.CUSTOM_CALLBACKS.POOP_SPAWN_DROP, selPickup, poop)
 
     if(type(pickupSpawnData)=="userdata") then
         if(selPickup) then
@@ -37,4 +37,4 @@ local function checkPoopPickup(_, poop, poopVar)
         end
     end
 end
-mod:AddCallback(mod.CUSTOM_CALLBACKS.POST_POOP_DESTROY, checkPoopPickup)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DESTROY, checkPoopPickup)

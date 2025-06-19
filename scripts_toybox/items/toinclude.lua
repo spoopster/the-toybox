@@ -91,6 +91,7 @@ local t = {
     "scripts_toybox.items.actives.exoricsm_kit",
     "scripts_toybox.items.actives.delivery_box",
     "scripts_toybox.items.actives.moms_photobook",
+    "scripts_toybox.items.actives.pythagoras_cup",
 
     --TRINKETS
     -- "scripts_toybox.items.trinkets.",

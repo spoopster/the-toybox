@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local DURATION = 24*60
@@ -12,7 +12,7 @@ local HORSE_MULT = 1.5
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
     
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     data.VITAMINS_DURATION = DURATION
     data.VITAMINS_HORSE = isHorse
     player:AddCacheFlags(CacheFlag.CACHE_SPEED | CacheFlag.CACHE_RANGE | CacheFlag.CACHE_SHOTSPEED | CacheFlag.CACHE_DAMAGE, true)
@@ -21,11 +21,11 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     player:AnimateHappy()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.VITAMINS)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.VITAMINS)
 
 ---@param player EntityPlayer
 local function tempDamage(_, player, flag)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     if((data.VITAMINS_DURATION or 0)<=0) then return end
     local t = data.VITAMINS_DURATION/DURATION
 
@@ -36,14 +36,14 @@ local function tempDamage(_, player, flag)
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
         player.ShotSpeed = player.ShotSpeed+SHOTSPEED_UP*t*(data.VITAMINS_HORSE and HORSE_MULT or 1)
     elseif(data.VITAMINS_HORSE and flag==CacheFlag.CACHE_DAMAGE) then
-        mod:addBasicDamageUp(player, DMG_UP*t)
+        ToyboxMod:addBasicDamageUp(player, DMG_UP*t)
     end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, tempDamage)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, tempDamage)
 
 ---@param player EntityPlayer
 local function reduceDuration(_, player)
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     data.VITAMINS_DURATION = data.VITAMINS_DURATION or 0
     if(data.VITAMINS_DURATION>0) then
         data.VITAMINS_DURATION = data.VITAMINS_DURATION-1
@@ -52,4 +52,4 @@ local function reduceDuration(_, player)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, reduceDuration, 0)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, reduceDuration, 0)

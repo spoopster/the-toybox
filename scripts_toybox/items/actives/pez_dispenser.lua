@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 --TODO: coop compat, maybe? against it because its an inventory thing so it should have coop support (awesome)
@@ -86,7 +86,7 @@ local function getSpriteDataForConsumable(id, isPill, isSmall)
 end
 
 local function getMaxInventorySlots(player)
-    if(not player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then return 0 end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)) then return 0 end
 
     local numSlots = MAXSLOTS
     if(player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)) then
@@ -128,7 +128,7 @@ local function validateDispenserInventory(inventory)
     for i=1, maxConsId do
         if(inventory[i]) then
             if(i~=nextSpot) then
-                inventory[nextSpot] = mod:cloneTable(inventory[i])
+                inventory[nextSpot] = ToyboxMod:cloneTable(inventory[i])
                 inventory[i] = nil
             end
 
@@ -140,7 +140,7 @@ local function validateDispenserInventory(inventory)
 end
 
 local function dropDispenserConsumable(player, index, shouldSpawnPickup)
-    local dispenserInventory = mod:getEntityData(player, "PILLCRUSHER_INVENTORY")
+    local dispenserInventory = ToyboxMod:getEntityData(player, "PILLCRUSHER_INVENTORY")
     local toRemove = dispenserInventory[index or 1]
     if(not toRemove) then return end
 
@@ -157,12 +157,12 @@ local function dropDispenserConsumable(player, index, shouldSpawnPickup)
     end
 
     dispenserInventory[index or 1] = nil
-    mod:setEntityData(player, "PILLCRUSHER_INVENTORY", validateDispenserInventory(dispenserInventory))
+    ToyboxMod:setEntityData(player, "PILLCRUSHER_INVENTORY", validateDispenserInventory(dispenserInventory))
 
     return spawnedPickup
 end
 local function addDispenserConsumable(player, id, isPill)
-    local dispenserInventory = validateDispenserInventory(mod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {})
+    local dispenserInventory = validateDispenserInventory(ToyboxMod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {})
     local maxSlots = getMaxInventorySlots(player)
 
     if(#dispenserInventory==maxSlots) then
@@ -172,22 +172,22 @@ local function addDispenserConsumable(player, id, isPill)
         local newInv = {}
         newInv[1] = getDispenserDataForPickup(id,isPill)
         for i, consData in ipairs(dispenserInventory) do
-            newInv[i+1] = mod:cloneTable(consData)
+            newInv[i+1] = ToyboxMod:cloneTable(consData)
         end
         dispenserInventory = newInv
     else
         dispenserInventory[#dispenserInventory+1] = getDispenserDataForPickup(id,isPill)
     end
 
-    mod:setEntityData(player, "PILLCRUSHER_INVENTORY", validateDispenserInventory(dispenserInventory))
+    ToyboxMod:setEntityData(player, "PILLCRUSHER_INVENTORY", validateDispenserInventory(dispenserInventory))
 end
 
 ---@param player EntityPlayer
 local function takeDispenserConsumable(_, _, rng, player, flags)
-    local dispenserInventory = validateDispenserInventory((mod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {}))
+    local dispenserInventory = validateDispenserInventory((ToyboxMod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {}))
     if(#dispenserInventory==0) then return end
-    local selIndex = (mod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1)
-    local toRemove = mod:cloneTable(dispenserInventory[selIndex])
+    local selIndex = (ToyboxMod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1)
+    local toRemove = ToyboxMod:cloneTable(dispenserInventory[selIndex])
     dropDispenserConsumable(player, selIndex, false)
 
     if(toRemove.IsPill) then
@@ -203,10 +203,10 @@ local function takeDispenserConsumable(_, _, rng, player, flags)
         ShowAnim = true,
     }
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, takeDispenserConsumable, mod.COLLECTIBLE.PEZ_DISPENSER)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, takeDispenserConsumable, ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)
 
 local function collectConsumable(_, player, pickup)
-    if(not player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)) then return end
 
     if(pickup.Variant==PickupVariant.PICKUP_TAROTCARD) then
         addDispenserConsumable(player, pickup.SubType, false)
@@ -230,12 +230,12 @@ local function collectConsumable(_, player, pickup)
 
     return false
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLECT_CARD, collectConsumable)
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLECT_PILL, collectConsumable)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLECT_CARD, collectConsumable)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLECT_PILL, collectConsumable)
 
 ---@param player EntityPlayer
 local function removeExcessPickups(_, player)
-    local dispenserInventory = (mod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {})
+    local dispenserInventory = (ToyboxMod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {})
     local numToRemove = (#dispenserInventory)-getMaxInventorySlots(player)
 
     if(numToRemove>0) then
@@ -244,21 +244,21 @@ local function removeExcessPickups(_, player)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, removeExcessPickups)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, removeExcessPickups)
 
 ---@param player EntityPlayer
 local function checkDropButton(_, player)
     if(EID) then
-        if(player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then
+        if(player:HasCollectible(ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)) then
             EID:addTextPosModifier(EID_OFFSET, EID_POS_OFFSET)
         else
             EID:removeTextPosModifier(EID_OFFSET)
         end
     end
 
-    if(not player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)) then return end
 
-    local dispenserInventory = validateDispenserInventory((mod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {}))
+    local dispenserInventory = validateDispenserInventory((ToyboxMod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {}))
     for _, idx in pairs(PillCardSlot) do
         local pocketItem = player:GetPocketItem(idx)
         if(pocketItem:GetSlot()~=0 and pocketItem:GetType()~=PocketItemType.ACTIVE_ITEM) then
@@ -272,12 +272,12 @@ local function checkDropButton(_, player)
     end
 
     if(Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex)) then
-        local selIndex = (mod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1)
+        local selIndex = (ToyboxMod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1)
         selIndex = selIndex%(math.max(1, #dispenserInventory))+1
-        mod:setEntityData(player, "PILLCRUSHER_SELECTED", selIndex)
+        ToyboxMod:setEntityData(player, "PILLCRUSHER_SELECTED", selIndex)
     end
 
-    local data = mod:getEntityDataTable(player)
+    local data = ToyboxMod:getEntityDataTable(player)
     data.PILLCRUSHER_DROP_FRAMES = (data.PILLCRUSHER_DROP_FRAMES or 0)
     if(Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)) then
         data.PILLCRUSHER_DROP_FRAMES = data.PILLCRUSHER_DROP_FRAMES+1
@@ -295,14 +295,14 @@ local function checkDropButton(_, player)
         data.PILLCRUSHER_INVENTORY = {}
     end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_UPDATE, checkDropButton)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_UPDATE, checkDropButton)
 
 local function renderInventory()
     local player = Isaac.GetPlayer()
-    if(not player:HasCollectible(mod.COLLECTIBLE.PEZ_DISPENSER)) then return end
-    local dispenserInventory = (mod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {})
-    local selectedIndex = mod:clamp(mod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1, 1, math.max(1, #dispenserInventory))
-    mod:setEntityData(player, "PILLCRUSHER_SELECTED", selectedIndex)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)) then return end
+    local dispenserInventory = (ToyboxMod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {})
+    local selectedIndex = ToyboxMod:clamp(ToyboxMod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1, 1, math.max(1, #dispenserInventory))
+    ToyboxMod:setEntityData(player, "PILLCRUSHER_SELECTED", selectedIndex)
 
     local renderPos = Vector(47,41)+Vector(20,12)*Options.HUDOffset
     local renderOffset = Vector(12,0)
@@ -365,4 +365,4 @@ local function renderInventory()
 
     Game():GetHUD():GetCardsPillsSprite().Scale = Vector(1,1)
 end
-mod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderInventory)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderInventory)

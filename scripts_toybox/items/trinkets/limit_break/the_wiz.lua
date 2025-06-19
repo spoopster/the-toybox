@@ -1,11 +1,11 @@
-local mod = ToyboxMod
+
 --* Reduced spread
 
 local WIZ_ANGLE_MULT = 0.3
 
 ---@param player EntityPlayer
 local function getWizParams(_, player)
-    if(not mod:playerHasLimitBreak(player)) then return end
+    if(not ToyboxMod:playerHasLimitBreak(player)) then return end
     player = player:ToPlayer()
 
     if(player:HasCollectible(CollectibleType.COLLECTIBLE_THE_WIZ)) then
@@ -17,4 +17,4 @@ local function getWizParams(_, player)
         return params
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, getWizParams)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, getWizParams)

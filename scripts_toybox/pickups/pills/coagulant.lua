@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 local HORSE_INVINCIBILITY = 3*60
@@ -20,15 +20,15 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     player:AnimateHappy()
 end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, mod.PILL_EFFECT.COAGULANT)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.COAGULANT)
 
 local function coagReduce(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
-    local coagMode = mod:getEntityData(player, "COAGULANT_MODE")
+    local coagMode = ToyboxMod:getEntityData(player, "COAGULANT_MODE")
     if(coagMode==0) then return end
 
     if(dmg>0) then
-        mod:setEntityData(player, "COAGULANT_MODE", 0)
+        ToyboxMod:setEntityData(player, "COAGULANT_MODE", 0)
         if(coagMode==1) then
             sfx:Play(SoundEffect.SOUND_VAMP_GULP, 1.5)
             sfx:Play(SoundEffect.SOUND_ISAAC_HURT_GRUNT, 0.5, 3)
@@ -39,7 +39,7 @@ local function coagReduce(_, player, dmg, flags, source, frames)
                 DamageCountdown=frames
             }
         elseif(coagMode==2) then -- horse effect
-            mod:setEntityData(player, "COAGULANT_MODE", 3)
+            ToyboxMod:setEntityData(player, "COAGULANT_MODE", 3)
             sfx:Play(SoundEffect.SOUND_VAMP_DOUBLE, 1.5)
             sfx:Play(SoundEffect.SOUND_ISAAC_HURT_GRUNT, 0.5, 3)
 
@@ -51,15 +51,15 @@ local function coagReduce(_, player, dmg, flags, source, frames)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, coagReduce, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, coagReduce, EntityType.ENTITY_PLAYER)
 
 ---@param player Entity
 local function postCoagReduce(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()
-    local coagMode = mod:getEntityData(player, "COAGULANT_MODE")
+    local coagMode = ToyboxMod:getEntityData(player, "COAGULANT_MODE")
     if(coagMode==3) then
         player:SetMinDamageCooldown(HORSE_INVINCIBILITY)
-        mod:setEntityData(player, "COAGULANT_MODE", 0)
+        ToyboxMod:setEntityData(player, "COAGULANT_MODE", 0)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, postCoagReduce, EntityType.ENTITY_PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, postCoagReduce, EntityType.ENTITY_PLAYER)

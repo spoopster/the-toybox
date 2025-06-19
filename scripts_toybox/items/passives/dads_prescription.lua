@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 
 local nonSpecialRooms = {
     [RoomType.ROOM_NULL] = 0,
@@ -12,13 +12,13 @@ local nonSpecialRooms = {
 }
 
 local function postPlayerNewRoom(_, player)
-    if(not player:HasCollectible(mod.COLLECTIBLE.DADS_PRESCRIPTION)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_DADS_PRESCRIPTION)) then return end
     local room = Game():GetRoom()
     if(not room:IsFirstVisit()) then return end
     if(nonSpecialRooms[room:GetType()]==0) then return end
 
     local pos = player.Position
-    local num = player:GetCollectibleNum(mod.COLLECTIBLE.DADS_PRESCRIPTION)
+    local num = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_DADS_PRESCRIPTION)
     if(num%2~=0) then
         local pill = Isaac.Spawn(5,70,0,room:FindFreePickupSpawnPosition(pos,40),Vector.Zero,nil):ToPickup()
     end
@@ -28,4 +28,4 @@ local function postPlayerNewRoom(_, player)
     end
     player:AnimateHappy()
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postPlayerNewRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postPlayerNewRoom)

@@ -1,4 +1,4 @@
-local mod = ToyboxMod
+
 local sfx = SFXManager()
 
 ---@param pl EntityPlayer
@@ -14,8 +14,8 @@ end
 ---@param pickup EntityPickup
 ---@param pl Entity
 local function consumeHeart(_, pickup, pl)
-    if(not (pl and pl:ToPlayer() and pl:ToPlayer():HasCollectible(mod.COLLECTIBLE.HEMOLYMPH))) then return end
-    if(not mod.RED_HEART_SUBTYPES[pickup.SubType]) then return end
+    if(not (pl and pl:ToPlayer() and pl:ToPlayer():HasCollectible(ToyboxMod.COLLECTIBLE_HEMOLYMPH))) then return end
+    if(not ToyboxMod.RED_HEART_SUBTYPES[pickup.SubType]) then return end
 
     pl = pl:ToPlayer() ---@cast pl EntityPlayer
     if(pl:CanPickRedHearts()) then return end
@@ -39,4 +39,4 @@ local function consumeHeart(_, pickup, pl)
         return true
     end
 end
-mod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.IMPORTANT, consumeHeart, PickupVariant.PICKUP_HEART)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.IMPORTANT, consumeHeart, PickupVariant.PICKUP_HEART)
