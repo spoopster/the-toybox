@@ -1,4 +1,118 @@
+local sfx = SFXManager()
+local evilRenders = {}
 
+---@param pl EntityPlayer
+---@param rng RNG
+---@param duration integer?
+---@param topleftclamp Vector?
+---@param bottomrightclamp Vector?
+local function pushRender(pl, rng, duration, topleftclamp, bottomrightclamp)
+    local sp = pl:GetSprite()
+
+    local newSp = Sprite(sp:GetFilename(), false)
+    for i, state in pairs(sp:GetAllLayers()) do
+        newSp:ReplaceSpritesheet(i-1, state:GetSpritesheetPath())
+    end
+    newSp:LoadGraphics()
+
+    newSp:SetRenderFlags(AnimRenderFlags.GLITCH)
+    newSp:SetFrame(sp:GetAnimation(), sp:GetFrame())
+    newSp:SetOverlayFrame(sp:GetOverlayAnimation(), sp:GetOverlayFrame())
+    newSp:Stop(true)
+
+    local xscale = rng:RandomFloat()*0.75+0.75
+    newSp.Scale = Vector(xscale, 1)
+
+    duration = duration or rng:RandomInt(8,17)
+    topleftclamp = topleftclamp or Vector(rng:RandomInt(12), rng:RandomInt(12))
+    bottomrightclamp = bottomrightclamp or Vector(rng:RandomInt(12), rng:RandomInt(12))
+
+    table.insert(evilRenders,{
+        Sprite = newSp,
+        Position = pl.Position,
+        Duration = duration,
+        TopClamp = topleftclamp, BottomClamp = bottomrightclamp,
+    })
+end
+
+---@param dir Vector
+---@param amount number
+---@param owner Entity
+---@param weapon Weapon
+local function postTriggerWeaponFired(_, dir, amount, owner, weapon)
+    local weapType = weapon:GetWeaponType()
+    if(weapType==WeaponType.WEAPON_LUDOVICO_TECHNIQUE) then return end
+
+
+    local pl = ToyboxMod:getPlayerFromEnt(owner)
+    if(not pl) then return end
+
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_4_4)
+
+    if(#evilRenders==0) then
+        pushRender(pl, rng)
+        sfx:Play(SoundEffect.SOUND_EDEN_GLITCH, 0.3, 1, false, rng:RandomFloat()*0.3+0.85)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, postTriggerWeaponFired)
+
+---@param tear EntityTear
+local function tearFire(_, tear)
+    local pl = ToyboxMod:getPlayerFromEnt(tear)
+    if(not pl) then return end
+
+    local spawner = tear.SpawnerEntity
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_4_4)
+
+    if(#evilRenders==0) then
+        pushRender(spawner, rng)
+        sfx:Play(SoundEffect.SOUND_EDEN_GLITCH, 0.3, 1, false, rng:RandomFloat()*0.3+0.85)
+    end
+end
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, tearFire)
+
+---@param tear EntityTear
+local function brimFire(_, tear)
+    local pl = ToyboxMod:getPlayerFromEnt(tear)
+    if(not pl) then return end
+
+    local spawner = tear.SpawnerEntity
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_4_4)
+
+    if(#evilRenders==0) then
+        pushRender(spawner, rng)
+        sfx:Play(ToyboxMod.SOUND_EFFECT.FOUR_FOUR_SCREAM, 0.3, 1, false, rng:RandomFloat()*0.1+0.95)
+    end
+end
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BRIMSTONE, brimFire)
+
+---@param pl EntityPlayer
+local function postrender(_, pl)
+    local sp = pl:GetSprite()
+
+    local renderOffset = Game():GetRoom():GetRenderScrollOffset()
+
+    local idx=1
+    while(evilRenders[idx]) do
+        local rPos = Isaac.WorldToRenderPosition(evilRenders[idx].Position)+renderOffset
+        evilRenders[idx].Sprite:Render(rPos, evilRenders[idx].TopClamp, evilRenders[idx].BottomClamp)
+
+        evilRenders[idx].Duration = evilRenders[idx].Duration-1
+        if(evilRenders[idx].Duration<=0) then
+            table.remove(evilRenders, idx)
+        else
+            idx = idx+1
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postrender)
+
+local function postNewRoom(_)
+    evilRenders = {}
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
+
+--[[
 local sfx = SFXManager()
 
 local SONIC_WAVE_COOLDOWN = 600
@@ -18,11 +132,11 @@ local OVERFLOW_MAXLUCK = 44
 local OVERFLOW_DURATION = 150
 
 local function fireSonicWaves(_, player)
-    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_FOUR_FOUR)) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_4_4)) then return end
 
     local data = ToyboxMod:getEntityDataTable(player)
     if(data.FOURFOUR_COOLDOWN<=0) then
-        data.FOURFOUR_COOLDOWN = SONIC_WAVE_COOLDOWN*(STACK_COOL_MULT^(player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_FOUR_FOUR)-1))
+        data.FOURFOUR_COOLDOWN = SONIC_WAVE_COOLDOWN*(STACK_COOL_MULT^(player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_4_4)-1))
         data.FOURFOUR_FIRE_DATA = {
             DURATION = SONIC_WAVE_FREQ*SONIC_WAVES*2,
             DIRECTION = player:GetAimDirection():GetAngleDegrees(),
@@ -36,7 +150,7 @@ ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_DOUBLE_TAP, fireSon
 ---@param player EntityPlayer
 local function playerUpdate(_, player)
     local data = ToyboxMod:getEntityDataTable(player)
-    if(player:HasCollectible(ToyboxMod.COLLECTIBLE_FOUR_FOUR)) then
+    if(player:HasCollectible(ToyboxMod.COLLECTIBLE_4_4)) then
         data.FOURFOUR_COOLDOWN = data.FOURFOUR_COOLDOWN or 0
 
         if(data.FOURFOUR_COOLDOWN==1) then
@@ -82,12 +196,12 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playerUpdate)
 ---@param source EntityRef
 local function tryInflictOverflow(_, ent, amount, flags, source, frames)
     if(not ToyboxMod:isValidEnemy(ent)) then return end
-    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOUR_FOUR)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_4_4)) then return end
 
     local luckMult = 0
     for i=0, Game():GetNumPlayers()-1 do
         local p = Isaac.GetPlayer(i)
-        luckMult = luckMult+p:GetCollectibleNum(ToyboxMod.COLLECTIBLE_FOUR_FOUR)*p.Luck
+        luckMult = luckMult+p:GetCollectibleNum(ToyboxMod.COLLECTIBLE_4_4)*p.Luck
     end
 
     local chance = 0
@@ -95,8 +209,9 @@ local function tryInflictOverflow(_, ent, amount, flags, source, frames)
         chance = ToyboxMod:getLuckAffectedChance(luckMult, OVERFLOW_BASECHANCE, OVERFLOW_MAXLUCK, OVERFLOW_MAXCHANCE)
     end
 
-    if(chance and Isaac.GetPlayer():GetCollectibleRNG(ToyboxMod.COLLECTIBLE_FOUR_FOUR):RandomFloat()<chance) then
+    if(chance and Isaac.GetPlayer():GetCollectibleRNG(ToyboxMod.COLLECTIBLE_4_4):RandomFloat()<chance) then
         ToyboxMod:addOverflowing(ent, Isaac.GetPlayer(), math.max(0,OVERFLOW_DURATION-ToyboxMod:getOverloadingDuration(ent)))
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, tryInflictOverflow)
+--]]

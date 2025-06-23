@@ -5,70 +5,63 @@ ToyboxMod.HiddenItemManager = include("scripts_toybox.libraries.hiddenitemmanage
 ToyboxMod.HiddenItemManager:Init(ToyboxMod)
 
 --! INCLUDE SHIT
-local mod_files = {
-    "scripts_toybox.enums",
+include("scripts_toybox.enums")
 
-    "scripts_toybox.custom.data",
-    "scripts_toybox.custom.callback_includes",
-    "scripts_toybox.custom.bombflags",
-    "scripts_toybox.custom.ludo_trigger",
-    "scripts_toybox.custom.statuseffects",
-    "scripts_toybox.custom.tearvariants",
-    "scripts_toybox.custom.throwables",
-    "scripts_toybox.custom.achievement_system",
+include("scripts_toybox.custom.data")
+include("scripts_toybox.custom.callback_includes")
+include("scripts_toybox.custom.bombflags")
+include("scripts_toybox.custom.ludo_trigger")
+include("scripts_toybox.custom.statuseffects")
+include("scripts_toybox.custom.tearvariants")
+include("scripts_toybox.custom.throwables")
+include("scripts_toybox.custom.achievement_system")
 
-    "scripts_toybox.helper",
+include("scripts_toybox.helper")
 
-    "scripts_toybox.libraries.custom_object_spawn",
+include("scripts_toybox.libraries.custom_object_spawn")
 
-    "scripts_toybox.config",
-    "scripts_toybox.savedata.save_data",
+include("scripts_toybox.config")
+include("scripts_toybox.savedata.save_data")
 
-    "scripts_toybox.statuseffects.electrified",
-    "scripts_toybox.statuseffects.overflowing",
+include("scripts_toybox.statuseffects.electrified")
+include("scripts_toybox.statuseffects.overflowing")
 
-    "scripts_toybox.bosses.toinclude",
-    "scripts_toybox.enemies.toinclude",
+include("scripts_toybox.bosses.toinclude")
+include("scripts_toybox.enemies.toinclude")
 
-    "scripts_toybox.misc.toinclude",
+include("scripts_toybox.misc.toinclude")
 
-    "scripts_toybox.players.milcom.toinclude",
-    "scripts_toybox.players.atlas.toinclude",
-    "scripts_toybox.players.jonas.toinclude",
+include("scripts_toybox.players.milcom.toinclude")
+include("scripts_toybox.players.atlas.toinclude")
+include("scripts_toybox.players.jonas.toinclude")
 
-    "scripts_toybox.items.toinclude",
-    "scripts_toybox.pickups.toinclude",
+include("scripts_toybox.items.toinclude")
+include("scripts_toybox.pickups.toinclude")
 
-    "scripts_toybox.modcompat.eid.core",
-    "scripts_toybox.modcompat.accurate blurbs.accurate_blurbs",
-    "scripts_toybox.modcompat.cain rework.main",
 
-    "scripts_toybox.toybox_imgui",
+--include("scripts_toybox.funny_shaders")
 
-    --"scripts_toybox.funny_shaders",
+--include("scripts_toybox.fortnite funnies.silly healthbar")
+--include("scripts_toybox.fortnite funnies.silly hearts")
+include("scripts_toybox.fortnite funnies.mattman chance")
+include("scripts_toybox.fortnite funnies.gold mode")
+include("scripts_toybox.fortnite funnies.retro mode")
+include("scripts_toybox.fortnite funnies.yes")
+--include("scripts_toybox.fortnite funnies.black_souls")
+--include("scripts_toybox.fortnite funnies.deja_vu")
+--include("scripts_toybox.fortnite funnies.lupustro")
+--include("scripts_toybox.fortnite funnies.stupid enemy title")
+include("scripts_toybox.fortnite funnies.cool title screen")
+--include("scripts_toybox.fortnite funnies.slop o meter")
 
-    --"scripts_toybox.fortnite funnies.silly healthbar",
-    --"scripts_toybox.fortnite funnies.silly hearts",
-    "scripts_toybox.fortnite funnies.mattman chance",
-    "scripts_toybox.fortnite funnies.gold mode",
-    "scripts_toybox.fortnite funnies.retro mode",
-    "scripts_toybox.fortnite funnies.yes",
-    --"scripts_toybox.fortnite funnies.black_souls",
-    --"scripts_toybox.fortnite funnies.deja_vu",
-    --"scripts_toybox.fortnite funnies.lupustro",
-    --"scripts_toybox.fortnite funnies.stupid enemy title",
-    "scripts_toybox.fortnite funnies.cool title screen",
-    "scripts_toybox.fortnite funnies.slop o meter",
 
-    --"scripts_toybox.test",
-}
-for _, path in ipairs(mod_files) do
-    local res = include(path)
+include("scripts_toybox.modcompat.eid.core")
+include("scripts_toybox.modcompat.accurate blurbs.accurate_blurbs")
+include("scripts_toybox.modcompat.cain rework.main")
 
-    if(type(res)=="function") then
-        res()
-    end
-end
+include("scripts_toybox.toybox_imgui")
+
+--include("scripts_toybox.test")
 
 --[[
 local circule = 8

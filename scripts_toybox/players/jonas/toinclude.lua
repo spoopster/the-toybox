@@ -1,18 +1,13 @@
-local t = {
-    --JONAS A
-    -- [[
-    "scripts_toybox.players.jonas.a.jonas",
-    "scripts_toybox.players.jonas.a.stats",
-    "scripts_toybox.players.jonas.a.character_helpers",
-    --"scripts_toybox.players.jonas.a.custom_pillpool",
-    "scripts_toybox.players.jonas.a.pill_bonus_logic",
-    "scripts_toybox.players.jonas.a.monster_pilldrop",
-    --]]
+--JONAS A
+-- [[
+include("scripts_toybox.players.jonas.a.jonas")
+include("scripts_toybox.players.jonas.a.stats")
+include("scripts_toybox.players.jonas.a.character_helpers")
+--include("scripts_toybox.players.jonas.a.custom_pillpool")
+include("scripts_toybox.players.jonas.a.pill_bonus_logic")
+include("scripts_toybox.players.jonas.a.monster_pilldrop")
+--]]
 
-    --JONAS B
-    --"scripts_toybox.players.jonas.b.jonas",
-    --"scripts_toybox.players.jonas.b.closet_unlock",
-}
-for _, path in ipairs(t) do
-    include(path)
-end
+--JONAS B
+--include("scripts_toybox.players.jonas.b.jonas")
+--include("scripts_toybox.players.jonas.b.closet_unlock")

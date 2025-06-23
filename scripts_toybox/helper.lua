@@ -120,7 +120,10 @@ function ToyboxMod:countElements(t)
     return count
 end
 
+---@return EntityPlayer?
 function ToyboxMod:getPlayerFromEnt(ent)
+    if(ent:ToPlayer()) then return ent:ToPlayer() end
+
     local sp = ent.SpawnerEntity
     if(sp==nil) then return nil end
     if(sp:ToPlayer()) then return sp:ToPlayer()

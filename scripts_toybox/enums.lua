@@ -94,7 +94,7 @@ ToyboxMod.COLLECTIBLE_GIANT_CAPSULE = Isaac.GetItemIdByName("Giant Capsule")
 ToyboxMod.COLLECTIBLE_PEZ_DISPENSER = Isaac.GetItemIdByName("Candy Dispenser")
 ToyboxMod.COLLECTIBLE_MISSING_PAGE_3 = Isaac.GetItemIdByName("Missing Page 3")
 ToyboxMod.COLLECTIBLE_ASCENSION = Isaac.GetItemIdByName("Ascension")
-ToyboxMod.COLLECTIBLE_FOUR_FOUR = Isaac.GetItemIdByName("4 4")
+ToyboxMod.COLLECTIBLE_4_4 = Isaac.GetItemIdByName("4 4")
 ToyboxMod.COLLECTIBLE_DR_BUM = Isaac.GetItemIdByName("Dr. Bum")
 ToyboxMod.COLLECTIBLE_JONAS_MASK = Isaac.GetItemIdByName("Jonas' Mask")
 ToyboxMod.COLLECTIBLE_CLOWN_PHD = Isaac.GetItemIdByName("Clown PHD")
@@ -253,6 +253,7 @@ ToyboxMod.EFFECT_VARIANT = {
     BARBED_WIRE_HALO = Isaac.GetEntityVariantByName("Barbed Wire Halo (TOYBOX)"),
     DRILL = Isaac.GetEntityVariantByName("Drill"),
     PYTHAGORAS_CUP_SPILL = Isaac.GetEntityVariantByName("Pythagoras' Cup Spill"),
+    KILLSCREEN_GLITCH = Isaac.GetEntityVariantByName("Killscreen Glitch"),
 
     ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair")
 }

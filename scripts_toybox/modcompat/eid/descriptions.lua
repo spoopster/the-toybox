@@ -188,7 +188,7 @@ enums.FUNCTIONS.AddItem({
     }
 })
 enums.FUNCTIONS.AddItem({
-    ID = ToyboxMod.COLLECTIBLE_FOUR_FOUR,
+    ID = ToyboxMod.COLLECTIBLE_4_4,
     Name = "4 4",
     Description = {
         "Double tap to shoot out a spread of spectral piercing sound waves that confuse enemies, has a 10 second cooldown",
@@ -1013,31 +1013,10 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_BRUNCH,
     Name = "Brunch",
     Description = {
-        "\1 +1 Health",
-        "{{HealingRed}} Heals 1 heart",
+        "\1 +1 Heart container",
+        "{{RottenHeart}} +1 Rotten Heart",
+        "Gives 1 green locust",
     },
-    Modifiers = {
-        {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = function(descObj)
-                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)
-            end,
-            ToModify = {
-                {"1 heart", "{{BlinkGreen}}2{{CR}} hearts"}
-            }
-        },
-        {
-            Condition = function(descObj)
-                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)
-            end,
-            ToModify = {
-                "{{Collectible664}} \1 +2.5 Range",
-                "{{Collectible664}} \1 +1 Luck",
-                "{{Collectible664}} \1 Temporary +3.6 damage",
-                "{{Collectible664}} \2 -0.03 Speed",
-            }
-        },
-    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_TOAST,
@@ -1188,7 +1167,7 @@ enums.FUNCTIONS.AddItem({
     Name = "Pythagoras' Cup",
     Description = {
         "!!! SINGLE USE !!!",
-        "Gives a cup that makes all items spawn as a choice between 3 items",
+        "Gives a cup that makes item pedestals cycle through 3 choices",
         "Picking up more than 3 items on the same floor makes the cup spill, removing itself and all items picked up after using this"
     },
 })
@@ -1196,9 +1175,16 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE,
     Name = "Pythagoras' Cup",
     Description = {
-        "!!! SINGLE USE !!!",
-        "Gives a cup that makes all items spawn as a choice between 3 items",
+        "Gives a cup that makes item pedestals cycle through 3 choices",
         "Picking up more than 3 items on the same floor makes the cup spill, removing itself and all items picked up after using this"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_DADS_SLIPPER,
+    Name = "Dad's Slipper",
+    Description = {
+        "\1 +0.16 Shotspeed",
+        "Non-boss enemies that hurt you are instantly killed",
     },
 })
 

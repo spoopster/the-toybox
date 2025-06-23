@@ -627,20 +627,19 @@
     cache=""
 />
 <passive id="74" name="Brunch"
-    description="HP up"
+    description="Green eggs and ham"
     gfx="tb_brunch.png"
     quality="1"
-    tags="nolostbr food"
+    tags="nolostbr"
     cache=""
 
     maxhearts="2"
-    hearts="4"
 />
 <passive id="75" name="Toast"
     description="HP up"
     gfx="tb_toast.png"
     quality="1"
-    tags="nolostbr food"
+    tags="nolostbr"
     cache=""
 
     maxhearts="2"
@@ -935,7 +934,7 @@
 />
 <trinket id="9" name="Suppository"
     description="Wrong way"
-    gfx="tb_no_sprite.png"
+    gfx="tb_suppository.png"
     cache=""
 />
 <trinket id="10" name="Divided Justice"
@@ -945,12 +944,12 @@
 />
 <trinket id="11" name="Killscreen"
     description="High Sc .  !"
-    gfx="tb_no_sprite.png"
+    gfx="tb_killscreen.png"
     cache=""
 />
 <trinket id="12" name="Lucky Tooth"
     description="Charisma up"
-    gfx="tb_no_sprite.png"
+    gfx="tb_lucky_tooth.png"
     cache=""
 />
 <trinket id="13" name="Mirror Shard"

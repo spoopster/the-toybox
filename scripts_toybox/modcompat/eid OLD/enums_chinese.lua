@@ -232,7 +232,7 @@ local ITEMS = {
             },
         },
     },
-    [ToyboxMod.COLLECTIBLE_FOUR_FOUR] = {
+    [ToyboxMod.COLLECTIBLE_4_4] = {
         Name = "4 4",
         Description = {
             "Double tap fires a series of spectral cacophony that confuses enemies, 10 second cooldown",
@@ -242,9 +242,9 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(ToyboxMod.COLLECTIBLE_FOUR_FOUR),
+                Condition = getStackFunction(ToyboxMod.COLLECTIBLE_4_4),
                 DescriptionToAdd = {
-                    "{{Collectible"..ToyboxMod.COLLECTIBLE_FOUR_FOUR.."}} {{ColorItemStack}}Double-click skill cooldown reduced by 20%{{CR}}",
+                    "{{Collectible"..ToyboxMod.COLLECTIBLE_4_4.."}} {{ColorItemStack}}Double-click skill cooldown reduced by 20%{{CR}}",
                 },
             },
         },

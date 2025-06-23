@@ -1,132 +1,124 @@
-local t = {
-    --PASSIVES
-    -- "scripts_toybox.items.passives.",
-    "scripts_toybox.items.passives.coconut_oil",
-    "scripts_toybox.items.passives.goat_milk",
-    "scripts_toybox.items.passives.condensed_milk",
-    "scripts_toybox.items.passives.nose_candy",
-    "scripts_toybox.items.passives.lion_skull",
-    "scripts_toybox.items.passives.caramel_apple",
-    "scripts_toybox.items.passives.painkillers",
-    "scripts_toybox.items.passives.tech_ix",
-    "scripts_toybox.items.passives.fatal_signal",
-    "scripts_toybox.items.passives.pepper_x",
-    "scripts_toybox.items.passives.meteor_shower",
-    "scripts_toybox.items.passives.blessed_ring",
-    "scripts_toybox.items.passives.eyestrain",
-    "scripts_toybox.items.passives.4_4",
-    "scripts_toybox.items.passives.evil_rock",
-    "scripts_toybox.items.passives.onyx",
-    "scripts_toybox.items.passives.sigil_of_greed",
-    "scripts_toybox.items.passives.dads_prescription",
-    "scripts_toybox.items.passives.horse_tranquilizer",
-    "scripts_toybox.items.passives.silk_bag",
-    "scripts_toybox.items.passives.rock_candy",
-    "scripts_toybox.items.passives.missing_page_3",
-    "scripts_toybox.items.passives.glass_vessel",
-    "scripts_toybox.items.passives.bone_boy",
-    "scripts_toybox.items.passives.steel_soul",
-    "scripts_toybox.items.passives.bobs_heart",
-    "scripts_toybox.items.passives.clown_phd",
-    "scripts_toybox.items.passives.giant_capsule",
-    "scripts_toybox.items.passives.jonas_mask",
-    "scripts_toybox.items.passives.love_letter",
-    "scripts_toybox.items.passives.quake_bombs",
-    "scripts_toybox.items.passives.atheism",
-    "scripts_toybox.items.passives.mayonnaise",
-    "scripts_toybox.items.passives.awesome_fruit",
-    "scripts_toybox.items.passives.bloody_map",
-    "scripts_toybox.items.passives.saltpeter",
-    "scripts_toybox.items.passives.dr_bum",
-    "scripts_toybox.items.passives.preferred_options",
-    "scripts_toybox.items.passives.plasma_globe",
-    "scripts_toybox.items.passives.blessed_bombs",
-    "scripts_toybox.items.passives.cursed_eulogy",
-    "scripts_toybox.items.passives.haemorrhage",
-    "scripts_toybox.items.passives.fish",
-    "scripts_toybox.items.passives.bobs_thesis", -- Also includes Placeholder
-    "scripts_toybox.items.passives.asteroid_belt",
-    "scripts_toybox.items.passives.barbed_wire",
-    "scripts_toybox.items.passives.coffee_cup",
-    "scripts_toybox.items.passives.conjunctivitis",
-    "scripts_toybox.items.passives.dads_slipper",
-    "scripts_toybox.items.passives.food_stamps",
-    "scripts_toybox.items.passives.golden_calf",
-    "scripts_toybox.items.passives.last_beer",
-    "scripts_toybox.items.passives.retrofall",
-    "scripts_toybox.items.passives.brunch",
-    "scripts_toybox.items.passives.toast",
-    "scripts_toybox.items.passives.lucky_pebbles",
-    "scripts_toybox.items.passives.finger_trap",
-    "scripts_toybox.items.passives.hemolymph",
-    "scripts_toybox.items.passives.solar_panel",
-    "scripts_toybox.items.passives.surprise_egg",
-    "scripts_toybox.items.passives.colossal_orb",
-    "scripts_toybox.items.passives.baby_shoes",
-    "scripts_toybox.items.passives.sack_of_chests",
-    "scripts_toybox.items.passives.effigy",
-    "scripts_toybox.items.passives.gambling_addiction",
-    "scripts_toybox.items.passives.pyramid_scheme",
-    --"scripts_toybox.items.passives.public_works",
+--PASSIVES
+include("scripts_toybox.items.passives.coconut_oil")
+include("scripts_toybox.items.passives.goat_milk")
+include("scripts_toybox.items.passives.condensed_milk")
+include("scripts_toybox.items.passives.nose_candy")
+include("scripts_toybox.items.passives.lion_skull")
+include("scripts_toybox.items.passives.caramel_apple")
+include("scripts_toybox.items.passives.painkillers")
+include("scripts_toybox.items.passives.tech_ix")
+include("scripts_toybox.items.passives.fatal_signal")
+include("scripts_toybox.items.passives.pepper_x")
+include("scripts_toybox.items.passives.meteor_shower")
+include("scripts_toybox.items.passives.blessed_ring")
+include("scripts_toybox.items.passives.eyestrain")
+--include("scripts_toybox.items.passives.4_4")
+include("scripts_toybox.items.passives.evil_rock")
+include("scripts_toybox.items.passives.onyx")
+include("scripts_toybox.items.passives.sigil_of_greed")
+include("scripts_toybox.items.passives.dads_prescription")
+include("scripts_toybox.items.passives.horse_tranquilizer")
+include("scripts_toybox.items.passives.silk_bag")
+include("scripts_toybox.items.passives.rock_candy")
+include("scripts_toybox.items.passives.missing_page_3")
+include("scripts_toybox.items.passives.glass_vessel")
+include("scripts_toybox.items.passives.bone_boy")
+include("scripts_toybox.items.passives.steel_soul")
+include("scripts_toybox.items.passives.bobs_heart")
+include("scripts_toybox.items.passives.clown_phd")
+include("scripts_toybox.items.passives.giant_capsule")
+include("scripts_toybox.items.passives.jonas_mask")
+include("scripts_toybox.items.passives.love_letter")
+include("scripts_toybox.items.passives.quake_bombs")
+include("scripts_toybox.items.passives.atheism")
+include("scripts_toybox.items.passives.mayonnaise")
+include("scripts_toybox.items.passives.awesome_fruit")
+include("scripts_toybox.items.passives.bloody_map")
+include("scripts_toybox.items.passives.saltpeter")
+include("scripts_toybox.items.passives.dr_bum")
+include("scripts_toybox.items.passives.preferred_options")
+include("scripts_toybox.items.passives.plasma_globe")
+include("scripts_toybox.items.passives.blessed_bombs")
+include("scripts_toybox.items.passives.cursed_eulogy")
+include("scripts_toybox.items.passives.haemorrhage")
+include("scripts_toybox.items.passives.fish")
+include("scripts_toybox.items.passives.bobs_thesis") -- Also includes Placeholder
+include("scripts_toybox.items.passives.asteroid_belt")
+include("scripts_toybox.items.passives.barbed_wire")
+include("scripts_toybox.items.passives.coffee_cup")
+include("scripts_toybox.items.passives.conjunctivitis")
+include("scripts_toybox.items.passives.dads_slipper")
+include("scripts_toybox.items.passives.food_stamps")
+include("scripts_toybox.items.passives.golden_calf")
+include("scripts_toybox.items.passives.last_beer")
+include("scripts_toybox.items.passives.retrofall")
+include("scripts_toybox.items.passives.brunch")
+include("scripts_toybox.items.passives.toast")
+include("scripts_toybox.items.passives.lucky_pebbles")
+include("scripts_toybox.items.passives.finger_trap")
+include("scripts_toybox.items.passives.hemolymph")
+include("scripts_toybox.items.passives.solar_panel")
+include("scripts_toybox.items.passives.surprise_egg")
+include("scripts_toybox.items.passives.colossal_orb")
+include("scripts_toybox.items.passives.baby_shoes")
+include("scripts_toybox.items.passives.sack_of_chests")
+include("scripts_toybox.items.passives.effigy")
+include("scripts_toybox.items.passives.gambling_addiction")
+include("scripts_toybox.items.passives.pyramid_scheme")
+--include("scripts_toybox.items.passives.public_works")
 
-    "scripts_toybox.items.passives.the_elder_scroll", -- just the shader fo now
+include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 
-    --ACTIVES
-    -- "scripts_toybox.items.actives.",
-    "scripts_toybox.items.actives.pliers",
-    "scripts_toybox.items.actives.blood_ritual",
-    "scripts_toybox.items.actives.sunk_costs",
-    "scripts_toybox.items.actives.bronze_bull",
-    "scripts_toybox.items.actives.ascension",
-    "scripts_toybox.items.actives.gilded_apple",
-    "scripts_toybox.items.actives.drill",
-    "scripts_toybox.items.actives.d",
-    "scripts_toybox.items.actives.pez_dispenser",
-    "scripts_toybox.items.actives.alphabet_box",
-    "scripts_toybox.items.actives.hostile_takeover",
-    "scripts_toybox.items.actives.bloody_whistle",
-    "scripts_toybox.items.actives.art_of_war",
-    "scripts_toybox.items.actives.big_bang",
-    "scripts_toybox.items.actives.chocolate_bar",
-    "scripts_toybox.items.actives.exoricsm_kit",
-    "scripts_toybox.items.actives.delivery_box",
-    "scripts_toybox.items.actives.moms_photobook",
-    "scripts_toybox.items.actives.pythagoras_cup",
+--ACTIVES
+include("scripts_toybox.items.actives.pliers")
+include("scripts_toybox.items.actives.blood_ritual")
+include("scripts_toybox.items.actives.sunk_costs")
+include("scripts_toybox.items.actives.bronze_bull")
+include("scripts_toybox.items.actives.ascension")
+include("scripts_toybox.items.actives.gilded_apple")
+include("scripts_toybox.items.actives.drill")
+include("scripts_toybox.items.actives.d")
+include("scripts_toybox.items.actives.pez_dispenser")
+include("scripts_toybox.items.actives.alphabet_box")
+include("scripts_toybox.items.actives.hostile_takeover")
+include("scripts_toybox.items.actives.bloody_whistle")
+include("scripts_toybox.items.actives.art_of_war")
+include("scripts_toybox.items.actives.big_bang")
+include("scripts_toybox.items.actives.chocolate_bar")
+include("scripts_toybox.items.actives.exoricsm_kit")
+include("scripts_toybox.items.actives.delivery_box")
+include("scripts_toybox.items.actives.moms_photobook")
+include("scripts_toybox.items.actives.pythagoras_cup")
 
-    --TRINKETS
-    -- "scripts_toybox.items.trinkets.",
-    "scripts_toybox.items.trinkets.wonder_drug",
-    "scripts_toybox.items.trinkets.antibiotics",
-    "scripts_toybox.items.trinkets.amber_fossil",
-    "scripts_toybox.items.trinkets.sine_worm",
-    "scripts_toybox.items.trinkets.big_blind",
-    "scripts_toybox.items.trinkets.jonas_lock",
-    "scripts_toybox.items.trinkets.big_boy_bathwater",
-    "scripts_toybox.items.trinkets.black_rune_shard",
-    "scripts_toybox.items.trinkets.suppository",
-    "scripts_toybox.items.trinkets.divided_justice",
-    "scripts_toybox.items.trinkets.killscreen",
-    "scripts_toybox.items.trinkets.mirror_shard",
-    "scripts_toybox.items.trinkets.lucky_tooth",
+--TRINKETS
+include("scripts_toybox.items.trinkets.wonder_drug")
+include("scripts_toybox.items.trinkets.antibiotics")
+include("scripts_toybox.items.trinkets.amber_fossil")
+include("scripts_toybox.items.trinkets.sine_worm")
+include("scripts_toybox.items.trinkets.big_blind")
+include("scripts_toybox.items.trinkets.jonas_lock")
+include("scripts_toybox.items.trinkets.big_boy_bathwater")
+include("scripts_toybox.items.trinkets.black_rune_shard")
+include("scripts_toybox.items.trinkets.suppository")
+include("scripts_toybox.items.trinkets.divided_justice")
+include("scripts_toybox.items.trinkets.killscreen")
+include("scripts_toybox.items.trinkets.mirror_shard")
+include("scripts_toybox.items.trinkets.lucky_tooth")
 
-    --UNUSED
-    --"scripts_toybox.items.actives.btrain",
-    --"scripts_toybox.items.unused.laser_pointer",
-    --"scripts_toybox.items.unused.scattered_tome",
-    --"scripts_toybox.items.unused.toy_gun",
-    --"scripts_toybox.items.unused.foam_bullet",
-    --"scripts_toybox.items.unused.malicious_brain",
-    --"scripts_toybox.items.unused.limit_break",
+--UNUSED
+--include("scripts_toybox.items.actives.btrain")
+--include("scripts_toybox.items.unused.laser_pointer")
+--include("scripts_toybox.items.unused.scattered_tome")
+--include("scripts_toybox.items.unused.toy_gun")
+--include("scripts_toybox.items.unused.foam_bullet")
+--include("scripts_toybox.items.unused.malicious_brain")
+--include("scripts_toybox.items.unused.limit_break")
 
-    --JOKE
-    "scripts_toybox.items.troll.equalizer",
-    "scripts_toybox.items.troll.golden_prayer_card",
-    "scripts_toybox.items.troll.golden_schoolbag",
-    "scripts_toybox.items.troll.catharsis",
-    "scripts_toybox.items.troll.uranium",
-    "scripts_toybox.items.troll.zero_gravity",
-    "scripts_toybox.items.troll.super_hamburger",
-}
-for _, path in ipairs(t) do
-    include(path)
-end
+--JOKE
+include("scripts_toybox.items.troll.equalizer")
+include("scripts_toybox.items.troll.golden_prayer_card")
+include("scripts_toybox.items.troll.golden_schoolbag")
+include("scripts_toybox.items.troll.catharsis")
+include("scripts_toybox.items.troll.uranium")
+include("scripts_toybox.items.troll.zero_gravity")
+include("scripts_toybox.items.troll.super_hamburger")

@@ -232,7 +232,7 @@ local ITEMS = {
             },
         },
     },
-    [ToyboxMod.COLLECTIBLE_FOUR_FOUR] = {
+    [ToyboxMod.COLLECTIBLE_4_4] = {
         Name = "4 4",
         Description = {
             "Double tap to shoot out a spread of spectral piercing sound waves that confuse enemies, has a 10 second cooldown",
@@ -242,9 +242,9 @@ local ITEMS = {
         },
         DescriptionAppend = {
             {
-                Condition = getStackFunction(ToyboxMod.COLLECTIBLE_FOUR_FOUR),
+                Condition = getStackFunction(ToyboxMod.COLLECTIBLE_4_4),
                 DescriptionToAdd = {
-                    "{{Collectible"..ToyboxMod.COLLECTIBLE_FOUR_FOUR.."}} {{ColorItemStack}}Double tap ability has a 20% shorter cooldown{{CR}}",
+                    "{{Collectible"..ToyboxMod.COLLECTIBLE_4_4.."}} {{ColorItemStack}}Double tap ability has a 20% shorter cooldown{{CR}}",
                 },
             },
         },

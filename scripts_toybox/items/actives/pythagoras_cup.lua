@@ -61,20 +61,36 @@ local function dupeItem(_, pickup)
     Isaac.CreateTimer(function()
         NO_DUPE = true
 
-        local centerPos = pickup.Position
-        local offsetDist = 20
+        --local centerPos = pickup.Position
+        --local offsetDist = 30
 
         local optionsIndex = pickup.OptionsPickupIndex
         if(optionsIndex==0) then
             optionsIndex = pickup:SetNewOptionsPickupIndex()
         end
 
-        for i=1, ITEM_CLONES do
-            local spawnPos = centerPos+offsetDist*Vector.FromAngle(360*i/ITEM_CLONES-90)
+        local rng = pickup:GetDropRNG()
+ 
+        for _=1, ITEM_CLONES do
+            local item = Game():GetItemPool():GetCollectible(room:GetItemPool(rng:RandomInt(2^32-1)+1), true)
+            pickup:AddCollectibleCycle(item)
+
+            --[[
+            local spawnPos = centerPos+offsetDist*Vector.FromAngle(360*i/ITEM_CLONES-45)
             spawnPos = room:FindFreePickupSpawnPosition(spawnPos)
 
             local newItem = Isaac.Spawn(5,100,0,spawnPos,Vector.Zero,nil):ToPickup()
             newItem.OptionsPickupIndex = optionsIndex
+            
+            if(pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE) then
+                newItem:MakeShopItem(-2)
+            elseif(pickup:IsShopItem()) then
+                newItem:MakeShopItem(-1)
+                if(pickup.Price==PickupPrice.PRICE_FREE) then
+                    newItem.Price = PickupPrice.PRICE_FREE
+                end
+            end
+            --]]
         end
 
         NO_DUPE = false
@@ -123,6 +139,12 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, stopHoldingThePlaces)
 
 ---@param fam EntityFamiliar
+local function cupFamiliarInit(_, fam)
+    fam:AddToFollowers()
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, cupFamiliarInit, ToyboxMod.FAMILIAR_VARIANT.PYTHAGORAS_CUP)
+
+---@param fam EntityFamiliar
 local function cupFamiliarUpdate(_, fam)
     fam:FollowParent()
     fam:GetSprite():SetAnimation("Idle"..tostring(math.min(fam.Coins-1, ITEMS_BEFORE_LOSS)), false)
@@ -131,6 +153,7 @@ local function cupFamiliarUpdate(_, fam)
         Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.PYTHAGORAS_CUP_SPILL, 0, fam.Position, Vector.Zero, nil):ToEffect()
 
         local pl = fam.Player
+        pl:AnimateSad()
 
         local h = pl:GetHistory()
         local iH = h:GetCollectiblesHistory()

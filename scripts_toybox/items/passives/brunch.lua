@@ -1,17 +1,16 @@
-
-
-local BINGE_RANGE_UP = 2.5
-local BINGE_LUCK_UP = 1
+local NUM_LOCSTS = 1
 
 ---@param pl EntityPlayer
----@param flag CacheFlag
-local function evalCache(_, pl, flag)
-    if(not pl:HasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER)) then return end
+---@param firstTime boolean
+local function addBrunch(_, _, _, firstTime, _, _, pl)
+    if(not firstTime) then return end
 
-    if(flag==CacheFlag.CACHE_RANGE) then
-        pl.TearRange = pl.TearRange+40*BINGE_RANGE_UP*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BRUNCH)
-    elseif(flag==CacheFlag.CACHE_LUCK) then
-        pl.Luck = pl.Luck+BINGE_LUCK_UP*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BRUNCH)
-    end
+    pl:AddRottenHearts(2)
+    
+    local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 2, pl.Position, Vector.Zero, pl):ToFamiliar()
+    fly.Player = pl
+
+    fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addBrunch, ToyboxMod.COLLECTIBLE_BRUNCH)
+
