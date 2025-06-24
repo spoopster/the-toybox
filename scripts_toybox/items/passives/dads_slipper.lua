@@ -43,50 +43,13 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TAKE_DMG, postTakeDmg, EntityType.ENTITY_PLAYER)
 
 ---@param pickup EntityPickup
-local function replaceItemSprite(_, pickup)
-    if(pickup.SubType~=ToyboxMod.COLLECTIBLE_DADS_SLIPPER) then return end
-
-    local sp = pickup:GetSprite()
-    if(sp:GetLayer(1):GetSpritesheetPath()=="gfx/items/collectibles/tb_dads_slipper.png") then
-        local anim, oAnim, oFrame = sp:GetAnimation(), sp:GetOverlayAnimation(), sp:GetOverlayFrame()
-
-        sp:Load("gfx/pickups/tb_pickup_dads_slipper.anm2", true)
-        sp:Play(anim, true)
-        sp:PlayOverlay(oAnim, true)
-        sp:SetOverlayFrame(oFrame)
-        sp:StopOverlay()
-
-        sp:GetLayer(1):SetColor(ToyboxMod.CONFIG.DADS_SLIPPER_COLOR)
-    end
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, replaceItemSprite, PickupVariant.PICKUP_COLLECTIBLE)
-
----@param pickup EntityPickup
 local function updateSlipperColor(_, pickup)
     if(pickup.SubType~=ToyboxMod.COLLECTIBLE_DADS_SLIPPER) then return end
 
     local sp = pickup:GetSprite()
-    if(sp:GetLayer(1):GetSpritesheetPath()=="gfx/pickups/tb_pickup_dads_slipper.png") then
-        sp:GetLayer(1):SetColor(ToyboxMod.CONFIG.DADS_SLIPPER_COLOR)
+    if(sp:GetLayer(1):GetSpritesheetPath()=="gfx/items/collectibles/tb_dads_slipper.png") then
+        local color = Color(255/135,255/150,255/189,1)*ToyboxMod.CONFIG.DADS_SLIPPER_COLOR
+        sp:GetLayer(1):SetColor(color)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, updateSlipperColor, PickupVariant.PICKUP_COLLECTIBLE)
-
----@param pl EntityPlayer
-local function updateSlipperSprite(_, pl)
-    if(not pl:IsHeldItemVisible()) then return end
-
-    local sp = pl:GetHeldSprite()
-    if(sp:GetFilename()=="gfx/005.100_Collectible.anm2") then
-        if(sp:GetLayer(1):GetSpritesheetPath()=="gfx/items/collectibles/tb_dads_slipper.png") then
-            local anim, oAnim, oFrame = sp:GetAnimation(), sp:GetOverlayAnimation(), sp:GetOverlayFrame()
-
-            sp:Load("gfx/pickups/tb_pickup_dads_slipper.anm2", true)
-            sp:Play(anim, true)
-            sp:PlayOverlay(oAnim, true)
-
-            sp:GetLayer(1):SetColor(ToyboxMod.CONFIG.DADS_SLIPPER_COLOR)
-        end
-    end
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateSlipperSprite)

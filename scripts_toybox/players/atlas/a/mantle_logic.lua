@@ -75,6 +75,7 @@ function ToyboxMod:updateMantles(player)
 
     if(not ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.SALT.ID)) then
         data.SALT_CHARIOT_ENABLED = false
+        player:TryRemoveNullCostume(ToyboxMod.MANTLE_DATA.SALT.CHARIOT_COSTUME)
     end
 
     ToyboxMod.DONT_IGNORE_ATLAS_HEALING = true
