@@ -87,7 +87,7 @@ function ToyboxMod:saveProgress()
 
     save.persistentData = convertDataToSaveData(ToyboxMod:getPersistentDataTable(), persistentBaseData)
 
-    save.configData = ToyboxMod:cloneTable(ToyboxMod.CONFIG)
+    save.configData = convertDataToSaveData(ToyboxMod:cloneTable(ToyboxMod.CONFIG), {})
 
 	ToyboxMod:SaveData(json.encode(save))
 end
@@ -108,7 +108,7 @@ local function loadImportantData(_, slot)
 
         if(sd and sd.configData) then
             ToyboxMod.CONFIG = ToyboxMod.CONFIG or {}
-            ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod.CONFIG, sd.configData)
+            ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod.CONFIG, convertSaveDataToTable(sd.configData))
         end
     end
 end

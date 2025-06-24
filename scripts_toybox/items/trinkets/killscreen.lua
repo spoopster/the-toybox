@@ -16,7 +16,7 @@ local function dealKillscreenDMG(_)
 
     local shouldSpawnGlitch = true
     if(shouldSpawnGlitch) then
-        local topLeft = Vector(centerX, room:GetTopLeftPos().Y)-Vector(0,60)
+        local topLeft = Vector(centerX, room:GetTopLeftPos().Y)+Vector(20,-60)
         local bottomRight = room:GetBottomRightPos()+Vector(80,80)
 
         local rng = PlayerManager.FirstTrinketOwner(ToyboxMod.TRINKET_KILLSCREEN):GetTrinketRNG(ToyboxMod.TRINKET_KILLSCREEN)
@@ -54,8 +54,8 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, dealKillscreenDMG)
 local function glitchInit(_, effect)
     local rng = effect:GetDropRNG()
 
-    local lifespan = 35+rng:RandomInt(20) -- approx lifespan
-    local numChanges = rng:RandomInt(6)+2
+    local lifespan = 40+rng:RandomInt(30) -- approx lifespan
+    local numChanges = rng:RandomInt(8)+2
 
     local changeFreq = math.ceil(lifespan/numChanges)
 

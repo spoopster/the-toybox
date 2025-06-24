@@ -8,4 +8,6 @@ ToyboxMod.CONFIG = {
     MORE_STATS = false,
     EPIC_ITEM_MODE = 0,
     AWESOME_FUCKING_TITLESCREEN = true,
+    DADS_SLIPPER_COLOR = Color(135/255, 150/255, 189/255, 1),
+    SUPER_RETROFALL_BROS = false,
 }

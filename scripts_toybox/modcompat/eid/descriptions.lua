@@ -1006,8 +1006,26 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_RETROFALL,
     Name = "RETROFALL",
     Description = {
-        "{{Collectible105}} All non-timed active items have 6 charges and reroll pedestal items in the room",
+        "{{Collectible105}} All non-timed active items have 6 charges and trigger the effect of The D6",
     },
+    Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = function(descObj)
+                return ToyboxMod.CONFIG.SUPER_RETROFALL_BROS
+            end,
+            ToModify = function(descObj)
+                local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
+                local data = ToyboxMod.SUPER_RETROFALL_DICE[selId]
+
+                descObj.Description = string.gsub(descObj.Description, "{{Collectible105}}", "{{Collectible"..data.ID.."}}")
+                descObj.Description = string.gsub(descObj.Description, "6 charges", data.Charges.." charges")
+                descObj.Description = string.gsub(descObj.Description, "The D6", data.Name)
+
+                return descObj.Description
+            end
+        },
+    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_BRUNCH,
@@ -2178,7 +2196,7 @@ enums.FUNCTIONS.AddGlobalModifier({
     }
 })
 enums.FUNCTIONS.AddGlobalModifier({
-    ID = "FoodStamps",
+    ID = "RETROFALL",
     Modifiers = {
         {
             Condition = function(descObj)
@@ -2187,9 +2205,16 @@ enums.FUNCTIONS.AddGlobalModifier({
 
                 return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL)
             end,
-            ToModify = {
-                "{{Collectible"..ToyboxMod.COLLECTIBLE_RETROFALL.."}} Rerolls pedestal items in the room",
-            }
+            ToModify = function(descObj)
+                if(ToyboxMod.CONFIG.SUPER_RETROFALL_BROS) then
+                    local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
+                    local data = ToyboxMod.SUPER_RETROFALL_DICE[selId]
+
+                    return "{{Collectible"..ToyboxMod.COLLECTIBLE_RETROFALL.."}} Triggers the effect of "..data.Name
+                else
+                    return "{{Collectible"..ToyboxMod.COLLECTIBLE_RETROFALL.."}} Triggers the effect of The D6"
+                end
+            end
         }
     }
 })

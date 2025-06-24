@@ -148,6 +148,51 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 	end
 
+	do -- ITEM SHADER
+		local optionID = getOptionID("DadsSlipperColor")
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Dad's Slipper Color"
+		)
+		ImGui.AddInputColor("ToyboxOptionsWindow", optionID, "", nil, 135/255, 150/255, 189/255)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function(r,g,b)
+				ToyboxMod.CONFIG.DADS_SLIPPER_COLOR = Color(r,g,b)
+			end
+		)
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"Changes the color of Dad's Slipper."
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
+
+	do -- MORE STATS
+		local optionID = getOptionID("SuperRETROMode")
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Super RETRO Mode"
+		)
+		ImGui.AddCheckbox("ToyboxOptionsWindow", optionID, "", nil, false)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.SUPER_RETROFALL_BROS)
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				ToyboxMod.CONFIG.SUPER_RETROFALL_BROS = v
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"Makes RETROFALL mimic a random dice instead of just The D6."
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
+
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 

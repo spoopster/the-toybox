@@ -58,6 +58,7 @@ include("scripts_toybox.fortnite funnies.cool title screen")
 include("scripts_toybox.modcompat.eid.core")
 include("scripts_toybox.modcompat.accurate blurbs.accurate_blurbs")
 include("scripts_toybox.modcompat.cain rework.main")
+include("scripts_toybox.modcompat.fuzzy pickle.main")
 
 include("scripts_toybox.toybox_imgui")
 
