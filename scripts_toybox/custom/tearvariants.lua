@@ -4,23 +4,10 @@ local sfx = SFXManager()
 --#region --! METEOR TEARS
 ---@param tear EntityTear
 local function meteorTearUpdate(_, tear)
-    local scale = tear.Scale
-    local anim = "RegularTear13"
-	if scale <= 0.3 then anim = "RegularTear1"
-	elseif scale <= 0.55 then anim = "RegularTear2"
-	elseif scale <= 0.675 then anim = "RegularTear3"
-	elseif scale <= 0.8 then anim = "RegularTear4"
-	elseif scale <= 0.925 then anim = "RegularTear5"
-	elseif scale <= 1.05 then anim = "RegularTear6"
-	elseif scale <= 1.175 then anim = "RegularTear7"
-	elseif scale <= 1.425 then anim = "RegularTear8"
-	elseif scale <= 1.675 then anim = "RegularTear9"
-	elseif scale <= 1.925 then anim = "RegularTear10"
-	elseif scale <= 2.175 then anim = "RegularTear11"
-	elseif scale <= 2.55 then anim = "RegularTear12" end
+    tear:ResetSpriteScale(false)
 
     local s = tear:GetSprite()
-    if(s:GetAnimation()~=anim) then s:Play(anim, true) end
+    --if(s:GetAnimation()~=anim) then s:Play(anim, true) end
 
     tear.Rotation = tear.Velocity:GetAngleDegrees()%360
     s.Rotation = tear.Rotation
@@ -99,7 +86,9 @@ local SOUNDWAVE_TEAR_FADEOUT = 30
 ---@param tear EntityTear
 local function soundwaveTearUpdate(_, tear)
     local s = tear:GetSprite()
-    if(s:GetAnimation()~="RegularTear6") then s:Play("RegularTear6", true) end
+
+--tear:ResetSpriteScale(true)
+    --if(s:GetAnimation()~="RegularTear6") then s:Play("RegularTear6", true) end
 
     tear.Rotation = ToyboxMod:getEntityData(tear, "EVIL_WAVE_ROTATION") or tear.Velocity:GetAngleDegrees()%360
     s.Rotation = tear.Rotation

@@ -81,7 +81,7 @@ local function updateHpData(_, pl)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateHpData, 0)
 
-local heartSprite, test = Sprite("gfx/ui/tb_ui_steelsoul_heart.anm2", true)
+local heartSprite, test = Sprite("gfx_tb/ui/ui_steelsoul_heart.anm2", true)
 heartSprite:Play("Idle", true)
 
 function ToyboxMod:renderSteelSoulSprite(player, pos)

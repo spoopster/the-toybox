@@ -142,7 +142,7 @@ local function stumpyUpdte(_, npc)
                 
                 chosenGrid = room:GetGridEntity(chosenIdx)
                 if(chosenGrid) then
-                    chosenGrid:GetSprite():ReplaceSpritesheet(0, "gfx/tb_empty.png", true)
+                    chosenGrid:GetSprite():ReplaceSpritesheet(0, "gfx_tb/empty.png", true)
                 end
             end
         end

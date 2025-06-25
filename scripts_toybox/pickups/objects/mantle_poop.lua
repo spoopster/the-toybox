@@ -31,19 +31,19 @@ local function useMantle(_, _, player, _)
         for i=1,20 do heldPoop:Update() end
         if(st==1000) then
             heldPoop:GetData().FFCursedPoop = true
-            heldPoop:GetSprite():ReplaceSpritesheet(0, "gfx/grid/grid_cursed_poop.png")
+            heldPoop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/grid_cursed_poop.png")
             heldPoop:GetSprite():LoadGraphics()
         elseif(st==1001) then
             heldPoop:GetData().FFShampoo = true
-            heldPoop:GetSprite():ReplaceSpritesheet(0, "gfx/grid/grid_shampoo.png")
+            heldPoop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/grid_shampoo.png")
             heldPoop:GetSprite():LoadGraphics()
         elseif(st==1002) then
             heldPoop:GetData().FFEvilPoop = true
-            heldPoop:GetSprite():ReplaceSpritesheet(0, "gfx/grid/evilpoop/grid_evilpoop.png")
+            heldPoop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/evilpoop/grid_evilpoop.png")
             heldPoop:GetSprite():LoadGraphics()
         elseif(st==1003) then
             heldPoop:GetData().FFFuzzyPoop = true
-            heldPoop:GetSprite():ReplaceSpritesheet(0, "gfx/grid/grid_fuzzy_poop.png")
+            heldPoop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/grid_fuzzy_poop.png")
             heldPoop:GetSprite():LoadGraphics()
         end
 

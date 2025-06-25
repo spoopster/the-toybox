@@ -108,16 +108,16 @@ local function updateMaskState(npc, isMasked, doEffects)
         data.SHYGAL_HASMASK = true
         data.SHYGAL_DMGCOUNTER = 0
         data.SHYGAL_REQUIREDDMG = UNMASK_DMGREQUIRE
-        npc:GetSprite():ReplaceSpritesheet(0, "gfx/bosses/shygals/npc_shygal.png")
-        npc:GetSprite():ReplaceSpritesheet(1, "gfx/bosses/shygals/npc_shygal.png")
+        npc:GetSprite():ReplaceSpritesheet(0, "gfx_tb/bosses/shygals/npc_shygal.png")
+        npc:GetSprite():ReplaceSpritesheet(1, "gfx_tb/bosses/shygals/npc_shygal.png")
         npc:GetSprite():LoadGraphics()
 
         if(doEffects) then sfx:Play(SoundEffect.SOUND_THUMBSUP) end
     else
         data.SHYGAL_HASMASK = false
 
-        npc:GetSprite():ReplaceSpritesheet(0, "gfx/bosses/shygals/npc_shygal_unmasked.png")
-        npc:GetSprite():ReplaceSpritesheet(1, "gfx/bosses/shygals/npc_shygal_unmasked.png")
+        npc:GetSprite():ReplaceSpritesheet(0, "gfx_tb/bosses/shygals/npc_shygal_unmasked.png")
+        npc:GetSprite():ReplaceSpritesheet(1, "gfx_tb/bosses/shygals/npc_shygal_unmasked.png")
         npc:GetSprite():LoadGraphics()
 
         if(doEffects) then

@@ -2,7 +2,7 @@
 
 local registry = require("scripts.tcainrework.stored.id_to_iteminfo")
 
-local sp = Sprite("gfx/suck my dick.anm2", true)
+local sp = Sprite("gfx_tb/suck my dick.anm2", true)
 sp:Play("Idle", true)
 sp.PlaybackSpeed = 0.25
 sp:GetLayer(0):SetCustomShader("spriteshaders/mengershader")

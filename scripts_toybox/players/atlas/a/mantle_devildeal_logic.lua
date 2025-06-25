@@ -1,11 +1,11 @@
 
 
 local HP_SPRITE = Sprite()
-HP_SPRITE:Load("gfx/ui/tb_ui_mantlehearts.anm2", true)
+HP_SPRITE:Load("gfx_tb/ui/ui_mantlehearts.anm2", true)
 HP_SPRITE:Play("RockMantle", true)
 
 local TRANSF_SPRITE = Sprite()
-TRANSF_SPRITE:Load("gfx/ui/tb_ui_mantleicons.anm2", true)
+TRANSF_SPRITE:Load("gfx_tb/ui/ui_mantleicons.anm2", true)
 TRANSF_SPRITE.Color = Color(1,1,1,0.75)
 TRANSF_SPRITE:Play("RockIcon", true)
 TRANSF_SPRITE.Offset = Vector(0,-1)

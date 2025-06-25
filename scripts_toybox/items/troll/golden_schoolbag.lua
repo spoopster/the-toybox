@@ -1,13 +1,13 @@
 
 
-local itemAnm2 = "gfx/ui/tb_ui_goldenschoolbag_item.anm2"
+local itemAnm2 = "gfx_tb/ui/ui_goldenschoolbag_item.anm2"
 
 local ITEMS_PER_ROW = 6
 
-local selectSprite = Sprite("gfx/ui/tb_ui_pezdispenser_inventory.anm2", true)
+local selectSprite = Sprite("gfx_tb/ui/ui_pezdispenser_inventory.anm2", true)
 selectSprite:Play("Idle", true)
 
-local barSprite = Sprite("gfx/ui/tb_ui_minicharge.anm2", true)
+local barSprite = Sprite("gfx_tb/ui/ui_minicharge.anm2", true)
 barSprite.Scale = Vector(1,1)*0.5
 
 local function getNewItemSprite(id)

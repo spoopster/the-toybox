@@ -1,7 +1,7 @@
 
 local sfx = SFXManager()
 
-local STAT_SPRITE = Sprite("gfx/ui/tb_ui_pill_bonus.anm2", true)
+local STAT_SPRITE = Sprite("gfx_tb/ui/ui_pill_bonus.anm2", true)
 STAT_SPRITE:Play("Idle", true)
 
 local PILLBONUS_FONT = Font()

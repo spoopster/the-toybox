@@ -1,23 +1,23 @@
-<costumes anm2root="gfx/characters/">
-    <costume id="2" anm2path="tb_costume_eyestrain.anm2" type="passive" hasSkinAlt="true"/>
-    <costume id="34" anm2path="tb_costume_glass_vessel.anm2" type="active" priority="1"/>
-    <costume id="37" anm2path="tb_costume_hostile_takeover.anm2" type="active"/>
-    <costume id="43" anm2path="tb_costume_ascension.anm2" type="active" isFlying="true"/>
-    <costume id="47" anm2path="tb_costume_clown_phd.anm2" type="passive"/>
-    <costume id="50" anm2path="tb_costume_love_letter.anm2" type="passive" hasSkinAlt="true"/>
-    <costume id="61" anm2path="tb_costume_bobs_thesis.anm2" type="passive" hasSkinAlt="true"/>
+<costumes anm2root="gfx_tb/characters/">
+    <costume id="2" anm2path="costume_eyestrain.anm2" type="passive" hasSkinAlt="true"/>
+    <costume id="34" anm2path="costume_glass_vessel.anm2" type="active" priority="1"/>
+    <costume id="37" anm2path="costume_hostile_takeover.anm2" type="active"/>
+    <costume id="43" anm2path="costume_ascension.anm2" type="active" isFlying="true"/>
+    <costume id="47" anm2path="costume_clown_phd.anm2" type="passive"/>
+    <costume id="50" anm2path="costume_love_letter.anm2" type="passive" hasSkinAlt="true"/>
+    <costume id="61" anm2path="costume_bobs_thesis.anm2" type="passive" hasSkinAlt="true"/>
 
-    <costume id="87" anm2path="tb_costume_gambling_addiction.anm2" type="passive" priority="1"/>
+    <costume id="87" anm2path="costume_gambling_addiction.anm2" type="passive" priority="1"/>
 
-    <costume id="109" anm2path="tb_costume_retrofall.anm2" type="passive" hasSkinAlt="true" priority="1"/>
+    <costume id="109" anm2path="costume_retrofall.anm2" type="passive" hasSkinAlt="true" priority="1"/>
     
 
-    <costume id="999" anm2path="tb_costume_atlas_tar.anm2" type="none" priority="99"/>
-	<costume id="1000" anm2path="tb_costume_atlas_rock.anm2" type="none" priority="99"/>
-    <costume id="1001" anm2path="tb_costume_atlas_wings.anm2" type="none" isFlying="true"/>
-    <costume id="1002" anm2path="tb_costume_atlas_salt.anm2" type="none" priority="99"/>
+    <costume id="999" anm2path="costume_atlas_tar.anm2" type="none" priority="99"/>
+	<costume id="1000" anm2path="costume_atlas_rock.anm2" type="none" priority="99"/>
+    <costume id="1001" anm2path="costume_atlas_wings.anm2" type="none" isFlying="true"/>
+    <costume id="1002" anm2path="costume_atlas_salt.anm2" type="none" priority="99"/>
 
-    <costume id="1100" anm2path="tb_costume_jonas.anm2" type="none" priority="99"/>
+    <costume id="1100" anm2path="costume_jonas.anm2" type="none" priority="99"/>
 
-    <costume id="1200" anm2path="tb_costume_gambling_addiction_spin.anm2" type="none" priority="99" hasOverlay="true"/>
+    <costume id="1200" anm2path="costume_gambling_addiction_spin.anm2" type="none" priority="99" hasOverlay="true"/>
 </costumes>

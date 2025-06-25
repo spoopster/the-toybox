@@ -51,24 +51,24 @@ local function replaceSpriteSheets(familiar)
     local sp = familiar:GetSprite()
 
     if(familiar.SubType & 1<<0~=0 and familiar.SubType & 1<<1~=0) then
-        sp:ReplaceSpritesheet(0, "gfx/familiars/tb_familiar_blackbone_boy_body.png")
-        sp:ReplaceSpritesheet(1, "gfx/familiars/tb_familiar_holyblackbone_boy.png")
-        sp:ReplaceSpritesheet(2, "gfx/familiars/tb_familiar_holyblackbone_boy.png")
+        sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_blackbone_boy_body.png")
+        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_holyblackbone_boy.png")
+        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_holyblackbone_boy.png")
         sp:LoadGraphics()
     elseif(familiar.SubType & 1<<0~=0) then
-        sp:ReplaceSpritesheet(0, "gfx/familiars/tb_familiar_blackbone_boy_body.png")
-        sp:ReplaceSpritesheet(1, "gfx/familiars/tb_familiar_blackbone_boy.png")
-        sp:ReplaceSpritesheet(2, "gfx/familiars/tb_familiar_holyblackbone_boy.png")
+        sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_blackbone_boy_body.png")
+        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_blackbone_boy.png")
+        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_holyblackbone_boy.png")
         sp:LoadGraphics()
     elseif(familiar.SubType & 1<<1~=0) then
-        sp:ReplaceSpritesheet(0, "gfx/familiars/tb_familiar_bone_boy_body.png")
-        sp:ReplaceSpritesheet(1, "gfx/familiars/tb_familiar_holybone_boy.png")
-        sp:ReplaceSpritesheet(2, "gfx/familiars/tb_familiar_holybone_boy.png")
+        sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_bone_boy_body.png")
+        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_holybone_boy.png")
+        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_holybone_boy.png")
         sp:LoadGraphics()
     else
-        sp:ReplaceSpritesheet(0, "gfx/familiars/tb_familiar_bone_boy_body.png")
-        sp:ReplaceSpritesheet(1, "gfx/familiars/tb_familiar_bone_boy.png")
-        sp:ReplaceSpritesheet(2, "gfx/familiars/tb_familiar_holybone_boy.png")
+        sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_bone_boy_body.png")
+        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_bone_boy.png")
+        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_holybone_boy.png")
         sp:LoadGraphics()
     end
 end

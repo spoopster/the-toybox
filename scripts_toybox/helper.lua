@@ -839,3 +839,22 @@ function ToyboxMod:getBombRadius(bomb)
 
     return radius*bomb.RadiusMultiplier
 end
+
+---@param tear EntityTear
+function ToyboxMod:getTearAnimSuffix(tear)
+    local scale = tear.Scale
+
+	if(scale <= 0.3) then return 1
+	elseif(scale <= 0.55) then return 2
+	elseif(scale <= 0.675) then return 3
+	elseif(scale <= 0.8) then return 4
+	elseif(scale <= 0.925) then return 5
+	elseif(scale <= 1.05) then return 6
+	elseif(scale <= 1.175) then return 7
+	elseif(scale <= 1.425) then return 8
+	elseif(scale <= 1.675) then return 9
+	elseif(scale <= 1.925) then return 10
+	elseif(scale <= 2.175) then return 11
+	elseif(scale <= 2.55) then return 12
+    else return 13 end
+end

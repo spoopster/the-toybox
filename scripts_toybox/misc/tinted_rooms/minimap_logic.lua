@@ -1,7 +1,7 @@
 
 -- TODO: MinimAPI bands rendering support?? one day
 
-local MINIMAP_SPRITE = Sprite("gfx/ui/tb_ui_tinted_room.anm2", true)
+local MINIMAP_SPRITE = Sprite("gfx_tb/ui/ui_tinted_room.anm2", true)
 
 local TINT_ALPHA = 0.2
 local TINT_INTENSITY = 1

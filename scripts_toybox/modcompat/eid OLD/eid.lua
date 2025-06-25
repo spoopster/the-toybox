@@ -5,11 +5,11 @@ if(not EID) then return end
 --#region --! DEFINITIONS
 
 local transformationSprites = Sprite()
-transformationSprites:Load("gfx/eid/tb_eid_mantleicons.anm2", true)
+transformationSprites:Load("gfx_tb/eid/eid_mantleicons.anm2", true)
 local playerIconSprites = Sprite()
-playerIconSprites:Load("gfx/eid/tb_eid_playericons.anm2", true)
+playerIconSprites:Load("gfx_tb/eid/eid_playericons.anm2", true)
 local miscIconSprites = Sprite()
-miscIconSprites:Load("gfx/eid/tb_eid_miscicons.anm2", true)
+miscIconSprites:Load("gfx_tb/eid/eid_miscicons.anm2", true)
 
 EID:addIcon("AtlasATransformationRock", "RockMantle", 0, 16, 16, 5, 6, transformationSprites)
 EID:addIcon("AtlasATransformationPoop", "PoopMantle", 0, 16, 16, 5, 6, transformationSprites)
@@ -377,7 +377,7 @@ for key, data in pairs(descs.TRINKETS) do
 end
 
 local cardSprite = Sprite()
-cardSprite:Load("gfx/eid/tb_eid_cards.anm2", true)
+cardSprite:Load("gfx_tb/eid/eid_cards.anm2", true)
 for key, data in pairs(descs.CARDS) do
     EID:addIcon("Card"..key, data.Name, -1, 16, 16, 5, 7, cardSprite)
 end

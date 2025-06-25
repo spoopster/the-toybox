@@ -5,9 +5,9 @@ if(not (StageAPI and StageAPI.Loaded)) then return end
 local bosses = {
     StageAPI.AddBossData("Shy Gal", {
         Name = "Shy Gal",
-        Portrait = "gfx/bosses/shygals/boss_shygals.png",
+        Portrait = "gfx_tb/bosses/shygals/boss_shygals.png",
         Offset = Vector(0,0),
-        Bossname = "gfx/bosses/shygals/boss_shygals_name.png",
+        Bossname = "gfx_tb/bosses/shygals/boss_shygals_name.png",
         Rooms = StageAPI.RoomsList("ToyboxShygalsRooms", include("resources.luarooms.boss_shygals")),
         Entity = {Type = ToyboxMod.NPC_BOSS, Variant = ToyboxMod.BOSS_SHYGAL},
     }),

@@ -1,8 +1,8 @@
 
 
---local AURA_SPRITE = Sprite("gfx/ui/tb_ui_public_works.anm2", true)
-local AURA_SPRITE_SMALL = Sprite("gfx/ui/minimap1.anm2", true)
-local AURA_SPRITE_BIG = Sprite("gfx/ui/minimap2.anm2", true)
+--local AURA_SPRITE = Sprite("gfx_tb/ui/ui_public_works.anm2", true)
+local AURA_SPRITE_SMALL = Sprite("gfx_tb/ui/minimap1.anm2", true)
+local AURA_SPRITE_BIG = Sprite("gfx_tb/ui/minimap2.anm2", true)
 
 local auraalpha = 0.25
 

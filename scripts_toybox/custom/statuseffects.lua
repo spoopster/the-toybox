@@ -1,6 +1,6 @@
 
 
-local statusSprite = Sprite("gfx/ui/tb_custom_statuses.anm2", true)
+local statusSprite = Sprite("gfx_tb/ui/custom_statuses.anm2", true)
 
 ToyboxMod.CUSTOM_STATUS_EFFECTS = {}
 

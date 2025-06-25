@@ -3,7 +3,7 @@ local sfx = SFXManager()
 
 local SPIN_RESULT_DELAY = 30
 
-local SPIN_COSTUME = Isaac.GetCostumeIdByPath("gfx/characters/tb_costume_gambling_addiction_spin.anm2")
+local SPIN_COSTUME = Isaac.GetCostumeIdByPath("gfx_tb/characters/costume_gambling_addiction_spin.anm2")
 
 local ROLL_CHANCE = 0.25
 
@@ -139,10 +139,10 @@ local function replaceItemSprite(_, pickup)
     if(pickup.SubType~=ToyboxMod.COLLECTIBLE_GAMBLING_ADDICTION) then return end
 
     local sp = pickup:GetSprite()
-    if(sp:GetLayer(1):GetSpritesheetPath()=="gfx/items/collectibles/tb_gambling_addiction.png") then
+    if(sp:GetLayer(1):GetSpritesheetPath()=="gfx_tb/items/collectibles/gambling_addiction.png") then
         local anim, oAnim, oFrame = sp:GetAnimation(), sp:GetOverlayAnimation(), sp:GetOverlayFrame()
 
-        sp:Load("gfx/pickups/tb_pickup_gambling_addiction.anm2", true)
+        sp:Load("gfx_tb/pickups/pickup_gambling_addiction.anm2", true)
         sp:Play(anim, true)
         sp:PlayOverlay(oAnim, true)
         sp:SetOverlayFrame(oFrame)
@@ -156,11 +156,11 @@ local function updateAddictionSprite(_, pl)
     if(not pl:IsHeldItemVisible()) then return end
 
     local sp = pl:GetHeldSprite()
-    if(sp:GetFilename()=="gfx/005.100_Collectible.anm2") then
-        if(sp:GetLayer(1):GetSpritesheetPath()=="gfx/items/collectibles/tb_gambling_addiction.png") then
+    if(sp:GetFilename()=="gfx_tb/005.100_Collectible.anm2") then
+        if(sp:GetLayer(1):GetSpritesheetPath()=="gfx_tb/items/collectibles/gambling_addiction.png") then
             local anim, oAnim, oFrame = sp:GetAnimation(), sp:GetOverlayAnimation(), sp:GetOverlayFrame()
 
-            sp:Load("gfx/pickups/tb_pickup_gambling_addiction.anm2", true)
+            sp:Load("gfx_tb/pickups/pickup_gambling_addiction.anm2", true)
             sp:Play(anim, true)
             sp:PlayOverlay(oAnim, true)
         end

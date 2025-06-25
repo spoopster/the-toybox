@@ -1,7 +1,7 @@
 
 
-local COSTUME_PATH = "gfx/characters/tb_costume_atlas_rock.anm2"
-local COSTUME_DEFAULT = "gfx/characters/costumes/tb_character_atlas_horn.png"
+local COSTUME_PATH = "gfx_tb/characters/costume_atlas_rock.anm2"
+local COSTUME_DEFAULT = "gfx_tb/characters/costumes/character_atlas_horn.png"
 ToyboxMod.HORN_COSTUMES = {}
 
 local function compareSort(tableA, tableB)
@@ -25,9 +25,9 @@ function ToyboxMod:addHornCostume(costumePath, condition, priority)
     table.sort(ToyboxMod.HORN_COSTUMES, compareSort)
 end
 
-ToyboxMod:addHornCostume("gfx/characters/costumes_atlas_a_horn/tb_costume_sad_onion.png", function(pl) return pl:HasCollectible(1) end, 0)
+ToyboxMod:addHornCostume("gfx_tb/characters/costumes_atlas_a_horn/costume_sad_onion.png", function(pl) return pl:HasCollectible(1) end, 0)
 ToyboxMod:addHornCostume(
-    "gfx/characters/costumes_atlas_a_horn/tb_costume_salt_mantle.png",
+    "gfx_tb/characters/costumes_atlas_a_horn/costume_salt_mantle.png",
     function(pl) return pl:IsNullItemCostumeVisible(ToyboxMod.MANTLE_DATA.SALT.CHARIOT_COSTUME, "head") end,
     99
 )

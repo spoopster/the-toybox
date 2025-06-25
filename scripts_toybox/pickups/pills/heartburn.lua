@@ -12,7 +12,7 @@ local BURN_COLOR_CYCLE_FRAMES = 2
 
 local BURN_HURT_COLOR = Color.ProjectileFireWave
 
-local BURN_SPRITE = Sprite("gfx/statuseffects.anm2", true)
+local BURN_SPRITE = Sprite("gfx_tb/statuseffects.anm2", true)
 BURN_SPRITE:Play("Burning", true)
 
 local UPDATE_BURN_FRAME = 0

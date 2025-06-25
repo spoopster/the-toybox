@@ -4,7 +4,7 @@ local persistentData = Isaac.GetPersistentGameData()
 local MAX_STATS_PER_LINE = 10
 local STAT_IDX_OFFSET = Vector(48,12)
 
-local statsSprite = Sprite("gfx/ui/tb_ui_stats.anm2", true)
+local statsSprite = Sprite("gfx_tb/ui/ui_stats.anm2", true)
 statsSprite:SetFrame("Idle", 0)
 statsSprite.Color = Color(1,1,1,0.5,0,0,0)
 local f = Font()

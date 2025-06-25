@@ -16,9 +16,9 @@ local function postRender(_)
     local isMilcomExist = PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.MILCOM_A)
     local sp = Game():GetHUD():GetPickupsHUDSprite()
     if(isMilcomExist and not WAS_MILCOM_EXIST) then
-        sp:ReplaceSpritesheet(0, "gfx/ui/tb_ui_milcom_hud.png", true)
+        sp:ReplaceSpritesheet(0, "gfx_tb/ui/ui_milcom_hud.png", true)
     elseif(WAS_MILCOM_EXIST and not isMilcomExist) then
-        sp:ReplaceSpritesheet(0, "gfx/ui/hudpickups.png", true)
+        sp:ReplaceSpritesheet(0, "gfx_tb/ui/hudpickups.png", true)
     end
     WAS_MILCOM_EXIST = isMilcomExist
 

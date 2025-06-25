@@ -1,36 +1,36 @@
-<achievements gfxroot="gfx/ui/achievements/">
+<achievements gfxroot="gfx_tb/ui/achievements/">
 
 	<!-- characters -->
 	<achievement name="Tainted Atlas" text="" gfx="achievement_milcom_placeholder.png" />
 	<achievement name="Tainted Jonas" text="" gfx="achievement_milcom_placeholder.png" />
 	<achievement name="Tainted Milcom" text="" gfx="achievement_milcom_placeholder.png" />
 
-	<achievement name="Prismstone" text="" gfx="tb_ach_prismstone.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Glass Vessel" text="" gfx="tb_ach_glass_vessel.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Steel Soul" text="" gfx="tb_ach_steel_soul.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Hostile Takeover" text="" gfx="tb_ach_hostile_takeover.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Rock Candy" text="" gfx="tb_ach_rock_candy.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Missing Page 3" text="" gfx="tb_ach_missing_page_3.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Gilded Apple" text="" gfx="tb_ach_gilded_apple.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Saltpeter" text="" gfx="tb_ach_saltpeter.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Mantles" text="" gfx="tb_ach_mantles.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Amber Fossil" text="" gfx="tb_ach_amber_fossil.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Bone Boy!" text="" gfx="tb_ach_bone_boy.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Ascension" text="" gfx="tb_ach_ascension.png" gfxback="tb_achpaper_atlas.png" />
-	<achievement name="Miracle Mantle" text="" gfx="tb_ach_miracle_mantle.png" gfxback="tb_achpaper_atlas.png" />
+	<achievement name="Prismstone" text="" gfx="ach_prismstone.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Glass Vessel" text="" gfx="ach_glass_vessel.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Steel Soul" text="" gfx="ach_steel_soul.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Hostile Takeover" text="" gfx="ach_hostile_takeover.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Rock Candy" text="" gfx="ach_rock_candy.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Missing Page 3" text="" gfx="ach_missing_page_3.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Gilded Apple" text="" gfx="ach_gilded_apple.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Saltpeter" text="" gfx="ach_saltpeter.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Mantles" text="" gfx="ach_mantles.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Amber Fossil" text="" gfx="ach_amber_fossil.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Bone Boy!" text="" gfx="ach_bone_boy.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Ascension" text="" gfx="ach_ascension.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Miracle Mantle" text="" gfx="ach_miracle_mantle.png" gfxback="achpaper_atlas.png" />
 
-	<achievement name="Giant Capsule" text="" gfx="tb_ach_giant_capsule.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Wonder Drug" text="" gfx="tb_ach_wonder_drug.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Dad's Prescription" text="" gfx="tb_ach_dads_prescription.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Candy Dispenser" text="" gfx="tb_ach_candy_dispenser.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Dr. Bum" text="" gfx="tb_ach_dr_bum.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Jonas' Mask" text="" gfx="tb_ach_jonas_mask.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Antibiotics" text="" gfx="tb_ach_antibiotics.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Foil Card" text="" gfx="tb_ach_foil_card.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Horse Tranquilizer" text="" gfx="tb_ach_horse_tranquilizer.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Clown PHD" text="" gfx="tb_ach_clown_phd.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Jonas' Lock" text="" gfx="tb_ach_jonas_lock.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Pill Diversity!" text="" gfx="tb_ach_pills.png" gfxback="tb_achpaper_jonas.png" />
-	<achievement name="Drill" text="" gfx="tb_ach_drill.png" gfxback="tb_achpaper_jonas.png" />
+	<achievement name="Giant Capsule" text="" gfx="ach_giant_capsule.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Wonder Drug" text="" gfx="ach_wonder_drug.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Dad's Prescription" text="" gfx="ach_dads_prescription.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Candy Dispenser" text="" gfx="ach_candy_dispenser.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Dr. Bum" text="" gfx="ach_dr_bum.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Jonas' Mask" text="" gfx="ach_jonas_mask.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Antibiotics" text="" gfx="ach_antibiotics.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Foil Card" text="" gfx="ach_foil_card.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Horse Tranquilizer" text="" gfx="ach_horse_tranquilizer.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Clown PHD" text="" gfx="ach_clown_phd.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Jonas' Lock" text="" gfx="ach_jonas_lock.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Pill Diversity!" text="" gfx="ach_pills.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Drill" text="" gfx="ach_drill.png" gfxback="achpaper_jonas.png" />
 	
 </achievements>

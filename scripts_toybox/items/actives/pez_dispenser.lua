@@ -9,11 +9,11 @@ local MAXSLOTS = 4
 local MAXSLOTS_PLUSBATTERY = 1
 local MAXSLOTS_PLUSCARBATTERY = 1
 
-local INVENTORY_EMPTYSPRITE = Sprite("gfx/ui/tb_ui_pezdispenser_inventory.anm2", true)
+local INVENTORY_EMPTYSPRITE = Sprite("gfx_tb/ui/ui_pezdispenser_inventory.anm2", true)
 INVENTORY_EMPTYSPRITE:SetFrame("Idle", 0)
 INVENTORY_EMPTYSPRITE.Color = Color(1,1,1,0.5)
 
-local INVENTORY_CROSSSPRITE = Sprite("gfx/ui/tb_ui_pezdispenser_inventory.anm2", true)
+local INVENTORY_CROSSSPRITE = Sprite("gfx_tb/ui/ui_pezdispenser_inventory.anm2", true)
 INVENTORY_CROSSSPRITE:SetFrame("Idle", 1)
 INVENTORY_CROSSSPRITE.Scale = Vector(1,1)
 

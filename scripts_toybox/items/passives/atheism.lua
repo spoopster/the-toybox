@@ -34,7 +34,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_DOOR_UPDATE, unlockAtheis
 
 
 
-local statsSprite = Sprite("gfx/ui/hudstats2.anm2", true)
+local statsSprite = Sprite("gfx_tb/ui/hudstats2.anm2", true)
 statsSprite:Play("Idle", true)
 local function renderAtheismDealIcon(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_ATHEISM)) then return end

@@ -1,6 +1,6 @@
 
 
-local laserSprite = Sprite("gfx/effects/tb_effect_laser_pointer.anm2", true)
+local laserSprite = Sprite("gfx_tb/effects/effect_laser_pointer.anm2", true)
 laserSprite:Play("Idle", true)
 
 local ANGLE_DIF_TRIGGER = 25

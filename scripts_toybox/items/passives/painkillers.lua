@@ -68,7 +68,7 @@ local DMG_MULT = 1.25
 local f = Font()
 f:Load("font/pftempestasevencondensed.fnt")
 
-local uiSprite = Sprite("gfx/ui/tb_ui_painkillers.anm2", true)
+local uiSprite = Sprite("gfx_tb/ui/ui_painkillers.anm2", true)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag

@@ -27,7 +27,7 @@ local function postMilcomInit(_, player)
     if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.MILCOM_A) then return end
     local data = ToyboxMod:getMilcomATable(player)
 
-    player:GetSprite():Load("gfx/characters/tb_character_milcom_a.anm2", true)
+    player:GetSprite():Load("gfx_tb/characters/character_milcom_a.anm2", true)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postMilcomInit)
 

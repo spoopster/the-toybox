@@ -12,7 +12,7 @@ include("scripts_toybox.custom.callback_includes")
 include("scripts_toybox.custom.bombflags")
 include("scripts_toybox.custom.ludo_trigger")
 include("scripts_toybox.custom.statuseffects")
-include("scripts_toybox.custom.tearvariants")
+--include("scripts_toybox.custom.tearvariants")
 include("scripts_toybox.custom.throwables")
 include("scripts_toybox.custom.achievement_system")
 
@@ -57,7 +57,7 @@ include("scripts_toybox.fortnite funnies.cool title screen")
 
 include("scripts_toybox.modcompat.eid.core")
 include("scripts_toybox.modcompat.accurate blurbs.accurate_blurbs")
-include("scripts_toybox.modcompat.cain rework.main")
+include("scripts_toybox.modcompat.cain rework.main")()
 include("scripts_toybox.modcompat.fuzzy pickle.main")
 
 include("scripts_toybox.toybox_imgui")

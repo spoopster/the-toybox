@@ -2,7 +2,7 @@
 
 ---@param npc EntityNPC
 local function postMonstroInit(_, npc)
-    npc:GetSprite():ReplaceSpritesheet(0, "gfx/bosses/lupustro.png", true)
+    npc:GetSprite():ReplaceSpritesheet(0, "gfx_tb/bosses/lupustro.png", true)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, postMonstroInit, EntityType.ENTITY_MONSTRO)
 

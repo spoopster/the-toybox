@@ -242,7 +242,7 @@ local function fireMagnetTear(_, tear, player)
 
         local sp = tear:GetSprite()
         local prevAnim = sp:GetAnimation()
-        sp:Load("gfx/tears/tb_tear_plasma.anm2", true)
+        sp:Load("gfx_tb/tears/tear_plasma.anm2", true)
         sp:Play(prevAnim, true)
     end
 end

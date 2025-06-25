@@ -242,6 +242,6 @@ local function superRetrofallStart(_, isContinued)
     end
 
     local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
-    Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_RETROFALL).GfxFileName = "gfx/items/collectibles/retrofall/tb_retrofall_"..ToyboxMod.SUPER_RETROFALL_DICE[selId].Suffix..".png"
+    Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_RETROFALL).GfxFileName = "gfx_tb/items/collectibles/retrofall/retrofall_"..ToyboxMod.SUPER_RETROFALL_DICE[selId].Suffix..".png"
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, superRetrofallStart)

@@ -291,9 +291,9 @@ if(FiendFolio) then
 
         if(pickup:GetData().isFullFromRR~=ribbonEffect and (sp:IsPlaying("Idle") or sp:IsPlaying("Appear"))) then
             local newSheet
-            if(ribbonEffect==1) then newSheet = "gfx/pickups/tb_pickup_eternal_double.png"
-            elseif(ribbonEffect==2) then newSheet = "gfx/pickups/tb_pickup_eternal_quad.png"
-            else newSheet = "gfx/pickups/tb_pickup_double_hearts.png" end
+            if(ribbonEffect==1) then newSheet = "gfx_tb/pickups/pickup_eternal_double.png"
+            elseif(ribbonEffect==2) then newSheet = "gfx_tb/pickups/pickup_eternal_quad.png"
+            else newSheet = "gfx_tb/pickups/pickup_double_hearts.png" end
 
             sp:ReplaceSpritesheet(0, newSheet)
             sp:ReplaceSpritesheet(1, newSheet)

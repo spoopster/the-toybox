@@ -142,7 +142,7 @@ local function MakeSwagColor(colors, maxAnimTime)
     end
 end
 
-local AtlasTransformationSprites = Sprite("gfx/eid/tb_eid_mantleicons.anm2", true)
+local AtlasTransformationSprites = Sprite("gfx_tb/eid/eid_mantleicons.anm2", true)
     EID:addIcon("AtlasATransformationRock", "RockMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
     EID:addIcon("AtlasATransformationPoop", "PoopMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
     EID:addIcon("AtlasATransformationBone", "BoneMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
@@ -155,13 +155,13 @@ local AtlasTransformationSprites = Sprite("gfx/eid/tb_eid_mantleicons.anm2", tru
     EID:addIcon("AtlasATransformationEmpty", "Empty", 0, 16, 16, 5, 6, AtlasTransformationSprites)
     EID:addIcon("AtlasATransformationTar", "TarMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
 
-local PlayerIconSprites = Sprite("gfx/eid/tb_eid_playericons.anm2", true)
+local PlayerIconSprites = Sprite("gfx_tb/eid/eid_playericons.anm2", true)
     EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A), "AtlasA", 0, 16, 16, 5, 6, PlayerIconSprites)
     EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR), "AtlasATar", 0, 16, 16, 5, 6, PlayerIconSprites)
     EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.JONAS_A), "JonasA", 0, 16, 16, 5, 6, PlayerIconSprites)
     EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A), "MilcomA", 0, 16, 16, 5, 6, PlayerIconSprites)
 
-local MiscIconSprites = Sprite("gfx/eid/tb_eid_miscicons.anm2", true)
+local MiscIconSprites = Sprite("gfx_tb/eid/eid_miscicons.anm2", true)
     EID:addIcon("ToyboxElectrifiedStatus", "Icons", 0, 16, 16, 5, 6, MiscIconSprites)
     EID:addIcon("ToyboxOverflowingStatus", "Icons", 1, 16, 16, 5, 6, MiscIconSprites)
     EID:addIcon("ToyboxGoldenPill", "Icons", 2, 16, 16, 5, 6, MiscIconSprites)

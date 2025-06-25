@@ -9,17 +9,17 @@ local ITEM_POS_PADDING = Vector(120, 20)
 local FRAMES = 0
 
 local PLAYER_FILENAMES = {
-    "gfx/ui/player_portraits/tb_atlas_portrait.png",
-    "gfx/ui/player_portraits/tb_atlas_tar_portrait.png",
-    "gfx/ui/player_portraits/tb_jonas_portrait.png",
-    "gfx/ui/player_portraits/tb_milcom_portrait.png",
+    "gfx_tb/ui/player_portraits/atlas_portrait.png",
+    "gfx_tb/ui/player_portraits/atlas_tar_portrait.png",
+    "gfx_tb/ui/player_portraits/jonas_portrait.png",
+    "gfx_tb/ui/player_portraits/milcom_portrait.png",
 }
-local PLAYER_SPRITE = Sprite("gfx/ui/tb_awesome_title_screen.anm2", true)
+local PLAYER_SPRITE = Sprite("gfx_tb/ui/awesome_title_screen.anm2", true)
 PLAYER_SPRITE:Play("Character", true)
 PLAYER_SPRITE:ReplaceSpritesheet(0, PLAYER_FILENAMES[math.random(#PLAYER_FILENAMES)], true)
 
 local BIG_ITEMS = {
-    --["gfx/items/collectibles/tb_gambling_addiction.png"] = true,
+    --["gfx_tb/items/collectibles/gambling_addiction.png"] = true,
 }
 
 local ITEM_FILENAMES = {}
@@ -62,7 +62,7 @@ local ITEM_SPRITES = {}
 for _=1, 150 do
     local itemgfx = getRandomItemGfx()
 
-    local sp = Sprite("gfx/ui/tb_awesome_title_screen.anm2", true)
+    local sp = Sprite("gfx_tb/ui/awesome_title_screen.anm2", true)
     sp:Play("Item", true)
     sp:ReplaceSpritesheet(1, itemgfx, true)
 
@@ -84,11 +84,11 @@ end
 
 local function postMenuRender(_)
     local TITLE_SPRITE = TitleMenu.GetSprite()
-    if(TITLE_SPRITE:GetLayer(0):GetSpritesheetPath()~="gfx/ui/tb_awesome_title_menu.png") then
-        TITLE_SPRITE:ReplaceSpritesheet(0, "gfx/ui/tb_awesome_title_menu.png", true)
-        TITLE_SPRITE:ReplaceSpritesheet(1, "gfx/ui/tb_awesome_title_menu.png", true)
-        TITLE_SPRITE:ReplaceSpritesheet(2, "gfx/ui/tb_awesome_title_logo.png", true)
-        TITLE_SPRITE:ReplaceSpritesheet(3, "gfx/ui/tb_awesome_title_logo.png", true)
+    if(TITLE_SPRITE:GetLayer(0):GetSpritesheetPath()~="gfx_tb/ui/awesome_title_menu.png") then
+        TITLE_SPRITE:ReplaceSpritesheet(0, "gfx_tb/ui/awesome_title_menu.png", true)
+        TITLE_SPRITE:ReplaceSpritesheet(1, "gfx_tb/ui/awesome_title_menu.png", true)
+        TITLE_SPRITE:ReplaceSpritesheet(2, "gfx_tb/ui/awesome_title_logo.png", true)
+        TITLE_SPRITE:ReplaceSpritesheet(3, "gfx_tb/ui/awesome_title_logo.png", true)
     end
 
     local topLeftCorner = MenuManager:GetViewPosition()

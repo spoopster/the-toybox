@@ -14,11 +14,11 @@ local function replaceAnm2(bomb)
     local sp = bomb:GetSprite()
     
     local name = sp:GetFilename()
-    name = string.gsub(name, "gfx/items/pick ups/bombs/", "")
+    name = string.gsub(name, "gfx_tb/items/pick ups/bombs/", "")
     name = string.gsub(name, ".anm2", "")
 
     if(string.sub(name,1,-2)=="bomb") then
-        sp:ReplaceSpritesheet(0, "gfx/bombs/tb_quake_bomb.png", true)
+        sp:ReplaceSpritesheet(0, "gfx_tb/bombs/quake_bomb.png", true)
     end
 end
 

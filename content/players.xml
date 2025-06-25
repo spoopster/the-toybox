@@ -1,22 +1,22 @@
-<players nameimageroot="gfx/ui/player_portraits/" portraitroot="gfx/ui/player_portraits/" root="gfx/characters/players/">
+<players nameimageroot="gfx_tb/ui/player_portraits/" portraitroot="gfx_tb/ui/player_portraits/" root="gfx_tb/characters/players/">
 	<!-- NORMALS -->
 
 	<player birthright="Printing press" name="Milcom"
-		nameimage="tb_milcom_name.png" portrait="tb_milcom_portrait.png" skin="tb_character_milcom.png"
+		nameimage="milcom_name.png" portrait="milcom_portrait.png" skin="character_milcom.png"
 		costumeSuffix="milcom_a" skinColor="-1"
 
 		heartcontainers="6" redhearts="6"
 	/>
 
 	<player birthright="Mantle stratification" name="Atlas"
-		nameimage="tb_atlas_name.png" portrait="tb_atlas_portrait.png" skin="tb_character_atlas.png"
+		nameimage="atlas_name.png" portrait="atlas_portrait.png" skin="character_atlas.png"
 		costumeSuffix="atlas_a" skinColor="-1"
 		modcostume="1000"
 
 		bonehearts="3" redhearts="6"
 	/>
 	<player birthright="Mantle stratification" name="The Tar" 
-		nameimage="tb_atlas_name.png" portrait="tb_atlas_tar_portrait.png" skin="tb_character_atlas_tar.png"
+		nameimage="atlas_name.png" portrait="atlas_tar_portrait.png" skin="character_atlas_tar.png"
 		costumeSuffix="atlas_a_tar" skinColor="-1"
 		modcostume="999"
 
@@ -27,7 +27,7 @@
 	/>
 
 	<player birthright="Makin' paper" name="Jonas"
-		nameimage="tb_jonas_name.png" portrait="tb_jonas_portrait.png" skin="tb_character_jonas.png"
+		nameimage="jonas_name.png" portrait="jonas_portrait.png" skin="character_jonas.png"
 		costumeSuffix="jonas_a" skinColor="-1"
 		modcostume="1100"
 
@@ -40,7 +40,7 @@
 	<!-- TAINTEDS -->
 
 	<player birthright="-" name="Milcom" 
-		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="tb_character_milcom.png"
+		nameimage="milcom_name.png" portrait="milcom_a_portrait.png" skin="character_milcom.png"
 		costumeSuffix="milcom_b" skinColor="-1"
 
 		heartcontainers="6" redhearts="6"
@@ -49,7 +49,7 @@
 		hidden="true"
 	/>
 	<player birthright="-" name="Atlas" 
-		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="tb_character_atlas.png"
+		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="character_atlas.png"
 		costumeSuffix="atlas_b" skinColor="-1"
 		modcostume="999"
 
@@ -59,7 +59,7 @@
 		hidden="true"
 	/>
 	<player birthright="-" name="Jonas" 
-		nameimage="milcom_name.png" portrait="tb_portrait_jonas.png" skin="tb_character_jonas.png"
+		nameimage="milcom_name.png" portrait="portrait_jonas.png" skin="character_jonas.png"
 		costumeSuffix="jonas_b" skinColor="-1"
 
 		heartcontainers="6" redhearts="6"

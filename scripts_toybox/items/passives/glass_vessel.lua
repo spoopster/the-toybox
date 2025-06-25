@@ -1,7 +1,7 @@
 
 local sfx = SFXManager()
 
-local heartSprite, test = Sprite("gfx/ui/tb_ui_glassvessel_heart.anm2", true)
+local heartSprite, test = Sprite("gfx_tb/ui/ui_glassvessel_heart.anm2", true)
 heartSprite:Play("Idle", true)
 
 function ToyboxMod:renderGlassVesselSprite(player, pos)

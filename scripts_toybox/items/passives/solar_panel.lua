@@ -47,7 +47,7 @@ local function addChargeOnNewRoom(_)
         if(addedNormalCharge) then
             local notif = Isaac.Spawn(1000, EffectVariant.HEART, 0, pl.Position, Vector.Zero, nil):ToEffect() ---@cast notif EntityEffect
             local sp = notif:GetSprite()
-            sp:Load("gfx/effects/tb_effect_notify.anm2", true)
+            sp:Load("gfx_tb/effects/effect_notify.anm2", true)
             sp:Play("BatteryNormal", true)
 
             notif.SpriteOffset = Vector(0, -25)

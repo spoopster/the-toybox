@@ -4,7 +4,7 @@ local sfx = SFXManager()
 local SHOTSPEED_UP = 0.16
 --local BOSS_DMG = 80
 
-local SLIPPER_SPRITE = Sprite("gfx/ui/tb_ui_slipper.anm2", true)
+local SLIPPER_SPRITE = Sprite("gfx_tb/ui/ui_slipper.anm2", true)
 SLIPPER_SPRITE:Play("Idle", true)
 
 ---@param pl EntityPlayer
@@ -47,7 +47,7 @@ local function updateSlipperColor(_, pickup)
     if(pickup.SubType~=ToyboxMod.COLLECTIBLE_DADS_SLIPPER) then return end
 
     local sp = pickup:GetSprite()
-    if(sp:GetLayer(1):GetSpritesheetPath()=="gfx/items/collectibles/tb_dads_slipper.png") then
+    if(sp:GetLayer(1):GetSpritesheetPath()=="gfx_tb/items/collectibles/dads_slipper.png") then
         local color = Color(255/135,255/150,255/189,1)*ToyboxMod.CONFIG.DADS_SLIPPER_COLOR
         sp:GetLayer(1):SetColor(color)
     end
