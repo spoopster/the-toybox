@@ -194,7 +194,7 @@ enums.FUNCTIONS.AddItem({
         "Double tap to shoot out a spread of spectral piercing sound waves that confuse enemies, has a 10 second cooldown",
         "1% chance to inflict non-boss enemies with Overflow",
         "{{Luck}} 10% chance at 44 luck",
-        "{{ToyboxOverflowingStatus}} Overflow makes enemies have no AI and slide around with no friction",
+        enums.CONSTANTS.Icon_StatusOverflowing .. " Overflow makes enemies have no AI and slide around with no friction",
     },
     StackModifiers = {
         {
@@ -262,7 +262,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_HORSE_TRANQUILIZER,
     Name = "Horse Tranquilizer",
     Description = {
-        "{{ToyboxHorsePill}} Spawns a horse pill",
+        enums.CONSTANTS.Icon_HorsePill .. " Spawns a horse pill",
         "Picking up an item uses a random horse pill",
         "Higher quality items make you use worse pills",
     },
@@ -278,7 +278,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_SILK_BAG,
     Name = "Silk Bag",
     Description = {
-        "{{Card"..ToyboxMod.CONSUMABLE.LAUREL.."}} Spawns 1 Laurel every 6 rooms",
+        enums.CONSTANTS.Icon_CardLaurel .. " Spawns 1 Laurel every 6 rooms",
         "{{Blank}} Laurels give 5 seconds of invincibility when used",
     },
     Modifiers = {
@@ -287,7 +287,7 @@ enums.FUNCTIONS.AddItem({
                 return (ToyboxMod:getPersistentData("HAS_SEEN_YANNY")==1)
             end,
             ToModify = {
-                "{{Card"..ToyboxMod.CONSUMABLE.YANNY.."}} 0.1% chance to spawn a Yanny instead of a Laurel",
+                enums.CONSTANTS.Icon_CardYanny .. " 0.1% chance to spawn a Yanny instead of a Laurel",
                 "{{Blank}} Yannies deal 30 damage to all enemies in the room when used",
             }
         },
@@ -307,7 +307,7 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "\1 +0.7 Damage",
         "\1 +0.16 Shotspeed",
-        "{{Card"..ToyboxMod.CONSUMABLE.MANTLE_ROCK.."}} Spawns a random Mantle consumable",
+        enums.CONSTANTS.Icon_CardMantleRock .. " Spawns a random Mantle consumable",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -778,7 +778,9 @@ enums.FUNCTIONS.AddItem({
     },
     Modifiers = {
         {
-            Condition = enums.CONSTANTS.ModifierCondition.CarBattery,
+            Condition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+            end,
             ToModify = {
                 "{{Collectible63}} {{BlinkYellowGreen}}Can store an extra consumable{{CR}}",
             }
@@ -998,8 +1000,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_EXORCISM_KIT,
     Name = "Exorcism Kit",
     Description = {
-        "Instantly kills the nearest enemy and all other enemies of the same type and variant",
-        "Bosses instead take 40 damage"
+        --"Instantly kills the nearest enemy and all other enemies of the same type and variant",
+       --"Bosses instead take 40 damage"
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1104,7 +1106,7 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "If you have full health, you may pick up Red Hearts to:",
         "{{SoulHeart}} Replenish half Soul/Black Hearts",
-        "{{HalfSoulHeart}} Get a half Soul Heart, if you have no Soul Hearts"
+        "{{HalfSoulHeart}} Get a half Soul Heart, if you have no Soul/Black Hearts"
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1131,7 +1133,7 @@ enums.FUNCTIONS.AddItem({
         "\1 +1 Damage",
         "\2 -0.2 Speed",
         "Size up",
-        "On room entry, all enemies are confused for 4 seconds"
+        "{{Confusion}} On room entry, all enemies are confused for 4 seconds"
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1146,7 +1148,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_SACK_OF_CHESTS,
     Name = "Sack of Chests",
     Description = {
-        "Spawns a random chest every 9-10 rooms",
+        "{{Chest}} Spawns a random chest every 9-10 rooms",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1217,7 +1219,7 @@ enums.FUNCTIONS.AddItem({
                 return PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.JONAS_A)
             end,
             ToModify = {
-                "{{Player"..ToyboxMod.PLAYER_TYPE.JONAS_A.."}} {{ColorJonas}}Frozen enemies can only drop pills when shattered{{CR}}",
+                enums.CONSTANTS.Icon_PlayerJonas .. enums.CONSTANTS.Color_Jonas .. "Frozen enemies can only drop pills when shattered{{CR}}",
             }
         },
     }
@@ -1230,8 +1232,8 @@ enums.FUNCTIONS.AddTrinket({
     ID = ToyboxMod.TRINKET_WONDER_DRUG,
     Name = "Wonder Drug",
     Description = {
-        "{{ToyboxGoldenPill}} Doubles the chance for gold pills to spawn",
-        "{{ToyboxHorsePill}} Doubles the chance for horse pills to spawn",
+        enums.CONSTANTS.Icon_GoldenPill .. " Doubles the chance for gold pills to spawn",
+        enums.CONSTANTS.Icon_HorsePill .. " Doubles the chance for horse pills to spawn",
     },
     DoubleModifiers = {
         {
@@ -1592,7 +1594,7 @@ enums.FUNCTIONS.AddCard({
             ToModify = {
                 "2 HP",
                 "Does nothing",
-                "{{AtlasATransformationRock}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasRock .. " {{ColorGray}}Transformation{{CR}}",
                 "No effect",
             },
         }
@@ -1619,7 +1621,7 @@ enums.FUNCTIONS.AddCard({
                 "2 HP",
                 "50% chance to spawn 2 blue flies on room clear",
                 "+3.33% chance for rocks to be replaced with poop",
-                "{{AtlasATransformationPoop}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasPoop .. " {{ColorGray}}Transformation{{CR}}",
                 "Destroying poops heals 1 HP to your leftmost damaged mantle",
                 "+10% chance to get pickups from poops",
                 "Poops can now drop keys, bombs, consumables and batteries",
@@ -1648,7 +1650,7 @@ enums.FUNCTIONS.AddCard({
                 "\1 3 HP",
                 "+10% chance to spawn a bone orbital on kill",
                 "Losing a Bone Mantle spawns a friendly Bony",
-                "{{AtlasATransformationBone}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasBone .. " {{ColorGray}}Transformation{{CR}}",
                 "Fire bones in a circle around you when damaged",
                 "+0.6 Tears for every missing Mantle",
             },
@@ -1676,7 +1678,7 @@ enums.FUNCTIONS.AddCard({
                 "2 HP",
                 "\1 +0.4 Damage",
                 "Losing a Dark Mantle deals 60 damage to all enemies",
-                "{{AtlasATransformationDark}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasDark .. " {{ColorGray}}Transformation{{CR}}",
                 "Gain a dark aura that gives +0.5 Damage for every enemy inside it",
                 "Losing any Mantle deals 60 damage to all enemies"
             },
@@ -1704,7 +1706,7 @@ enums.FUNCTIONS.AddCard({
                 "2 HP",
                 "\1 +0.5 Range",
                 "+3.33% chance to fire a {{Collectible182}} Sacred Heart tear",
-                "{{AtlasATransformationHoly}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasHoly .. " {{ColorGray}}Transformation{{CR}}",
                 "Flight",
                 "Gain an aura that deals 10 damage per second",
             },
@@ -1730,7 +1732,7 @@ enums.FUNCTIONS.AddCard({
             ToModify = {
                 "2 HP",
                 "\1 +0.33 Tears",
-                "{{AtlasATransformationSalt}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasSalt .. " {{ColorGray}}Transformation{{CR}}",
                 "Press the DROP key to enter or leave \"salt statue\" form",
                 "While in this form, you have x2.5 Tears but are immobile",
             },
@@ -1760,7 +1762,7 @@ enums.FUNCTIONS.AddCard({
                 "\1 +0.5 Damage",
                 "\1 +0.1 Shotspeed",
                 "!!! Losing a Glass Mantle destroys all other Glass Mantles",
-                "{{AtlasATransformationGlass}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasGlass .. " {{ColorGray}}Transformation{{CR}}",
                 "\1 x1.5 Damage",
                 "!!! Taking damage has a 90% chance to destroy all Mantles",
             },
@@ -1788,7 +1790,7 @@ enums.FUNCTIONS.AddCard({
                 "\1 3 HP",
                 "\2 -0.1 Speed",
                 "+5% chance to block damage",
-                "{{AtlasATransformationMetal}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasMetal .. " {{ColorGray}}Transformation{{CR}}",
                 "+10% chance to block damage",
                 "Spike damage is always blocked",
             },
@@ -1816,7 +1818,7 @@ enums.FUNCTIONS.AddCard({
                 "2 HP",
                 "\1 +1 Luck",
                 "Losing a Gold Mantle turns nearby enemies to gold",
-                "{{AtlasATransformationGold}} {{ColorGray}}Transformation{{CR}}",
+                enums.CONSTANTS.Icon_AtlasGold .. " {{ColorGray}}Transformation{{CR}}",
                 "Tears have a 5% chance to spawn a penny upon hitting an enemy",
                 "Losing any Mantle turns nearby enemies to gold",
             },
@@ -2118,29 +2120,29 @@ enums.FUNCTIONS.AddPlayer({
     ID = ToyboxMod.PLAYER_TYPE.JONAS_A,
     Name = "Jonas",
     Description = {
-        "Pill pool gets rerolled and unidentified at the start of every floor",
-        "Enemies may drop pills on death",
-        "All stats up proportional to your \"Pill Bonus\"",
-        "Gain Pill Bonus by using pills",
-        "Lose Pill Bonus on new floor, or if you go too long without using a pill",
+        "Enemies may drop pills",
+        "Pills give a bonus to all stats",
+        "Stat bonus is lost if you go too long without using pills",
+        "On new floor, pill pool is rerolled and unidentified, and you lose a fraction of the stat bonus",
     },
     BirthrightDescription = {
         "{{Pill}} Higher chance for enemies to drop a pill",
         "{{Card}} When an enemy drops a pill, 20% chance to turn it into a card/rune",
-        "Cards and runes give Pill Bonus",
+        "Cards and runes give a stat bonus like pills",
     }
 })
 enums.FUNCTIONS.AddPlayer({
     ID = ToyboxMod.PLAYER_TYPE.MILCOM_A,
     Name = "Milcom",
     Description = {
-        "{{Coin}} Bombs and keys instead give coins when gained, and consume coins when used",
+        enums.CONSTANTS.Icon_Ink .. " Coins, Bombs and Keys become Ink when gained, and consume Ink when used:",
+        "{{Blank}} {{Coin}}=1"..enums.CONSTANTS.Icon_Ink..", {{Bomb}}=4"..enums.CONSTANTS.Icon_Ink..", {{Key}}=7"..enums.CONSTANTS.Icon_Ink,
         "No room clear rewards in normal rooms",
-        "Higher champion chance, champions drop 2-6 coins"
+        "Higher champion chance, champions drop 2-6 Ink",
     },
     BirthrightDescription = {
-        "Bombs cost 3 coins to use",
-        "Keys cost 5 coins to use",
+        enums.CONSTANTS.Icon_Ink .. " Bombs cost 3 Ink",
+        enums.CONSTANTS.Icon_Ink .. " Keys cost 5 Ink",
     }
 })
 

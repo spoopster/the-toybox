@@ -142,68 +142,105 @@ local function MakeSwagColor(colors, maxAnimTime)
     end
 end
 
-local AtlasTransformationSprites = Sprite("gfx_tb/eid/eid_mantleicons.anm2", true)
-    EID:addIcon("AtlasATransformationRock", "RockMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationPoop", "PoopMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationBone", "BoneMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationDark", "DarkMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationHoly", "HolyMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationSalt", "SaltMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationGlass", "GlassMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationMetal", "MetalMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationGold", "GoldMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationEmpty", "Empty", 0, 16, 16, 5, 6, AtlasTransformationSprites)
-    EID:addIcon("AtlasATransformationTar", "TarMantle", 0, 16, 16, 5, 6, AtlasTransformationSprites)
+local iconSprite = Sprite("gfx_tb/eid/eid_icons.anm2", true)
 
-local PlayerIconSprites = Sprite("gfx_tb/eid/eid_playericons.anm2", true)
-    EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A), "AtlasA", 0, 16, 16, 5, 6, PlayerIconSprites)
-    EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR), "AtlasATar", 0, 16, 16, 5, 6, PlayerIconSprites)
-    EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.JONAS_A), "JonasA", 0, 16, 16, 5, 6, PlayerIconSprites)
-    EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A), "MilcomA", 0, 16, 16, 5, 6, PlayerIconSprites)
+--- PLAYERS
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A), "Players", 0, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR), "Players", 1, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.JONAS_A), "Players", 2, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A), "Players", 3, 16, 16, 0, 0, iconSprite)
 
-local MiscIconSprites = Sprite("gfx_tb/eid/eid_miscicons.anm2", true)
-    EID:addIcon("ToyboxElectrifiedStatus", "Icons", 0, 16, 16, 5, 6, MiscIconSprites)
-    EID:addIcon("ToyboxOverflowingStatus", "Icons", 1, 16, 16, 5, 6, MiscIconSprites)
-    EID:addIcon("ToyboxGoldenPill", "Icons", 2, 16, 16, 5, 6, MiscIconSprites)
-    EID:addIcon("ToyboxHorsePill", "Icons", 3, 16, 16, 5, 6, MiscIconSprites)
-    EID:addIcon("ToyboxGoldenHorsePill", "Icons", 4, 16, 16, 5, 6, MiscIconSprites)
+--- TRANSFORMATIONS
+EID:addIcon("ToyboxIconRockTransformation", "MantleTransformations", 0, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconPoopTransformation", "MantleTransformations", 1, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconBoneTransformation", "MantleTransformations", 2, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconDarkTransformation", "MantleTransformations", 3, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconHolyTransformation", "MantleTransformations", 4, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconSaltTransformation", "MantleTransformations", 5, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconGlassTransformation", "MantleTransformations", 6, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconMetalTransformation", "MantleTransformations", 7, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconGoldTransformation", "MantleTransformations", 8, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconEmptyTransformation", "MantleTransformations", 10, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconTarTransformation", "MantleTransformations", 9, 16, 16, 0, 0, iconSprite)
 
-EID:addColor("ColorToyboxLimitBreak", nil, MakeSwagColor({{162,164,222},{255,234,160}}, 40))
-EID:addColor("ColorToyboxHorsePill", nil, MakeSwagColor({{184,169,163},{111,134,192}}, 80))
-EID:addColor("ColorJonas", MakeColor({173,189,228}))
-EID:addColor("ColorItemStack", MakeColor({196,167,196}))
+--- CARDS
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_ROCK), "Cards", 0, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_POOP), "Cards", 1, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_BONE), "Cards", 2, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_DARK), "Cards", 3, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_HOLY), "Cards", 4, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_SALT), "Cards", 5, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_GLASS), "Cards", 6, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_METAL), "Cards", 7, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_GOLD), "Cards", 8, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.LAUREL), "Cards", 9, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.YANNY), "Cards", 10, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.PRISMSTONE), "Cards", 11, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.FOIL_CARD), "Cards", 12, 16, 16, 0, 0, iconSprite)
+
+--- MISC
+EID:addIcon("ToyboxIconElectrifiedStatus", "Misc", 0, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconOverflowingStatus", "Misc", 1, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconGoldenPill", "Misc", 2, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconHorsePill", "Misc", 3, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconGoldenHorsePill", "Misc", 4, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconInk", "Misc", 5, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconTintedRoom", "Misc", 6, 16, 16, 0, 0, iconSprite)
+
+
+
+--- COLORS
+EID:addColor("ToyboxColorLimitBreak", nil, MakeSwagColor({{162,164,222},{255,234,160}}, 40))
+EID:addColor("ToyboxColorHorsePill", nil, MakeSwagColor({{184,169,163},{111,134,192}}, 80))
+EID:addColor("ToyboxColorJonas", MakeColor({173,189,228}))
+EID:addColor("ToyboxColorItemStack", MakeColor({196,167,196}))
 
 STORED.CONSTANTS = {
     --- ICONS ---
-    Icon_AtlasRock = "AtlasATransformationRock",
-    Icon_AtlasPoop = "AtlasATransformationPoop",
-    Icon_AtlasBone = "AtlasATransformationBone",
-    Icon_AtlasDark = "AtlasATransformationDark",
-    Icon_AtlasHoly = "AtlasATransformationHoly",
-    Icon_AtlasSalt = "AtlasATransformationSalt",
-    Icon_AtlasGlass = "AtlasATransformationGlass",
-    Icon_AtlasMetal = "AtlasATransformationMetal",
-    Icon_AtlasGold = "AtlasATransformationGold",
-    Icon_AtlasEmpty = "AtlasATransformationEmpty",
-    Icon_AtlasTar = "AtlasATransformationTar",
+    Icon_AtlasRock = "{{ToyboxIconRockTransformation}}",
+    Icon_AtlasPoop = "{{ToyboxIconPoopTransformation}}",
+    Icon_AtlasBone = "{{ToyboxIconBoneTransformation}}",
+    Icon_AtlasDark = "{{ToyboxIconDarkTransformation}}",
+    Icon_AtlasHoly = "{{ToyboxIconHolyTransformation}}",
+    Icon_AtlasSalt = "{{ToyboxIconSaltTransformation}}",
+    Icon_AtlasGlass = "{{ToyboxIconGlassTransformation}}",
+    Icon_AtlasMetal = "{{ToyboxIconMetalTransformation}}",
+    Icon_AtlasGold = "{{ToyboxIconGoldTransformation}}",
+    Icon_AtlasEmpty = "{{ToyboxIconEmptyTransformation}}",
+    Icon_AtlasTar = "{{ToyboxIconTarTransformation}}",
 
-    Icon_PlayerAtlas = "Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A),
-    Icon_PlayerAtlasTar = "Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR),
-    Icon_PlayerJonas = "Player"..tostring(ToyboxMod.PLAYER_TYPE.JONAS_A),
-    Icon_PlayerMilcom = "Player"..tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A),
+    Icon_PlayerAtlas = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A) .. "}}",
+    Icon_PlayerAtlasTar = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR) .. "}}",
+    Icon_PlayerJonas = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.JONAS_A) .. "}}",
+    Icon_PlayerMilcom = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A) .. "}}",
 
-    Icon_StatusElectrified = "ToyboxElectrifiedStatus",
-    Icon_StatusOverflowing = "ToyboxOverflowingStatus",
+    Icon_CardMantleRock = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_ROCK) .. "}}",
+    Icon_CardMantlePoop = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_POOP) .. "}}",
+    Icon_CardMantleBone = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_BONE) .. "}}",
+    Icon_CardMantleDark = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_DARK) .. "}}",
+    Icon_CardMantleHoly = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_HOLY) .. "}}",
+    Icon_CardMantleSalt = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_SALT) .. "}}",
+    Icon_CardMantleGlass = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_GLASS) .. "}}",
+    Icon_CardMantleMetal = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_METAL) .. "}}",
+    Icon_CardMantleGold = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_GOLD) .. "}}",
+    Icon_CardLaurel = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.LAUREL) .. "}}",
+    Icon_CardYanny = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.YANNY) .. "}}",
+    Icon_CardPrismstone = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.PRISMSTONE) .. "}}",
+    Icon_CardFoilCard = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.FOIL_CARD) .. "}}",
 
-    Icon_HorsePill = "ToyboxHorsePill",
-    Icon_GoldenPill = "ToyboxGoldenPill",
-    Icon_GoldenHorsePill = "ToyboxGoldenHorsePill",
+    Icon_StatusElectrified = "{{ToyboxIconElectrifiedStatus}}",
+    Icon_StatusOverflowing = "{{ToyboxIconOverflowingStatus}}",
+    Icon_HorsePill = "{{ToyboxIconHorsePill}}",
+    Icon_GoldenPill = "{{ToyboxIconGoldenPill}}",
+    Icon_GoldenHorsePill = "{{ToyboxIconGoldenHorsePill}}",
+    Icon_Ink = "{{ToyboxIconInk}}",
+    Icon_TintedRoom = "{{ToyboxIconTintedRoom}}",
 
     --- COLORS ---
-    Color_LimitBreak = "ColorToyboxLimitBreak",
-    Color_HorsePill = "ColorToyboxHorsePill",
-    Color_Jonas = "ColorJonas",
-    Color_ItemStack = "ColorItemStack",
+    Color_LimitBreak = "{{ToyboxColorLimitBreak}}",
+    Color_HorsePill = "{{CToyboxColorHorsePill}}",
+    Color_Jonas = "{{ToyboxColorJonas}}",
+    Color_ItemStack = "{{ToyboxColorItemStack}}",
 
     --- ENUMS ---
     DescriptionModifier = {
@@ -240,7 +277,7 @@ STORED.CONSTANTS = {
         end,
     },
     ModifierFunctionKey = {
-        StackModifiers = {"ItemStack", "{{Collectible347}}", "{{ColorItemStack}}"},
+        StackModifiers = {"ItemStack", "{{Collectible347}}", "{{ToyboxColorItemStack}}"},
         BFFSModifiers = {"BFFS", "{{Collectible247}}", "{{BlinkPink}}"},
         CarBatteryModifiers = {"CarBattery", "{{Collectible356}}", "{{BlinkYellowGreen}}"},
         DoubleModifiers = {"TrinketDouble", nil, "{{ColorGold}}"},
@@ -249,5 +286,7 @@ STORED.CONSTANTS = {
         TarotClothModifiers = {"CardTarotCloth", nil, nil},
     }
 }
+
+
 
 return STORED

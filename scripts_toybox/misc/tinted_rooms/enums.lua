@@ -5,7 +5,7 @@ ToyboxMod.TINTED_ROOM = {
     BLUE = 1<<1,
     GREEN = 1<<2,
     YELLOW = 1<<3,
-    PURPLE = 1<<4,
+    --PURPLE = 1<<4,
 }
 
 ToyboxMod.TINTED_ROOM_COLOR = {
@@ -13,7 +13,7 @@ ToyboxMod.TINTED_ROOM_COLOR = {
     BLUE = KColor(0,0,1,1),
     GREEN = KColor(0,1,0,1),
     YELLOW = KColor(1,1,0,1),
-    PURPLE = KColor(1,0,1,1),
+    --PURPLE = KColor(1,0,1,1),
 }
 ToyboxMod.TINTED_ROOM_COLOR_BITWISE = {}
 for key, val in pairs(ToyboxMod.TINTED_ROOM_COLOR) do
