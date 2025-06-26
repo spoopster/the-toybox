@@ -218,7 +218,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 			ImGuiCallback.Edited,
 			function(v)
 				Isaac.SetCompletionMark(playerType, compType, v)
-				ToyboxMod:checkUnlocks(true)
+				ToyboxMod:checkUnlocks(true, true)
 			end
 		)
 		ImGui.SetTooltip(optionID, unlockName)
@@ -234,7 +234,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 			ImGuiCallback.Clicked,
 			function()
 				Isaac.FillCompletionMarks(playerType)
-				ToyboxMod:checkUnlocks(true)
+				ToyboxMod:checkUnlocks(true, true)
 			end
 		)
 		ImGui.SetTooltip(getOptionID(playerName.."All Marks"), unlockTable.ALL_MARKS)
@@ -261,37 +261,37 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 
 	addPlayerUnlocks(ToyboxMod.PLAYER_TYPE.ATLAS_A, "ATLAS",
 		{
-			[CompletionType.BOSS_RUSH] = "Unlocks \"Rock Candy\".",
-			[CompletionType.MOMS_HEART] = "Doesn't unlock anything for now.",
-			[CompletionType.HUSH] = "Unlocks \"Saltpeter\".",
-			[CompletionType.ISAAC] = "Unlocks \"Ascension\".",
-			[CompletionType.BLUE_BABY] = "Unlocks \"Glass Vessel\".",
-			[CompletionType.SATAN] = "Unlocks \"Missing Page 3\".",
-			[CompletionType.LAMB] = "Unlocks \"Bone Boy\"!",
-			[CompletionType.MEGA_SATAN] = "Atlas' Mantles can appear for other characters, with different effects.",
-			[CompletionType.ULTRA_GREED] = "Unlocks \"Gilded Apple\" in normal mode, \"Prismstone\" in hard mode.",
-			[CompletionType.DELIRIUM] = "Unlocks \"Hostile Takeover\".",
-			[CompletionType.MOTHER] = "Unlocks \"Amber Fossil\".",
-			[CompletionType.BEAST] = "Unlocks \"Steel Soul\".",
-			ALL_MARKS = "If completed in Hard Mode, Atlas starts with \"Miracle Mantle\". (not added yet)",
+			[CompletionType.BOSS_RUSH] = "\"Rock Candy\"",
+			[CompletionType.MOMS_HEART] = "Nothing.",
+			[CompletionType.HUSH] = "\"Saltpeter\"",
+			[CompletionType.ISAAC] = "\"Ascension\"",
+			[CompletionType.BLUE_BABY] = "\"Glass Vessel\"",
+			[CompletionType.SATAN] = "\"Missing Page 3\"",
+			[CompletionType.LAMB] = "\"Bone Boy\"!",
+			[CompletionType.MEGA_SATAN] = "Mantles may appear for other characters.",
+			[CompletionType.ULTRA_GREED] = "Normal: \"Gilded Apple\" / Hard: \"Prismstone\"",
+			[CompletionType.DELIRIUM] = "\"Hostile Takeover\"",
+			[CompletionType.MOTHER] = "\"Amber Fossil\"",
+			[CompletionType.BEAST] = "\"Steel Soul\"",
+			ALL_MARKS = "Atlas starts with \"Miracle Mantle\". (not added yet)",
 		}
 	)
 
 	addPlayerUnlocks(ToyboxMod.PLAYER_TYPE.JONAS_A, "JONAS",
 		{
-			[CompletionType.BOSS_RUSH] = "Unlocks \"Jonas' Lock\".",
-			[CompletionType.MOMS_HEART] = "Doesn't unlock anything for now.",
-			[CompletionType.HUSH] = "Unlocks \"Wonder Drug\".",
-			[CompletionType.ISAAC] = "Unlocks \"Dad's Prescription\".",
-			[CompletionType.BLUE_BABY] = "Unlocks \"Candy Dispenser\".",
-			[CompletionType.SATAN] = "Unlocks \"Dr. Bum\".",
-			[CompletionType.LAMB] = "Unlocks \"Jonas' Mask\".",
-			[CompletionType.MEGA_SATAN] = "Jonas' new pill effects can appear for other characters.",
-			[CompletionType.ULTRA_GREED] = "Unlocks \"Antibiotics\" in normal mode, \"Foil Card\" in hard mode.",
-			[CompletionType.DELIRIUM] = "Unlocks \"Giant Capsule\".",
-			[CompletionType.MOTHER] = "Unlocks \"Horse Tranquilizer\".",
-			[CompletionType.BEAST] = "Unlocks \"Clown PHD\".",
-			ALL_MARKS = "Doesn't unlock anything for now.",
+			[CompletionType.BOSS_RUSH] = "\"Jonas' Lock\"",
+			[CompletionType.MOMS_HEART] = "Nothing.",
+			[CompletionType.HUSH] = "\"Wonder Drug\"",
+			[CompletionType.ISAAC] = "\"Dad's Prescription\"",
+			[CompletionType.BLUE_BABY] = "\"Candy Dispenser\"",
+			[CompletionType.SATAN] = "\"Dr. Bum\"",
+			[CompletionType.LAMB] = "\"Jonas' Mask\"",
+			[CompletionType.MEGA_SATAN] = "Jonas' new pill effects may appear for other characters.",
+			[CompletionType.ULTRA_GREED] = "Normal: \"Antibiotics\" / Hard: \"Foil Card\"",
+			[CompletionType.DELIRIUM] = "\"Giant Capsule\"",
+			[CompletionType.MOTHER] = "\"Horse Tranquilizer\"",
+			[CompletionType.BEAST] = "\"Clown PHD\"",
+			ALL_MARKS = "Nothing.",
 		}
 	)
 end

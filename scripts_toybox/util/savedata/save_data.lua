@@ -66,9 +66,9 @@ local function convertDataToSaveData(data, basedata)
     return saveDat
 end
 
-local playerBaseData = include("scripts_toybox.savedata.players_basedata")             --! PERSISTS THROUGHOUT ONE RUN, ONE TABLE FOR EACH PLAYER
-local extraBaseData = include("scripts_toybox.savedata.extras_basedata")               --! PERSISTS THROUGHOUT ONE RUN, NOT DEPENDENT ON PLAYERS
-local persistentBaseData = include("scripts_toybox.savedata.persistent_basedata")      --! PERSISTS THROUGHOUT ALL RUNS
+local playerBaseData = include("scripts_toybox.util.savedata.players_basedata")             --! PERSISTS THROUGHOUT ONE RUN, ONE TABLE FOR EACH PLAYER
+local extraBaseData = include("scripts_toybox.util.savedata.extras_basedata")               --! PERSISTS THROUGHOUT ONE RUN, NOT DEPENDENT ON PLAYERS
+local persistentBaseData = include("scripts_toybox.util.savedata.persistent_basedata")      --! PERSISTS THROUGHOUT ALL RUNS
 
 function ToyboxMod:saveProgress()
     local save = {}

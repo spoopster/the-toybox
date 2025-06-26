@@ -26,6 +26,8 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     local renderPos = pos+Vector(0,0)
     local data = ToyboxMod:getAtlasATable(player)
 
+    local isStrawman = (player.Parent~=nil)
+
     local hasCurseOfTheUnknown = false
     if(Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then hasCurseOfTheUnknown=true end
     local selHealthIndex = ToyboxMod:getSelMantleIdToDestroy(player, ToyboxMod:getHeldMantle(player))
@@ -36,11 +38,15 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     local heartPosOffsets = Vector(12,0)
     local heartRenderPos = renderPos-heartPosOffsets--+Vector(0,10)
 
+    local alphaMult = (isStrawman and 0.5 or 0.75)
+
     TRANSF_SPRITE.Scale = Vector(1,1)
-    TRANSF_SPRITE.Color = Color(1,1,1,0.75)
+    TRANSF_SPRITE.Color = Color(1,1,1,alphaMult)
     TRANSF_SPRITE:Play(ToyboxMod.MANTLE_DATA[ToyboxMod:getMantleKeyFromId(data.TRANSFORMATION) or "NONE"].ANIM or ToyboxMod.MANTLE_DATA.NONE.ANIM, true)
     if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(ToyboxMod.MANTLE_DATA.UNKNOWN.ANIM) end
-    local trfRenderPos = heartRenderPos+heartPosOffsets*(0.5+data.HP_CAP/2)+Vector(0,14)+Vector(-0.5,0)--+(heartRenderPos-renderPos)/2+Vector(-5,0)
+    local trfRenderPos = heartRenderPos+heartPosOffsets*(0.5+data.HP_CAP/2)+Vector(-0.5,0)--+(heartRenderPos-renderPos)/2+Vector(-5,0)
+    trfRenderPos = trfRenderPos+(isStrawman and Vector(0,-13) or Vector(0,14))
+
     local shouldRender2Transformations = player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and not (hasCurseOfTheUnknown or data.TRANSFORMATION==ToyboxMod.MANTLE_DATA.TAR.ID)
     if(shouldRender2Transformations) then trfRenderPos = trfRenderPos-Vector(8,0) end
 
@@ -49,7 +55,7 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     if(shouldRender2Transformations) then
         TRANSF_SPRITE:Play(ToyboxMod.MANTLE_DATA[ToyboxMod:getMantleKeyFromId(data.BIRTHRIGHT_TRANSFORMATION) or "NONE"].ANIM or ToyboxMod.MANTLE_DATA.NONE.ANIM, true)
         if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(ToyboxMod.MANTLE_DATA.UNKNOWN.ANIM) end
-        TRANSF_SPRITE.Color = Color(1,1,1,0.33)
+        TRANSF_SPRITE.Color = Color(1,1,1,alphaMult*0.5)
         TRANSF_SPRITE:Render(trfRenderPos+Vector(16,0))
 
         --TRANSF_SPRITE:Play("BirthrightOverlay", true)

@@ -1,4 +1,4 @@
-
+ToyboxMod.CALLBACK_BOMBS_FIRED = {}
 
 local function copyScatterData(bomb)
 	for _, sBomb in pairs(ToyboxMod.CALLBACK_BOMBS_FIRED) do

@@ -1,46 +1,297 @@
 ToyboxMod = RegisterMod("toyboxMod", 1) ---@type ModReference
 
 
-ToyboxMod.HiddenItemManager = include("scripts_toybox.libraries.hiddenitemmanager")
+ToyboxMod.HiddenItemManager = include("scripts_toybox.util.hiddenitemmanager")
 ToyboxMod.HiddenItemManager:Init(ToyboxMod)
 
 --! INCLUDE SHIT
 include("scripts_toybox.enums")
 
 include("scripts_toybox.custom.data")
-include("scripts_toybox.custom.callback_includes")
 include("scripts_toybox.custom.bombflags")
-include("scripts_toybox.custom.ludo_trigger")
-include("scripts_toybox.custom.statuseffects")
+
 --include("scripts_toybox.custom.tearvariants")
 include("scripts_toybox.custom.throwables")
-include("scripts_toybox.custom.achievement_system")
 
+
+-- HELPER FUNCTIONS
 include("scripts_toybox.helper")
 
-include("scripts_toybox.libraries.custom_object_spawn")
-
+-- CONFIG
 include("scripts_toybox.config")
-include("scripts_toybox.savedata.save_data")
+
+-- SAVEDATA
+include("scripts_toybox.util.savedata.save_data")
+-- CALLBACKS
+include("scripts_toybox.util.callbacks.post_player_bomb_detonate")
+include("scripts_toybox.util.callbacks.post_player_double_tap")
+include("scripts_toybox.util.callbacks.post_player_attack")
+include("scripts_toybox.util.callbacks.use_active_item")
+include("scripts_toybox.util.callbacks.reset_ludovico_data")
+include("scripts_toybox.util.callbacks.copy_scatter_bomb_data")
+include("scripts_toybox.util.callbacks.post_fire_tear")
+include("scripts_toybox.util.callbacks.post_fire_bomb")
+include("scripts_toybox.util.callbacks.post_player_extra_dmg")
+include("scripts_toybox.util.callbacks.post_fire_aquarius")
+include("scripts_toybox.util.callbacks.post_fire_rocket")
+include("scripts_toybox.util.callbacks.post_new_room")
+include("scripts_toybox.util.callbacks.post_room_clear")
+include("scripts_toybox.util.callbacks.post_custom_champion_death")
+include("scripts_toybox.util.callbacks.post_poop_destroy")
+include("scripts_toybox.util.callbacks.poop_spawn_drop")
+-- LIBRARIES
+include("scripts_toybox.util.custom_object_spawn")
+include("scripts_toybox.util.throwables")
+include("scripts_toybox.util.statuseffects")
+-- DATA ( entity / extra / persistent )
+include("scripts_toybox.util.data")
+-- ACHIEVEMENTS
+include("scripts_toybox.util.achievements.core")
 
 include("scripts_toybox.statuseffects.electrified")
 include("scripts_toybox.statuseffects.overflowing")
 
-include("scripts_toybox.bosses.toinclude")
-include("scripts_toybox.enemies.toinclude")
+-- ENEMIES
+include("scripts_toybox.enemies.stone creep.logic")
+include("scripts_toybox.enemies.stumpy.logic")
+-- BOSSES
+--SHYGALS
+    include("scripts_toybox.bosses.shygal.shygal_logic")
+--RED MEGALODON
+    include("scripts_toybox.bosses.red megalodon.red_megalodon_logic")
+include("scripts_toybox.bosses.stageapi")
 
-include("scripts_toybox.misc.toinclude")
 
-include("scripts_toybox.players.milcom.toinclude")
-include("scripts_toybox.players.atlas.toinclude")
-include("scripts_toybox.players.jonas.toinclude")
+-- PILL POOL LIBRARY
+include("scripts_toybox.misc.pill_pool_library")
+-- CUSTOM CHAMPIONS
+include("scripts_toybox.misc.champions.champion_chances")
+include("scripts_toybox.misc.champions.mod_champion_logic")
+    include("scripts_toybox.misc.champions.champion_effects.bouncy")
+    include("scripts_toybox.misc.champions.champion_effects.drowned")
+    include("scripts_toybox.misc.champions.champion_effects.fear")
+-- TINTED ROOMS
+include("scripts_toybox.misc.tinted_rooms.enums")
+include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")
+include("scripts_toybox.misc.tinted_rooms.minimap_logic")
 
-include("scripts_toybox.items.toinclude")
-include("scripts_toybox.pickups.toinclude")
+-- MILCOM
+include("scripts_toybox.players.milcom.a.milcom")
+include("scripts_toybox.players.milcom.a.stats")
+include("scripts_toybox.players.milcom.a.character_helpers")
+include("scripts_toybox.players.milcom.a.hopping_logic")
+include("scripts_toybox.players.milcom.a.ink_pickup")
+include("scripts_toybox.players.milcom.a.pickup_logic")
+include("scripts_toybox.players.milcom.a.ink_champion_drop")
+include("scripts_toybox.players.milcom.a.hud_replacement")
+-- T.MILCOM
+--include("scripts_toybox.players.milcom.b.milcom")
+--include("scripts_toybox.players.milcom.b.stats")
+--include("scripts_toybox.players.milcom.b.closet_unlock")
 
+-- ATLAS
+include("scripts_toybox.players.atlas.a.atlas")
+include("scripts_toybox.players.atlas.a.character_helpers")
+include("scripts_toybox.players.atlas.a.achievements")
+include("scripts_toybox.players.atlas.a.mantle_logic")
+include("scripts_toybox.players.atlas.a.mantle_spawn_logic")
+include("scripts_toybox.players.atlas.a.mantle_devildeal_logic")
+include("scripts_toybox.players.atlas.a.mantle_healing_logic")
+include("scripts_toybox.players.atlas.a.mantle_descriptions")
+include("scripts_toybox.players.atlas.a.render_health")
+include("scripts_toybox.players.atlas.a.chapi_cancel")
+include("scripts_toybox.players.atlas.a.horn_costumes")
+include("scripts_toybox.players.atlas.a.effect_reworks")
+    -- MANTLES
+    include("scripts_toybox.players.atlas.a.mantles.tar")
+    include("scripts_toybox.players.atlas.a.mantles.rock")
+    include("scripts_toybox.players.atlas.a.mantles.poop")
+    include("scripts_toybox.players.atlas.a.mantles.bone")
+    include("scripts_toybox.players.atlas.a.mantles.dark")
+    include("scripts_toybox.players.atlas.a.mantles.holy")
+    include("scripts_toybox.players.atlas.a.mantles.salt")
+    include("scripts_toybox.players.atlas.a.mantles.glass")
+    include("scripts_toybox.players.atlas.a.mantles.metal")
+    include("scripts_toybox.players.atlas.a.mantles.gold")
+-- T.ATLAS
+--include("scripts_toybox.players.atlas.b.atlas")
+--include("scripts_toybox.players.atlas.b.closet_unlock")
+
+-- JONAS
+include("scripts_toybox.players.jonas.a.jonas")
+include("scripts_toybox.players.jonas.a.stats")
+include("scripts_toybox.players.jonas.a.character_helpers")
+include("scripts_toybox.players.jonas.a.pill_bonus_logic")
+include("scripts_toybox.players.jonas.a.monster_pilldrop")
+-- T.JONAS
+--include("scripts_toybox.players.jonas.b.jonas")
+--include("scripts_toybox.players.jonas.b.closet_unlock")
+
+-- ITEMS
+--PASSIVES
+    include("scripts_toybox.items.passives.coconut_oil")
+    include("scripts_toybox.items.passives.goat_milk")
+    include("scripts_toybox.items.passives.condensed_milk")
+    include("scripts_toybox.items.passives.nose_candy")
+    include("scripts_toybox.items.passives.lion_skull")
+    include("scripts_toybox.items.passives.caramel_apple")
+    include("scripts_toybox.items.passives.painkillers")
+    include("scripts_toybox.items.passives.tech_ix")
+    --include("scripts_toybox.items.passives.fatal_signal")
+    --include("scripts_toybox.items.passives.pepper_x")
+    --include("scripts_toybox.items.passives.meteor_shower")
+    include("scripts_toybox.items.passives.blessed_ring")
+    include("scripts_toybox.items.passives.eyestrain")
+    --include("scripts_toybox.items.passives.4_4")
+    include("scripts_toybox.items.passives.evil_rock")
+    include("scripts_toybox.items.passives.onyx")
+    include("scripts_toybox.items.passives.sigil_of_greed")
+    include("scripts_toybox.items.passives.dads_prescription")
+    include("scripts_toybox.items.passives.horse_tranquilizer")
+    include("scripts_toybox.items.passives.silk_bag")
+    include("scripts_toybox.items.passives.rock_candy")
+    include("scripts_toybox.items.passives.missing_page_3")
+    include("scripts_toybox.items.passives.glass_vessel")
+    include("scripts_toybox.items.passives.bone_boy")
+    include("scripts_toybox.items.passives.steel_soul")
+    include("scripts_toybox.items.passives.bobs_heart")
+    include("scripts_toybox.items.passives.clown_phd")
+    include("scripts_toybox.items.passives.giant_capsule")
+    include("scripts_toybox.items.passives.jonas_mask")
+    include("scripts_toybox.items.passives.love_letter")
+    include("scripts_toybox.items.passives.quake_bombs")
+    include("scripts_toybox.items.passives.atheism")
+    include("scripts_toybox.items.passives.mayonnaise")
+    include("scripts_toybox.items.passives.awesome_fruit")
+    include("scripts_toybox.items.passives.bloody_map")
+    include("scripts_toybox.items.passives.saltpeter")
+    include("scripts_toybox.items.passives.dr_bum")
+    include("scripts_toybox.items.passives.preferred_options")
+    include("scripts_toybox.items.passives.plasma_globe")
+    include("scripts_toybox.items.passives.blessed_bombs")
+    include("scripts_toybox.items.passives.cursed_eulogy")
+    include("scripts_toybox.items.passives.haemorrhage")
+    include("scripts_toybox.items.passives.fish")
+    include("scripts_toybox.items.passives.bobs_thesis") -- Also includes Placeholder
+    include("scripts_toybox.items.passives.asteroid_belt")
+    include("scripts_toybox.items.passives.barbed_wire")
+    include("scripts_toybox.items.passives.coffee_cup")
+    include("scripts_toybox.items.passives.conjunctivitis")
+    include("scripts_toybox.items.passives.dads_slipper")
+    include("scripts_toybox.items.passives.food_stamps")
+    include("scripts_toybox.items.passives.golden_calf")
+    include("scripts_toybox.items.passives.last_beer")
+    include("scripts_toybox.items.passives.retrofall")
+    include("scripts_toybox.items.passives.brunch")
+    include("scripts_toybox.items.passives.toast")
+    include("scripts_toybox.items.passives.lucky_pebbles")
+    include("scripts_toybox.items.passives.finger_trap")
+    include("scripts_toybox.items.passives.hemolymph")
+    include("scripts_toybox.items.passives.solar_panel")
+    include("scripts_toybox.items.passives.surprise_egg")
+    include("scripts_toybox.items.passives.colossal_orb")
+    include("scripts_toybox.items.passives.baby_shoes")
+    include("scripts_toybox.items.passives.sack_of_chests")
+    include("scripts_toybox.items.passives.effigy")
+    include("scripts_toybox.items.passives.gambling_addiction")
+    include("scripts_toybox.items.passives.pyramid_scheme")
+    --include("scripts_toybox.items.passives.public_works")
+    include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
+--ACTIVES
+    include("scripts_toybox.items.actives.pliers")
+    include("scripts_toybox.items.actives.blood_ritual")
+    include("scripts_toybox.items.actives.sunk_costs")
+    include("scripts_toybox.items.actives.bronze_bull")
+    include("scripts_toybox.items.actives.ascension")
+    include("scripts_toybox.items.actives.gilded_apple")
+    include("scripts_toybox.items.actives.drill")
+    include("scripts_toybox.items.actives.d")
+    include("scripts_toybox.items.actives.pez_dispenser")
+    include("scripts_toybox.items.actives.alphabet_box")
+    include("scripts_toybox.items.actives.hostile_takeover")
+    include("scripts_toybox.items.actives.bloody_whistle")
+    include("scripts_toybox.items.actives.art_of_war")
+    include("scripts_toybox.items.actives.big_bang")
+    include("scripts_toybox.items.actives.chocolate_bar")
+    include("scripts_toybox.items.actives.exoricsm_kit")
+    include("scripts_toybox.items.actives.delivery_box")
+    include("scripts_toybox.items.actives.moms_photobook")
+    include("scripts_toybox.items.actives.pythagoras_cup")
+--TRINKETS
+    include("scripts_toybox.items.trinkets.wonder_drug")
+    include("scripts_toybox.items.trinkets.antibiotics")
+    include("scripts_toybox.items.trinkets.amber_fossil")
+    include("scripts_toybox.items.trinkets.sine_worm")
+    include("scripts_toybox.items.trinkets.big_blind")
+    include("scripts_toybox.items.trinkets.jonas_lock")
+    include("scripts_toybox.items.trinkets.big_boy_bathwater")
+    include("scripts_toybox.items.trinkets.black_rune_shard")
+    include("scripts_toybox.items.trinkets.suppository")
+    include("scripts_toybox.items.trinkets.divided_justice")
+    include("scripts_toybox.items.trinkets.killscreen")
+    include("scripts_toybox.items.trinkets.mirror_shard")
+    include("scripts_toybox.items.trinkets.lucky_tooth")
+--UNUSED
+    --include("scripts_toybox.items.actives.btrain")
+    --include("scripts_toybox.items.unused.laser_pointer")
+    --include("scripts_toybox.items.unused.scattered_tome")
+    --include("scripts_toybox.items.unused.toy_gun")
+    --include("scripts_toybox.items.unused.foam_bullet")
+    --include("scripts_toybox.items.unused.malicious_brain")
+    --include("scripts_toybox.items.unused.limit_break")
+--JOKE
+    include("scripts_toybox.items.troll.equalizer")
+    include("scripts_toybox.items.troll.golden_prayer_card")
+    include("scripts_toybox.items.troll.golden_schoolbag")
+    include("scripts_toybox.items.troll.catharsis")
+    include("scripts_toybox.items.troll.uranium")
+    include("scripts_toybox.items.troll.zero_gravity")
+    include("scripts_toybox.items.troll.super_hamburger")
+
+
+--PICKUPS
+--MISC
+    include("scripts_toybox.pickups.pickups.black_soul")
+    include("scripts_toybox.pickups.pickups.blood_soul")
+    include("scripts_toybox.pickups.pickups.smorgasbord")
+    include("scripts_toybox.pickups.pickups.eternal_mound")
+--CARDS
+    include("scripts_toybox.pickups.cards.prismstone")
+    include("scripts_toybox.pickups.cards.foil_card")
+--OBJECTS
+    include("scripts_toybox.pickups.objects.mantle_rock")
+    include("scripts_toybox.pickups.objects.mantle_poop")
+    include("scripts_toybox.pickups.objects.mantle_bone")
+    include("scripts_toybox.pickups.objects.mantle_dark")
+    include("scripts_toybox.pickups.objects.mantle_holy")
+    include("scripts_toybox.pickups.objects.mantle_salt")
+    include("scripts_toybox.pickups.objects.mantle_glass")
+    include("scripts_toybox.pickups.objects.mantle_metal")
+    include("scripts_toybox.pickups.objects.mantle_gold")
+    include("scripts_toybox.pickups.objects.laurel")
+    include("scripts_toybox.pickups.objects.yanny")
+--PILLS
+    include("scripts_toybox.pickups.pills.i_believe_i_can_fly")
+    include("scripts_toybox.pickups.pills.dyslexia")
+    include("scripts_toybox.pickups.pills.dementia")
+    include("scripts_toybox.pickups.pills.parasite")
+    include("scripts_toybox.pickups.pills.ossification")
+    include("scripts_toybox.pickups.pills.your_soul_is_mine")
+    include("scripts_toybox.pickups.pills.food_poisoning")
+    --include("scripts_toybox.pickups.pills.bleeegh")
+    include("scripts_toybox.pickups.pills.capsule")
+    include("scripts_toybox.pickups.pills.heartburn")
+    include("scripts_toybox.pickups.pills.coagulant")
+    include("scripts_toybox.pickups.pills.fent")
+    include("scripts_toybox.pickups.pills.arthritis")
+    include("scripts_toybox.pickups.pills.muscle_atrophy")
+    include("scripts_toybox.pickups.pills.vitamins")
+    include("scripts_toybox.pickups.pills.damage_up")
+    include("scripts_toybox.pickups.pills.damage_down")
 
 --include("scripts_toybox.funny_shaders")
 
+-- FORTNITE FUNNIES
 --include("scripts_toybox.fortnite funnies.silly healthbar")
 --include("scripts_toybox.fortnite funnies.silly hearts")
 include("scripts_toybox.fortnite funnies.mattman chance")
@@ -55,14 +306,17 @@ include("scripts_toybox.fortnite funnies.cool title screen")
 --include("scripts_toybox.fortnite funnies.slop o meter")
 
 
+-- EID
 include("scripts_toybox.modcompat.eid.core")
+-- ACCURATE BLURBS
 include("scripts_toybox.modcompat.accurate blurbs.accurate_blurbs")
+-- T.CAIN REWORK
 include("scripts_toybox.modcompat.cain rework.main")()
+-- FIEND FOLIO FUZZY PICKLE
 include("scripts_toybox.modcompat.fuzzy pickle.main")
 
+-- IMGUI
 include("scripts_toybox.toybox_imgui")
-
---include("scripts_toybox.test")
 
 --[[
 local circule = 8

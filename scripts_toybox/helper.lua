@@ -465,9 +465,13 @@ function ToyboxMod:generateRng(seed)
     return rng
 end
 
+---@param luck number
+---@param baseChance number
+---@param maxLuck number
+---@param maxChance number?
 function ToyboxMod:getLuckAffectedChance(luck, baseChance, maxLuck, maxChance)
     local f = luck/maxLuck
-    f = ToyboxMod:clamp(f, -1, 1)
+    f = ToyboxMod:clamp(f, 0, 1)
 
     if(f==0) then return baseChance;
     elseif(f<0) then return ToyboxMod:lerp(baseChance,0,-f)

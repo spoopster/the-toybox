@@ -1,5 +1,5 @@
 
-if(not TCainRework) then return end
+if(not TCainRework) then return function() end end
 
 return function()
     TCainRework:loadRegistry({

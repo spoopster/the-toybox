@@ -1,5 +1,3 @@
-
-
 ToyboxMod.THROWABLE_ITEMS = {}
 function ToyboxMod:registerThrowableActive(item, willDischarge, willRemove)
     if(willDischarge==nil) then willDischarge=true end

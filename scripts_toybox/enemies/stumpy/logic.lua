@@ -5,7 +5,7 @@ local POP_OUT_PLAYER_SAFEDIST = 80
 
 local GROUND_HIDE_DURATION = 30
 local IDLE_WAIT_DURATION = 60
-local ATTACK_TELEGRAPH_DURATION = 30
+local ATTACK_TELEGRAPH_DURATION = 50
 
 local VALID_ROCKS = {
     [GridEntityType.GRID_ROCK] = true,
@@ -15,7 +15,7 @@ local VALID_ROCKS = {
     --[GridEntityType.GRID_TNT] = true,
     [GridEntityType.GRID_ROCK_SS] = true,
     [GridEntityType.GRID_ROCK_SPIKED] = true,
-    [GridEntityType.GRID_ROCK_ALT2] = true,
+    --[GridEntityType.GRID_ROCK_ALT2] = true,
     [GridEntityType.GRID_ROCK_GOLD] = true,
     --[GridEntityType.GRID_POOP] = true,
 }
@@ -187,7 +187,7 @@ local function stumpyUpdte(_, npc)
         if(npc.StateFrame==GROUND_HIDE_DURATION) then
             npc.StateFrame = 0
             if(npc.I1==0) then
-                npc.State = NpcState.STATE_IDLE
+                npc.State = NpcState.STATE_ATTACK--NpcState.STATE_IDLE
             else
                 npc.State = NpcState.STATE_ATTACK
             end
