@@ -1,4 +1,4 @@
-<items gfxroot="gfx_tb/items/" version="1" deathanm2="gfx_tb/death items.anm2" >
+<items gfxroot="gfx_tb/items/" version="1" deathanm2="gfx/death_items.anm2" >
 
 <!-- ITEMS -->
 <passive id="0" name="Coconut Oil"
@@ -247,7 +247,7 @@
     coins="5"
 />
 <active id="29" name="Gilded Apple"
-    description="Golden aura"
+    description="Golden arua"
     gfx="golden_apple.png"
     quality="3"
     tags="nolostbr"

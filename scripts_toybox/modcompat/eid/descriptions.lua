@@ -1363,7 +1363,7 @@ enums.FUNCTIONS.AddTrinket({
     ID = ToyboxMod.TRINKET_JONAS_LOCK,
     Name = "Jonas' Lock",
     Description = {
-        "{{Pill}} Using a pill grants a stat bonus equivalent to 50% of a random \"stat up\" pill's effect",
+        "{{Pill}} Using a pill grants a stat bonus equivalent to 50% of a random \"Stat Up\" pill effect",
         "The stat bonuses are only applied while holding this trinket"
     },
     DoubleModifiers = {
