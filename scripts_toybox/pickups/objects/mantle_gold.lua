@@ -2,7 +2,7 @@
 local sfx = SFXManager()
 
 local COINS_REMOVE = 1
-local REMOVE_CHANCE = 0.05
+local REMOVE_CHANCE = 0.1--0.05
 
 local function useMantle(_, _, player, _)
     if(ToyboxMod:isAtlasA(player)) then
