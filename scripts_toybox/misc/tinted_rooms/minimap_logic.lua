@@ -48,7 +48,11 @@ local function tryRenderAuraAtLevelIdxSmall(renderRoom, tintData, centerPos, cen
 
     local mapCornerPos = Vector(Isaac.GetScreenWidth(), 0)+Vector(-24,12)*Options.HUDOffset+Vector(-7,6)+Vector(-47,0)+Vector(-2,-2)
 
-    local roomSize = ROOM_GRID_SIZE*ToyboxMod.ROOM_DIMENSIONS[renderRoom.Data.Shape]
+    local shape = RoomShape.ROOMSHAPE_1x1
+    if(renderRoom.Data and renderRoom.Data.Subtype~=BossType.DELIRIUM) then
+        shape = renderRoom.Data.Shape
+    end
+    local roomSize = ROOM_GRID_SIZE*ToyboxMod.ROOM_DIMENSIONS[shape]
 
     local relativePos = floorVector((ROOM_GRID_SIZE-Vector(1,1))*(Vector(3,3)-centerSize/2+topLeftPos-centerPos))
 
@@ -56,7 +60,7 @@ local function tryRenderAuraAtLevelIdxSmall(renderRoom, tintData, centerPos, cen
     local bottomRightClamp = maxVectorComponents(relativePos+roomSize-SMALL_MINIMAP_SIZE, 0)
 
     local anim = (ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.GRADIENT_FLAG ~= 0) and "RoomsSmallGradient" or "RoomsSmall"
-    MINIMAP_SPRITE:SetFrame(anim, renderRoom.Data.Shape-1)
+    MINIMAP_SPRITE:SetFrame(anim, shape-1)
 
     local numTints = 0
     local tintsToRender = {}
@@ -98,10 +102,15 @@ local function tryRenderAuraAtLevelIdxBig(renderRoom, tintData, bounds)
     local topLeftPos = ToyboxMod:gridIndexToPositionVector(renderRoom.GridIndex)
     local relativePos = floorVector((ROOM_GRID_SIZE_BIG-Vector(1,1))*(topLeftPos-Vector(bounds.Left, bounds.Up)))
 
-    local anim = (ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.GRADIENT_FLAG ~= 0) and "RoomsBigGradient" or "RoomsBig"
-    MINIMAP_SPRITE:SetFrame(anim, renderRoom.Data.Shape-1)
+    local shape = RoomShape.ROOMSHAPE_1x1
+    if(renderRoom.Data and renderRoom.Data.Subtype~=BossType.DELIRIUM) then
+        shape = renderRoom.Data.Shape
+    end
 
-    local roomWidth = ROOM_GRID_SIZE_BIG.X*ToyboxMod.ROOM_DIMENSIONS[renderRoom.Data.Shape].X
+    local anim = (ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.GRADIENT_FLAG ~= 0) and "RoomsBigGradient" or "RoomsBig"
+    MINIMAP_SPRITE:SetFrame(anim, shape-1)
+
+    local roomWidth = ROOM_GRID_SIZE_BIG.X*ToyboxMod.ROOM_DIMENSIONS[shape].X
 
     local numTints = 0
     local tintsToRender = {}
@@ -171,6 +180,7 @@ local function mapRenderAuras()
 
         local roomPos = Vector(currentIdx%13, currentIdx//13)
         local roomSize = ToyboxMod.ROOM_DIMENSIONS[(curRoom.Data and curRoom.Data.Shape or 1)]
+        if(curRoom.Data and curRoom.Data.Subtype==BossType.DELIRIUM) then roomSize = ToyboxMod.ROOM_DIMENSIONS[RoomShape.ROOMSHAPE_1x1] end
 
         local data = ToyboxMod:getExtraDataTable()
         data.TINTED_ROOM_POSITIONS = data.TINTED_ROOM_POSITIONS or {}

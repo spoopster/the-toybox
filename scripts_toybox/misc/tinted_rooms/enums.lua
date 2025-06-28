@@ -48,6 +48,7 @@ ToyboxMod.TINTED_ROOM_DISPLAY = {
 ---@param pos Vector
 ---@return integer
 function ToyboxMod:positionVectorToGridIndex(pos)
+    if(pos.X<0 or pos.X>=13 or pos.Y<0 or pos.Y>=13) then return -1 end
     return pos.X+pos.Y*13
 end
 ---@param idx integer
