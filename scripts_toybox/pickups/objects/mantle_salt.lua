@@ -1,4 +1,4 @@
-
+local sfx = SFXManager()
 
 ---@param player EntityPlayer
 local function useMantle(_, _, player, _)
@@ -27,6 +27,8 @@ local function useMantle(_, _, player, _)
         end
 
         ToyboxMod.HiddenItemManager:AddForRoom(player, finalItem, nil, 1, "TOYBOX")
+        player:AnimateCollectible(finalItem)
+        sfx:Play(SoundEffect.SOUND_POWERUP1)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CONSUMABLE.MANTLE_SALT)
