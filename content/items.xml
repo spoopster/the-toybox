@@ -66,7 +66,7 @@
 <passive id="8" name="Nose Candy"
     description="Sugar rush!"
     gfx="nose_candy.png"
-    quality="3"
+    quality="2"
     tags="offensive"
     cache="all"
 />
@@ -973,6 +973,10 @@
     description="13 years bad luck"
     gfx="mirror_shard.png"
     cache="luck"
+/>
+
+<null id="1" name="toybox null save"
+    persistent="true"
 />
 
 <!-- UNUSED ITEMS

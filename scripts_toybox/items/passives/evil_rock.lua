@@ -23,7 +23,7 @@ local EVIL_TINTEDROCK_PICKUP_MORPHS = {
     },
     {
         ORIGINAL = {{5,100,0}}, -- item
-        MORPH = {{5,100,ToyboxMod.COLLECTIBLE_ONYX, 1.0}}, -- obsidian chunk
+        MORPH = {{5,100,ToyboxMod.COLLECTIBLE_ONYX, 1.0}}, -- onyx
     },
 }
 
@@ -57,8 +57,17 @@ end
 ---@param rock GridEntityRock
 ---@param offset Vector
 local function renderEvilAfterimages(_, rock, offset)
-    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EVIL_ROCK)) then return end
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EVIL_ROCK)) then
+        if(ToyboxMod:getGridEntityData(rock, "EVIL_ROCK_TINTED")) then
+            ToyboxMod:setGridEntityData(rock, "EVIL_ROCK_TINTED", nil)
+            rock:GetSprite().Color = Color.Default
+        end
+
+        return
+    end
     if(rock.State==2) then return end
+    
+    ToyboxMod:setGridEntityData(rock, "EVIL_ROCK_TINTED", true)
 
     local renderPos = Isaac.WorldToRenderPosition(rock.Position)+offset-Vector(0,1)
     local sp = rock:GetSprite()

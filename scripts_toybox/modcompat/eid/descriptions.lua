@@ -57,10 +57,10 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_NOSE_CANDY,
     Name = "Nose Candy",
     Description = {
-        "\1 Every floor, you get +0.2 speed",
-        "{{Blank}}  \7 If this bonus would make your speed higher than 2, the overflowing speed becomes a bonus to a non-speed stat",
-        "\1 Every floor, you get a small stat-up to a non-speed stat",
-        "\2 Every floor, you get a small stat-down to a non-speed stat",
+        "At the start of every floor:",
+        "\1 +0.2 Speed",
+        "\1 Increase to a random non-Speed stat",
+        "\2 Decrease to a random non-Speed stat",
     },
     StackModifiers = {
         {

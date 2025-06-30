@@ -81,6 +81,8 @@ function ToyboxMod:saveProgress()
         player=player:ToPlayer()
         local seed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
 
+        --print("SAVED SEED:", seed, player:GetPlayerIndex())
+
         save.playerData[seed] = convertDataToSaveData(ToyboxMod:getEntityDataTable(player), playerBaseData)
     end
     save.extraData = convertDataToSaveData(ToyboxMod:getExtraDataTable(), extraBaseData)
@@ -114,6 +116,7 @@ local function loadImportantData(_, slot)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, loadImportantData)
 
+---@param player EntityPlayer
 function ToyboxMod:dataSaveInit(player)
     ToyboxMod.IS_DATA_LOADED = false
     ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getEntityDataTable(player), playerBaseData)
@@ -124,9 +127,14 @@ function ToyboxMod:dataSaveInit(player)
 
     if(Game():GetFrameCount()~=0 and ToyboxMod:HasData()) then
         local save = json.decode(ToyboxMod:LoadData())
-        local pSeed = ""..player:GetCollectibleRNG(rngItem):GetSeed()
+        local pSeed = tostring(player:GetCollectibleRNG(rngItem):GetSeed())
 
-        if(save.playerData[pSeed]) then ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getEntityDataTable(player), convertSaveDataToTable(save.playerData[pSeed])) end
+        --print("LOADING SEED:", pSeed, player:GetPlayerIndex())
+
+        if(save.playerData[pSeed]) then
+            ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getEntityDataTable(player), convertSaveDataToTable(save.playerData[pSeed]))
+            --print("HAS DATA! LOADED SEED:", pSeed, player:GetPlayerIndex())
+        end
         
         if(#Isaac.FindByType(1)==0) then
             if(save.extraData) then

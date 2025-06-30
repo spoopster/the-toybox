@@ -1,16 +1,19 @@
 
-
-local ENUM_NUMTOSTAT = {"FIREDELAY", "DAMAGE", "RANGE", "SHOTSPEED", "LUCK"}
-local ENUM_STATPICKER = WeightedOutcomePicker()
-ENUM_STATPICKER:AddOutcomeFloat(1, 0.9, 100)
-ENUM_STATPICKER:AddOutcomeFloat(2, 0.9, 100)
-ENUM_STATPICKER:AddOutcomeFloat(3, 1.0, 100)
-ENUM_STATPICKER:AddOutcomeFloat(4, 1.0, 100)
-ENUM_STATPICKER:AddOutcomeFloat(5, 1.0, 100)
-
-local ENUM_LEVEL_SPEEDBONUS = 0.2
-local ENUM_LEVEL_STATUPBONUS = 0.1
-local ENUM_LEVEL_STATDOWNBONUS = -0.05
+local STAT_BONUSES = {
+    SPEED = 0.2,
+    TEARS = 0.5,
+    DAMAGE = 1,
+    RANGE = 1,
+    SHOTSPEED = 0.2,
+    LUCK = 1,
+}
+local PICKER_TO_STAT = {"TEARS", "DAMAGE", "RANGE", "SHOTSPEED", "LUCK"}
+local STATPICKER = WeightedOutcomePicker()
+STATPICKER:AddOutcomeFloat(1, 0.9, 100)
+STATPICKER:AddOutcomeFloat(2, 0.9, 100)
+STATPICKER:AddOutcomeFloat(3, 1.0, 100)
+STATPICKER:AddOutcomeFloat(4, 1.0, 100)
+STATPICKER:AddOutcomeFloat(5, 1.0, 100)
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag
@@ -22,9 +25,9 @@ local function evalCache(_, player, flag)
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+statTable.SPEED
     elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(player, statTable.FIREDELAY)
+        ToyboxMod:addBasicTearsUp(player, statTable.TEARS)
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        player.Damage = player.Damage*(1+statTable.DAMAGE/2)
+        ToyboxMod:addBasicDamageUp(player, statTable.DAMAGE)
     elseif(flag==CacheFlag.CACHE_RANGE) then
         player.TearRange = player.TearRange+statTable.RANGE*40
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
@@ -43,22 +46,15 @@ local function addNoseCandyBonuses(_, player)
     local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_NOSE_CANDY)
     local statTable = ToyboxMod:getEntityDataTable(player).NOSE_CANDY_STATBONUSES
     local num = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_NOSE_CANDY)
+    num = 1+(num-1)/2
 
-    local statToUp = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
-    local statToDown = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
+    local statToUp = PICKER_TO_STAT[STATPICKER:PickOutcome(rng)]
+    local statToDown = PICKER_TO_STAT[STATPICKER:PickOutcome(rng)]
 
-    statTable[statToUp] = statTable[statToUp]+ENUM_LEVEL_STATUPBONUS*num
-    statTable[statToDown] = statTable[statToDown]+ENUM_LEVEL_STATDOWNBONUS*num
+    statTable[statToUp] = statTable[statToUp]+num*STAT_BONUSES[statToUp]
+    statTable[statToDown] = statTable[statToDown]-num*STAT_BONUSES[statToDown]
 
-    if(player.MoveSpeed+ENUM_LEVEL_SPEEDBONUS*num>2) then
-        local speedOverflow = player.MoveSpeed+ENUM_LEVEL_SPEEDBONUS*num-2
-
-        statTable.SPEED = statTable.SPEED + ENUM_LEVEL_SPEEDBONUS*num-speedOverflow
-        local overflowBonusStat = ENUM_NUMTOSTAT[ENUM_STATPICKER:PickOutcome(rng)]
-        statTable[overflowBonusStat] = statTable[overflowBonusStat]+speedOverflow
-    else
-        statTable.SPEED = statTable.SPEED + ENUM_LEVEL_SPEEDBONUS*num
-    end
+    statTable.SPEED = statTable.SPEED + STAT_BONUSES.SPEED*num
 
     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 end
