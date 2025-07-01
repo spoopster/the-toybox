@@ -196,6 +196,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.gambling_addiction")
     include("scripts_toybox.items.passives.pyramid_scheme")
     --include("scripts_toybox.items.passives.public_works")
+    include("scripts_toybox.items.passives.good_juice")
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
     include("scripts_toybox.items.actives.pliers")

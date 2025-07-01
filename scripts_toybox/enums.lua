@@ -254,6 +254,7 @@ ToyboxMod.EFFECT_VARIANT = {
     DRILL = Isaac.GetEntityVariantByName("Drill"),
     PYTHAGORAS_CUP_SPILL = Isaac.GetEntityVariantByName("Pythagoras' Cup Spill"),
     KILLSCREEN_GLITCH = Isaac.GetEntityVariantByName("Killscreen Glitch"),
+    JUICE_TRAIL = Isaac.GetEntityVariantByName("Good Juice Trail"),
 
     ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair")
 }

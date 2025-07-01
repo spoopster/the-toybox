@@ -42,11 +42,11 @@ void main(void)
 	if(dot(gl_FragCoord.xy, ClipPlaneOut.xy) < ClipPlaneOut.z)
 		discard;
 	lowp vec2 pa = vec2(1.0+PixelationAmountOut, 1.0+PixelationAmountOut) / TextureSizeOut;
-	lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - ToyboxMod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
+	lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - mod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
 
     lowp float timeVal = ColorizeOut.a;
     lowp float luminosityVal = texColor.r*_lum.r+texColor.g*_lum.g+texColor.b*_lum.b;
-    lowp float finalLuminosity = (ToyboxMod(1.0-luminosityVal+timeVal,1.0))*maxColorSize;
+    lowp float finalLuminosity = (mod(1.0-luminosityVal+timeVal,1.0))*maxColorSize;
 
 	lowp float minColorSize = 0.0;
     lowp vec3 selectedColor;

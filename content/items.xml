@@ -630,7 +630,7 @@
 <passive id="72" name="Food Stamps"
     description="Never go hungry"
     gfx="food_stamps.png"
-    quality="1"
+    quality="2"
     tags="nolostbr summonable"
 
     cache=""

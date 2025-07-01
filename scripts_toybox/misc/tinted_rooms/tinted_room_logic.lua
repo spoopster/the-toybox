@@ -21,7 +21,7 @@ function ToyboxMod:makeTintedRoom(roomPos, tintedType, radius)
     if(type(roomPos)~="number") then
         roomPos = ToyboxMod:positionVectorToGridIndex(roomPos)
     end
-    radius = radius or 3
+    radius = radius or 1
 
     local level = Game():GetLevel()
 
@@ -118,4 +118,4 @@ local function test(_, _, rng, player, flags)
     local sel = rng:RandomInt(numblablabla)
     ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel))
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)
+--ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)

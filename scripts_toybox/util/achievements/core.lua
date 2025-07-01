@@ -51,7 +51,6 @@ function ToyboxMod:checkUnlocks(completionUnlocks, blockPaper)
         if(unlockData.Condition()) then
             Isaac.GetPersistentGameData():TryUnlock(unlockData.Achievement, blockPaper)
         else
-            print("YUP", unlockData.Achievement)
             Isaac.ExecuteCommand("lockachievement " .. unlockData.Achievement)
         end
     end

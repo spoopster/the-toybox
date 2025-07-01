@@ -1,4 +1,7 @@
-
+local bossPools = {
+    [ItemPoolType.POOL_BOSS] = true,
+    [ItemPoolType.POOL_GREED_BOSS] = true,
+}
 
 ---@param item CollectibleType
 ---@param firstTime boolean
