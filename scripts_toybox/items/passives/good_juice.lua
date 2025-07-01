@@ -43,7 +43,7 @@ end
 
 ---@param npc EntityNPC
 local function spawnDeathPuddle(_, npc)
-    local pl = Isaac.GetPlayer()
+    local pl = PlayerManager.FirstCollectibleOwner(ToyboxMod.COLLECTIBLE_GOOD_JUICE)
     if(not pl) then return end
 
     local numParticles = (npc.MaxHitPoints/HP_FOR_JUICE)^FINAL_JUICE_EXPO
@@ -142,9 +142,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_EXIT, turnToJuiceOnRoomChange)
 
 local cancelRenders = false
-
----@param effect EntityEffect
-local function renderJuiceParticles(_, effect)
+local function renderJuiceParticles(_)
     if(cancelRenders) then return end
     cancelRenders = true
 
@@ -211,11 +209,11 @@ local function lerpKcolor(a, b, f)
 end
 
 local function hudRender(_)
-    local pl = Isaac.GetPlayer()
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JUICE)) then return end
 
     --figure ts out later
     if(not Game():IsPaused()) then
-        if(Input.IsActionPressed(ButtonAction.ACTION_MAP, pl.ControllerIndex)) then
+        if(Input.IsActionPressed(ButtonAction.ACTION_MAP, Isaac.GetPlayer().ControllerIndex)) then
             if(MAP_HELD<MAP_MAX) then
                 MAP_HELD = MAP_HELD+1
             end

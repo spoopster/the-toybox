@@ -782,8 +782,19 @@
     description="All you've ever wanted...?"
     gfx="pythagoras_cup.png"
     quality="2"
-    tags="offensive"
+    tags="offensive noeden"
     cache="uniquefamiliar"
+
+    hidden="true"
+/>
+<passive id="91" name="The Good Juice"
+    description="Quench your thirst"
+    gfx="good_juice.png"
+    quality="4"
+    tags="offensive noeden"
+    cache=""
+
+    hidden="true"
 />
 
 <passive id="109" name="RETROFALL"

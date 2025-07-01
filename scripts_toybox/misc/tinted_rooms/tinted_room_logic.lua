@@ -66,38 +66,6 @@ function ToyboxMod:makeTintedRoom(roomPos, tintedType, radius)
 
         idx = idx+1
     end
-
-    --[[] ]
-    
-    local room = level:GetRoomByIdx(roomPos)
-    if(room.Data and room.GridIndex>=0) then
-        local topLeftPos = ToyboxMod:gridIndexToPositionVector(room.GridIndex)
-        local roomSize = ToyboxMod.ROOM_DIMENSIONS[room.Data.Shape]
-
-        
-        for rx=topLeftPos.X, topLeftPos.X+roomSize.X-1 do
-            for ry=topLeftPos.Y, topLeftPos.Y+roomSize.Y-1 do
-                if(level:GetRoomByIdx(ToyboxMod:positionVectorToGridIndex(Vector(rx,ry))).SafeGridIndex==room.SafeGridIndex) then
-                    for ax=-TINT_AURA_SIZE, TINT_AURA_SIZE do
-                        for ay=-TINT_AURA_SIZE, TINT_AURA_SIZE do
-                            local newidx = level:GetRoomByIdx(ToyboxMod:positionVectorToGridIndex(Vector(rx+ax,ry+ay))).SafeGridIndex
-                            if(not alreadyAddedToTintedAura[newidx]) then
-                                alreadyAddedToTintedAura[newidx] = true
-                                
-                                data.TINTED_ROOM_POSITIONS[newidx] = data.TINTED_ROOM_POSITIONS[newidx] or {Tints=0, Centers=0}
-
-                                data.TINTED_ROOM_POSITIONS[newidx].Tints = data.TINTED_ROOM_POSITIONS[newidx].Tints | tintedType
-                                if(ax==0 and ay==0) then
-                                    data.TINTED_ROOM_POSITIONS[newidx].Centers = data.TINTED_ROOM_POSITIONS[newidx].Centers | tintedType
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-    --]]
 end
 
 
