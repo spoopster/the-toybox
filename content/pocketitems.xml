@@ -28,6 +28,7 @@
         pickup="3812"
 
         mimiccharge="12"
+        hidden="true"
     />
 
 <!-- OBJECTS -->

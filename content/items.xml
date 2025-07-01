@@ -151,8 +151,10 @@
     description="Gives invincibility"
     gfx="silk_bag.png"
     quality="3"
-    tags="offensive"
+    tags="offensive noeden"
     cache=""
+
+    hidden="true"
 />
 <active id="19" name="Brainfreeze"
     description="Chill aura"
@@ -400,8 +402,10 @@
     description="Hear its cry"
     gfx="4_4.png"
     quality="3"
-    tags="summonable offensive"
+    tags="summonable offensive noeden"
     cache=""
+
+    hidden="true"
 />
 <familiar id="45" name="Dr. Bum"
     description="Still homeless"
@@ -434,13 +438,14 @@
     description="Jailbreaker"
     gfx="drill.png"
     quality="3"
-    tags="offensive"
+    tags="offensive noeden"
     cache=""
 
     chargetype="timed"
     maxcharges="300"
 
     achievement="Drill"
+    hidden="true"
 />
 <active id="49" name="Alphabet Box"
     description="Learn your ABCs"
@@ -495,15 +500,19 @@
     description="Dangerous territory"
     gfx="bloody_map.png"
     quality="3"
-    tags="offensive"
+    tags="offensive noeden"
     cache=""
+
+    hidden="true"
 />
 <passive id="56" name="Preferred Options"
     description="Targeted advertising"
     gfx="preferred_options.png"
     quality="4"
-    tags="offensive nogreed"
+    tags="offensive nogreed noeden"
     cache=""
+
+    hidden="true"
 />
 <passive id="57" name="Cursed Eulogy"
     description="Evil items"
@@ -594,7 +603,7 @@
     cache="speed firedelay"
 />
 <passive id="68" name="Last Beer"
-    description="One beer left"
+    description="Only one left"
     gfx="last_beer.png"
     quality="3"
     tags="offensive summonable"
