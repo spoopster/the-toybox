@@ -799,11 +799,9 @@
 <passive id="91" name="The Good Juice"
     description="Quench your thirst"
     gfx="good_juice.png"
-    quality="4"
-    tags="offensive noeden"
-    cache=""
-
-    hidden="true"
+    quality="3"
+    tags="offensive"
+    cache="all"
 />
 
 <passive id="109" name="RETROFALL"

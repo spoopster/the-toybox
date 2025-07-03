@@ -67,13 +67,14 @@ local function shockwaveOnEntry(_)
                             --print("B", timer.FrameCount, ToyboxMod:getEntityData(ent, "ORB_CONCUSSED"), prevDist, ent.Position:Distance(effect.Position), curDist, "|", ent.Type, ent.Variant)
 
                             if(not ToyboxMod:getEntityData(ent, "ORB_CONCUSSED") and ent.Position:Distance(effect.Position)>=prevDist) then
-                                ToyboxMod:setEntityData(ent, "ORB_CONCUSSED", true)
-                                ent:AddConfusion(EntityRef(pl), CONCUSS_DURATION, true)
+                                if(ToyboxMod:isValidEnemy(ent)) then
+                                    ToyboxMod:setEntityData(ent, "ORB_CONCUSSED", true)
+                                    ent:AddConfusion(EntityRef(pl), CONCUSS_DURATION, true)
+                                end
                             end
                         end
 
-                    end, 1, TIMER_DUR, false
-                    )
+                    end, 1, TIMER_DUR, false)
                 end, 1, 2+bossTimeMod, false
             )
         end

@@ -70,7 +70,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		local optionID = getOptionID("AlphabetBoxDescriptionPreview")
 
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
-			"Alphabet Box - Description Previews"
+			"Alphabet Box - EID Description Previews"
 		)
 		ImGui.AddSliderInteger("ToyboxOptionsWindow", optionID, "", nil, 3, 0, 10)
 		ImGui.AddCallback(optionID,
@@ -86,7 +86,32 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-			"How many items should be previewed in item descriptions while Alphabet Box is held. (Only works if you have EID!)"
+			"How many items should be previewed in item descriptions while Alphabet Box is held? (Only works if you have EID!)"
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
+
+	do -- GOOD JUICE LAG
+		local optionID = getOptionID("GoodJuiceLag")
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"The Good Juice - Lag Reduction"
+		)
+		ImGui.AddCombobox("ToyboxOptionsWindow", optionID, "", nil, {"All Particles", "Reduced Particles", "No Particles"}, 0, false)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.GOOD_JUICE_LESSLAG)
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				ToyboxMod.CONFIG.GOOD_JUICE_LESSLAG = v
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"Helps reduce lag caused by Good Juice."
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 	end

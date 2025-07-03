@@ -239,7 +239,8 @@ ToyboxMod.FAMILIAR_VARIANT = {
 
 ---@type SlotVariant[]
 ToyboxMod.SLOT_VARIANT = {
-    PYRAMID_DONATION = Isaac.GetEntityVariantByName("Pyramid Donation Machine")
+    PYRAMID_DONATION = Isaac.GetEntityVariantByName("Pyramid Donation Machine"),
+    JUICE_FOUNTAIN = Isaac.GetEntityVariantByName("Juice Fountain"),
 }
 
 ---@type EffectVariant[]

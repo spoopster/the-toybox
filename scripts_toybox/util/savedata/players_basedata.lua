@@ -54,6 +54,14 @@ local BASEDATA = {
     MIRROR_SHARD_COUNTER = 0,
     GAMBLING_ADDICTION_TIMER = 0,
     GAMBLING_ADDICTION_QUEUED_SPINS = 0,
+    GOOD_JUICE_STATS = {
+        SPEED = 0,
+        TEARS = 0,
+        DAMAGE = 0,
+        RANGE = 0,
+        SHOTSPEED = 0,
+        LUCK = 0,
+    },
     
     --! STUPID CONSUMABLE SHIT
     DYSLEXIA_HORSE = false,

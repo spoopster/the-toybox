@@ -36,7 +36,9 @@ void main(void)
     lowp vec2 pa = vec2(1.0+PixelationAmountOut, 1.0+PixelationAmountOut) / TextureSizeOut;
     lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - mod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
     
-    lowp float time = ColorizeOut.r;
+    lowp float time = ColorizeOut.r+texColor.r;
+    time += TexCoord0.x+TexCoord0.y;
+
     lowp vec3 color = vec3(mod(time,6.0), 1.0, 0.5);
 
     texColor.rgb = hslToRgb(color);

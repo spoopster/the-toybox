@@ -630,7 +630,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_HEMORRHAGE,
     Name = "Haemorrhage",
     Description = {
-        "{{EmptyBoneHeart}} +1 Bone Heart",
+        "{{EmptyBoneHeart}} +2 Bone Hearts",
         "Taking damage gives a large fading tears up",
     },
 })
@@ -1205,6 +1205,15 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "\1 +0.16 Shotspeed",
         "Non-boss enemies that hurt you are instantly killed",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_GOOD_JUICE,
+    Name = "The Good Juice",
+    Description = {
+        enums.CONSTANTS.Icon_Juice .. " Enemies drop Juice on death equal to their max health",
+        "You can trade Juice in the starting room for pickups and stats",
+        "{{Blank}} {{ColorSilver}}(Hold the {{ButtonSelect}} Map button to view your Juice){{CR}}"
     },
 })
 

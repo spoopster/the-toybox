@@ -20,20 +20,20 @@ STATPICKER:AddOutcomeFloat(5, 1.0, 100)
 local function evalCache(_, player, flag)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_NOSE_CANDY)) then return end
 
-    local statTable = ToyboxMod:getEntityData(player, "NOSE_CANDY_STATBONUSES")
+    local statTable = ToyboxMod:getEntityData(player, "NOSE_CANDY_STATBONUSES") or {}
 
     if(flag==CacheFlag.CACHE_SPEED) then
-        player.MoveSpeed = player.MoveSpeed+statTable.SPEED
+        player.MoveSpeed = player.MoveSpeed+(statTable.SPEED or 0)
     elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(player, statTable.TEARS)
+        ToyboxMod:addBasicTearsUp(player, (statTable.TEARS or 0))
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, statTable.DAMAGE)
+        ToyboxMod:addBasicDamageUp(player, (statTable.DAMAGE or 0))
     elseif(flag==CacheFlag.CACHE_RANGE) then
-        player.TearRange = player.TearRange+statTable.RANGE*40
+        player.TearRange = player.TearRange+(statTable.RANGE or 0)*40
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
-        player.ShotSpeed = player.ShotSpeed+statTable.SHOTSPEED
+        player.ShotSpeed = player.ShotSpeed+(statTable.SHOTSPEED or 0)
     elseif(flag==CacheFlag.CACHE_LUCK) then
-        player.Luck = player.Luck+statTable.LUCK
+        player.Luck = player.Luck+(statTable.LUCK or 0)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

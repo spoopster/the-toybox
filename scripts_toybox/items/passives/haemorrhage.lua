@@ -1,6 +1,6 @@
 
 
-local BONEHEART_ADD = 1
+local BONEHEART_ADD = 2
 
 local INTENSITY_DURATION = 5*60
 local INTENSITY_UPDATE_FREQ = 30
@@ -47,11 +47,12 @@ local function hemorrhageEffectCheck(_, pl)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, hemorrhageEffectCheck)
 
----@param player Entity
-local function increaseIntensity(_, player, _, flags, source)
-    if(not player:ToPlayer():HasCollectible(ToyboxMod.COLLECTIBLE_HEMORRHAGE)) then return end
+---@param ent Entity
+local function increaseIntensity(_, ent, _, flags, source)
+    local pl = ent:ToPlayer()
+    if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_HEMORRHAGE))) then return end
 
-    ToyboxMod:setEntityData(player:ToPlayer(), "HAEMORRHAGE_COUNTDOWN", INTENSITY_DURATION)
-    player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY, true)
+    ToyboxMod:setEntityData(pl, "HAEMORRHAGE_COUNTDOWN", INTENSITY_DURATION)
+    pl:AddCacheFlags(CacheFlag.CACHE_FIREDELAY, true)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, increaseIntensity, EntityType.ENTITY_PLAYER)

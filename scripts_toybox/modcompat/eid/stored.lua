@@ -186,6 +186,7 @@ EID:addIcon("ToyboxIconHorsePill", "Misc", 3, 16, 16, 0, 0, iconSprite)
 EID:addIcon("ToyboxIconGoldenHorsePill", "Misc", 4, 16, 16, 0, 0, iconSprite)
 EID:addIcon("ToyboxIconInk", "Misc", 5, 16, 16, 0, 0, iconSprite)
 EID:addIcon("ToyboxIconTintedRoom", "Misc", 6, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxIconJuice", "Misc", 7, 16, 16, 0, 0, iconSprite)
 
 
 
@@ -235,6 +236,7 @@ STORED.CONSTANTS = {
     Icon_GoldenHorsePill = "{{ToyboxIconGoldenHorsePill}}",
     Icon_Ink = "{{ToyboxIconInk}}",
     Icon_TintedRoom = "{{ToyboxIconTintedRoom}}",
+    Icon_Juice = "{{ToyboxIconJuice}}",
 
     --- COLORS ---
     Color_LimitBreak = "{{ToyboxColorLimitBreak}}",

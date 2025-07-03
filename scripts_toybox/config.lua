@@ -5,6 +5,8 @@ ToyboxMod.CONFIG = {
     MANTLE_WEIGHT = 0.5,
     MOD_CHAMPION_CHANCE = 0.05,
 
+    GOOD_JUICE_LESSLAG = 0,
+
     MORE_STATS = false,
     EPIC_ITEM_MODE = 0,
     AWESOME_FUCKING_TITLESCREEN = true,
