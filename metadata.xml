@@ -15,7 +15,7 @@ So far the mod has:
 - 2 new (unlockable) cards, 16 new (unlockable) pill effects, 9 new (unlockable) objects;
 - It makes Hell blue;</description>
     <version>1.2</version>
-    <visibility>Unlisted</visibility>
+    <visibility>Private</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
     <tag id="Active Items"/>
