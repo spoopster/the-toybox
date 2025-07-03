@@ -1,7 +1,7 @@
 
 
-local LUCKUP = 0.75
-local DAMAGEUP = 1
+local LUCKUP = 1
+local DAMAGEUP = 0.75
 
 ---@param player EntityPlayer
 ---@param flag CacheFlag

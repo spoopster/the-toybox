@@ -208,8 +208,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_EYESTRAIN,
     Name = "Eyestrain",
     Description = {
-        "\1 +1 Damage",
-        "\1 +0.75 Luck",
+        "\1 +0.75 Damage",
+        "\1 +1 Luck",
     },
 })
 enums.FUNCTIONS.AddItem({

@@ -3,9 +3,9 @@
 local INK_NUM_PICKER = WeightedOutcomePicker()
 INK_NUM_PICKER:AddOutcomeWeight(2, 10)
 INK_NUM_PICKER:AddOutcomeWeight(3, 100)
-INK_NUM_PICKER:AddOutcomeWeight(4, 100)
-INK_NUM_PICKER:AddOutcomeWeight(5, 50)
-INK_NUM_PICKER:AddOutcomeWeight(6, 10)
+INK_NUM_PICKER:AddOutcomeWeight(4, 50)
+INK_NUM_PICKER:AddOutcomeWeight(5, 15)
+INK_NUM_PICKER:AddOutcomeWeight(6, 1)
 
 local function spawnInk(npc)
     local rng = npc:GetDropRNG()
