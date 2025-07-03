@@ -758,7 +758,7 @@
 <familiar id="86" name="Effigy"
     description="A real boy"
     gfx="effigy.png"
-    quality="3"
+    quality="2"
     tags="offensive summonable"
     cache=""
 

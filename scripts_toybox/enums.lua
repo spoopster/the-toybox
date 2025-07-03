@@ -270,6 +270,8 @@ ToyboxMod.PICKUP_VARIANT = {
     SMORGASBORD = Isaac.GetEntityVariantByName("Smorgasbord"),
 
     ETERNAL_MOUND = Isaac.GetEntityVariantByName("Eternal Mound"),
+
+    LONELY_KEY = Isaac.GetEntityVariantByName("Lonely Key"),
 }
 
 ---@type integer[]

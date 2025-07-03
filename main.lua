@@ -256,6 +256,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.pickups.pickups.blood_soul")
     include("scripts_toybox.pickups.pickups.smorgasbord")
     include("scripts_toybox.pickups.pickups.eternal_mound")
+    include("scripts_toybox.pickups.pickups.lonely_key")
 --CARDS
     include("scripts_toybox.pickups.cards.prismstone")
     include("scripts_toybox.pickups.cards.foil_card")
