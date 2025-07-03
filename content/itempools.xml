@@ -31,6 +31,7 @@
         <Item Name="Colossal Orb"/>
         <Item Name="Golden Calf"/>
         <Item Name="Last Beer"/>
+        <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="Pliers"/>
@@ -62,6 +63,7 @@
         <Item Name="Hemolymph"/>
         <Item Name="Golden Calf"/>
         <Item Name="Last Beer"/>
+        <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="boss">
@@ -151,6 +153,7 @@
         <Item Name="Blessed Bombs"/>
         <Item Name="Exorcism Kit"/>
         <Item Name="Pythagoras' Cup"/>
+        <Item Name="The Good Juice"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
@@ -161,6 +164,7 @@
         <Item Name="Blessed Bombs"/>
         <Item Name="Exorcism Kit"/>
         <Item Name="Pythagoras' Cup"/>
+        <Item Name="The Good Juice"/>
     </Pool>
 
     <Pool Name="curse">
@@ -230,5 +234,6 @@
         <Item Name="Plasma Globe"/>
         <Item Name="Colossal Orb"/>
         <Item Name="Gambling Addiction"/>
+        <Item Name="The Good Juice"/>
     </Pool>
 </ItemPools>

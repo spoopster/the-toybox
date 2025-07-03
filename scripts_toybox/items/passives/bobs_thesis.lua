@@ -53,6 +53,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, givePlaceholderStats)
 local function stopHoldingThePlaces(_, pl)
     if(pl.FrameCount==0) then return end
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_PLACEHOLDER)) then return end
+    print("stopped holding places?")
     local data = ToyboxMod:getEntityDataTable(pl)
     data.PLACEHOLDER_POOLS = data.PLACEHOLDER_POOLS or {}
 
@@ -67,8 +68,9 @@ local function stopHoldingThePlaces(_, pl)
 
     data.PLACEHOLDER_FREQ = PLACEHOLDER_GIVE_ITEM_FREQ
     if((#data.PLACEHOLDER_POOLS)*PLACEHOLDER_GIVE_ITEM_FREQ>PLACEHOLDER_FAST_THRESHOLD) then
-        data.PLACEHOLDER_FREQ = PLACEHOLDER_FAST_THRESHOLD/(#data.PLACEHOLDER_POOLS)
+        data.PLACEHOLDER_FREQ = math.floor(PLACEHOLDER_FAST_THRESHOLD/(#data.PLACEHOLDER_POOLS))
     end
+    print("current held places:", #data.PLACEHOLDER_POOLS)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, stopHoldingThePlaces)
 
@@ -76,6 +78,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, stopHoldingThePlace
 local function giveThePlaces(_, pl)
     local data = ToyboxMod:getEntityDataTable(pl)
     data.PLACEHOLDER_POOLS = data.PLACEHOLDER_POOLS or {}
+    print(pl.FrameCount%(data.PLACEHOLDER_FREQ or PLACEHOLDER_GIVE_ITEM_FREQ))
     if(not data.PLACEHOLDER_POOLS[1]) then return end
     if(pl.FrameCount%(data.PLACEHOLDER_FREQ or PLACEHOLDER_GIVE_ITEM_FREQ)~=0) then return end
 

@@ -273,10 +273,23 @@ local function spawnSlotInStartRoom()
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JUICE)) then return end
 
     local level = Game():GetLevel()
-    if(level:GetCurrentRoomIndex()~=level:GetStartingRoomIndex()) then return end
+    local isGreed = Game().Difficulty>=Difficulty.DIFFICULTY_GREED
+    local isInCorrectRoom = (level:GetCurrentRoomIndex()==level:GetStartingRoomIndex())
+    if(isGreed) then
+        local shopIndex = level:GetStartingRoomIndex()-13
+
+        isInCorrectRoom = (level:GetCurrentRoomIndex()==shopIndex) or (level:GetCurrentRoomIndex()==shopIndex-1)
+    end
+
+    if(not isInCorrectRoom) then return end
 
     if(#Isaac.FindByType(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN)==0) then
-        local pos = Vector(180,200)
+        local pos = Vector(160,200)
+        if(isGreed) then
+            pos = Vector(560,280)
+        end
+
+        pos = Game():GetRoom():FindFreePickupSpawnPosition(pos)+Vector(20,0)
 
         local slot = Isaac.Spawn(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN,0,pos,Vector.Zero,nil)
     end
