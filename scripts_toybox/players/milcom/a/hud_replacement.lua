@@ -28,6 +28,9 @@ local function postRender(_)
     if(not pl) then return end
 
     local renderPos = Vector(20,12)*Options.HUDOffset + Vector(16,45) + Game().ScreenShakeOffset
+    if(REPENTANCE_PLUS) then
+        renderPos = renderPos+Vector(0,2)
+    end
 
     -- bombs
     local bombText = tostring(pl:GetNumBombs())

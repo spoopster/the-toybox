@@ -284,12 +284,12 @@ local function spawnSlotInStartRoom()
     if(not isInCorrectRoom) then return end
 
     if(#Isaac.FindByType(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN)==0) then
-        local pos = Vector(160,200)
+        local pos
         if(isGreed) then
-            pos = Vector(560,280)
+            pos = Game():GetRoom():FindFreePickupSpawnPosition(Vector(560,280))+Vector(20,0)
+        else
+            pos = Game():GetRoom():FindFreePickupSpawnPosition(Vector(200,200))
         end
-
-        pos = Game():GetRoom():FindFreePickupSpawnPosition(pos)+Vector(20,0)
 
         local slot = Isaac.Spawn(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN,0,pos,Vector.Zero,nil)
     end
@@ -403,7 +403,7 @@ local function hudRender(_)
     end
 
     --figure ts out later
-    if(not Game():IsPaused()) then
+    if(not Game():IsPauseMenuOpen()) then
         if(Input.IsActionPressed(ButtonAction.ACTION_MAP, Isaac.GetPlayer().ControllerIndex)) then
             if(MAP_HELD<MAP_MAX) then
                 MAP_HELD = MAP_HELD+1
@@ -421,6 +421,9 @@ local function hudRender(_)
     end
 
     if(trueTransparency<0.01) then return end
+    if(isBossIntro) then return end
+    if(Game():GetLevel():GetStage()==LevelStage.STAGE8 and Game():GetRoom():GetType()==RoomType.ROOM_DUNGEON and Game():GetLevel():GetCurrentRoomDesc().Data.Variant==666) then return end
+
     local color = lerpKcolor(KColor(1,1,1,1), kcolorFromHue((Game():GetFrameCount()*5)%360), 0.33)
     color.Alpha = trueTransparency
 
