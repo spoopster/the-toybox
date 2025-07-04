@@ -1,4 +1,4 @@
-local REPLACE_CHANCE = 10.025
+local REPLACE_CHANCE = 0.033
 
 ---@param pickup EntityPickup
 local function replaceKey(_, pickup)
