@@ -14,6 +14,7 @@
 		modcostume="1000"
 
 		bonehearts="3" redhearts="6"
+		speedmodifier="-0.1"
 	/>
 	<player birthright="Mantle stratification" name="The Tar" 
 		nameimage="atlas_name.png" portrait="atlas_tar_portrait.png" skin="character_atlas_tar.png"
@@ -21,6 +22,7 @@
 		modcostume="999"
 
 		bonehearts="3" redhearts="6"
+		speedmodifier="-0.1"
 
 		hidden="true"
 		completionparent="Atlas"
@@ -31,7 +33,7 @@
 		costumeSuffix="jonas_a" skinColor="-1"
 		modcostume="1100"
 
-		heartcontainers="6" redhearts="6"
+		heartcontainers="4" redhearts="4"
 		luckmodifier="-2"
 		trinket="44" 
 	/>
