@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="1/5/2025 10:32:57 PM" Version="4" Fps="30"/>
+	<Info CreatedBy="Unknown" CreatedOn="7/11/2025 3:03:12 PM" Version="5" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="effect_dark_aura.png" Id="0"/>

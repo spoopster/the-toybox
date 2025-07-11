@@ -401,11 +401,9 @@
 <passive id="44" name="4 4"
     description="Hear its cry"
     gfx="4_4.png"
-    quality="3"
-    tags="summonable offensive noeden"
-    cache=""
-
-    hidden="true"
+    quality="2"
+    tags="summonable offensive"
+    cache="firedelay"
 />
 <familiar id="45" name="Dr. Bum"
     description="Still homeless"

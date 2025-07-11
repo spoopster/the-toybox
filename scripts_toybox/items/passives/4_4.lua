@@ -1,13 +1,95 @@
 local sfx = SFXManager()
-local evilRenders = {}
+
+local FOURFOUR_TEARS = 0.5
+
+local CONFUSE_FREQ = 5
+local CONFUSE_RADIUS = 40
+local CONFUSE_DURATION = math.floor(30*1.2)
 
 ---@param pl EntityPlayer
+---@param flags CacheFlag
+local function evalCache(_, pl, flags)
+    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_4_4)
+    if(mult==0) then return end
+
+    ToyboxMod:addBasicTearsUp(pl, FOURFOUR_TEARS*mult)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FIREDELAY)
+
+---@param pl EntityPlayer
+local function confuseNearbyEnemies(_, pl)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_4_4)) then return end
+
+    local data = ToyboxMod:getEntityDataTable(pl)
+    local isFiring = ToyboxMod:isPlayerShooting(pl) and pl:IsExtraAnimationFinished()
+
+    if(isFiring and not (data.FOURFOUR_AURA and data.FOURFOUR_AURA:Exists() and not data.FOURFOUR_AURA:IsDead())) then
+        local aura = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.FOURFOUR,pl.Position,Vector.Zero,pl):ToEffect()
+        aura.Parent = pl
+        aura:FollowParent(pl)
+        aura:GetSprite():Play("Appear", true)
+        
+        aura.Scale = CONFUSE_RADIUS/80
+        aura.SpriteScale = aura.SpriteScale*aura.Scale
+
+        data.FOURFOUR_AURA = aura
+    end
+
+    if(isFiring and Game():GetFrameCount()%CONFUSE_FREQ==0) then
+        local plRef = EntityRef(pl)
+
+        for _, ent in ipairs(Isaac.FindInRadius(pl.Position, CONFUSE_RADIUS, EntityPartition.ENEMY)) do
+            if(ToyboxMod:isValidEnemy(ent)) then
+                local confcount = ent:GetConfusionCountdown()
+                if(confcount<CONFUSE_DURATION) then
+                    ent:AddConfusion(plRef, CONFUSE_DURATION-confcount, false)
+                end
+            end
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, confuseNearbyEnemies)
+
+---@param effect EntityEffect
+local function auraUpdate(_, effect)
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.FOURFOUR) then return end
+
+    local sp = effect:GetSprite()
+    if(sp:IsFinished("Appear")) then
+        sp:Play("Idle", true)
+    end
+
+    local alpha = 0.2
+    if(sp:GetAnimation()=="Idle") then
+        alpha = alpha*(1+0.2*math.sin(math.rad(effect.FrameCount-sp:GetAnimationData("Appear"):GetLength())*15))
+    end
+    effect.Color = Color(1,1,1,alpha)
+
+    local pl = (effect.Parent and effect.Parent:ToPlayer() or nil)
+    if(not effect:IsDead() and pl and not ToyboxMod:isPlayerShooting(pl)) then
+        effect:Die()
+    end
+
+    if(effect:Exists() and effect:IsDead()) then
+        if(sp:GetAnimation()~="Disappear") then
+            sp:Play("Disappear")
+        end
+        if(sp:IsFinished("Disappear")) then
+            effect:Remove()
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, auraUpdate, ToyboxMod.EFFECT_VARIANT.AURA)
+
+-- GLITCH VISUALS
+
+---@param ent Entity
 ---@param rng RNG
 ---@param duration integer?
 ---@param topleftclamp Vector?
 ---@param bottomrightclamp Vector?
-local function pushRender(pl, rng, duration, topleftclamp, bottomrightclamp)
-    local sp = pl:GetSprite()
+local function pushRender(ent, rng, duration, topleftclamp, bottomrightclamp)
+    local sp = ent:GetSprite()
 
     local newSp = Sprite(sp:GetFilename(), false)
     for i, state in pairs(sp:GetAllLayers()) do
@@ -27,9 +109,12 @@ local function pushRender(pl, rng, duration, topleftclamp, bottomrightclamp)
     topleftclamp = topleftclamp or Vector(rng:RandomInt(12), rng:RandomInt(12))
     bottomrightclamp = bottomrightclamp or Vector(rng:RandomInt(12), rng:RandomInt(12))
 
-    table.insert(evilRenders,{
+    local data = ToyboxMod:getEntityDataTable(ent)
+    data.GLITCH_RENDERS = data.GLITCH_RENDERS or {}
+
+    table.insert(data.GLITCH_RENDERS, {
         Sprite = newSp,
-        Position = pl.Position,
+        Position = ent.Position,
         Duration = duration,
         TopClamp = topleftclamp, BottomClamp = bottomrightclamp,
     })
@@ -43,72 +128,48 @@ local function postTriggerWeaponFired(_, dir, amount, owner, weapon)
     local weapType = weapon:GetWeaponType()
     if(weapType==WeaponType.WEAPON_LUDOVICO_TECHNIQUE) then return end
 
-
     local pl = ToyboxMod:getPlayerFromEnt(owner)
-    if(not pl) then return end
+    if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_4_4))) then return end
 
-    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_4_4)
-
-    if(#evilRenders==0) then
+    local data = ToyboxMod:getEntityData(pl, "GLITCH_RENDERS")
+    if(not (data and #data~=0)) then
+        local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_4_4)
         pushRender(pl, rng)
-        sfx:Play(SoundEffect.SOUND_EDEN_GLITCH, 0.3, 1, false, rng:RandomFloat()*0.3+0.85)
+        --sfx:Play(SoundEffect.SOUND_EDEN_GLITCH, 0.3, 1, false, rng:RandomFloat()*0.3+0.85)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, postTriggerWeaponFired)
 
----@param tear EntityTear
-local function tearFire(_, tear)
-    local pl = ToyboxMod:getPlayerFromEnt(tear)
-    if(not pl) then return end
-
-    local spawner = tear.SpawnerEntity
-    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_4_4)
-
-    if(#evilRenders==0) then
-        pushRender(spawner, rng)
-        sfx:Play(SoundEffect.SOUND_EDEN_GLITCH, 0.3, 1, false, rng:RandomFloat()*0.3+0.85)
-    end
-end
---ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, tearFire)
-
----@param tear EntityTear
-local function brimFire(_, tear)
-    local pl = ToyboxMod:getPlayerFromEnt(tear)
-    if(not pl) then return end
-
-    local spawner = tear.SpawnerEntity
-    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_4_4)
-
-    if(#evilRenders==0) then
-        pushRender(spawner, rng)
-        sfx:Play(ToyboxMod.SOUND_EFFECT.FOUR_FOUR_SCREAM, 0.3, 1, false, rng:RandomFloat()*0.1+0.95)
-    end
-end
---ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BRIMSTONE, brimFire)
-
----@param pl EntityPlayer
-local function postrender(_, pl)
-    local sp = pl:GetSprite()
+---@param ent Entity
+local function postrender(_, ent)
+    local data = ToyboxMod:getEntityDataTable(ent)
+    if(not (data.GLITCH_RENDERS and #data.GLITCH_RENDERS>0)) then return end
 
     local renderOffset = Game():GetRoom():GetRenderScrollOffset()
 
     local idx=1
-    while(evilRenders[idx]) do
-        local rPos = Isaac.WorldToRenderPosition(evilRenders[idx].Position)+renderOffset
-        evilRenders[idx].Sprite:Render(rPos, evilRenders[idx].TopClamp, evilRenders[idx].BottomClamp)
+    while(data.GLITCH_RENDERS[idx]) do
+        local idxData = data.GLITCH_RENDERS[idx]
 
-        evilRenders[idx].Duration = evilRenders[idx].Duration-1
-        if(evilRenders[idx].Duration<=0) then
-            table.remove(evilRenders, idx)
+        local rPos = Isaac.WorldToRenderPosition(idxData.Position)+renderOffset
+        idxData.Sprite:Render(rPos, idxData.TopClamp, idxData.BottomClamp)
+
+        idxData.Duration = idxData.Duration-1
+        if(idxData.Duration<=0) then
+            table.remove(data.GLITCH_RENDERS, idx)
         else
             idx = idx+1
         end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postrender)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postrender)
 
 local function postNewRoom(_)
-    evilRenders = {}
+    for i=0, Game():GetNumPlayers()-1 do
+        local pl = Isaac.GetPlayer(i)
+        ToyboxMod:setEntityData(pl, "GLITCH_RENDERS", nil)
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
 

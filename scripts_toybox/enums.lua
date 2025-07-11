@@ -369,6 +369,7 @@ ToyboxMod.EFFECT_AURA_SUBTYPE = {
     BOMB_BLESSED = 1,
     DARK_MANTLE = 2,
     HOLY_MANTLE = 3,
+    FOURFOUR = 4,
 }
 
 ---@type ShaderType

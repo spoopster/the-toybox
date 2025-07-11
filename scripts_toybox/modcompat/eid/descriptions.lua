@@ -191,18 +191,9 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_4_4,
     Name = "4 4",
     Description = {
-        "Double tap to shoot out a spread of spectral piercing sound waves that confuse enemies, has a 10 second cooldown",
-        "1% chance to inflict non-boss enemies with Overflow",
-        "{{Luck}} 10% chance at 44 luck",
-        enums.CONSTANTS.Icon_StatusOverflowing .. " Overflow makes enemies have no AI and slide around with no friction",
+        "\1 +0.5 Tears",
+        "{{Confusion}} While firing, nearby enemies are Confused",
     },
-    StackModifiers = {
-        {
-            ToModify = {
-                "Double tap ability has a 20% shorter cooldown",
-            }
-        }
-    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_EYESTRAIN,
