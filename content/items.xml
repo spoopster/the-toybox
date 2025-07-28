@@ -32,7 +32,7 @@
     hidden="true"
 />
 <passive id="4" name="Evil Rock"
-    description="Evil tinted rocks"
+    description="Dark tinted rocks"
     gfx="evil_rock.png"
     quality="1"
     tags="offensive"
@@ -408,7 +408,7 @@
 <familiar id="45" name="Dr. Bum"
     description="Still homeless"
     gfx="dr_bum.png"
-    quality="1"
+    quality="0"
     tags="summonable offensive"
     cache=""
 
@@ -800,6 +800,23 @@
     quality="3"
     tags="offensive"
     cache="all"
+/>
+<passive id="92" name="Butterfly Effect"
+    description="One small change"
+    gfx="butterfly_effect.png"
+    quality="4"
+    tags="offensive summonable"
+    cache="damage"
+/>
+<passive id="93" name="Bloodflower"
+    description="HP up + bosses heal"
+    gfx="bloodflower.png"
+    quality="2"
+    tags="nolostbr summonable"
+    cache=""
+
+    maxhearts="2"
+    hearts="2"
 />
 
 <passive id="109" name="RETROFALL"

@@ -1207,6 +1207,41 @@ enums.FUNCTIONS.AddItem({
         "{{Blank}} {{ColorSilver}}(Hold the {{ButtonSelect}} Map button to view your Juice){{CR}}"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_BUTTERFLY_EFFECT,
+    Name = "Butterfly Effect",
+    Description = {
+        "\1 ^1.25 Damage",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_BLOODFLOWER,
+    Name = "Bloodflower",
+    Description = {
+        "{{HealingRed}} +1 Health",
+        "{{Heart}} Heal 1 Red Heart when total boss HP in the room reaches 50%",
+        "{{HalfSoulHeart}} Heal 1 half Soul Heart if health is full"
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Heal an additional time"
+            }
+        }
+    },
+    Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = function(descObj)
+                return (Game():GetNumPlayers()>1)
+            end,
+            ToModify = {
+                {"Heal 1 Red Heart", "All players heal 1 Red Heart"},
+                {"Heal 1 half Soul Heart", "Players heal 1 half Soul Heart"}
+            }
+        }
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---

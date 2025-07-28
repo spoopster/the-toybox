@@ -147,6 +147,8 @@ ToyboxMod.COLLECTIBLE_PYRAMID_SCHEME = Isaac.GetItemIdByName("Pyramid Scheme")
 ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP = Isaac.GetItemIdByName("Pythagoras' Cup")
 ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE = Isaac.GetItemIdByName("Pythagoras' Cup ")
 ToyboxMod.COLLECTIBLE_GOOD_JUICE = Isaac.GetItemIdByName("The Good Juice")
+ToyboxMod.COLLECTIBLE_BUTTERFLY_EFFECT = Isaac.GetItemIdByName("Butterfly Effect")
+ToyboxMod.COLLECTIBLE_BLOODFLOWER = Isaac.GetItemIdByName("Bloodflower")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")

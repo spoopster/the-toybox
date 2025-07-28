@@ -1,10 +1,10 @@
 <ItemPools>
     <Pool Name="treasure">
+        <Item Name="4 4"/>
         <Item Name="Pliers"/>
         <Item Name="Condensed Milk"/>
         <Item Name="Goat Milk"/>
         <Item Name="Coconut Oil"/>
-        <Item Name="Painkillers" Weight="0.2" DecreaseBy="0.2"/>
         <Item Name="Tech IX"/>
         <Item Name="Pepper X"/>
         <Item Name="Meteor Shower"/>
@@ -32,13 +32,15 @@
         <Item Name="Golden Calf"/>
         <Item Name="Last Beer"/>
         <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Bloodflower"/>
     </Pool>
     <Pool Name="greedTreasure">
+        <Item Name="4 4"/>
         <Item Name="Pliers"/>
         <Item Name="Condensed Milk"/>
         <Item Name="Goat Milk"/>
         <Item Name="Coconut Oil"/>
-        <Item Name="Painkillers" Weight="0.2" DecreaseBy="0.2"/>
         <Item Name="Tech IX"/>
         <Item Name="Pepper X"/>
         <Item Name="Meteor Shower"/>
@@ -64,6 +66,8 @@
         <Item Name="Golden Calf"/>
         <Item Name="Last Beer"/>
         <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Bloodflower"/>
     </Pool>
 
     <Pool Name="boss">
@@ -78,6 +82,7 @@
         <Item Name="Dad's Slipper"/>
         <Item Name="Finger Trap"/>
         <Item Name="Surprise Egg"/>
+        <Item Name="Bloodflower"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
@@ -91,6 +96,7 @@
         <Item Name="Dad's Slipper"/>
         <Item Name="Finger Trap"/>
         <Item Name="Surprise Egg"/>
+        <Item Name="Bloodflower"/>
     </Pool>
 
     <Pool Name="shop">
@@ -183,7 +189,7 @@
 
     <Pool Name="redChest">
         <Item Name="Evil Rock"/>
-        <Item Name="Painkillers" Weight="0.75" DecreaseBy="0.75"/>
+        <Item Name="Painkillers"/>
         <Item Name="Clown PHD"/>
         <Item Name="Cursed Eulogy"/>
         <Item Name="Bob's Thesis"/>
@@ -191,7 +197,6 @@
     </Pool>
 
     <Pool Name="secret">
-        <Item Name="4 4"/>
         <Item Name="Fatal Signal"/>
         <Item Name="Steel Soul"/>
         <Item Name="Alphabet Box"/>
@@ -199,9 +204,9 @@
         <Item Name="Big Bang"/>
         <Item Name="Fish"/>
         <Item Name="Sack of Chests"/>
+        <Item Name="Butterfly Effect"/>
     </Pool>
     <Pool Name="greedSecret">
-        <Item Name="4 4"/>
         <Item Name="Fatal Signal"/>
         <Item Name="Steel Soul"/>
         <Item Name="Alphabet Box"/>
@@ -209,6 +214,7 @@
         <Item Name="Big Bang"/>
         <Item Name="Fish"/>
         <Item Name="Sack of Chests"/>
+        <Item Name="Butterfly Effect"/>
     </Pool>
 
     <Pool Name="library">

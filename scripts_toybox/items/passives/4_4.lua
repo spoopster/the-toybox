@@ -9,10 +9,9 @@ local CONFUSE_DURATION = math.floor(30*1.2)
 ---@param pl EntityPlayer
 ---@param flags CacheFlag
 local function evalCache(_, pl, flags)
-    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_4_4)
-    if(mult==0) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_4_4)) then return end
 
-    ToyboxMod:addBasicTearsUp(pl, FOURFOUR_TEARS*mult)
+    ToyboxMod:addBasicTearsUp(pl, FOURFOUR_TEARS*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_4_4))
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FIREDELAY)
 
