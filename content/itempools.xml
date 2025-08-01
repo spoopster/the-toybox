@@ -141,6 +141,7 @@
         <Item Name="Catharsis"/>
         <Item Name="Haemorrhage"/>
         <Item Name="Effigy"/>
+        <Item Name="Red Clover"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -150,6 +151,7 @@
         <Item Name="Catharsis"/>
         <Item Name="Haemorrhage"/>
         <Item Name="Effigy"/>
+        <Item Name="Red Clover"/>
     </Pool>
 
     <Pool Name="angel">
@@ -196,6 +198,7 @@
         <Item Name="Cursed Eulogy"/>
         <Item Name="Bob's Thesis"/>
         <Item Name="Effigy"/>
+        <Item Name="Red Clover"/>
     </Pool>
 
     <Pool Name="secret">

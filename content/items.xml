@@ -823,6 +823,8 @@
     quality="3"
     tags="nolostbr summonable"
     cache="luck damage"
+
+    devilprice="1"
 />
 
 <passive id="109" name="RETROFALL"
