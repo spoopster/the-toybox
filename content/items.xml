@@ -436,14 +436,13 @@
     description="Jailbreaker"
     gfx="drill.png"
     quality="3"
-    tags="offensive noeden"
+    tags="offensive"
     cache=""
 
     chargetype="timed"
-    maxcharges="300"
+    maxcharges="30"
 
     achievement="Drill"
-    hidden="true"
 />
 <active id="49" name="Alphabet Box"
     description="Learn your ABCs"

@@ -39,21 +39,21 @@ local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
     if(nearestShopPickup and nearestShopPickup.Position:Distance(player.Position)<=MIN_DRILL_DIST) then
         nearestShopPickup = nearestShopPickup:ToPickup()
 
-        --
-        --nearestShopPickup.ShopItemId = FREE_PICKUP_ID
-        local ogPrice = nearestShopPickup.Price
+        nearestShopPickup.ShopItemId = FREE_PICKUP_ID
+        
         local spawnData = {nearestShopPickup.Type, nearestShopPickup.Variant, nearestShopPickup.SubType}
-        nearestShopPickup:Morph(spawnData[1], spawnData[2], spawnData[3], false, true, false)
 
         local prevIdx = Game():GetLevel():GetPreviousRoomIndex()
         local ogIdx = Game():GetLevel():GetCurrentRoomIndex()
 
+        local ogPrice = nearestShopPickup.Price
         Ambush.SetMaxChallengeWaves(math.max(1, math.ceil(ogPrice/PRICE_PER_WAVE)))
+
         ToyboxMod:setExtraData("DRILLDATA", nil)
 
-        Isaac.ExecuteCommand("goto s.challenge.0")
+        local room = RoomConfig.GetRandomRoom(rng:RandomInt(2^32-1)+1, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_CHALLENGE)
+        Isaac.ExecuteCommand("goto s.challenge."..room.Subtype)
         Game():StartRoomTransition(GridRooms.ROOM_DEBUG_IDX, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT)
-        
 
         ToyboxMod:setExtraData("DRILLDATA", {
             IS_ACTIVE = 1,
@@ -78,8 +78,6 @@ local function postUpdate(_)
     local data = ToyboxMod:getExtraDataTable().DRILLDATA
     if(not data) then return end
     if(data.IS_ACTIVE~=1) then return end
-
-    print(data.IS_ACTIVE, data.FORCE_SET_AMBUSH~=0, data.ITEM_ID, Game():GetRoom():GetType())
 
     if(data.IGNORE_RESET_DATA~=0) then
         data.IGNORE_RESET_DATA = 0

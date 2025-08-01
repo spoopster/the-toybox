@@ -65,6 +65,9 @@ ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_SURPRISE_EGG, "Kinder Eggs", tr
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_COLOSSAL_ORB, "The Battle Cats")
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_BABY_SHOES, "Miscarriage")
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_PYRAMID_SCHEME, "Insane Monopoly: Pyramid Scheme Expansion")
+ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_GOOD_JUICE, "Juice Galaxy")
+ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_BUTTERFLY_EFFECT, "SwApFell: I Hate You.", true)
+ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_RED_CLOVER, "Wizard of Legend", true)
 
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_CATHARSIS, "DELTATRAVELER", true)
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_GOLDEN_PRAYER_CARD, "Lazy MattPack")

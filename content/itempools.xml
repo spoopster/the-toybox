@@ -34,6 +34,7 @@
         <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
+        <Item Name="Drill"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -68,6 +69,7 @@
         <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
+        <Item Name="Drill"/>
     </Pool>
 
     <Pool Name="boss">
@@ -241,5 +243,6 @@
         <Item Name="Colossal Orb"/>
         <Item Name="Gambling Addiction"/>
         <Item Name="The Good Juice"/>
+        <Item Name="Drill"/>
     </Pool>
 </ItemPools>
