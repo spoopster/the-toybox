@@ -1242,7 +1242,14 @@ enums.FUNCTIONS.AddItem({
         }
     },
 })
-
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_RED_CLOVER,
+    Name = "Red Clover",
+    Description = {
+        "\1 +1 Luck",
+        "\1 40% of Luck is added to Damage",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

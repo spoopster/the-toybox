@@ -777,7 +777,7 @@
     cache=""
 />
 <active id="89" name="Pythagoras' Cup"
-    description="All you've ever wanted...?"
+    description="Less is more...?"
     gfx="pythagoras_cup.png"
     quality="2"
     tags="offensive summonable"
@@ -786,7 +786,7 @@
     maxcharges="0"
 />
 <familiar id="90" name="Pythagoras' Cup "
-    description="All you've ever wanted...?"
+    description="Less is more...?"
     gfx="pythagoras_cup.png"
     quality="2"
     tags="offensive noeden"
@@ -817,6 +817,13 @@
 
     maxhearts="2"
     hearts="2"
+/>
+<passive id="94" name="Red Clover"
+    description="Luck up + damage = luck"
+    gfx="red_clover.png"
+    quality="3"
+    tags="nolostbr summonable"
+    cache="luck damage"
 />
 
 <passive id="109" name="RETROFALL"

@@ -199,6 +199,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.good_juice")
     include("scripts_toybox.items.passives.butterfly_effect")
     include("scripts_toybox.items.passives.bloodflower")
+    include("scripts_toybox.items.passives.red_clover")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

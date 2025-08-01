@@ -47,7 +47,7 @@ local function postAtlasUpdate(_, player)
 
     splat:Update()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postAtlasUpdate)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postAtlasUpdate)
 
 ---@param player EntityPlayer
 local function postAtlasRender(_, player)

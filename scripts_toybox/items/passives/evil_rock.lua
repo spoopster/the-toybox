@@ -1,4 +1,4 @@
-
+local UNDERTALE = false
 
 local EVIL_TINTEDROCK_COLOR = Color(1,0.9,0.9,1,0,0,0,0.9,0.8,0.8,1)
 local EVIL_TINTEDSPIDER_COLOR = Color(0.9,0.85,0.85,1,0,0,0,0.8,0.8,0.8,1)
@@ -7,6 +7,12 @@ local EVIL_TINTEDROCK_AFTERIMAGES = 3
 local AFTERIMAGE_SPIN_DUR = 90
 local AFTERIMAGE_PULSE_DUR = 150
 local AFTERIMAGE_PULSE_DIST = 1.5
+
+if(UNDERTALE) then
+    EVIL_TINTEDROCK_COLOR = Color(1,0,0,1,0.5)
+    EVIL_TINTEDROCK_AFTERIMAGES = 6
+    AFTERIMAGE_PULSE_DIST = 75
+end
 
 local EVIL_TINTEDROCK_PICKUP_MORPHS = {
     {
@@ -79,6 +85,15 @@ local function renderEvilAfterimages(_, rock, offset)
     pulseIntensity = 0.1+0.9*(pulseIntensity+1)/2
 
     for i=1, EVIL_TINTEDROCK_AFTERIMAGES do
+        if(UNDERTALE) then
+            if(i==1) then sp.Color = Color(1,0.5,0,0.85,0.5,0.25)
+            elseif(i==2) then sp.Color = Color(1,1,0,0.85,0.5,0.5)
+            elseif(i==3) then sp.Color = Color(0,1,0,0.85,0,0.5)
+            elseif(i==4) then sp.Color = Color(0.5,0,1,0.85,0.25,0,0.5)
+            elseif(i==5) then sp.Color = Color(0,0,1,0.85,0,0,0.5)
+            elseif(i==6) then sp.Color = Color(0,1,1,0.85,0,0.5,0.5) end
+        end
+
         local renderPosOffset = Vector.FromAngle(360*i/EVIL_TINTEDROCK_AFTERIMAGES+angleOffset)
         renderPosOffset:Resize(AFTERIMAGE_PULSE_DIST*(pulseIntensity+1)/2)
 
