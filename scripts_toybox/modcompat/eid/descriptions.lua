@@ -418,8 +418,8 @@ enums.FUNCTIONS.AddItem({
     Name = "Bob's Heart",
     Description = {
         "Grants immunity to explosions",
-        "Taking damage spawns a cloud of poisonous gas and creep",
-        "Taking damage has a 50% chance for Isaac to explode"
+        "Taking damage spawns a cloud of poisonous gas and makes you explode",
+        "The explosion inherits bomb effects"
     },
     StackModifiers = {
         {
