@@ -1,11 +1,11 @@
 
 local sfx = SFXManager()
 
---TODO: coop compat, maybe? against it because its an inventory thing so it should have coop support (awesome)
+--TODO: coop compat, maybe? against it because its an inventory thing so it shouldnt have coop support (awesome)
 
 local DROP_REQ_FRAMES = 60*2
 
-local MAXSLOTS = 4
+local MAXSLOTS = 3
 local MAXSLOTS_PLUSBATTERY = 1
 local MAXSLOTS_PLUSCARBATTERY = 1
 
@@ -147,7 +147,7 @@ local function dropDispenserConsumable(player, index, shouldSpawnPickup)
     local spawnedPickup
     if(shouldSpawnPickup) then
         local spawnPos = player.Position
-        spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(spawnPos, 40)
+        spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(spawnPos, 0)
 
         if(toRemove.IsPill) then
             spawnedPickup = Isaac.Spawn(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_PILL,toRemove.ID,spawnPos,Vector.Zero,player):ToPickup()
@@ -191,9 +191,11 @@ local function takeDispenserConsumable(_, _, rng, player, flags)
     dropDispenserConsumable(player, selIndex, false)
 
     if(toRemove.IsPill) then
-        player:UsePill(Game():GetItemPool():GetPillEffect(toRemove.ID, player), toRemove.ID)
+        player:AddPill(toRemove.ID)
+        --player:UsePill(Game():GetItemPool():GetPillEffect(toRemove.ID, player), toRemove.ID)
     else
-        player:UseCard(toRemove.ID)
+        player:AddCard(toRemove.ID)
+        --player:UseCard(toRemove.ID)
     end
     sfx:Play(SoundEffect.SOUND_PLOP)
 
@@ -205,6 +207,8 @@ local function takeDispenserConsumable(_, _, rng, player, flags)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, takeDispenserConsumable, ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)
 
+---@param player EntityPlayer
+---@param pickup EntityPickup
 local function collectConsumable(_, player, pickup)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)) then return end
 
@@ -219,9 +223,14 @@ local function collectConsumable(_, player, pickup)
     -- visuals
     sfx:Play(SoundEffect.SOUND_PLOP)
     pickup:GetSprite():Play("Collect", true)
-    pickup.Velocity = Vector.Zero
     pickup:PlayPickupSound()
+
+    pickup.Mass = 0
+    pickup:AddEntityFlags(EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
+    pickup.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+    pickup.Velocity = Vector.Zero
     pickup:Die()
+
     if(pickup.Variant==PickupVariant.PICKUP_PILL) then
         player:AnimatePill(pickup.SubType, "UseItem")
     else
@@ -259,6 +268,7 @@ local function checkDropButton(_, player)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)) then return end
 
     local dispenserInventory = validateDispenserInventory((ToyboxMod:getEntityData(player, "PILLCRUSHER_INVENTORY") or {}))
+    --[[] ]
     for _, idx in pairs(PillCardSlot) do
         local pocketItem = player:GetPocketItem(idx)
         if(pocketItem:GetSlot()~=0 and pocketItem:GetType()~=PocketItemType.ACTIVE_ITEM) then
@@ -270,6 +280,7 @@ local function checkDropButton(_, player)
             player:RemovePocketItem(idx)
         end
     end
+    --]]
 
     if(Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex)) then
         local selIndex = (ToyboxMod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1)

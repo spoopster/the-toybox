@@ -46,6 +46,22 @@ function ToyboxMod:getMaxExtraHeartIdx(pl)
     return math.ceil(getSoulHearts(pl)/2)+getBoneHearts(pl)-1
 end
 
+---@param firstTime boolean
+---@param pl EntityPlayer
+local function addSteelSoul(_, _, _, firstTime, _, _, pl)
+    if(not firstTime) then return end
+
+    local heartIdx = ToyboxMod:getMaxExtraHeartIdx(pl)
+    while(heartIdx>=0) do
+        if(not pl:IsBoneHeart(heartIdx)) then
+            ToyboxMod:setSoulShieldBit(pl, heartIdx, 1)
+        end
+
+        heartIdx = heartIdx-1
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addSteelSoul, ToyboxMod.COLLECTIBLE_STEEL_SOUL)
+
 ---@param pl EntityPlayer
 local function giveSoulShield(_, pl, amount, hpType)
     if(not (hpType==AddHealthType.SOUL or hpType==AddHealthType.BONE)) then return end
