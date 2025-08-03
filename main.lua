@@ -200,6 +200,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.butterfly_effect")
     include("scripts_toybox.items.passives.bloodflower")
     include("scripts_toybox.items.passives.red_clover")
+    include("scripts_toybox.items.passives.black_soul")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -256,8 +257,6 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
 
 --PICKUPS
 --MISC
-    include("scripts_toybox.pickups.pickups.black_soul")
-    include("scripts_toybox.pickups.pickups.blood_soul")
     include("scripts_toybox.pickups.pickups.smorgasbord")
     include("scripts_toybox.pickups.pickups.eternal_mound")
     include("scripts_toybox.pickups.pickups.lonely_key")

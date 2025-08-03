@@ -821,8 +821,17 @@
     description="Luck up + damage = luck"
     gfx="red_clover.png"
     quality="3"
-    tags="nolostbr summonable"
+    tags="offensive summonable"
     cache="luck damage"
+
+    devilprice="1"
+/>
+<passive id="95" name="Black Soul"
+    description="Dark arts"
+    gfx="black_soul.png"
+    quality="1"
+    tags="nolostbr summonable"
+    cache=""
 
     devilprice="1"
 />

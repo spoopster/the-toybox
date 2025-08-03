@@ -142,6 +142,7 @@
         <Item Name="Haemorrhage"/>
         <Item Name="Effigy"/>
         <Item Name="Red Clover"/>
+        <Item Name="Black Soul"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -152,6 +153,7 @@
         <Item Name="Haemorrhage"/>
         <Item Name="Effigy"/>
         <Item Name="Red Clover"/>
+        <Item Name="Black Soul"/>
     </Pool>
 
     <Pool Name="angel">
@@ -183,12 +185,14 @@
         <Item Name="Painkillers"/>
         <Item Name="Horse Tranquilizer"/>
         <Item Name="Golden Calf"/>
+        <Item Name="Black Soul"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
         <Item Name="Painkillers"/>
         <Item Name="Horse Tranquilizer"/>
         <Item Name="Golden Calf"/>
+        <Item Name="Black Soul"/>
     </Pool>
 
     <Pool Name="redChest">
@@ -247,5 +251,16 @@
         <Item Name="Gambling Addiction"/>
         <Item Name="The Good Juice"/>
         <Item Name="Drill"/>
+    </Pool>
+
+    <Pool Name="ultraSecret">
+        <Item Name="Caramel Apple"/>
+        <Item Name="Clown PHD"/>
+        <Item Name="Love Letter"/>
+        <Item Name="Lucky Pebbles"/>
+        <Item Name="Finger Trap"/>
+        <Item Name="Gambling Addiction"/>
+        <Item Name="Bloodflower"/>
+        <Item Name="Red Clover"/>
     </Pool>
 </ItemPools>

@@ -12,6 +12,8 @@ local GRAYING_VAL = 0
 
 ---@param player EntityPlayer
 local function stopAscension(player)
+    local bibleNum2 = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE)
+
     local data = ToyboxMod:getEntityDataTable(player)
     if(data.ASCENSION_ISACTIVE~=true) then return end
 
@@ -27,7 +29,16 @@ local function stopAscension(player)
     data.ASCENSION_EFFECT = nil
     SHADER_PLAYER = nil
 
-    player:GetEffects():RemoveCollectibleEffect(ToyboxMod.COLLECTIBLE_ASCENSION, player:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_ASCENSION))
+    local effects = player:GetEffects()
+    local bibleEffectNum = effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE)
+    effects:RemoveCollectibleEffect(ToyboxMod.COLLECTIBLE_ASCENSION, -1)
+
+    print(bibleNum2, bibleEffectNum, effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE))
+
+    if(bibleEffectNum~=effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE)) then
+        effects:RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_BIBLE)
+    end
+    
     player:SetMinDamageCooldown(END_INVINCIBILITY)
 end
 
@@ -95,6 +106,8 @@ local function updateAscension(_, player)
     local isUsingPocketAscension = (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_POCKET)==ToyboxMod.COLLECTIBLE_ASCENSION)
 
     if(data.ASCENSION_ISACTIVE==true and (isUsingPrimaryAscension or isUsingPocketAscension)) then
+        print("Yuh", player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE))
+
         stopAscension(player)
     end
 end

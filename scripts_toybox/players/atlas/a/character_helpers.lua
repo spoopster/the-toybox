@@ -47,6 +47,10 @@ function ToyboxMod:getAllAtlasA()
     return t
 end
 
+function ToyboxMod:areAllPlayersAtlasA()
+    return #ToyboxMod:getAllAtlasA()==Game():GetNumPlayers()
+end
+
 function ToyboxMod:atlasHasTransformation(player, transformation)
     return (ToyboxMod:getAtlasAData(player, "TRANSFORMATION")==transformation or ToyboxMod:getAtlasAData(player, "BIRTHRIGHT_TRANSFORMATION")==transformation)
 end

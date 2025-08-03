@@ -150,6 +150,7 @@ ToyboxMod.COLLECTIBLE_GOOD_JUICE = Isaac.GetItemIdByName("The Good Juice")
 ToyboxMod.COLLECTIBLE_BUTTERFLY_EFFECT = Isaac.GetItemIdByName("Butterfly Effect")
 ToyboxMod.COLLECTIBLE_BLOODFLOWER = Isaac.GetItemIdByName("Bloodflower")
 ToyboxMod.COLLECTIBLE_RED_CLOVER = Isaac.GetItemIdByName("Red Clover")
+ToyboxMod.COLLECTIBLE_BLACK_SOUL = Isaac.GetItemIdByName("Black Soul")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -230,7 +231,7 @@ ToyboxMod.FAMILIAR_VARIANT = {
     HYPNOS = Isaac.GetEntityVariantByName("Malicious Brain"),
     SILK_BAG = Isaac.GetEntityVariantByName("Silk Bag"),
     BONE_BOY = Isaac.GetEntityVariantByName("Bone Boy"),
-    EVIL_SHADOW = Isaac.GetEntityVariantByName("Black Spirit"),
+    EVIL_SHADOW = Isaac.GetEntityVariantByName("Black Shadow"),
     VIRUS = Isaac.GetEntityVariantByName("Virus (Red)"),
     MASK_SHADOW = Isaac.GetEntityVariantByName("Shadow Fly"),
     DR_BUM = Isaac.GetEntityVariantByName("Dr Bum"),
@@ -267,8 +268,6 @@ ToyboxMod.EFFECT_VARIANT = {
 ---@type PickupVariant[]
 ToyboxMod.PICKUP_VARIANT = {
     MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny"),
-    BLACK_SOUL = Isaac.GetEntityVariantByName("Black Soul"),
-    BLOOD_SOUL = Isaac.GetEntityVariantByName("Blood Soul"),
 
     SMORGASBORD = Isaac.GetEntityVariantByName("Smorgasbord"),
 

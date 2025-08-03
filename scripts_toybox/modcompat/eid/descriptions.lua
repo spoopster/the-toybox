@@ -1250,6 +1250,31 @@ enums.FUNCTIONS.AddItem({
         "\1 40% of Luck is added to Damage",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_BLACK_SOUL,
+    Name = "Black Soul",
+    Description = {
+        "On hit, spawn a Shadow that follows you on a 0.5 second delay",
+        "Can have up to 5 Shadows",
+        "Shadows deal 50 damage per second",
+        "Shadows disappear on new floor"
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "+1 max Shadow"
+            }
+        }
+    },
+    BFFSModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"50 damage", "100 damage"},
+            }
+        }
+    }
+})
 
 --- OTHER ITEM MODIFIERS ---
 
@@ -1625,13 +1650,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
@@ -1651,13 +1684,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
@@ -1680,13 +1721,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "\1 3 HP",
@@ -1708,13 +1757,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
@@ -1736,13 +1793,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
@@ -1763,13 +1828,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
@@ -1791,13 +1864,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "\2 1 HP",
@@ -1820,13 +1901,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "\1 3 HP",
@@ -1848,13 +1937,21 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
+            ToModify = {
+                enums.CONSTANTS.Icon_AtlasEmpty .. " {{ColorGray}}As other players{{CR}}",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = ToyboxMod.areAllPlayersAtlasA,
             ToModify = function()
                 return ""
             end
         },
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
                 "2 HP",
