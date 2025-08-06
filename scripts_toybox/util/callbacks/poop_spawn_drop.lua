@@ -24,7 +24,11 @@ local function checkPoopPickup(_, poop, poopVar)
 
     local pickupSpawnData = Isaac.RunCallback(ToyboxMod.CUSTOM_CALLBACKS.POOP_SPAWN_DROP, selPickup, poop)
 
-    if(type(pickupSpawnData)=="userdata") then
+    if(type(pickupSpawnData)=="boolean" and pickupSpawnData==false) then
+        if(selPickup) then
+            selPickup:Remove()
+        end
+    elseif(type(pickupSpawnData)=="userdata") then
         if(selPickup) then
             selPickup:Remove()
         end
