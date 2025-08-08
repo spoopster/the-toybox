@@ -620,10 +620,12 @@
     description="Evil begone!"
     gfx="exorcism_kit.png"
     quality="2"
-    tags="offensive"
+    tags="offensive noeden"
 
-    maxcharges="4"
+    maxcharges="2"
     cache=""
+
+    hidden="true"
 />
 <passive id="71" name="Conjunctivitis"
     description="Icky eye"
