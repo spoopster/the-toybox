@@ -414,6 +414,7 @@ end
 local function forceAddPillEffect(_, effect, col)
     local dataTable = ToyboxMod:getExtraDataTable()
     local pillpool = dataTable.CUSTOM_PILL_POOL
+    
     if(not (pillpool and pillpool~=0)) then return end
 
     local baseEffect = pillpool[col]

@@ -60,6 +60,7 @@ local BASEDATA = {
         SHOTSPEED = 0,
         LUCK = 0,
     },
+    CUSTOM_TEARFLAGS = {},
     
     --! STUPID CONSUMABLE SHIT
     DYSLEXIA_HORSE = false,

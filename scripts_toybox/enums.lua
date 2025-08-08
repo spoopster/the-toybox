@@ -226,6 +226,14 @@ ToyboxMod.PILL_EFFECT = {
     CAPSULE = Isaac.GetPillEffectByName("Capsule"),
 }
 
+ToyboxMod.TEARFLAGS = {
+    PLASMA = 1<<0,
+    LOVE_CHARM = 1<<1,
+
+    BOMB_QUAKE = 1<<32,
+    BOMB_BLESSED = 1<<33,
+}
+
 ---@type FamiliarVariant[]
 ToyboxMod.FAMILIAR_VARIANT = {
     HYPNOS = Isaac.GetEntityVariantByName("Malicious Brain"),
