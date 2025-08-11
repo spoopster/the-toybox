@@ -14,7 +14,7 @@ So far the mod has:
 - 13 trinkets;
 - 2 new (unlockable) cards, 16 new (unlockable) pill effects, 9 new (unlockable) objects;
 [strike]- It makes Hell blue;[/strike]</description>
-    <version>1.6</version>
+    <version>1.7</version>
     <visibility>Friends Only</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

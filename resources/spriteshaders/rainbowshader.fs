@@ -41,7 +41,7 @@ void main(void)
 
     lowp vec3 color = vec3(mod(time,6.0), 1.0, 0.5);
 
-    texColor.rgb = hslToRgb(color);
-
-    gl_FragColor = vec4(texColor.rgb + ColorOffsetOut * texColor.a, texColor.a);
+    color = hslToRgb(color);
+    color = mix(texColor.rgb, color.rgb, texColor.a);
+    gl_FragColor = vec4(color.rgb + ColorOffsetOut * texColor.a, texColor.a);
 }
