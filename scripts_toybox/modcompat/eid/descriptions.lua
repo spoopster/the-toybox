@@ -1275,6 +1275,24 @@ enums.FUNCTIONS.AddItem({
         }
     }
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_GOOD_JOB,
+    Name = "Good Job",
+    Description = {
+        "{{BossRoom}} Clearing a Boss Room without taking damage gives:",
+        "\1 +0.1 Speed",
+        "\1 +0.5 Damage",
+        "\1 +1 Luck",
+        "{{Chest}} A Chest",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Stat-ups are 50% better"
+            }
+        }
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 
@@ -1642,7 +1660,7 @@ enums.FUNCTIONS.AddCard({
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_ROCK,
-    Name = "Rock Mantle",
+    Name = "Mantle - Rock",
     Description = {
         "{{Timer}} For the room:",
         "Grants {{Collectible592}} Terra",
@@ -1677,7 +1695,7 @@ enums.FUNCTIONS.AddCard({
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_POOP,
-    Name = "Poop Mantle",
+    Name = "Mantle - Poop",
     Description = {
         "Hold up a throwable poop",
         "When thrown, it leaves liquid poop creep under it as it flies"
@@ -1714,7 +1732,7 @@ enums.FUNCTIONS.AddCard({
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_BONE,
-    Name = "Bone Mantle",
+    Name = "Mantle - Bone",
     Description = {
         "{{Charm}} Spawns a friendly Bony",
         "{{Timer}} For the room, enemies have a 67% chance to spawn an orbital bone shard on death",
@@ -1750,7 +1768,7 @@ enums.FUNCTIONS.AddCard({
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_DARK,
-    Name = "Dark Mantle",
+    Name = "Mantle - Dark",
     Description = {
         "Deals 10 damage to all enemies on the floor",
         "{{BlackHeart}} 10% chance for enemies killed by this to drop a Black Heart",
@@ -1786,7 +1804,7 @@ enums.FUNCTIONS.AddCard({
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_HOLY,
-    Name = "Holy Mantle",
+    Name = "Mantle - Holy",
     Description = {
         "{{EternalHeart}} +1 Eternal Heart",
         "{{Timer}} Your tears gain a damaging aura for the room"
@@ -1822,7 +1840,7 @@ enums.FUNCTIONS.AddCard({
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_SALT,
-    Name = "Salt Mantle",
+    Name = "Mantle - Salt",
     Description = {
         "{{Timer}} Gives the effect of a random \"Tears Up\" item for the room",
     },
@@ -1856,7 +1874,7 @@ enums.FUNCTIONS.AddCard({
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_GLASS,
-    Name = "Glass Mantle",
+    Name = "Mantle - Glass",
     Description = {
         "{{Timer}} For the room:",
         "\1 x1.5 Damage",
@@ -1894,7 +1912,7 @@ enums.FUNCTIONS.AddCard({
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_METAL,
-    Name = "Metal Mantle",
+    Name = "Mantle - Metal",
     Description = {
         "{{SoulHeart}} +1 Soul Heart",
         "All of your full Soul/Black Hearts gain a metal shield that blocks 1 damage",
@@ -1930,7 +1948,7 @@ enums.FUNCTIONS.AddCard({
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.MANTLE_GOLD,
-    Name = "Gold Mantle",
+    Name = "Mantle - Gold",
     Description = {
         "{{Coin}} Removes 1 coin, spawns a random pickup",
         "Only has a 5% chance to be consumed on use",

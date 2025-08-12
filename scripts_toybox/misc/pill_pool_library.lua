@@ -417,6 +417,13 @@ local function forceAddPillEffect(_, effect, col)
     
     if(not (pillpool and pillpool~=0)) then return end
 
+    if(col==nil or col<=0 and dataTable.PILL_COLORS and dataTable.PILL_COLORS~=0) then
+        local rng = ToyboxMod:generateRng()
+        repeat
+            col = dataTable.PILL_COLORS[rng:RandomInt(1, #dataTable.PILL_COLORS)].COLOR
+        until(col and pillpool[col])
+    end
+
     local baseEffect = pillpool[col]
     if(baseEffect.DEFAULT==effect) then return end
 

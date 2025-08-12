@@ -106,7 +106,6 @@
         <Item Name="D0"/>
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
-        <Item Name="Preferred Options" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Candy Dispenser"/>
         <Item Name="RETROFALL"/>
         <Item Name="Last Beer"/>
@@ -115,7 +114,8 @@
         <Item Name="Solar Panel"/>
         <Item Name="Baby Shoes"/>
         <Item Name="Sack of Chests"/>
-        <Item Name="Gambling Addiction"/>
+        <Item Name="Gambling Addiction" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Good Job"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -129,7 +129,8 @@
         <Item Name="Delivery Box"/>
         <Item Name="Solar Panel"/>
         <Item Name="Sack of Chests"/>
-        <Item Name="Gambling Addiction"/>
+        <Item Name="Gambling Addiction" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Good Job"/>
     </Pool>
 
     <Pool Name="devil">
@@ -248,9 +249,9 @@
         <Item Name="Awesome Fruit"/>
         <Item Name="Plasma Globe"/>
         <Item Name="Colossal Orb"/>
-        <Item Name="Gambling Addiction"/>
         <Item Name="The Good Juice"/>
         <Item Name="Drill"/>
+        <Item Name="Good Job"/>
     </Pool>
 
     <Pool Name="ultraSecret">

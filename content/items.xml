@@ -87,13 +87,11 @@
     cache="shotspeed"
 />
 <passive id="11" name="Good Job"
-    description="Your did it!"
+    description="your did it"
     gfx="goodjod.png"
     quality="2"
-    tags="offensive summonable noeden"
-    cache="all"
-
-    hidden="true"
+    tags="offensive"
+    cache="speed damage luck"
 />
 <passive id="12" name="Odd Onion"
     description="Defective tears"

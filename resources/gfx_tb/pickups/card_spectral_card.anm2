@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="8/12/2025 12:50:19 PM" Version="127" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="8/12/2025 12:45:13 PM" Version="123" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="cardback_objects.png" Id="0"/>
+			<Spritesheet Path="cardback_cards.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="back" Id="0" SpritesheetId="0"/>

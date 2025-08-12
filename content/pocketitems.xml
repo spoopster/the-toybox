@@ -1,6 +1,6 @@
 <pocketitems>
 <!-- CARDS -->
-    <card id="100" name="Prismstone"
+    <card id="0" name="Prismstone"
         description="Draw 3, discard 2"
         hud="Prismstone"
         type="special"
@@ -10,108 +10,192 @@
 
         achievement="Prismstone"
     />
-    <card id="101" name="Foil Card"
+    <card id="1" name="Foil Card"
         description="Greed is good"
         hud="Foil Card"
         type="special"
-        pickup="2911"
+        pickup="2801"
 
         mimiccharge="8"
 
         achievement="Foil Card"
     />
+    <card id="2" name="Alien Mind"
+        description="Take control"
+        hud="Alien Mind"
+        type="special"
+        pickup="2802"
 
-    <card id="109" name="Soul of Cryogen"
-        description="7% increase to all damage"
-        hud="Soul of Cryogen"
-        type="rune"
-        pickup="3812"
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="3" name="Poison Rain"
+        description="Pouring acid"
+        hud="Poison Rain"
+        type="special"
+        pickup="2802"
 
-        mimiccharge="12"
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="4" name="4-Starred Ladybug"
+        description="Doomsday clock"
+        hud="4-Starred Ladybug"
+        type="special"
+        pickup="2802"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="5" name="Talisman"
+        description="---"
+        hud="Talisman"
+        type="special"
+        pickup="2803"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="6" name="Grim"
+        description="---"
+        hud="Grim"
+        type="special"
+        pickup="2803"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="7" name="Familiar"
+        description="---"
+        hud="Familiar"
+        type="special"
+        pickup="2803"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="8" name="Sigil"
+        description="---"
+        hud="Sigil"
+        type="special"
+        pickup="2803"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="9" name="Ectoplasm"
+        description="---"
+        hud="Ectoplasm"
+        type="special"
+        pickup="2803"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="10" name="Trance"
+        description="---"
+        hud="Trance"
+        type="special"
+        pickup="2803"
+
+        mimiccharge="1"
+
+        hidden="true"
+    />
+    <card id="11" name="Deja Vu"
+        description="---"
+        hud="Deja Vu"
+        type="special"
+        pickup="2803"
+
+        mimiccharge="1"
         hidden="true"
     />
 
+<!-- RUNES / SOUL STONES -->
+
+
 <!-- OBJECTS -->
-	<card id="0" name="Mantle - Rock"
+	<card id="200" name="Mantle - Rock"
         description="Useless"
-        hud="Rock Mantle"
+        hud="Mantle - Rock"
         type="object"
         pickup="2837"
 
         achievement="Mantles"
     />
-	<card id="1" name="Mantle - Poop"
+	<card id="201" name="Mantle - Poop"
         description="More poops, better poops"
-        hud="Poop Mantle"
+        hud="Mantle - Poop"
         type="object"
         pickup="2838"
 
         achievement="Mantles"
     />
-    <card id="2" name="Mantle - Bone"
+    <card id="202" name="Mantle - Bone"
         description="Bones on kill, panic = sorrow"
-        hud="Bone Mantle"
+        hud="Mantle - Bone"
         type="object"
         pickup="2839"
 
         achievement="Mantles"
     />
-    <card id="3" name="Mantle - Dark"
+    <card id="203" name="Mantle - Dark"
         description="DMG up + mass room damage, dark aura"
-        hud="Dark Mantle"
+        hud="Mantle - Dark"
         type="object"
         pickup="2840"
 
         achievement="Mantles"
     />
-    <card id="4" name="Mantle - Holy"
+    <card id="204" name="Mantle - Holy"
         description="Range up + sacred tears, flight + holy aura"
-        hud="Holy Mantle"
+        hud="Mantle - Holy"
         type="object"
         pickup="2841"
 
         achievement="Mantles"
     />
-    <card id="5" name="Mantle - Salt"
+    <card id="205" name="Mantle - Salt"
         description="Tears up, on-command salt chariot"
-        hud="Salt Mantle"
+        hud="Mantle - Salt"
         type="object"
         pickup="2842"
 
         achievement="Mantles"
     />
-    <card id="6" name="Mantle - Glass"
+    <card id="206" name="Mantle - Glass"
         description="DMG + shotspeed up + brittle protection"
-        hud="Glass Mantle"
+        hud="Mantle - Glass"
         type="object"
         pickup="2843"
 
         achievement="Mantles"
     />
-    <card id="7" name="Mantle - Metal"
+    <card id="207" name="Mantle - Metal"
         description="Speed down + defense up"
-        hud="Metal Mantle"
+        hud="Mantle - Metal"
         type="object"
         pickup="2844"
 
         achievement="Mantles"
     />
-    <card id="8" name="Mantle - Gold"
+    <card id="208" name="Mantle - Gold"
         description="Luck up + gold panic, penny tears"
-        hud="Gold Mantle"
+        hud="Mantle - Gold"
         type="object"
         pickup="2845"
 
         achievement="Mantles"
     />
 
-    <card id="9" name="Laurel"
+    <card id="209" name="Laurel"
         description="Limited invincibility"
         hud="Laurel"
         type="object"
         pickup="2846"
     />
-    <card id="10" name="Yanny"
+    <card id="210" name="Yanny"
         description="Punish them all"
         hud="Yanny"
         type="object"

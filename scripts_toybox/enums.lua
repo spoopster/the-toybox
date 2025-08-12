@@ -191,18 +191,28 @@ ToyboxMod.TRINKET_LUCKY_TOOTH = Isaac.GetTrinketIdByName("Lucky Tooth")
 ToyboxMod.CONSUMABLE = {
     PRISMSTONE = Isaac.GetCardIdByName("Prismstone"),
     FOIL_CARD = Isaac.GetCardIdByName("Foil Card"),
+    ALIEN_MIND = Isaac.GetCardIdByName("Alien Mind"),
+    POISON_RAIN = Isaac.GetCardIdByName("Poison Rain"),
+    FOUR_STARRED_LADYBUG = Isaac.GetCardIdByName("4-Starred Ladybug"),
+    TALISMAN = Isaac.GetCardIdByName("Talisman"),
+    GRIM = Isaac.GetCardIdByName("Grim"),
+    FAMILIAR = Isaac.GetCardIdByName("Familiar"),
+    SIGIL = Isaac.GetCardIdByName("Sigil"),
+    ECTOPLASM = Isaac.GetCardIdByName("Ectoplasm"),
+    TRANCE = Isaac.GetCardIdByName("Trance"),
+    DEJA_VU = Isaac.GetCardIdByName("Deja Vu"),
+
+    MANTLE_ROCK = Isaac.GetCardIdByName("Mantle - Rock"),
+    MANTLE_POOP = Isaac.GetCardIdByName("Mantle - Poop"),
+    MANTLE_BONE = Isaac.GetCardIdByName("Mantle - Bone"),
+    MANTLE_DARK = Isaac.GetCardIdByName("Mantle - Dark"),
+    MANTLE_HOLY = Isaac.GetCardIdByName("Mantle - Holy"),
+    MANTLE_SALT = Isaac.GetCardIdByName("Mantle - Salt"),
+    MANTLE_GLASS = Isaac.GetCardIdByName("Mantle - Glass"),
+    MANTLE_METAL = Isaac.GetCardIdByName("Mantle - Metal"),
+    MANTLE_GOLD = Isaac.GetCardIdByName("Mantle - Gold"),
     LAUREL = Isaac.GetCardIdByName("Laurel"),
     YANNY = Isaac.GetCardIdByName("Yanny"),
-    
-    MANTLE_ROCK = Isaac.GetCardIdByName("Rock Mantle"),
-    MANTLE_POOP = Isaac.GetCardIdByName("Poop Mantle"),
-    MANTLE_BONE = Isaac.GetCardIdByName("Bone Mantle"),
-    MANTLE_DARK = Isaac.GetCardIdByName("Dark Mantle"),
-    MANTLE_HOLY = Isaac.GetCardIdByName("Holy Mantle"),
-    MANTLE_SALT = Isaac.GetCardIdByName("Salt Mantle"),
-    MANTLE_GLASS = Isaac.GetCardIdByName("Glass Mantle"),
-    MANTLE_METAL = Isaac.GetCardIdByName("Metal Mantle"),
-    MANTLE_GOLD = Isaac.GetCardIdByName("Gold Mantle"),
 }
 
 ---@type PillEffect[]
@@ -247,6 +257,7 @@ ToyboxMod.FAMILIAR_VARIANT = {
     SACK_OF_CHESTS = Isaac.GetEntityVariantByName("Sack of Chests"),
     EFFIGY = Isaac.GetEntityVariantByName("Effigy"),
     PYTHAGORAS_CUP = Isaac.GetEntityVariantByName("Pythagoras' Cup"),
+    GOOD_JOB_STAR = Isaac.GetEntityVariantByName("Good Job Star"),
 }
 
 ---@type SlotVariant[]
