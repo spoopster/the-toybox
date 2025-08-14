@@ -1,7 +1,7 @@
 
 
 local SPEED_UP = 0.2
-local TEARS_UP = 0.4
+local TEARS_UP = 0.5
 
 ---@param pl EntityPlayer
 ---@param flag CacheFlag

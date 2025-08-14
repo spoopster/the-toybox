@@ -91,15 +91,8 @@ enums.FUNCTIONS.AddItem({
     Name = "Caramel Apple",
     Description = {
         "\1 +1 Health",
-        "\1 Heart spawns have a 25% chance to be doubled",
+        "{{HalfHeart}} Turns half Red Hearts and half Soul Hearts into their full counterparts",
     },
-    StackModifiers = {
-        {
-            ToModify = {
-                "Chance does not increase with multiple copies",
-            }
-        }
-    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_PAINKILLERS,
@@ -199,7 +192,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_EYESTRAIN,
     Name = "Eyestrain",
     Description = {
-        "\1 +0.75 Damage",
+        "\1 +0.7 Tears",
         "\1 +1 Luck",
     },
 })
@@ -875,7 +868,7 @@ enums.FUNCTIONS.AddItem({
     Name = "Coffee Cup",
     Description = {
         "\1 +0.2 Speed",
-        "\1 +0.4 Tears",
+        "\1 +0.5 Tears",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1087,7 +1080,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_FINGER_TRAP,
     Name = "Finger Trap",
     Description = {
-        "\1 +0.5 Tears",
+        "\1 +0.7 Damage",
         "\2 -0.16 Shotspeed",
     },
 })

@@ -20,7 +20,7 @@
     gfx="eyestrain.png"
     quality="3"
     tags="offensive"
-    cache="luck damage"
+    cache="luck firedelay"
 />
 <passive id="3" name="Snowcone"
     description="Yummy!"
@@ -700,9 +700,9 @@
 <passive id="79" name="Finger Trap"
     description="Tears up + shotspeed down"
     gfx="chinese_finger_trap.png"
-    quality="1"
+    quality="2"
     tags="offensive summonable tearsup"
-    cache="firedelay shotspeed"
+    cache="damage shotspeed"
 />
 <passive id="80" name="Hemolymph"
     description="You're blue now!"
@@ -827,7 +827,7 @@
     devilprice="1"
 />
 <passive id="95" name="Black Soul"
-    description="Dark arts"
+    description="The evil within"
     gfx="black_soul.png"
     quality="1"
     tags="nolostbr summonable"
