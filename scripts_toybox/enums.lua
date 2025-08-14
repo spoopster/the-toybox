@@ -183,6 +183,10 @@ ToyboxMod.TRINKET_DIVIDED_JUSTICE = Isaac.GetTrinketIdByName("Divided Justice")
 ToyboxMod.TRINKET_KILLSCREEN = Isaac.GetTrinketIdByName("Killscreen")
 ToyboxMod.TRINKET_MIRROR_SHARD = Isaac.GetTrinketIdByName("Mirror Shard")
 ToyboxMod.TRINKET_LUCKY_TOOTH = Isaac.GetTrinketIdByName("Lucky Tooth")
+ToyboxMod.TRINKET_HOLY_LENS = Isaac.GetTrinketIdByName("Holy Lens")
+ToyboxMod.TRINKET_DARK_NEBULA = Isaac.GetTrinketIdByName("Dark Nebula")
+ToyboxMod.TRINKET_MAKEUP_KIT = Isaac.GetTrinketIdByName("Make-Up Kit")
+ToyboxMod.TRINKET_ZAP_CAP = Isaac.GetTrinketIdByName("Zap Cap")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")            --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")            --*UNUSED

@@ -1620,6 +1620,98 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_HOLY_LENS,
+    Name = "Holy Lens",
+    Description = {
+        "{{Planetarium}} Spawns a Planetarium in Cathedral",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"in Cathedral", "{{ColorWhite}}in Cathedral{{CR}} and Chest"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"in Cathedral", "{{ColorWhite}}in Cathedral{{CR}} and Chest"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_DARK_NEBULA,
+    Name = "Dark Nebula",
+    Description = {
+        "{{Planetarium}} Spawns a Planetarium in Sheol",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"in Sheol", "{{ColorWhite}}in Sheol{{CR}} and Dark Room"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"in Sheol", "{{ColorWhite}}in Sheol{{CR}} and Dark Room"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_YELLOW_BELT,
+    Name = "Yellow Belt",
+    Description = {
+        "10% chance to negate damage taken",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"10%%", "20%%"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"10%%", "30%%"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_ZAP_CAP,
+    Name = "Zap Cap",
+    Description = {
+        "Every 40th time any enemy takes damage, the enemy who got hit explodes for 6x damage taken + 15",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"40th", "30th"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"40th", "20th"},
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.PRISMSTONE,

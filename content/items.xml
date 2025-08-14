@@ -987,7 +987,10 @@
 <trinket id="6" name="Sine Worm"
     description="Bwoeowoeow!"
     gfx="sine_worm.png"
+    tags="noeden"
     cache="firedelay range"
+
+    hidden="true"
 />
 <trinket id="7" name="Big Blind"
     description="Ante up!"
@@ -1023,6 +1026,30 @@
     description="13 years bad luck"
     gfx="mirror_shard.png"
     cache="luck"
+/>
+<trinket id="14" name="Holy Lens"
+    description="See the heavens"
+    gfx="holy_lens.png"
+    cache=""
+
+    achievement="406"
+/>
+<trinket id="15" name="Dark Nebula"
+    description="As above, so below"
+    gfx="dark_nebula.png"
+    cache=""
+
+    achievement="406"
+/>
+<trinket id="16" name="Make-Up Kit"
+    description="Just like Mom!"
+    gfx="makeup_kit.png"
+    cache=""
+/>
+<trinket id="17" name="Zap Cap"
+    description="Volatile booms"
+    gfx="zap_cap.png"
+    cache=""
 />
 
 <null id="1" name="toybox null save"
