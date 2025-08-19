@@ -835,6 +835,15 @@
 
     devilprice="1"
 />
+<active id="96" name="Big Red Button"
+    description="Nuclear warfare"
+    gfx="big_red_button.png"
+    quality="4"
+    tags="offensive"
+    cache=""
+
+    maxcharges="8"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

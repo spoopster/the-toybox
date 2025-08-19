@@ -224,6 +224,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.actives.delivery_box")
     include("scripts_toybox.items.actives.moms_photobook")
     include("scripts_toybox.items.actives.pythagoras_cup")
+    include("scripts_toybox.items.actives.big_red_button")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

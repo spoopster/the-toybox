@@ -151,6 +151,7 @@ ToyboxMod.COLLECTIBLE_BUTTERFLY_EFFECT = Isaac.GetItemIdByName("Butterfly Effect
 ToyboxMod.COLLECTIBLE_BLOODFLOWER = Isaac.GetItemIdByName("Bloodflower")
 ToyboxMod.COLLECTIBLE_RED_CLOVER = Isaac.GetItemIdByName("Red Clover")
 ToyboxMod.COLLECTIBLE_BLACK_SOUL = Isaac.GetItemIdByName("Black Soul")
+ToyboxMod.COLLECTIBLE_BIG_RED_BUTTON = Isaac.GetItemIdByName("Big Red Button")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")

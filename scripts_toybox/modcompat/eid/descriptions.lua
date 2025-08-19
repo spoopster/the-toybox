@@ -1286,6 +1286,16 @@ enums.FUNCTIONS.AddItem({
         }
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_BIG_RED_BUTTON,
+    Name = "Big Red Button",
+    Description = {
+        "Hold up a throwable Giga Rocket",
+        "When the Rocket lands:",
+        "{{Collectible483}} Does a room-wide explosion",
+        "{{Poison}} Fills the room with poison clouds",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

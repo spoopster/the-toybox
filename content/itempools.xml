@@ -35,6 +35,7 @@
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
+        <Item Name="Big Red Button" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -70,6 +71,7 @@
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
+        <Item Name="Big Red Button" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="boss">
@@ -263,5 +265,6 @@
         <Item Name="Gambling Addiction"/>
         <Item Name="Bloodflower"/>
         <Item Name="Red Clover"/>
+        <Item Name="Big Red Button"/>
     </Pool>
 </ItemPools>
