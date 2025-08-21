@@ -9,8 +9,8 @@ local CHARM_DURATION = 5*30
 local CHARM_COLOR = Color(0.9,0.7,1,1,0.25,0,0.2,1.5,0,1.5,1)
 --local 
 
-local CHARM_DMGMULT = 0.33
-local CHARM_STACKMULT = 0.16
+local CHARM_DMGMULT = 0.5
+local CHARM_STACKMULT = 0.25
 
 local CHARM_INVINCIBILITY = 60
 

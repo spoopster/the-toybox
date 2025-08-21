@@ -1,6 +1,6 @@
 
 
-local SPEED_UP = 0.1
+local SPEED_UP = 0.2
 local ROOM_CLEAR_SPEED_UP = 0.5
 
 ---@param pl EntityPlayer

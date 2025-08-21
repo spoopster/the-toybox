@@ -26,8 +26,7 @@ local function evalCache(_, player, flag)
 
         local mult = FIREDELAY_MULT^player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_CONDENSED_MILK)
 
-        player.MaxFireDelay = player.MaxFireDelay/mult
-        player.MaxFireDelay = player.MaxFireDelay*3.5/ogDamage
+        player.MaxFireDelay = ToyboxMod:toFireDelay(ToyboxMod:toTps(player.MaxFireDelay)*3.5/mult/ogDamage)
     elseif(flag==CacheFlag.CACHE_DAMAGE and alreadyUpdating~="DAMAGE") then
         if(not alreadyUpdating) then
             alreadyUpdating = "DAMAGE"

@@ -460,13 +460,13 @@ enums.FUNCTIONS.AddItem({
     Name = "Love Letter",
     Description = {
         "{{Charm}} 10% chance to shoot charming tears",
-        "Charmed enemies take 33% more damage",
+        "Charmed enemies take 50% more damage",
         "Charmed enemies and their projectiles cannot damage you",
     },
     StackModifiers = {
         {
             ToModify = {
-                "+16% extra damage to charmed enemies",
+                "+25% extra damage to charmed enemies",
                 "+5% chance to charm enemies",
             }
         }
@@ -1124,7 +1124,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_BABY_SHOES,
     Name = "Baby Shoes",
     Description = {
-        "\1 +0.1 Speed",
+        "\1 +0.2 Speed",
         "+0.5 Speed if room is clear",
     },
 })
@@ -1291,8 +1291,8 @@ enums.FUNCTIONS.AddItem({
     Name = "Big Red Button",
     Description = {
         "Hold up a throwable Giga Rocket",
-        "When the Rocket lands:",
-        "{{Collectible483}} Does a room-wide explosion",
+        "When the rocket lands:",
+        "{{Collectible483}} Deals 100 damage to all enemies in the room",
         "{{Poison}} Fills the room with poison clouds",
     },
 })

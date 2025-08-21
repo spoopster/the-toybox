@@ -842,7 +842,7 @@
     tags="offensive"
     cache=""
 
-    maxcharges="8"
+    maxcharges="6"
 />
 
 <passive id="109" name="RETROFALL"

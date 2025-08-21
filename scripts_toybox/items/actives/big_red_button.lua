@@ -1,5 +1,8 @@
 local NUKE_ROCKET_SUBTYPE = 124
 
+local NUKE_ROCKET_DMG = 50
+local NUKE_SHOCKWAVE_DMG = 100
+
 ---@param rng RNG
 ---@param pl EntityPlayer
 local function bigRedButtonUse(_, _, rng, pl, flags, slot, vdata)
@@ -7,6 +10,7 @@ local function bigRedButtonUse(_, _, rng, pl, flags, slot, vdata)
 
     local nuke = Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_ROCKET_GIGA, NUKE_ROCKET_SUBTYPE, pl.Position, pl.Velocity, pl):ToBomb()
     nuke:GetSprite():ReplaceSpritesheet(0, "gfx_tb/bombs/nuke.png", true)
+    nuke.ExplosionDamage = NUKE_ROCKET_DMG
     pl:TryHoldEntity(nuke)
 
     nuke:Update()
@@ -28,7 +32,10 @@ local function nukeUpdate(_, bomb)
     if(bomb:GetExplosionCountdown()<=0) then
         local room = Game():GetRoom()
 
-        room:MamaMegaExplosion(bomb.Position)
+       -- room:MamaMegaExplosion(bomb.Position, (bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer()))
+        local expl = Isaac.Spawn(1000, EffectVariant.MAMA_MEGA_EXPLOSION, 0, bomb.Position, Vector.Zero, (bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer())):ToEffect()
+        expl.CollisionDamage = NUKE_SHOCKWAVE_DMG
+        expl.TargetPosition = bomb.Position
 
         local cornerTL = room:GetTopLeftPos()
         local cornerBR = room:GetBottomRightPos()
