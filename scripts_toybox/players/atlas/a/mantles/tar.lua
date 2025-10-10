@@ -1,7 +1,7 @@
 
 
 local SPEED_BONUS = 0.2
-local DMG_BONUS = 0.3
+local DMG_BONUS = 0.5
 
 local TEMP_SPEED_BONUS = 0.2
 local TEMP_DMG_BONUS = 1
@@ -25,7 +25,7 @@ local function evalCache(_, player, flag)
         ToyboxMod:addBasicDamageUp(player, DMG_BONUS+intensity*TEMP_DMG_BONUS)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function updateTar(_, player)
@@ -38,4 +38,4 @@ local function updateTar(_, player)
         player:AddCacheFlags(CacheFlag.CACHE_SPEED | CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY, true)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateTar)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateTar)

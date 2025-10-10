@@ -54,6 +54,7 @@ include("scripts_toybox.statuseffects.overflowing")
 -- ENEMIES
 include("scripts_toybox.enemies.stone creep.logic")
 include("scripts_toybox.enemies.stumpy.logic")
+include("scripts_toybox.enemies.doodle.logic")
 -- BOSSES
 --SHYGALS
     include("scripts_toybox.bosses.shygal.shygal_logic")
@@ -225,6 +226,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.actives.moms_photobook")
     include("scripts_toybox.items.actives.pythagoras_cup")
     include("scripts_toybox.items.actives.big_red_button")
+    include("scripts_toybox.items.actives.oil_painting")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")
@@ -316,14 +318,13 @@ include("scripts_toybox.fortnite funnies.retro mode")
 --include("scripts_toybox.fortnite funnies.stupid enemy title")
 include("scripts_toybox.fortnite funnies.cool title screen")
 --include("scripts_toybox.fortnite funnies.slop o meter")
+include("scripts_toybox.fortnite funnies.trinket_collection")
 
 
 -- EID
 include("scripts_toybox.modcompat.eid.core")
 -- ACCURATE BLURBS
 include("scripts_toybox.modcompat.accurate blurbs.accurate_blurbs")
--- T.CAIN REWORK
-include("scripts_toybox.modcompat.cain rework.main")()
 -- FIEND FOLIO FUZZY PICKLE
 include("scripts_toybox.modcompat.fuzzy pickle.main")
 
@@ -731,9 +732,9 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_GRID_COLLISION, collideithgrid)
 
 --[[
 
-ToyboxMod.DARK_UPGRADE = false
+ToyboxMod.DARK_UPGRADE = true
 local hadDarkArts = false
-local darkArtsMult = 2.5
+local darkArtsMult = 10
 
 ---@param pl EntityPlayer
 local function playerUpdate(_, pl)
@@ -791,4 +792,59 @@ function ToyboxMod:testSpikeFireHitboxes(spikeidx, fireidx)
         end
     end
 end
+--]]
+
+--[[ -- i fucking hate modding this game
+local timer = 0
+local timeswitch = 15
+local frame = 0
+
+local hiddenWhenLocked = {
+    [PlayerType.PLAYER_BLUEBABY] = 0,
+    [PlayerType.PLAYER_THELOST] = 0,
+    [PlayerType.PLAYER_THEFORGOTTEN] = 0,
+    [PlayerType.PLAYER_KEEPER] = 0,
+}
+
+local function getid(pid)
+    local milcomID = 0
+    for i=0, pid do
+        local pl = EntityConfig.GetPlayer(i)
+        if(pl and not pl:IsTainted() and not pl:IsHidden()) then
+            local ach = pl:GetAchievementID()
+            if(not hiddenWhenLocked[i] or (hiddenWhenLocked[i] and ach>0 and Isaac.GetPersistentGameData():Unlocked(ach))) then
+                milcomID = milcomID+1
+            end
+        end
+    end
+    return milcomID
+end
+
+local function prerendercustomcharactermenu(_)
+    --print(CharacterMenu.GetCharacterPortraitSprite():GetAnimation())
+    --print(CharacterMenu.GetSelectedCharacterID(), getid(ToyboxMod.PLAYER_TYPE.MILCOM_A))
+    if(CharacterMenu.GetSelectedCharacterID()==getid(ToyboxMod.PLAYER_TYPE.MILCOM_A) and CharacterMenu.GetSelectedCharacterMenu()==1) then
+        --print("hi")
+        timer = timer+1
+        if(timer>=timeswitch) then
+            timer = 0
+            frame = 1-frame
+        end
+
+        local pconf = EntityConfig.GetPlayer(ToyboxMod.PLAYER_TYPE.MILCOM_B)
+        local sp = pconf:GetModdedMenuPortraitSprite()
+        sp.Scale = Vector(1,1)
+        sp.Color = Color(1,1,1,1)
+
+        sp:Play("Milcom", true)
+        sp:SetFrame(frame*2+(CharacterMenu.GetIsCharacterUnlocked() and 0 or 1))
+
+        local rpos = Isaac.WorldToMenuPosition(MainMenuType.CHARACTER, Vector(0,0))+Vector(256,130)
+        sp:Render(rpos)
+    else
+        timer = 0
+        frame = 0
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, prerendercustomcharactermenu)
 --]]

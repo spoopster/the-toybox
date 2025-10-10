@@ -54,6 +54,11 @@
 		<sample weight="1" path="colossal_shockwave.wav" />
 	</sound>
 
+	<sound name="(TOYBOX) Burp">
+		<sample weight="1" path="burp.wav" />
+		<sample weight="1" path="burp2.wav" />
+	</sound>
+
 	<sound name="(TOYBOX) Rock Crack">
 		<sample weight="1" path="atlas_rockcrack1.wav" />
         <sample weight="1" path="atlas_rockcrack2.wav" />

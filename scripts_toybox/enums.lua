@@ -152,6 +152,7 @@ ToyboxMod.COLLECTIBLE_BLOODFLOWER = Isaac.GetItemIdByName("Bloodflower")
 ToyboxMod.COLLECTIBLE_RED_CLOVER = Isaac.GetItemIdByName("Red Clover")
 ToyboxMod.COLLECTIBLE_BLACK_SOUL = Isaac.GetItemIdByName("Black Soul")
 ToyboxMod.COLLECTIBLE_BIG_RED_BUTTON = Isaac.GetItemIdByName("Big Red Button")
+ToyboxMod.COLLECTIBLE_OIL_PAINTING = Isaac.GetItemIdByName("Oil Painting")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -163,7 +164,6 @@ ToyboxMod.COLLECTIBLE_SUPER_HAMBURGER = Isaac.GetItemIdByName("Super Hamburger")
     
 --ToyboxMod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
 
-ToyboxMod.COLLECTIBLE_COMPRESSED_DICE = Isaac.GetItemIdByName("Compressed Dice")
 ToyboxMod.COLLECTIBLE_PORTABLE_TELLER = Isaac.GetItemIdByName("Portable Teller")
 
 --ToyboxMod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")         --*UNUSED (i dont like the item)
@@ -346,6 +346,7 @@ ToyboxMod.SOUND_EFFECT = {
     BLOODY_WHISTLE = Isaac.GetSoundIdByName("(TOYBOX) Whistle"),
     SLIPPER_WHIP = Isaac.GetSoundIdByName("(TOYBOX) Whip"),
     COLOSSAL_ORB_SHOCKWAVE = Isaac.GetSoundIdByName("(TOYBOX) Colossal Orb Shockwave"),
+    BURP = Isaac.GetSoundIdByName("(TOYBOX) Burp"),
 
     ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("(TOYBOX) Rock Crack"),
     ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("(TOYBOX) Rock Break"),
@@ -436,6 +437,7 @@ ToyboxMod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
 
 ToyboxMod.NPC_MAIN = Isaac.GetEntityTypeByName("Stumpy")
 ToyboxMod.VAR_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
+ToyboxMod.VAR_DOODLE = Isaac.GetEntityVariantByName("Doodledude")
 
 
 

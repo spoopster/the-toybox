@@ -35,7 +35,6 @@
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
-        <Item Name="Big Red Button" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -71,7 +70,6 @@
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
-        <Item Name="Big Red Button" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="boss">
@@ -118,6 +116,7 @@
         <Item Name="Sack of Chests"/>
         <Item Name="Gambling Addiction" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Good Job"/>
+        <Item Name="Oil Painting"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -133,6 +132,7 @@
         <Item Name="Sack of Chests"/>
         <Item Name="Gambling Addiction" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Good Job"/>
+        <Item Name="Oil Painting"/>
     </Pool>
 
     <Pool Name="devil">
@@ -217,6 +217,7 @@
         <Item Name="Fish"/>
         <Item Name="Sack of Chests"/>
         <Item Name="Butterfly Effect"/>
+        <Item Name="Big Red Button"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -227,6 +228,7 @@
         <Item Name="Fish"/>
         <Item Name="Sack of Chests"/>
         <Item Name="Butterfly Effect"/>
+        <Item Name="Big Red Button"/>
     </Pool>
 
     <Pool Name="library">

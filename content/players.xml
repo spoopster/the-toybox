@@ -22,7 +22,8 @@
 		modcostume="999"
 
 		bonehearts="3" redhearts="6"
-		speedmodifier="-0.1"
+		speedmodifier="0.2"
+		damagemodifier="0.5"
 
 		hidden="true"
 		completionparent="Atlas"
@@ -48,17 +49,17 @@
 		heartcontainers="6" redhearts="6"
 
 		achievement="Tainted Milcom" bSkinParent="Milcom"
-		hidden="true"
+		
 	/>
 	<player birthright="-" name="Atlas" 
 		nameimage="atlas_name.png" portrait="atlas_a_portrait.png" skin="character_atlas.png"
 		costumeSuffix="atlas_b" skinColor="-1"
 		modcostume="999"
 
-		heartcontainers="6" redhearts="6" healthlimit="6"
+		heartcontainers="6" redhearts="6"
 
 		achievement="Tainted Atlas" bSkinParent="Atlas" 
-		hidden="true"
+		
 	/>
 	<player birthright="-" name="Jonas" 
 		nameimage="milcom_name.png" portrait="portrait_jonas.png" skin="character_jonas.png"
@@ -67,6 +68,6 @@
 		heartcontainers="6" redhearts="6"
 
 		achievement="Tainted Jonas" bSkinParent="Jonas"
-		hidden="true"
+		
 	/>
 </players>

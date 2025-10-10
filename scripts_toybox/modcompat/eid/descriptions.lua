@@ -906,7 +906,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_FOOD_STAMPS,
     Name = "Food Stamps",
     Description = {
-        "{{Heart}} All future items give +1 Health",
+        "{{Heart}} All future Boss Room items give +1 Health",
+        "{{HealingRed}} All future items fully heal you",
     },
     StackModifiers = {
         {
@@ -1097,6 +1098,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_SOLAR_PANEL,
     Name = "Solar Panel",
     Description = {
+        "\1 +0.16 Speed",
         "{{Battery}} Entering a non-hostile room for the first time adds 1 active charge",
     },
 })
@@ -1294,6 +1296,15 @@ enums.FUNCTIONS.AddItem({
         "When the rocket lands:",
         "{{Collectible483}} Deals 100 damage to all enemies in the room",
         "{{Poison}} Fills the room with poison clouds",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_OIL_PAINTING,
+    Name = "Oil Painting",
+    Description = {
+        "!!! SINGLE USE !!!",
+        "{{Coin}} Gives Coins equal to its value",
+        "Adds 1-4 Coins to value on every room clear"
     },
 })
 
@@ -1674,6 +1685,13 @@ enums.FUNCTIONS.AddTrinket({
                 {"in Sheol", "{{ColorWhite}}in Sheol{{CR}} and Dark Room"},
             }
         },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_MAKEUP_KIT,
+    Name = "Make-Up Kit",
+    Description = {
+        "Donation Machines are replaced with Mom's Dressing Tables",
     },
 })
 enums.FUNCTIONS.AddTrinket({
@@ -2440,11 +2458,22 @@ enums.FUNCTIONS.AddGlobalModifier({
         {
             Condition = function(descObj)
                 if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
+                if(not (Game():GetRoom():GetType()==RoomType.ROOM_BOSS)) then return false end
 
                 return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
             end,
             ToModify = {
                 "{{Collectible"..ToyboxMod.COLLECTIBLE_FOOD_STAMPS.."}} {{Heart}} +1 Health",
+            }
+        },
+        {
+            Condition = function(descObj)
+                if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
+
+                return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
+            end,
+            ToModify = {
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_FOOD_STAMPS.."}} {{HealingRed}} Full health",
             }
         }
     }
@@ -2512,13 +2541,6 @@ enums.FUNCTIONS.AddItem({
     },
 })
 
-enums.FUNCTIONS.AddItem({
-    ID = ToyboxMod.COLLECTIBLE_COMPRESSED_DICE,
-    Name = "Compressed Dice",
-    Description = {
-        "Starts a new run with a random character and difficulty",
-    },
-})
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_PORTABLE_TELLER,
     Name = "Portable Teller",
