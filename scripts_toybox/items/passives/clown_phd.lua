@@ -18,9 +18,17 @@ end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, CallbackPriority.LATE-1, replacePillEffects)
 
 ---@param player EntityPlayer
-local function usePill(_, effect, player, flags, color)
+local function unidentifyUsedPill(_, effect, player, flags, color)
     if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CLOWN_PHD)) then
         ToyboxMod:unidentifyPill(color)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_USE_PILL, CallbackPriority.LATE, unidentifyUsedPill)
+
+---@param pickup EntityPickup
+local function unidentifySpawnedPill(_, pickup)
+    if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CLOWN_PHD)) then
+        ToyboxMod:unidentifyPill(pickup.SubType & (~PillColor.PILL_GIANT_FLAG))
+    end
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PICKUP_INIT, CallbackPriority.LATE, unidentifySpawnedPill, PickupVariant.PICKUP_PILL)

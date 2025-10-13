@@ -35,6 +35,7 @@
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
+        <Item Name="Reading Glasses"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -70,6 +71,7 @@
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
+        <Item Name="Reading Glasses"/>
     </Pool>
 
     <Pool Name="boss">
@@ -117,6 +119,7 @@
         <Item Name="Gambling Addiction" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Good Job"/>
         <Item Name="Oil Painting"/>
+        <Item Name="Reading Glasses"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -133,6 +136,7 @@
         <Item Name="Gambling Addiction" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Good Job"/>
         <Item Name="Oil Painting"/>
+        <Item Name="Reading Glasses"/>
     </Pool>
 
     <Pool Name="devil">

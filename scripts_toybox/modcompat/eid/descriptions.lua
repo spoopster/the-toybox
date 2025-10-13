@@ -1307,6 +1307,15 @@ enums.FUNCTIONS.AddItem({
         "Adds 1-4 Coins to value on every room clear"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_READING_GLASSES,
+    Name = "Reading Glasses",
+    Description = {
+        "{{Pill}} Spawns a pill",
+        "{{Pill}} Pills are always identified",
+        "15% chance to replace cards with pills"
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

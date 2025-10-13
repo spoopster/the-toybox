@@ -854,6 +854,13 @@
     shopprice="10"
     maxcharges="0"
 />
+<passive id="98" name="Reading Glasses"
+    description="Pill identifier"
+    gfx="no_sprite.png"
+    quality="2"
+    tags="nolostbr summonable"
+    cache=""
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"
