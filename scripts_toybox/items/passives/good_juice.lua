@@ -7,7 +7,6 @@ local FINAL_JUICE_EXPO = 1
 
 local JUICE_REQ_BASE = 50
 local JUICE_REQ_PER_FLOOR = 25
-local JUICE_DRAIN_FRAMES = 30
 
 local JUICE_OUTCOME_PICKER = WeightedOutcomePicker()
 JUICE_OUTCOME_PICKER:AddOutcomeWeight(1, 5) -- random pickup
@@ -128,13 +127,6 @@ local function giveJuiceOnKill(_, npc)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, giveJuiceOnKill)
 
-local function drainJuice(_)
-    if(Game():GetFrameCount()%JUICE_DRAIN_FRAMES~=0) then return end
-
-    addJuice(-1)
-end
---ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, drainJuice)
-
 ---@param effect EntityEffect
 local function juiceParticleInit(_, effect)
     effect.DepthOffset = 10000
@@ -162,7 +154,7 @@ local function juiceParticleInit(_, effect)
         
     end
 
-    sp.Color = Color(1,1,1,0)
+    sp.Color = Color(1,1,1,1,1,1,1)
     sp.Offset = Vector(0,-15)
     effect:SetShadowSize(2*(8-selFrame)/100)
 end
@@ -175,7 +167,7 @@ local function juiceParticleUpdate(_, effect)
         lerpVal = lerpVal+math.max(0, (effect.FrameCount-60)*0.025/60)
 
         effect.Velocity = ToyboxMod:lerp(effect.Velocity, (effect.SpawnerEntity.Position-effect.Position):Resized(JUICE_PARTICLE_SPEED), lerpVal)
-        effect.SpriteRotation = effect.SpriteRotation+(effect.Velocity:LengthSquared()/20)
+        effect.SpriteRotation = effect.SpriteRotation+(effect.Velocity:LengthSquared()/20)*3
 
         if(effect.FrameCount%(ToyboxMod.CONFIG.GOOD_JUICE_LESSLAG==1 and 3 or 2)==0) then
             local rng = effect:GetDropRNG()
@@ -205,7 +197,7 @@ local function juiceParticleUpdate(_, effect)
         end
     else
         effect.Velocity = effect.Velocity*0.9
-        effect.SpriteRotation = effect.SpriteRotation+2
+        effect.SpriteRotation = effect.SpriteRotation+2*3
         effect:SetShadowSize(2*(8-effect:GetSprite():GetFrame())/100)
 
         if(effect:GetSprite():IsFinished()) then
@@ -231,6 +223,7 @@ local function turnToJuiceOnRoomChange(_, _, newLevel)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_EXIT, turnToJuiceOnRoomChange)
 
+--[[] ]
 local cancelRenders = false
 local function renderJuiceParticles(_)
     if(cancelRenders) then return end
@@ -268,6 +261,22 @@ local function resetRenders(_)
     cancelRenders = false
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_RENDER, resetRenders)
+--]]
+
+local function renderParticleOverlay(_)
+    local offset = Game():GetRoom():GetRenderScrollOffset()
+
+    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL)) do
+        local sp = ent:GetSprite()
+        local rpos = Isaac.WorldToRenderPosition(ent.Position)+ent.SpriteOffset+offset
+        juiceSprite:SetFrame(sp:GetFrame())
+        juiceSprite.Rotation = sp.Rotation
+
+        juiceSprite.Color = Color(1,1,1,1,0,0,0,rpos.X/40+rpos.Y/40+Game():GetFrameCount()/15)
+        juiceSprite:Render(rpos)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ROOM_RENDER_ENTITIES, renderParticleOverlay)
 
 local function spawnSlotInStartRoom()
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JUICE)) then return end

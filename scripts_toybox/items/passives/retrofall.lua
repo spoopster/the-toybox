@@ -69,6 +69,27 @@ local function giveExtraInitialCharge(_, id, charge, firstTime, slot, var, pl)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, giveExtraInitialCharge)
 
+--[[  for when they push the latest ver to launcher ] ] 
+local cancelJustInCaseInfiniteLoop = false
+
+---@param item CollectibleType
+---@param pl EntityPlayer
+---@param slot ActiveSlot
+local function rerollOnDischarge(_, item, _, pl, slot)
+    if(cancelJustInCaseInfiniteLoop) then return end
+
+    if(ToyboxMod:canApplyRetrofall(item)) then
+        cancelJustInCaseInfiniteLoop = true
+        doRetrofallReroll()
+        cancelJustInCaseInfiniteLoop = false
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_DISCHARGE_ACTIVE_ITEM, rerollOnDischarge)
+--]]
+
+
+--[[]]
+
 --- VANILLA/MODDED NON-THROWABLE ITEMS
 --- PROBABLY BREAKS IN SOME SITUATIONS AS IT JUST CHECKS WHETHER ITEM CHARGE IS LOWER THAN IN PRE_USE_ITEM
 
@@ -166,7 +187,7 @@ rawset(ogMetaTable, "__index",
         end
     end
 )
-
+--]]
 
 
 --- SUPER RETRO MODE
