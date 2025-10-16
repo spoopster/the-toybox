@@ -1316,6 +1316,14 @@ enums.FUNCTIONS.AddItem({
         "15% chance to replace cards with pills"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_LANGSTON_LOOP,
+    Name = "Langston Loop",
+    Description = {
+        "While travelling, tears periodically spawn 2 copies of themselves moving in opposite perpendicular directions",
+        "The copies deal 0.75x damage"
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

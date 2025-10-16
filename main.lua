@@ -204,6 +204,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.black_soul")
     include("scripts_toybox.items.passives.good_job")
     include("scripts_toybox.items.passives.reading_glasses")
+    include("scripts_toybox.items.passives.langston_loop")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

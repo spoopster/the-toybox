@@ -861,6 +861,13 @@
     tags="nolostbr summonable"
     cache=""
 />
+<passive id="99" name="Langston Loop"
+    description="Self-replicating"
+    gfx="langston_loop.png"
+    quality="3"
+    tags="nolostbr summonable"
+    cache=""
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

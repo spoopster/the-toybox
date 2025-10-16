@@ -154,6 +154,7 @@ ToyboxMod.COLLECTIBLE_BLACK_SOUL = Isaac.GetItemIdByName("Black Soul")
 ToyboxMod.COLLECTIBLE_BIG_RED_BUTTON = Isaac.GetItemIdByName("Big Red Button")
 ToyboxMod.COLLECTIBLE_OIL_PAINTING = Isaac.GetItemIdByName("Oil Painting")
 ToyboxMod.COLLECTIBLE_READING_GLASSES = Isaac.GetItemIdByName("Reading Glasses")
+ToyboxMod.COLLECTIBLE_LANGSTON_LOOP = Isaac.GetItemIdByName("Langston Loop")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
