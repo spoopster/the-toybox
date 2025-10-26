@@ -45,7 +45,7 @@ end
 ---@param tear EntityTear
 local function langstonTearUpdate(_, tear)
     local player = getPlayerForEnt(tear)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGSTON_LOOP))) then return end
+    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGTON_LOOP))) then return end
     if(tear:IsDead()) then return end
     if(ToyboxMod:getEntityData(tear, "LANGSTON_LOOP_BLACKLIST")) then
         if(tear:HasTearFlags(TearFlags.TEAR_LUDOVICO)) then
@@ -169,7 +169,7 @@ local function langstonLaserUpdate(_, laser)
     if(laser.SubType==LaserSubType.LASER_SUBTYPE_NO_IMPACT or laser.SubType==LaserSubType.LASER_SUBTYPE_RING_FOLLOW_PARENT) then return end
 
     local player = getPlayerForEnt(laser)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGSTON_LOOP))) then return end
+    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGTON_LOOP))) then return end
     if(laser:IsDead()) then return end
     if(ToyboxMod:getEntityData(laser, "LANGSTON_LOOP_BLACKLIST")) then
         local parentLaser = ToyboxMod:getEntityData(laser, "LANGSTON_LOOP_BLACKLIST")
@@ -337,7 +337,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, langstonLaserUpdate)
 ---@param knife EntityKnife
 local function langstonKnifeUpdate(_, knife)
     local player = getPlayerForEnt(knife)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGSTON_LOOP))) then return end
+    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGTON_LOOP))) then return end
     if(knife:IsDead()) then return end
     if(ToyboxMod:getEntityData(knife, "LANGSTON_LOOP_BLACKLIST")) then return end
 
@@ -420,7 +420,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, langstonKnifeUpdate)
 ---@param pl EntityPlayer
 ---@param bomb EntityBomb
 local function invalidateUsedBomb(_, pl, bomb)
-    if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_LANGSTON_LOOP)) then
+    if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_LANGTON_LOOP)) then
         ToyboxMod:setEntityData(bomb, "LANGSTON_LOOP_BLACKLIST", true)
     end
 end
@@ -436,7 +436,7 @@ ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, copyInv
 ---@param bomb EntityBomb
 local function langstonBombUpdate(_, bomb)
     local player = getPlayerForEnt(bomb)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGSTON_LOOP))) then return end
+    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGTON_LOOP))) then return end
     if(bomb:IsDead()) then return end
     if(ToyboxMod:getEntityData(bomb, "LANGSTON_LOOP_BLACKLIST")) then return end
 
@@ -489,7 +489,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_BOMB_COLLISION, cancelBombLangstonColl
 ---@param rocket EntityEffect
 local function langstonRocketUpdate(_, rocket)
     local player = getPlayerForEnt(rocket)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGSTON_LOOP))) then return end
+    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_LANGTON_LOOP))) then return end
     if(rocket:IsDead()) then return end
     if(ToyboxMod:getEntityData(rocket, "LANGSTON_LOOP_BLACKLIST")) then
         return

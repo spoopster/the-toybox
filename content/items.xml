@@ -94,13 +94,11 @@
     cache="speed damage luck"
 />
 <passive id="12" name="Odd Onion"
-    description="Defective tears"
+    description="Damage + tears up?"
     gfx="odd_onion.png"
-    quality="2"
-    tags="offensive summonable noeden"
-    cache="all"
-
-    hidden="true"
+    quality="3"
+    tags="offensive summonable"
+    cache="damage"
 />
 <passive id="13" name="Caramel Apple"
     description="HP up + better hearts"
@@ -861,12 +859,19 @@
     tags="nolostbr summonable"
     cache=""
 />
-<passive id="99" name="Langston Loop"
+<passive id="99" name="Langton Loop"
     description="Self-replicating"
     gfx="langston_loop.png"
     quality="3"
-    tags="nolostbr summonable"
+    tags="offensive summonable"
     cache=""
+/>
+<passive id="100" name="Curious Carrot"
+    description="Range up + sight"
+    gfx="curious_carrot.png"
+    quality="2"
+    tags="offensive summonable"
+    cache="range"
 />
 
 <passive id="109" name="RETROFALL"

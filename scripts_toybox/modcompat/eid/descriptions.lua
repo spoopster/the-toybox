@@ -1317,11 +1317,27 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = ToyboxMod.COLLECTIBLE_LANGSTON_LOOP,
-    Name = "Langston Loop",
+    ID = ToyboxMod.COLLECTIBLE_LANGTON_LOOP,
+    Name = "Langton Loop",
     Description = {
         "While travelling, tears periodically spawn 2 copies of themselves moving in opposite perpendicular directions",
         "The copies deal 0.75x damage"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_ODD_ONION,
+    Name = "Odd Onion",
+    Description = {
+        "\1 +0.7 Damage",
+        "Grants the effect of a random \"Tears up\" item every room",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CURIOUS_CARROT,
+    Name = "Curious Carrot",
+    Description = {
+        "\1 +1.5 Range",
+        "Every floor, reveals 5 random rooms on the map"
     },
 })
 

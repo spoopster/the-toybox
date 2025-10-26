@@ -36,7 +36,8 @@
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
         <Item Name="Reading Glasses"/>
-        <Item Name="Langston Loop"/>
+        <Item Name="Langton Loop"/>
+        <Item Name="Curious Carrot"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -73,7 +74,8 @@
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
         <Item Name="Reading Glasses"/>
-        <Item Name="Langston Loop"/>
+        <Item Name="Langton Loop"/>
+        <Item Name="Curious Carrot"/>
     </Pool>
 
     <Pool Name="boss">
@@ -224,7 +226,7 @@
         <Item Name="Sack of Chests"/>
         <Item Name="Butterfly Effect"/>
         <Item Name="Big Red Button"/>
-        <Item Name="Langston Loop"/>
+        <Item Name="Langton Loop"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -236,7 +238,7 @@
         <Item Name="Sack of Chests"/>
         <Item Name="Butterfly Effect"/>
         <Item Name="Big Red Button"/>
-        <Item Name="Langston Loop"/>
+        <Item Name="Langton Loop"/>
     </Pool>
 
     <Pool Name="library">
@@ -264,6 +266,7 @@
         <Item Name="The Good Juice"/>
         <Item Name="Drill"/>
         <Item Name="Good Job"/>
+        <Item Name="Curious Carrot"/>
     </Pool>
 
     <Pool Name="ultraSecret">
