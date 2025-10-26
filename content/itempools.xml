@@ -36,6 +36,7 @@
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
         <Item Name="Reading Glasses"/>
+        <Item Name="Langston Loop"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -72,6 +73,7 @@
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
         <Item Name="Reading Glasses"/>
+        <Item Name="Langston Loop"/>
     </Pool>
 
     <Pool Name="boss">
@@ -222,6 +224,7 @@
         <Item Name="Sack of Chests"/>
         <Item Name="Butterfly Effect"/>
         <Item Name="Big Red Button"/>
+        <Item Name="Langston Loop"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -233,6 +236,7 @@
         <Item Name="Sack of Chests"/>
         <Item Name="Butterfly Effect"/>
         <Item Name="Big Red Button"/>
+        <Item Name="Langston Loop"/>
     </Pool>
 
     <Pool Name="library">
