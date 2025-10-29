@@ -76,6 +76,9 @@ include("scripts_toybox.misc.tinted_rooms.enums")
 include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")
 include("scripts_toybox.misc.tinted_rooms.minimap_logic")
 
+-- ENTITIES
+include("scripts_toybox.misc.entities.meteor")
+
 -- MILCOM
 include("scripts_toybox.players.milcom.a.milcom")
 include("scripts_toybox.players.milcom.a.stats")
@@ -140,7 +143,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.tech_ix")
     --include("scripts_toybox.items.passives.fatal_signal")
     --include("scripts_toybox.items.passives.pepper_x")
-    --include("scripts_toybox.items.passives.meteor_shower")
+    include("scripts_toybox.items.passives.meteor_shower")
     include("scripts_toybox.items.passives.blessed_ring")
     include("scripts_toybox.items.passives.eyestrain")
     include("scripts_toybox.items.passives.4_4")
@@ -207,6 +210,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.langston_loop")
     include("scripts_toybox.items.passives.curious_carrot")
     include("scripts_toybox.items.passives.odd_onion")
+    --include("scripts_toybox.items.passives.garlic")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -276,6 +280,9 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
 --CARDS
     include("scripts_toybox.pickups.cards.prismstone")
     include("scripts_toybox.pickups.cards.foil_card")
+    include("scripts_toybox.pickups.cards.poison_rain")
+    include("scripts_toybox.pickups.cards.alien_mind")
+    include("scripts_toybox.pickups.cards.4_starred_ladybug")
 --OBJECTS
     include("scripts_toybox.pickups.objects.mantle_rock")
     include("scripts_toybox.pickups.objects.mantle_poop")
@@ -321,7 +328,7 @@ include("scripts_toybox.fortnite funnies.retro mode")
 --include("scripts_toybox.fortnite funnies.lupustro")
 --include("scripts_toybox.fortnite funnies.stupid enemy title")
 include("scripts_toybox.fortnite funnies.cool title screen")
---include("scripts_toybox.fortnite funnies.slop o meter")
+include("scripts_toybox.fortnite funnies.slop-o-meter")
 include("scripts_toybox.fortnite funnies.trinket_collection")
 
 

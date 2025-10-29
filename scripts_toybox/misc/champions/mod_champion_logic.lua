@@ -1,4 +1,13 @@
-
+---@param npc EntityNPC
+---@return boolean
+function ToyboxMod:isModChampion(npc)
+    return (ToyboxMod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")~=nil)
+end
+---@param npc EntityNPC
+---@return int
+function ToyboxMod:getModChampionIdx(npc)
+    return ToyboxMod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")
+end
 
 ---@param npc EntityNPC
 local function tryMakeModChampion(npc)

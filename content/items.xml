@@ -174,13 +174,11 @@
     hidden="true"
 />
 <passive id="21" name="Meteor Shower"
-    description="Falling fireballs"
+    description="Rain of fire"
     gfx="meteor_shower.png"
     quality="1"
-    tags="summonable offensive noeden"
+    tags="summonable offensive"
     cache=""
-
-    hidden="true"
 />
 <passive id="22" name="Blessed Bombs"
     description="Sacred destruction +5 bombs"
@@ -528,7 +526,7 @@
 <passive id="59" name="Haemorrhage"
     description="It hurts"
     gfx="hemorrhage.png"
-    quality="0"
+    quality="1"
     tags="nolostbr"
     cache=""
 />
@@ -696,10 +694,10 @@
     maxcharges="3"
 />
 <passive id="79" name="Finger Trap"
-    description="Tears up + shotspeed down"
+    description="Damage up + shotspeed down"
     gfx="chinese_finger_trap.png"
     quality="2"
-    tags="offensive summonable tearsup"
+    tags="offensive summonable"
     cache="damage shotspeed"
 />
 <passive id="80" name="Hemolymph"

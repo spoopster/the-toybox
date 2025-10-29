@@ -4,6 +4,7 @@ local VALUE_FONT = Font()
 VALUE_FONT:Load("font/luaminioutlined.fnt")
 
 local VALUE_ADD_PICKER = WeightedOutcomePicker()
+VALUE_ADD_PICKER:AddOutcomeWeight(0, 1)
 VALUE_ADD_PICKER:AddOutcomeWeight(1, 1)
 VALUE_ADD_PICKER:AddOutcomeWeight(2, 1)
 VALUE_ADD_PICKER:AddOutcomeWeight(3, 1)

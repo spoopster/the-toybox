@@ -506,13 +506,16 @@ function ToyboxMod:calcPillPool(rng, numBadPills, numNeutralPills, numGoodPills)
     dataTable.CUSTOM_PILL_POOL = finalPool
 end
 
-local function replacePillEffect(_, pilleffect, color)
+---@param pilleffect PillEffect
+---@param color PillColor
+---@param player EntityPlayer
+local function replacePillEffect(_, pilleffect, color, player)
     if(jerkinOff) then return end
 
     local dataTable = ToyboxMod:getExtraDataTable()
     local pillpool = dataTable.CUSTOM_PILL_POOL
     if(pillpool and pillpool~=0) then
-        local chosenPlayer = Isaac.GetPlayer()
+        local chosenPlayer = player
         local phdVal = ToyboxMod:getTotalPhdMask()
 
         if(color==PillColor.PILL_GOLD or color==PillColor.PILL_GOLD|PillColor.PILL_GIANT_FLAG) then

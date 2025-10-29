@@ -149,7 +149,7 @@
     <entity name="Juice Fountain"
         id="6" anm2path="slots/slot_fountain.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="19"
-        numGridCollisionPoints="24" shadowSize="11" stageHP="0">
+        numGridCollisionPoints="24" shadowSize="0" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
@@ -216,6 +216,18 @@
     </entity>
     <entity name="Good Juice Trail"
         id="1000" anm2path="effects/effect_juice.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Meteor"
+        id="1000" anm2path="effects/effect_meteor.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+        numGridCollisionPoints="0" shadowSize="13" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Smoke Trail"
+        id="1000" anm2path="effects/effect_smoke_trail.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
         numGridCollisionPoints="0" shadowSize="0" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />

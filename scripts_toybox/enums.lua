@@ -202,6 +202,9 @@ ToyboxMod.CONSUMABLE = {
     ALIEN_MIND = Isaac.GetCardIdByName("Alien Mind"),
     POISON_RAIN = Isaac.GetCardIdByName("Poison Rain"),
     FOUR_STARRED_LADYBUG = Isaac.GetCardIdByName("4-Starred Ladybug"),
+    DARK_EXPLOSION = Isaac.GetCardIdByName("Dark Explosion"),
+    ENDLESS_CHAOS = Isaac.GetCardIdByName("Endless Chaos"),
+    CHAIN_REACTION = Isaac.GetCardIdByName("Chain Reaction"),
     TALISMAN = Isaac.GetCardIdByName("Talisman"),
     GRIM = Isaac.GetCardIdByName("Grim"),
     FAMILIAR = Isaac.GetCardIdByName("Familiar"),
@@ -288,6 +291,8 @@ ToyboxMod.EFFECT_VARIANT = {
     PYTHAGORAS_CUP_SPILL = Isaac.GetEntityVariantByName("Pythagoras' Cup Spill"),
     KILLSCREEN_GLITCH = Isaac.GetEntityVariantByName("Killscreen Glitch"),
     JUICE_TRAIL = Isaac.GetEntityVariantByName("Good Juice Trail"),
+    METEOR = Isaac.GetEntityVariantByName("Meteor"),
+    SMOKE_TRAIL = Isaac.GetEntityVariantByName("Smoke Trail"),
 
     ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair")
 }
@@ -350,6 +355,9 @@ ToyboxMod.SOUND_EFFECT = {
     SLIPPER_WHIP = Isaac.GetSoundIdByName("(TOYBOX) Whip"),
     COLOSSAL_ORB_SHOCKWAVE = Isaac.GetSoundIdByName("(TOYBOX) Colossal Orb Shockwave"),
     BURP = Isaac.GetSoundIdByName("(TOYBOX) Burp"),
+    WATER_LOOP = Isaac.GetSoundIdByName("(TOYBOX) Water Loop (Copy)"),
+    HYPNOSIS = Isaac.GetSoundIdByName("(TOYBOX) Hypnosis"),
+    HAZE = Isaac.GetSoundIdByName("(TOYBOX) Haze"),
 
     ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("(TOYBOX) Rock Crack"),
     ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("(TOYBOX) Rock Break"),

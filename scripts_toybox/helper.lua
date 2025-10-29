@@ -495,13 +495,15 @@ function ToyboxMod:getTearPoofVariantFromTear(tear)
 	end
 end
 
-function ToyboxMod:getRandomFreePos()
+function ToyboxMod:getRandomFreePos(margin)
+    margin = margin or 80
+
     local r = Game():GetRoom()
     local p
     local failsafe = 1000
 
     repeat
-        p = r:GetRandomPosition(80)
+        p = r:GetRandomPosition(margin)
         failsafe = failsafe-1
     until(failsafe<=0 or r:GetGridCollisionAtPos(p)==GridCollisionClass.COLLISION_NONE)
 

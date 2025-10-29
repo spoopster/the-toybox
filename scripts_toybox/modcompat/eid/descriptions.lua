@@ -154,14 +154,14 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_METEOR_SHOWER,
     Name = "Meteor Shower",
     Description = {
-        "In active rooms, every 4 seconds spawns a meteor that falls from the sky",
-        "When landing, it spawns a fire and a cross stream of fire jets",
-        "The fire deals contact damage and blocks shots, disappears after 4 seconds",
+        "In active rooms, every 2-4 seconds a meteor falls from the sky",
+        "{{Burning}} When landing, the meteor explodes, dealing 35 damage and burning nearby enemies",
+        "!!! The meteors can also hurt you",
     },
     StackModifiers = {
         {
             ToModify = {
-                "Spawns an additional meteor for every item stack",
+                "Meteors fall more often",
             }
         }
     }
@@ -614,7 +614,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_HEMORRHAGE,
     Name = "Haemorrhage",
     Description = {
-        "{{EmptyBoneHeart}} +2 Bone Hearts",
+        "{{EmptyBoneHeart}} +1 Bone Heart",
+        "{{EmptyBoneHeart}} When a heart container is emptied, removes it and grants a Bone Heart",
         "Taking damage gives a large fading tears up",
     },
 })
@@ -1304,7 +1305,7 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "!!! SINGLE USE !!!",
         "{{Coin}} Gives Coins equal to its value",
-        "Adds 1-4 Coins to value on every room clear"
+        "Adds 0-4 Coins to value on every room clear"
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1787,6 +1788,30 @@ enums.FUNCTIONS.AddCard({
     Name = "Foil Card",
     Description = {
         "{{Coin}} Spawns a golden heart, penny, key or bomb",
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CONSUMABLE.POISON_RAIN,
+    Name = "Poison Rain",
+    Description = {
+        "{{Poison}} All enemies, including bosses, are poisoned for 10 seconds",
+        "For the rest of the room, rocks will be randomly destroyed"
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CONSUMABLE.ALIEN_MIND,
+    Name = "Alien Mind",
+    Description = {
+        "{{Friendly}} Picks 3 random enemies to become friendly and mimic your movements and attacks",
+        "Enemies with higher health are more likely to be picked"
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CONSUMABLE.FOUR_STARRED_LADYBUG,
+    Name = "4-Starred Ladybug",
+    Description = {
+        "{{Petrify}} Champion and boss enemies are petrified for 4 seconds",
+        "{{Weakness}} Champion and boss enemies are weakened for the rest of the room",
     },
 })
 enums.FUNCTIONS.AddCard({

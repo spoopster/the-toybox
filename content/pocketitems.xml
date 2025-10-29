@@ -27,7 +27,6 @@
         pickup="2802"
 
         mimiccharge="1"
-        hidden="true"
     />
     <card id="3" name="Poison Rain"
         description="Pouring acid"
@@ -36,7 +35,6 @@
         pickup="2802"
 
         mimiccharge="1"
-        hidden="true"
     />
     <card id="4" name="4-Starred Ladybug"
         description="Doomsday clock"
@@ -45,7 +43,6 @@
         pickup="2802"
 
         mimiccharge="1"
-        hidden="true"
     />
     <card id="5" name="Talisman"
         description="---"
@@ -107,6 +104,33 @@
         hud="Deja Vu"
         type="special"
         pickup="2803"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="12" name="Dark Explosion"
+        description="---"
+        hud="Dark Explosion"
+        type="special"
+        pickup="2802"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="13" name="Endless Chaos"
+        description="---"
+        hud="Endless Chaos"
+        type="special"
+        pickup="2802"
+
+        mimiccharge="1"
+        hidden="true"
+    />
+    <card id="14" name="Chain Reaction"
+        description="---"
+        hud="Chain Reaction"
+        type="special"
+        pickup="2802"
 
         mimiccharge="1"
         hidden="true"

@@ -59,6 +59,19 @@
 		<sample weight="1" path="burp2.wav" />
 	</sound>
 
+	<sound name="(TOYBOX) Hypnosis">
+		<sample weight="1" path="hypnosis_1.wav" />
+		<sample weight="1" path="hypnosis_2.wav" />
+	</sound>
+
+	<sound name="(TOYBOX) Haze">
+		<sample weight="1" path="haze.wav" />
+	</sound>
+
+	<sound name="(TOYBOX) Water Loop (Copy)">
+		<sample weight="1" path="water_loop_copy.wav" />
+	</sound>
+
 	<sound name="(TOYBOX) Rock Crack">
 		<sample weight="1" path="atlas_rockcrack1.wav" />
         <sample weight="1" path="atlas_rockcrack2.wav" />

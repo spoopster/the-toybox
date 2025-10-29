@@ -1,6 +1,6 @@
+local sfx = SFXManager()
 
-
-local BONEHEART_ADD = 2
+local BONEHEART_ADD = 1
 
 local INTENSITY_DURATION = 5*60
 local INTENSITY_UPDATE_FREQ = 30
@@ -54,5 +54,17 @@ local function increaseIntensity(_, ent, _, flags, source)
 
     ToyboxMod:setEntityData(pl, "HAEMORRHAGE_COUNTDOWN", INTENSITY_DURATION)
     pl:AddCacheFlags(CacheFlag.CACHE_FIREDELAY, true)
+
+    local missingHp = pl:GetMaxHearts()-pl:GetHearts()
+    if(missingHp>=2) then
+        sfx:Play(SoundEffect.SOUND_BONE_SNAP)
+    end
+
+    while(missingHp>=2) do
+        pl:AddMaxHearts(-2)
+        pl:AddBoneHearts(1)
+
+        missingHp = missingHp-2
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, increaseIntensity, EntityType.ENTITY_PLAYER)

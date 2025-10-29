@@ -1,141 +1,43 @@
+local METEOR_DMG = 35
 
-local sfx = SFXManager()
-
-local METEOR_COOLDOWN = 4*30
-local METEOR_COOLDOWN_BIGROOM = 2*30
-local METEORS_NUM = 1
-
-local METEOR_SPEED = 30
-local METEOR_FALLING_FRAMES = 1*30
-local FALLING_FRAME_RANDOMNESS = 15
-
-local METEOR_SCALE_MULT = 2
-
-local function isBigRoom()
-    local rType = Game():GetRoom():GetRoomShape()
-    if(rType==RoomShape.ROOMSHAPE_2x2) then return true end
-    if(rType==RoomShape.ROOMSHAPE_LTL) then return true end
-    if(rType==RoomShape.ROOMSHAPE_LTR) then return true end
-    if(rType==RoomShape.ROOMSHAPE_LBL) then return true end
-    if(rType==RoomShape.ROOMSHAPE_LBR) then return true end
-
-    return false
-end
+local METEOR_FREQUENCY = {30*2, 30*4}
+local METEOR_MIN_FREQ = 15
 
 local function postUpdate(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)) then return end
     if(ToyboxMod:isRoomClear()) then return end
 
-    local cool = (isBigRoom() and METEOR_COOLDOWN_BIGROOM or METEOR_COOLDOWN)
+    local room = Game():GetRoom()
 
-    if(Game():GetRoom():GetFrameCount()%cool~=1) then return end
-    local r = Game():GetRoom()
+    for i=0, Game():GetNumPlayers()-1 do
+        local pl = Isaac.GetPlayer(i)
+        if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)) then
+            local cnt = ToyboxMod:getEntityData(pl, "METEOR_SHOWER_COOLDOWN") or 0
 
-    sfx:Play(SoundEffect.SOUND_TEARS_FIRE, 0, 3)
-    for _, p in ipairs(Isaac.FindByType(1,0)) do
-        p = p:ToPlayer()
-        for _= 1, p:GetCollectibleNum(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)*METEORS_NUM do
-            local pos = ToyboxMod:getRandomFreePos()
+            if(cnt==0) then
+                local pos = ToyboxMod:getRandomFreePos(20)
+                local meteor = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.METEOR, 0, pos, Vector.Zero, pl):ToEffect()
+                meteor.CollisionDamage = METEOR_DMG
 
-            local m = Isaac.Spawn(EntityType.ENTITY_TEAR, ToyboxMod.TEAR_VARIANT.METEOR, 2, pos-Vector(50,0), Vector.Zero, p):ToTear()
-            m.CollisionDamage = 0
-            m.Scale = ToyboxMod:lerp(3.5, p.Damage, 0.4)*METEOR_SCALE_MULT/3.5
-            m.SpriteScale = m.SpriteScale*(1/m.Scale)
+                local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)
+                local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)
+                mult = mult+(room:GetGridWidth()>15 and 0.5 or 0)+(room:GetGridHeight()>9 and 0.5 or 0)
 
-            local cross = Isaac.Spawn(EntityType.ENTITY_EFFECT, 30, 0, pos, Vector.Zero, p):ToEffect()
-            cross.Timeout = (ToyboxMod:getEntityData(m, "METEOR_TEAR_LIFESPAN") or METEOR_FALLING_FRAMES)+2
+                cnt = math.max(METEOR_MIN_FREQ, rng:RandomInt(METEOR_FREQUENCY[1], METEOR_FREQUENCY[2])//mult)
+            else
+                cnt = cnt-1
+            end
 
-            local c = Color(1,1,1,1)
-            c:SetColorize(1.2,0.7,0,1)
-            cross.Color = c
+            ToyboxMod:setEntityData(pl, "METEOR_SHOWER_COOLDOWN", cnt)
         end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)
 
----@param tear EntityTear
-local function meteorTearInit(_, tear)
-    if(tear.SubType~=2) then return end
-
-    tear.FallingAcceleration = -0.1
-    tear.FallingSpeed = 0
-
-    local tL = (METEOR_FALLING_FRAMES+2)+tear:GetDropRNG():RandomInt(FALLING_FRAME_RANDOMNESS*2)-FALLING_FRAME_RANDOMNESS
-    ToyboxMod:setEntityData(tear, "METEOR_TEAR_LIFESPAN", tL)
-
-    local dist = tL*METEOR_SPEED
-    tear.Position = tear.Position+Vector(-dist, 0)
-    tear.Velocity = Vector(METEOR_SPEED,0)
-    tear.Height = tear.Height-dist
-
-    tear.FallingAcceleration = METEOR_SPEED*((8/7.3)-1)
-    tear.FallingSpeed = METEOR_SPEED
-
-    tear.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
-
-    tear:AddTearFlags(TearFlags.TEAR_PIERCING | TearFlags.TEAR_SPECTRAL)
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, meteorTearInit, ToyboxMod.TEAR_VARIANT.METEOR)
-
---! this shit is stupid
----@param tear EntityTear
-local function meteorTearUpdate(_, tear)
-    if(tear.SubType~=2) then return end
-
-    tear.Rotation = 45
-    tear:GetSprite().Rotation = 45
-
-    if(tear.FrameCount==(ToyboxMod:getEntityData(tear, "METEOR_TEAR_LIFESPAN") or METEOR_FALLING_FRAMES)+2) then tear:Die() end
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, meteorTearUpdate, ToyboxMod.TEAR_VARIANT.METEOR)
-
-local function spawnOnDeath(_, tear)
-    if(tear.Variant==ToyboxMod.TEAR_VARIANT.METEOR and tear.SubType==2) then
-        Game():ShakeScreen(10)
-
-        Isaac.Explode(tear.Position, tear, 100)
-
-        tear = tear:ToTear()
-        local p = Isaac.GetPlayer()
-        if(tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()) then p = tear.SpawnerEntity:ToPlayer() end
-
-        sfx:Play(SoundEffect.SOUND_ROCK_CRUMBLE, 0.3, 0, false, 0.8)
-        local explosion = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.METEOR_TEAR_EXPLOSION, 0, tear.Position, Vector.Zero, tear):ToEffect()
-
-        local d = ToyboxMod:lerp(3.5, p.Damage, 0.5)*2
-
-        for i=1,4 do
-            local v = Vector.FromAngle(i*90)*35
-            local spawnData = {
-                SpawnType = "LINE",
-                SpawnData = {EntityType.ENTITY_EFFECT,EffectVariant.FIRE_JET,0},
-                SpawnerEntity = player,
-                Position = tear.Position+v,
-                Damage = d,
-                PlayerFriendly = true,
-                AngleVariation = 3,
-                Color = Color(1,1,0,1,1,0.1,0),
-                Distance = v,
-                Delay = 4,
-                Amount = 2,
-            }
-            ToyboxMod:spawnCustomObjects(spawnData)
-        end
-
-        local NUM_FIRES = 3
-        for i=1,NUM_FIRES do
-            local s = math.sqrt(tear.Scale/METEOR_SCALE_MULT)
-            local fire = Isaac.Spawn(1000,52,0, tear.Position+Vector.FromAngle(360*i/NUM_FIRES+30):Resized(15), Vector.Zero, p):ToEffect()
-            fire.SpriteScale = Vector(1,1)*s
-            fire.Scale = s
-            fire.CollisionDamage = d
-            fire.Timeout = 4*30
-        end
+local function resetCooldown(_)
+    for i=0, Game():GetNumPlayers()-1 do
+        local pl = Isaac.GetPlayer(i)
+        ToyboxMod:setEntityData(pl, "METEOR_SHOWER_COOLDOWN", 0)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_DEATH, spawnOnDeath, ToyboxMod.TEAR_VARIANT.METEOR)
-
-local function explosionUpdate(_, effect)
-    if(effect:GetSprite():IsFinished("Explosion")) then effect:Remove() end
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, explosionUpdate, ToyboxMod.EFFECT_VARIANT.METEOR_TEAR_EXPLOSION)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, resetCooldown)

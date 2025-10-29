@@ -187,6 +187,9 @@ EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_GOLD), "Cards", 19, 16,
 EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_BONE), "Cards", 20, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.LAUREL), "Cards", 21, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.YANNY), "Cards", 22, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.DARK_EXPLOSION), "Cards", 23, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.ENDLESS_CHAOS), "Cards", 24, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.CHAIN_REACTION), "Cards", 25, 16, 16, 0, 0, iconSprite)
 
 --- MISC
 EID:addIcon("ToyboxIconElectrifiedStatus", "Misc", 0, 16, 16, 0, 0, iconSprite)
