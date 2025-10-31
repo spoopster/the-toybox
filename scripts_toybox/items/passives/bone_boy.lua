@@ -178,8 +178,8 @@ local function boneBoyUpdate(_, familiar)
 
             if(familiar.SubType & 1<<1 ~= 0) then
                 local liveFrames = math.ceil(dir:Length()/bone.Velocity:Length())
-                bone.FallingAcceleration = 2
-                bone.FallingSpeed = -4*(bone.FallingAcceleration+0.1)
+                bone.FallingAcceleration = 1.6
+                bone.FallingSpeed = -5*(bone.FallingAcceleration+0.1)
                 ToyboxMod:setEntityData(bone, "BONEBOY_HOLY_BONE", true)
             end
 

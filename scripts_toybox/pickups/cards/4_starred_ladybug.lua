@@ -17,7 +17,8 @@ local function use4StarredLadybug(_, _, pl, _)
 
     for _, ent in ipairs(Isaac.GetRoomEntities()) do
         if(isValidForLadybug(ent)) then
-            ent:AddFreeze(plRef, PETRIFY_DURATION)
+            ent:AddFreeze(plRef, PETRIFY_DURATION, true)
+            ent:AddWeakness(plRef, PETRIFY_DURATION, true)
 
             for i=1, 9 do
                 local vel = (i==1 and Vector.Zero or Vector.FromAngle(math.random(1,360))*(2+math.random(0,3)))
@@ -61,4 +62,4 @@ ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, updateLadybugNpc)
 local function deactivateLadybugEffect(_)
     ToyboxMod:setExtraData("4STAR_LADYBUG_ACTIVE", nil)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, deactivateLadybugEffect)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NEW_ROOM, deactivateLadybugEffect)

@@ -11,7 +11,7 @@
 
 ---fucking dumb
 
-local FREE_PICKUP_ID = -12841
+local FREE_PICKUP_ID = 12841
 local MIN_DRILL_DIST = 60
 
 local PRICE_PER_WAVE = 5
@@ -39,15 +39,15 @@ local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
     if(nearestShopPickup and nearestShopPickup.Position:Distance(player.Position)<=MIN_DRILL_DIST) then
         nearestShopPickup = nearestShopPickup:ToPickup()
 
-        nearestShopPickup.ShopItemId = FREE_PICKUP_ID
-        
-        local spawnData = {nearestShopPickup.Type, nearestShopPickup.Variant, nearestShopPickup.SubType}
+        local spawnData = {nearestShopPickup.Type, nearestShopPickup.Variant, nearestShopPickup.SubType, nearestShopPickup.Position}
 
         local prevIdx = Game():GetLevel():GetPreviousRoomIndex()
         local ogIdx = Game():GetLevel():GetCurrentRoomIndex()
 
         local ogPrice = nearestShopPickup.Price
         Ambush.SetMaxChallengeWaves(math.max(1, math.ceil(ogPrice/PRICE_PER_WAVE)))
+
+        nearestShopPickup.Price = 0
 
         ToyboxMod:setExtraData("DRILLDATA", nil)
 
@@ -118,12 +118,12 @@ local function preNewRoom(_)
     if(not data) then return end
 
     if(data.IS_ACTIVE==-1) then
-        data.IS_ACTIVE = 0
+        data.IS_ACTIVE = -2
 
         local curIdx = Game():GetLevel():GetCurrentRoomIndex()
         if(curIdx==data.OG_IDX) then
-            Game():ChangeRoom(data.PRE_IDX, -1)
-            Game():ChangeRoom(data.OG_IDX)
+            Game():GetLevel():ChangeRoom(data.PRE_IDX, -1)
+            Game():GetLevel():ChangeRoom(curIdx, -1)
         end
     end
 end
@@ -133,9 +133,4 @@ local function preIdxUpdate(_)
     ToyboxMod:setExtraData("DRILL_PREIDX", Game():GetLevel():GetCurrentRoomIndex())
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, preIdxUpdate)
-
-local function getFreePickupPrice(_, var, st, id, price)
-    if(id==FREE_PICKUP_ID) then return PickupPrice.PRICE_FREE end
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_GET_SHOP_ITEM_PRICE, getFreePickupPrice)
 --]]

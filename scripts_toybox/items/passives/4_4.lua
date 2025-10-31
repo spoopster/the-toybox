@@ -3,7 +3,7 @@ local sfx = SFXManager()
 local FOURFOUR_TEARS = 0.5
 
 local CONFUSE_FREQ = 5
-local CONFUSE_RADIUS = 40
+local CONFUSE_RADIUS = 50
 local CONFUSE_DURATION = math.floor(30*1.2)
 
 ---@param pl EntityPlayer
@@ -28,8 +28,10 @@ local function confuseNearbyEnemies(_, pl)
         aura:FollowParent(pl)
         aura:GetSprite():Play("Appear", true)
         
-        aura.Scale = CONFUSE_RADIUS/80
+        aura.Scale = CONFUSE_RADIUS/40
         aura.SpriteScale = aura.SpriteScale*aura.Scale
+
+        aura:GetSprite():SetCustomShader("spriteshaders/44shader")
 
         data.FOURFOUR_AURA = aura
     end
@@ -58,11 +60,18 @@ local function auraUpdate(_, effect)
         sp:Play("Idle", true)
     end
 
-    local alpha = 0.2
+    local alpha = 1
     if(sp:GetAnimation()=="Idle") then
-        alpha = alpha*(1+0.2*math.sin(math.rad(effect.FrameCount-sp:GetAnimationData("Appear"):GetLength())*15))
+        alpha = alpha*(1+0.2*math.sin(math.rad(effect.FrameCount-sp:GetAnimationData("Appear"):GetLength())*5))
     end
-    effect.Color = Color(1,1,1,alpha)
+
+    local time = ((Game():GetFrameCount()//5)/100)%1+0.1
+    print(time)
+
+    local col = Color(1,1,1,alpha)
+    col:SetColorize(time,0,0,0)
+
+    effect.Color = col
 
     local pl = (effect.Parent and effect.Parent:ToPlayer() or nil)
     if(not effect:IsDead() and pl and not ToyboxMod:isPlayerShooting(pl)) then

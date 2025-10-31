@@ -1,89 +1,55 @@
-local beamSprite = Sprite()
-beamSprite:Load("gfx_tb/effects/effect_poison_beam.anm2", true)
-beamSprite:Play("Idle", true)
-beamSprite.PlaybackSpeed = 0.2
 
-local size = 32
+local AURA_SIZE_MULT = 3
 
-local beam = Beam(beamSprite, "body", false, false)
-beam:GetSprite():GetLayer("body"):SetWrapTMode(0)
-beamSprite:GetLayer("body"):SetWrapSMode(1)
+local LASER_AURA_RENDERS = 12
+local LASER_AURA_ALPHA = 0.12
+
+---@param player EntityPlayer
+---@param flag CacheFlag
+local function evalCache(_, player, flag)
+    if(flag==CacheFlag.CACHE_TEARCOLOR) then
+        player.TearColor = Color.TearScorpio
+        player.LaserColor = Color.LaserPoison
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+
+local alreadyRendering = false
 
 ---@param laser EntityLaser
 ---@param offset Vector
-local function renderPoisonBeam(_, laser, offset)
-    if(not laser:IsSampleLaser()) then return end
+local function renderLaserAura(_, laser, offset)
+    if(alreadyRendering) then return end
+    alreadyRendering = true
 
-    local samples = laser:GetSamples()
+    local ogColor = laser.Color
+    local ogScale = laser.SpriteScale
 
-    --[[ ]]
-    for i=1, #samples do
-        local s = samples:Get(i-1)+laser.PositionOffset
+    local newCol = ToyboxMod:cloneColor(Color.LaserPoison)
+    newCol.A = newCol.A*LASER_AURA_ALPHA
+    laser.Color = newCol
+
+    local maxscale = AURA_SIZE_MULT
+    local numrenders = LASER_AURA_RENDERS
+    for i=numrenders,1,-1 do
+        local scl = maxscale*i/numrenders
+        laser.SpriteScale = laser.SpriteScale*scl
         
-        local c = Capsule(s, Vector(1,1), 0, 5)
-        local sh = DebugRenderer.Get(2000+i, true)
-        sh:Capsule(c)
-        sh:SetTimeout(1)
-    end
-    for i=2, #samples do
-        local s = samples:Get(i-1)+laser.PositionOffset
-        local s1 = samples:Get(i-2)+laser.PositionOffset
-        
-        local c = Capsule((s+s1)/2, Vector(s:Distance(s1)/2,1), (s-s1):GetAngleDegrees(), 1)
-        local sh = DebugRenderer.Get(3000+i, true)
-        sh:Capsule(c)
-        sh:SetTimeout(1)
-    end
-    --]]
+        laser:Render(offset+Vector((math.random()*2-1)*1, (math.random()*2-1)*1))
 
-    --[[]]
-    local distTravelled = 0
-    
-    local nextTarget = size
-
-    local width = 1*laser:GetScale()
-
-    local dist = 0
-    local offs = Vector(0,100)
-    for i=1, #samples do
-        local s1 = samples:Get(i-1)+offs
-        local s0 = (i==1 and s1 or (samples:Get(i-2)+offs))
-
-        dist = dist+Isaac.WorldToScreen(s1):Distance(Isaac.WorldToScreen(s0))
-
-        beam:Add(Isaac.WorldToScreen(s1), dist, width)
+        laser.SpriteScale = laser.SpriteScale/scl
     end
 
-    --[[]]
-    local points = beam:GetPoints()
-    Isaac.RenderText(#points, 100, 100, 1,1,1,1)
-    for i=1, #points do
-        local p = points[i]
-        local s = (p:GetPosition()-offs)
-        s = s--+Vector(0, Isaac.GetScreenHeight()/2)
-        
-        local c = Capsule(s, Vector(1,1), 0, 5)
-        local sh = DebugRenderer.Get(4000+i, true)
-        sh:Capsule(c)
-        sh:SetTimeout(1)
-    end
-    for i=2, #samples do
-        local p = points[i]
-        local p1 = points[i-1]
+    laser.SpriteScale = ogScale
 
-        local s = (p:GetPosition()-offs)
-        local s1 = (p1:GetPosition()-offs)
+    ogColor.A = ogColor.A*0.5
+    laser.Color = ogColor
 
-        local c = Capsule((s+s1)/2, Vector(s:Distance(s1)/2,1)/2, (s-s1):GetAngleDegrees(), 2)
-        local sh = DebugRenderer.Get(4500+i, true)
-        sh:Capsule(c)
-        sh:SetTimeout(1)
-    end
-    --] ]
+    laser:Render(offset)
 
+    ogColor.A = ogColor.A/0.5
+    laser.Color = ogColor
 
-    beam:GetSprite():Update()
-    beam:Render()
-    --]]
+    alreadyRendering = false
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, renderPoisonBeam)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, renderLaserAura)

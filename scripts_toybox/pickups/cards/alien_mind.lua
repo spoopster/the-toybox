@@ -11,7 +11,7 @@ local function useAlienMind(_, _, pl, _)
     local numEnemies = 0
 
     for _, ent in ipairs(Isaac.GetRoomEntities()) do
-        if(ToyboxMod:isValidEnemy(ent)) then
+        if(ToyboxMod:isValidEnemy(ent) and not ent:IsBoss()) then
             numEnemies = numEnemies+1
 
             table.insert(validEnemies, ent)

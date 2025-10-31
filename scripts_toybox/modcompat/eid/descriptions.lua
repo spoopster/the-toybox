@@ -874,7 +874,7 @@ enums.FUNCTIONS.AddItem({
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_LAST_BEER,
-    Name = "Last Beer",
+    Name = "Beer Can",
     Description = {
         "{{Timer}} +10% chance to fire an additional tear for each enemy killed in the room",
         "Guaranteed after 10 kills"

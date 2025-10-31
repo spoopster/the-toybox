@@ -71,6 +71,20 @@ function ToyboxMod:colorTableToColor(t)
     return Color(t.R, t.G, t.B, t.A, t.RO, t.GO, t.BO)
 end
 
+---@param col Color
+function ToyboxMod:cloneColor(col)
+    local newCol = Color()
+    local ogTint = col:GetTint()
+    local ogOffset = col:GetOffset()
+    local ogColorize = col:GetColorize()
+
+    newCol:SetTint(ogTint.R, ogTint.G, ogTint.B, ogTint.A)
+    newCol:SetOffset(ogOffset.R, ogOffset.G, ogOffset.B)
+    newCol:SetColorize(ogColorize.R, ogColorize.G, ogColorize.B, ogColorize.A)
+
+    return newCol
+end
+
 ---@param player EntityPlayer
 function ToyboxMod:isMilcom(player)
     if(player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.MILCOM_A) then return true end

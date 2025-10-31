@@ -30,7 +30,7 @@
         <Item Name="Hemolymph"/>
         <Item Name="Colossal Orb"/>
         <Item Name="Golden Calf"/>
-        <Item Name="Last Beer"/>
+        <Item Name="Beer Can"/>
         <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
@@ -68,7 +68,7 @@
         <Item Name="Lucky Pebbles"/>
         <Item Name="Hemolymph"/>
         <Item Name="Golden Calf"/>
-        <Item Name="Last Beer"/>
+        <Item Name="Beer Can"/>
         <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloodflower"/>
@@ -114,7 +114,7 @@
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>
         <Item Name="RETROFALL"/>
-        <Item Name="Last Beer"/>
+        <Item Name="Beer Can"/>
         <Item Name="Food Stamps"/>
         <Item Name="Delivery Box"/>
         <Item Name="Solar Panel"/>
@@ -132,7 +132,7 @@
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>
         <Item Name="RETROFALL"/>
-        <Item Name="Last Beer"/>
+        <Item Name="Beer Can"/>
         <Item Name="Food Stamps"/>
         <Item Name="Delivery Box"/>
         <Item Name="Solar Panel"/>

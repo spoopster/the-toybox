@@ -243,7 +243,7 @@
     coins="5"
 />
 <active id="29" name="Gilded Apple"
-    description="Golden arua"
+    description="Reusable money"
     gfx="golden_apple.png"
     quality="3"
     tags="nolostbr"
@@ -276,7 +276,7 @@
 <passive id="32" name="Horse Tranquilizer"
     description="Horse up!"
     gfx="horse_tranquilizer.png"
-    quality="2"
+    quality="1"
     tags="offensive syringe"
     cache=""
 
@@ -593,7 +593,7 @@
 
     cache="speed firedelay"
 />
-<passive id="68" name="Last Beer"
+<passive id="68" name="Beer Can"
     description="Only one left"
     gfx="last_beer.png"
     quality="3"
