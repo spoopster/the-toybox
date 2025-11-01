@@ -878,3 +878,9 @@ function ToyboxMod:getTearAnimSuffix(tear)
 	elseif(scale <= 2.55) then return 12
     else return 13 end
 end
+
+---@param v1 Vector
+---@param v2 Vector
+function ToyboxMod:dotProduct(v1, v2)
+    return v1.X*v2.X+v1.Y*v2.Y
+end

@@ -82,6 +82,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, electricTearUpdate)
 ---@param laser EntityLaser
 local function electricLaserUpdate(_, laser)
     if(ToyboxMod:getEntityData(laser, "DISABLE_PLASMA_TRIGGER")==0) then return end
+    if(not laser:IsSampleLaser()) then return end
 
     local player = getPlayerForEnt(laser)
     if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE))) then return end
@@ -160,6 +161,28 @@ local function electricBombUpdate(_, bomb)
     ToyboxMod:setEntityData(bomb, "PLASMAGLOBE_LASER_COUNTDOWN", laserCountdown)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, electricBombUpdate)
+
+---@param rocket EntityEffect
+local function electricRocketUpdate(_, rocket)
+    local player = getPlayerForEnt(rocket)
+    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE))) then return end
+
+    local laserCountdown = (ToyboxMod:getEntityData(rocket, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
+    if(laserCountdown>0) then
+        laserCountdown = laserCountdown-1
+    else
+        local closestEnemy = ToyboxMod:closestEnemy(rocket.Position) ---@cast closestEnemy EntityNPC?
+        if(not (closestEnemy)) then return end
+        if(closestEnemy.Position:DistanceSquared(rocket.Position)>LASER_FIRE_DIST*LASER_FIRE_DIST) then return end
+
+        spawnSpark(closestEnemy.Position, rocket.Position, player, 70/3, Vector(0, 0))
+
+        laserCountdown = LASER_FREQ
+    end
+
+    ToyboxMod:setEntityData(rocket, "PLASMAGLOBE_LASER_COUNTDOWN", laserCountdown)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, electricRocketUpdate, EffectVariant.TARGET)
 
 --[[] poopy trinket forme
 local ELECTRIFIED_DURATION = 120

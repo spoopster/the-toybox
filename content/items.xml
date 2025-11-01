@@ -871,6 +871,13 @@
     tags="offensive summonable"
     cache="range"
 />
+<passive id="101" name="Garlic Head"
+    description="Poison aura tears"
+    gfx="garlic.png"
+    quality="3"
+    tags="offensive summonable"
+    cache="tearcolor tearflag range"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

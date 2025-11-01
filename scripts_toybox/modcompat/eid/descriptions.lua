@@ -1341,6 +1341,15 @@ enums.FUNCTIONS.AddItem({
         "Every floor, reveals 5 random rooms on the map"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_GARLIC,
+    Name = "Garlic Head",
+    Description = {
+        "\2 -1 Range",
+        "\2 x0.9 Range",
+        "{{Poison}} Tears gain an aura that poisons enemies",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 
@@ -1353,6 +1362,19 @@ enums.FUNCTIONS.AddItem({
             end,
             ToModify = {
                 enums.CONSTANTS.Icon_PlayerJonas .. enums.CONSTANTS.Color_Jonas .. "Frozen enemies can only drop pills when shattered{{CR}}",
+            }
+        },
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = CollectibleType.COLLECTIBLE_CHARM_VAMPIRE,
+    Modifiers = {
+        {
+            Condition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_GARLIC)
+            end,
+            ToModify = {
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_GARLIC.."}} Can't heal you!",
             }
         },
     }
