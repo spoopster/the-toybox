@@ -878,6 +878,18 @@
     tags="offensive summonable"
     cache="tearcolor tearflag range"
 />
+<active id="102" name="White Daisy"
+    description="Loves me, loves me not"
+    gfx="white_daisy.png"
+    quality="1"
+    tags="offensive"
+
+    cache="firedelay damage range luck"
+    passivecache="true"
+
+    maxcharges="1"
+    activegfx="activegfx/white_daisy.png"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

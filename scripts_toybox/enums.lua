@@ -157,6 +157,7 @@ ToyboxMod.COLLECTIBLE_READING_GLASSES = Isaac.GetItemIdByName("Reading Glasses")
 ToyboxMod.COLLECTIBLE_LANGTON_LOOP = Isaac.GetItemIdByName("Langton Loop")
 ToyboxMod.COLLECTIBLE_CURIOUS_CARROT = Isaac.GetItemIdByName("Curious Carrot")
 ToyboxMod.COLLECTIBLE_GARLIC = Isaac.GetItemIdByName("Garlic Head")
+ToyboxMod.COLLECTIBLE_WHITE_DAISY = Isaac.GetItemIdByName("White Daisy")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")

@@ -1,6 +1,5 @@
 ToyboxMod = RegisterMod("toyboxMod", 1) ---@type ModReference
 
-
 ToyboxMod.HiddenItemManager = include("scripts_toybox.util.hiddenitemmanager")
 ToyboxMod.HiddenItemManager:Init(ToyboxMod)
 
@@ -235,6 +234,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.actives.pythagoras_cup")
     include("scripts_toybox.items.actives.big_red_button")
     include("scripts_toybox.items.actives.oil_painting")
+    include("scripts_toybox.items.actives.white_daisy")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

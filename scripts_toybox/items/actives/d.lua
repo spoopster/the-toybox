@@ -1,5 +1,3 @@
-
-
 local TIME_MIN = -3
 local TIME_MAX = 3
 

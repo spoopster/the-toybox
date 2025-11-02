@@ -1350,6 +1350,21 @@ enums.FUNCTIONS.AddItem({
         "{{Poison}} Tears gain an aura that poisons enemies",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_WHITE_DAISY,
+    Name = "White Daisy",
+    Description = {
+        "!!! Can only be used 6 times per floor",
+        "When used:",
+        "{{Blank}} \1 +2 Tears",
+        "{{Blank}} \1 +2.5 Damage",
+        "{{Blank}} \1 +1.5 Range",
+        "{{Blank}} \1 +4 Luck",
+        "While held:",
+        "{{Blank}} \2 -1 Damage",
+        "{{Blank}} \2 -2 Luck",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 
