@@ -206,16 +206,6 @@
         <Item Name="Black Soul"/>
     </Pool>
 
-    <Pool Name="redChest">
-        <Item Name="Evil Rock"/>
-        <Item Name="Painkillers"/>
-        <Item Name="Clown PHD"/>
-        <Item Name="Cursed Eulogy"/>
-        <Item Name="Bob's Thesis"/>
-        <Item Name="Effigy"/>
-        <Item Name="Red Clover"/>
-    </Pool>
-
     <Pool Name="secret">
         <Item Name="Fatal Signal"/>
         <Item Name="Steel Soul"/>
@@ -246,8 +236,48 @@
         <Item Name="Mom's Photobook"/>
     </Pool>
 
+    <Pool Name="redChest">
+        <Item Name="Evil Rock"/>
+        <Item Name="Painkillers"/>
+        <Item Name="Clown PHD"/>
+        <Item Name="Cursed Eulogy"/>
+        <Item Name="Bob's Thesis"/>
+        <Item Name="Effigy"/>
+        <Item Name="Red Clover"/>
+    </Pool>
+
+    <Pool Name="goldenChest">
+        <Item Name="Alphabet Box" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Lucky Pebbles"/>
+        <Item Name="Baby Shoes"/>
+        <Item Name="Coffee Cup"/>
+        <Item Name="Plasma Globe"/>
+        <Item Name="A Spoonful of Mayonnaise"/>
+        <Item Name="D0"/>
+    </Pool>
+
+    <Pool Name="woodenChest">
+        <Item Name="Alphabet Box"/>
+        <Item Name="Effigy"/>
+    </Pool>
+
+    <Pool Name="oldChest">
+        <Item Name="Dad's Slipper"/>
+        <Item Name="Mom's Photobook"/>
+        <Item Name="Dad's Prescription"/>
+    </Pool>
+
+    <Pool Name="momsChest">
+        <Item Name="Mom's Photobook"/>
+    </Pool>
+
     <Pool Name="demonBeggar">
         <Item Name="Pliers"/>
+        <Item Name="Black Soul"/>
+        <Item Name="Missing Page 3"/>
+        <Item Name="Horse Tranquilizer"/>
+        <Item Name="Blood Ritual"/>
+        <Item Name="Painkillers"/>
     </Pool>
 
     <Pool Name="bombBum">
@@ -257,6 +287,12 @@
 
     <Pool Name="batteryBum">
         <Item Name="Solar Panel"/>
+        <Item Name="Plasma Globe"/>
+    </Pool>
+
+    <Pool Name="rottenBeggar">
+        <Item Name="Bob's Heart"/>
+        <Item Name="Bob's Thesis"/>
     </Pool>
 
     <Pool Name="craneGame">
@@ -267,6 +303,27 @@
         <Item Name="Drill"/>
         <Item Name="Good Job"/>
         <Item Name="Curious Carrot"/>
+        <Item Name="4 4"/>
+        <Item Name="Pliers"/>
+        <Item Name="Goat Milk"/>
+        <Item Name="Coconut Oil"/>
+        <Item Name="Tech IX"/>
+        <Item Name="Sunk Costs"/>
+        <Item Name="Evil Rock"/>
+        <Item Name="Bone Boy"/>
+        <Item Name="Steel Soul"/>
+        <Item Name="Clown PHD"/>
+        <Item Name="Alphabet Box"/>
+        <Item Name="Love Letter"/>
+        <Item Name="Quake Bombs"/>
+        <Item Name="Hostile Takeover"/>
+        <Item Name="Asteroid Belt"/>
+        <Item Name="Chocolate Bar"/>
+        <Item Name="Food Stamps"/>
+        <Item Name="Golden Calf"/>
+        <Item Name="Beer Can"/>
+        <Item Name="Butterfly Effect"/>
+        <Item Name="Langton Loop"/>
     </Pool>
 
     <Pool Name="ultraSecret">

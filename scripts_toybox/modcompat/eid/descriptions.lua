@@ -1355,7 +1355,7 @@ enums.FUNCTIONS.AddItem({
     Name = "White Daisy",
     Description = {
         "!!! Can only be used 6 times per floor",
-        "When used:",
+        "On use, grants for the room:",
         "{{Blank}} \1 +2 Tears",
         "{{Blank}} \1 +2.5 Damage",
         "{{Blank}} \1 +1.5 Range",
