@@ -38,6 +38,7 @@
         <Item Name="Reading Glasses"/>
         <Item Name="Langton Loop"/>
         <Item Name="Curious Carrot"/>
+        <Item Name="Garlic Head"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -76,6 +77,7 @@
         <Item Name="Reading Glasses"/>
         <Item Name="Langton Loop"/>
         <Item Name="Curious Carrot"/>
+        <Item Name="Garlic Head"/>
     </Pool>
 
     <Pool Name="boss">
