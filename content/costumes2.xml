@@ -5,6 +5,7 @@
     <costume id="43" anm2path="costume_ascension.anm2" type="active" isFlying="true"/>
     <costume id="47" anm2path="costume_clown_phd.anm2" type="passive"/>
     <costume id="50" anm2path="costume_love_letter.anm2" type="passive" hasSkinAlt="true"/>
+    <costume id="57" anm2path="costume_cursed_eulogy.anm2" type="passive"/>
     <costume id="61" anm2path="costume_bobs_thesis.anm2" type="passive" hasSkinAlt="true"/>
 
     <costume id="87" anm2path="costume_gambling_addiction.anm2" type="passive" priority="1"/>

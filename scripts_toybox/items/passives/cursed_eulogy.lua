@@ -11,6 +11,15 @@ local POOL_PICKER = WeightedOutcomePicker()
 POOL_PICKER:AddOutcomeWeight(ItemPoolType.POOL_CURSE, 5)
 POOL_PICKER:AddOutcomeWeight(ItemPoolType.POOL_RED_CHEST, 1)
 
+---@param tear EntityTear
+---@param pl EntityPlayer
+local function replaceTearVariant(_, tear, pl)
+    if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_CURSED_EULOGY) and tear.Variant==TearVariant.BLUE) then
+        tear:ChangeVariant(TearVariant.BLOOD)
+    end
+end
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, replaceTearVariant)
+
 local function tryReplacePool(_, pool, dec, seed)
     if(CANCEL_CHECK_EFFECT) then return end
 

@@ -72,9 +72,6 @@ local function spawnShadow(_, player, _, flags, source)
     player = player:ToPlayer()
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_BLACK_SOUL)) then return end
 
-    if(source.Type==6) then return end
-    if(flags & (DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
-
     local numShadows = 0
     local plHash = GetPtrHash(player)
     for _, otherFam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
