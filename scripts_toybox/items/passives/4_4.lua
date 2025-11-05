@@ -66,7 +66,7 @@ local function auraUpdate(_, effect)
     end
 
     local time = ((Game():GetFrameCount()//5)/100)%1+0.1
-    print(time)
+    --print(time)
 
     local col = Color(1,1,1,alpha)
     col:SetColorize(time,0,0,0)

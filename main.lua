@@ -860,3 +860,46 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, prerendercustomcharactermenu)
 --]]
 
+--[[] ]
+function ToyboxMod:getRealFamiliar(t,v,s)
+    local hash = (t<<16) | (v<<8) | s
+
+    local rt = (hash>>16) & 255
+    local rv = (hash>>8) & 255
+    local rs = hash & 255
+
+    local famName = nil
+    for key, val in pairs(FamiliarVariant) do
+        if(val==rv) then
+            famName = key
+            break
+        end
+    end
+
+    print(tostring(t).."."..tostring(v).."."..tostring(s), "->", tostring(rt).."."..tostring(rv).."."..tostring(rs), famName)
+end
+
+function ToyboxMod:getBits(t,v,s)
+    t = t<<16
+    v = v<<8
+
+    local st = ""
+    local sv = ""
+    local ss = ""
+    for i=23,0,-1 do
+        st = st..((t & (1<<i) == 0) and "0" or "1")
+        sv = sv..((v & (1<<i) == 0) and "0" or "1")
+        ss = ss..((s & (1<<i) == 0) and "0" or "1")
+
+        if(i==16 or i==8) then
+            st = st.." "
+            sv = sv.." "
+            ss = ss.." "
+        end
+    end
+
+    print("T", st)
+    print("V", sv)
+    print("S", ss)
+end
+--]]

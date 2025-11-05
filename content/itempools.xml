@@ -39,6 +39,7 @@
         <Item Name="Langton Loop"/>
         <Item Name="Curious Carrot"/>
         <Item Name="Garlic Head"/>
+        <Item Name="White Daisy"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -78,6 +79,7 @@
         <Item Name="Langton Loop"/>
         <Item Name="Curious Carrot"/>
         <Item Name="Garlic Head"/>
+        <Item Name="White Daisy"/>
     </Pool>
 
     <Pool Name="boss">
@@ -219,6 +221,7 @@
         <Item Name="Butterfly Effect"/>
         <Item Name="Big Red Button"/>
         <Item Name="Langton Loop"/>
+        <Item Name="White Daisy"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -231,6 +234,7 @@
         <Item Name="Butterfly Effect"/>
         <Item Name="Big Red Button"/>
         <Item Name="Langton Loop"/>
+        <Item Name="White Daisy"/>
     </Pool>
 
     <Pool Name="library">

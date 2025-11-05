@@ -2,7 +2,7 @@
 
 local function replaceDescriptionsOnInit(_, pl)
     local atlasDescriptions = ToyboxMod:isAnyPlayerAtlasA()
-    print(atlasDescriptions)
+    --print(atlasDescriptions)
 
     local conf = Isaac.GetItemConfig()
     for _, mantleData in pairs(ToyboxMod.MANTLE_DATA) do

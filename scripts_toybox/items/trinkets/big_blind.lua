@@ -26,7 +26,7 @@ local function addToCounter(_, ent, amount, _, _, _)
             local data = ToyboxMod:getEntityDataTable(pl)
             data.BIG_BLIND_COUNTER = (data.BIG_BLIND_COUNTER or 0)+amount
 
-            print(data.BIG_BLIND_COUNTER)
+            --print(data.BIG_BLIND_COUNTER)
 
             local req = ToyboxMod:getBigBlindDamageRequirement(pl)/pl:GetTrinketMultiplier(ToyboxMod.TRINKET_BIG_BLIND)
             while(data.BIG_BLIND_COUNTER>=req) do

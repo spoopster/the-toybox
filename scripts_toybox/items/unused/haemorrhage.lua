@@ -62,7 +62,7 @@ local function hemorrhageEffectCheck(_, pl)
 
     data.HEMORRHAGE_TEARS_HELD = (data.HEMORRHAGE_TEARS_HELD or 0)+1
     if(data.HEMORRHAGE_TEARS_HELD>=freq) then
-        print("Yeah")
+        --print("Yeah")
 
         data.HEMORRHAGE_TEARS_HELD = 0
         local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_HEMORRHAGE)
