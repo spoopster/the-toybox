@@ -70,6 +70,8 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, removeA
 
 ---@param pl EntityPlayer
 local function refreshWhiteDaisy(_, pl)
+    if(pl.FrameCount==0) then return end
+
     for _, slot in pairs(ActiveSlot) do
         local data = pl:GetActiveItemDesc(slot)
         if(data.Item==ToyboxMod.COLLECTIBLE_WHITE_DAISY) then

@@ -26,7 +26,8 @@ local function useMantle(_, _, player, _)
             end
         end
 
-        ToyboxMod.HiddenItemManager:AddForRoom(player, finalItem, nil, 1, "TOYBOX")
+        ToyboxMod:addItemForRoom(player, finalItem, 1)
+        --ToyboxMod.HiddenItemManager:AddForRoom(player, finalItem, nil, 1, "TOYBOX")
         player:AnimateCollectible(finalItem)
         sfx:Play(SoundEffect.SOUND_POWERUP1)
     end

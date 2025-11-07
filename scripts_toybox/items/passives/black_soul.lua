@@ -97,6 +97,8 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, spawnShadow, EntityT
 
 ---@param pl EntityPlayer
 local function removeShadows(_, pl)
+    if(pl.FrameCount==0) then return end
+
     local plHash = GetPtrHash(pl)
     for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
         fam = fam:ToFamiliar() ---@cast fam EntityFamiliar

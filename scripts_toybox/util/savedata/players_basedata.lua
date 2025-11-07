@@ -61,7 +61,10 @@ local BASEDATA = {
         LUCK = 0,
     },
     GOOD_JOB_CLEARS = 0,
-    CUSTOM_TEARFLAGS = {},
+
+    TEMPORARY_ITEMS = {},
+    TEMPORARY_ITEMS_ROOM = {},
+    TEMPORARY_ITEMS_LEVEL = {},
     
     --! STUPID CONSUMABLE SHIT
     DYSLEXIA_HORSE = false,

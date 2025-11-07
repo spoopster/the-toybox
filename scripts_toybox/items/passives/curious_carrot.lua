@@ -19,6 +19,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param pl EntityPlayer
 local function revealRooms(_, pl)
+    if(pl.FrameCount==0) then return end
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_CURIOUS_CARROT)) then return end
 
     local numToReveal = ROOMS_REVEALED*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_CURIOUS_CARROT)

@@ -32,5 +32,7 @@
 	<achievement name="Jonas' Lock" text="" gfx="ach_jonas_lock.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Pill Diversity!" text="" gfx="ach_pills.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Drill" text="" gfx="ach_drill.png" gfxback="achpaper_jonas.png" />
+
+	<achievement name="Misprint" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	
 </achievements>

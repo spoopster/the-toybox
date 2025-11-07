@@ -61,7 +61,8 @@ include("scripts_toybox.enemies.doodle.logic")
     include("scripts_toybox.bosses.red megalodon.red_megalodon_logic")
 include("scripts_toybox.bosses.stageapi")
 
-
+-- TEMPORARY ITEMS
+include("scripts_toybox.misc.temporary_items")
 -- PILL POOL LIBRARY
 include("scripts_toybox.misc.pill_pool_library")
 -- CUSTOM CHAMPIONS
@@ -254,6 +255,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.trinkets.makeup_kit")
     include("scripts_toybox.items.trinkets.yellow_belt")
     include("scripts_toybox.items.trinkets.zap_cap")
+    include("scripts_toybox.items.trinkets.misprint")
 --UNUSED
     --include("scripts_toybox.items.actives.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")

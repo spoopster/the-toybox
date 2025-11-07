@@ -1092,6 +1092,13 @@
     gfx="zap_cap.png"
     cache=""
 />
+<trinket id="18" name="Misprint"
+    description="s upTriple sh"
+    gfx="misprint.png"
+    cache=""
+
+    achievement="Misprint"
+/>
 
 <null id="1" name="toybox null save"
     persistent="true"

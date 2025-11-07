@@ -1,8 +1,8 @@
 local sfx = SFXManager()
 
 local BASE_DAMAGE = 40
-local BASE_DURATION = 40
-local BASE_ANGLE = 40
+local BASE_DURATION = 45
+local BASE_ANGLE = 35
 
 local BURN_RADIUS = 40*1.5
 local BURN_DURATION = 30*3

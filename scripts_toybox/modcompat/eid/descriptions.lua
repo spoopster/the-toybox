@@ -1811,6 +1811,31 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_MISPRINT,
+    Name = "Misprint",
+    Description = {
+        "{{Collectible}} Picking up an item grants 1 copy of that item for 60 seconds",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"1 copy", "2 copies"},
+                {"60 seconds", "90 seconds"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"1 copy", "3 copies"},
+                {"60 seconds", "120 seconds"},
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.PRISMSTONE,
