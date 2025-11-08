@@ -120,11 +120,11 @@
     maxcharges="3"
     devilprice="1"
 />
-<passive id="15" name="Tech IX"
-    description="Failed prototype"
-    gfx="tech_ix.png"
+<passive id="15" name="Laser Brain"
+    description="Laser aura"
+    gfx="laser_brain.png"
     quality="2"
-    tags="offensive summonable tech"
+    tags="offensive summonable"
     cache=""
 />
 <passive id="16" name="Dried Placenta"

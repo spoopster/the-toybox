@@ -113,15 +113,15 @@ enums.FUNCTIONS.AddItem({
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_TECH_IX,
-    Name = "Tech IX",
+    Name = "Laser Brain",
     Description = {
-        "While firing, you get a {{Collectible395}} Tech X ring around you",
-        "This ring grows in size as you fire, and slowly shrinks while not firing",
+        "While firing, you get a green laser ring around you",
+        "The ring slowly grows in size and damage as you fire, and dissipates when you stop firing",
     },
     StackModifiers = {
         {
             ToModify = {
-                "Multiple copies have no additional effect",
+                "+50% laser damage",
             }
         }
     }

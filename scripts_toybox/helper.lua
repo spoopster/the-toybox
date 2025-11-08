@@ -836,8 +836,8 @@ function ToyboxMod:isHoldingShootingInput(player)
     return false
 end
 
-function ToyboxMod:isPlayerShooting(player)
-    return (player:GetShootingInput():LengthSquared()>0.001) or ToyboxMod:isHoldingShootingInput(player)
+function ToyboxMod:isPlayerShooting(p)
+    return p:GetFireDirection()~=Direction.NO_DIRECTION or p:GetShootingInput():Length()>0.01 or ToyboxMod:isHoldingShootingInput(p)
 end
 
 ---@param bomb EntityBomb
