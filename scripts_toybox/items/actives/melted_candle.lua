@@ -1,15 +1,34 @@
-local FIRE_DMG = 5
+local FIRE_DMG = 20
 
 ---@param player EntityPlayer
 local function useMeltedCandle(_, _, rng, player, flags)
-    local dir = (player:GetShootingJoystick():Length()<0.1 and player.Velocity or player:GetShootingJoystick())
-    local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.FLAME_BREATH_HELPER, 0, player.Position, dir, player):ToEffect()
-    helper.CollisionDamage = FIRE_DMG
+    if(player:GetItemState()==ToyboxMod.COLLECTIBLE_MELTED_CANDLE) then
+        player:SetItemState(0)
+        player:AnimateCollectible(ToyboxMod.COLLECTIBLE_MELTED_CANDLE, "HideItem")
+    else
+        player:SetItemState(ToyboxMod.COLLECTIBLE_MELTED_CANDLE)
+        player:AnimateCollectible(ToyboxMod.COLLECTIBLE_MELTED_CANDLE, "LiftItem")
+    end
 
     return {
-        Discharge = true,
+        Discharge = false,
         Remove = false,
-        ShowAnim = true,
+        ShowAnim = false,
     }
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useMeltedCandle, ToyboxMod.COLLECTIBLE_MELTED_CANDLE)
+
+---@param player EntityPlayer
+local function tryUseHeldCandle(_, player)
+    if(player:GetItemState()~=ToyboxMod.COLLECTIBLE_MELTED_CANDLE) then return end
+
+    if(player:GetAimDirection():Length()>0.1) then
+        local dir = (player:GetAimDirection():Length()<0.1 and player.Velocity or player:GetAimDirection())
+        local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.FLAME_BREATH_HELPER, 0, player.Position, dir, player):ToEffect()
+        helper.CollisionDamage = FIRE_DMG
+
+        player:SetItemState(0)
+        player:AnimateCollectible(ToyboxMod.COLLECTIBLE_MELTED_CANDLE, "HideItem")
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, tryUseHeldCandle)

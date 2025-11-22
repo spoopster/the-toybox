@@ -10,7 +10,7 @@ local BREATH_WAVE_FREQ = 10
 
 local BREATH_FIRE_SUB = 200
 local BREATH_FIRE_TIMEOUT = 20
-local BREATH_FIRE_DMG_MOD = 1.5
+local BREATH_FIRE_DMG_MOD = 3
 local BREATH_FIRE_BASE_SCALE = 0.5
 
 local BREATH_FIRE_FAM_MOD = 1
@@ -62,7 +62,7 @@ local function fireBreathHelperUpdate(_, effect)
         local fam = ent:ToFamiliar()
         dir = (fam.ShootDirection==-1 and (fam.MoveDirection==-1 and dir or dirToVector(fam.MoveDirection)) or dirToVector(fam.ShootDirection))
     elseif(ent:ToPlayer()) then
-        dir = (pl:GetShootingJoystick():Length()<0.1 and (pl.Velocity:Length()<pl.MoveSpeed and Vector.Zero or pl.Velocity) or pl:GetShootingJoystick()):Normalized()
+        dir = (pl:GetAimDirection():Length()<0.1 and (pl.Velocity:Length()<pl.MoveSpeed and Vector.Zero or pl.Velocity) or pl:GetAimDirection()):Normalized()
     end
 
     local currentDir = (ToyboxMod:getEntityData(effect, "PEPPERX_LAST_DIR") or Vector(1,0)):Normalized()
