@@ -17,14 +17,8 @@ local function postPlayerNewRoom(_, player)
     if(not room:IsFirstVisit()) then return end
     if(nonSpecialRooms[room:GetType()]==0) then return end
 
-    local pos = player.Position
-    local num = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_DADS_PRESCRIPTION)
-    if(num%2~=0) then
-        local pill = Isaac.Spawn(5,70,0,room:FindFreePickupSpawnPosition(pos,40),Vector.Zero,nil):ToPickup()
-    end
-    for _=1, math.floor(num/2) do
-        local pill = Isaac.Spawn(5,70,0,room:FindFreePickupSpawnPosition(pos,40),Vector.Zero,nil):ToPickup()
-        pill:Morph(5,70,pill.SubType|PillColor.PILL_GIANT_FLAG)
+    for _=1, player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_DADS_PRESCRIPTION) do
+        local pill = Isaac.Spawn(5,70,0,room:FindFreePickupSpawnPosition(player.Position,40),Vector.Zero,nil):ToPickup()
     end
     player:AnimateHappy()
 end

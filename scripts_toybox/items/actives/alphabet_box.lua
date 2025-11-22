@@ -13,7 +13,7 @@ local function gameLoaded(_, isCont)
     local conf = Isaac.GetItemConfig()
     for i=1, conf:GetCollectibles().Size-1 do
         local item = conf:GetCollectible(i)
-        if(item and not item.Hidden) then
+        if(item and item:IsAvailable() and not item.Hidden) then
             local name = item.Name
             local locName = Isaac.GetString("Items", item.Name)
             if(locName~="StringTable::InvalidKey") then name=locName end

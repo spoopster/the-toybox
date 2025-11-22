@@ -78,6 +78,7 @@ include("scripts_toybox.misc.tinted_rooms.minimap_logic")
 
 -- ENTITIES
 include("scripts_toybox.misc.entities.meteor")
+include("scripts_toybox.misc.entities.flame_breath_helper")
 
 -- MILCOM
 include("scripts_toybox.players.milcom.a.milcom")
@@ -142,7 +143,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.painkillers")
     include("scripts_toybox.items.passives.laser_brain")
     --include("scripts_toybox.items.passives.fatal_signal")
-    --include("scripts_toybox.items.passives.pepper_x")
+    include("scripts_toybox.items.passives.pepper_x")
     include("scripts_toybox.items.passives.meteor_shower")
     include("scripts_toybox.items.passives.blessed_ring")
     include("scripts_toybox.items.passives.eyestrain")
@@ -236,6 +237,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.actives.big_red_button")
     include("scripts_toybox.items.actives.oil_painting")
     include("scripts_toybox.items.actives.white_daisy")
+    include("scripts_toybox.items.actives.melted_candle")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

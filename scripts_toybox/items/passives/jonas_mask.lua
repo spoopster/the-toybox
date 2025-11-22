@@ -32,7 +32,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE
 
 --#region FLY FAMILIAR
 
-local FLY_COLL_DAMAGE = 2.5
+local FLY_COLL_DAMAGE = 3
 
 local SCREAM_TRYFREQ = 15
 local SCREAM_CHANCE = 0.2

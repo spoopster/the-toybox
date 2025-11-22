@@ -141,7 +141,7 @@
 
 <!-- OBJECTS -->
 	<card id="200" name="Mantle - Rock"
-        description="Useless"
+        description="..."
         hud="Mantle - Rock"
         type="object"
         pickup="2837"
@@ -149,7 +149,7 @@
         achievement="Mantles"
     />
 	<card id="201" name="Mantle - Poop"
-        description="More poops, better poops"
+        description="..."
         hud="Mantle - Poop"
         type="object"
         pickup="2838"
@@ -157,7 +157,7 @@
         achievement="Mantles"
     />
     <card id="202" name="Mantle - Bone"
-        description="Bones on kill, panic = sorrow"
+        description="..."
         hud="Mantle - Bone"
         type="object"
         pickup="2839"
@@ -165,7 +165,7 @@
         achievement="Mantles"
     />
     <card id="203" name="Mantle - Dark"
-        description="DMG up + mass room damage, dark aura"
+        description="..."
         hud="Mantle - Dark"
         type="object"
         pickup="2840"
@@ -173,7 +173,7 @@
         achievement="Mantles"
     />
     <card id="204" name="Mantle - Holy"
-        description="Range up + sacred tears, flight + holy aura"
+        description="..."
         hud="Mantle - Holy"
         type="object"
         pickup="2841"
@@ -181,7 +181,7 @@
         achievement="Mantles"
     />
     <card id="205" name="Mantle - Salt"
-        description="Tears up, on-command salt chariot"
+        description="..."
         hud="Mantle - Salt"
         type="object"
         pickup="2842"
@@ -189,7 +189,7 @@
         achievement="Mantles"
     />
     <card id="206" name="Mantle - Glass"
-        description="DMG + shotspeed up + brittle protection"
+        description="..."
         hud="Mantle - Glass"
         type="object"
         pickup="2843"
@@ -197,7 +197,7 @@
         achievement="Mantles"
     />
     <card id="207" name="Mantle - Metal"
-        description="Speed down + defense up"
+        description="..."
         hud="Mantle - Metal"
         type="object"
         pickup="2844"
@@ -205,7 +205,7 @@
         achievement="Mantles"
     />
     <card id="208" name="Mantle - Gold"
-        description="Luck up + gold panic, penny tears"
+        description="..."
         hud="Mantle - Gold"
         type="object"
         pickup="2845"

@@ -10,7 +10,7 @@ local ORBIT_INIT_DURATION = 10
 local ORBIT_DIST = Vector(25,25)
 local TEAR_SPEED = {3.5,5}
 local TEAR_OFFSET = {-8,8}
-local TEAR_DMG = 1
+local TEAR_DMG = 3
 
 ---@param tear EntityTear
 local function getAsteroidPos(tear)

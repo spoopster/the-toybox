@@ -8,8 +8,8 @@ enums.FUNCTIONS.AddItem({
     Name = "Coconut Oil",
     Description = {
         "\1 +0.5 Tears",
-        "\1 -0.25 Speed",
-        "Your friction is increased, effectively increasing your movespeed",
+        "\2 -0.25 Speed",
+        "Your friction is decreased, effectively increasing your movespeed",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -42,7 +42,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_GOAT_MILK,
     Name = "Goat Milk",
     Description = {
-        "\1 +0.5 tears",
+        "\1 +0.5 Tears",
         "Everytime you fire, your fire delay is randomized",
     },
     StackModifiers = {
@@ -138,17 +138,10 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_PEPPER_X,
     Name = "Pepper X",
     Description = {
-        "9% chance to shoot a meteor tear that spawns fire upon contact",
-        "{{Luck}} 50% chance at 13 luck",
-        "The fire deals contact damage and blocks shots, disappears after 5 seconds",
+        "5% chance to shoot out a spectral stream of flames that block enemy shots and deal contact damage",
+        "{{Luck}} 50% chance at 20 luck",
+        "The stream of flames lasts for 1 second and can be controlled by shooting/movement inputs",
     },
-    StackModifiers = {
-        {
-            ToModify = {
-                "Fires an additional meteor for every item stack",
-            }
-        }
-    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_METEOR_SHOWER,
@@ -234,13 +227,6 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{Pill}} Entering a special room spawns a pill",
     },
-    StackModifiers = {
-        {
-            ToModify = {
-                "+1 pill for every item stack, every 2 pills spawned are instead merged into a single horse pill",
-            }
-        }
-    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_HORSE_TRANQUILIZER,
@@ -538,14 +524,14 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_SALTPETER,
     Name = "Saltpeter",
     Description = {
-        "When enemies take damage, nearby enemies are hurt for 50% of that damage",
-        "Tears have a 5% chance to explode upon hitting an enemy",
+        "\1 +1.5 Range",
+        "When enemies take damage, nearby enemies take 50% of that damage",
+        "The radius of this effect scales with your range"
     },
     StackModifiers = {
         {
             ToModify = {
                 "+50% AOE damage",
-                "+5% chance to explode",
             },
         },
     }
@@ -755,9 +741,9 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_PEZ_DISPENSER,
     Name = "Candy Dispenser",
     Description = {
-        "{{Card}} Can store up to 2 consumables of any type",
+        "{{Card}} Can store up to 3 consumables of any type",
         "Swap between stored consumables by pressing the Drop key ({{ButtonRT}})",
-        "When activated, puts the frontmost stored consumable into your consumable slot",
+        "When activated, puts the selected stored consumable into your consumable slot",
         
         --"Hold the Map key ({{ButtonSelect}}) to see the frontmost stored consumable's name"
     },
@@ -854,12 +840,12 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_BARBED_WIRE,
     Name = "Barbed Wire",
     Description = {
-        "When a projectile gets near you, the enemy who fired it takes 1.5 damage",
+        "When a projectile gets near you, the enemy who fired it takes 5 damage",
     },
     StackModifiers = {
         {
             ToModify = {
-                "+1.5 damage dealt"
+                "+5 damage dealt"
             }
         }
     },
@@ -1363,6 +1349,14 @@ enums.FUNCTIONS.AddItem({
         "While held:",
         "{{Blank}} \2 -1 Damage",
         "{{Blank}} \2 -2 Luck",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MELTED_CANDLE,
+    Name = "Melted Candle",
+    Description = {
+        "Start shooting out a stream of flames that block enemy shots and deal contact damage",
+        "The stream lasts for 1 second and can be controlled by shooting/movement inputs",
     },
 })
 

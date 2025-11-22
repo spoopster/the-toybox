@@ -2,7 +2,7 @@
 
 local BASE_BEAM_COOLDOWN = 7*30
 local BEAMS_NUM = 2
-local BEAM_DAMAGE = 7
+local BEAM_DAMAGE = 10
 
 local function postUpdate(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_BLESSED_RING)) then return end

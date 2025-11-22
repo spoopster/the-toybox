@@ -207,13 +207,11 @@
     hidden="true"
 />
 <passive id="25" name="Pepper X"
-    description="Infinite hot"
+    description="Flame breath"
     gfx="pepper_x.png"
     quality="3"
-    tags="summonable offensive noeden"
+    tags="summonable offensive"
     cache=""
-
-    hidden="true"
 />
 <active id="26" name="D0"
     description="Reroll your... uhh..."
@@ -304,7 +302,7 @@
     gfx="saltpeter.png"
     quality="3"
     tags="offensive"
-    cache=""
+    cache="range"
 
     achievement="Saltpeter"
 />
@@ -466,7 +464,7 @@
 <passive id="52" name="Atheism"
     description="I don't want to believe"
     gfx="atheism.png"
-    quality="4"
+    quality="3"
     tags="offensive"
     cache=""
 />
@@ -563,7 +561,7 @@
 <passive id="64" name="Asteroid Belt"
     description="World revolving around you"
     gfx="asteroid_belt.png"
-    quality="2"
+    quality="1"
     tags="offensive summonable"
     
     cache=""
@@ -852,7 +850,7 @@
 />
 <passive id="98" name="Reading Glasses"
     description="Pill identifier"
-    gfx="no_sprite.png"
+    gfx="reading_glasses.png"
     quality="2"
     tags="nolostbr summonable"
     cache=""
@@ -889,6 +887,17 @@
 
     maxcharges="1"
     activegfx="activegfx/white_daisy.png"
+/>
+<active id="103" name="Melted Candle"
+    description="Reusable flame breath"
+    gfx="melted_candle.png"
+    quality="2"
+    tags="offensive"
+
+    cache=""
+
+    maxcharges="180"
+    chargetype="timed"
 />
 
 <passive id="109" name="RETROFALL"

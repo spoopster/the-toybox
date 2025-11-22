@@ -158,6 +158,7 @@ ToyboxMod.COLLECTIBLE_LANGTON_LOOP = Isaac.GetItemIdByName("Langton Loop")
 ToyboxMod.COLLECTIBLE_CURIOUS_CARROT = Isaac.GetItemIdByName("Curious Carrot")
 ToyboxMod.COLLECTIBLE_GARLIC = Isaac.GetItemIdByName("Garlic Head")
 ToyboxMod.COLLECTIBLE_WHITE_DAISY = Isaac.GetItemIdByName("White Daisy")
+ToyboxMod.COLLECTIBLE_MELTED_CANDLE = Isaac.GetItemIdByName("Melted Candle")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -296,6 +297,8 @@ ToyboxMod.EFFECT_VARIANT = {
     JUICE_TRAIL = Isaac.GetEntityVariantByName("Good Juice Trail"),
     METEOR = Isaac.GetEntityVariantByName("Meteor"),
     SMOKE_TRAIL = Isaac.GetEntityVariantByName("Smoke Trail"),
+
+    FLAME_BREATH_HELPER = Isaac.GetEntityVariantByName("Flame Breath Helper"),
 
     ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair")
 }

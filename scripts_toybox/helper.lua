@@ -136,6 +136,7 @@ end
 
 ---@return EntityPlayer?
 function ToyboxMod:getPlayerFromEnt(ent)
+    if(not ent) then return end
     if(ent:ToPlayer()) then return ent:ToPlayer() end
 
     local sp = ent.SpawnerEntity

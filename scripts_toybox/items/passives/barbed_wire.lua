@@ -2,7 +2,7 @@
 local sfx = SFXManager()
 
 local HALO_SIZE = 50
-local RETALIATE_DMG = 1.5
+local RETALIATE_DMG = 5
 
 ---@param pl EntityPlayer
 local function updateBarbedHalo(_, pl)
