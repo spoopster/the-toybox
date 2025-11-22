@@ -248,28 +248,17 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_SILK_BAG,
     Name = "Silk Bag",
     Description = {
-        enums.CONSTANTS.Icon_CardLaurel .. " Spawns 1 Laurel every 6 rooms",
-        "{{Blank}} Laurels give 5 seconds of invincibility when used",
+        "{{SoulHeart}} +1 Soul Heart",
+        "Doubles invincibility frames",
+        "Converts invincibility frames into a protective shield"
     },
-    Modifiers = {
+    StackModifiers = {
         {
-            Condition = function(descObj)
-                return (ToyboxMod:getPersistentData("HAS_SEEN_YANNY")==1)
-            end,
             ToModify = {
-                enums.CONSTANTS.Icon_CardYanny .. " 0.1% chance to spawn a Yanny instead of a Laurel",
-                "{{Blank}} Yannies deal 30 damage to all enemies in the room when used",
+                "Further increases invincibility frames",
             }
-        },
-    },
-    BFFSModifiers = {
-        {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            ToModify = {
-                {"every 6 rooms", "every 4 rooms"}
-            },
-        },
-    },
+        }
+    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_ROCK_CANDY,

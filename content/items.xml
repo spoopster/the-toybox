@@ -143,14 +143,14 @@
     tags="summonable nolostbr"
     cache=""
 />
-<familiar id="18" name="Silk Bag"
-    description="Gives invincibility"
+<passive id="18" name="Silk Bag"
+    description="Better invincibility"
     gfx="silk_bag.png"
     quality="3"
-    tags="offensive noeden"
+    tags="offensive"
     cache=""
 
-    hidden="true"
+    soulhearts="2"
 />
 <active id="19" name="Brainfreeze"
     description="Chill aura"
