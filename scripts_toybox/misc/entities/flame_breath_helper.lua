@@ -10,7 +10,8 @@ local BREATH_WAVE_FREQ = 10
 
 local BREATH_FIRE_SUB = 200
 local BREATH_FIRE_TIMEOUT = 20
-local BREATH_FIRE_DMG = 5
+local BREATH_FIRE_DMG_MOD = 1.5
+local BREATH_FIRE_BASE_SCALE = 0.5
 
 local BREATH_FIRE_FAM_MOD = 1
 
@@ -75,11 +76,13 @@ local function fireBreathHelperUpdate(_, effect)
     local shootDir = currentDir:Rotated(angleRotation):Resized(BREATH_VEL)
 
     local isFamiliar = (ent:ToFamiliar() and true or false)
+    local dmg = (effect.CollisionDamage==0 and (isFamiliar and BREATH_FIRE_FAM_MOD or 1)*BREATH_FIRE_DMG_MOD*pl.Damage or effect.CollisionDamage)
+
     local fire = Isaac.Spawn(1000,EffectVariant.RED_CANDLE_FLAME,BREATH_FIRE_SUB,effect.Position,shootDir,pl):ToEffect()
     fire:SetTimeout(BREATH_FIRE_TIMEOUT)
-    fire.CollisionDamage = 2*BREATH_FIRE_DMG*(isFamiliar and BREATH_FIRE_FAM_MOD or 1)
-    fire.Scale = 0.5*(isFamiliar and BREATH_FIRE_FAM_MOD or 1)
-    ToyboxMod:setEntityData(fire, "PEPPERX_FIRE_FAMILIAR", isFamiliar)
+    fire.CollisionDamage = dmg/BREATH_FIRE_BASE_SCALE
+    fire.Scale = BREATH_FIRE_BASE_SCALE*(isFamiliar and BREATH_FIRE_FAM_MOD or 1)
+    ToyboxMod:setEntityData(fire, "PEPPERX_FIRE_DMG", dmg)
     fire.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
 
     fire:Update()
@@ -98,12 +101,12 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fireBreathHelperUpdate
 local function breathFireUpdate(_, effect)
     if(effect.SubType~=BREATH_FIRE_SUB) then return end
 
-    local isFamiliar = ToyboxMod:getEntityData(effect, "PEPPERX_FIRE_FAMILIAR") or false
+    local dmg = ToyboxMod:getEntityData(effect, "PEPPERX_FIRE_DMG") or (3.5*BREATH_FIRE_DMG_MOD)
 
     local frac = effect.FrameCount/BREATH_FIRE_TIMEOUT
     effect.Scale = (0.5+frac)*(isFamiliar and BREATH_FIRE_FAM_MOD or 1)
     effect.Color = Color(0.8,1.1,0.6,1-frac*0.4,0,0.1,0,0.4+0.3*frac,1-0.8*frac,0,1-frac)
 
-    effect.CollisionDamage = BREATH_FIRE_DMG/effect.Scale*(isFamiliar and BREATH_FIRE_FAM_MOD or 1)
+    effect.CollisionDamage = dmg/effect.Scale
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, breathFireUpdate, EffectVariant.RED_CANDLE_FLAME)
