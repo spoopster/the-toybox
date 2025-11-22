@@ -147,7 +147,7 @@
     description="Better invincibility"
     gfx="silk_bag.png"
     quality="3"
-    tags="offensive"
+    tags="nolostbr"
     cache=""
 
     soulhearts="2"
