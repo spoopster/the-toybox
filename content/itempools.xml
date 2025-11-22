@@ -128,6 +128,7 @@
         <Item Name="Good Job"/>
         <Item Name="Oil Painting"/>
         <Item Name="Reading Glasses"/>
+        <Item Name="Melted Candle"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -145,6 +146,7 @@
         <Item Name="Good Job"/>
         <Item Name="Oil Painting"/>
         <Item Name="Reading Glasses"/>
+        <Item Name="Melted Candle"/>
     </Pool>
 
     <Pool Name="devil">
