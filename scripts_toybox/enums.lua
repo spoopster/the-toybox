@@ -364,6 +364,7 @@ ToyboxMod.SOUND_EFFECT = {
     WATER_LOOP = Isaac.GetSoundIdByName("(TOYBOX) Water Loop (Copy)"),
     HYPNOSIS = Isaac.GetSoundIdByName("(TOYBOX) Hypnosis"),
     HAZE = Isaac.GetSoundIdByName("(TOYBOX) Haze"),
+    DRILL = Isaac.GetSoundIdByName("(TOYBOX) Drill"),
 
     ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("(TOYBOX) Rock Crack"),
     ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("(TOYBOX) Rock Break"),

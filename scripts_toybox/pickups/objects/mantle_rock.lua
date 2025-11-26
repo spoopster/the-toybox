@@ -10,7 +10,7 @@ local function useMantle(_, _, player, _)
     else
         local data = ToyboxMod:getEntityDataTable(player)
         data.MANTLEROCK_ACTIVE = (data.MANTLEROCK_ACTIVE or 0)+1
-        ToyboxMod:addItemForRoom(pl, CollectibleType.COLLECTIBLE_TERRA, 1)
+        ToyboxMod:addItemForRoom(player, CollectibleType.COLLECTIBLE_TERRA, 1)
         --ToyboxMod.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_TERRA, nil, 1, "TOYBOX")
         sfx:Play(SoundEffect.SOUND_ROCK_CRUMBLE)
     end

@@ -1348,6 +1348,16 @@ enums.FUNCTIONS.AddItem({
         "The stream lasts for 1 second and can be controlled by shooting/movement inputs",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_DRILL,
+    Name = "Drill",
+    Description = {
+        "When used near a priced item, makes it free and sends you to an extra Challenge room",
+        "The number of waves scales with the price of the item",
+        "The extra Challenge room will not charge active items or spawn any clear rewards"
+        --"The stream lasts for 1 second and can be controlled by shooting/movement inputs",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

@@ -146,7 +146,7 @@
 <passive id="18" name="Silk Bag"
     description="Better invincibility"
     gfx="silk_bag.png"
-    quality="3"
+    quality="2"
     tags="nolostbr"
     cache=""
 
@@ -431,8 +431,7 @@
     tags="offensive"
     cache=""
 
-    chargetype="timed"
-    maxcharges="30"
+    maxcharges="3"
 
     achievement="Drill"
 />
