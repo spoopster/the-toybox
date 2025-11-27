@@ -23,7 +23,10 @@ local function postPeffectUpdate(_, pl)
     Game():ButterBeanFart(pl.Position, FART_RADIUS, pl,false,false)
     Game():Fart(pl.Position, FART_RADIUS, pl)
 
+    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LOOSE_BOWELS)
     data.NEXT_INTERVAL = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_LOOSE_BOWELS):RandomInt(0, RANDOM_INTERVAL_INCREASE)+FART_INTERVAL
+    data.NEXT_INTERVAL = data.NEXT_INTERVAL//mult
+
     data.LAST_INTERVAL = pl.FrameCount
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, postPeffectUpdate)
