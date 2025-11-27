@@ -212,6 +212,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.curious_carrot")
     include("scripts_toybox.items.passives.odd_onion")
     include("scripts_toybox.items.passives.garlic")
+    include("scripts_toybox.items.passives.loose_bowels")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

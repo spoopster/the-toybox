@@ -1355,7 +1355,15 @@ enums.FUNCTIONS.AddItem({
         "When used near a priced item, makes it free and sends you to an extra Challenge room",
         "The number of waves scales with the price of the item",
         "The extra Challenge room will not charge active items or spawn any clear rewards"
-        --"The stream lasts for 1 second and can be controlled by shooting/movement inputs",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_LOOSE_BOWELS,
+    Name = "Loose Bowels",
+    Description = {
+        "\1 +2 Range",
+        "Every 5-10 seconds, Isaac farts",
+        --"The farts poison enemies and deflect projectiles"
     },
 })
 

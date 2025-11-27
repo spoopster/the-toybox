@@ -49,10 +49,8 @@
     description="Can't control it..."
     gfx="loose_bowels.png"
     quality="2"
-    tags="offensive summonable tearsup noeden"           
-    cache="speed firedelay"
-
-    hidden="true"
+    tags="offensive summonable"           
+    cache="range"
 />
 <active id="7" name="Pliers"
     description="The pain is temporary"

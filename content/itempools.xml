@@ -95,6 +95,7 @@
         <Item Name="Finger Trap"/>
         <Item Name="Surprise Egg"/>
         <Item Name="Bloodflower"/>
+        <Item Name="Loose Bowels"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
@@ -109,6 +110,7 @@
         <Item Name="Finger Trap"/>
         <Item Name="Surprise Egg"/>
         <Item Name="Bloodflower"/>
+        <Item Name="Loose Bowels"/>
     </Pool>
 
     <Pool Name="shop">
@@ -332,6 +334,7 @@
         <Item Name="Beer Can"/>
         <Item Name="Butterfly Effect"/>
         <Item Name="Langton Loop"/>
+        <Item Name="Loose Bowels"/>
     </Pool>
 
     <Pool Name="ultraSecret">
