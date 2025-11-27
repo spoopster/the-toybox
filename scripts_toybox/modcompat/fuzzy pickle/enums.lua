@@ -55,7 +55,6 @@ ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_BARBED_WIRE, "The Legend of Bum
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_BIG_BANG, "The Big Bang Theory", true)
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_LAST_BEER, "MF DOOM")
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_CHOCOLATE_BAR, "Chocolate Mod")
-ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_EXORCISM_KIT, "The Legend of Bum-Bo")
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_RETROFALL, "RETROFALL")
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_DELIVERY_BOX, "Amazon™")
 ToyboxMod:addReferenceItem(ToyboxMod.COLLECTIBLE_LUCKY_PEBBLES, "Cereal")

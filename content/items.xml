@@ -125,14 +125,12 @@
     tags="offensive summonable"
     cache=""
 />
-<passive id="16" name="Dried Placenta"
-    description="Regeneration?"
-    gfx="dried_placenta.png"
-    quality="4"
-    tags="summonable nolostbr noeden"
-    cache=""
-
-    hidden="true"
+<passive id="16" name="Garlic Head"
+    description="Poison aura tears"
+    gfx="garlic.png"
+    quality="3"
+    tags="offensive summonable"
+    cache="tearcolor tearflag range"
 />
 <passive id="17" name="Painkillers"
     description="Immunity WAY down"
@@ -482,23 +480,28 @@
     hearts="4"
     maxhearts="2"
 />
-<passive id="55" name="Bloody Map"
-    description="Dangerous territory"
-    gfx="bloody_map.png"
-    quality="3"
-    tags="offensive noeden"
-    cache=""
+<active id="55" name="White Daisy"
+    description="Loves me, loves me not"
+    gfx="white_daisy.png"
+    quality="1"
+    tags="offensive"
 
-    hidden="true"
+    cache="firedelay damage range luck"
+    passivecache="true"
+
+    maxcharges="1"
+    activegfx="activegfx/white_daisy.png"
 />
-<passive id="56" name="Preferred Options"
-    description="Targeted advertising"
-    gfx="preferred_options.png"
-    quality="4"
-    tags="offensive nogreed noeden"
+<active id="56" name="Melted Candle"
+    description="Reusable flame breath"
+    gfx="melted_candle.png"
+    quality="2"
+    tags="offensive"
+
     cache=""
 
-    hidden="true"
+    maxcharges="180"
+    chargetype="timed"
 />
 <passive id="57" name="Cursed Eulogy"
     description="Evil items"
@@ -605,16 +608,12 @@
     maxcharges="4"
     cache=""
 />
-<active id="70" name="Exorcism Kit"
-    description="Evil begone!"
-    gfx="exorcism_kit.png"
+<passive id="70" name="Curious Carrot"
+    description="Range up + sight"
+    gfx="curious_carrot.png"
     quality="2"
-    tags="offensive noeden"
-
-    maxcharges="2"
-    cache=""
-
-    hidden="true"
+    tags="offensive summonable"
+    cache="range"
 />
 <passive id="71" name="Conjunctivitis"
     description="Icky eye"
@@ -858,43 +857,6 @@
     quality="3"
     tags="offensive summonable"
     cache=""
-/>
-<passive id="100" name="Curious Carrot"
-    description="Range up + sight"
-    gfx="curious_carrot.png"
-    quality="2"
-    tags="offensive summonable"
-    cache="range"
-/>
-<passive id="101" name="Garlic Head"
-    description="Poison aura tears"
-    gfx="garlic.png"
-    quality="3"
-    tags="offensive summonable"
-    cache="tearcolor tearflag range"
-/>
-<active id="102" name="White Daisy"
-    description="Loves me, loves me not"
-    gfx="white_daisy.png"
-    quality="1"
-    tags="offensive"
-
-    cache="firedelay damage range luck"
-    passivecache="true"
-
-    maxcharges="1"
-    activegfx="activegfx/white_daisy.png"
-/>
-<active id="103" name="Melted Candle"
-    description="Reusable flame breath"
-    gfx="melted_candle.png"
-    quality="2"
-    tags="offensive"
-
-    cache=""
-
-    maxcharges="180"
-    chargetype="timed"
 />
 
 <passive id="109" name="RETROFALL"

@@ -534,22 +534,6 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
-    ID = ToyboxMod.COLLECTIBLE_PREFERRED_OPTIONS,
-    Name = "Preferred Options",
-    Description = {
-        "{{BossRoom}} You may choose between 2 items after beating a boss",
-        "One of the items will be a duplicate of the last item you took from a boss room",
-        --"{{Blank}} {{ColorGray}}Cannot duplicate story items{{CR}}", --# i feel like its kind of obvious
-    },
-    StackModifiers = {
-        {
-            ToModify = {
-                "Multiple copies have no additional effect",
-            },
-        },
-    }
-})
-enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_PLASMA_GLOBE,
     Name = "Plasma Globe",
     Description = {
@@ -955,14 +939,6 @@ enums.FUNCTIONS.AddItem({
                 "Heals other players for half a heart",
             }
         }
-    },
-})
-enums.FUNCTIONS.AddItem({
-    ID = ToyboxMod.COLLECTIBLE_EXORCISM_KIT,
-    Name = "Exorcism Kit",
-    Description = {
-        --"Instantly kills the nearest enemy and all other enemies of the same type and variant",
-       --"Bosses instead take 40 damage"
     },
 })
 enums.FUNCTIONS.AddItem({
