@@ -171,7 +171,6 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.bloody_map")
     include("scripts_toybox.items.passives.saltpeter")
     include("scripts_toybox.items.passives.dr_bum")
-    include("scripts_toybox.items.passives.preferred_options")
     include("scripts_toybox.items.passives.plasma_globe")
     include("scripts_toybox.items.passives.blessed_bombs")
     include("scripts_toybox.items.passives.cursed_eulogy")
@@ -213,6 +212,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.odd_onion")
     include("scripts_toybox.items.passives.garlic")
     include("scripts_toybox.items.passives.loose_bowels")
+    include("scripts_toybox.items.passives.tammys_tail")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

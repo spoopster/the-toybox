@@ -1342,6 +1342,13 @@ enums.FUNCTIONS.AddItem({
         --"The farts poison enemies and deflect projectiles"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_TAMMYS_TAIL,
+    Name = "Tammy's Tail",
+    Description = {
+        "All rooms are cleared an additional time, doubling rewards and active charges gained",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

@@ -155,6 +155,7 @@ ToyboxMod.COLLECTIBLE_CURIOUS_CARROT = Isaac.GetItemIdByName("Curious Carrot")
 ToyboxMod.COLLECTIBLE_GARLIC = Isaac.GetItemIdByName("Garlic Head")
 ToyboxMod.COLLECTIBLE_WHITE_DAISY = Isaac.GetItemIdByName("White Daisy")
 ToyboxMod.COLLECTIBLE_MELTED_CANDLE = Isaac.GetItemIdByName("Melted Candle")
+ToyboxMod.COLLECTIBLE_TAMMYS_TAIL = Isaac.GetItemIdByName("Tammy's Tail")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -361,6 +362,7 @@ ToyboxMod.SOUND_EFFECT = {
     HYPNOSIS = Isaac.GetSoundIdByName("(TOYBOX) Hypnosis"),
     HAZE = Isaac.GetSoundIdByName("(TOYBOX) Haze"),
     DRILL = Isaac.GetSoundIdByName("(TOYBOX) Drill"),
+    MEOW = Isaac.GetSoundIdByName("(TOYBOX) Meow"),
 
     ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("(TOYBOX) Rock Crack"),
     ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("(TOYBOX) Rock Break"),

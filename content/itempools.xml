@@ -40,6 +40,7 @@
         <Item Name="Curious Carrot"/>
         <Item Name="Garlic Head"/>
         <Item Name="White Daisy"/>
+        <Item Name="Tammy's Tail"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -80,6 +81,7 @@
         <Item Name="Curious Carrot"/>
         <Item Name="Garlic Head"/>
         <Item Name="White Daisy"/>
+        <Item Name="Tammy's Tail"/>
     </Pool>
 
     <Pool Name="boss">
@@ -333,6 +335,7 @@
         <Item Name="Butterfly Effect"/>
         <Item Name="Langton Loop"/>
         <Item Name="Loose Bowels"/>
+        <Item Name="Tammy's Tail"/>
     </Pool>
 
     <Pool Name="ultraSecret">

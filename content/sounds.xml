@@ -72,6 +72,10 @@
 		<sample weight="1" path="drill.wav" />
 	</sound>
 
+	<sound name="(TOYBOX) Meow">
+		<sample weight="1" path="meow.wav" />
+	</sound>
+
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />
 	</sound>
