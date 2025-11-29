@@ -24,7 +24,7 @@ local function retriggerClear(_, _)
             CANCEL_RETRIGGER = true
 
             if(not INVALID_ROOMTYPES[room:GetType()]) then
-                room:SpawnClearAward()
+                room:TriggerClear(true)
             end
 
             CANCEL_RETRIGGER = false
@@ -48,7 +48,9 @@ local function playerRetriggerClear(_, pl)
         function(_)
             CANCEL_RETRIGGER = true
 
-            pl:TriggerRoomClear()
+            if(INVALID_ROOMTYPES[room:GetType()]) then
+                pl:TriggerRoomClear()
+            end
 
             CANCEL_RETRIGGER = false
         end,

@@ -162,7 +162,7 @@
     description="HP up + memory overfl"
     gfx="fatal_signal.png"
     quality="1"
-    tags="offensive"
+    tags="nolostbr"
     cache=""
     
     maxhearts="2"
