@@ -6,7 +6,8 @@ end
 ---@param id CollectibleType
 ---@param duration integer How long the item should be kept, in frames (30 frames = 1 second)
 ---@param count integer? How many items should be added
-function ToyboxMod:addTemporaryItem(player, id, duration, count)
+---@param innate boolean? Should the item show up in history (default=false)
+function ToyboxMod:addTemporaryItem(player, id, duration, count, innate)
     count = count or 1
     local data = ToyboxMod:getEntityData(player, "TEMPORARY_ITEMS") or {}
 

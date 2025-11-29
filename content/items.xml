@@ -162,12 +162,12 @@
     description="HP up + memory overfl"
     gfx="fatal_signal.png"
     quality="1"
-    tags="offensive noeden"
+    tags="offensive"
     cache=""
     
     maxhearts="2"
     hearts="2"
-    hidden="true"
+    soulhearts="2"
 />
 <passive id="21" name="Meteor Shower"
     description="Rain of fire"

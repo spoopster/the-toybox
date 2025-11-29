@@ -131,7 +131,8 @@ enums.FUNCTIONS.AddItem({
     Name = "Fatal Signal",
     Description = {
         "\1 +1 Health",
-        "Gives a passive {{Collectible721}} glitched item on pickup",
+        "{{SoulHeart}} +1 Soul Heart",
+        "Items that modify your Red, Soul or Black Hearts are rerolled",
     },
 })
 enums.FUNCTIONS.AddItem({
