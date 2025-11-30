@@ -33,7 +33,7 @@ local function stopAscension(player)
     local bibleEffectNum = effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE)
     effects:RemoveCollectibleEffect(ToyboxMod.COLLECTIBLE_ASCENSION, -1)
 
-    print(bibleNum2, bibleEffectNum, effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE))
+    --print(bibleNum2, bibleEffectNum, effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE))
 
     if(bibleEffectNum~=effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE)) then
         effects:RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_BIBLE)
@@ -106,7 +106,7 @@ local function updateAscension(_, player)
     local isUsingPocketAscension = (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_POCKET)==ToyboxMod.COLLECTIBLE_ASCENSION)
 
     if(data.ASCENSION_ISACTIVE==true and (isUsingPrimaryAscension or isUsingPocketAscension)) then
-        print("Yuh", player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE))
+        --print("Yuh", player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BIBLE))
 
         stopAscension(player)
     end

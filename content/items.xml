@@ -1074,6 +1074,13 @@
 
     achievement="Misprint"
 />
+<trinket id="19" name="Cutout"
+    description="Placeable decoy"
+    gfx="cutout.png"
+    cache=""
+
+    achievement="Cutout"
+/>
 
 <null id="1" name="toybox null save"
     persistent="true"

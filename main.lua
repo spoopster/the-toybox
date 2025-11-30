@@ -75,6 +75,7 @@ include("scripts_toybox.misc.champions.mod_champion_logic")
 include("scripts_toybox.misc.tinted_rooms.enums")
 include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")
 include("scripts_toybox.misc.tinted_rooms.minimap_logic")
+include("scripts_toybox.misc.tinted_rooms.room_effects")
 
 -- ENTITIES
 include("scripts_toybox.misc.entities.meteor")
@@ -260,6 +261,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.trinkets.yellow_belt")
     include("scripts_toybox.items.trinkets.zap_cap")
     include("scripts_toybox.items.trinkets.misprint")
+    include("scripts_toybox.items.trinkets.cutout")
 --UNUSED
     --include("scripts_toybox.items.actives.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")

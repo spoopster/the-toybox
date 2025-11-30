@@ -192,6 +192,7 @@ ToyboxMod.TRINKET_DARK_NEBULA = Isaac.GetTrinketIdByName("Dark Nebula")
 ToyboxMod.TRINKET_MAKEUP_KIT = Isaac.GetTrinketIdByName("Make-Up Kit")
 ToyboxMod.TRINKET_ZAP_CAP = Isaac.GetTrinketIdByName("Zap Cap")
 ToyboxMod.TRINKET_MISPRINT = Isaac.GetTrinketIdByName("Misprint")
+ToyboxMod.TRINKET_CUTOUT = Isaac.GetTrinketIdByName("Cutout")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")            --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")            --*UNUSED
@@ -270,6 +271,7 @@ ToyboxMod.FAMILIAR_VARIANT = {
     EFFIGY = Isaac.GetEntityVariantByName("Effigy"),
     PYTHAGORAS_CUP = Isaac.GetEntityVariantByName("Pythagoras' Cup"),
     GOOD_JOB_STAR = Isaac.GetEntityVariantByName("Good Job Star"),
+    DECOY = Isaac.GetEntityVariantByName("Cardboard Decoy"),
 }
 
 ---@type SlotVariant[]
@@ -363,6 +365,7 @@ ToyboxMod.SOUND_EFFECT = {
     HAZE = Isaac.GetSoundIdByName("(TOYBOX) Haze"),
     DRILL = Isaac.GetSoundIdByName("(TOYBOX) Drill"),
     MEOW = Isaac.GetSoundIdByName("(TOYBOX) Meow"),
+    POOF = Isaac.GetSoundIdByName("(TOYBOX) Poof"),
 
     ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("(TOYBOX) Rock Crack"),
     ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("(TOYBOX) Rock Break"),

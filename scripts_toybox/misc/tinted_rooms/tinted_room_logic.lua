@@ -1,10 +1,78 @@
 local TINT_AURA_SIZE = 1
+local TINT_GRADIENT_DURATION = 60
 
+function ToyboxMod:getTintedRoomCompositeColor(tintBuffer, tintData, centerIntensity)
+    if(centerIntensity==nil) then centerIntensity = true end
+
+    local finalColor = Color(0,0,0,TINT_ALPHA)
+    for i, flag in ipairs(tintBuffer) do
+        local tempColor = ToyboxMod.TINTED_ROOM_COLOR_BITWISE[flag]
+
+        local int = (tintData.Centers & flag ~= 0 and centerIntensity) and TINT_CENTER_INTENSITY or TINT_INTENSITY
+        local col = Color(tempColor.Red*int, tempColor.Green*int, tempColor.Blue*int, tempColor.Alpha*TINT_ALPHA)
+
+        finalColor = Color(
+            (col.R*col.A+finalColor.R*finalColor.A*(1-col.A))/(col.A+finalColor.A*(1-col.A)),
+            (col.G*col.A+finalColor.G*finalColor.A*(1-col.A))/(col.A+finalColor.A*(1-col.A)),
+            (col.B*col.A+finalColor.B*finalColor.A*(1-col.A))/(col.A+finalColor.A*(1-col.A)),
+            TINT_ALPHA
+        )
+    end
+    return finalColor
+end
+
+---@param idx integer? Default: current room
+---@return integer tints, integer centers
+function ToyboxMod:getTintedRoomTint(idx)
+    idx = tostring(idx or Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex)
+    local data = (ToyboxMod:getExtraData("TINTED_ROOM_POSITIONS") or {})[idx] or {Tints=0, Centers=0}
+
+    --print(data.Tints, data.Centers)
+
+    return (data.Tints or 0), (data.Centers or 0)
+end
+
+---@param idx integer? Default: current room
+function ToyboxMod:isTintedRoom(idx)
+    local tintData = ToyboxMod:getTintedRoomTint(idx)
+
+    return (tintData~=0)
+end
+
+---@param tint string
+function ToyboxMod:hasTintedRoomTint(tint, bits)
+    return ((bits or ToyboxMod:getTintedRoomTint()) & ToyboxMod.TINTED_ROOM[tint] ~= 0)
+end
+
+local function evaluateTintedRoomEffects()
+    for _, pl in ipairs(PlayerManager.GetPlayers()) do
+        pl:AddCacheFlags(CacheFlag.CACHE_ALL)
+        ToyboxMod:setEntityData(pl, "IN_TINTED_ROOM", ToyboxMod:isTintedRoom())
+    end
+
+    --print(ToyboxMod:getTintedRoomTint())
+
+    if(ToyboxMod:isTintedRoom()) then
+        local tint = ToyboxMod:getTintedRoomTint()
+        local tintBuffer = {}
+        for flag, _ in pairs(ToyboxMod.TINTED_ROOM_COLOR_BITWISE) do
+            if(tint & flag ~= 0) then
+                table.insert(tintBuffer, flag)
+            end
+        end
+
+        ToyboxMod:setExtraData("TINTED_ROOM_GRADIENT", tintBuffer)
+    else
+        ToyboxMod:setExtraData("TINTED_ROOM_GRADIENT", nil)
+    end
+end
 
 ---@param idx integer
 ---@param tint integer
 ---@param center boolean
 local function markRoomAsTinted(idx, tint, center)
+    idx = tostring(idx)
+
     local data = ToyboxMod:getExtraDataTable()
     data.TINTED_ROOM_POSITIONS = data.TINTED_ROOM_POSITIONS or {}
     data.TINTED_ROOM_POSITIONS[idx] = data.TINTED_ROOM_POSITIONS[idx] or {Tints=0, Centers=0}
@@ -21,7 +89,7 @@ function ToyboxMod:makeTintedRoom(roomPos, tintedType, radius)
     if(type(roomPos)~="number") then
         roomPos = ToyboxMod:positionVectorToGridIndex(roomPos)
     end
-    radius = radius or 1
+    radius = radius or TINT_AURA_SIZE
 
     local level = Game():GetLevel()
 
@@ -30,9 +98,16 @@ function ToyboxMod:makeTintedRoom(roomPos, tintedType, radius)
     local roomQueue = {}
     table.insert(roomQueue, {roomPos, radius})
 
+    local affectsCurrentRoom = false
+    local curIdx = level:GetCurrentRoomIndex()
+
     while(roomQueue[idx]) do
         local curPos = roomQueue[idx][1]
         local curRad = roomQueue[idx][2]
+
+        if(curPos==curIdx) then
+            affectsCurrentRoom = true
+        end
 
         local room = level:GetRoomByIdx(curPos)
         if(room.Data and room.GridIndex>=0) then
@@ -66,16 +141,34 @@ function ToyboxMod:makeTintedRoom(roomPos, tintedType, radius)
 
         idx = idx+1
     end
+
+    evaluateTintedRoomEffects()
 end
-
-
 
 local function resetTintedRoomsOnLevelGen(_)
     ToyboxMod:setExtraData("TINTED_ROOM_POSITIONS", {})
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_LEVEL_LAYOUT_GENERATED, resetTintedRoomsOnLevelGen)
 
+local function evaluateTintedRoom(_)
+    evaluateTintedRoomEffects()
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, evaluateTintedRoom)
 
+local function workTintedRoomGradient(_)
+    local buffer = ToyboxMod:getExtraData("TINTED_ROOM_GRADIENT")
+    if(not (buffer and #buffer>0)) then return end
+
+    local frames = Game():GetRoom():GetFrameCount()
+    if(frames%TINT_GRADIENT_DURATION==3) then
+        local idx = (frames//TINT_GRADIENT_DURATION)%(#buffer)+1
+
+        local col = ToyboxMod.TINTED_ROOM_COLOR_BITWISE[buffer[idx]]
+        local modif = ColorModifier(1+col.Red*0.3, 1+col.Green*0.3, 1+col.Blue*0.3, col.Alpha*0.6, 0, 1.05)
+        Game():SetColorModifier(modif, true, 0.02)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, workTintedRoomGradient)
 
 
 ---@param player EntityPlayer
@@ -84,6 +177,6 @@ local function test(_, _, rng, player, flags)
     for _, _ in pairs(ToyboxMod.TINTED_ROOM) do numblablabla = numblablabla+1 end
 
     local sel = rng:RandomInt(numblablabla)
-    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel))
+    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel), TINT_AURA_SIZE)
 end
---ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)

@@ -1821,6 +1821,30 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_CUTOUT,
+    Name = "Cutout",
+    Description = {
+        "When dropped, becomes a decoy that attracts enemies",
+        "The decoy can block shots and take damage, when it takes enough damage it turns back into a trinket"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ToModify = {
+                "The decoy deals 7.5 contact damage per second",
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ToModify = {
+                "The decoy deals 15 contact damage per second",
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CONSUMABLE.PRISMSTONE,

@@ -138,6 +138,12 @@
         numGridCollisionPoints="6" shadowSize="12" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
+    <entity name="Cardboard Decoy"
+        id="3" anm2path="familiars/familiar_decoy.anm2" friction="1"
+        baseHP="10" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" collisionInterval="3"
+        numGridCollisionPoints="6" shadowSize="14" stageHP="0" customtags="familiarcantakedamage familiarblockprojectiles">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
 
     <!-- SLOTS -->
     <entity name="Pyramid Donation Machine"
@@ -232,6 +238,12 @@
         numGridCollisionPoints="0" shadowSize="0" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
+    <entity name="Flame Breath Helper"
+        id="1000" anm2path="effects/effect_dead_grub.anm2" friction="1"
+        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
 
     <entity name="Enemy Fear Aura"
         id="1000" variant="5784" subtype="0" anm2path="effects/effect_fear_aura.anm2" friction="1"
@@ -259,13 +271,6 @@
     </entity>
     <entity name="4 4 Aura"
         id="1000" variant="5784" subtype="4" anm2path="effects/effect_44_aura.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
-        numGridCollisionPoints="0" shadowSize="0" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-
-    <entity name="Flame Breath Helper"
-        id="1000" anm2path="effects/effect_dead_grub.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
         numGridCollisionPoints="0" shadowSize="0" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />

@@ -31,7 +31,7 @@ local function tryReplacePool(_, sel, pool, dec, seed)
         end
 
         table.insert(MARKED_SEEDS, seed)
-        print(sel, item)
+        --print(sel, item)
         return item
     end
 end

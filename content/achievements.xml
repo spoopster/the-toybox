@@ -33,6 +33,17 @@
 	<achievement name="Pill Diversity!" text="" gfx="ach_pills.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Drill" text="" gfx="ach_drill.png" gfxback="achpaper_jonas.png" />
 
+	<achievement name="Delivery Box" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Oil Painting" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Divided Justice" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Paper Plate" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Atheism" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Golden Calf" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Foil Card" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Effigy" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Malice" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Cutout" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="More Champions!" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Misprint" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	
 </achievements>
