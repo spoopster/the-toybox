@@ -278,6 +278,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.troll.uranium")
     include("scripts_toybox.items.troll.zero_gravity")
     include("scripts_toybox.items.troll.super_hamburger")
+    include("scripts_toybox.items.troll.cursed_d6")
 
 
 --PICKUPS

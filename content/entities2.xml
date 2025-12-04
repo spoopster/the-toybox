@@ -24,62 +24,8 @@
         numGridCollisionPoints="6" shadowSize="16" stageHP="0" customtags="">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
-    <entity name="Virus (Red)"
-        id="3" variant="6785" subtype="0" anm2path="familiars/familiar_virus_red.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Yellow)"
-        id="3" variant="6785" subtype="1" anm2path="familiars/familiar_virus_yellow.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Blue)"
-        id="3" variant="6785" subtype="2" anm2path="familiars/familiar_virus_blue.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Magenta)"
-        id="3" variant="6785" subtype="3" anm2path="familiars/familiar_virus_magenta.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Yellow 2)"
-        id="3" variant="6785" subtype="4" anm2path="familiars/familiar_virus_yellow2.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Cyan)"
-        id="3" variant="6785" subtype="5" anm2path="familiars/familiar_virus_cyan.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Green)"
-        id="3" variant="6785" subtype="6" anm2path="familiars/familiar_virus_green.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Light Blue)"
-        id="3" variant="6785" subtype="7" anm2path="familiars/familiar_virus_lightblue.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Pink)"
-        id="3" variant="6785" subtype="8" anm2path="familiars/familiar_virus_pink.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
-        numGridCollisionPoints="6" shadowSize="16" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Virus (Purple)"
-        id="3" variant="6785" subtype="9" anm2path="familiars/familiar_virus_purple.anm2" friction="1"
+    <entity name="Virus Baby"
+        id="3" anm2path="familiars/familiar_virus.anm2" friction="1"
         baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="12" collisionInterval="4"
         numGridCollisionPoints="6" shadowSize="16" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
@@ -140,7 +86,7 @@
     </entity>
     <entity name="Cardboard Decoy"
         id="3" anm2path="familiars/familiar_decoy.anm2" friction="1"
-        baseHP="10" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" collisionInterval="3"
+        baseHP="7" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" collisionInterval="3"
         numGridCollisionPoints="6" shadowSize="14" stageHP="0" customtags="familiarcantakedamage familiarblockprojectiles">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>

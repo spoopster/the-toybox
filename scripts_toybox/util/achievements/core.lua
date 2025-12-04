@@ -47,9 +47,11 @@ function ToyboxMod:checkUnlocks(completionUnlocks, blockPaper)
         key = "COMPLETION_MARKS"
     end
 
+    local persistentdata = Isaac.GetPersistentGameData()
+
     for _, unlockData in ipairs(ToyboxMod.ACHIEVEMENTS[key]) do
-        if(unlockData.Condition()) then
-            Isaac.GetPersistentGameData():TryUnlock(unlockData.Achievement, blockPaper)
+        if(unlockData.Condition(persistentdata)) then
+            persistentdata:TryUnlock(unlockData.Achievement, blockPaper)
         else
             Isaac.ExecuteCommand("lockachievement " .. unlockData.Achievement)
         end

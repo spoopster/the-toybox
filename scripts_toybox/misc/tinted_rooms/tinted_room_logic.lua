@@ -179,4 +179,4 @@ local function test(_, _, rng, player, flags)
     local sel = rng:RandomInt(numblablabla)
     ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel), TINT_AURA_SIZE)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)
+--ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)

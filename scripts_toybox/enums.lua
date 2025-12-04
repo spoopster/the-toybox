@@ -26,6 +26,10 @@ ToyboxMod.ACHIEVEMENT = {
     MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom"),
     ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas"),
     JONAS_B = Isaac.GetAchievementIdByName("Tainted Jonas"),
+
+    WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug"),
+    HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer"),
+
     PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone"),
     GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel"),
     STEEL_SOUL = Isaac.GetAchievementIdByName("Steel Soul"),
@@ -39,19 +43,32 @@ ToyboxMod.ACHIEVEMENT = {
     BONE_BOY = Isaac.GetAchievementIdByName("Bone Boy!"),
     ASCENSION = Isaac.GetAchievementIdByName("Ascension"),
     MIRACLE_MANTLE = Isaac.GetAchievementIdByName("Miracle Mantle"),
+
     GIANT_CAPSULE = Isaac.GetAchievementIdByName("Giant Capsule"),
-    WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug"),
+    FOOD_STAMPS = Isaac.GetAchievementIdByName("Food Stamps"),
     DADS_PRESCRIPTION = Isaac.GetAchievementIdByName("Dad's Prescription"),
     CANDY_DISPENSER = Isaac.GetAchievementIdByName("Candy Dispenser"),
     DR_BUM = Isaac.GetAchievementIdByName("Dr. Bum"),
     JONAS_MASK = Isaac.GetAchievementIdByName("Jonas' Mask"),
     ANTIBIOTICS = Isaac.GetAchievementIdByName("Antibiotics"),
     FOIL_CARD = Isaac.GetAchievementIdByName("Foil Card"),
-    HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer"),
     CLOWN_PHD = Isaac.GetAchievementIdByName("Clown PHD"),
     JONAS_LOCK = Isaac.GetAchievementIdByName("Jonas' Lock"),
     PILLS = Isaac.GetAchievementIdByName("Pill Diversity!"),
     DRILL = Isaac.GetAchievementIdByName("Drill"),
+
+    DELIVERY_BOX = Isaac.GetAchievementIdByName("Delivery Box"),
+    OIL_PAINTING = Isaac.GetAchievementIdByName("Oil Painting"),
+    DIVIDED_JUSTICE = Isaac.GetAchievementIdByName("Divided Justice"),
+    PAPER_PLATE = Isaac.GetAchievementIdByName("Paper Plate"),
+    MISPRINT = Isaac.GetAchievementIdByName("Misprint"),
+    ATHEISM = Isaac.GetAchievementIdByName("Atheism"),
+    GOLDEN_CALF = Isaac.GetAchievementIdByName("Golden Calf"),
+    GREEN_APPLE = Isaac.GetAchievementIdByName("Green Apple"),
+    EFFIGY = Isaac.GetAchievementIdByName("Effigy"),
+    CUTOUT = Isaac.GetAchievementIdByName("Cutout"),
+    MALICE = Isaac.GetAchievementIdByName("Malice"),
+    CHAMPIONS = Isaac.GetAchievementIdByName("More Champions!"),
 }
 
 ToyboxMod.COLLECTIBLE_COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil")
@@ -164,6 +181,7 @@ ToyboxMod.COLLECTIBLE_GOLDEN_PRAYER_CARD = Isaac.GetItemIdByName("Golden Prayer 
 ToyboxMod.COLLECTIBLE_GOLDEN_SCHOOLBAG = Isaac.GetItemIdByName("Golden Schoolbag")
 ToyboxMod.COLLECTIBLE_ZERO_GRAVITY = Isaac.GetItemIdByName("Zero-Gravity")
 ToyboxMod.COLLECTIBLE_SUPER_HAMBURGER = Isaac.GetItemIdByName("Super Hamburger")
+ToyboxMod.COLLECTIBLE_CURSED_D6 = Isaac.GetItemIdByName("Cursed D6")
     
 --ToyboxMod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
 
@@ -263,7 +281,7 @@ ToyboxMod.FAMILIAR_VARIANT = {
     SILK_BAG = Isaac.GetEntityVariantByName("Silk Bag"),
     BONE_BOY = Isaac.GetEntityVariantByName("Bone Boy"),
     EVIL_SHADOW = Isaac.GetEntityVariantByName("Black Shadow"),
-    VIRUS = Isaac.GetEntityVariantByName("Virus (Red)"),
+    VIRUS = Isaac.GetEntityVariantByName("Virus Baby"),
     MASK_SHADOW = Isaac.GetEntityVariantByName("Shadow Fly"),
     DR_BUM = Isaac.GetEntityVariantByName("Dr Bum"),
     BATH_WATER = Isaac.GetEntityVariantByName("Bath Water"),
@@ -384,23 +402,23 @@ ToyboxMod.GIANTBOOK = {
 }
 
 ToyboxMod.FAMILIAR_VIRUS_SUBTYPE = {
-    RED = Isaac.GetEntitySubTypeByName("Virus (Red)"),
-    FEVER = Isaac.GetEntitySubTypeByName("Virus (Red)"),
-    YELLOW = Isaac.GetEntitySubTypeByName("Virus (Yellow)"),
-    YELLOW_1 = Isaac.GetEntitySubTypeByName("Virus (Yellow)"),
-    WEIRD = Isaac.GetEntitySubTypeByName("Virus (Yellow)"),
-    BLUE = Isaac.GetEntitySubTypeByName("Virus (Blue)"),
-    CHILL = Isaac.GetEntitySubTypeByName("Virus (Blue)"),
-    MAGENTA = Isaac.GetEntitySubTypeByName("Virus (Magenta)"),
-    CONFUSED = Isaac.GetEntitySubTypeByName("Virus (Magenta)"),
-    YELLOW_2 = Isaac.GetEntitySubTypeByName("Virus (Yellow 2)"),
-    DROWSY = Isaac.GetEntitySubTypeByName("Virus (Yellow 2)"),
-    CYAN = Isaac.GetEntitySubTypeByName("Virus (Cyan)"),
-    DIZZY = Isaac.GetEntitySubTypeByName("Virus (Cyan)"),
-    GREEN = Isaac.GetEntitySubTypeByName("Virus (Green)"),
-    LIGHT_BLUE = Isaac.GetEntitySubTypeByName("Virus (Light Blue)"),
-    PINK = Isaac.GetEntitySubTypeByName("Virus (Pink)"),
-    PURPLE = Isaac.GetEntitySubTypeByName("Virus (Purple)"),
+    RED = 0,
+    FEVER = 0,
+    YELLOW = 1,
+    YELLOW_1 = 1,
+    WEIRD = 1,
+    BLUE = 2,
+    CHILL = 2,
+    MAGENTA = 3,
+    CONFUSED = 3,
+    YELLOW_2 = 4,
+    DROWSY = 4,
+    CYAN = 5,
+    DIZZY = 5,
+    GREEN = 6,
+    LIGHT_BLUE = 7,
+    PINK = 8,
+    PURPLE = 9,
 }
 ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE = {
     FLY = Isaac.GetEntitySubTypeByName("Shadow Fly"),
@@ -496,159 +514,6 @@ ToyboxMod.DAMAGE_TYPE = {
     AQUARIUS = 1<<5,
     ROCKET = 1<<6,
     TEAR = 1<<7,
-}
-
-ToyboxMod.ACHIEVEMENTS = {
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.ROCK_CANDY,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.BOSS_RUSH)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.SALTPETER,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.HUSH)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.ASCENSION,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.ISAAC)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.GLASS_VESSEL,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.BLUE_BABY)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.MISSING_PAGE_3,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.SATAN)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.BONE_BOY,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.LAMB)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.GILDED_APPLE,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.ULTRA_GREED)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.PRISMSTONE,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.ULTRA_GREED)>=2
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.AMBER_FOSSIL,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.MOTHER)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.STEEL_SOUL,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.BEAST)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.HOSTILE_TAKEOVER,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.DELIRIUM)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.MANTLES,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.ATLAS_A, CompletionType.MEGA_SATAN)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.MIRACLE_MANTLE,
-        Condition = function()
-            return Isaac.AllMarksFilled(ToyboxMod.PLAYER_TYPE.ATLAS_A)>=2
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.JONAS_LOCK,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.BOSS_RUSH)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.WONDER_DRUG,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.HUSH)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.DADS_PRESCRIPTION,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.ISAAC)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.CANDY_DISPENSER,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.BLUE_BABY)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.DR_BUM,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.SATAN)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.JONAS_MASK,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.LAMB)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.ANTIBIOTICS,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.ULTRA_GREED)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.FOIL_CARD,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.ULTRA_GREED)>=2
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.HORSE_TRANQUILIZER,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.MOTHER)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.CLOWN_PHD,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.BEAST)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.GIANT_CAPSULE,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.DELIRIUM)>0
-        end,
-    },
-    {
-        Achievement = ToyboxMod.ACHIEVEMENT.PILLS,
-        Condition = function()
-            return Isaac.GetCompletionMark(ToyboxMod.PLAYER_TYPE.JONAS_A, CompletionType.MEGA_SATAN)>0
-        end,
-    },
 }
 
 --#endregion

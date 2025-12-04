@@ -306,16 +306,34 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		{
 			[CompletionType.BOSS_RUSH] = "\"Jonas' Lock\"",
 			[CompletionType.MOMS_HEART] = "Nothing.",
-			[CompletionType.HUSH] = "\"Wonder Drug\"",
+			[CompletionType.HUSH] = "\"Antibiotics\"",
 			[CompletionType.ISAAC] = "\"Dad's Prescription\"",
-			[CompletionType.BLUE_BABY] = "\"Candy Dispenser\"",
+			[CompletionType.BLUE_BABY] = "\"Food Stamps\"",
 			[CompletionType.SATAN] = "\"Dr. Bum\"",
-			[CompletionType.LAMB] = "\"Jonas' Mask\"",
-			[CompletionType.MEGA_SATAN] = "Jonas' new pill effects may appear for other characters.",
-			[CompletionType.ULTRA_GREED] = "Normal: \"Antibiotics\" / Hard: \"Foil Card\"",
+			[CompletionType.LAMB] = "\"Clown PHD\"",
+			[CompletionType.MEGA_SATAN] = "Jonas' new pill effects may appear while playing as other characters.",
+			[CompletionType.ULTRA_GREED] = "Normal: \"Drill\" / Hard: \"Foil Card\"",
 			[CompletionType.DELIRIUM] = "\"Giant Capsule\"",
-			[CompletionType.MOTHER] = "\"Horse Tranquilizer\"",
-			[CompletionType.BEAST] = "\"Clown PHD\"",
+			[CompletionType.MOTHER] = "\"Candy Dispenser\"",
+			[CompletionType.BEAST] = "\"Jonas' Mask\"",
+			ALL_MARKS = "Nothing.",
+		}
+	)
+
+	addPlayerUnlocks(ToyboxMod.PLAYER_TYPE.MILCOM_A, "MILCOM",
+		{
+			[CompletionType.BOSS_RUSH] = "\"Delivery Box\"",
+			[CompletionType.MOMS_HEART] = "Nothing.",
+			[CompletionType.HUSH] = "\"Oil Painting\"",
+			[CompletionType.ISAAC] = "\"Divided Justice\"",
+			[CompletionType.BLUE_BABY] = "\"Paper Plate\"",
+			[CompletionType.SATAN] = "\"Misprint\"",
+			[CompletionType.LAMB] = "\"Atheism\"",
+			[CompletionType.MEGA_SATAN] = "Milcom's new champion colors may appear while playing as other characters.",
+			[CompletionType.ULTRA_GREED] = "Normal: \"Golden Calf\" / Hard: \"Green Apple\"",
+			[CompletionType.DELIRIUM] = "\"Malice\"",
+			[CompletionType.MOTHER] = "\"Effigy\"",
+			[CompletionType.BEAST] = "\"Cutout\"",
 			ALL_MARKS = "Nothing.",
 		}
 	)

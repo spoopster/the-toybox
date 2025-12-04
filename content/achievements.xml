@@ -1,10 +1,14 @@
 <achievements gfxroot="gfx_tb/ui/achievements/">
+	<!-- misc -->
+	<achievement name="Wonder Drug" text="" gfx="ach_wonder_drug.png" />
+	<achievement name="Horse Tranquilizer" text="" gfx="ach_horse_tranquilizer.png" />
 
 	<!-- characters -->
-	<achievement name="Tainted Atlas" text="" gfx="achievement_milcom_placeholder.png" />
-	<achievement name="Tainted Jonas" text="" gfx="achievement_milcom_placeholder.png" />
-	<achievement name="Tainted Milcom" text="" gfx="achievement_milcom_placeholder.png" />
+	<achievement name="Tainted Atlas" text="" gfx="ach_blank.png" />
+	<achievement name="Tainted Jonas" text="" gfx="ach_blank.png" />
+	<achievement name="Tainted Milcom" text="" gfx="ach_blank.png" />
 
+	<!-- Atlas unlocks -->
 	<achievement name="Prismstone" text="" gfx="ach_prismstone.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Glass Vessel" text="" gfx="ach_glass_vessel.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Steel Soul" text="" gfx="ach_steel_soul.png" gfxback="achpaper_atlas.png" />
@@ -19,27 +23,28 @@
 	<achievement name="Ascension" text="" gfx="ach_ascension.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Miracle Mantle" text="" gfx="ach_miracle_mantle.png" gfxback="achpaper_atlas.png" />
 
+	<!-- Jonas unlocks -->
 	<achievement name="Giant Capsule" text="" gfx="ach_giant_capsule.png" gfxback="achpaper_jonas.png" />
-	<achievement name="Wonder Drug" text="" gfx="ach_wonder_drug.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Antibiotics" text="" gfx="ach_antibiotics.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Dad's Prescription" text="" gfx="ach_dads_prescription.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Candy Dispenser" text="" gfx="ach_candy_dispenser.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Dr. Bum" text="" gfx="ach_dr_bum.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Jonas' Mask" text="" gfx="ach_jonas_mask.png" gfxback="achpaper_jonas.png" />
-	<achievement name="Antibiotics" text="" gfx="ach_antibiotics.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Foil Card" text="" gfx="ach_foil_card.png" gfxback="achpaper_jonas.png" />
-	<achievement name="Horse Tranquilizer" text="" gfx="ach_horse_tranquilizer.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Food Stamps" text="" gfx="ach_food_stamps.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Clown PHD" text="" gfx="ach_clown_phd.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Jonas' Lock" text="" gfx="ach_jonas_lock.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Pill Diversity!" text="" gfx="ach_pills.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Drill" text="" gfx="ach_drill.png" gfxback="achpaper_jonas.png" />
 
+	<!-- Milcom unlocks -->
 	<achievement name="Delivery Box" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Oil Painting" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Divided Justice" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Paper Plate" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Atheism" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Golden Calf" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
-	<achievement name="Foil Card" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Green Apple" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Effigy" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Malice" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Cutout" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />

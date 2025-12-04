@@ -347,7 +347,7 @@
     gfx="giant_capsule.png"
     quality="2"
     tags="summonable offensive"
-    cache="familiars"
+    cache=""
 
     achievement="Giant Capsule"
 />
@@ -462,6 +462,8 @@
     quality="3"
     tags="offensive"
     cache=""
+
+    achievement="Atheism"
 />
 <passive id="53" name="A Spoonful of Mayonnaise"
     description="Here comes the airplane!"
@@ -630,6 +632,7 @@
     tags="nolostbr summonable"
 
     cache=""
+    achievement="Food Stamps"
 />
 <passive id="73" name="Golden Calf"
     description="Worship me"
@@ -638,6 +641,8 @@
     tags="offensive summonable"
 
     cache=""
+
+    achievement="Golden Calf"
 />
 <passive id="74" name="Brunch"
     description="Green eggs and ham"
@@ -667,6 +672,8 @@
 
     shopprice="10"
     maxcharges="3"
+
+    achievement="Delivery Box"
 />
 <passive id="77" name="Lucky Pebbles"
     description="HP + luck up"
@@ -750,6 +757,8 @@
     cache=""
 
     devilprice="2"
+
+    achievement="Effigy"
 />
 <passive id="87" name="Gambling Addiction"
     description="One more spin"
@@ -843,6 +852,8 @@
 
     shopprice="10"
     maxcharges="0"
+
+    achievement="Oil Painting"
 />
 <passive id="98" name="Reading Glasses"
     description="Pill identifier"
@@ -874,6 +885,16 @@
     cache=""
 />
 
+<active id="491" name="Cursed D6"
+    description="High-quality destiny"
+    gfx="cursed_d6.png"
+    quality="4"
+    tags="nolostbr noeden"
+    cache=""
+
+    maxcharges="5"
+    hidden="true"
+/>
 <passive id="492" name="Super Hamburger"
     description="I'm big and fat"
     gfx="super_hamburger.png"
@@ -881,8 +902,8 @@
     tags="offensive noeden"
     cache="size speed"
 
-    maxhearts="99"
-    hearts="99"
+    maxhearts="100"
+    hearts="100"
 
     hidden="true"
 />
@@ -1027,6 +1048,8 @@
     description="A little bit of everything"
     gfx="divided_justice.png"
     cache=""
+
+    achievement="Divided Justice"
 />
 <trinket id="11" name="Killscreen"
     description="High Sc .  !"

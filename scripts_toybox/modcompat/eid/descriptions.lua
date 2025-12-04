@@ -418,18 +418,9 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_GIANT_CAPSULE,
     Name = "Giant Capsule",
     Description = {
-        "Using a consumable spawns a virus orbital that disappears after 40 seconds",
-        "Viruses shoot tears with different effects depending on their color",
-        "Viruses have different colors based on what type of consumable was used",
+        "Using a consumable spawns a virus familiar that lasts 60 seconds",
+        "Viruses follow you and shoot tears with different effects based on their color",
     },
-    StackModifiers = {
-        {
-            ToModify = {
-                "+1 virus for every item stack",
-                "Viruses live for +20 seconds per item stack",
-            }
-        }
-    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_LOVE_LETTER,
@@ -1485,7 +1476,7 @@ enums.FUNCTIONS.AddTrinket({
     ID = ToyboxMod.TRINKET_BIG_BLIND,
     Name = "Big Blind",
     Description = {
-        "{{Coin}} Every COUNTER damage dealt to enemies, spawn a coin",
+        "{{Coin}} Every 10 damage dealt to enemies, spawn a coin",
         "The requirement for spawning a coin goes up more and more for every coin spawned",
     },
     Modifiers = {
@@ -1508,7 +1499,7 @@ enums.FUNCTIONS.AddTrinket({
                 counter = tostring(math.floor(counter))
 
                 local replaceString = (color or "")..counter..(color and "{{CR}}" or "")
-                descObj.Description = string.gsub(descObj.Description, "COUNTER", replaceString)
+                descObj.Description = string.gsub(descObj.Description, "10", replaceString)
                 return descObj.Description
             end,
         }
@@ -2633,6 +2624,24 @@ enums.FUNCTIONS.AddGlobalModifier({
 
 --- JOKES ---
 
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CURSED_D6,
+    Name = "Cursed D6",
+    Description = {
+        "{{Quality4}} Can reroll items into Q4",
+        "{{Quality0}} but can also reroll into Q0",
+        "{{BrokenHeart}} or give a broken heart",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_SUPER_HAMBURGER,
+    Name = "Super Hamburger",
+    Description = {
+        "{{Heart}} +50 Health",
+        "\2 -2 Speed",
+        "Makes you big and fat",
+    },
+})
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_URANIUM,
     Name = "Uranium",
