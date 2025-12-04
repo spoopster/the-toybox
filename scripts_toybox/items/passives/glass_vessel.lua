@@ -5,13 +5,12 @@ local heartSprite, test = Sprite("gfx_tb/ui/ui_glassvessel_heart.anm2", true)
 heartSprite:Play("Idle", true)
 
 function ToyboxMod:renderGlassVesselSprite(player, pos)
-    local vesselState = (player:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_GLASS_VESSEL) and 0 or 1)
-    heartSprite:SetFrame(vesselState+((player:GetHealthType()==HealthType.COIN) and 2 or 0))
-    heartSprite:Render(pos)
+    
 end
 
 ---@param pl EntityPlayer
 local function renderVessel(_, offset, sprite, pos, x, pl)
+    if(Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then return end  
     if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_GLASS_VESSEL))) then return end
     if(pl:GetPlayerIndex()==-1) then return end
 
@@ -55,7 +54,9 @@ local function renderVessel(_, offset, sprite, pos, x, pl)
     end
     local heartPos = Vector(numHearts%heartsPerLine, numHearts//heartsPerLine)
     
-    ToyboxMod:renderGlassVesselSprite(pl, pos+(heartPos+posOffset)*mult)
+    local vesselState = (pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_GLASS_VESSEL) and 0 or 1)
+    heartSprite:SetFrame(vesselState+((pl:GetHealthType()==HealthType.COIN) and 2 or 0))
+    heartSprite:Render(pos+(heartPos+posOffset)*mult)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, renderVessel)
 

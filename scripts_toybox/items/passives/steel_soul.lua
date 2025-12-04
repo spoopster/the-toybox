@@ -108,10 +108,10 @@ local f = Font()
 f:Load("font/pftempestasevencondensed.fnt")
 ---@param pl EntityPlayer
 local function renderSoulShields(_, offset, sprite, pos, x, pl)
-    local idx = pl:GetPlayerIndex()
-    if(idx<0) then return end
+    if(Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then return end
+    if(pl:GetPlayerIndex()<0) then return end
 
-    local hud = Game():GetHUD():GetPlayerHUD(math.min(7,idx))
+    local hud = Game():GetHUD():GetPlayerHUD(math.min(7,pl:GetPlayerIndex()))
     local h = hud:GetHearts()
     local sp = Game():GetHUD():GetHeartsSprite()
 
