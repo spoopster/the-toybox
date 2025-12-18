@@ -17,7 +17,7 @@ local function evalCache(_, pl, flag)
         ToyboxMod:addBasicDamageUp(pl, DMG_UP*mult)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param pl EntityPlayer
 local function addTempTearsUp(_, pl)

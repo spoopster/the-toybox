@@ -6,7 +6,9 @@
     gfx="coconut_oil.png"
     quality="2"
     tags="offensive summonable tearsup"
-    cache="speed firedelay"
+    cache=""
+
+    speed="-0.25" tears="0.5"
 />
 <passive id="1" name="Condensed Milk"
     description="Tear funnel"
@@ -20,7 +22,9 @@
     gfx="eyestrain.png"
     quality="3"
     tags="offensive"
-    cache="luck firedelay"
+    cache=""
+    
+    tears="0.7" luck="1"
 />
 <passive id="3" name="Snowcone"
     description="Yummy!"
@@ -43,23 +47,28 @@
     gfx="goat_milk.png"
     quality="1"
     tags="offensive summonable tearsup"
-    cache="firedelay"
+    cache=""
+
+    tears="0.5"
 />
 <passive id="6" name="Loose Bowels"
     description="Can't control it..."
     gfx="loose_bowels.png"
     quality="2"
     tags="offensive summonable"           
-    cache="range"
+    cache=""
+
+    range="80"
 />
 <active id="7" name="Pliers"
     description="The pain is temporary"
     gfx="pliers.png"
     quality="0"
     tags="tearsup nolostbr"
-    cache="firedelay"
+    cache=""
 
     maxcharges="0"
+    effecttears="0.7"
 />
 <passive id="8" name="Nose Candy"
     description="Sugar rush!"
@@ -82,7 +91,9 @@
     gfx="dads_slipper.png"
     quality="1"
     tags="offensive summonable"
-    cache="shotspeed"
+    cache=""
+    
+    shotspeed="0.16"
 />
 <passive id="11" name="Good Job"
     description="your did it"
@@ -96,7 +107,9 @@
     gfx="odd_onion.png"
     quality="3"
     tags="offensive summonable"
-    cache="damage"
+    cache=""
+
+    damage="0.7"
 />
 <passive id="13" name="Caramel Apple"
     description="HP up + better hearts"
@@ -131,6 +144,8 @@
     quality="3"
     tags="offensive summonable"
     cache="tearcolor tearflag range"
+
+    range="-40"
 />
 <passive id="17" name="Painkillers"
     description="Immunity WAY down"
@@ -224,17 +239,21 @@
     gfx="plasma_globe.png"
     quality="4"
     tags="offensive"
-    cache="shotspeed"
+    cache=""
+
+    shotspeed="-0.2"
 />
 <active id="28" name="Sunk Costs"
     description="Suffering from success"
     gfx="sunk_costs.png"
     quality="1"
     tags="tearsup"
-    cache="firedelay"
+    cache=""
     
     maxcharges="0"
     coins="5"
+
+    effecttears="0.7"
 />
 <active id="29" name="Gilded Apple"
     description="Reusable money"
@@ -252,9 +271,11 @@
     gfx="onyx.png"
     quality="4"
     tags="offensive tearsup"
-    cache="speed firedelay damage"
+    cache=""
 
     blackhearts="2"
+
+    speed="0.2" tears="0.5" damage="1.2"
 />
 <passive id="31" name="Dad's Prescription"
     description="Dispense as written"
@@ -298,9 +319,11 @@
     gfx="saltpeter.png"
     quality="3"
     tags="offensive"
-    cache="range"
+    cache=""
 
     achievement="Saltpeter"
+
+    range="60"
 />
 <familiar id="36" name="Bone Boy"
     description="Life of the party"
@@ -338,9 +361,11 @@
     gfx="rock_candy.png"
     quality="3"
     tags="summonable offensive"
-    cache="damage shotspeed"
+    cache=""
 
     achievement="Rock Candy"
+
+    damage="0.7" shotspeed="0.16"
 />
 <passive id="40" name="Giant Capsule"
     description="The doctor is in!"
@@ -391,7 +416,9 @@
     gfx="4_4.png"
     quality="2"
     tags="summonable offensive"
-    cache="firedelay"
+    cache=""
+
+    tears="0.5"
 />
 <familiar id="45" name="Dr. Bum"
     description="Still homeless"
@@ -470,7 +497,9 @@
     gfx="mayonaise.png"
     quality="1"
     tags="nolostbr"
-    cache="shotspeed"
+    cache=""
+
+    shotspeed="0.15"
 />
 <passive id="54" name="Awesome Fruit"
     description="Follow your dreams!"
@@ -591,7 +620,9 @@
     quality="2"
     tags="offensive summonable"
 
-    cache="speed firedelay"
+    cache=""
+
+    speed="0.2" tears="0.5"
 />
 <passive id="68" name="Beer Can"
     description="Only one left"
@@ -615,7 +646,9 @@
     gfx="curious_carrot.png"
     quality="2"
     tags="offensive summonable"
-    cache="range"
+    cache=""
+
+    range="60"
 />
 <passive id="71" name="Conjunctivitis"
     description="Icky eye"
@@ -680,10 +713,11 @@
     gfx="lucky_pebbles.png"
     quality="2"
     tags="nolostbr summonable"
-    cache="luck"
+    cache=""
 
     maxhearts="2"
     hearts="6"
+    luck="1"
 />
 <active id="78" name="Mom's Photobook"
     description="Mass confusion"
@@ -699,7 +733,9 @@
     gfx="chinese_finger_trap.png"
     quality="2"
     tags="offensive summonable"
-    cache="damage shotspeed"
+    cache=""
+
+    damage="0.7" shotspeed="-0.16"
 />
 <passive id="80" name="Hemolymph"
     description="You're blue now!"
@@ -713,7 +749,9 @@
     gfx="solar_panel.png"
     quality="2"
     tags="offensive summonable"
-    cache="speed"
+    cache=""
+
+    speed="0.16"
 />
 <passive id="82" name="Surprise Egg"
     description="HP up + choking hazard"
@@ -730,10 +768,11 @@
     gfx="colossal_orb.png"
     quality="3"
     tags="offensive summonable nogreed"
-    cache="damage speed size"
+    cache="size"
 
     maxhearts="2"
     hearts="2"
+    speed="-0.2" damage="1"
 />
 <familiar id="84" name="Sack of Chests"
     description="Gives chests"
@@ -747,7 +786,9 @@
     gfx="baby_shoes.png"
     quality="2"
     tags="offensive summonable nogreed"
-    cache="speed"
+    cache=""
+
+    speed="0.2"
 />
 <familiar id="86" name="Effigy"
     description="A real boy"
@@ -874,6 +915,13 @@
     gfx="tammys_tail.png"
     quality="4"
     tags="offensive summonable dead"
+    cache=""
+/>
+<passive id="101" name="Malice"
+    description="Everything is terrible"
+    gfx="malice.png"
+    quality="2"
+    tags="offensive summonable"
     cache=""
 />
 

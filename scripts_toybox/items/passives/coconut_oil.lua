@@ -17,7 +17,7 @@ local function evalCache(_, player, flag)
         ToyboxMod:addBasicTearsUp(player, ENUM_TEARSTOADD*mult)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param player EntityPlayer
 local function makePlayerSlippery(_, player)

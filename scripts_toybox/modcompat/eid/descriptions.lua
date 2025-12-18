@@ -1341,6 +1341,14 @@ enums.FUNCTIONS.AddItem({
         "All rooms are cleared an additional time, doubling rewards and active charges gained",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MALICE,
+    Name = "Malice",
+    Description = {
+        "All non-boss enemies can be champions",
+        "Champion enemies trigger on-kill effects 3 times",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

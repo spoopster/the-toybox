@@ -9,12 +9,14 @@ function ToyboxMod:getModChampionIdx(npc)
     return ToyboxMod:getEntityData(npc, "CUSTOM_CHAMPION_IDX")
 end
 
-function ToyboxMod:MakeModChampion(npc)
-    local outcome = ToyboxMod.CUSTOM_CHAMPION_IDX_TO_NAME[ToyboxMod.CUSTOM_CHAMPION_PICKER:PickOutcome(npc:GetDropRNG())]
+function ToyboxMod:MakeModChampion(npc, id, init)
+    local outcome = id or ToyboxMod.CUSTOM_CHAMPION_IDX_TO_NAME[ToyboxMod.CUSTOM_CHAMPION_PICKER:PickOutcome(npc:GetDropRNG())]
 
     ToyboxMod.DENY_CHAMP_ROLL = true
-    local newNpc
-    while(not (newNpc and newNpc:Exists())) do
+    
+    local newNpc = npc
+    if(init) then newNpc = nil end
+    while(not (newNpc and newNpc:Exists() and not newNpc:IsChampion())) do
         newNpc = Isaac.Spawn(npc.Type, npc.Variant, npc.SubType, npc.Position, npc.Velocity, npc.SpawnerEntity):ToNPC()
         if(newNpc:IsChampion()) then
             newNpc:Remove()

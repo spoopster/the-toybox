@@ -28,6 +28,7 @@ local function tryUseHeldCandle(_, player)
         helper.CollisionDamage = FIRE_DMG
 
         player:SetItemState(0)
+        player:DischargeActiveItem(ActiveSlot.SLOT_PRIMARY)
         player:AnimateCollectible(ToyboxMod.COLLECTIBLE_MELTED_CANDLE, "HideItem")
     end
 end

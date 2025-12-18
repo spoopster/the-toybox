@@ -13,7 +13,7 @@ local function evalCache(_, pl, flags)
 
     ToyboxMod:addBasicTearsUp(pl, FOURFOUR_TEARS*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_4_4))
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FIREDELAY)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FIREDELAY)
 
 ---@param pl EntityPlayer
 local function confuseNearbyEnemies(_, pl)

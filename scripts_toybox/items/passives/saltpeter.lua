@@ -13,7 +13,7 @@ local function evalCache(_, player, flag)
 
     player.TearRange = player.TearRange+RANGE_UP*40*mult
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_RANGE)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_RANGE)
 
 ---@param ent Entity
 ---@param dmg number

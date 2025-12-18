@@ -10,4 +10,4 @@ local function evalCache(_, pl, flag)
     local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LUCKY_PEBBLES)
     pl.Luck = pl.Luck+LUCK_UP*mult
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_LUCK)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_LUCK)

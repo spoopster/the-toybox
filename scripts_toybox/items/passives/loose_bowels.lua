@@ -12,7 +12,7 @@ local function cacheEval(_, pl)
     local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LOOSE_BOWELS)
     pl.TearRange = pl.TearRange+mult*RANGE_UP
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, cacheEval, CacheFlag.CACHE_RANGE)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, cacheEval, CacheFlag.CACHE_RANGE)
 
 ---@param pl EntityPlayer
 local function postPeffectUpdate(_, pl)

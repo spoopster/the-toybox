@@ -13,7 +13,7 @@ local function evalCache(_, player, flag)
         ToyboxMod:addBasicTearsUp(player, ENUM_FIREDELAY_MULT*mult)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 local function skewWeaponFiredelay(fd, rng, num)
     local randFl = rng:RandomFloat()

@@ -21,4 +21,4 @@ local function evalCache(_, player, flag)
         player.ShotSpeed = player.ShotSpeed+SHOTSPEED_UP*mult
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

@@ -19,10 +19,16 @@ local function tryReplacePool(_, sel, pool, dec, seed)
     pool = itempool:GetLastPool()
 
     local item = sel
-    while(shouldRerollItem(item)) do
+    local failsafe = 2000
+    while(shouldRerollItem(item) and failsafe>0) do
         CANCEL_CHECK_EFFECT = true
         item = itempool:GetCollectible(pool, false, rng:RandomInt(2^32-1), CollectibleType.COLLECTIBLE_SAD_ONION)
         CANCEL_CHECK_EFFECT = false
+
+        failsafe = failsafe-1
+    end
+    if(failsafe==0) then
+        item = CollectibleType.COLLECTIBLE_SAD_ONION
     end
 
     if(sel~=item) then

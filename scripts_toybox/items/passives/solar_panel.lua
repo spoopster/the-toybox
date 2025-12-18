@@ -18,7 +18,7 @@ local function evalCache(_, player, flag)
 
     player.MoveSpeed = player.MoveSpeed+mult*SPEED_UP
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SPEED)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SPEED)
 
 local function addChargeOnNewRoom(_)
     local room = Game():GetRoom()

@@ -8,7 +8,7 @@ function ToyboxMod:getVanillaChampionChance()
     if(Game():GetLevel():GetStage()==LevelStage.STAGE_7) then -- void
         baseChance = 0.75
     end
-    baseChance = baseChance*math.max(1, 2*heartNum-1)
+    baseChance = baseChance*math.max(1, 2*heartNum)
 
     return baseChance
 end

@@ -19,4 +19,4 @@ local function evalCache(_, player, flag)
         ToyboxMod:addBasicDamageUp(player, DAMAGE_UP*mult)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

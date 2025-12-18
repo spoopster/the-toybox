@@ -228,6 +228,7 @@
         <Item Name="Big Red Button"/>
         <Item Name="Langton Loop"/>
         <Item Name="White Daisy"/>
+        <Item Name="Malice"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -241,6 +242,7 @@
         <Item Name="Big Red Button"/>
         <Item Name="Langton Loop"/>
         <Item Name="White Daisy"/>
+        <Item Name="Malice"/>
     </Pool>
 
     <Pool Name="library">
@@ -256,6 +258,7 @@
         <Item Name="Bob's Thesis"/>
         <Item Name="Effigy"/>
         <Item Name="Red Clover"/>
+        <Item Name="Malice"/>
     </Pool>
 
     <Pool Name="goldenChest">

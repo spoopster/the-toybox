@@ -15,7 +15,7 @@ local function evalCache(_, pl, flag)
         pl.TearRange = pl.TearRange+RANGE_UP*mult*40
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 
 ---@param pl EntityPlayer
 local function revealRooms(_, pl)

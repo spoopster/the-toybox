@@ -15,4 +15,4 @@ local function evalCache(_, player, flag)
         player.Luck = player.Luck+LUCK_UP*mult
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

@@ -22,7 +22,7 @@ local function evalCache(_, player, flag)
     elseif(flag==CacheFlag.CACHE_RANGE) then
         local mult = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_GARLIC)
 
-        player.TearRange = player.TearRange-RANGE_DOWN*mult*40
+        --player.TearRange = player.TearRange-RANGE_DOWN*mult*40
         player.TearRange = player.TearRange*RANGE_MULT
     end
 end

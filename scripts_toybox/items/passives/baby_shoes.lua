@@ -1,14 +1,10 @@
-
-
-local SPEED_UP = 0.2
 local ROOM_CLEAR_SPEED_UP = 0.5
 
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_BABY_SHOES)) then return end
 
-    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BABY_SHOES)
-    pl.MoveSpeed = pl.MoveSpeed+mult*SPEED_UP+(ToyboxMod:isRoomClear() and ROOM_CLEAR_SPEED_UP or 0)
+    pl.MoveSpeed = pl.MoveSpeed+(ToyboxMod:isRoomClear() and ROOM_CLEAR_SPEED_UP or 0)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SPEED)
 

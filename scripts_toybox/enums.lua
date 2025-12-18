@@ -173,6 +173,7 @@ ToyboxMod.COLLECTIBLE_GARLIC = Isaac.GetItemIdByName("Garlic Head")
 ToyboxMod.COLLECTIBLE_WHITE_DAISY = Isaac.GetItemIdByName("White Daisy")
 ToyboxMod.COLLECTIBLE_MELTED_CANDLE = Isaac.GetItemIdByName("Melted Candle")
 ToyboxMod.COLLECTIBLE_TAMMYS_TAIL = Isaac.GetItemIdByName("Tammy's Tail")
+ToyboxMod.COLLECTIBLE_MALICE = Isaac.GetItemIdByName("Malice")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -463,6 +464,8 @@ ToyboxMod.RED_HEART_SUBTYPES = {
     --[HeartSubType.HEART_ROTTEN] = true,
     --[HeartSubType.HEART_BLENDED] = true,
 }
+
+ToyboxMod.NPC_DUMMY_NPC = Isaac.GetEntityTypeByName("Toybox Dummy NPC")
 
 ToyboxMod.NPC_BOSS = Isaac.GetEntityTypeByName("Shy Gal")
 ToyboxMod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")

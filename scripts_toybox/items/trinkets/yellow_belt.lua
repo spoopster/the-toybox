@@ -4,6 +4,7 @@ local BLOCK_IFRAMES = 30*1.5
 ---@param pl EntityPlayer
 local function tryCancelDamage(_, pl, damage, flags, source, count)
     if(not pl:HasTrinket(ToyboxMod.TRINKET_YELLOW_BELT)) then return end
+    if(pl:IsInvincible() or pl:GetDamageCooldown()>0) then return end
 
     local chance = BLOCK_CHANCE*pl:GetTrinketMultiplier(ToyboxMod.TRINKET_YELLOW_BELT)
 

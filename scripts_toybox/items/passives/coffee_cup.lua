@@ -15,4 +15,4 @@ local function evalCache(_, pl, flag)
         ToyboxMod:addBasicTearsUp(pl, mult*TEARS_UP)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

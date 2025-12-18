@@ -16,9 +16,9 @@ local function evalCache(_, pl, flag)
     local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_COLOSSAL_ORB)
 
     if(flag==CacheFlag.CACHE_SPEED) then
-        pl.MoveSpeed = pl.MoveSpeed+SPEED_UP*mult
+        --pl.MoveSpeed = pl.MoveSpeed+SPEED_UP*mult
     elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(pl, DMG_UP*mult)
+        --ToyboxMod:addBasicDamageUp(pl, DMG_UP*mult)
     elseif(flag==CacheFlag.CACHE_SIZE) then
         pl.SpriteScale = pl.SpriteScale*(SIZE_UP^mult)
     end
