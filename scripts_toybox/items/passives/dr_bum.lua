@@ -18,10 +18,10 @@ local function getDrBumPill(fam)
     local rng = fam.Player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_DR_BUM)
     local mult = fam:GetMultiplier()
 
-    local pill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:RandomInt(1<<32-1))))
+    local pill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:Next())))
     local currentSub = conf:GetPillEffect(pill).EffectSubClass
     for i=1, ADVANTAGE_ROLLS+math.max(0, (mult-1)*EXTRA_ADVANTAGE_BFFS) do
-        local newPill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:RandomInt(1<<32-1))))
+        local newPill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:Next())))
         local newSub = conf:GetPillEffect(newPill).EffectSubClass
 
         if(newSub==ToyboxMod.PILL_SUBCLASS.GOOD and (currentSub==ToyboxMod.PILL_SUBCLASS.BAD or currentSub==ToyboxMod.PILL_SUBCLASS.NEUTRAL)) then
@@ -68,7 +68,7 @@ local function drBumUpdate(_, fam)
         for _, pickup in ipairs(Isaac.FindInRadius(fam.Position, SEARCH_RADIUS, EntityPartition.PICKUP)) do
             pickup = pickup:ToPickup()
             if(pickup and pickup.Variant==PickupVariant.PICKUP_TAROTCARD) then
-                if(pickup.Wait<=0 and not pickup:IsShopItem()) then
+                if(pickup.Wait<=0 and not pickup:IsShopItem() and not pickup:IsDead() and not pickup:ToPickup().Touched) then
                     nearestPickup = pickup
                     
                     break

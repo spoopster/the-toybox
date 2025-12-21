@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="5/11/2025 7:31:04 PM" Version="8" Fps="30"/>
+	<Info CreatedBy="Unknown" CreatedOn="12/20/2025 1:32:02 PM" Version="9" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="player_portraits\portrait_atlas.png" Id="0"/>
+			<Spritesheet Path="player_portraits\atlas_portrait.png" Id="0"/>
 			<Spritesheet Path="..\items\collectibles\4_4.png" Id="1"/>
 		</Spritesheets>
 		<Layers>

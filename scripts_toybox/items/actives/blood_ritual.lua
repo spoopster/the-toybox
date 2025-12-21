@@ -58,14 +58,18 @@ local function useBloodRitual(_, _, rng, player, flags)
         for _=1, numFam do
             table.insert(ritualData, #ritualData+1, ENUM_EVILFAM_PICKER:PickOutcome(rng))
         end
+        ToyboxMod:setEntityData(player, "BLOOD_RITUAL_DATA", {})
+        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
+        player:EvaluateItems()
+        
         ToyboxMod:setEntityData(player, "BLOOD_RITUAL_DATA", ritualData)
+        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
+        player:EvaluateItems()
 
         local pentagram = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
         pentagram.DepthOffset = -1000
 
         sfx:Play(SoundEffect.SOUND_DEVIL_CARD)
-
-        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     end
 
     return {
@@ -102,7 +106,7 @@ end
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
     local ritualData = ToyboxMod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
-    if(#ritualData==0 or #ritualData==(ToyboxMod:getEntityData(player, "BLOOD_RITUAL_PREVNUM") or 0)) then return end
+    --if(#ritualData==0 or #ritualData==(ToyboxMod:getEntityData(player, "BLOOD_RITUAL_PREVNUM") or 0)) then return end
     local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_BLOOD_RITUAL)
 
     local itemCounts = {}
@@ -115,12 +119,12 @@ local function evalCache(_, player, flag)
         numFamiliars = numFamiliars+(col==CollectibleType.COLLECTIBLE_TWISTED_PAIR and 2 or 1)
     end
 
-    local function addFam(var, i, cNum, num, c, isTwisted)
+    local function addFam(var, cNum, num, c, isTwisted)
         local numf = cNum+num
-        if(isTwisted) then numf = numf*2 end
+        if(isTwisted) then num = num*2; numf = numf*2 end
         local fams = player:CheckFamiliarEx(var, numf, rng, Isaac.GetItemConfig():GetCollectible(c), -1)
-        for fidx, fam in pairs(fams) do
-            if(fidx<=numf) then
+        for fidx, fam in ipairs(fams) do
+            if(fidx<=num) then
                 local fIndex = getBloodRitualIndex(rng, numFamiliars, invalidFIndex)
                 invalidFIndex[fIndex] = true
                 ToyboxMod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
@@ -132,18 +136,21 @@ local function evalCache(_, player, flag)
         local famVar = ENUM_EVILFAM_ITEM_TO_VAR[c] or FamiliarVariant.BROTHER_BOBBY
         local cNum = player:GetCollectibleNum(c)
 
-        addFam(famVar,-1, cNum, num, c, famVar==FamiliarVariant.TWISTED_BABY)
+        addFam(famVar, cNum, num, c, famVar==FamiliarVariant.TWISTED_BABY)
     end
 
     ToyboxMod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #ritualData)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.EARLY, evalCache, CacheFlag.CACHE_FAMILIARS)
 
 ---@param familiar EntityFamiliar
 local function bloodRitualOrbit(_, familiar)
     if(not ToyboxMod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
     local p = familiar.Player
     local offset = #(ToyboxMod:getEntityData(p, "BLOOD_RITUAL_DATA") or {})
+
+    familiar:RemoveFromFollowers()
+    familiar:RemoveFromDelayed()
 
     if(familiar.OrbitLayer~=ENUM_ORBIT_LAYER) then
         familiar:AddToOrbit(ENUM_ORBIT_LAYER)
