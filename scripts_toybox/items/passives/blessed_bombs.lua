@@ -34,6 +34,14 @@ local function playerPlaceBomb(_, pl, bomb)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_USE_BOMB, playerPlaceBomb)
 
+---@param bomb EntityBomb
+---@param ogbomb EntityBomb
+local function copyQuakeData(_, bomb, ogbomb)
+    ToyboxMod:setEntityData(bomb, "BLESSED_BOMB_PLAYER", ToyboxMod:getEntityData(ogbomb, "BLESSED_BOMB_PLAYER"))
+    replaceAnm2(bomb)
+end
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.COPY_SCATTER_BOMB_DATA, copyQuakeData)
+
 
 ---@param bomb EntityBomb
 local function blessedBombUpdate(_, bomb)

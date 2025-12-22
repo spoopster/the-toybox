@@ -44,27 +44,83 @@ local ENUM_ORBIT_SPEED = 5
 local ENUM_ORBIT_LAYER = 1823
 local ENUM_ORBIT_EASING = 3
 
+local function getBloodRitualIndex(rng, num, invalidIds)
+    local selIdx = rng:RandomInt(num)+1
+
+    local numVals = 0
+    for _, _ in pairs(invalidIds) do numVals=numVals+1 end
+
+    if(numVals==num) then return -1 end
+
+    while(invalidIds[selIdx]) do
+        selIdx = rng:RandomInt(num)+1
+    end
+
+    return selIdx
+end
+
 ---@param player EntityPlayer
 local function useBloodRitual(_, _, rng, player, flags)
     if(flags & UseFlag.USE_CARBATTERY == 0) then
         local isCarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
 
-        ToyboxMod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #(ToyboxMod:getEntityData(player, "BLOOD_RITUAL_DATA") or {}))
+        local pdata = ToyboxMod:getEntityDataTable(player)
 
-        local ritualData = ToyboxMod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
+        pdata.BLOOD_RITUAL_DATA = pdata.BLOOD_RITUAL_DATA or {}
+        pdata.BLOOD_RITUAL_INVALID_INDICES = pdata.BLOOD_RITUAL_INVALID_INDICES or {}
+        pdata.BLOOD_RITUAL_NUM_FAMILIARS = pdata.BLOOD_RITUAL_NUM_FAMILIARS or 0
+
         local numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS or ENUM_NUMFAMILIARS)
-        if(#ritualData>0) then numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS_EXTRA or ENUM_NUMFAMILIARS_EXTRA) end
+        if(#pdata.BLOOD_RITUAL_DATA>0) then numFam = (isCarbattery and CARBATTERY_NUMFAMILIARS_EXTRA or ENUM_NUMFAMILIARS_EXTRA) end
 
-        for _=1, numFam do
-            table.insert(ritualData, #ritualData+1, ENUM_EVILFAM_PICKER:PickOutcome(rng))
+        local finalnum = 0
+        local justgranted = {}
+
+        for _, item in ipairs(pdata.BLOOD_RITUAL_DATA) do
+            finalnum = finalnum+1
+            if(item==CollectibleType.COLLECTIBLE_TWISTED_PAIR) then
+                finalnum = finalnum+1
+            end
         end
-        ToyboxMod:setEntityData(player, "BLOOD_RITUAL_DATA", {})
-        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
-        player:EvaluateItems()
         
-        ToyboxMod:setEntityData(player, "BLOOD_RITUAL_DATA", ritualData)
+        for _=1, numFam do
+            local item = ENUM_EVILFAM_PICKER:PickOutcome(rng)
+            player:AddCollectibleEffect(item)
+            table.insert(pdata.BLOOD_RITUAL_DATA, item)
+            table.insert(justgranted, item)
+
+            finalnum = finalnum+1
+            if(item==CollectibleType.COLLECTIBLE_TWISTED_PAIR) then
+                finalnum = finalnum+1
+            end
+        end
+
         player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
         player:EvaluateItems()
+
+        for _, item in ipairs(justgranted) do
+            if(item==CollectibleType.COLLECTIBLE_TWISTED_PAIR) then
+                for i=0,1 do
+                    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR,FamiliarVariant.TWISTED_BABY,i)) do
+                        if(fam.FrameCount<=1 and not ToyboxMod:getEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL")) then
+                            local idx = getBloodRitualIndex(rng, finalnum, pdata.BLOOD_RITUAL_INVALID_INDICES)
+                            ToyboxMod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", idx)
+                            pdata.BLOOD_RITUAL_INVALID_INDICES[idx] = true
+                        end
+                    end
+                end
+            else
+                for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR,ENUM_EVILFAM_ITEM_TO_VAR[item])) do
+                    if(fam.FrameCount<=1 and not ToyboxMod:getEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL")) then
+                        local idx = getBloodRitualIndex(rng, finalnum, pdata.BLOOD_RITUAL_INVALID_INDICES)
+                        ToyboxMod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", idx)
+                        pdata.BLOOD_RITUAL_INVALID_INDICES[idx] = true
+                    end
+                end
+            end
+        end
+
+        pdata.BLOOD_RITUAL_NUM_FAMILIARS = finalnum
 
         local pentagram = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
         pentagram.DepthOffset = -1000
@@ -82,72 +138,26 @@ ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useBloodRitual, ToyboxMod.COLLEC
 
 ---@param player EntityPlayer
 local function removeBloodRitualEffect(_, player)
-    ToyboxMod:setEntityData(player, "BLOOD_RITUAL_DATA", {})
+    local pdata = ToyboxMod:getEntityDataTable(player)
+
+    local eff = player:GetEffects()
+    for _, item in ipairs(pdata.BLOOD_RITUAL_DATA or {}) do
+        eff:RemoveCollectibleEffect(item, 1)
+    end
+
+    pdata.BLOOD_RITUAL_DATA = {}
+    pdata.BLOOD_RITUAL_INVALID_INDICES = {}
+    pdata.BLOOD_RITUAL_NUM_FAMILIARS = 0
+
     player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, removeBloodRitualEffect)
-
-local function getBloodRitualIndex(rng, num, invalidIds)
-    local selIdx = rng:RandomInt(num)+1
-
-    local numVals = 0
-    for _, _ in pairs(invalidIds) do numVals=numVals+1 end
-
-    if(numVals==num) then return selIdx end
-
-    while(invalidIds[selIdx]) do
-        selIdx = rng:RandomInt(num)+1
-    end
-
-    return selIdx
-end
-
----@param player EntityPlayer
----@param flag CacheFlag
-local function evalCache(_, player, flag)
-    local ritualData = ToyboxMod:getEntityDataTable(player).BLOOD_RITUAL_DATA or {}
-    --if(#ritualData==0 or #ritualData==(ToyboxMod:getEntityData(player, "BLOOD_RITUAL_PREVNUM") or 0)) then return end
-    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_BLOOD_RITUAL)
-
-    local itemCounts = {}
-    local invalidFIndex = {}
-
-    local numFamiliars = 0
-    for _, col in ipairs(ritualData) do
-        if(itemCounts[col]==nil) then itemCounts[col]=0 end
-        itemCounts[col] = itemCounts[col]+1
-        numFamiliars = numFamiliars+(col==CollectibleType.COLLECTIBLE_TWISTED_PAIR and 2 or 1)
-    end
-
-    local function addFam(var, cNum, num, c, isTwisted)
-        local numf = cNum+num
-        if(isTwisted) then num = num*2; numf = numf*2 end
-        local fams = player:CheckFamiliarEx(var, numf, rng, Isaac.GetItemConfig():GetCollectible(c), -1)
-        for fidx, fam in ipairs(fams) do
-            if(fidx<=num) then
-                local fIndex = getBloodRitualIndex(rng, numFamiliars, invalidFIndex)
-                invalidFIndex[fIndex] = true
-                ToyboxMod:setEntityData(fam, "IS_BLOOD_RITUAL_ORBITAL", fIndex/numFamiliars)
-            end
-        end
-    end
-
-    for c, num in pairs(itemCounts) do
-        local famVar = ENUM_EVILFAM_ITEM_TO_VAR[c] or FamiliarVariant.BROTHER_BOBBY
-        local cNum = player:GetCollectibleNum(c)
-
-        addFam(famVar, cNum, num, c, famVar==FamiliarVariant.TWISTED_BABY)
-    end
-
-    ToyboxMod:setEntityData(player, "BLOOD_RITUAL_PREVNUM", #ritualData)
-end
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.EARLY, evalCache, CacheFlag.CACHE_FAMILIARS)
 
 ---@param familiar EntityFamiliar
 local function bloodRitualOrbit(_, familiar)
     if(not ToyboxMod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")) then return end
     local p = familiar.Player
-    local offset = #(ToyboxMod:getEntityData(p, "BLOOD_RITUAL_DATA") or {})
+    local todiv = (ToyboxMod:getEntityData(p, "BLOOD_RITUAL_NUM_FAMILIARS") or 0)
 
     familiar:RemoveFromFollowers()
     familiar:RemoveFromDelayed()
@@ -159,7 +169,7 @@ local function bloodRitualOrbit(_, familiar)
     familiar.OrbitDistance = ENUM_ORBIT_DIST
     familiar.OrbitSpeed = ENUM_ORBIT_SPEED
 
-    local orbPos = p.Position+p.Velocity+Vector.FromAngle(familiar.FrameCount*familiar.OrbitSpeed+ToyboxMod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")*360)*familiar.OrbitDistance
+    local orbPos = p.Position+p.Velocity+Vector.FromAngle(p.FrameCount*familiar.OrbitSpeed+ToyboxMod:getEntityData(familiar, "IS_BLOOD_RITUAL_ORBITAL")/todiv*360)*familiar.OrbitDistance
 
     familiar.Velocity = (orbPos-familiar.Position)/ENUM_ORBIT_EASING
 end
@@ -172,7 +182,6 @@ local function bloodRitualPriority(_, familiar)
     return -100
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, bloodRitualPriority)
-
 
 ---@param effect EntityEffect
 local function pentagramUpdate(_, effect)
