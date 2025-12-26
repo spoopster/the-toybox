@@ -15,6 +15,7 @@ local function usePill(_, effect, player, flags, color)
     if(isHorse) then
         cloud:SetTimeout(-1)
         cloud.SpriteScale = Vector(1,1)*3
+
         local creep = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_GREEN, 0, player.Position, Vector.Zero, nil):ToEffect()
         creep.SpriteScale = Vector(1,1)*3.5
         creep:SetTimeout(CREEP_DURATION)
@@ -24,7 +25,19 @@ local function usePill(_, effect, player, flags, color)
         cloud.SpriteScale = Vector(1,1)*2
     end
 
+    cloud:ClearEntityFlags(EntityFlag.FLAG_PERSISTENT)
+    ToyboxMod:setEntityData(cloud, "KILL_ON_ROOM_EXIT", true)
+
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.FOOD_POISONING)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_FOOD_POISONING)
+
+local function removeCloudsOnExit(_)
+    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.SMOKE_CLOUD)) do
+        if(ToyboxMod:getEntityData(ent, "KILL_ON_ROOM_EXIT")) then
+            ent:Remove()
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_EXIT, removeCloudsOnExit)

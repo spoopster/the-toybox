@@ -22,7 +22,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, turnToPassive, ToyboxMod.COLLECT
 ---@param flag CacheFlag
 local function giveCup(_, pl, flag)
     pl:CheckFamiliar(
-        ToyboxMod.FAMILIAR_VARIANT.PYTHAGORAS_CUP,
+        ToyboxMod.FAMILIAR_PYTHAGORAS_CUP,
         (pl:HasCollectible(ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE) and 1 or 0),
         pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE),
         Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE)
@@ -114,7 +114,7 @@ local function increaseCupState(_, _, _, firstTime, _, _, pl)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE)) then return end
 
     local plHash = GetPtrHash(pl)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.PYTHAGORAS_CUP)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_PYTHAGORAS_CUP)) do
         fam = fam:ToFamiliar()
         if(GetPtrHash(fam.Player)==plHash) then
             fam.Coins = fam.Coins+1
@@ -129,7 +129,7 @@ local function stopHoldingThePlaces(_, pl)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE)) then return end
 
     local plHash = GetPtrHash(pl)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.PYTHAGORAS_CUP)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_PYTHAGORAS_CUP)) do
         fam = fam:ToFamiliar()
         if(GetPtrHash(fam.Player)==plHash) then
             fam.Coins = 1
@@ -142,7 +142,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, stopHoldingThePlace
 local function cupFamiliarInit(_, fam)
     fam:AddToFollowers()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, cupFamiliarInit, ToyboxMod.FAMILIAR_VARIANT.PYTHAGORAS_CUP)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, cupFamiliarInit, ToyboxMod.FAMILIAR_PYTHAGORAS_CUP)
 
 ---@param fam EntityFamiliar
 local function cupFamiliarUpdate(_, fam)
@@ -171,7 +171,7 @@ local function cupFamiliarUpdate(_, fam)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, cupFamiliarUpdate, ToyboxMod.FAMILIAR_VARIANT.PYTHAGORAS_CUP)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, cupFamiliarUpdate, ToyboxMod.FAMILIAR_PYTHAGORAS_CUP)
 
 ---@param effect EntityEffect
 local function cupSpillUpdate(_, effect)

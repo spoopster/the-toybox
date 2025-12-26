@@ -59,7 +59,7 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
     if(not ToyboxMod:isAtlasA(player)) then return end
     if(not ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.BONE.ID)) then return end
 
-    local rng = player:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_BONE)
+    local rng = player:GetCardRNG(ToyboxMod.CARD_MANTLE_BONE)
     local bones = BONE_NUM*dmg
     for i=1, bones do
         local v = Vector(BONE_SPEED,0):Rotated(360*i/bones+(rng:RandomFloat()-1/2)*25)

@@ -1,13 +1,14 @@
 
 local sfx = SFXManager()
 
-local HORSE_INVINCIBILITY = 3*60
+local NUM_CLOTS = 1
+local NUM_CLOTS_HORSE = 3
 
 ---@param player EntityPlayer
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
 
-    for i=1, (isHorse and 3 or 1) do
+    for _=1, (isHorse and NUM_CLOTS_HORSE or NUM_CLOTS) do
         local pos = Vector.FromAngle(math.random(360))*4
         local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, 0, player.Position, pos, player):ToFamiliar()
         clot.Parent = player
@@ -20,7 +21,7 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     player:AnimateHappy()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.COAGULANT)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_COAGULANT)
 
 local function coagReduce(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()

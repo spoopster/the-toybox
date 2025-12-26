@@ -29,7 +29,7 @@ local function usePoisonRain(_, _, pl, _)
     sfx:Play(SoundEffect.SOUND_THUNDER, 1.2, 2, false, 0.9+math.random()*0.2)
     sfx:Play(ToyboxMod.SOUND_EFFECT.WATER_LOOP, 0.6, 0, true, 0.9)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, usePoisonRain, ToyboxMod.CONSUMABLE.POISON_RAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, usePoisonRain, ToyboxMod.CARD_POISON_RAIN)
 
 local function updatePoisonRain(_)
     local cnt = ToyboxMod:getExtraData("POISON_RAIN_TIME")
@@ -46,7 +46,7 @@ local function updatePoisonRain(_)
     end
 
     if(cnt>=BREAK_GRID_DELAY and (cnt-BREAK_GRID_DELAY)%BREAK_GRID_FREQ==0) then
-        local rng = (ToyboxMod:getExtraData("POISON_RAIN_PLAYER") or Isaac.GetPlayer()):GetCardRNG(ToyboxMod.CONSUMABLE.POISON_RAIN)
+        local rng = (ToyboxMod:getExtraData("POISON_RAIN_PLAYER") or Isaac.GetPlayer()):GetCardRNG(ToyboxMod.CARD_POISON_RAIN)
         if(rng:RandomFloat()<BREAK_GRID_CHANCE) then
             local grids = {}
             for i=0, room:GetGridWidth()*room:GetGridHeight()-1 do

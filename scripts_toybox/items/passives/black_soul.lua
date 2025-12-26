@@ -13,7 +13,7 @@ local function shadowInit(_, familiar)
 
     local pl = (familiar.SpawnerEntity and familiar.SpawnerEntity:ToPlayer() or Isaac.GetPlayer())
     local plHash = GetPtrHash(pl)
-    for _, otherFam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
+    for _, otherFam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_EVIL_SHADOW)) do
         otherFam = otherFam:ToFamiliar() ---@cast otherFam EntityFamiliar
 
         if(GetPtrHash(otherFam.Player)==plHash) then
@@ -28,7 +28,7 @@ local function shadowInit(_, familiar)
 
     familiar:GetSprite():Play("WalkDown", true)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, shadowInit, ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, shadowInit, ToyboxMod.FAMILIAR_EVIL_SHADOW)
 
 ---@param familiar EntityFamiliar
 local function shadowUpdate(_, familiar)
@@ -57,10 +57,10 @@ local function shadowUpdate(_, familiar)
         sp:SetFrame(0)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, shadowUpdate, ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, shadowUpdate, ToyboxMod.FAMILIAR_EVIL_SHADOW)
 
 local function fixOnNewRoom(_)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_EVIL_SHADOW)) do
         fam = fam:ToFamiliar() ---@cast fam EntityFamiliar
         fam:SetMoveDelayNum(-1)
     end
@@ -74,7 +74,7 @@ local function spawnShadow(_, player, _, flags, source)
 
     local numShadows = 0
     local plHash = GetPtrHash(player)
-    for _, otherFam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
+    for _, otherFam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_EVIL_SHADOW)) do
         otherFam = otherFam:ToFamiliar() ---@cast otherFam EntityFamiliar
 
         if(GetPtrHash(otherFam.Player)==plHash) then
@@ -85,7 +85,7 @@ local function spawnShadow(_, player, _, flags, source)
     local cap = SHADOW_CAP+(player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BLACK_SOUL)-1)*CAP_INCREASE_STACK
 
     if(numShadows<cap) then
-        local shadow = Isaac.Spawn(3,ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW,0,player.Position,Vector.Zero,player):ToFamiliar()
+        local shadow = Isaac.Spawn(3,ToyboxMod.FAMILIAR_EVIL_SHADOW,0,player.Position,Vector.Zero,player):ToFamiliar()
         shadow:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 
         local evilEffect = Isaac.Spawn(1000,15,2,shadow.Position,Vector.Zero,shadow):ToEffect()
@@ -100,7 +100,7 @@ local function removeShadows(_, pl)
     if(pl.FrameCount==0) then return end
 
     local plHash = GetPtrHash(pl)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.EVIL_SHADOW)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_EVIL_SHADOW)) do
         fam = fam:ToFamiliar() ---@cast fam EntityFamiliar
 
         if(GetPtrHash(fam.Player)==plHash) then

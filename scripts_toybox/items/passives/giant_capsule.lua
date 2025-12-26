@@ -99,7 +99,7 @@ local function spawnVirus(player)
         
     for _=1, player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_GIANT_CAPSULE) do
         local var = SUBTYPE_PICKER:PickOutcome(rng)
-        local virus = Isaac.Spawn(3,ToyboxMod.FAMILIAR_VARIANT.VIRUS,var,player.Position,player.Velocity,player):ToFamiliar()
+        local virus = Isaac.Spawn(3,ToyboxMod.FAMILIAR_VIRUS,var,player.Position,player.Velocity,player):ToFamiliar()
         virus.Player = player
     end
 
@@ -118,7 +118,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useConsumable)
 ---@param player EntityPlayer
 local function evalViruses(_, player)
     player:CheckFamiliar(
-        ToyboxMod.FAMILIAR_VARIANT.VIRUS,
+        ToyboxMod.FAMILIAR_VIRUS,
         player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_GIANT_CAPSULE)+player:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_GIANT_CAPSULE),
         player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_GIANT_CAPSULE),
         Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_GIANT_CAPSULE)
@@ -138,7 +138,7 @@ local function virusInit(_, familiar)
 
     familiar.Hearts = DURATION
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, virusInit, ToyboxMod.FAMILIAR_VARIANT.VIRUS)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, virusInit, ToyboxMod.FAMILIAR_VIRUS)
 
 ---@param familiar EntityFamiliar
 local function virusUpdate(_, familiar)
@@ -206,6 +206,6 @@ local function virusUpdate(_, familiar)
         sfx:Play(ToyboxMod.SOUND_EFFECT.VIRUS_DIE)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, virusUpdate, ToyboxMod.FAMILIAR_VARIANT.VIRUS)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, virusUpdate, ToyboxMod.FAMILIAR_VIRUS)
 --im bored
 

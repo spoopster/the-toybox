@@ -31,7 +31,7 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, CallbackPrior
 local function givePlaceholderStats(_, pl, flag)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_PLACEHOLDER)) then return end
 
-    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_PLACEHOLDER)*math.max(1, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BOBS_THESIS))
+    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_PLACEHOLDER)
 
     if(flag==CacheFlag.CACHE_SPEED) then
         pl.MoveSpeed = pl.MoveSpeed+mult*PLACEHOLDER_SPEED
@@ -47,7 +47,7 @@ local function givePlaceholderStats(_, pl, flag)
         pl.Luck = pl.Luck+mult*PLACEHOLDER_LUCK
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, givePlaceholderStats)
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, givePlaceholderStats)
 
 ---@param pl EntityPlayer
 local function stopHoldingThePlaces(_, pl)

@@ -20,4 +20,4 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.OSSIFICATION)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_OSSIFICATION)

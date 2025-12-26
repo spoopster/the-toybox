@@ -14,7 +14,7 @@ local function useMantle(_, _, player, _)
         player:AddCacheFlags(CacheFlag.CACHE_TEARFLAG, true)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CONSUMABLE.MANTLE_HOLY)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_HOLY)
 
 ---@param player EntityPlayer
 local function postNewRoom(_, player)
@@ -35,9 +35,9 @@ local function evalCache(_, pl, flag)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_TEARFLAG)
 
-if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CONSUMABLE.MANTLE_HOLY] = true end
+if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_HOLY] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.MANTLE_HOLY).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_MANTLE_HOLY).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

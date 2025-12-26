@@ -23,4 +23,4 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     sfx:Play(SoundEffect.SOUND_POWERUP_SPEWER)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.I_BELIEVE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_I_BELIEVE)

@@ -1,7 +1,7 @@
 
 local sfx = SFXManager()
 
-local DMG_UP = 0.45
+local DMG_UP = 0.5
 
 ---@param player EntityPlayer
 local function usePill(_, effect, player, flags, color)
@@ -15,12 +15,12 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
     player:AnimateHappy()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.DMG_UP)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_DMG_UP)
 
-local function cacheEval(_, player, flag)
-    local data = ToyboxMod:getEntityDataTable(player)
-    if((data.DAMAGE_UP_STACKS or 0)<=0) then return end
-
-    ToyboxMod:addBasicDamageUp(player, DMG_UP*data.DAMAGE_UP_STACKS)
+---@param pl EntityPlayer
+---@param val number
+local function evaluateDamage(_, pl, _, val)
+    local stacks = (ToyboxMod:getEntityData(pl, "DAMAGE_UP_STACKS") or 0)
+    return val+stacks*DMG_UP
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, cacheEval, CacheFlag.CACHE_DAMAGE)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evaluateDamage, EvaluateStatStage.DAMAGE_UP)

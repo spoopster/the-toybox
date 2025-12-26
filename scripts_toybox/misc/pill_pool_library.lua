@@ -31,12 +31,12 @@ ToyboxMod.PHD_PILLCONVERSION = {
     [PillEffect.PILLEFFECT_X_LAX] = PillEffect.PILLEFFECT_SOMETHINGS_WRONG,
     [PillEffect.PILLEFFECT_BAD_TRIP] = PillEffect.PILLEFFECT_BALLS_OF_STEEL,
 
-    [ToyboxMod.PILL_EFFECT.DMG_DOWN] = ToyboxMod.PILL_EFFECT.DMG_UP,
-    [ToyboxMod.PILL_EFFECT.OSSIFICATION] = ToyboxMod.PILL_EFFECT.YOUR_SOUL_IS_MINE,
-    [ToyboxMod.PILL_EFFECT.FOOD_POISONING] = ToyboxMod.PILL_EFFECT.VITAMINS,
-    [ToyboxMod.PILL_EFFECT.HEARTBURN] = ToyboxMod.PILL_EFFECT.COAGULANT,
-    [ToyboxMod.PILL_EFFECT.DYSLEXIA] = ToyboxMod.PILL_EFFECT.FENT,
-    [ToyboxMod.PILL_EFFECT.MUSCLE_ATROPHY] = ToyboxMod.PILL_EFFECT.VITAMINS,
+    [ToyboxMod.PILL_DMG_DOWN] = ToyboxMod.PILL_DMG_UP,
+    [ToyboxMod.PILL_OSSIFICATION] = ToyboxMod.PILL_YOUR_SOUL_IS_MINE,
+    [ToyboxMod.PILL_FOOD_POISONING] = ToyboxMod.PILL_VITAMINS,
+    [ToyboxMod.PILL_HEARTBURN] = ToyboxMod.PILL_COAGULANT,
+    [ToyboxMod.PILL_DYSLEXIA] = ToyboxMod.PILL_FENT,
+    [ToyboxMod.PILL_MUSCLE_ATROPHY] = ToyboxMod.PILL_VITAMINS,
 }
 ToyboxMod.FALSEPHD_PILLCONVERSION = {
     [PillEffect.PILLEFFECT_TEARS_UP] = PillEffect.PILLEFFECT_TEARS_DOWN,
@@ -63,37 +63,37 @@ ToyboxMod.FALSEPHD_PILLCONVERSION = {
     [PillEffect.PILLEFFECT_PRETTY_FLY] = PillEffect.PILLEFFECT_LUCK_DOWN,
     [PillEffect.PILLEFFECT_INFESTED_QUESTION] = PillEffect.PILLEFFECT_LUCK_DOWN,
 
-    [ToyboxMod.PILL_EFFECT.VITAMINS] = ToyboxMod.PILL_EFFECT.MUSCLE_ATROPHY,
-    [ToyboxMod.PILL_EFFECT.DMG_UP] = ToyboxMod.PILL_EFFECT.DMG_DOWN,
-    [ToyboxMod.PILL_EFFECT.YOUR_SOUL_IS_MINE] = ToyboxMod.PILL_EFFECT.OSSIFICATION,
-    [ToyboxMod.PILL_EFFECT.PARASITE] = ToyboxMod.PILL_EFFECT.FOOD_POISONING,
-    [ToyboxMod.PILL_EFFECT.CAPSULE] = ToyboxMod.PILL_EFFECT.FOOD_POISONING,
-    [ToyboxMod.PILL_EFFECT.COAGULANT] = ToyboxMod.PILL_EFFECT.HEARTBURN,
-    [ToyboxMod.PILL_EFFECT.FENT] = ToyboxMod.PILL_EFFECT.DYSLEXIA,
-    [ToyboxMod.PILL_EFFECT.I_BELIEVE] = ToyboxMod.PILL_EFFECT.ARTHRITIS,
+    [ToyboxMod.PILL_VITAMINS] = ToyboxMod.PILL_MUSCLE_ATROPHY,
+    [ToyboxMod.PILL_DMG_UP] = ToyboxMod.PILL_DMG_DOWN,
+    [ToyboxMod.PILL_YOUR_SOUL_IS_MINE] = ToyboxMod.PILL_OSSIFICATION,
+    [ToyboxMod.PILL_PARASITE] = ToyboxMod.PILL_FOOD_POISONING,
+    [ToyboxMod.PILL_CAPSULE] = ToyboxMod.PILL_FOOD_POISONING,
+    [ToyboxMod.PILL_COAGULANT] = ToyboxMod.PILL_HEARTBURN,
+    [ToyboxMod.PILL_FENT] = ToyboxMod.PILL_DYSLEXIA,
+    [ToyboxMod.PILL_I_BELIEVE] = ToyboxMod.PILL_ARTHRITIS,
 }
-ToyboxMod.PILL_EFFECT.ACHIEVEMENTS = {
+ToyboxMod.PILL_ACHIEVEMENTS = {
     [PillEffect.PILLEFFECT_GULP] = Achievement.GULP_PILL,
     [PillEffect.PILLEFFECT_HORF] = Achievement.HORF,
     [PillEffect.PILLEFFECT_SUNSHINE] = Achievement.SUNSHINE_PILL,
     [PillEffect.PILLEFFECT_VURP] = Achievement.VURP,
 
-    [ToyboxMod.PILL_EFFECT.I_BELIEVE] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.DYSLEXIA] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.DMG_UP] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.DMG_DOWN] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.DEMENTIA] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.PARASITE] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.FENT] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.YOUR_SOUL_IS_MINE] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.ARTHRITIS] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.OSSIFICATION] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.VITAMINS] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.COAGULANT] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.FOOD_POISONING] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.HEARTBURN] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.MUSCLE_ATROPHY] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_EFFECT.CAPSULE] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_I_BELIEVE] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_DYSLEXIA] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_DMG_UP] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_DMG_DOWN] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_DEMENTIA] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_PARASITE] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_FENT] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_YOUR_SOUL_IS_MINE] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_ARTHRITIS] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_OSSIFICATION] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_VITAMINS] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_COAGULANT] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_FOOD_POISONING] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_HEARTBURN] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_MUSCLE_ATROPHY] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_CAPSULE] = ToyboxMod.ACHIEVEMENT.PILLS,
 }
 
 --! ff pill conversions
@@ -107,7 +107,7 @@ if(FiendFolio) then
     ToyboxMod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.MELATONIN] = PillEffect.PILLEFFECT_PARALYSIS
     ToyboxMod.FALSEPHD_PILLCONVERSION[FiendFolio.ITEM.PILL.FISH_OIL] = FiendFolio.ITEM.PILL.LEMON_JUICE
 
-    ToyboxMod.PILL_EFFECT.ACHIEVEMENTS[FiendFolio.ITEM.PILL.CYANIDE] = -1
+    ToyboxMod.PILL_ACHIEVEMENTS[FiendFolio.ITEM.PILL.CYANIDE] = -1
 end
 
 function ToyboxMod:getAllPillEffects(phdEffect)
@@ -121,7 +121,7 @@ function ToyboxMod:getAllPillEffects(phdEffect)
         if((phdEffect & ToyboxMod.PHD_TYPE.NEUTRAL~=0 and currentpill.EffectSubClass==ToyboxMod.PILL_SUBCLASS.NEUTRAL)
         or (phdEffect & ToyboxMod.PHD_TYPE.GOOD~=0 and currentpill.EffectSubClass==ToyboxMod.PILL_SUBCLASS.GOOD)
         or (phdEffect & ToyboxMod.PHD_TYPE.BAD~=0 and currentpill.EffectSubClass==ToyboxMod.PILL_SUBCLASS.BAD)) then
-            local ach = ToyboxMod.PILL_EFFECT.ACHIEVEMENTS[currentpill.ID]
+            local ach = ToyboxMod.PILL_ACHIEVEMENTS[currentpill.ID]
 
             local shouldAdd = false
             if(ach==nil) then

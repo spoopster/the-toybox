@@ -42,6 +42,8 @@
         <Item Name="White Daisy"/>
         <Item Name="Tammy's Tail"/>
         <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Bloody Whistle"/>
+        <Item Name="Bob's Heart"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -84,6 +86,8 @@
         <Item Name="White Daisy"/>
         <Item Name="Tammy's Tail"/>
         <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Bloody Whistle"/>
+        <Item Name="Bob's Heart"/>
     </Pool>
 
     <Pool Name="boss">
@@ -259,6 +263,7 @@
         <Item Name="Effigy"/>
         <Item Name="Red Clover"/>
         <Item Name="Malice"/>
+        <Item Name="Bloody Whistle"/>
     </Pool>
 
     <Pool Name="goldenChest">

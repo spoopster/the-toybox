@@ -16,7 +16,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_CONDENSED_MILK,
     Name = "Condensed Milk",
     Description = {
-        "\1 x1.2 Tears",
+        "\1 x1.2 Firerate",
         "Your {{Damage}} damage cannot go above or below 3.5, instead all damage modifiers get funneled into your {{Tears}} tears",
     },
     Modifiers = {
@@ -74,8 +74,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_LION_SKULL,
     Name = "Lion Skull",
     Description = {
-        "\1 +0.15 Damage on room clear",
-        "\2 On hit, -0.15 Damage for each room cleared since the last time you got hit",
+        "\1 +0.15 flat Damage on room clear",
+        "\2 On hit, -0.15 flat Damage for each room cleared since the last time you got hit",
         "The damage down will wear off as you clear rooms",
     },
     StackModifiers = {
@@ -752,8 +752,8 @@ enums.FUNCTIONS.AddItem({
         "{{Timer}} For the room:",
         "Gives stats that wear off over 10 seconds:",
         "{{Blank}} \1 +0.2 Speed",
-        "{{Blank}} \1 +2 Damage",
-        "{{Blank}} \1 +1 Tears",
+        "{{Blank}} \1 +2 flat Damage",
+        "{{Blank}} \1 +1 Firerate",
         "On death, enemies spawn puddles of slowing tar",
         "Touching a puddle absorbs it and extends the temporary stats"
     },
@@ -1220,7 +1220,7 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{BossRoom}} Clearing a Boss Room without taking damage gives:",
         "\1 +0.1 Speed",
-        "\1 +0.5 Damage",
+        "\1 +0.5 flat Damage",
         "\1 +1 Luck",
         "{{Chest}} A Chest",
     },
@@ -1846,7 +1846,7 @@ enums.FUNCTIONS.AddTrinket({
 })
 
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.PRISMSTONE,
+    ID = ToyboxMod.CARD_PRISMSTONE,
     Name = "Prismstone",
     Description = {
         "{{Rune}} Spawns 3 runes or soul stones",
@@ -1854,14 +1854,14 @@ enums.FUNCTIONS.AddCard({
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.FOIL_CARD,
+    ID = ToyboxMod.CARD_FOIL_CARD,
     Name = "Foil Card",
     Description = {
         "{{Coin}} Spawns a golden heart, penny, key or bomb",
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.POISON_RAIN,
+    ID = ToyboxMod.CARD_POISON_RAIN,
     Name = "Poison Rain",
     Description = {
         "{{Poison}} All enemies, including bosses, are poisoned for 10 seconds",
@@ -1869,7 +1869,7 @@ enums.FUNCTIONS.AddCard({
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.ALIEN_MIND,
+    ID = ToyboxMod.CARD_ALIEN_MIND,
     Name = "Alien Mind",
     Description = {
         "{{Friendly}} Picks 3 random enemies to become friendly and mimic your movements and attacks",
@@ -1877,7 +1877,7 @@ enums.FUNCTIONS.AddCard({
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.FOUR_STARRED_LADYBUG,
+    ID = ToyboxMod.CARD_FOUR_STARRED_LADYBUG,
     Name = "4-Starred Ladybug",
     Description = {
         "{{Petrify}} Champion and boss enemies are petrified for 4 seconds",
@@ -1885,14 +1885,14 @@ enums.FUNCTIONS.AddCard({
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.LAUREL,
+    ID = ToyboxMod.CARD_LAUREL,
     Name = "Laurel",
     Description = {
         "Gives 5 seconds of invincibility when used",
     },
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.YANNY,
+    ID = ToyboxMod.CARD_YANNY,
     Name = "Yanny",
     Description = {
         "Deals 30 damage to all enemies in the room when used",
@@ -1900,7 +1900,7 @@ enums.FUNCTIONS.AddCard({
 })
 
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_ROCK,
+    ID = ToyboxMod.CARD_MANTLE_ROCK,
     Name = "Mantle - Rock",
     Description = {
         "{{Timer}} For the room:",
@@ -1935,7 +1935,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_POOP,
+    ID = ToyboxMod.CARD_MANTLE_POOP,
     Name = "Mantle - Poop",
     Description = {
         "Hold up a throwable poop",
@@ -1972,7 +1972,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_BONE,
+    ID = ToyboxMod.CARD_MANTLE_BONE,
     Name = "Mantle - Bone",
     Description = {
         "{{Charm}} Spawns a friendly Bony",
@@ -2008,7 +2008,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_DARK,
+    ID = ToyboxMod.CARD_MANTLE_DARK,
     Name = "Mantle - Dark",
     Description = {
         "Deals 10 damage to all enemies on the floor",
@@ -2044,7 +2044,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_HOLY,
+    ID = ToyboxMod.CARD_MANTLE_HOLY,
     Name = "Mantle - Holy",
     Description = {
         "{{EternalHeart}} +1 Eternal Heart",
@@ -2080,7 +2080,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_SALT,
+    ID = ToyboxMod.CARD_MANTLE_SALT,
     Name = "Mantle - Salt",
     Description = {
         "{{Timer}} Gives the effect of a random \"Tears Up\" item for the room",
@@ -2114,7 +2114,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_GLASS,
+    ID = ToyboxMod.CARD_MANTLE_GLASS,
     Name = "Mantle - Glass",
     Description = {
         "{{Timer}} For the room:",
@@ -2152,7 +2152,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_METAL,
+    ID = ToyboxMod.CARD_MANTLE_METAL,
     Name = "Mantle - Metal",
     Description = {
         "{{SoulHeart}} +1 Soul Heart",
@@ -2188,7 +2188,7 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CONSUMABLE.MANTLE_GOLD,
+    ID = ToyboxMod.CARD_MANTLE_GOLD,
     Name = "Mantle - Gold",
     Description = {
         "{{Coin}} Removes 1 coin, spawns a random pickup",
@@ -2225,7 +2225,7 @@ enums.FUNCTIONS.AddCard({
 })
 
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.DYSLEXIA,
+    ID = ToyboxMod.PILL_DYSLEXIA,
     Name = "Dyslexia",
     Description = {
         "{{Timer}} You fire backwards for 30 seconds",
@@ -2240,7 +2240,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.I_BELIEVE,
+    ID = ToyboxMod.PILL_I_BELIEVE,
     Name = "I Believe I Can Fly!",
     Description = {
         "{{Timer}} Flight for the room",
@@ -2254,7 +2254,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.DEMENTIA,
+    ID = ToyboxMod.PILL_DEMENTIA,
     Name = "Dementia",
     Description = {
         "Rerolls the current pill pool",
@@ -2269,7 +2269,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.PARASITE,
+    ID = ToyboxMod.PILL_PARASITE,
     Name = "Parasite!",
     Description = {
         "Spawns 1 blue fly for every enemy in the room, along with 2 additional blue flies",
@@ -2284,7 +2284,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.OSSIFICATION,
+    ID = ToyboxMod.PILL_OSSIFICATION,
     Name = "Ossification",
     Description = {
         "Turns 1 heart container into an {{EmptyBoneHeart}} empty bone heart",
@@ -2298,7 +2298,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.YOUR_SOUL_IS_MINE,
+    ID = ToyboxMod.PILL_YOUR_SOUL_IS_MINE,
     Name = "Your Soul is Mine",
     Description = {
         "Turns all of your Soul Hearts into {{BlackHeart}} Black Hearts",
@@ -2314,7 +2314,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.FOOD_POISONING,
+    ID = ToyboxMod.PILL_FOOD_POISONING,
     Name = "Food Poisoning",
     Description = {
         "Spawns a poisonous cloud at your position",
@@ -2330,7 +2330,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.CAPSULE,
+    ID = ToyboxMod.PILL_CAPSULE,
     Name = "Capsule",
     Description = {
         "Gives a random smelted trinket",
@@ -2344,7 +2344,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.HEARTBURN,
+    ID = ToyboxMod.PILL_HEARTBURN,
     Name = "Heartburn",
     Description = {
         "{{Timer}} You are on fire for the next 30 seconds",
@@ -2360,7 +2360,7 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.COAGULANT,
+    ID = ToyboxMod.PILL_COAGULANT,
     Name = "Coagulant",
     Description = {
         "Spawns a blood clot",
@@ -2375,111 +2375,115 @@ enums.FUNCTIONS.AddPill({
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.FENT,
+    ID = ToyboxMod.PILL_FENT,
     Name = "Fent",
     Description = {
         "{{Collectible582}} Uses Wavy Cap once",
-        "{{Timer}} For the next 5 seconds, you are invincible and have a 0.7x damage multiplier"
+        "{{Timer}} Grants 7 seconds of invincibility frames"
     },
     HorseModifiers = {
-        {
-            ToModify = {
-                "No negative damage multiplier",
-            }
-        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
                 {"once", "twice"},
+                {"7", "14"},
             }
         }
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.ARTHRITIS,
+    ID = ToyboxMod.PILL_ARTHRITIS,
     Name = "Arthritis",
     Description = {
-        "{{Timer}} For the next 10 seconds, you gain a 3x tears multiplier but you can only fire in 1 direction",
+        "{{Timer}} For the next 10 seconds:",
+        "Aim is locked to a single direction",
+        "\1 x3 Fire rate",
     },
     HorseModifiers = {
         {
             ToModify = {
-                "+1.5 Damage for 10 seconds"
+                "\1 +1.5 Damage",
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"10 seconds", "20 seconds"},
             }
         },
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.MUSCLE_ATROPHY,
+    ID = ToyboxMod.PILL_MUSCLE_ATROPHY,
     Name = "Muscle Atrophy",
     Description = {
-        "\2 Your damage is lowered to 0.5 and slowly recovers over the next 18 seconds",
+        "\2 Damage is set to 0.5 for the next 15 seconds",
     },
     HorseModifiers = {
         {
             ToModify = {
-                "Permanent -0.1 Damage",
+                "\2 Permanent -0.1 flat Damage",
             }
         },
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
-                {"18 seconds", "27 seconds"},
+                {"15 seconds", "30 seconds"},
             },
         }
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.VITAMINS,
+    ID = ToyboxMod.PILL_VITAMINS,
     Name = "Vitamins!",
     Description = {
-        "{{Timer}} Gives temporary stats that fade over the next 24 seconds:",
-        "{{Blank}} \7 +0.3 speed",
-        "{{Blank}} \7 +1 range",
-        "{{Blank}} \7 +0.3 shotspeed",
+        "{{Timer}} For the next 24 seconds:",
+        "\1 +0.3 Speed",
+        "\1 +1 Range",
+        "\1 +0.3 Shotspeed",
     },
     HorseModifiers = {
         {
-            ToModify = {
-                "Also gives temporary +1 Damage"
-            }
-        },
-        {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
-                {"+0.3", "+0.45"},
-                {"+1", "+1.5"},
-                {"+0.3", "+0.45"},
+                {"+0.3", "+0.6"},
+                {"+1", "+2"},
+                {"+0.3", "+0.6"},
             },
-        }
+        },
+        {
+            ToModify = {
+                "\1 +1 Damage"
+            }
+        },
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.DMG_UP,
+    ID = ToyboxMod.PILL_DMG_UP,
     Name = "Damage Up",
     Description = {
-        "\1 +0.45 Damage",
+        "\1 +0.5 Damage",
     },
     HorseModifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
-                {"+0.45", "+0.9"},
+                {"+0.5", "+1"},
             }
         },
     }
 })
 enums.FUNCTIONS.AddPill({
-    ID = ToyboxMod.PILL_EFFECT.DMG_DOWN,
+    ID = ToyboxMod.PILL_DMG_DOWN,
     Name = "Damage Down",
     Description = {
-        "\2 -0.35 Damage",
+        "\2 -0.4 Damage",
     },
     HorseModifiers = {
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
-                {"-0.35", "-0.7"},
+                {"-0.4", "-0.8"},
             }
         },
     }
@@ -2662,8 +2666,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_CATHARSIS,
     Name = "Catharsis",
     Description = {
-        "\1 +1 Tears",
-        "\1 Tears cap is doubled",
+        "\1 +1 Firerate",
+        "\1 Firerate cap is doubled",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -2681,7 +2685,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_ZERO_GRAVITY,
     Name = "Zero-Gravity",
     Description = {
-        "\1 +1.5 Damage",
+        "\1 +1.5 flat Damage",
         "You move on a 2 second delay",
         "Releasing movement buttons makes you instantly teleport to the desired position"
     },

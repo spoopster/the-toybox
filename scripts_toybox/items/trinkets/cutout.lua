@@ -11,7 +11,7 @@ local function trinketDrop(_, id, pos, pl, isgold)
     local mult = pl:GetTrinketMultiplier(id)
     local finalmult = ((mult==0 and pl:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX)) and 1 or 0)+mult+(isgold and 2 or 1)
 
-    local fam = Isaac.Spawn(3,ToyboxMod.FAMILIAR_VARIANT.DECOY,(isgold and 1 or 0),pos,Vector.Zero,pl):ToFamiliar()
+    local fam = Isaac.Spawn(3,ToyboxMod.FAMILIAR_DECOY,(isgold and 1 or 0),pos,Vector.Zero,pl):ToFamiliar()
     if(finalmult>1) then
         fam:GetSprite():SetFrame(1)
         fam.CollisionDamage = MULTIPLIER_COLLDAMAGE*(finalmult-1)
@@ -35,7 +35,7 @@ local function decoyInit(_, eff)
 
     eff:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, decoyInit, ToyboxMod.FAMILIAR_VARIANT.DECOY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, decoyInit, ToyboxMod.FAMILIAR_DECOY)
 
 ---@param eff EntityFamiliar
 local function decoyUpdate(_, eff)
@@ -43,13 +43,13 @@ local function decoyUpdate(_, eff)
         eff:Kill()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, decoyUpdate, ToyboxMod.FAMILIAR_VARIANT.DECOY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, decoyUpdate, ToyboxMod.FAMILIAR_DECOY)
 
 local function tryOverrideTarget(_, npc)
     local nearest
     local dist = 2^32
     for _, fam in ipairs(Isaac.FindInRadius(npc.Position, TARGET_DIST, EntityPartition.FAMILIAR)) do
-        if(fam.Variant==ToyboxMod.FAMILIAR_VARIANT.DECOY) then
+        if(fam.Variant==ToyboxMod.FAMILIAR_DECOY) then
             local d = fam.Position:Distance(npc.Position)
             if(d<dist) then
                 dist = d
@@ -65,7 +65,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_NPC_PICK_TARGET, tryOverrideTarget)
 
 local function replaceRemovedDecoy(_, ent)
-    if(ent.Variant==ToyboxMod.FAMILIAR_VARIANT.DECOY) then
+    if(ent.Variant==ToyboxMod.FAMILIAR_DECOY) then
         local sub = ToyboxMod.TRINKET_CUTOUT | (ent.SubType>0 and TrinketType.TRINKET_GOLDEN_FLAG or 0)
         local trinket = Isaac.Spawn(5,350,sub,ent.Position,ent.Velocity,nil)
         trinket:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
@@ -81,7 +81,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, replaceRemovedDecoy, EntityType.ENTITY_FAMILIAR)
 
 local function removeDecoysOnExit(_)
-    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.DECOY)) do
+    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_DECOY)) do
         ent:Kill()
     end
 end

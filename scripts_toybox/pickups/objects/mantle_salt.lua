@@ -5,7 +5,7 @@ local function useMantle(_, _, player, _)
     if(ToyboxMod:isAtlasA(player)) then
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.SALT.ID)
     else
-        local rng = player:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_SALT)
+        local rng = player:GetCardRNG(ToyboxMod.CARD_MANTLE_SALT)
         local conf = Isaac.GetItemConfig()
         local isOk = false
         local finalItem
@@ -32,11 +32,11 @@ local function useMantle(_, _, player, _)
         sfx:Play(SoundEffect.SOUND_POWERUP1)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CONSUMABLE.MANTLE_SALT)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_SALT)
 
-if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CONSUMABLE.MANTLE_SALT] = true end
+if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_SALT] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.MANTLE_SALT).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_MANTLE_SALT).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

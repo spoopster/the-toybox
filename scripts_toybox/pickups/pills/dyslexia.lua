@@ -14,7 +14,7 @@ local function usePill(_, effect, player, flags, color)
     player:AnimateSad()
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.DYSLEXIA)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_DYSLEXIA)
 
 --! randomeze streings
 local function shouldDysxzjejcinz()
@@ -75,7 +75,7 @@ local function getdyselxiaoffset(player)
     data.DYSLEXIA_DURATION = data.DYSLEXIA_DURATION or 0
 
     if(data.DYSLEXIA_DURATION<=0) then return 0
-    elseif(data.DYSLEXIA_HORSE) then return player:GetPillRNG(ToyboxMod.PILL_EFFECT.DYSLEXIA):RandomInt(360)
+    elseif(data.DYSLEXIA_HORSE) then return player:GetPillRNG(ToyboxMod.PILL_DYSLEXIA):RandomInt(360)
     else return 180 end
 end
 local function spanrrhasdyselxia(player)
@@ -94,63 +94,67 @@ local function playrrupate(_, player)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, playrrupate, 0)
 
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
-function(_, e)
-    local p = getpyaerfromet(e)
-    if(not spanrrhasdyselxia(p)) then return end
-    e.Position = e.Position-e.Velocity
-    e.Velocity = e.Velocity:Rotated(getdyselxiaoffset(p))
-end
-)
+local SHOOT_ACTIONS = {
+    [ButtonAction.ACTION_SHOOTUP] = true,
+    [ButtonAction.ACTION_SHOOTDOWN] = true,
+    [ButtonAction.ACTION_SHOOTLEFT] = true,
+    [ButtonAction.ACTION_SHOOTRIGHT] = true,
+}
 
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB,
-function(_, e)
-    local p = getpyaerfromet(e)
-    if(not spanrrhasdyselxia(p)) then return end
-    e.Velocity = e.Velocity:Rotated(getdyselxiaoffset(p))
-end
-)
+---@param ent Entity
+---@param hook InputHook
+---@param action ButtonAction
+local function inputstuff(_, ent, hook, action)
+    if(not (ent and ent:ToPlayer())) then return end
+    local pl = ent:ToPlayer() or Isaac.GetPlayer() ---@type EntityPlayer
 
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_LASER,
-function(_, e)
-    local p = getpyaerfromet(e)
-    if(not spanrrhasdyselxia(p)) then return end
-    e.AngleDegrees = e.AngleDegrees-getdyselxiaoffset(p)
-end
-)
+    if(not SHOOT_ACTIONS[action]) then return end
 
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TECH_X_LASER,
-function(_, e)
-    local p = getpyaerfromet(e)
-    if(not spanrrhasdyselxia(p)) then return end
-    e.Position = e.Position-e.Velocity
-    e.Velocity = e.Velocity:Rotated(getdyselxiaoffset(p))
-end
-)
+    local data = ToyboxMod:getEntityDataTable(pl)
+    if(not (data.DYSLEXIA_DURATION and data.DYSLEXIA_DURATION>0)) then return end
 
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BRIMSTONE,
-function(_, e)
-    local p = getpyaerfromet(e)
-    if(not spanrrhasdyselxia(p)) then return end
-    e.AngleDegrees = e.AngleDegrees-getdyselxiaoffset(p)
-end
-)
+    local plidx = pl.ControllerIndex
+    local holdingmouse = (Options.MouseControl and Input.IsMouseBtnPressed(MouseButton.LEFT))
+    local isholdinganyshootinput = holdingmouse
+    for i, _ in pairs(SHOOT_ACTIONS) do
+        isholdinganyshootinput = isholdinganyshootinput or Input.IsActionPressed(i, plidx)
+    end
+    if(not isholdinganyshootinput) then return end
 
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE,
-function(_, e)
-    local p = getpyaerfromet(e)
-    if(not spanrrhasdyselxia(p)) then return end
-    e.RotationOffset = getdyselxiaoffset(p)
-end
-)
+    local vec = Vector.Zero
+    if(data.DYSLEXIA_HORSE) then
+        vec = Vector.FromAngle(math.random(1,360))
+    else
+        if(holdingmouse) then
+            vec = (pl.Position-Input.GetMousePosition(true)):Normalized()
+        else
+            vec = Vector(
+                Input.GetActionValue(ButtonAction.ACTION_SHOOTLEFT, plidx)-Input.GetActionValue(ButtonAction.ACTION_SHOOTRIGHT, plidx),
+                Input.GetActionValue(ButtonAction.ACTION_SHOOTUP, plidx)-Input.GetActionValue(ButtonAction.ACTION_SHOOTDOWN, plidx)
+            )
+        end
+    end
 
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_EFFECT_RENDER,
-function(_, e)
-    local p = getpyaerfromet(e)
-    if(not spanrrhasdyselxia(p)) then return end
-    local data = ToyboxMod:getEntityDataTable(e)
-    data.DYSLEXIA_PREV_JOYSTICK = ToyboxMod:lerp((data.DYSLEXIA_PREV_JOYSTICK or p:GetAimDirection()), p:GetAimDirection(), 0.4)
-    e.Velocity = data.DYSLEXIA_PREV_JOYSTICK:Rotated(getdyselxiaoffset(p))*40
-    return true
-end,
-EffectVariant.TARGET)
+    if(holdingmouse) then
+        local dist = (Input.GetMousePosition(true)-pl.Position):Length()
+        vec = vec*dist*2
+    end
+
+    local valy = (action==ButtonAction.ACTION_SHOOTUP and -1 or 1)*vec.Y
+    local valx = (action==ButtonAction.ACTION_SHOOTLEFT and -1 or 1)*vec.X
+
+    if(hook==InputHook.IS_ACTION_PRESSED or hook==InputHook.IS_ACTION_TRIGGERED) then
+        if(action==ButtonAction.ACTION_SHOOTUP or action==ButtonAction.ACTION_SHOOTDOWN) then
+            return math.abs(valy)>0.01
+        else
+            return math.abs(valx)>0.01
+        end
+    elseif(hook==InputHook.GET_ACTION_VALUE) then
+        if(action==ButtonAction.ACTION_SHOOTUP or action==ButtonAction.ACTION_SHOOTDOWN) then
+            return valy
+        else
+            return valx
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_INPUT_ACTION, inputstuff)

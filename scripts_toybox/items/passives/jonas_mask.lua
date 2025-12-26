@@ -19,7 +19,7 @@ local function evalCache(_, pl)
     local plrng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_JONAS_MASK)
     for i=0, 2 do
         pl:CheckFamiliar(
-            ToyboxMod.FAMILIAR_VARIANT.MASK_SHADOW,
+            ToyboxMod.FAMILIAR_MASK_SHADOW,
             numFamiliers[i],
             plrng,
             Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_JONAS_MASK),
@@ -331,7 +331,7 @@ local function shadowFamiliarInit(_, fam)
         shadowCrawlerInit(fam)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, shadowFamiliarInit, ToyboxMod.FAMILIAR_VARIANT.MASK_SHADOW)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, shadowFamiliarInit, ToyboxMod.FAMILIAR_MASK_SHADOW)
 
 ---@param fam EntityFamiliar
 local function shadowFamiliarUpdate(_, fam)
@@ -359,6 +359,6 @@ local function shadowFamiliarUpdate(_, fam)
         shadowCrawlerUpdate(fam)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, shadowFamiliarUpdate, ToyboxMod.FAMILIAR_VARIANT.MASK_SHADOW)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, shadowFamiliarUpdate, ToyboxMod.FAMILIAR_MASK_SHADOW)
 
 --#endregion

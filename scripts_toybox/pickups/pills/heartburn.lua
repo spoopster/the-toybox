@@ -12,7 +12,7 @@ local BURN_COLOR_CYCLE_FRAMES = 2
 
 local BURN_HURT_COLOR = Color.ProjectileFireWave
 
-local BURN_SPRITE = Sprite("gfx_tb/statuseffects.anm2", true)
+local BURN_SPRITE = Sprite("gfx/statuseffects.anm2", true)
 BURN_SPRITE:Play("Burning", true)
 
 local UPDATE_BURN_FRAME = 0
@@ -32,7 +32,7 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.HEARTBURN)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_HEARTBURN)
 
 ---@param player EntityPlayer
 local function playerHeartburnEffectUpdate(_, player)

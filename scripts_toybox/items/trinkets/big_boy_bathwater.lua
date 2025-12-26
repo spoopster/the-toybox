@@ -6,7 +6,7 @@ local CREEP_COLOR = Color(0,0,0,1,141/255,145/255,159/255)
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     pl:CheckFamiliar(
-        ToyboxMod.FAMILIAR_VARIANT.BATH_WATER,
+        ToyboxMod.FAMILIAR_BATH_WATER,
         pl:GetTrinketMultiplier(ToyboxMod.TRINKET_BATH_WATER),
         pl:GetTrinketRNG(ToyboxMod.TRINKET_BATH_WATER),
         Isaac.GetItemConfig():GetTrinket(ToyboxMod.TRINKET_BATH_WATER)
@@ -20,7 +20,7 @@ local function bathwaterInit(_, fam)
     fam.State = 0
     fam:AddToFollowers()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, bathwaterInit, ToyboxMod.FAMILIAR_VARIANT.BATH_WATER)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, bathwaterInit, ToyboxMod.FAMILIAR_BATH_WATER)
 
 ---@param fam EntityFamiliar
 local function bathwaterUpdate(_, fam)
@@ -47,11 +47,11 @@ local function bathwaterUpdate(_, fam)
         fam:FollowParent()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bathwaterUpdate, ToyboxMod.FAMILIAR_VARIANT.BATH_WATER)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, bathwaterUpdate, ToyboxMod.FAMILIAR_BATH_WATER)
 
 ---@param pl EntityPlayer
 local function resetBathwater(_, pl)
-    for _, fam in ipairs(Isaac.FindByType(3,ToyboxMod.FAMILIAR_VARIANT.BATH_WATER)) do
+    for _, fam in ipairs(Isaac.FindByType(3,ToyboxMod.FAMILIAR_BATH_WATER)) do
         fam = fam:ToFamiliar()
         if(fam.State~=0 and GetPtrHash(fam.Player)==GetPtrHash(pl)) then
             fam.Visible = true
@@ -68,7 +68,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, resetBa
 ---@param player Entity
 local function breakBathwater(_, player, _, flags, source)
     player = player:ToPlayer()
-    for _, fam in ipairs(Isaac.FindByType(3,ToyboxMod.FAMILIAR_VARIANT.BATH_WATER)) do
+    for _, fam in ipairs(Isaac.FindByType(3,ToyboxMod.FAMILIAR_BATH_WATER)) do
         fam = fam:ToFamiliar()
         if(fam.State==0 and GetPtrHash(fam.Player)==GetPtrHash(player)) then
             fam.State = 1

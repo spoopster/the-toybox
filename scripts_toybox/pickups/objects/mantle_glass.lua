@@ -17,7 +17,7 @@ local function useMantle(_, _, player, _)
         sfx:Play(SoundEffect.SOUND_GLASS_BREAK)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CONSUMABLE.MANTLE_GLASS)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_GLASS)
 
 ---@param player EntityPlayer
 local function postNewRoom(_, player)
@@ -73,9 +73,9 @@ local function spawnBloodPoof(_, player, dmg, flags, source)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, spawnBloodPoof, EntityType.ENTITY_PLAYER)
 
-if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CONSUMABLE.MANTLE_GLASS] = true end
+if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_GLASS] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.MANTLE_GLASS).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_MANTLE_GLASS).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

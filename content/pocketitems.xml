@@ -135,6 +135,16 @@
         mimiccharge="1"
         hidden="true"
     />
+    <card id="1" name="Green Apple"
+        description="Transformation booster"
+        hud="Green Apple"
+        type="special"
+        pickup="2804"
+
+        mimiccharge="12"
+
+        achievement="Green Apple"
+    />
 
 <!-- RUNES / SOUL STONES -->
 

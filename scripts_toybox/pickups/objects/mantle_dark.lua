@@ -29,13 +29,13 @@ local function useMantle(_, _, player, _)
     if(ToyboxMod:isAtlasA(player)) then
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.DARK.ID)
     else
-        local rng = player:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_DARK)
+        local rng = player:GetCardRNG(ToyboxMod.CARD_MANTLE_DARK)
 
         ToyboxMod:setExtraData("MANTLEDARK_USES", (ToyboxMod:getExtraData("MANTLEDARK_USES") or 1)+1)
         hurtAllEnemies(DMG_TODEAL+Game():GetLevel():GetAbsoluteStage()*DMG_TO_DEAL_FLOOR)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CONSUMABLE.MANTLE_DARK)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_DARK)
 
 local function hurtNewRoomEnemies(_)
     local dmgToDeal = (DMG_TODEAL+Game():GetLevel():GetAbsoluteStage()*DMG_TO_DEAL_FLOOR)*(ToyboxMod:getExtraData("MANTLEDARK_USES") or 0)
@@ -51,9 +51,9 @@ local function removeMantleUses(_)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, removeMantleUses)
 
-if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CONSUMABLE.MANTLE_DARK] = true end
+if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_DARK] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.MANTLE_DARK).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_MANTLE_DARK).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

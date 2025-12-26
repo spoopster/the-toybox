@@ -15,7 +15,7 @@ local function useMantle(_, _, player, _)
         sfx:Play(SoundEffect.SOUND_DEATH_BURST_BONE)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CONSUMABLE.MANTLE_BONE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_BONE)
 
 ---@param player EntityPlayer
 local function postNewRoom(_, player)
@@ -27,7 +27,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postNew
 local function postNpcDeath(_, npc)
     for i=0, Game():GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        local rng = pl:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_BONE)
+        local rng = pl:GetCardRNG(ToyboxMod.CARD_MANTLE_BONE)
         local data = ToyboxMod:getEntityDataTable(pl)
         if(data.MANTLEBONE_ACTIVE and data.MANTLEBONE_ACTIVE>0) then
             for _=1, data.MANTLEBONE_ACTIVE do
@@ -38,9 +38,9 @@ local function postNpcDeath(_, npc)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, postNpcDeath)
 
-if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CONSUMABLE.MANTLE_BONE] = true end
+if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_BONE] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.MANTLE_BONE).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_MANTLE_BONE).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

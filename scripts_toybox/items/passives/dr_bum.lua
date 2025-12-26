@@ -39,7 +39,7 @@ end
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
     pl:CheckFamiliar(
-        ToyboxMod.FAMILIAR_VARIANT.DR_BUM,
+        ToyboxMod.FAMILIAR_DR_BUM,
         pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_DR_BUM),
         pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_DR_BUM),
         Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_DR_BUM)
@@ -53,7 +53,7 @@ local function drBumInit(_, fam)
     fam.State = 0
     fam.Coins = 0
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, drBumInit, ToyboxMod.FAMILIAR_VARIANT.DR_BUM)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, drBumInit, ToyboxMod.FAMILIAR_DR_BUM)
 
 ---@param fam EntityFamiliar
 local function drBumUpdate(_, fam)
@@ -136,4 +136,4 @@ local function drBumUpdate(_, fam)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, drBumUpdate, ToyboxMod.FAMILIAR_VARIANT.DR_BUM)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, drBumUpdate, ToyboxMod.FAMILIAR_DR_BUM)

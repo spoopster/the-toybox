@@ -24,7 +24,7 @@ local function evalCache(_, player, flag)
     --[[]]
     elseif(flag==CacheFlag.CACHE_FAMILIARS) then
         player:CheckFamiliar(
-            ToyboxMod.FAMILIAR_VARIANT.GOOD_JOB_STAR,
+            ToyboxMod.FAMILIAR_GOOD_JOB_STAR,
             (ToyboxMod:getEntityData(player, "GOOD_JOB_FLAWLESS")~=nil and 1 or 0),
             player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_GOOD_JOB)
         )
@@ -63,7 +63,7 @@ local function loseFlawlessStatus(_, player, _, flags, source)
 
         --[[]]
         local plhash = GetPtrHash(player)
-        for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.GOOD_JOB_STAR)) do
+        for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_GOOD_JOB_STAR)) do
             if(GetPtrHash(fam:ToFamiliar().Player)==plhash and fam:GetSprite():GetAnimation()=="FloatDown") then
                 fam:GetSprite():Play("Explode", true)
             end
@@ -94,7 +94,7 @@ local function clearRoomFlawless(_, pl)
 
         --[[]]
         local plhash = GetPtrHash(pl)
-        for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.GOOD_JOB_STAR)) do
+        for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_GOOD_JOB_STAR)) do
             if(GetPtrHash(fam:ToFamiliar().Player)==plhash and fam:GetSprite():GetAnimation()=="FloatDown") then
                 fam:GetSprite():Play("FloatDownHappy", true)
             end
@@ -115,7 +115,7 @@ local function familiarInit(_, fam)
     fam:GetSprite():Play("FloatDown", true)
     fam:GetSprite():PlayOverlay("Sparkles", true)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarInit, ToyboxMod.FAMILIAR_VARIANT.GOOD_JOB_STAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarInit, ToyboxMod.FAMILIAR_GOOD_JOB_STAR)
 
 ---@param fam EntityFamiliar
 local function familiarUpdate(_, fam)
@@ -142,5 +142,5 @@ local function familiarUpdate(_, fam)
         fam:FollowParent()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, familiarUpdate, ToyboxMod.FAMILIAR_VARIANT.GOOD_JOB_STAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, familiarUpdate, ToyboxMod.FAMILIAR_GOOD_JOB_STAR)
 --]]

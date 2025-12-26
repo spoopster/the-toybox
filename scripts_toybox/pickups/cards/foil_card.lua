@@ -15,7 +15,7 @@ PICKER:AddOutcomeFloat(4, 1, 100)
 
 ---@param pickup EntityPickup
 local function foilCardInit(_, pickup)
-    if(pickup.SubType~=ToyboxMod.CONSUMABLE.FOIL_CARD) then return end
+    if(pickup.SubType~=ToyboxMod.CARD_FOIL_CARD) then return end
 
     local sp = pickup:GetSprite()
     --sp:SetRenderFlags(AnimRenderFlags.GOLDEN)
@@ -24,7 +24,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, foilCardInit, PickupVari
 
 ---@param pl EntityPlayer
 local function useFoilCard(_, _, pl, _)
-    local outcome = PICKER:PickOutcome(pl:GetCardRNG(ToyboxMod.CONSUMABLE.FOIL_CARD))
+    local outcome = PICKER:PickOutcome(pl:GetCardRNG(ToyboxMod.CARD_FOIL_CARD))
 
     local spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
     local pickupData = POSSIBLE_SPAWNS[outcome]
@@ -32,4 +32,4 @@ local function useFoilCard(_, _, pl, _)
 
     sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useFoilCard, ToyboxMod.CONSUMABLE.FOIL_CARD)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useFoilCard, ToyboxMod.CARD_FOIL_CARD)

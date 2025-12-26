@@ -19,7 +19,7 @@ local function useAlienMind(_, _, pl, _)
         end
     end
 
-    local rng = pl:GetCardRNG(ToyboxMod.CONSUMABLE.POISON_RAIN)
+    local rng = pl:GetCardRNG(ToyboxMod.CARD_POISON_RAIN)
     for _=1, math.min(numEnemies, ENEMIES_TO_CONVERT) do
         local idx = enemyPicker:PickOutcome(rng)
         enemyPicker:RemoveOutcome(idx)
@@ -42,4 +42,4 @@ local function useAlienMind(_, _, pl, _)
 
     sfx:Play(ToyboxMod.SOUND_EFFECT.HYPNOSIS, nil, nil, nil, 0.85+math.random()*0.3)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useAlienMind, ToyboxMod.CONSUMABLE.ALIEN_MIND)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useAlienMind, ToyboxMod.CARD_ALIEN_MIND)

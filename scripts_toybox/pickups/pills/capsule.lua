@@ -22,10 +22,10 @@ local function usePill(_, effect, player, flags, color)
 
     Game():GetHUD():ShowItemText("Capsule!", "You got... "..tostring(trueName)..((tr & TrinketType.TRINKET_GOLDEN_FLAG~=0) and "!!!!!" or "!"))
 
-    sfx:Play((isHorse and SoundEffect.SOUND_THUMBSUP_AMPLIFIED or SoundEffect.SOUND_THUMBSUP))
+    sfx:Play((isHorse and SoundEffect.SOUND_POWERUP_SPEWER_AMPLIFIED or SoundEffect.SOUND_POWERUP_SPEWER))
     player:AnimateHappy()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.CAPSULE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_CAPSULE)
 
 local function showStreakText(_, title, subtitle, issticky, iscurse)
     if(isShowingTrinketName) then

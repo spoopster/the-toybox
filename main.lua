@@ -215,6 +215,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.loose_bowels")
     include("scripts_toybox.items.passives.tammys_tail")
     include("scripts_toybox.items.passives.malice")
+    include("scripts_toybox.items.passives.paper_plate")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -293,6 +294,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.pickups.cards.poison_rain")
     include("scripts_toybox.pickups.cards.alien_mind")
     include("scripts_toybox.pickups.cards.4_starred_ladybug")
+    include("scripts_toybox.pickups.cards.green_apple")
 --OBJECTS
     include("scripts_toybox.pickups.objects.mantle_rock")
     include("scripts_toybox.pickups.objects.mantle_poop")

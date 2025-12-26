@@ -55,7 +55,7 @@
     description="Can't control it..."
     gfx="loose_bowels.png"
     quality="2"
-    tags="offensive summonable"           
+    tags="offensive summonable poop"           
     cache=""
 
     range="80"
@@ -80,7 +80,7 @@
 <passive id="9" name="Lion Skull"
     description="Trophy hunter"
     gfx="lion_skull.png"
-    quality="2"
+    quality="1"
     tags="offensive summonable"
     cache="damage"
 
@@ -124,7 +124,7 @@
 <active id="14" name="Blood Ritual"
     description="Call upon him and he shall answer"
     gfx="blood_ritual.png"
-    quality="2"
+    quality="3"
     tags="offensive"
     cache=""
     
@@ -578,7 +578,8 @@
     gfx="no_sprite.png"
     quality="3"
     tags="offensive"
-    cache="all"
+    
+    speed="0.15" tears="0.5" damage="0.5" range="1" shotspeed="0.1" luck="1"
 />
 <active id="63" name="Art of War"
     description="Appear weak when you are strong"
@@ -923,6 +924,17 @@
     quality="2"
     tags="offensive summonable"
     cache=""
+
+    achievement="Malice"
+/>
+<familiar id="102" name="Paper Plate"
+    description="Wallbound buddies"
+    gfx="no_sprite.png"
+    quality="1"
+    tags="offensive summonable"
+    cache=""
+
+    achievement="Paper Plate"
 />
 
 <passive id="109" name="RETROFALL"

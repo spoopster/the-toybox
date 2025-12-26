@@ -37,7 +37,7 @@ local function use4StarredLadybug(_, _, pl, _)
     Game():ShakeScreen(12)
     sfx:Play(ToyboxMod.SOUND_EFFECT.HAZE, 1.2, nil, nil, 0.9+math.random()*0.3)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, use4StarredLadybug, ToyboxMod.CONSUMABLE.FOUR_STARRED_LADYBUG)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, use4StarredLadybug, ToyboxMod.CARD_FOUR_STARRED_LADYBUG)
 
 ---@param npc EntityNPC
 local function updateLadybugNpc(_, npc)

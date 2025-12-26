@@ -19,7 +19,7 @@ local function usePill(_, effect, player, flags, color)
     sfx:Play(11)
     sfx:Play(6)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_EFFECT.BLEEEGH)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill, ToyboxMod.PILL_BLEEEGH)
 
 ---@param player EntityPlayer
 local function bleeeghUpdate(_, player)

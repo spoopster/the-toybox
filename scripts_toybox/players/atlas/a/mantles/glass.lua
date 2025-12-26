@@ -53,7 +53,7 @@ local function shatterMantles(_, player, dmg, flags, source, frames)
     if(not ToyboxMod:isAtlasA(player)) then return end
     if(not ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.GLASS.ID)) then return end
     local data = ToyboxMod:getAtlasATable(player)
-    local rng = player:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_GLASS)
+    local rng = player:GetCardRNG(ToyboxMod.CARD_MANTLE_GLASS)
 
     if(rng:RandomFloat()>=SHATTER_CHANCE) then
         return

@@ -8,7 +8,7 @@ local function evalCache(_, pl)
     local numBlocked = ToyboxMod:getEntityData(pl, "EFFIGY_BLOCKS") or 0
 
     pl:CheckFamiliar(
-        ToyboxMod.FAMILIAR_VARIANT.EFFIGY,
+        ToyboxMod.FAMILIAR_EFFIGY,
         pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_EFFIGY)-numBlocked,
         pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_EFFIGY),
         Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_EFFIGY)
@@ -21,7 +21,7 @@ local function familiarInit(_, fam)
     fam:AddToFollowers()
     fam.State = 0
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarInit, ToyboxMod.FAMILIAR_VARIANT.EFFIGY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarInit, ToyboxMod.FAMILIAR_EFFIGY)
 
 ---@param fam EntityFamiliar
 local function familiarUpdate(_, fam)
@@ -86,7 +86,7 @@ local function familiarUpdate(_, fam)
         fam:FollowParent()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, familiarUpdate, ToyboxMod.FAMILIAR_VARIANT.EFFIGY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, familiarUpdate, ToyboxMod.FAMILIAR_EFFIGY)
 
 local function postNewRoom(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EFFIGY)) then return end
@@ -101,7 +101,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
 
 local function effigyEnemyDeath(_, npc)
-    if(not (npc.SpawnerType==EntityType.ENTITY_FAMILIAR and npc.SpawnerVariant==ToyboxMod.FAMILIAR_VARIANT.EFFIGY)) then return end
+    if(not (npc.SpawnerType==EntityType.ENTITY_FAMILIAR and npc.SpawnerVariant==ToyboxMod.FAMILIAR_EFFIGY)) then return end
 
     local rng = npc:GetDropRNG()
     if(rng:RandomFloat()<PICKUP_CHANCE) then

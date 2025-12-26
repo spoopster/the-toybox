@@ -24,7 +24,7 @@ local function useMantle(_, _, player, _)
     if(ToyboxMod:isAtlasA(player)) then
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.POOP.ID)
     else
-        local rng = player:GetCardRNG(ToyboxMod.CONSUMABLE.MANTLE_POOP)
+        local rng = player:GetCardRNG(ToyboxMod.CARD_MANTLE_POOP)
         local st = POOP_PICKER:PickOutcome(rng)
 
         local heldPoop = Isaac.Spawn(EntityType.ENTITY_POOP, st, 0, player.Position,Vector.Zero,player)
@@ -51,7 +51,7 @@ local function useMantle(_, _, player, _)
         player:TryHoldEntity(heldPoop)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CONSUMABLE.MANTLE_POOP)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_POOP)
 
 local function updateDripPoop(_, poop)
     local data = ToyboxMod:getEntityDataTable(poop)
@@ -64,9 +64,9 @@ local function updateDripPoop(_, poop)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, updateDripPoop, EntityType.ENTITY_POOP)
 
-if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CONSUMABLE.MANTLE_POOP] = true end
+if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_POOP] = true end
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.MANTLE_POOP).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_MANTLE_POOP).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

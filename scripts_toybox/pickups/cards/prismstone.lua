@@ -7,7 +7,7 @@ local SPAWN_SPEED = 3
 ---@param pl EntityPlayer
 local function usePrismstone(_, _, pl, _)
     local pool = Game():GetItemPool()
-    local rng = pl:GetCardRNG(ToyboxMod.CONSUMABLE.PRISMSTONE)
+    local rng = pl:GetCardRNG(ToyboxMod.CARD_PRISMSTONE)
 
     local angleOffset = rng:RandomInt(math.floor(360/NUM_RUNES))
 
@@ -25,4 +25,4 @@ local function usePrismstone(_, _, pl, _)
         rune.OptionsPickupIndex = nextPickupGroup
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, usePrismstone, ToyboxMod.CONSUMABLE.PRISMSTONE)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, usePrismstone, ToyboxMod.CARD_PRISMSTONE)

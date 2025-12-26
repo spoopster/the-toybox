@@ -164,32 +164,33 @@ EID:addIcon("ToyboxIconEmptyTransformation", "MantleTransformations", 10, 16, 16
 EID:addIcon("ToyboxIconTarTransformation", "MantleTransformations", 9, 16, 16, 0, 0, iconSprite)
 
 --- CARDS
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.PRISMSTONE), "Cards", 0, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.FOIL_CARD), "Cards", 1, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.FOUR_STARRED_LADYBUG), "Cards", 2, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.POISON_RAIN), "Cards", 3, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.ALIEN_MIND), "Cards", 4, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.TALISMAN), "Cards", 5, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.TRANCE), "Cards", 6, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.DEJA_VU), "Cards", 7, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.GRIM), "Cards", 8, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.ECTOPLASM), "Cards", 9, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.GRIM), "Cards", 10, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.FAMILIAR), "Cards", 11, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_ROCK), "Cards", 12, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_POOP), "Cards", 13, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_DARK), "Cards", 14, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_HOLY), "Cards", 15, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_SALT), "Cards", 16, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_GLASS), "Cards", 17, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_METAL), "Cards", 18, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_GOLD), "Cards", 19, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.MANTLE_BONE), "Cards", 20, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.LAUREL), "Cards", 21, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.YANNY), "Cards", 22, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.DARK_EXPLOSION), "Cards", 23, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.ENDLESS_CHAOS), "Cards", 24, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Card"..tostring(ToyboxMod.CONSUMABLE.CHAIN_REACTION), "Cards", 25, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_PRISMSTONE), "Cards", 0, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_FOIL_CARD), "Cards", 1, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_FOUR_STARRED_LADYBUG), "Cards", 2, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_POISON_RAIN), "Cards", 3, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_ALIEN_MIND), "Cards", 4, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_TALISMAN), "Cards", 5, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_TRANCE), "Cards", 6, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_DEJA_VU), "Cards", 7, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_GRIM), "Cards", 8, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_ECTOPLASM), "Cards", 9, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_GRIM), "Cards", 10, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_FAMILIAR), "Cards", 11, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_ROCK), "Cards", 12, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_POOP), "Cards", 13, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_DARK), "Cards", 14, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_HOLY), "Cards", 15, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_SALT), "Cards", 16, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_GLASS), "Cards", 17, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_METAL), "Cards", 18, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_GOLD), "Cards", 19, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_MANTLE_BONE), "Cards", 20, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_LAUREL), "Cards", 21, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_YANNY), "Cards", 22, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_DARK_EXPLOSION), "Cards", 23, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_ENDLESS_CHAOS), "Cards", 24, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_CHAIN_REACTION), "Cards", 25, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_GREEN_APPLE), "Cards", 26, 16, 16, 0, 0, iconSprite)
 
 --- MISC
 EID:addIcon("ToyboxIconElectrifiedStatus", "Misc", 0, 16, 16, 0, 0, iconSprite)
@@ -228,19 +229,19 @@ STORED.CONSTANTS = {
     Icon_PlayerJonas = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.JONAS_A) .. "}}",
     Icon_PlayerMilcom = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A) .. "}}",
 
-    Icon_CardMantleRock = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_ROCK) .. "}}",
-    Icon_CardMantlePoop = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_POOP) .. "}}",
-    Icon_CardMantleBone = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_BONE) .. "}}",
-    Icon_CardMantleDark = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_DARK) .. "}}",
-    Icon_CardMantleHoly = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_HOLY) .. "}}",
-    Icon_CardMantleSalt = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_SALT) .. "}}",
-    Icon_CardMantleGlass = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_GLASS) .. "}}",
-    Icon_CardMantleMetal = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_METAL) .. "}}",
-    Icon_CardMantleGold = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.MANTLE_GOLD) .. "}}",
-    Icon_CardLaurel = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.LAUREL) .. "}}",
-    Icon_CardYanny = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.YANNY) .. "}}",
-    Icon_CardPrismstone = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.PRISMSTONE) .. "}}",
-    Icon_CardFoilCard = "{{Card" .. tostring(ToyboxMod.CONSUMABLE.FOIL_CARD) .. "}}",
+    Icon_CardMantleRock = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_ROCK) .. "}}",
+    Icon_CardMantlePoop = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_POOP) .. "}}",
+    Icon_CardMantleBone = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_BONE) .. "}}",
+    Icon_CardMantleDark = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_DARK) .. "}}",
+    Icon_CardMantleHoly = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_HOLY) .. "}}",
+    Icon_CardMantleSalt = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_SALT) .. "}}",
+    Icon_CardMantleGlass = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_GLASS) .. "}}",
+    Icon_CardMantleMetal = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_METAL) .. "}}",
+    Icon_CardMantleGold = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_GOLD) .. "}}",
+    Icon_CardLaurel = "{{Card" .. tostring(ToyboxMod.CARD_LAUREL) .. "}}",
+    Icon_CardYanny = "{{Card" .. tostring(ToyboxMod.CARD_YANNY) .. "}}",
+    Icon_CardPrismstone = "{{Card" .. tostring(ToyboxMod.CARD_PRISMSTONE) .. "}}",
+    Icon_CardFoilCard = "{{Card" .. tostring(ToyboxMod.CARD_FOIL_CARD) .. "}}",
 
     Icon_StatusElectrified = "{{ToyboxIconElectrifiedStatus}}",
     Icon_StatusOverflowing = "{{ToyboxIconOverflowingStatus}}",

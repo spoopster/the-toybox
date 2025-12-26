@@ -19,9 +19,9 @@ local function useLaurel(_, _, player, _)
         eff:GetCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS).Cooldown = INVINCIBILITY_DURATION
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useLaurel, ToyboxMod.CONSUMABLE.LAUREL)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useLaurel, ToyboxMod.CARD_LAUREL)
 
 local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CONSUMABLE.LAUREL).Weight = 0
+    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_LAUREL).Weight = 0
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

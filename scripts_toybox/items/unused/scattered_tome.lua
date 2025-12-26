@@ -27,7 +27,7 @@ end
 ---@param player EntityPlayer
 local function checkFamiliars(_, player, cacheFlag)
     player:CheckFamiliar(
-        ToyboxMod.FAMILIAR_VARIANT.TOME,
+        ToyboxMod.FAMILIAR_TOME,
         NUM_TOMES*(player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_SCATTERED_TOME)+player:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_SCATTERED_TOME)),
         player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SCATTERED_TOME),
         Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_SCATTERED_TOME)
@@ -35,7 +35,7 @@ local function checkFamiliars(_, player, cacheFlag)
     if(player:HasCollectible(ToyboxMod.COLLECTIBLE_SCATTERED_TOME)) then
         local tomes = {}
         local plaerHash = GetPtrHash(player)
-        for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.TOME)) do
+        for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_TOME)) do
             if(GetPtrHash(ent:ToFamiliar().Player)==plaerHash) then table.insert(tomes, ent) end
         end
 
@@ -65,7 +65,7 @@ local function postTomeInit(_, familiar)
     data.TOME_FRAMES = 0
     data.STUPID_POS = false
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postTomeInit, ToyboxMod.FAMILIAR_VARIANT.TOME)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, postTomeInit, ToyboxMod.FAMILIAR_TOME)
 
 ---@param familiar EntityFamiliar
 local function postTomeUpdate(_, familiar)
@@ -108,10 +108,10 @@ local function postTomeUpdate(_, familiar)
 
     data.TOME_FRAMES = (data.TOME_FRAMES or 0)+1
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postTomeUpdate, ToyboxMod.FAMILIAR_VARIANT.TOME)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postTomeUpdate, ToyboxMod.FAMILIAR_TOME)
 
 local function doShittyPosStuffToMakeItNotJitterIHateYouStupidGame(_)
-    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.TOME)) do
+    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_TOME)) do
         ToyboxMod:setEntityData(ent, "STUPID_POS", true)
     end
 end

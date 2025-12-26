@@ -20,7 +20,7 @@ local BFFS_BONE_DMG = 4
 ---@param player EntityPlayer
 local function checkFamiliars(_, player, cacheFlag)
     player:CheckFamiliar(
-        ToyboxMod.FAMILIAR_VARIANT.BONE_BOY,
+        ToyboxMod.FAMILIAR_BONE_BOY,
         player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BONE_BOY)+player:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_BONE_BOY),
         player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_BONE_BOY),
         Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_BONE_BOY)
@@ -51,24 +51,24 @@ local function replaceSpriteSheets(familiar)
     local sp = familiar:GetSprite()
 
     if(familiar.SubType & 1<<0~=0 and familiar.SubType & 1<<1~=0) then
-        sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_blackbone_boy_body.png")
-        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_holyblackbone_boy.png")
-        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_holyblackbone_boy.png")
+        sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_bone_boy_body_black.png")
+        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_bone_boy_black_holy.png")
+        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_bone_boy_black_holy.png")
         sp:LoadGraphics()
     elseif(familiar.SubType & 1<<0~=0) then
-        sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_blackbone_boy_body.png")
-        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_blackbone_boy.png")
-        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_holyblackbone_boy.png")
+        sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_bone_boy_body_black.png")
+        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_bone_boy_black.png")
+        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_bone_boy_black_holy.png")
         sp:LoadGraphics()
     elseif(familiar.SubType & 1<<1~=0) then
         sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_bone_boy_body.png")
-        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_holybone_boy.png")
-        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_holybone_boy.png")
+        sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_bone_boy_holy.png")
+        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_bone_boy_holy.png")
         sp:LoadGraphics()
     else
         sp:ReplaceSpritesheet(0, "gfx_tb/familiars/familiar_bone_boy_body.png")
         sp:ReplaceSpritesheet(1, "gfx_tb/familiars/familiar_bone_boy.png")
-        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_holybone_boy.png")
+        sp:ReplaceSpritesheet(2, "gfx_tb/familiars/familiar_bone_boy_holy.png")
         sp:LoadGraphics()
     end
 end
@@ -82,7 +82,7 @@ local function boneBoyInit(_, familiar)
 
     replaceSpriteSheets(familiar)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, boneBoyInit, ToyboxMod.FAMILIAR_VARIANT.BONE_BOY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, boneBoyInit, ToyboxMod.FAMILIAR_BONE_BOY)
 
 ---@param familiar EntityFamiliar
 local function boneBoyUpdate(_, familiar)
@@ -293,7 +293,7 @@ local function boneBoyUpdate(_, familiar)
 
     data.BONEBOY_DAMAGE_COOLDOWN = math.max(0, (data.BONEBOY_DAMAGE_COOLDOWN or 0)-1)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_UPDATE, boneBoyUpdate, ToyboxMod.FAMILIAR_VARIANT.BONE_BOY)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_UPDATE, boneBoyUpdate, ToyboxMod.FAMILIAR_BONE_BOY)
 
 ---@param familiar EntityFamiliar
 local function postBoneBoyUpdate(_, familiar)
@@ -301,11 +301,11 @@ local function postBoneBoyUpdate(_, familiar)
         familiar.SpriteScale = familiar.SpriteScale*0.8
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postBoneBoyUpdate, ToyboxMod.FAMILIAR_VARIANT.BONE_BOY)
+ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, postBoneBoyUpdate, ToyboxMod.FAMILIAR_BONE_BOY)
 
 ---@param ent EntityFamiliar
 local function bonerTakeDmg(_, ent, am, flags, source, frames)
-    if(ent.Variant~=ToyboxMod.FAMILIAR_VARIANT.BONE_BOY) then return end
+    if(ent.Variant~=ToyboxMod.FAMILIAR_BONE_BOY) then return end
     local data = ToyboxMod:getEntityDataTable(ent)
     if(ent.HitPoints<=1 or (data.BONEBOY_DAMAGE_COOLDOWN or 0)>0) then return false end
 
@@ -324,7 +324,7 @@ end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.IMPORTANT, bonerTakeDmg, EntityType.ENTITY_FAMILIAR)
 
 local function useBookOfTheDead(_, item, rng, player, flags, slot, vdata)
-    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_VARIANT.BONE_BOY)) do
+    for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_BONE_BOY)) do
         fam = fam:ToFamiliar()
 
         if(fam.State==1) then
