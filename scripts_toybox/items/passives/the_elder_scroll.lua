@@ -1,7 +1,7 @@
 
 
 local function getShaderParams(_, name)
-    if(name==ToyboxMod.SHADERS.BLOOM) then
+    if(name==ToyboxMod.SHADER_BLOOM) then
         return {
             ShouldActivateIn = 0.0,
         }

@@ -9,7 +9,7 @@ PILLBONUS_FONT:Load("font/pftempestasevencondensed.fnt")
 
 ---@param player EntityPlayer
 local function resetPillBonus(player, forcesfx)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
     local data = ToyboxMod:getJonasATable(player)
 
     local hadBonus = ((data.PILLS_POPPED or 0)>=1)
@@ -25,7 +25,7 @@ end
 
 ---@param player EntityPlayer
 local function renderStat(_, player, offset)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
     local data = ToyboxMod:getJonasATable(player)
 
     local lerpVal = 0.3
@@ -52,7 +52,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, renderStat)
 
 ---@param player EntityPlayer
 local function addPillBonus(_, pillEffect, player, flags, pillColor)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
     local data = ToyboxMod:getJonasATable(player)
 
     local bonusInc = 1
@@ -74,7 +74,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, addPillBonus)
 
 ---@param player EntityPlayer
 local function addCardBonus(_, _, player, _)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
     if(not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then return end
     local data = ToyboxMod:getJonasATable(player)
 
@@ -105,7 +105,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, incrementBonusReset)
 
 local function resetBonusNewLevel(_, player)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
     if(player.FrameCount==0) then return end
     local data = ToyboxMod:getJonasATable(player)
 
@@ -120,7 +120,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, resetBonusNewLevel)
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalBonus(_, player, flag)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
     local data = ToyboxMod:getJonasATable(player)
     if(math.floor(data.PILLS_POPPED or 0)<=0) then return end
     local mult = math.floor(data.PILLS_POPPED or 0)^data.PILLBONUS_DIMINISHING_POW
@@ -144,7 +144,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalBonus)
 --he starts shaking when close to losing bonus
 ---@param player EntityPlayer
 local function ahhIAmExperiencingWithdrawalPleaseHelp(_, player, offset)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
     local data = ToyboxMod:getJonasATable(player)
     if(not (data and data.PILLS_POPPED and data.PILLS_POPPED>0)) then return end
     

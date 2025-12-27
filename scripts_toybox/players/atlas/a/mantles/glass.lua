@@ -40,7 +40,7 @@ local function destroyGlassMantles(_, player, mantle)
             }
         end
     end
-    sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_GLASSBREAK)
+    sfx:Play(ToyboxMod.SFX_ATLASA_GLASSBREAK)
 
     local poof = Isaac.Spawn(1000,16,1,player.Position,Vector.Zero,nil):ToEffect()
     poof.Color = Color(1,1,1,1,0.5,0.5,0.5)
@@ -75,7 +75,7 @@ local function shatterMantles(_, player, dmg, flags, source, frames)
     end
     ToyboxMod:updateMantles(player)
 
-    sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_GLASSBREAK)
+    sfx:Play(ToyboxMod.SFX_ATLASA_GLASSBREAK)
 
     local poof = Isaac.Spawn(1000,16,1,player.Position,Vector.Zero,nil):ToEffect()
     poof.Color = Color(1,1,1,1,0.5,0.5,0.5)

@@ -26,7 +26,7 @@ end
 --#endregion
 function ToyboxMod:isAtlasA(player)
     local pt = player:GetPlayerType()
-    return (pt==ToyboxMod.PLAYER_TYPE.ATLAS_A or pt==ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR)
+    return (pt==ToyboxMod.PLAYER_ATLAS_A or pt==ToyboxMod.PLAYER_ATLAS_A_TAR)
 end
 function ToyboxMod:isAnyPlayerAtlasA()
     for i=0, Game():GetNumPlayers()-1 do
@@ -191,7 +191,7 @@ function ToyboxMod:giveMantle(player, type)
 
         ToyboxMod:updateMantles(player)
     end
-    --sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK, 0.3)
+    --sfx:Play(ToyboxMod.SFX_ATLASA_ROCKBREAK, 0.3)
 end
 
 function ToyboxMod:isBadMantle(mantle)

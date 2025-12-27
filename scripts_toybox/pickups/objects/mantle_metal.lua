@@ -14,7 +14,7 @@ local function useMantle(_, _, player, _)
             end
         end
 
-        sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_METALBLOCK)
+        sfx:Play(ToyboxMod.SFX_ATLASA_METALBLOCK)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_METAL)

@@ -27,7 +27,7 @@ local function usePoisonRain(_, _, pl, _)
 
     sfx:Play(SoundEffect.SOUND_BLACK_POOF, 1.3)
     sfx:Play(SoundEffect.SOUND_THUNDER, 1.2, 2, false, 0.9+math.random()*0.2)
-    sfx:Play(ToyboxMod.SOUND_EFFECT.WATER_LOOP, 0.6, 0, true, 0.9)
+    sfx:Play(ToyboxMod.SFX_WATER_LOOP, 0.6, 0, true, 0.9)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, usePoisonRain, ToyboxMod.CARD_POISON_RAIN)
 
@@ -69,6 +69,6 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, updatePoisonRain)
 
 local function deactivatePoisonRain(_)
     ToyboxMod:setExtraData("POISON_RAIN_TIME", nil)
-    sfx:Stop(ToyboxMod.SOUND_EFFECT.WATER_LOOP)
+    sfx:Stop(ToyboxMod.SFX_WATER_LOOP)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, deactivatePoisonRain)

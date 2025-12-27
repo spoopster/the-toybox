@@ -87,15 +87,15 @@ end
 
 ---@param player EntityPlayer
 function ToyboxMod:isMilcom(player)
-    if(player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.MILCOM_A) then return true end
-    if(player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.MILCOM_B) then return true end
+    if(player:GetPlayerType()==ToyboxMod.PLAYER_MILCOM_A) then return true end
+    if(player:GetPlayerType()==ToyboxMod.PLAYER_MILCOM_B) then return true end
     return false
 end
 
 ---@param player EntityPlayer
 function ToyboxMod:isAtlas(player)
     if(ToyboxMod:isAtlasA(player)) then return true end
-    if(player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.ATLAS_B) then return true end
+    if(player:GetPlayerType()==ToyboxMod.PLAYER_ATLAS_B) then return true end
     return false
 end
 

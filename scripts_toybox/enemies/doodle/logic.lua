@@ -50,7 +50,7 @@ local function doodleUpdate(_, npc)
         npc:FireProjectiles(npc.Position, dir:Resized(PROJ_SPEED), ProjectileMode.SINGLE, projParam)
         npc:AddVelocity(dir:Resized(-20))
 
-        sfx:Play(ToyboxMod.SOUND_EFFECT.BURP)
+        sfx:Play(ToyboxMod.SFX_BURP)
     end
 
     if(npc.ProjectileCooldown>0) then

@@ -68,7 +68,7 @@ local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, fram
             player:SetMinDamageCooldown(BLOCK_DMGCOOLDOWN*(player:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
             player:SetColor(Color(0,0,0.5,1,0.9,0.9,1),10,0,true,false)
 
-            sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_METALBLOCK)
+            sfx:Play(ToyboxMod.SFX_ATLASA_METALBLOCK)
 
             return false
         end

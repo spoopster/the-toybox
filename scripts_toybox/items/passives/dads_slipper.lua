@@ -36,7 +36,7 @@ local function postTakeDmg(_, pl, dmg, flags, source, countdown)
         ent:BloodExplode()
         ent:Die()
 
-        sfx:Play(ToyboxMod.SOUND_EFFECT.SLIPPER_WHIP, 1.2)
+        sfx:Play(ToyboxMod.SFX_SLIPPER_WHIP, 1.2)
         sfx:Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
     end
 end

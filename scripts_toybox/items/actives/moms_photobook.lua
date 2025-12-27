@@ -13,7 +13,7 @@ local function momsPhotobookUse(_, item, rng, pl, flags, slot, vdata)
         end
     end
 
-    ItemOverlay.Show(ToyboxMod.GIANTBOOK.MOMS_PHOTOBOOK, 3, pl)
+    ItemOverlay.Show(ToyboxMod.GIANTBOOK_MOMS_PHOTOBOOK, 3, pl)
     sfx:Play(SoundEffect.SOUND_BOOK_PAGE_TURN_12)
 
     return {

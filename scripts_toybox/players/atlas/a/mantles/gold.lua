@@ -36,7 +36,7 @@ local function mantleDestroyed(_, player, mantle)
         end
     end
 
-    local shatter = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.GOLDMANTLE_BREAK, 0, player.Position, Vector.Zero, player):ToEffect()
+    local shatter = Isaac.Spawn(1000, ToyboxMod.EFFECT_GOLDMANTLE_BREAK, 0, player.Position, Vector.Zero, player):ToEffect()
     shatter.DepthOffset = 100
     shatter:GetSprite().PlaybackSpeed = 1.4
     shatter.SpriteOffset = Vector(0,-10)
@@ -50,7 +50,7 @@ local function mantleDestroyed(_, player, mantle)
     end
 
     sfx:Play(SoundEffect.SOUND_METAL_BLOCKBREAK)
-    sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_METALBREAK, 1.4)
+    sfx:Play(ToyboxMod.SFX_ATLASA_METALBREAK, 1.4)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, mantleDestroyed)
 
@@ -59,4 +59,4 @@ local function updateGoldMantleShatter(_, effect)
     if(effect.FrameCount==0) then effect:GetSprite():Play("Idle", true) end
     if(effect:GetSprite():IsFinished("Idle")) then effect:Remove() end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateGoldMantleShatter, ToyboxMod.EFFECT_VARIANT.GOLDMANTLE_BREAK)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateGoldMantleShatter, ToyboxMod.EFFECT_GOLDMANTLE_BREAK)

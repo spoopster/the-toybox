@@ -39,7 +39,7 @@ local function useBloodyWhistle(_, _, rng, player, flags)
 
     ToyboxMod:setEntityData(creep, "BLOODYWHISTLE_BLOOD_CREEP", true)
 
-    sfx:Play(ToyboxMod.SOUND_EFFECT.BLOODY_WHISTLE)
+    sfx:Play(ToyboxMod.SFX_BLOODY_WHISTLE)
 
     return {
         Discharge = true,

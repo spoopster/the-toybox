@@ -3,73 +3,61 @@ local sfx = SFXManager()
 
 ToyboxMod.DATA_LOADED = false
 
-ToyboxMod.ENUMS = {
-    ITEM_SHADER_INACTIVE = 0,
-    ITEM_SHADER_RETRO = 1,
-    ITEM_SHADER_GOLD = 2,
-}
+ToyboxMod.PLAYER_MILCOM_A = Isaac.GetPlayerTypeByName("Milcom", false)
+ToyboxMod.PLAYER_ATLAS_A = Isaac.GetPlayerTypeByName("Atlas", false)
+ToyboxMod.PLAYER_ATLAS_A_TAR = Isaac.GetPlayerTypeByName("The Tar", false)
+ToyboxMod.PLAYER_JONAS_A = Isaac.GetPlayerTypeByName("Jonas", false)
+ToyboxMod.PLAYER_MILCOM_B = Isaac.GetPlayerTypeByName("Milcom", true)
+ToyboxMod.PLAYER_ATLAS_B = Isaac.GetPlayerTypeByName("Atlas", true)
+ToyboxMod.PLAYER_JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true)
 
----@type PlayerType[]
-ToyboxMod.PLAYER_TYPE = {
-    MILCOM_A = Isaac.GetPlayerTypeByName("Milcom", false),
-    ATLAS_A = Isaac.GetPlayerTypeByName("Atlas", false),
-    ATLAS_A_TAR = Isaac.GetPlayerTypeByName("The Tar", false),
-    JONAS_A = Isaac.GetPlayerTypeByName("Jonas", false),
-
-    MILCOM_B = Isaac.GetPlayerTypeByName("Milcom", true),
-    ATLAS_B = Isaac.GetPlayerTypeByName("Atlas", true),
-    JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true),
-}
-
----@type Achievement[]
-ToyboxMod.ACHIEVEMENT = {
-    MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom"),
-    ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas"),
-    JONAS_B = Isaac.GetAchievementIdByName("Tainted Jonas"),
-
-    WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug"),
-    HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer"),
-
-    PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone"),
-    GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel"),
-    STEEL_SOUL = Isaac.GetAchievementIdByName("Steel Soul"),
-    HOSTILE_TAKEOVER = Isaac.GetAchievementIdByName("Hostile Takeover"),
-    ROCK_CANDY = Isaac.GetAchievementIdByName("Rock Candy"),
-    MISSING_PAGE_3 = Isaac.GetAchievementIdByName("Missing Page 3"),
-    GILDED_APPLE = Isaac.GetAchievementIdByName("Gilded Apple"),
-    SALTPETER = Isaac.GetAchievementIdByName("Saltpeter"),
-    MANTLES = Isaac.GetAchievementIdByName("Mantles"),
-    AMBER_FOSSIL = Isaac.GetAchievementIdByName("Amber Fossil"),
-    BONE_BOY = Isaac.GetAchievementIdByName("Bone Boy!"),
-    ASCENSION = Isaac.GetAchievementIdByName("Ascension"),
-    MIRACLE_MANTLE = Isaac.GetAchievementIdByName("Miracle Mantle"),
-
-    GIANT_CAPSULE = Isaac.GetAchievementIdByName("Giant Capsule"),
-    FOOD_STAMPS = Isaac.GetAchievementIdByName("Food Stamps"),
-    DADS_PRESCRIPTION = Isaac.GetAchievementIdByName("Dad's Prescription"),
-    CANDY_DISPENSER = Isaac.GetAchievementIdByName("Candy Dispenser"),
-    DR_BUM = Isaac.GetAchievementIdByName("Dr. Bum"),
-    JONAS_MASK = Isaac.GetAchievementIdByName("Jonas' Mask"),
-    ANTIBIOTICS = Isaac.GetAchievementIdByName("Antibiotics"),
-    FOIL_CARD = Isaac.GetAchievementIdByName("Foil Card"),
-    CLOWN_PHD = Isaac.GetAchievementIdByName("Clown PHD"),
-    JONAS_LOCK = Isaac.GetAchievementIdByName("Jonas' Lock"),
-    PILLS = Isaac.GetAchievementIdByName("Pill Diversity!"),
-    DRILL = Isaac.GetAchievementIdByName("Drill"),
-
-    DELIVERY_BOX = Isaac.GetAchievementIdByName("Delivery Box"),
-    OIL_PAINTING = Isaac.GetAchievementIdByName("Oil Painting"),
-    DIVIDED_JUSTICE = Isaac.GetAchievementIdByName("Divided Justice"),
-    PAPER_PLATE = Isaac.GetAchievementIdByName("Paper Plate"),
-    MISPRINT = Isaac.GetAchievementIdByName("Misprint"),
-    ATHEISM = Isaac.GetAchievementIdByName("Atheism"),
-    GOLDEN_CALF = Isaac.GetAchievementIdByName("Golden Calf"),
-    GREEN_APPLE = Isaac.GetAchievementIdByName("Green Apple"),
-    EFFIGY = Isaac.GetAchievementIdByName("Effigy"),
-    CUTOUT = Isaac.GetAchievementIdByName("Cutout"),
-    MALICE = Isaac.GetAchievementIdByName("Malice"),
-    CHAMPIONS = Isaac.GetAchievementIdByName("More Champions!"),
-}
+--- ACHIEVEMENTS - Players
+ToyboxMod.ACHIEVEMENT_MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom")
+ToyboxMod.ACHIEVEMENT_ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas")
+ToyboxMod.ACHIEVEMENT_JONAS_B = Isaac.GetAchievementIdByName("Tainted Jonas")
+--- ACHIEVEMENTS - Misc.
+ToyboxMod.ACHIEVEMENT_WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug")
+ToyboxMod.ACHIEVEMENT_HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer")
+--- ACHIEVEMENTS - Atlas
+ToyboxMod.ACHIEVEMENT_PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone")
+ToyboxMod.ACHIEVEMENT_GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel")
+ToyboxMod.ACHIEVEMENT_STEEL_SOUL = Isaac.GetAchievementIdByName("Steel Soul")
+ToyboxMod.ACHIEVEMENT_HOSTILE_TAKEOVER = Isaac.GetAchievementIdByName("Hostile Takeover")
+ToyboxMod.ACHIEVEMENT_ROCK_CANDY = Isaac.GetAchievementIdByName("Rock Candy")
+ToyboxMod.ACHIEVEMENT_MISSING_PAGE_3 = Isaac.GetAchievementIdByName("Missing Page 3")
+ToyboxMod.ACHIEVEMENT_GILDED_APPLE = Isaac.GetAchievementIdByName("Gilded Apple")
+ToyboxMod.ACHIEVEMENT_SALTPETER = Isaac.GetAchievementIdByName("Saltpeter")
+ToyboxMod.ACHIEVEMENT_MANTLES = Isaac.GetAchievementIdByName("Mantles")
+ToyboxMod.ACHIEVEMENT_AMBER_FOSSIL = Isaac.GetAchievementIdByName("Amber Fossil")
+ToyboxMod.ACHIEVEMENT_BONE_BOY = Isaac.GetAchievementIdByName("Bone Boy!")
+ToyboxMod.ACHIEVEMENT_ASCENSION = Isaac.GetAchievementIdByName("Ascension")
+ToyboxMod.ACHIEVEMENT_MIRACLE_MANTLE = Isaac.GetAchievementIdByName("Miracle Mantle")
+--- ACHIEVEMENTS - Jonas
+ToyboxMod.ACHIEVEMENT_GIANT_CAPSULE = Isaac.GetAchievementIdByName("Giant Capsule")
+ToyboxMod.ACHIEVEMENT_FOOD_STAMPS = Isaac.GetAchievementIdByName("Food Stamps")
+ToyboxMod.ACHIEVEMENT_DADS_PRESCRIPTION = Isaac.GetAchievementIdByName("Dad's Prescription")
+ToyboxMod.ACHIEVEMENT_CANDY_DISPENSER = Isaac.GetAchievementIdByName("Candy Dispenser")
+ToyboxMod.ACHIEVEMENT_DR_BUM = Isaac.GetAchievementIdByName("Dr. Bum")
+ToyboxMod.ACHIEVEMENT_JONAS_MASK = Isaac.GetAchievementIdByName("Jonas' Mask")
+ToyboxMod.ACHIEVEMENT_ANTIBIOTICS = Isaac.GetAchievementIdByName("Antibiotics")
+ToyboxMod.ACHIEVEMENT_FOIL_CARD = Isaac.GetAchievementIdByName("Foil Card")
+ToyboxMod.ACHIEVEMENT_CLOWN_PHD = Isaac.GetAchievementIdByName("Clown PHD")
+ToyboxMod.ACHIEVEMENT_JONAS_LOCK = Isaac.GetAchievementIdByName("Jonas' Lock")
+ToyboxMod.ACHIEVEMENT_PILLS = Isaac.GetAchievementIdByName("Pill Diversity!")
+ToyboxMod.ACHIEVEMENT_DRILL = Isaac.GetAchievementIdByName("Drill")
+--- ACHIEVEMENTS - Milcom
+ToyboxMod.ACHIEVEMENT_DELIVERY_BOX = Isaac.GetAchievementIdByName("Delivery Box")
+ToyboxMod.ACHIEVEMENT_OIL_PAINTING = Isaac.GetAchievementIdByName("Oil Painting")
+ToyboxMod.ACHIEVEMENT_DIVIDED_JUSTICE = Isaac.GetAchievementIdByName("Divided Justice")
+ToyboxMod.ACHIEVEMENT_PAPER_PLATE = Isaac.GetAchievementIdByName("Paper Plate")
+ToyboxMod.ACHIEVEMENT_MISPRINT = Isaac.GetAchievementIdByName("Misprint")
+ToyboxMod.ACHIEVEMENT_ATHEISM = Isaac.GetAchievementIdByName("Atheism")
+ToyboxMod.ACHIEVEMENT_GOLDEN_CALF = Isaac.GetAchievementIdByName("Golden Calf")
+ToyboxMod.ACHIEVEMENT_GREEN_APPLE = Isaac.GetAchievementIdByName("Green Apple")
+ToyboxMod.ACHIEVEMENT_EFFIGY = Isaac.GetAchievementIdByName("Effigy")
+ToyboxMod.ACHIEVEMENT_CUTOUT = Isaac.GetAchievementIdByName("Cutout")
+ToyboxMod.ACHIEVEMENT_MALICE = Isaac.GetAchievementIdByName("Malice")
+ToyboxMod.ACHIEVEMENT_CHAMPIONS = Isaac.GetAchievementIdByName("More Champions!")
 
 ToyboxMod.COLLECTIBLE_COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil")
 ToyboxMod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")
@@ -263,14 +251,6 @@ ToyboxMod.PILL_HEARTBURN = Isaac.GetPillEffectByName("Heartburn")
 ToyboxMod.PILL_MUSCLE_ATROPHY = Isaac.GetPillEffectByName("Muscle Atrophy")
 ToyboxMod.PILL_CAPSULE = Isaac.GetPillEffectByName("Capsule")
 
-ToyboxMod.TEARFLAGS = {
-    PLASMA = 1<<0,
-    LOVE_CHARM = 1<<1,
-
-    BOMB_QUAKE = 1<<32,
-    BOMB_BLESSED = 1<<33,
-}
-
 ToyboxMod.FAMILIAR_HYPNOS = Isaac.GetEntityVariantByName("Malicious Brain") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_SILK_BAG = Isaac.GetEntityVariantByName("Silk Bag") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_BONE_BOY = Isaac.GetEntityVariantByName("Bone Boy") ---@type FamiliarVariant
@@ -286,156 +266,108 @@ ToyboxMod.FAMILIAR_GOOD_JOB_STAR = Isaac.GetEntityVariantByName("Good Job Star")
 ToyboxMod.FAMILIAR_DECOY = Isaac.GetEntityVariantByName("Cardboard Decoy") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_PAPER_PLATE = Isaac.GetEntityVariantByName("Paper Plate") ---@type FamiliarVariant
 
----@type SlotVariant[]
-ToyboxMod.SLOT_VARIANT = {
-    PYRAMID_DONATION = Isaac.GetEntityVariantByName("Pyramid Donation Machine"),
-    JUICE_FOUNTAIN = Isaac.GetEntityVariantByName("Juice Fountain"),
+ToyboxMod.SLOT_PYRAMID_DONATION = Isaac.GetEntityVariantByName("Pyramid Donation Machine") ---@type SlotVariant
+ToyboxMod.SLOT_JUICE_FOUNTAIN = Isaac.GetEntityVariantByName("Juice Fountain") ---@type SlotVariant
+
+ToyboxMod.EFFECT_BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram") ---@type EffectVariant
+ToyboxMod.EFFECT_METEOR_TEAR_EXPLOSION = Isaac.GetEntityVariantByName("Meteor Tear Explosion") ---@type EffectVariant
+ToyboxMod.EFFECT_GOLDMANTLE_BREAK = Isaac.GetEntityVariantByName("Gold Mantle Shatter") ---@type EffectVariant
+ToyboxMod.EFFECT_GREED_SIGIL_CHARGEBAR = Isaac.GetEntityVariantByName("Greed Sigil Chargebar") ---@type EffectVariant
+ToyboxMod.EFFECT_ASCENSION_PLAYER_DEATH = Isaac.GetEntityVariantByName("Ascension Dead Player") ---@type EffectVariant
+ToyboxMod.EFFECT_AURA = Isaac.GetEntityVariantByName("Enemy Fear Aura") ---@type EffectVariant
+ToyboxMod.EFFECT_VESSEL_BREAK = Isaac.GetEntityVariantByName("Glass Vessel Break") ---@type EffectVariant
+ToyboxMod.EFFECT_BARBED_WIRE_HALO = Isaac.GetEntityVariantByName("Barbed Wire Halo (TOYBOX)") ---@type EffectVariant
+ToyboxMod.EFFECT_DRILL = Isaac.GetEntityVariantByName("Drill") ---@type EffectVariant
+ToyboxMod.EFFECT_PYTHAGORAS_CUP_SPILL = Isaac.GetEntityVariantByName("Pythagoras' Cup Spill") ---@type EffectVariant
+ToyboxMod.EFFECT_KILLSCREEN_GLITCH = Isaac.GetEntityVariantByName("Killscreen Glitch") ---@type EffectVariant
+ToyboxMod.EFFECT_JUICE_TRAIL = Isaac.GetEntityVariantByName("Good Juice Trail") ---@type EffectVariant
+ToyboxMod.EFFECT_METEOR = Isaac.GetEntityVariantByName("Meteor") ---@type EffectVariant
+ToyboxMod.EFFECT_SMOKE_TRAIL = Isaac.GetEntityVariantByName("Smoke Trail") ---@type EffectVariant
+ToyboxMod.EFFECT_FLAME_BREATH_HELPER = Isaac.GetEntityVariantByName("Flame Breath Helper") ---@type EffectVariant
+ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
+
+ToyboxMod.TEAR_COOL = Isaac.GetEntityVariantByName("Cool Tear") ---@type TearVariant
+--ToyboxMod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear") ---@type TearVariant
+--ToyboxMod.TEAR_BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear") ---@type TearVariant
+--ToyboxMod.TEAR_SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear") ---@type TearVariant
+--ToyboxMod.TEAR_PAPER = Isaac.GetEntityVariantByName("Tome Paper Tear") ---@type TearVariant
+
+ToyboxMod.PICKUP_SMORGASBORD = Isaac.GetEntityVariantByName("Smorgasbord") ---@type PickupVariant
+ToyboxMod.PICKUP_ETERNAL_MOUND = Isaac.GetEntityVariantByName("Eternal Mound") ---@type PickupVariant
+ToyboxMod.PICKUP_LONELY_KEY = Isaac.GetEntityVariantByName("Lonely Key") ---@type PickupVariant
+
+ToyboxMod.PICKUP_COIN_INK_1 = Isaac.GetEntitySubTypeByName("Ink (1)") ---@type CoinSubType
+ToyboxMod.PICKUP_COIN_INK_2 = Isaac.GetEntitySubTypeByName("Ink (2)") ---@type CoinSubType
+ToyboxMod.PICKUP_COIN_INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)") ---@type CoinSubType
+
+ToyboxMod.TEARFLAGS = {
+    PLASMA = 1<<0,
+    LOVE_CHARM = 1<<1,
+
+    BOMB_QUAKE = 1<<32,
+    BOMB_BLESSED = 1<<33,
 }
 
----@type EffectVariant[]
-ToyboxMod.EFFECT_VARIANT = {
-    BLOOD_RITUAL_PENTAGRAM = Isaac.GetEntityVariantByName("Blood Ritual Pentagram"),
-    METEOR_TEAR_EXPLOSION = Isaac.GetEntityVariantByName("Meteor Tear Explosion"),
-    GOLDMANTLE_BREAK = Isaac.GetEntityVariantByName("Gold Mantle Shatter"),
-    GREED_SIGIL_CHARGEBAR = Isaac.GetEntityVariantByName("Greed Sigil Chargebar"),
-    ASCENSION_PLAYER_DEATH = Isaac.GetEntityVariantByName("Ascension Dead Player"),
-    AURA = Isaac.GetEntityVariantByName("Enemy Fear Aura"),
-    VESSEL_BREAK = Isaac.GetEntityVariantByName("Glass Vessel Break"),
-    BARBED_WIRE_HALO = Isaac.GetEntityVariantByName("Barbed Wire Halo (TOYBOX)"),
-    DRILL = Isaac.GetEntityVariantByName("Drill"),
-    PYTHAGORAS_CUP_SPILL = Isaac.GetEntityVariantByName("Pythagoras' Cup Spill"),
-    KILLSCREEN_GLITCH = Isaac.GetEntityVariantByName("Killscreen Glitch"),
-    JUICE_TRAIL = Isaac.GetEntityVariantByName("Good Juice Trail"),
-    METEOR = Isaac.GetEntityVariantByName("Meteor"),
-    SMOKE_TRAIL = Isaac.GetEntityVariantByName("Smoke Trail"),
+ToyboxMod.SFX_ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("(TOYBOX) Rock Crack")
+ToyboxMod.SFX_ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("(TOYBOX) Rock Break")
+ToyboxMod.SFX_ATLASA_METALBLOCK = Isaac.GetSoundIdByName("(TOYBOX) Metal Block")
+ToyboxMod.SFX_ATLASA_METALBREAK = Isaac.GetSoundIdByName("(TOYBOX) Metal Break")
+ToyboxMod.SFX_ATLASA_GLASSBREAK = Isaac.GetSoundIdByName("(TOYBOX) Glass Break")
+ToyboxMod.SFX_FOUR_FOUR_SCREAM = Isaac.GetSoundIdByName("(TOYBOX) 4 4 Scream")
+ToyboxMod.SFX_SILK_BAG_SHIELD = Isaac.GetSoundIdByName("(TOYBOX) Silk Bag Shield")
+ToyboxMod.SFX_TOY_GUN_RELOAD = Isaac.GetSoundIdByName("(TOYBOX) Gun Reload")
+ToyboxMod.SFX_BULLET_FIRE = Isaac.GetSoundIdByName("(TOYBOX) Bullet Shoot")
+ToyboxMod.SFX_BULLET_HIT = Isaac.GetSoundIdByName("(TOYBOX) Bullet Hit")
+ToyboxMod.SFX_POWERUP = Isaac.GetSoundIdByName("(TOYBOX) Powerup")
+ToyboxMod.SFX_POWERDOWN = Isaac.GetSoundIdByName("(TOYBOX) Powerdown")
+ToyboxMod.SFX_VIRUS_SPAWN = Isaac.GetSoundIdByName("(TOYBOX) Virus Spawn")
+ToyboxMod.SFX_VIRUS_SHOOT = Isaac.GetSoundIdByName("(TOYBOX) Virus Shoot")
+ToyboxMod.SFX_VIRUS_DIE = Isaac.GetSoundIdByName("(TOYBOX) Virus Die")
+ToyboxMod.SFX_SHADOW_SCREAM = Isaac.GetSoundIdByName("(TOYBOX) Shadow Scream")
+ToyboxMod.SFX_BLOODY_WHISTLE = Isaac.GetSoundIdByName("(TOYBOX) Whistle")
+ToyboxMod.SFX_SLIPPER_WHIP = Isaac.GetSoundIdByName("(TOYBOX) Whip")
+ToyboxMod.SFX_COLOSSAL_ORB_SHOCKWAVE = Isaac.GetSoundIdByName("(TOYBOX) Colossal Orb Shockwave")
+ToyboxMod.SFX_BURP = Isaac.GetSoundIdByName("(TOYBOX) Burp")
+ToyboxMod.SFX_WATER_LOOP = Isaac.GetSoundIdByName("(TOYBOX) Water Loop (Copy)")
+ToyboxMod.SFX_HYPNOSIS = Isaac.GetSoundIdByName("(TOYBOX) Hypnosis")
+ToyboxMod.SFX_HAZE = Isaac.GetSoundIdByName("(TOYBOX) Haze")
+ToyboxMod.SFX_DRILL = Isaac.GetSoundIdByName("(TOYBOX) Drill")
+ToyboxMod.SFX_MEOW = Isaac.GetSoundIdByName("(TOYBOX) Meow")
+ToyboxMod.SFX_POOF = Isaac.GetSoundIdByName("(TOYBOX) Poof")
 
-    FLAME_BREATH_HELPER = Isaac.GetEntityVariantByName("Flame Breath Helper"),
-
-    ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair")
-}
-
----@type PickupVariant[]
-ToyboxMod.PICKUP_VARIANT = {
-    MAMMONS_OFFERING_PENNY = Isaac.GetEntityVariantByName("Mammon's Offering Penny"),
-
-    SMORGASBORD = Isaac.GetEntityVariantByName("Smorgasbord"),
-
-    ETERNAL_MOUND = Isaac.GetEntityVariantByName("Eternal Mound"),
-
-    LONELY_KEY = Isaac.GetEntityVariantByName("Lonely Key"),
-}
-
----@type integer[]
-ToyboxMod.PICKUP_SUBTYPE = {
-    COIN_INK_1 = Isaac.GetEntitySubTypeByName("Ink (1)"),
-    COIN_INK_2 = Isaac.GetEntitySubTypeByName("Ink (2)"),
-    COIN_INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)"),
-
-    HEART_QUAD = Isaac.GetEntitySubTypeByName("Quad Heart"),
-    HEART_SOUL_DOUBLE = Isaac.GetEntitySubTypeByName("Double Soul Heart"),
-    HEART_BLACK_DOUBLE = Isaac.GetEntitySubTypeByName("Double Black Heart"),
-    HEART_ROTTEN_DOUBLE = Isaac.GetEntitySubTypeByName("Double Rotten Heart"),
-    HEART_ETERNAL_FULL = Isaac.GetEntitySubTypeByName("Full Eternal Heart (TOYBOX)"),
-    HEART_BLENDED_DOUBLE = Isaac.GetEntitySubTypeByName("Double Blended Heart"),
-    HEART_GOLD_DOUBLE = Isaac.GetEntitySubTypeByName("Double Gold Heart"),
-    HEART_BONE_DOUBLE = Isaac.GetEntitySubTypeByName("Double Bone Heart"),
-    HEART_BLENDEDBLACK_DOUBLE = Isaac.GetEntitySubTypeByName("Double Blended Black Heart"),
-    HEART_BLENDEDIMMORAL_DOUBLE = Isaac.GetEntitySubTypeByName("Double Blended Immoral Heart"),
-    HEART_IMMORAL_DOUBLE = Isaac.GetEntitySubTypeByName("Double Immoral Heart"),
-    HEART_MORBID_DOUBLE = Isaac.GetEntitySubTypeByName("Double Morbid Heart"),
-    HEART_MORBID_FOURTHIRDS = Isaac.GetEntitySubTypeByName("Four-Thirds Morbid Heart"),
-}
-
----@type TearVariant[]
-ToyboxMod.TEAR_VARIANT = {
-    COOL = Isaac.GetEntityVariantByName("Cool Tear"),
-    --METEOR = Isaac.GetEntityVariantByName("Meteor Tear"),
-    --BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear"),
-    --SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear"),
-    --PAPER = Isaac.GetEntityVariantByName("Tome Paper Tear"),
-}
-
----@type SoundEffect
-ToyboxMod.SOUND_EFFECT = {
-    FOUR_FOUR_SCREAM = Isaac.GetSoundIdByName("(TOYBOX) 4 4 Scream"),
-    SILK_BAG_SHIELD = Isaac.GetSoundIdByName("(TOYBOX) Silk Bag Shield"),
-    TOY_GUN_RELOAD = Isaac.GetSoundIdByName("(TOYBOX) Gun Reload"),
-    BULLET_FIRE = Isaac.GetSoundIdByName("(TOYBOX) Bullet Shoot"),
-    BULLET_HIT = Isaac.GetSoundIdByName("(TOYBOX) Bullet Hit"),
-    POWERUP = Isaac.GetSoundIdByName("(TOYBOX) Powerup"),
-    POWERDOWN = Isaac.GetSoundIdByName("(TOYBOX) Powerdown"),
-    VIRUS_SPAWN = Isaac.GetSoundIdByName("(TOYBOX) Virus Spawn"),
-    VIRUS_SHOOT = Isaac.GetSoundIdByName("(TOYBOX) Virus Shoot"),
-    VIRUS_DIE = Isaac.GetSoundIdByName("(TOYBOX) Virus Die"),
-    SHADOW_SCREAM = Isaac.GetSoundIdByName("(TOYBOX) Shadow Scream"),
-    BLOODY_WHISTLE = Isaac.GetSoundIdByName("(TOYBOX) Whistle"),
-    SLIPPER_WHIP = Isaac.GetSoundIdByName("(TOYBOX) Whip"),
-    COLOSSAL_ORB_SHOCKWAVE = Isaac.GetSoundIdByName("(TOYBOX) Colossal Orb Shockwave"),
-    BURP = Isaac.GetSoundIdByName("(TOYBOX) Burp"),
-    WATER_LOOP = Isaac.GetSoundIdByName("(TOYBOX) Water Loop (Copy)"),
-    HYPNOSIS = Isaac.GetSoundIdByName("(TOYBOX) Hypnosis"),
-    HAZE = Isaac.GetSoundIdByName("(TOYBOX) Haze"),
-    DRILL = Isaac.GetSoundIdByName("(TOYBOX) Drill"),
-    MEOW = Isaac.GetSoundIdByName("(TOYBOX) Meow"),
-    POOF = Isaac.GetSoundIdByName("(TOYBOX) Poof"),
-
-    ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("(TOYBOX) Rock Crack"),
-    ATLASA_ROCKBREAK = Isaac.GetSoundIdByName("(TOYBOX) Rock Break"),
-    ATLASA_METALBLOCK = Isaac.GetSoundIdByName("(TOYBOX) Metal Block"),
-    ATLASA_METALBREAK = Isaac.GetSoundIdByName("(TOYBOX) Metal Break"),
-    ATLASA_GLASSBREAK = Isaac.GetSoundIdByName("(TOYBOX) Glass Break"),
-}
-for _, soundEffect in ipairs(ToyboxMod.SOUND_EFFECT) do
-    sfx:Preload(soundEffect)
+for name, soundEffect in pairs(ToyboxMod) do
+    if(string.sub(name, 1,4)=="SFX_") then
+        sfx:Preload(soundEffect)
+    end
 end
 
----@type Giantbook
-ToyboxMod.GIANTBOOK = {
-    BIG_BANG = Isaac.GetGiantBookIdByName("Big Bang (TOYBOX)"),
-    MOMS_PHOTOBOOK = Isaac.GetGiantBookIdByName("Mom's Photobook"),
-}
+ToyboxMod.GIANTBOOK_BIG_BANG = Isaac.GetGiantBookIdByName("Big Bang (TOYBOX)")
+ToyboxMod.GIANTBOOK_MOMS_PHOTOBOOK = Isaac.GetGiantBookIdByName("Mom's Photobook")
 
-ToyboxMod.FAMILIAR_VIRUS_SUBTYPE = {
-    RED = 0,
-    FEVER = 0,
-    YELLOW = 1,
-    YELLOW_1 = 1,
-    WEIRD = 1,
-    BLUE = 2,
-    CHILL = 2,
-    MAGENTA = 3,
-    CONFUSED = 3,
-    YELLOW_2 = 4,
-    DROWSY = 4,
-    CYAN = 5,
-    DIZZY = 5,
-    GREEN = 6,
-    LIGHT_BLUE = 7,
-    PINK = 8,
-    PURPLE = 9,
-}
-ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE = {
-    FLY = Isaac.GetEntitySubTypeByName("Shadow Fly"),
-    URCHIN = Isaac.GetEntitySubTypeByName("Shadow Urchin"),
-    CRAWLER = Isaac.GetEntitySubTypeByName("Shadow Crawler"),
-    BALL = Isaac.GetEntitySubTypeByName("Shadow Fly"),
-    ORBITAL = Isaac.GetEntitySubTypeByName("Shadow Urchin"),
-    CHASER = Isaac.GetEntitySubTypeByName("Shadow Crawler"),
-}
-ToyboxMod.EFFECT_AURA_SUBTYPE = {
-    ENEMY_FEAR = 0,
-    BOMB_BLESSED = 1,
-    DARK_MANTLE = 2,
-    HOLY_MANTLE = 3,
-    FOURFOUR = 4,
-}
+ToyboxMod.FAMILIAR_VIRUS_RED = 0
+ToyboxMod.FAMILIAR_VIRUS_YELLOW_1 = 1
+ToyboxMod.FAMILIAR_VIRUS_BLUE = 2
+ToyboxMod.FAMILIAR_VIRUS_MAGENTA = 3
+ToyboxMod.FAMILIAR_VIRUS_YELLOW_2 = 4
+ToyboxMod.FAMILIAR_VIRUS_CYAN = 5
+ToyboxMod.FAMILIAR_VIRUS_GREEN = 6
+ToyboxMod.FAMILIAR_VIRUS_LIGHT_BLUE = 7
+ToyboxMod.FAMILIAR_VIRUS_PINK = 8
+ToyboxMod.FAMILIAR_VIRUS_PURPLE = 9
 
----@type ShaderType
-ToyboxMod.SHADERS = {
-    EMPTY = "ToyboxEmptyShader",
-    BLOOM = "ToyboxBloomShader",
-    ASCENSION = "ToyboxAscensionShader",
-}
+ToyboxMod.FAMILIAR_MASK_SHADOW_FLY = Isaac.GetEntitySubTypeByName("Shadow Fly")
+ToyboxMod.FAMILIAR_MASK_SHADOW_URCHIN = Isaac.GetEntitySubTypeByName("Shadow Urchin")
+ToyboxMod.FAMILIAR_MASK_SHADOW_CRAWLER = Isaac.GetEntitySubTypeByName("Shadow Crawler")
+
+ToyboxMod.EFFECT_AURA_ENEMY_FEAR = Isaac.GetEntitySubTypeByName("Enemy Fear Aura")
+ToyboxMod.EFFECT_AURA_BOMB_BLESSED = Isaac.GetEntitySubTypeByName("Bomb Blessed Aura")
+ToyboxMod.EFFECT_AURA_DARK_MANTLE = Isaac.GetEntitySubTypeByName("Dark Mantle Aura")
+ToyboxMod.EFFECT_AURA_HOLY_MANTLE = Isaac.GetEntitySubTypeByName("Holy Mantle Aura")
+ToyboxMod.EFFECT_AURA_44 = Isaac.GetEntitySubTypeByName("4 4 Aura")
+
+ToyboxMod.SHADER_EMPTY = "ToyboxEmptyShader" ---@type ShaderType
+ToyboxMod.SHADER_BLOOM = "ToyboxBloomShader" ---@type ShaderType
+ToyboxMod.SHADER_ASCENSION = "ToyboxAscensionShader" ---@type ShaderType
 
 ToyboxMod.TEAR_COPYING_FAMILIARS = {
     [FamiliarVariant.INCUBUS] = true,
@@ -451,8 +383,6 @@ ToyboxMod.RED_HEART_SUBTYPES = {
     [HeartSubType.HEART_FULL] = true,
     [HeartSubType.HEART_DOUBLEPACK] = true,
     [HeartSubType.HEART_SCARED] = true,
-
-    [ToyboxMod.PICKUP_SUBTYPE.HEART_QUAD] = true,
 
     --[HeartSubType.HEART_ROTTEN] = true,
     --[HeartSubType.HEART_BLENDED] = true,
@@ -531,8 +461,8 @@ ToyboxMod.MANTLE_DATA = {
         CONSUMABLE_SUBTYPE = ToyboxMod.CARD_MANTLE_ROCK,
         SHARD_COLOR = Color(153/255,139/255,136/255,1),
         ANIM = "RockMantle",
-        HURT_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKCRACK,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK,
+        HURT_SFX = ToyboxMod.SFX_ATLASA_ROCKCRACK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_ROCKBREAK,
                 
         ATLAS_DESC = "Useless",
         REG_DESC = "Rock and roll",
@@ -546,8 +476,8 @@ ToyboxMod.MANTLE_DATA = {
         CONSUMABLE_SUBTYPE = ToyboxMod.CARD_MANTLE_POOP,
         SHARD_COLOR = Color(124/255,86/255,52/255,1),
         ANIM = "PoopMantle",
-        HURT_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKCRACK,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK,
+        HURT_SFX = ToyboxMod.SFX_ATLASA_ROCKCRACK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_ROCKBREAK,
                 
         ATLAS_DESC = "Flies on room clear + more poops",
         REG_DESC = "On-command diarrhea",
@@ -561,8 +491,8 @@ ToyboxMod.MANTLE_DATA = {
         CONSUMABLE_SUBTYPE = ToyboxMod.CARD_MANTLE_BONE,
         SHARD_COLOR = Color(95/255,112/255,121/255,1),
         ANIM = "BoneMantle",
-        HURT_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKCRACK,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK,
+        HURT_SFX = ToyboxMod.SFX_ATLASA_ROCKCRACK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_ROCKBREAK,
                 
         ATLAS_DESC = "Bones on kill + bones when lost",
         REG_DESC = "Bone buddy + bones on kill",
@@ -576,8 +506,8 @@ ToyboxMod.MANTLE_DATA = {
         CONSUMABLE_SUBTYPE = ToyboxMod.CARD_MANTLE_DARK,
         SHARD_COLOR = Color(59/255,59/255,59/255,1),
         ANIM = "DarkMantle",
-        HURT_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKCRACK,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK,
+        HURT_SFX = ToyboxMod.SFX_ATLASA_ROCKCRACK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_ROCKBREAK,
 
         ATLAS_DESC = "DMG up + room damage when lost",
         REG_DESC = "Mass floor damage",
@@ -592,8 +522,8 @@ ToyboxMod.MANTLE_DATA = {
         FLIGHT_COSTUME = Isaac.GetCostumeIdByPath("gfx_tb/characters/costume_atlas_wings.anm2"),
         SHARD_COLOR = Color(190/255,190/255,190/255,1),
         ANIM = "HolyMantle",
-        HURT_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKCRACK,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK,
+        HURT_SFX = ToyboxMod.SFX_ATLASA_ROCKCRACK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_ROCKBREAK,
                 
         ATLAS_DESC = "Range up + sacred tears",
         REG_DESC = "Eternity + \"god\" tears",
@@ -608,8 +538,8 @@ ToyboxMod.MANTLE_DATA = {
         CHARIOT_COSTUME = Isaac.GetCostumeIdByPath("gfx_tb/characters/costume_atlas_salt.anm2"),
         SHARD_COLOR = Color(1,1,1,1),
         ANIM = "SaltMantle",
-        HURT_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKCRACK,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK,
+        HURT_SFX = ToyboxMod.SFX_ATLASA_ROCKCRACK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_ROCKBREAK,
                 
         ATLAS_DESC = "Tears up",
         REG_DESC = "Temporary sorrow",
@@ -624,7 +554,7 @@ ToyboxMod.MANTLE_DATA = {
         SHARD_COLOR = Color(1,1,1,1),
         ANIM = "GlassMantle",
         HURT_SFX = 0,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_GLASSBREAK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_GLASSBREAK,
                 
         ATLAS_DESC = "DMG + shotspeed up + brittle protection",
         REG_DESC = "DMG up + fragility up",
@@ -638,8 +568,8 @@ ToyboxMod.MANTLE_DATA = {
         CONSUMABLE_SUBTYPE = ToyboxMod.CARD_MANTLE_METAL,
         SHARD_COLOR = Color(147/255,147/255,147/255,1),
         ANIM = "MetalMantle",
-        HURT_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKCRACK,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_METALBREAK,
+        HURT_SFX = ToyboxMod.SFX_ATLASA_ROCKCRACK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_METALBREAK,
                 
         ATLAS_DESC = "Speed down + defense up",
         REG_DESC = "Tough skin",
@@ -653,8 +583,8 @@ ToyboxMod.MANTLE_DATA = {
         CONSUMABLE_SUBTYPE = ToyboxMod.CARD_MANTLE_GOLD,
         SHARD_COLOR = Color(205/255,181/255,60/255,1),
         ANIM = "GoldMantle",
-        HURT_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_ROCKCRACK,
-        BREAK_SFX = ToyboxMod.SOUND_EFFECT.ATLASA_METALBREAK,
+        HURT_SFX = ToyboxMod.SFX_ATLASA_ROCKCRACK,
+        BREAK_SFX = ToyboxMod.SFX_ATLASA_METALBREAK,
                 
         ATLAS_DESC = "Luck up + gild when lost",
         REG_DESC = "Microtransactions",

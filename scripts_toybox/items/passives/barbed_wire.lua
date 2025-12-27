@@ -19,7 +19,7 @@ local function updateBarbedHalo(_, pl)
     end
 
     if(not (barbHalo and barbHalo:Exists())) then
-        barbHalo = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.BARBED_WIRE_HALO, 0, pl.Position, Vector.Zero, pl):ToEffect()
+        barbHalo = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_BARBED_WIRE_HALO, 0, pl.Position, Vector.Zero, pl):ToEffect()
         barbHalo:FollowParent(pl)
 
         data.BARBED_HALO = barbHalo

@@ -50,7 +50,7 @@ local function checkEnterExitDarkRadius(_, pl)
 
     local data = ToyboxMod:getEntityDataTable(pl)
     if(not (data.DARK_AURA and data.DARK_AURA:Exists())) then
-        local darkAura = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.DARK_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
+        local darkAura = Isaac.Spawn(1000,ToyboxMod.EFFECT_AURA,ToyboxMod.EFFECT_AURA_DARK_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
         darkAura.DepthOffset = -1000
         darkAura:FollowParent(pl)
 
@@ -94,7 +94,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalAuraCache)
 
 ---@param effect EntityEffect
 local function darkAuraUpdate(_, effect)
-    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.DARK_MANTLE) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_DARK_MANTLE) then return end
 
     local sp = effect:GetSprite()
     if(sp:IsFinished("Appear")) then
@@ -116,4 +116,4 @@ local function darkAuraUpdate(_, effect)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, darkAuraUpdate, ToyboxMod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, darkAuraUpdate, ToyboxMod.EFFECT_AURA)

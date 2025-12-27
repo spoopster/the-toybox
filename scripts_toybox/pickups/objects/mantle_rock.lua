@@ -60,7 +60,7 @@ local function fireShockwaves(_, player, dmg, flags, source)
 
         local poof = Isaac.Spawn(1000,16,2,player.Position,Vector.Zero,player):ToEffect()
         poof.Color = Color(0.75,0.75,0.75,0.65)
-        sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK)
+        sfx:Play(ToyboxMod.SFX_ATLASA_ROCKBREAK)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, fireShockwaves, EntityType.ENTITY_PLAYER)

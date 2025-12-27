@@ -3,7 +3,7 @@
 -- [[
 ---@param player EntityPlayer
 local function jumpOffset(_, player, offset)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.MILCOM_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_MILCOM_A) then return end
     local renderMode = Game():GetRoom():GetRenderMode()
 
     local data = ToyboxMod:getMilcomATable(player)

@@ -16,7 +16,7 @@ local function postUpdate(_)
 
             if(cnt==0) then
                 local pos = ToyboxMod:getRandomFreePos(20)
-                local meteor = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.METEOR, 0, pos, Vector.Zero, pl):ToEffect()
+                local meteor = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_METEOR, 0, pos, Vector.Zero, pl):ToEffect()
                 meteor.CollisionDamage = METEOR_DMG
 
                 local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)

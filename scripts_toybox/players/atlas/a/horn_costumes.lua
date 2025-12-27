@@ -35,7 +35,7 @@ ToyboxMod:addHornCostume(
 
 ---@param pl EntityPlayer
 local function updateCostume(_, _, pl, _)
-    if(pl:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.ATLAS_A) then return end
+    if(pl:GetPlayerType()~=ToyboxMod.PLAYER_ATLAS_A) then return end
 
     ToyboxMod:setEntityData(pl, "UPDATE_COSTUMES", true)
 end
@@ -44,7 +44,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_REMOVE_COSTUME, updateCostume)
 
 ---@param player EntityPlayer
 local function evaluateHorn(_, player)
-    if(player:GetPlayerType()~=ToyboxMod.PLAYER_TYPE.ATLAS_A) then return end
+    if(player:GetPlayerType()~=ToyboxMod.PLAYER_ATLAS_A) then return end
     if(not ToyboxMod:getEntityData(player, "UPDATE_COSTUMES")) then return end
     ToyboxMod:setEntityData(player, "UPDATE_COSTUMES", nil)
 

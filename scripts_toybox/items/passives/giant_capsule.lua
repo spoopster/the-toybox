@@ -6,7 +6,7 @@ local BASE_FIRERATE = 18
 local BASE_DMG = 4
 local BASE_VEL = 13
 local VIRUS_INFO = {
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.RED] = {
+    [ToyboxMod.FAMILIAR_VIRUS_RED] = {
         DMGMULT = 0.5, TEARSMULT = 1,
         COLOR = Color(1.25,0.75,0.5,1, 0.2,0.05,0, 2,1,0,1),
         FLAGS = {
@@ -14,13 +14,13 @@ local VIRUS_INFO = {
         },
         SHEET_SUFFIX = "red",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.YELLOW_1] = {
+    [ToyboxMod.FAMILIAR_VIRUS_YELLOW_1] = {
         DMGMULT = 1.5, TEARSMULT = 1,
         COLOR = Color(0.75,0.75,0.5,1, 0.12,0.12,0, 1,1,0,1),
         SPREAD = 15,
         SHEET_SUFFIX = "yellow",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.BLUE] = {
+    [ToyboxMod.FAMILIAR_VIRUS_BLUE] = {
         DMGMULT = 1, TEARSMULT = 1,
         COLOR = Color(2,2,3,1, 0,0,0.15, 0.25,0.25,1,1),
         FLAGS = {
@@ -28,7 +28,7 @@ local VIRUS_INFO = {
         },
         SHEET_SUFFIX = "blue",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.MAGENTA] = {
+    [ToyboxMod.FAMILIAR_VIRUS_MAGENTA] = {
         DMGMULT = 1.5, TEARSMULT = 0.75,
         COLOR = Color(2,1,2,1, 0.15,0,0.15, 2,0.25,2,1),
         FLAGS = {
@@ -36,7 +36,7 @@ local VIRUS_INFO = {
         },
         SHEET_SUFFIX = "magenta",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.YELLOW_2] = {
+    [ToyboxMod.FAMILIAR_VIRUS_YELLOW_2] = {
         DMGMULT = 0.5, TEARSMULT = 2,
         RANGEMULT = 1.5, SHOTSPEEDMULT = 0.66,
         COLOR = Color(0.75,0.75,0.5,1, 0.2,0.2,0, 1,1,0,1),
@@ -45,7 +45,7 @@ local VIRUS_INFO = {
         },
         SHEET_SUFFIX = "yellow2",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.CYAN] = {
+    [ToyboxMod.FAMILIAR_VIRUS_CYAN] = {
         DMGMULT = 0.75, TEARSMULT = 1,
         COLOR = Color(1,2,2,1, 0,0,0, 0.25,1,1,1),
         FLAGS = {
@@ -54,7 +54,7 @@ local VIRUS_INFO = {
         },
         SHEET_SUFFIX = "cyan",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.GREEN] = {
+    [ToyboxMod.FAMILIAR_VIRUS_GREEN] = {
         DMGMULT = 1.5, TEARSMULT = 0.33,
         COLOR = Color(0,3,2,1, 0,0.15,0, 0.25,1,0.25,1),
         FLAGS = {
@@ -62,7 +62,7 @@ local VIRUS_INFO = {
         },
         SHEET_SUFFIX = "green",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.LIGHT_BLUE] = {
+    [ToyboxMod.FAMILIAR_VIRUS_LIGHT_BLUE] = {
         DMGMULT = 0.15, TEARSMULT = 6,
         SPREAD = 5,
         FLAGS = {
@@ -70,7 +70,7 @@ local VIRUS_INFO = {
         },
         SHEET_SUFFIX = "lightblue",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.PINK] = {
+    [ToyboxMod.FAMILIAR_VIRUS_PINK] = {
         DMGMULT = 1, TEARSMULT = 1,
         COLOR = Color(2,0.5,2,1, 0.15,0,0.15, 2,0.25,2,1),
         FLAGS = {
@@ -78,7 +78,7 @@ local VIRUS_INFO = {
         },
         SHEET_SUFFIX = "pink",
     },
-    [ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.PURPLE] = {
+    [ToyboxMod.FAMILIAR_VIRUS_PURPLE] = {
         DMGMULT = 1.25, TEARSMULT = 0.66,
         COLOR = Color(1.5,0.5,2.5,1, 0.1,0,0.2, 1.5,0.25,3,1),
         FLAGS = {
@@ -89,8 +89,16 @@ local VIRUS_INFO = {
 }
 
 local SUBTYPE_PICKER = WeightedOutcomePicker()
-
-    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_SUBTYPE.BLUE, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_RED, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_YELLOW_1, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_BLUE, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_MAGENTA, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_YELLOW_2, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_CYAN, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_GREEN, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_LIGHT_BLUE, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_PINK, 1)
+    SUBTYPE_PICKER:AddOutcomeWeight(ToyboxMod.FAMILIAR_VIRUS_PURPLE, 1)
 
 
 ---@param player EntityPlayer
@@ -103,7 +111,7 @@ local function spawnVirus(player)
         virus.Player = player
     end
 
-    sfx:Play(ToyboxMod.SOUND_EFFECT.VIRUS_SPAWN)
+    sfx:Play(ToyboxMod.SFX_VIRUS_SPAWN)
 end
 
 ---@param player EntityPlayer
@@ -179,7 +187,7 @@ local function virusUpdate(_, familiar)
                 end
             end
             tear:Update()
-            sfx:Play(ToyboxMod.SOUND_EFFECT.VIRUS_SHOOT, 0.5, 1, false, 0.95+rng:RandomFloat()*0.1, 0)
+            sfx:Play(ToyboxMod.SFX_VIRUS_SHOOT, 0.5, 1, false, 0.95+rng:RandomFloat()*0.1, 0)
 
             familiar.FireCooldown = fireCool
         end
@@ -203,7 +211,7 @@ local function virusUpdate(_, familiar)
 
         local col = (VIRUS_INFO[familiar.SubType] or VIRUS_INFO[0]).COLOR
         imp.Color = col or imp.Color
-        sfx:Play(ToyboxMod.SOUND_EFFECT.VIRUS_DIE)
+        sfx:Play(ToyboxMod.SFX_VIRUS_DIE)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, virusUpdate, ToyboxMod.FAMILIAR_VIRUS)

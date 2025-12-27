@@ -30,7 +30,7 @@ local function dealKillscreenDMG(_)
             selPos.Y = math.floor(selPos.Y/gridSize)*gridSize
 
             local sub = math.floor(freq*(i-1)/NUM_GLITCHES)
-            local glitch = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.KILLSCREEN_GLITCH, sub, selPos, Vector.Zero, nil):ToEffect()
+            local glitch = Isaac.Spawn(1000, ToyboxMod.EFFECT_KILLSCREEN_GLITCH, sub, selPos, Vector.Zero, nil):ToEffect()
             glitch.SpriteOffset = Vector(rng:RandomInt(0,1), rng:RandomInt(0,1))*8
         end
     end
@@ -72,7 +72,7 @@ local function glitchInit(_, effect)
     local len = sp:GetAnimationData("Idle"):GetLength()
     sp:SetFrame("Idle", rng:RandomInt(len))
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, glitchInit, ToyboxMod.EFFECT_VARIANT.KILLSCREEN_GLITCH)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, glitchInit, ToyboxMod.EFFECT_KILLSCREEN_GLITCH)
 
 ---@param effect EntityEffect
 local function glitchUpdate(_, effect)
@@ -88,4 +88,4 @@ local function glitchUpdate(_, effect)
         effect:Remove()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, glitchUpdate, ToyboxMod.EFFECT_VARIANT.KILLSCREEN_GLITCH)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, glitchUpdate, ToyboxMod.EFFECT_KILLSCREEN_GLITCH)

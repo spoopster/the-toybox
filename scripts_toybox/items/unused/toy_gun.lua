@@ -21,7 +21,7 @@ local function useToyGun(_, item, player, rng, flags, slot)
         end
 
         local v = Vector.FromAngle(player:GetAimDirection():GetAngleDegrees()+(rng:RandomFloat()-0.5)*spr)*BULLET_SPEED
-        local bullet = Isaac.Spawn(2, ToyboxMod.TEAR_VARIANT.BULLET, 0, player.Position, v, nil):ToTear()
+        local bullet = Isaac.Spawn(2, ToyboxMod.TEAR_BULLET, 0, player.Position, v, nil):ToTear()
 
         bullet.CollisionDamage = BASE_BULLET_DMG+FOAMBULLET_DMGMOD*bStacks
         bullet.Scale = 2.5
@@ -30,7 +30,7 @@ local function useToyGun(_, item, player, rng, flags, slot)
         bullet.KnockbackMultiplier=3
 
         sfx:Stop(SoundEffect.SOUND_TEARS_FIRE)
-        sfx:Play(ToyboxMod.SOUND_EFFECT.BULLET_FIRE)
+        sfx:Play(ToyboxMod.SFX_BULLET_FIRE)
     else
         sfx:Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
     end

@@ -39,7 +39,7 @@ local function meteorInit(_, eff)
     eff.SpriteOffset = -OFFSET_DIST*Vector.FromAngle(eff.Rotation)
     eff:SetShadowSize(0)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, meteorInit, ToyboxMod.EFFECT_VARIANT.METEOR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, meteorInit, ToyboxMod.EFFECT_METEOR)
 
 ---@param eff EntityEffect
 local function meteorUpdate(_, eff)
@@ -53,7 +53,7 @@ local function meteorUpdate(_, eff)
         local randFrac = frac+(i==1 and 0 or math.random())*1/eff.LifeSpan
         local offset = baseOffset*randFrac*1.5
 
-        local smoke = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.SMOKE_TRAIL, 0, eff.Position+offset, Vector.Zero, eff):ToEffect()
+        local smoke = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_SMOKE_TRAIL, 0, eff.Position+offset, Vector.Zero, eff):ToEffect()
         --smoke.SpriteOffset = smoke.SpriteOffset+baseOffset*randFrac
         smoke.DepthOffset = smoke.DepthOffset-offset.Y
     end
@@ -84,7 +84,7 @@ local function meteorUpdate(_, eff)
         eff:Remove()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, meteorUpdate, ToyboxMod.EFFECT_VARIANT.METEOR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, meteorUpdate, ToyboxMod.EFFECT_METEOR)
 
 
 ---@param eff EntityEffect
@@ -98,7 +98,7 @@ local function smokeTrailInit(_, eff)
     eff.Velocity = Vector.FromAngle(math.random(-30,30)+BASE_ANGLE+180)*7
     eff.Color = START_COLOR
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, smokeTrailInit, ToyboxMod.EFFECT_VARIANT.SMOKE_TRAIL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, smokeTrailInit, ToyboxMod.EFFECT_SMOKE_TRAIL)
 
 ---@param eff EntityEffect
 local function smokeTrailUpdate(_, eff)
@@ -128,4 +128,4 @@ local function smokeTrailUpdate(_, eff)
         eff:Remove()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, smokeTrailUpdate, ToyboxMod.EFFECT_VARIANT.SMOKE_TRAIL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, smokeTrailUpdate, ToyboxMod.EFFECT_SMOKE_TRAIL)

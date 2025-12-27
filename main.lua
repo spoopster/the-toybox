@@ -845,8 +845,8 @@ end
 
 local function prerendercustomcharactermenu(_)
     --print(CharacterMenu.GetCharacterPortraitSprite():GetAnimation())
-    --print(CharacterMenu.GetSelectedCharacterID(), getid(ToyboxMod.PLAYER_TYPE.MILCOM_A))
-    if(CharacterMenu.GetSelectedCharacterID()==getid(ToyboxMod.PLAYER_TYPE.MILCOM_A) and CharacterMenu.GetSelectedCharacterMenu()==1) then
+    --print(CharacterMenu.GetSelectedCharacterID(), getid(ToyboxMod.PLAYER_MILCOM_A))
+    if(CharacterMenu.GetSelectedCharacterID()==getid(ToyboxMod.PLAYER_MILCOM_A) and CharacterMenu.GetSelectedCharacterMenu()==1) then
         --print("hi")
         timer = timer+1
         if(timer>=timeswitch) then
@@ -854,7 +854,7 @@ local function prerendercustomcharactermenu(_)
             frame = 1-frame
         end
 
-        local pconf = EntityConfig.GetPlayer(ToyboxMod.PLAYER_TYPE.MILCOM_B)
+        local pconf = EntityConfig.GetPlayer(ToyboxMod.PLAYER_MILCOM_B)
         local sp = pconf:GetModdedMenuPortraitSprite()
         sp.Scale = Vector(1,1)
         sp.Color = Color(1,1,1,1)

@@ -98,7 +98,7 @@ local function bundleUpdate(_, pickup)
         sfx:Play(SoundEffect.SOUND_FETUS_LAND)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, bundleUpdate, ToyboxMod.PICKUP_VARIANT.SMORGASBORD)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, bundleUpdate, ToyboxMod.PICKUP_SMORGASBORD)
 
 ---@param pickup EntityPickup
 ---@param coll Entity
@@ -130,4 +130,4 @@ local function preBundleCollision(_, pickup, coll, low)
 
     return true
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preBundleCollision, ToyboxMod.PICKUP_VARIANT.SMORGASBORD)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, preBundleCollision, ToyboxMod.PICKUP_SMORGASBORD)

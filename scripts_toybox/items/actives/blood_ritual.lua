@@ -122,7 +122,7 @@ local function useBloodRitual(_, _, rng, player, flags)
 
         pdata.BLOOD_RITUAL_NUM_FAMILIARS = finalnum
 
-        local pentagram = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
+        local pentagram = Isaac.Spawn(1000, ToyboxMod.EFFECT_BLOOD_RITUAL_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
         pentagram.DepthOffset = -1000
 
         sfx:Play(SoundEffect.SOUND_DEVIL_CARD)
@@ -187,4 +187,4 @@ ToyboxMod:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, bloodRitualPriority
 local function pentagramUpdate(_, effect)
     if(effect:GetSprite():IsFinished("Idle")) then effect:Remove() end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, pentagramUpdate, ToyboxMod.EFFECT_VARIANT.BLOOD_RITUAL_PENTAGRAM)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, pentagramUpdate, ToyboxMod.EFFECT_BLOOD_RITUAL_PENTAGRAM)

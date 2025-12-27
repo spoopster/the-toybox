@@ -242,7 +242,7 @@ local function boneBoyUpdate(_, familiar)
 
         if(sp:IsFinished("Crumple") and familiar.SubType & (1<<1)~=0) then
             sp:Play("LevelDown", true)
-            sfx:Play(ToyboxMod.SOUND_EFFECT.POWERDOWN)
+            sfx:Play(ToyboxMod.SFX_POWERDOWN)
         end
 
         if(sp:IsEventTriggered("LevelDown")) then
@@ -276,7 +276,7 @@ local function boneBoyUpdate(_, familiar)
     elseif(familiar.State==3) then
         if(sp:GetAnimation()~="LevelUp") then
             sp:Play("LevelUp", true)
-            sfx:Play(ToyboxMod.SOUND_EFFECT.POWERUP)
+            sfx:Play(ToyboxMod.SFX_POWERUP)
         end
         if(sp:IsEventTriggered("LevelUp")) then
             familiar.SubType = familiar.SubType | (1<<1)

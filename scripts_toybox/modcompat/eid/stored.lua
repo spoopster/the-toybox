@@ -145,10 +145,10 @@ end
 local iconSprite = Sprite("gfx_tb/eid/eid_icons.anm2", true)
 
 --- PLAYERS
-EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A), "Players", 0, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR), "Players", 1, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.JONAS_A), "Players", 2, 16, 16, 0, 0, iconSprite)
-EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A), "Players", 3, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_ATLAS_A), "Players", 0, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_ATLAS_A_TAR), "Players", 1, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_JONAS_A), "Players", 2, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_MILCOM_A), "Players", 3, 16, 16, 0, 0, iconSprite)
 
 --- TRANSFORMATIONS
 EID:addIcon("ToyboxIconRockTransformation", "MantleTransformations", 0, 16, 16, 0, 0, iconSprite)
@@ -224,10 +224,10 @@ STORED.CONSTANTS = {
     Icon_AtlasEmpty = "{{ToyboxIconEmptyTransformation}}",
     Icon_AtlasTar = "{{ToyboxIconTarTransformation}}",
 
-    Icon_PlayerAtlas = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A) .. "}}",
-    Icon_PlayerAtlasTar = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR) .. "}}",
-    Icon_PlayerJonas = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.JONAS_A) .. "}}",
-    Icon_PlayerMilcom = "{{Player" .. tostring(ToyboxMod.PLAYER_TYPE.MILCOM_A) .. "}}",
+    Icon_PlayerAtlas = "{{Player" .. tostring(ToyboxMod.PLAYER_ATLAS_A) .. "}}",
+    Icon_PlayerAtlasTar = "{{Player" .. tostring(ToyboxMod.PLAYER_ATLAS_A_TAR) .. "}}",
+    Icon_PlayerJonas = "{{Player" .. tostring(ToyboxMod.PLAYER_JONAS_A) .. "}}",
+    Icon_PlayerMilcom = "{{Player" .. tostring(ToyboxMod.PLAYER_MILCOM_A) .. "}}",
 
     Icon_CardMantleRock = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_ROCK) .. "}}",
     Icon_CardMantlePoop = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_POOP) .. "}}",

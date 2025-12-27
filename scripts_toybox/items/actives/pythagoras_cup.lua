@@ -150,7 +150,7 @@ local function cupFamiliarUpdate(_, fam)
     fam:GetSprite():SetAnimation("Idle"..tostring(math.min(fam.Coins-1, ITEMS_BEFORE_LOSS)), false)
 
     if(fam.Coins-1>ITEMS_BEFORE_LOSS) then
-        Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.PYTHAGORAS_CUP_SPILL, 0, fam.Position, Vector.Zero, nil):ToEffect()
+        Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_PYTHAGORAS_CUP_SPILL, 0, fam.Position, Vector.Zero, nil):ToEffect()
 
         local pl = fam.Player
         pl:AnimateSad()
@@ -185,4 +185,4 @@ local function cupSpillUpdate(_, effect)
         for _=1,3 do poof:Update() end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, cupSpillUpdate, ToyboxMod.EFFECT_VARIANT.PYTHAGORAS_CUP_SPILL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, cupSpillUpdate, ToyboxMod.EFFECT_PYTHAGORAS_CUP_SPILL)

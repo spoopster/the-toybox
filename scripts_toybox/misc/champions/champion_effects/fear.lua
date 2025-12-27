@@ -11,7 +11,7 @@ local FADE_DURATION = 5
 
 ---@param npc EntityNPC
 local function addFearAuraVisual(_, npc)
-    local aura = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.AURA, ToyboxMod.EFFECT_AURA_SUBTYPE.ENEMY_FEAR, npc.Position, Vector.Zero, npc):ToEffect()
+    local aura = Isaac.Spawn(1000, ToyboxMod.EFFECT_AURA, ToyboxMod.EFFECT_AURA_ENEMY_FEAR, npc.Position, Vector.Zero, npc):ToEffect()
     aura.DepthOffset = -1000
     aura:FollowParent(npc)
     aura:GetSprite():GetLayer(0):GetBlendMode():SetMode(BlendType.OVERLAY)
@@ -46,7 +46,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, toggleFearColor)
 
 ---@param effect EntityEffect
 local function fearAuraLogic(_, effect)
-    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.ENEMY_FEAR) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_ENEMY_FEAR) then return end
 
     local sp = effect:GetSprite()
     if(sp:IsFinished("Appear")) then
@@ -95,4 +95,4 @@ local function fearAuraLogic(_, effect)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fearAuraLogic, ToyboxMod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fearAuraLogic, ToyboxMod.EFFECT_AURA)

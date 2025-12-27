@@ -57,7 +57,7 @@ end
 local function evaluateJuiceCollision(pos, sub, coll)
     if(coll:ToPlayer()) then
         addJuice(sub)
-    elseif(coll:ToSlot() and coll.Variant==ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN) then
+    elseif(coll:ToSlot() and coll.Variant==ToyboxMod.SLOT_JUICE_FOUNTAIN) then
         local rng = coll:GetDropRNG()
         local outcome = JUICE_OUTCOME_PICKER:PickOutcome(rng)
         if(outcome==1) then --pickup
@@ -107,7 +107,7 @@ local function spawnJuiceParticle(pos, num, sp)
             rng = sp:GetDropRNG()
         end
 
-        local juice = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL,num,pos,Vector.Zero,sp):ToEffect()
+        local juice = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_JUICE_TRAIL,num,pos,Vector.Zero,sp):ToEffect()
         juice.Velocity = (pos-sp.Position):Resized(JUICE_PARTICLE_INITSPEED):Rotated(ToyboxMod:randomRange(rng, -1, 1)*JUICE_PARTICLE_INITARC)
         juice:GetSprite():Stop()
 
@@ -158,7 +158,7 @@ local function juiceParticleInit(_, effect)
     sp.Offset = Vector(0,-15)
     effect:SetShadowSize(2*(8-selFrame)/100)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, juiceParticleInit, ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, juiceParticleInit, ToyboxMod.EFFECT_JUICE_TRAIL)
 
 ---@param effect EntityEffect
 local function juiceParticleUpdate(_, effect)
@@ -175,7 +175,7 @@ local function juiceParticleUpdate(_, effect)
                 local newSub = math.ceil(ToyboxMod:randomRange(rng, 0.2, 0.7)*effect.SubType)
                 local vel = (-effect.Velocity):Resized(4):Rotated(rng:RandomInt(360))
 
-                local newParticle = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL,newSub,effect.Position,vel,nil):ToEffect()
+                local newParticle = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_JUICE_TRAIL,newSub,effect.Position,vel,nil):ToEffect()
                 newParticle.SpriteRotation = effect.SpriteRotation
             end
         end
@@ -186,7 +186,7 @@ local function juiceParticleUpdate(_, effect)
                 local newSub = math.ceil(ToyboxMod:randomRange(rng, 0.3, 0.8)*effect.SubType)
                 local vel = (effect.Velocity):Resized(15):Rotated(rng:RandomInt(-25, 25))
 
-                local newParticle = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL,newSub,effect.Position,vel,nil):ToEffect()
+                local newParticle = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_JUICE_TRAIL,newSub,effect.Position,vel,nil):ToEffect()
                 newParticle.SpriteRotation = effect.SpriteRotation
             end
 
@@ -205,13 +205,13 @@ local function juiceParticleUpdate(_, effect)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, juiceParticleUpdate, ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, juiceParticleUpdate, ToyboxMod.EFFECT_JUICE_TRAIL)
 
 ---@param newLevel boolean
 local function turnToJuiceOnRoomChange(_, _, newLevel)
     local data = ToyboxMod:getExtraDataTable()
 
-    for _, ent in ipairs(Isaac.FindByType(1000, ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL)) do
+    for _, ent in ipairs(Isaac.FindByType(1000, ToyboxMod.EFFECT_JUICE_TRAIL)) do
         if(ent.SpawnerEntity) then
             evaluateJuiceCollision(ent.Position-ent.Velocity, ent.SubType, ent.SpawnerEntity)
         end
@@ -229,7 +229,7 @@ local function renderJuiceParticles(_)
     if(cancelRenders) then return end
     cancelRenders = true
 
-    local effectsToRender = Isaac.FindByType(1000, ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL)
+    local effectsToRender = Isaac.FindByType(1000, ToyboxMod.EFFECT_JUICE_TRAIL)
 
     local offset = Game():GetRoom():GetRenderScrollOffset()
 
@@ -255,7 +255,7 @@ local function renderJuiceParticles(_)
         juiceSprite:Render(rpos)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, renderJuiceParticles, ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, renderJuiceParticles, ToyboxMod.EFFECT_JUICE_TRAIL)
 
 local function resetRenders(_)
     cancelRenders = false
@@ -266,7 +266,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_RENDER, resetRenders)
 local function renderParticleOverlay(_)
     local offset = Game():GetRoom():GetRenderScrollOffset()
 
-    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.JUICE_TRAIL)) do
+    for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_JUICE_TRAIL)) do
         local sp = ent:GetSprite()
         local rpos = Isaac.WorldToRenderPosition(ent.Position)+ent.SpriteOffset+offset
         juiceSprite:SetFrame(sp:GetFrame())
@@ -292,7 +292,7 @@ local function spawnSlotInStartRoom()
 
     if(not isInCorrectRoom) then return end
 
-    if(#Isaac.FindByType(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN)==0) then
+    if(#Isaac.FindByType(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_JUICE_FOUNTAIN)==0) then
         local pos
         if(isGreed) then
             pos = Game():GetRoom():FindFreePickupSpawnPosition(Vector(560,280))+Vector(20,0)
@@ -300,7 +300,7 @@ local function spawnSlotInStartRoom()
             pos = Game():GetRoom():FindFreePickupSpawnPosition(Vector(200,200))
         end
 
-        local slot = Isaac.Spawn(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN,0,pos,Vector.Zero,nil)
+        local slot = Isaac.Spawn(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_JUICE_FOUNTAIN,0,pos,Vector.Zero,nil)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, spawnSlotInStartRoom)
@@ -312,7 +312,7 @@ local function postSlotInit(_, slot)
     local sp = slot:GetSprite()
     sp:GetLayer("juice"):SetCustomShader("spriteshaders/rainbowshader")
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, postSlotInit, ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, postSlotInit, ToyboxMod.SLOT_JUICE_FOUNTAIN)
 
 ---@param slot EntitySlot
 local function postSlotUpdate(_, slot)
@@ -331,13 +331,13 @@ local function postSlotUpdate(_, slot)
     slot:SetState(1)
     slot:GetSprite():GetLayer("juice"):SetColor(Color(1,1,1,1,0,0,0,slot.Position.X/40+slot.Position.Y/40+Game():GetFrameCount()/90))
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate, ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate, ToyboxMod.SLOT_JUICE_FOUNTAIN)
 
 ---@param slot EntitySlot
 local function slotExplosionDrops(_, slot)
     return false
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_SLOT_CREATE_EXPLOSION_DROPS, slotExplosionDrops, ToyboxMod.SLOT_VARIANT.JUICE_FOUNTAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_SLOT_CREATE_EXPLOSION_DROPS, slotExplosionDrops, ToyboxMod.SLOT_JUICE_FOUNTAIN)
 
 ---@param pl EntityPlayer
 ---@param flags CacheFlag

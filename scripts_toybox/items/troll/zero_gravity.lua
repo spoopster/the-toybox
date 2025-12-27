@@ -46,7 +46,7 @@ local function zeroGravPlUpdate(_, pl)
 
     local crosshair = data.ZEROGRAV_CROSSHAIR
     if(not (crosshair and crosshair:Exists())) then
-        crosshair = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.ZERO_GRAV_CROSSHAIR, 0, pl.Position, Vector.Zero, pl):ToEffect()
+        crosshair = Isaac.Spawn(1000, ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR, 0, pl.Position, Vector.Zero, pl):ToEffect()
 
         crosshair.Size = pl.Size
         crosshair.SizeMulti = pl.SizeMulti
@@ -144,7 +144,7 @@ local function crosshairInit(_, effect)
 
     effect.DepthOffset = -1000
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, crosshairInit, ToyboxMod.EFFECT_VARIANT.ZERO_GRAV_CROSSHAIR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, crosshairInit, ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR)
 
 local function trailRender(_, effect, offset)
     local trailParent = ToyboxMod:getEntityData(effect, "ZEROGRAV_TRAIL")

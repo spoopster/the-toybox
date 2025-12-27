@@ -23,7 +23,7 @@ local function confuseNearbyEnemies(_, pl)
     local isFiring = ToyboxMod:isPlayerShooting(pl) and pl:IsExtraAnimationFinished()
 
     if(isFiring and not (data.FOURFOUR_AURA and data.FOURFOUR_AURA:Exists() and not data.FOURFOUR_AURA:IsDead())) then
-        local aura = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.FOURFOUR,pl.Position,Vector.Zero,pl):ToEffect()
+        local aura = Isaac.Spawn(1000,ToyboxMod.EFFECT_AURA,ToyboxMod.EFFECT_AURA_44,pl.Position,Vector.Zero,pl):ToEffect()
         aura.Parent = pl
         aura:FollowParent(pl)
         aura:GetSprite():Play("Appear", true)
@@ -53,7 +53,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, confuseNearbyEnemies)
 
 ---@param effect EntityEffect
 local function auraUpdate(_, effect)
-    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.FOURFOUR) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_44) then return end
 
     local sp = effect:GetSprite()
     if(sp:IsFinished("Appear")) then
@@ -87,7 +87,7 @@ local function auraUpdate(_, effect)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, auraUpdate, ToyboxMod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, auraUpdate, ToyboxMod.EFFECT_AURA)
 
 -- GLITCH VISUALS
 
@@ -211,7 +211,7 @@ local function fireSonicWaves(_, player)
             DIRECTION = player:GetAimDirection():GetAngleDegrees(),
         }
 
-        sfx:Play(ToyboxMod.SOUND_EFFECT.FOUR_FOUR_SCREAM, 0.22)
+        sfx:Play(ToyboxMod.SFX_FOUR_FOUR_SCREAM, 0.22)
     end
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_DOUBLE_TAP, fireSonicWaves)
@@ -240,7 +240,7 @@ local function playerUpdate(_, player)
             for i=1, tearsNum do
                 local angle = data.FOURFOUR_FIRE_DATA.DIRECTION + (i-tearsNum/2)*SONIC_WAVE_SPREAD
 
-                local tear = Isaac.Spawn(2,ToyboxMod.TEAR_VARIANT.SOUNDWAVE,0,player.Position,Vector.FromAngle(angle)*SONIC_WAVE_SPEED, player):ToTear()
+                local tear = Isaac.Spawn(2,ToyboxMod.TEAR_SOUNDWAVE,0,player.Position,Vector.FromAngle(angle)*SONIC_WAVE_SPEED, player):ToTear()
                 tear:AddTearFlags(TearFlags.TEAR_PIERCING | TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_CONFUSION)
                 tear.CollisionDamage = 0
                 tear.FallingAcceleration = -0.1

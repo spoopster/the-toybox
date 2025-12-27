@@ -18,7 +18,7 @@ local function tryReplacePickup(_, pickup)
     if(isPenny or isBomb or isKey or isHeart) then
         local chance = PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_DIVIDED_JUSTICE)*REPLACE_CHANCE
         if(ToyboxMod:generateRng(pickup.InitSeed):RandomFloat()<chance) then
-            pickup:Morph(EntityType.ENTITY_PICKUP,ToyboxMod.PICKUP_VARIANT.SMORGASBORD,0,true)
+            pickup:Morph(EntityType.ENTITY_PICKUP,ToyboxMod.PICKUP_SMORGASBORD,0,true)
         end
     end
 

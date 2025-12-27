@@ -49,7 +49,7 @@ function ToyboxMod:updateMantles(player)
                 data.BIRTHRIGHT_TRANSFORMATION = ToyboxMod.MANTLE_DATA.NONE.ID
             end
 
-            if(data.TRANSFORMATION==ToyboxMod.MANTLE_DATA.TAR.ID) then player:ChangePlayerType(ToyboxMod.PLAYER_TYPE.ATLAS_A) end
+            if(data.TRANSFORMATION==ToyboxMod.MANTLE_DATA.TAR.ID) then player:ChangePlayerType(ToyboxMod.PLAYER_ATLAS_A) end
 
             if(not ToyboxMod:isBadMantle(trf)) then
                 local mantleDataTable = ToyboxMod.MANTLE_DATA[ToyboxMod:getMantleKeyFromId(trf)]
@@ -65,7 +65,7 @@ function ToyboxMod:updateMantles(player)
             data.TRANSFORMATION = trf
             data.TIME_HAS_BEEN_IN_TRANSFORMATION = 0
         elseif(trf==ToyboxMod.MANTLE_DATA.TAR.ID) then
-            player:ChangePlayerType(ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR)
+            player:ChangePlayerType(ToyboxMod.PLAYER_ATLAS_A_TAR)
 
             data.TRANSFORMATION = ToyboxMod.MANTLE_DATA.TAR.ID
             data.BIRTHRIGHT_TRANSFORMATION=ToyboxMod.MANTLE_DATA.NONE.ID

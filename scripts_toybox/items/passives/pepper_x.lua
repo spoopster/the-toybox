@@ -14,7 +14,7 @@ local function onFireWeapon(_, dir, amount, ent, weap)
     if(pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_PEPPER_X):RandomFloat()<c) then
         local data = ToyboxMod:getEntityDataTable(ent)
         if(not (data.PEPPERX_FLAME_TIMER and data.PEPPERX_FLAME_TIMER:Exists() and not data.PEPPERX_FLAME_TIMER:IsDead())) then
-            local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.FLAME_BREATH_HELPER, 0, ent.Position, dir, ent):ToEffect()
+            local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_FLAME_BREATH_HELPER, 0, ent.Position, dir, ent):ToEffect()
             data.PEPPERX_FLAME_TIMER = helper
         end
     end

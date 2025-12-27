@@ -3,7 +3,7 @@ local REPLACE_CHANCE = 0.033
 ---@param pickup EntityPickup
 local function replaceKey(_, pickup)
     if(pickup.SubType==KeySubType.KEY_NORMAL and pickup:GetDropRNG():RandomFloat()<REPLACE_CHANCE) then
-        pickup:Morph(EntityType.ENTITY_PICKUP,ToyboxMod.PICKUP_VARIANT.LONELY_KEY,0,true)
+        pickup:Morph(EntityType.ENTITY_PICKUP,ToyboxMod.PICKUP_LONELY_KEY,0,true)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, replaceKey, PickupVariant.PICKUP_KEY)
@@ -22,4 +22,4 @@ local function makeUnhidden(_, pickup, coll, _)
         sp:SetFrame(ogAnim, ogFrame)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_COLLISION, makeUnhidden, ToyboxMod.PICKUP_VARIANT.LONELY_KEY)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_COLLISION, makeUnhidden, ToyboxMod.PICKUP_LONELY_KEY)

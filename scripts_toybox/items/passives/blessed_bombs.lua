@@ -50,7 +50,7 @@ local function blessedBombUpdate(_, bomb)
 
     local blessedAura = ToyboxMod:getEntityData(bomb, "BLESSED_BOMB_AURA")
     if(not (blessedAura and blessedAura:Exists())) then
-        blessedAura = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED,bomb.Position,Vector.Zero,pl):ToEffect()
+        blessedAura = Isaac.Spawn(1000,ToyboxMod.EFFECT_AURA,ToyboxMod.EFFECT_AURA_BOMB_BLESSED,bomb.Position,Vector.Zero,pl):ToEffect()
         blessedAura.DepthOffset = -1000
         blessedAura:FollowParent(bomb)
         --blessedAura:GetSprite():GetLayer(0):GetBlendMode():SetMode(BlendType.NORMAL)
@@ -67,7 +67,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, blessedBombUpdate)
 
 ---@param effect EntityEffect
 local function blessedAuraUpdate(_, effect)
-    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_BOMB_BLESSED) then return end
 
     local sp = effect:GetSprite()
     if(sp:IsFinished("Appear")) then
@@ -89,13 +89,13 @@ local function blessedAuraUpdate(_, effect)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, blessedAuraUpdate, ToyboxMod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, blessedAuraUpdate, ToyboxMod.EFFECT_AURA)
 
 local function checkEnterExitBlessedRadius(_, pl)
     local data = ToyboxMod:getEntityDataTable(pl)
 
     data.BLESSED_AURAS = 0
-    for _, effect in ipairs(Isaac.FindByType(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.BOMB_BLESSED)) do
+    for _, effect in ipairs(Isaac.FindByType(1000,ToyboxMod.EFFECT_AURA,ToyboxMod.EFFECT_AURA_BOMB_BLESSED)) do
         effect = effect:ToEffect()
 
         local dist = effect.Scale*effect.Scale*BASE_AURA_RADIUS*BASE_AURA_RADIUS

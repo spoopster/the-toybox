@@ -5,13 +5,13 @@ local PILL_DROP_RNG
 ---@param npc EntityNPC
 local function enemyDie(_, npc)
     if(not npc:IsEnemy()) then return end
-    if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.JONAS_A)) then return end
+    if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_JONAS_A)) then return end
 
     local cardReplaceTotal = 0
     local cardReplaceChance = 0
 
     local chance = 0
-    for _, player in ipairs(Isaac.FindByType(1,0,ToyboxMod.PLAYER_TYPE.JONAS_A)) do
+    for _, player in ipairs(Isaac.FindByType(1,0,ToyboxMod.PLAYER_JONAS_A)) do
         local jonasData = ToyboxMod:getJonasATable(player:ToPlayer())
         if(player:ToPlayer():HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
             cardReplaceChance = cardReplaceChance+(jonasData.BIRTHRIGHT_CARD_CHANCE or 0.2)

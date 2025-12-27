@@ -16,7 +16,7 @@ local ANGLE_SPEED = 2.3
 local ORBIT_DIST = Vector(60,45)
 
 local function spawnPaper(fam, vel)
-    local paper = Isaac.Spawn(EntityType.ENTITY_TEAR, ToyboxMod.TEAR_VARIANT.PAPER, 0, fam.Position, vel, fam):ToTear()
+    local paper = Isaac.Spawn(EntityType.ENTITY_TEAR, ToyboxMod.TEAR_PAPER, 0, fam.Position, vel, fam):ToTear()
     paper.FallingAcceleration = -0.075
     paper:AddTearFlags(TearFlags.TEAR_SPECTRAL)
     paper.CollisionDamage = PAPER_TEAR_DMG
@@ -126,4 +126,4 @@ local function paperTearUpdate(_, tear)
 
     tear.Velocity = ToyboxMod:lerp(tear.Velocity, vel, 0.04)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, paperTearUpdate, ToyboxMod.TEAR_VARIANT.PAPER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, paperTearUpdate, ToyboxMod.TEAR_PAPER)

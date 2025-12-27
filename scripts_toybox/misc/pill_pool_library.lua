@@ -78,22 +78,22 @@ ToyboxMod.PILL_ACHIEVEMENTS = {
     [PillEffect.PILLEFFECT_SUNSHINE] = Achievement.SUNSHINE_PILL,
     [PillEffect.PILLEFFECT_VURP] = Achievement.VURP,
 
-    [ToyboxMod.PILL_I_BELIEVE] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_DYSLEXIA] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_DMG_UP] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_DMG_DOWN] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_DEMENTIA] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_PARASITE] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_FENT] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_YOUR_SOUL_IS_MINE] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_ARTHRITIS] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_OSSIFICATION] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_VITAMINS] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_COAGULANT] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_FOOD_POISONING] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_HEARTBURN] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_MUSCLE_ATROPHY] = ToyboxMod.ACHIEVEMENT.PILLS,
-    [ToyboxMod.PILL_CAPSULE] = ToyboxMod.ACHIEVEMENT.PILLS,
+    [ToyboxMod.PILL_I_BELIEVE] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_DYSLEXIA] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_DMG_UP] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_DMG_DOWN] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_DEMENTIA] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_PARASITE] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_FENT] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_YOUR_SOUL_IS_MINE] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_ARTHRITIS] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_OSSIFICATION] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_VITAMINS] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_COAGULANT] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_FOOD_POISONING] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_HEARTBURN] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_MUSCLE_ATROPHY] = ToyboxMod.ACHIEVEMENT_PILLS,
+    [ToyboxMod.PILL_CAPSULE] = ToyboxMod.ACHIEVEMENT_PILLS,
 }
 
 --! ff pill conversions
@@ -129,7 +129,7 @@ function ToyboxMod:getAllPillEffects(phdEffect)
             elseif(ach~=-1) then
                 if(Isaac.GetPersistentGameData():Unlocked(ach)) then
                     shouldAdd = true
-                elseif(ach==ToyboxMod.ACHIEVEMENT.PILLS and PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.JONAS_A)) then
+                elseif(ach==ToyboxMod.ACHIEVEMENT_PILLS and PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_JONAS_A)) then
                     shouldAdd = true
                 end
             end
@@ -371,7 +371,7 @@ function ToyboxMod:calcPhdMask(hasGood, hasNeutral, hasBad)
     return ToyboxMod.PHD_TYPE.NONE
 end
 function ToyboxMod:getPlayerPhdValues(player)
-    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.JONAS_A) then return {GOOD=true, NEUTRAL=false, BAD=false} end
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetPlayerType()==ToyboxMod.PLAYER_JONAS_A) then return {GOOD=true, NEUTRAL=false, BAD=false} end
 
     local hasGoodPhd = false
     local hasNeutralPhd = false
@@ -390,7 +390,7 @@ function ToyboxMod:getPlayerPhdValues(player)
     return {GOOD=hasGoodPhd, NEUTRAL=hasNeutralPhd, BAD=hasBadPhd}
 end
 function ToyboxMod:getPlayerPhdMask(player)
-    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetPlayerType()==ToyboxMod.PLAYER_TYPE.JONAS_A) then return ToyboxMod.PHD_TYPE.GOOD end
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetPlayerType()==ToyboxMod.PLAYER_JONAS_A) then return ToyboxMod.PHD_TYPE.GOOD end
 
     local phdVals = ToyboxMod:getPlayerPhdValues(player)
     return ToyboxMod:calcPhdMask(phdVals.GOOD, phdVals.NEUTRAL, phdVals.BAD)
@@ -690,7 +690,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
             end
             y = y+2
         end
-        if(Isaac.GetPlayer():GetPlayerType()~=ToyboxMod.PLAYER_TYPE.JONAS_A) then return end
+        if(Isaac.GetPlayer():GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
         local data = ToyboxMod:getJonasATable(Isaac.GetPlayer())
         Isaac.RenderText((data.PILLS_POPPED or 0).." "..(data.PILL_BONUS_COUNT or 0).." "..(data.PILLS_FOR_NEXT_BONUS or 0).." "..(data.RESET_BOOST_ROOMS or 0), 505, y, 1,1,1,1)
     end

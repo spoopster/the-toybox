@@ -54,7 +54,7 @@ local function useAscenson(_, _, rng, player, flags)
             data.ASCENSION_ORIGINALPOS = player.Position
             data.ASCENSION_JUSTUSEDASCENSION = true
 
-            data.ASCENSION_EFFECT = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.ASCENSION_PLAYER_DEATH,0,player.Position,Vector.Zero,player):ToEffect()
+            data.ASCENSION_EFFECT = Isaac.Spawn(1000,ToyboxMod.EFFECT_ASCENSION_PLAYER_DEATH,0,player.Position,Vector.Zero,player):ToEffect()
             data.ASCENSION_EFFECT:GetSprite():Load(player:GetSprite():GetFilename(), true)
             data.ASCENSION_EFFECT:GetSprite():ReplaceSpritesheet(12, EntityConfig.GetPlayer(player:GetPlayerType()):GetSkinPath(), true)
             data.ASCENSION_EFFECT:GetSprite():GetLayer("ghost"):SetVisible(false)
@@ -125,7 +125,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
 
 local function getShaderParams(_, name)
-    if(name==ToyboxMod.SHADERS.ASCENSION) then
+    if(name==ToyboxMod.SHADER_ASCENSION) then
         if(SHADER_PLAYER==nil and math.abs(SHADER_VAL)<=0.01) then return {ShouldActivateIn=0.0,IntensityIn=0.0,GrayingIn=0.0} end
 
         if(SHADER_PLAYER and ToyboxMod:getEntityData(SHADER_PLAYER, "ASCENSION_ISACTIVE")==true) then

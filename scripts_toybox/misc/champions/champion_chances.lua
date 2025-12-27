@@ -15,7 +15,7 @@ end
 function ToyboxMod:getChampionChance()
     local baseChance = ToyboxMod:getVanillaChampionChance()
 
-    local numMilcoms = #Isaac.FindByType(1,0,ToyboxMod.PLAYER_TYPE.MILCOM_A)
+    local numMilcoms = #Isaac.FindByType(1,0,ToyboxMod.PLAYER_MILCOM_A)
     baseChance = baseChance*(1+ToyboxMod.MILCOM_CHAMPION_CHANCE_INC*numMilcoms)
     --print(baseChance)
 

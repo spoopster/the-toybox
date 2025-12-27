@@ -2,16 +2,16 @@
 local sfx = SFXManager()
 
 local inkValue = {
-    [ToyboxMod.PICKUP_SUBTYPE.COIN_INK_1] = 1,
-    [ToyboxMod.PICKUP_SUBTYPE.COIN_INK_2] = 2,
-    [ToyboxMod.PICKUP_SUBTYPE.COIN_INK_5] = 5,
+    [ToyboxMod.PICKUP_COIN_INK_1] = 1,
+    [ToyboxMod.PICKUP_COIN_INK_2] = 2,
+    [ToyboxMod.PICKUP_COIN_INK_5] = 5,
 }
 
 local invalidReplacementSubTypes = {
     [PickupVariant.PICKUP_COIN] = {
-        [ToyboxMod.PICKUP_SUBTYPE.COIN_INK_1] = 0,
-        [ToyboxMod.PICKUP_SUBTYPE.COIN_INK_2] = 0,
-        [ToyboxMod.PICKUP_SUBTYPE.COIN_INK_5] = 0,
+        [ToyboxMod.PICKUP_COIN_INK_1] = 0,
+        [ToyboxMod.PICKUP_COIN_INK_2] = 0,
+        [ToyboxMod.PICKUP_COIN_INK_5] = 0,
     },
     [PickupVariant.PICKUP_BOMB] = {
         [BombSubType.BOMB_GIGA] = 0,
@@ -26,9 +26,9 @@ local invalidReplacementSubTypes = {
 }
 
 local RANDOM_INK_PICKER = WeightedOutcomePicker()
-RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_SUBTYPE.COIN_INK_1, 96)
-RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_SUBTYPE.COIN_INK_2, 3)
-RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_SUBTYPE.COIN_INK_5, 1)
+RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_COIN_INK_1, 96)
+RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_COIN_INK_2, 3)
+RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_COIN_INK_5, 1)
 
 local function getInkValue(_, pickup)
     if(inkValue[pickup.SubType]) then
@@ -56,7 +56,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postInkUpdate, PickupVariant.PICKUP_COIN)
 
 local function cancelRoomSpawns()
-    if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.MILCOM_A)) then return end
+    if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
     if(Game():GetRoom():GetType()==RoomType.ROOM_DEFAULT) then
         return true
     end
@@ -66,12 +66,12 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, math.huge, 
 ---@param pickup EntityPickup
 local function tryReplaceRandomPickupSpawns(_, pickup, var, subtype, reqVar, reqSub, rng)
     --print(var, subtype, reqVar, reqSub)
-    if((reqVar==PickupVariant.PICKUP_BOMB or reqVar==PickupVariant.PICKUP_KEY) and (reqSub==ToyboxMod.PICKUP_SUBTYPE.COIN_INK_1 or reqSub==ToyboxMod.PICKUP_SUBTYPE.COIN_INK_2 or reqSub==ToyboxMod.PICKUP_SUBTYPE.COIN_INK_5)) then
+    if((reqVar==PickupVariant.PICKUP_BOMB or reqVar==PickupVariant.PICKUP_KEY) and (reqSub==ToyboxMod.PICKUP_COIN_INK_1 or reqSub==ToyboxMod.PICKUP_COIN_INK_2 or reqSub==ToyboxMod.PICKUP_COIN_INK_5)) then
         return {PickupVariant.PICKUP_COIN, reqSub, false} -- stupid contract from below hack
     end
     if(not (reqVar==0 or reqSub==0)) then return end
     if(not (var==PickupVariant.PICKUP_COIN or var==PickupVariant.PICKUP_BOMB or var==PickupVariant.PICKUP_KEY)) then return end
-    if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.MILCOM_A)) then return end
+    if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
 
     if(invalidReplacementSubTypes[var][subtype]~=0) then
         local selSub = RANDOM_INK_PICKER:PickOutcome(rng)

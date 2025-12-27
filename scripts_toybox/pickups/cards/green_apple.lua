@@ -8,7 +8,7 @@ local ICON_SPRITE = Sprite("gfx_tb/ui/ui_green_apple_icons.anm2", true)
 ICON_SPRITE:Play("Idle")
 
 local TRANSF_DATA = {
-    [1] =   {PlayerForm.PLAYERFORM_GUPPY, ToyboxMod.SOUND_EFFECT.MEOW},
+    [1] =   {PlayerForm.PLAYERFORM_GUPPY, ToyboxMod.SFX_MEOW},
     [2] =   {PlayerForm.PLAYERFORM_LORD_OF_THE_FLIES, SoundEffect.SOUND_BOSS_BUG_HISS},
     [3] =   {PlayerForm.PLAYERFORM_MUSHROOM, SoundEffect.SOUND_1UP},
     [4] =   {PlayerForm.PLAYERFORM_ANGEL, SoundEffect.SOUND_HOLY},

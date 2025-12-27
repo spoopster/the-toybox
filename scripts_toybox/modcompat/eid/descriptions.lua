@@ -1357,7 +1357,7 @@ enums.FUNCTIONS.AddItem({
     Modifiers = {
         {
             Condition = function(descObj)
-                return PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_TYPE.JONAS_A)
+                return PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_JONAS_A)
             end,
             ToModify = {
                 enums.CONSTANTS.Icon_PlayerJonas .. enums.CONSTANTS.Color_Jonas .. "Frozen enemies can only drop pills when shattered{{CR}}",
@@ -2491,7 +2491,7 @@ enums.FUNCTIONS.AddPill({
 
 
 enums.FUNCTIONS.AddPlayer({
-    ID = ToyboxMod.PLAYER_TYPE.ATLAS_A,
+    ID = ToyboxMod.PLAYER_ATLAS_A,
     Name = "Atlas",
     Description = {
         "Your health is made of \"mantles\" with various effects, which may replace hearts",
@@ -2505,7 +2505,7 @@ enums.FUNCTIONS.AddPlayer({
     }
 })
 enums.FUNCTIONS.AddPlayer({
-    ID = ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR,
+    ID = ToyboxMod.PLAYER_ATLAS_A_TAR,
     Name = "Atlas",
     Description = {
         "Your health is made of \"mantles\" with various effects, which may replace hearts",
@@ -2519,7 +2519,7 @@ enums.FUNCTIONS.AddPlayer({
     }
 })
 enums.FUNCTIONS.AddPlayer({
-    ID = ToyboxMod.PLAYER_TYPE.JONAS_A,
+    ID = ToyboxMod.PLAYER_JONAS_A,
     Name = "Jonas",
     Description = {
         "Enemies may drop pills",
@@ -2534,7 +2534,7 @@ enums.FUNCTIONS.AddPlayer({
     }
 })
 enums.FUNCTIONS.AddPlayer({
-    ID = ToyboxMod.PLAYER_TYPE.MILCOM_A,
+    ID = ToyboxMod.PLAYER_MILCOM_A,
     Name = "Milcom",
     Description = {
         enums.CONSTANTS.Icon_Ink .. " Coins, Bombs and Keys become Ink when gained, and consume Ink when used:",

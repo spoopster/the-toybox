@@ -209,7 +209,7 @@ local function preIdxUpdate(_)
             end
 
             local pos = (hadPickupInCenter and center or room:FindFreePickupSpawnPosition(center))
-            local drill = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_VARIANT.DRILL, 0, pos, Vector.Zero, nil)
+            local drill = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_DRILL, 0, pos, Vector.Zero, nil)
         end
     else
         ToyboxMod:setExtraData("DRILL_SPRITEDATA", nil)
@@ -269,7 +269,7 @@ local function drillEffectRender(_, effect, offset)
         sp:Render(rPos)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_EFFECT_RENDER, drillEffectRender, ToyboxMod.EFFECT_VARIANT.DRILL)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_EFFECT_RENDER, drillEffectRender, ToyboxMod.EFFECT_DRILL)
 
 ---@param effect EntityEffect
 local function drillEffectUpdate(_, effect)
@@ -284,23 +284,23 @@ local function drillEffectUpdate(_, effect)
     end
 
     DRILL_SOUND_VOLUME = math.min(MAX_VOLUME, DRILL_SOUND_VOLUME+MAX_VOLUME/FRAMES_TO_FULLVOLUME)
-    if(not sfx:IsPlaying(ToyboxMod.SOUND_EFFECT.DRILL)) then
-        sfx:Play(ToyboxMod.SOUND_EFFECT.DRILL, DRILL_SOUND_VOLUME, 2, true)
+    if(not sfx:IsPlaying(ToyboxMod.SFX_DRILL)) then
+        sfx:Play(ToyboxMod.SFX_DRILL, DRILL_SOUND_VOLUME, 2, true)
     end
-    sfx:AdjustVolume(ToyboxMod.SOUND_EFFECT.DRILL, DRILL_SOUND_VOLUME)
+    sfx:AdjustVolume(ToyboxMod.SFX_DRILL, DRILL_SOUND_VOLUME)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, drillEffectUpdate, ToyboxMod.EFFECT_VARIANT.DRILL)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, drillEffectUpdate, ToyboxMod.EFFECT_DRILL)
 
 ---@param effect EntityEffect
 local function tryStopDrillSfx(_, effect)
-    if(effect.Variant==ToyboxMod.EFFECT_VARIANT.DRILL) then
+    if(effect.Variant==ToyboxMod.EFFECT_DRILL) then
         local FADEOUT_DUR = 12
         Isaac.CreateTimer(function()
             DRILL_SOUND_VOLUME = math.max(0, DRILL_SOUND_VOLUME-MAX_VOLUME/FRAMES_TO_NOVOLUME)
-            sfx:AdjustVolume(ToyboxMod.SOUND_EFFECT.DRILL, DRILL_SOUND_VOLUME)
+            sfx:AdjustVolume(ToyboxMod.SFX_DRILL, DRILL_SOUND_VOLUME)
 
             if(DRILL_SOUND_VOLUME<0.01) then
-                sfx:Stop(ToyboxMod.SOUND_EFFECT.DRILL)
+                sfx:Stop(ToyboxMod.SFX_DRILL)
             end
         end, 1, FRAMES_TO_NOVOLUME, true)
     end

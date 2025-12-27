@@ -77,14 +77,14 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 local function badsifbaf(_, pl)
     return 6
 end
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, ToyboxMod.PLAYER_TYPE.ATLAS_A)
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, ToyboxMod.PLAYER_ATLAS_A)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, math.huge, badsifbaf, ToyboxMod.PLAYER_ATLAS_A_TAR)
 
 local function bibidibabidibu(_, pl)
     return HealthType.DEFAULT
 end
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, ToyboxMod.PLAYER_TYPE.ATLAS_A)
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, ToyboxMod.PLAYER_TYPE.ATLAS_A_TAR)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, ToyboxMod.PLAYER_ATLAS_A)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, math.huge, bibidibabidibu, ToyboxMod.PLAYER_ATLAS_A_TAR)
 
 ---@param player EntityPlayer
 local function forceHealth(_, player)

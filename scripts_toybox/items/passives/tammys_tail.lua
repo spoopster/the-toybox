@@ -14,7 +14,7 @@ local function retriggerClear(_, _)
     if(CANCEL_RETRIGGER) then return end
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)) then return end
 
-    sfx:Play(ToyboxMod.SOUND_EFFECT.MEOW)
+    sfx:Play(ToyboxMod.SFX_MEOW)
 
     local numRetriggers = CLEAR_RETRIGGERS*PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)
     local room = Game():GetRoom()
@@ -40,7 +40,7 @@ local function playerRetriggerClear(_, pl)
     if(CANCEL_RETRIGGER) then return end
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)) then return end
 
-    sfx:Play(ToyboxMod.SOUND_EFFECT.MEOW)
+    sfx:Play(ToyboxMod.SFX_MEOW)
 
     local numRetriggers = CLEAR_RETRIGGERS*PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)
 

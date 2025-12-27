@@ -41,7 +41,7 @@ local function makeHolyAura(_, pl)
 
     local data = ToyboxMod:getEntityDataTable(pl)
     if(not (data.HOLY_AURA and data.HOLY_AURA:Exists())) then
-        local aura = Isaac.Spawn(1000,ToyboxMod.EFFECT_VARIANT.AURA,ToyboxMod.EFFECT_AURA_SUBTYPE.HOLY_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
+        local aura = Isaac.Spawn(1000,ToyboxMod.EFFECT_AURA,ToyboxMod.EFFECT_AURA_HOLY_MANTLE,pl.Position,Vector.Zero,pl):ToEffect()
         aura.DepthOffset = -1000
         aura:FollowParent(pl)
     
@@ -56,7 +56,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, makeHolyAura)
 
 ---@param effect EntityEffect
 local function holyAuraUpdate(_, effect)
-    if(effect.SubType~=ToyboxMod.EFFECT_AURA_SUBTYPE.HOLY_MANTLE) then return end
+    if(effect.SubType~=ToyboxMod.EFFECT_AURA_HOLY_MANTLE) then return end
 
     if(effect.FrameCount%AURA_FREQ==0) then
         for _, npc in ipairs(Isaac.FindInRadius(effect.Position, effect.Scale*BASE_AURA_RADIUS, EntityPartition.ENEMY)) do
@@ -86,7 +86,7 @@ local function holyAuraUpdate(_, effect)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, holyAuraUpdate, ToyboxMod.EFFECT_VARIANT.AURA)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, holyAuraUpdate, ToyboxMod.EFFECT_AURA)
 
 --ADDING THE HOMING TEARFLAG + DMG BONUS ON DIFFERENT WEAPONS
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR,
@@ -141,6 +141,6 @@ end
 local function playMantleSFX(_, player, mantle)
     if(not ToyboxMod:isAtlasA(player)) then return end
 
-    sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_ROCKBREAK)
+    sfx:Play(ToyboxMod.SFX_ATLASA_ROCKBREAK)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, playMantleSFX, ToyboxMod.MANTLE_DATA.HOLY.ID)

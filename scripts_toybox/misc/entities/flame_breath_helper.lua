@@ -47,7 +47,7 @@ local function fireBreathHelperInit(_, effect)
 
     sfx:Play(SoundEffect.SOUND_WAR_FLAME)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, fireBreathHelperInit, ToyboxMod.EFFECT_VARIANT.FLAME_BREATH_HELPER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, fireBreathHelperInit, ToyboxMod.EFFECT_FLAME_BREATH_HELPER)
 
 ---@param effect EntityEffect
 local function fireBreathHelperUpdate(_, effect)
@@ -95,7 +95,7 @@ local function fireBreathHelperUpdate(_, effect)
 
     if(effect.Timeout==0) then effect:Remove() end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fireBreathHelperUpdate, ToyboxMod.EFFECT_VARIANT.FLAME_BREATH_HELPER)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, fireBreathHelperUpdate, ToyboxMod.EFFECT_FLAME_BREATH_HELPER)
 
 ---@param effect EntityEffect
 local function breathFireUpdate(_, effect)

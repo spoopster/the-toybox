@@ -284,7 +284,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddText("ToyboxUnlocksWindow", "", true, "")
 	end
 
-	addPlayerUnlocks(ToyboxMod.PLAYER_TYPE.ATLAS_A, "ATLAS",
+	addPlayerUnlocks(ToyboxMod.PLAYER_ATLAS_A, "ATLAS",
 		{
 			[CompletionType.BOSS_RUSH] = "\"Rock Candy\"",
 			[CompletionType.MOMS_HEART] = "Nothing.",
@@ -302,7 +302,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		}
 	)
 
-	addPlayerUnlocks(ToyboxMod.PLAYER_TYPE.JONAS_A, "JONAS",
+	addPlayerUnlocks(ToyboxMod.PLAYER_JONAS_A, "JONAS",
 		{
 			[CompletionType.BOSS_RUSH] = "\"Jonas' Lock\"",
 			[CompletionType.MOMS_HEART] = "Nothing.",
@@ -320,7 +320,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		}
 	)
 
-	addPlayerUnlocks(ToyboxMod.PLAYER_TYPE.MILCOM_A, "MILCOM",
+	addPlayerUnlocks(ToyboxMod.PLAYER_MILCOM_A, "MILCOM",
 		{
 			[CompletionType.BOSS_RUSH] = "\"Delivery Box\"",
 			[CompletionType.MOMS_HEART] = "Nothing.",

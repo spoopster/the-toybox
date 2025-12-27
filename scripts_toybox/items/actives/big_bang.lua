@@ -14,7 +14,7 @@ local function bigBangUse(_, _, rng, pl, flags, slot, vdata)
         end
     end
 
-    ItemOverlay.Show(ToyboxMod.GIANTBOOK.BIG_BANG, 3, pl)
+    ItemOverlay.Show(ToyboxMod.GIANTBOOK_BIG_BANG, 3, pl)
     sfx:Play(SoundEffect.SOUND_DOGMA_BRIMSTONE_SHOOT)
     
     return {

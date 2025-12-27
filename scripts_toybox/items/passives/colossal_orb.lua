@@ -36,7 +36,7 @@ local function shockwaveOnEntry(_)
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_COLOSSAL_ORB)) then
             if(not isBoss) then
-                sfx:Play(ToyboxMod.SOUND_EFFECT.COLOSSAL_ORB_SHOCKWAVE)
+                sfx:Play(ToyboxMod.SFX_COLOSSAL_ORB_SHOCKWAVE)
             end
 
             Isaac.CreateTimer(
@@ -44,7 +44,7 @@ local function shockwaveOnEntry(_)
                 function(effect)
                     if(isBoss) then
                         if(effect.FrameCount==1) then
-                            sfx:Play(ToyboxMod.SOUND_EFFECT.COLOSSAL_ORB_SHOCKWAVE)
+                            sfx:Play(ToyboxMod.SFX_COLOSSAL_ORB_SHOCKWAVE)
                         end
                         if(effect.FrameCount<=bossTimeMod) then return end
                     elseif(effect.FrameCount~=1) then

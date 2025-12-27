@@ -89,7 +89,7 @@ local function shadowFlyUpdate(fam)
         if(sp:IsEventTriggered("Scream")) then
             local poof = Isaac.Spawn(1000,144,1,fam.Position,Vector.Zero,fam):ToEffect()
             sfx:Play(SoundEffect.SOUND_DEMON_HIT)
-            --sfx:Play(ToyboxMod.SOUND_EFFECT.SHADOW_SCREAM, 1, 0, false, 0.95+rng:RandomFloat()*0.1)
+            --sfx:Play(ToyboxMod.SFX_SHADOW_SCREAM, 1, 0, false, 0.95+rng:RandomFloat()*0.1)
 
             local screamShockwave = Isaac.Spawn(1000, EffectVariant.SIREN_RING, 0, fam.Position, Vector.Zero, fam):ToEffect()
             screamShockwave.SpriteScale = Vector(1,1)*0.6
@@ -323,11 +323,11 @@ local PARTICLE_SPAWNFREQ = 2
 
 ---@param fam EntityFamiliar
 local function shadowFamiliarInit(_, fam)
-    if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.FLY) then
+    if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_FLY) then
         shadowFlyInit(fam)
-    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.URCHIN) then
+    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_URCHIN) then
         shadowUrchinInit(fam)
-    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
+    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_CRAWLER) then
         shadowCrawlerInit(fam)
     end
 end
@@ -345,17 +345,17 @@ local function shadowFamiliarUpdate(_, fam)
             particle.Color = Color(0,0,0,1)
             particle.SpriteScale = Vector(1,1)*0.5
 
-            if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
+            if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_CRAWLER) then
                 particle.SpriteOffset = Vector(0,7)
             end
         end
     end
 
-    if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.FLY) then
+    if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_FLY) then
         shadowFlyUpdate(fam)
-    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.URCHIN) then
+    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_URCHIN) then
         shadowUrchinUpdate(fam)
-    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_SUBTYPE.CRAWLER) then
+    elseif(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_CRAWLER) then
         shadowCrawlerUpdate(fam)
     end
 end

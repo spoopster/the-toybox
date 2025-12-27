@@ -1,7 +1,7 @@
 
 
 local function makeItemGold(_, pickup)
-    if(ToyboxMod.CONFIG.EPIC_ITEM_MODE==ToyboxMod.ENUMS.ITEM_SHADER_GOLD) then
+    if(ToyboxMod.CONFIG.EPIC_ITEM_MODE==2) then
         pickup:GetSprite():GetLayer("head"):SetRenderFlags(AnimRenderFlags.GOLDEN)
     end
 end

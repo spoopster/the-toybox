@@ -22,7 +22,7 @@ local function spawnPyramidNoTreasure()
         local room = Game():GetRoom()
         local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos()+Vector(0,-1)*40)
 
-        local pyramid = Isaac.Spawn(6,ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION,0,pos,Vector.Zero,nil)
+        local pyramid = Isaac.Spawn(6,ToyboxMod.SLOT_PYRAMID_DONATION,0,pos,Vector.Zero,nil)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, spawnPyramidNoTreasure)
@@ -34,7 +34,7 @@ local function spawnPyramidTreasure()
     if(room:IsFirstVisit() and room:GetType()==RoomType.ROOM_TREASURE) then
         local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos())
 
-        local pyramid = Isaac.Spawn(6,ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION,0,pos,Vector.Zero,nil)
+        local pyramid = Isaac.Spawn(6,ToyboxMod.SLOT_PYRAMID_DONATION,0,pos,Vector.Zero,nil)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, spawnPyramidTreasure)
@@ -44,7 +44,7 @@ local function postSlotInit(_, slot)
     slot:SetState(1)
     slot:SetSize(slot.Size, Vector(2,1)*slot.SizeMulti, 24)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, postSlotInit, ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, postSlotInit, ToyboxMod.SLOT_PYRAMID_DONATION)
 
 ---@param slot EntitySlot
 local function updateDonoDisplay(slot)
@@ -111,7 +111,7 @@ local function postSlotUpdate(_, slot)
         sp:Play("Broken")
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate, ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate, ToyboxMod.SLOT_PYRAMID_DONATION)
 
 ---@param slot EntitySlot
 local function slotExplosionDrops(_, slot)
@@ -149,4 +149,4 @@ local function slotExplosionDrops(_, slot)
 
     return false
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_SLOT_CREATE_EXPLOSION_DROPS, slotExplosionDrops, ToyboxMod.SLOT_VARIANT.PYRAMID_DONATION)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_SLOT_CREATE_EXPLOSION_DROPS, slotExplosionDrops, ToyboxMod.SLOT_PYRAMID_DONATION)

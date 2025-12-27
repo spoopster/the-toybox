@@ -17,7 +17,7 @@ local function trinketDrop(_, id, pos, pl, isgold)
         fam.CollisionDamage = MULTIPLIER_COLLDAMAGE*(finalmult-1)
     end
 
-    sfx:Play(ToyboxMod.SOUND_EFFECT.POOF)
+    sfx:Play(ToyboxMod.SFX_POOF)
 
     for _, pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, id | (isgold and TrinketType.TRINKET_GOLDEN_FLAG or 0))) do
         if(pickup.FrameCount==0 and pickup.Position:Distance(pos)<1) then
@@ -75,7 +75,7 @@ local function replaceRemovedDecoy(_, ent)
         end
 
         local poof = Isaac.Spawn(1000,15,2,ent.Position,Vector.Zero,nil):ToEffect()
-        sfx:Play(ToyboxMod.SOUND_EFFECT.POOF)
+        sfx:Play(ToyboxMod.SFX_POOF)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, replaceRemovedDecoy, EntityType.ENTITY_FAMILIAR)

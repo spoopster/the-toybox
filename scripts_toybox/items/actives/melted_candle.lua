@@ -24,7 +24,7 @@ local function tryUseHeldCandle(_, player)
 
     if(player:GetAimDirection():Length()>0.1) then
         local dir = (player:GetAimDirection():Length()<0.1 and player.Velocity or player:GetAimDirection())
-        local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_VARIANT.FLAME_BREATH_HELPER, 0, player.Position, dir, player):ToEffect()
+        local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_FLAME_BREATH_HELPER, 0, player.Position, dir, player):ToEffect()
         helper.CollisionDamage = FIRE_DMG
 
         player:SetItemState(0)

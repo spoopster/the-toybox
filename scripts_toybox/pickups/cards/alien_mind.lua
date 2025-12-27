@@ -40,6 +40,6 @@ local function useAlienMind(_, _, pl, _)
     poof.Color = Color(0,0,0,0.7,208/255,170/255,192/255)
     poof.DepthOffset = -1000
 
-    sfx:Play(ToyboxMod.SOUND_EFFECT.HYPNOSIS, nil, nil, nil, 0.85+math.random()*0.3)
+    sfx:Play(ToyboxMod.SFX_HYPNOSIS, nil, nil, nil, 0.85+math.random()*0.3)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useAlienMind, ToyboxMod.CARD_ALIEN_MIND)

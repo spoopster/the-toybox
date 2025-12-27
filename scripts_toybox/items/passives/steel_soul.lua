@@ -156,7 +156,7 @@ local function destroySoulShields(_, pl, dmg, flags, source, frames)
     end
     
     if(numDamageRemoved>0) then
-        sfx:Play(ToyboxMod.SOUND_EFFECT.ATLASA_METALBLOCK)
+        sfx:Play(ToyboxMod.SFX_ATLASA_METALBLOCK)
         Game():ShakeScreen(5)
 
         return {

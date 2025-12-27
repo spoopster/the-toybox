@@ -21,7 +21,7 @@ local function playerUpdate(_, p)
 
         local eff = data.SIGIL_OF_GREED_EFFECTENTITY
         if(not (eff and eff:Exists())) then
-            eff = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.GREED_SIGIL_CHARGEBAR, 0, p.Position, Vector.Zero, p):ToEffect()
+            eff = Isaac.Spawn(1000, ToyboxMod.EFFECT_GREED_SIGIL_CHARGEBAR, 0, p.Position, Vector.Zero, p):ToEffect()
             eff:FollowParent(p)
 
             eff:GetSprite():SetAnimation("Idle", true)
@@ -60,7 +60,7 @@ local function playerUpdate(_, p)
             Game():ShakeScreen(5)
             local rng = p:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SIGIL_OF_GREED)
 
-            local eff = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()
+            local eff = Isaac.Spawn(1000, ToyboxMod.EFFECT_GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()
             eff.SpriteScale = Vector(1,1)*0.5
             eff:FollowParent(p)
             
@@ -213,4 +213,4 @@ local function chargebarUpdate(_, e)
 
     data.CHARGEBAR_STATEFRAME = (data.CHARGEBAR_STATEFRAME or 0)+1
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, chargebarUpdate, ToyboxMod.EFFECT_VARIANT.GREED_SIGIL_CHARGEBAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, chargebarUpdate, ToyboxMod.EFFECT_GREED_SIGIL_CHARGEBAR)

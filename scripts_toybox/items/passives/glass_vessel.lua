@@ -98,7 +98,7 @@ local function cancelVesselDamage(_, pl, damage, flags, source, count)
 
         sfx:Play(SoundEffect.SOUND_HOLY_MANTLE)
         Game():ShakeScreen(10)
-        local shatter = Isaac.Spawn(1000, ToyboxMod.EFFECT_VARIANT.VESSEL_BREAK, 0, pl.Position, Vector.Zero, pl):ToEffect()
+        local shatter = Isaac.Spawn(1000, ToyboxMod.EFFECT_VESSEL_BREAK, 0, pl.Position, Vector.Zero, pl):ToEffect()
         shatter.DepthOffset = 100
     end
 end

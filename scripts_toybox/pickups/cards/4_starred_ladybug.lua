@@ -35,7 +35,7 @@ local function use4StarredLadybug(_, _, pl, _)
     ToyboxMod:setExtraData("4STAR_LADYBUG_REF", plRef)
 
     Game():ShakeScreen(12)
-    sfx:Play(ToyboxMod.SOUND_EFFECT.HAZE, 1.2, nil, nil, 0.9+math.random()*0.3)
+    sfx:Play(ToyboxMod.SFX_HAZE, 1.2, nil, nil, 0.9+math.random()*0.3)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, use4StarredLadybug, ToyboxMod.CARD_FOUR_STARRED_LADYBUG)
 
