@@ -1349,6 +1349,15 @@ enums.FUNCTIONS.AddItem({
         "Champion enemies trigger on-kill effects 3 times",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_PAPER_PLATE,
+    Name = "Paper Plate",
+    Description = {
+        "Grants up to 3 stationary familiars that spawn in random positions on walls",
+        "The familiars change positions every room",
+        "They shoot tears every 0.66 seconds that deal 4 damage and copy your tear effects",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

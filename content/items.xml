@@ -929,7 +929,7 @@
 />
 <familiar id="102" name="Paper Plate"
     description="Wallbound buddies"
-    gfx="no_sprite.png"
+    gfx="paper_plate.png"
     quality="1"
     tags="offensive summonable"
     cache=""
