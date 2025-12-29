@@ -118,6 +118,38 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
+	
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "VANILLA TWEAKS")
+	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+
+	do -- GOOD JUICE LAG
+		local optionID = getOptionID("GreedChampions")
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Greed Mode Champions"
+		)
+		ImGui.AddCheckbox("ToyboxOptionsWindow", optionID, "", nil, true)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.CHAMPIONS_IN_GREED)
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				ToyboxMod.CONFIG.CHAMPIONS_IN_GREED = v
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"Should champions be able to spawn in Greed Mode?"
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
+
+	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
+	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "FORTNITE FUNNIES")

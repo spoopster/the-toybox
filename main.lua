@@ -71,6 +71,7 @@ include("scripts_toybox.misc.champions.mod_champion_logic")
     include("scripts_toybox.misc.champions.champion_effects.bouncy")
     include("scripts_toybox.misc.champions.champion_effects.drowned")
     include("scripts_toybox.misc.champions.champion_effects.fear")
+include("scripts_toybox.misc.champions.champions_in_greed")
 -- TINTED ROOMS
 include("scripts_toybox.misc.tinted_rooms.enums")
 include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")

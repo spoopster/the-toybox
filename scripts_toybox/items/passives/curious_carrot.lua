@@ -41,6 +41,7 @@ local function revealRooms(_, pl)
     end
 
     local numRoomsTotal = #roomsNotVisible
+    if(numRoomsTotal==0) then return end
     for _ = 1, numToReveal do
         local pickedIdx = rng:RandomInt(1, numRoomsTotal)
         roomsNotVisible[pickedIdx].DisplayFlags = RoomDescriptor.DISPLAY_ALL

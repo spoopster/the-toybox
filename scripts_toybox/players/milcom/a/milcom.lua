@@ -37,3 +37,12 @@ local function postMilcomUpdate(_, player)
     local data = ToyboxMod:getMilcomATable(player)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postMilcomUpdate)
+
+---@param pickup EntityPickup
+local function rerollBombOrKeyInit(_, pickup)
+    if(not (pickup:IsShopItem() and (pickup.Variant==PickupVariant.PICKUP_BOMB or pickup.Variant==PickupVariant.PICKUP_KEY))) then return end
+
+    pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_SHOPITEM, 0)
+    pickup:MakeShopItem(pickup.ShopItemId)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, rerollBombOrKeyInit)

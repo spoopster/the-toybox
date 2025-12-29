@@ -939,7 +939,7 @@
 <passive id="103" name="Trendsetter"
     description="Just a fad"
     gfx="trendsetter.png"
-    quality="2"
+    quality="3"
     tags="offensive"
     cache=""
 
