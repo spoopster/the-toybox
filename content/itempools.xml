@@ -44,6 +44,7 @@
         <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloody Whistle"/>
         <Item Name="Bob's Heart"/>
+        <Item Name="Paper Plate"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -88,6 +89,7 @@
         <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Bloody Whistle"/>
         <Item Name="Bob's Heart"/>
+        <Item Name="Paper Plate"/>
     </Pool>
 
     <Pool Name="boss">
@@ -139,6 +141,7 @@
         <Item Name="Oil Painting"/>
         <Item Name="Reading Glasses"/>
         <Item Name="Melted Candle"/>
+        <Item Name="Trendsetter"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -157,6 +160,7 @@
         <Item Name="Oil Painting"/>
         <Item Name="Reading Glasses"/>
         <Item Name="Melted Candle"/>
+        <Item Name="Trendsetter"/>
     </Pool>
 
     <Pool Name="devil">
@@ -274,6 +278,7 @@
         <Item Name="Plasma Globe"/>
         <Item Name="A Spoonful of Mayonnaise"/>
         <Item Name="D0"/>
+        <Item Name="Paper Plate"/>
     </Pool>
 
     <Pool Name="woodenChest">

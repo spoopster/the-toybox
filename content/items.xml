@@ -936,6 +936,15 @@
 
     achievement="Paper Plate"
 />
+<passive id="103" name="Trendsetter"
+    description="Just a fad"
+    gfx="trendsetter.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+
+    luck="3"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

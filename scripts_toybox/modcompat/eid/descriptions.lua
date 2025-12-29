@@ -1358,6 +1358,14 @@ enums.FUNCTIONS.AddItem({
         "They shoot tears every 0.66 seconds that deal 4 damage and copy your tear effects",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_TRENDSETTER,
+    Name = "Trendsetter",
+    Description = {
+        "\1 +3 Luck",
+        "The first room clear reward each floor replaces all room clear rewards for the rest of the floor",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

@@ -216,6 +216,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.tammys_tail")
     include("scripts_toybox.items.passives.malice")
     include("scripts_toybox.items.passives.paper_plate")
+    include("scripts_toybox.items.passives.trendsetter")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

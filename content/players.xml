@@ -13,7 +13,7 @@
 		costumeSuffix="atlas_a" skinColor="-1"
 		modcostume="1000"
 
-		bonehearts="3" redhearts="6"
+		bonehearts="3" redhearts="6" skinColor="5"
 		speedmodifier="-0.1"
 	/>
 	<player birthright="Mantle stratification" name="The Tar" 
