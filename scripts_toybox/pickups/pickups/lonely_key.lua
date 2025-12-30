@@ -19,7 +19,8 @@ local function makeUnhidden(_, pickup, coll, _)
         local sp = pickup:GetSprite()
         local ogAnim, ogFrame = sp:GetAnimation(), sp:GetFrame()
         sp:Load("gfx_tb/pickups/pickup_lonely_key_real.anm2", true)
-        sp:SetFrame(ogAnim, ogFrame)
+        sp:Play(ogAnim, true)
+        sp:SetFrame(ogFrame)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_COLLISION, makeUnhidden, ToyboxMod.PICKUP_LONELY_KEY)

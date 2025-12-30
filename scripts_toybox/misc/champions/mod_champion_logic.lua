@@ -40,7 +40,9 @@ function ToyboxMod:MakeModChampion(npc, id, init)
     newNpc:AddEntityFlags(npc:GetEntityFlags())
 
     ToyboxMod.DENY_CHAMP_ROLL = false
-    npc:Remove()
+    if(GetPtrHash(newNpc)~=GetPtrHash(npc)) then
+        npc:Remove()
+    end
 
     local result = ToyboxMod.CUSTOM_CHAMPIONS[outcome]
 

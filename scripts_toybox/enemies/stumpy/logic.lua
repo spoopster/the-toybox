@@ -1,5 +1,9 @@
-
 local sfx = SFXManager()
+
+local FLY_PICKER = WeightedOutcomePicker()
+    FLY_PICKER:AddOutcomeWeight(EntityType.ENTITY_FLY, 1)
+    FLY_PICKER:AddOutcomeWeight(EntityType.ENTITY_ATTACKFLY, 1)
+    FLY_PICKER:AddOutcomeWeight(EntityType.ENTITY_MOTER, 1)
 
 local POP_OUT_PLAYER_SAFEDIST = 80
 
@@ -17,7 +21,7 @@ local VALID_ROCKS = {
     [GridEntityType.GRID_ROCK_SPIKED] = true,
     --[GridEntityType.GRID_ROCK_ALT2] = true,
     [GridEntityType.GRID_ROCK_GOLD] = true,
-    --[GridEntityType.GRID_POOP] = true,
+    [GridEntityType.GRID_POOP] = true,
 }
 
 ---@param npc EntityNPC
@@ -90,7 +94,7 @@ local function stumpyUpdte(_, npc)
             for i=0, room:GetGridSize()-1 do
                 local gridEnt = room:GetGridEntity(i)
                 if(gridEnt and VALID_ROCKS[gridEnt:GetType()]) then
-                    if((gridEnt:ToRock()==nil) or (gridEnt:ToRock() and gridEnt.State~=2)) then
+                    if((gridEnt:ToRock()==nil and gridEnt:ToPoop()==nil) or (gridEnt:ToPoop() and gridEnt.State~=1000) or (gridEnt:ToRock() and gridEnt.State~=2)) then
                         table.insert(rocksToPickFrom, i)
                     end
                 end
@@ -138,7 +142,7 @@ local function stumpyUpdte(_, npc)
                     chosenGrid:ToRock():UpdateNeighbors()
                 end
                 room:RemoveGridEntityImmediate(chosenIdx, 0, false)
-                room:SpawnGridEntity(chosenIdx, GridEntityType.GRID_DECORATION, 0, 0, 0)
+                --room:SpawnGridEntity(chosenIdx, GridEntityType.GRID_DECORATION, 0, 0, 0)
                 
                 chosenGrid = room:GetGridEntity(chosenIdx)
                 if(chosenGrid) then
@@ -155,7 +159,7 @@ local function stumpyUpdte(_, npc)
             proj.FallingAccel = 1.2*heightScale-0.1
             proj.FallingSpeed = -17.5*heightScale
             proj.Height = proj.Height-20
-            ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", true)
+            ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", (data.STUMPY_ROCKDESC.Type==GridEntityType.GRID_POOP and 2 or 1))
 
             data.STUMPY_ROCKDESC = nil
             data.STUMPY_ROCKSPRITE = nil
@@ -187,7 +191,7 @@ local function stumpyUpdte(_, npc)
         if(npc.StateFrame==GROUND_HIDE_DURATION) then
             npc.StateFrame = 0
             if(npc.I1==0) then
-                npc.State = NpcState.STATE_ATTACK--NpcState.STATE_IDLE
+                npc.State = NpcState.STATE_IDLE
             else
                 npc.State = NpcState.STATE_ATTACK
             end
@@ -224,30 +228,37 @@ local function spawnRockOnDeath(_, npc)
         proj.FallingAccel = 0.75
         proj.FallingSpeed = -5
         proj.Height = proj.Height-sp:GetNullFrame("rockpos"):GetPos().Y
-        ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", true)
+        ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", (data.STUMPY_ROCKDESC.Type==GridEntityType.GRID_POOP and 2 or 1))
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, spawnRockOnDeath, ToyboxMod.NPC_MAIN)
 
 local function rockProjectileDeath(_, proj)
-    if(not ToyboxMod:getEntityData(proj, "STUMPY_ROCKPROJ")) then return end
+    local rockprojtype = ToyboxMod:getEntityData(proj, "STUMPY_ROCKPROJ")
+    if(not rockprojtype) then return end
 
-    local spawnData = {
-        SpawnType = "CIRCLELINE",
-        SpawnData = {EntityType.ENTITY_EFFECT,EffectVariant.ROCK_EXPLOSION,0},
-        SpawnerEntity = proj.SpawnerEntity,
-        Position = proj.Position,
-        Amount = 2,
-        Damage = 1,
-        PlayerFriendly = false,
-        Distance = Vector(30,30),
-        Radius = Vector(40,40),
-        RadiusCount = 9,
-        Delay = 4,
-        AngleVariation = 30,
-        DamageCooldown = 10,
-        DestroyGrid = 1,
-    }
-    ToyboxMod:spawnCustomObjects(spawnData)
+    if(rockprojtype==1) then
+        local spawnData = {
+            SpawnType = "CIRCLELINE",
+            SpawnData = {EntityType.ENTITY_EFFECT,EffectVariant.ROCK_EXPLOSION,0},
+            SpawnerEntity = proj.SpawnerEntity,
+            Position = proj.Position,
+            Amount = 2,
+            Damage = 1,
+            PlayerFriendly = false,
+            Distance = Vector(40,40),
+            Radius = Vector(20,20),
+            RadiusCount = 9,
+            Delay = 4,
+            AngleVariation = 30,
+            DamageCooldown = 10,
+            DestroyGrid = 1,
+        }
+        ToyboxMod:spawnCustomObjects(spawnData)
+    elseif(rockprojtype==2) then
+        local type = FLY_PICKER:PickOutcome(proj:GetDropRNG())
+        local fly = Isaac.Spawn(type,0,0,proj.Position,Vector.Zero,nil)
+        --fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PROJECTILE_DEATH, rockProjectileDeath)

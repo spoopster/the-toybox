@@ -7,8 +7,8 @@ local function updatePoopGrid(_, poop)
     local data = ToyboxMod:getGridEntityDataTable(poop)
 
     data.POOP_DMG = (data.POOP_DMG or poop:GetSaveState().State)
-    if(data.POOP_DMG and poop.State==1000 and poop.State~=data.POOP_DMG) then
-        Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DESTROY, poop:GetVariant(), poop, poop:GetVariant())
+    if(data.POOP_DMG and poop.State~=data.POOP_DMG) then
+        Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DAMAGE, poop:GetVariant(), poop, poop:GetVariant())
     end
 
     data.POOP_DMG = poop.State

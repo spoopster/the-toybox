@@ -282,7 +282,7 @@ local function spawnSlotInStartRoom()
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JUICE)) then return end
 
     local level = Game():GetLevel()
-    local isGreed = Game().Difficulty>=Difficulty.DIFFICULTY_GREED
+    local isGreed = Game():IsGreedMode() and level:GetStage()~=LevelStage.STAGE7_GREED
     local isInCorrectRoom = (level:GetCurrentRoomIndex()==level:GetStartingRoomIndex())
     if(isGreed) then
         local shopIndex = level:GetStartingRoomIndex()-13
@@ -412,7 +412,7 @@ local function hudRender(_)
     end
 
     --figure ts out later
-    if(not Game():IsPauseMenuOpen()) then
+    if(not Game():IsPaused()) then
         if(Input.IsActionPressed(ButtonAction.ACTION_MAP, Isaac.GetPlayer().ControllerIndex)) then
             if(MAP_HELD<MAP_MAX) then
                 MAP_HELD = MAP_HELD+1
@@ -436,7 +436,8 @@ local function hudRender(_)
     local color = lerpKcolor(KColor(1,1,1,1), kcolorFromHue((Game():GetFrameCount()*5)%360), 0.33)
     color.Alpha = trueTransparency
 
-    local renderPos = Vector(Isaac.GetScreenWidth()/2, 6)+Vector(0,24)*Options.HUDOffset+Vector(0,32)
+    local renderPos = Vector(Isaac.GetScreenWidth()/2, 6)+Vector(0,24)*Options.HUDOffset+Vector(0,16)
+    if(not Game():IsGreedMode()) then renderPos = renderPos+Vector(0,16) end
 
     font:DrawString("Juice:", renderPos.X-40, renderPos.Y, color)
     font:DrawString(tostring(math.floor(data.GOOD_JUICE_LERP_COUNTER or 0)), renderPos.X, renderPos.Y, color, 40, false)

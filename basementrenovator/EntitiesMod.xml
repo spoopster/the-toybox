@@ -1,40 +1,51 @@
 <data>
     <tab Name="Toybox" />
 	<group Name="Toybox">
-        <group Name="Toybox Enemies" Label="Enemies" />
-		<group Name="Toybox Bosses" Label="Bosses" />
-	</group>
+        <group Name="Toybox Enemies" Label="Enemies"/>
+        <group Name="Toybox Pickups" Label="Pickups"/>
+        <group Name="Toybox Grids" Label="Grids"/>
+    </group>
+    
+    <entity ID="783" Variant="1" Image="icons/enemy_stumpy.png" Kind="Toybox" Name="Stumpy" />
+    <entity ID="783" Variant="2" Image="icons/enemy_tonsil.png" Kind="Toybox" Name="Tonsil (Toybox)">
+        <bitfield Key="Subtype">
+            <dropdown Name="Starting Direction" Length="2">
+                <choice>Down-Right</choice>
+                <choice>Down-Left</choice>
+                <choice>Up-Left</choice>
+                <choice>Up-Right</choice>
+            </dropdown>
+        </bitfield>
+    </entity>
 
-    <entity ID="782" Variant="1" Image="icons/boss_shygal.png" Kind="Toybox" Name="Shy Gal">
+    <entity ID="4" Variant="522" Image="icons/pickup_sleepy_troll_bomb.png" Kind="Toybox" Name="Sleepy Troll Bomb" />
+    <entity ID="5" Variant="751" Image="icons/pickup_lonely_key.png" Kind="Toybox" Name="Lonely Key" >
         <bitfield Key="Subtype">
-            <checkbox Length="1" Name="Has mask?">
-                <tooltip>If set, Shy Gal will have a mask</tooltip>
-            </checkbox>
-            <spinner Length="3" Name="Number of clones">
-                <tooltip>How many clones should it spawn? (Only applies when not a clone)</tooltip>
-            </spinner>
+            <checkbox Length="1" Name="Revealed?"/>
         </bitfield>
     </entity>
-    <entity ID="782" Variant="2" Image="icons/npc_shygal_clone.png" Kind="Toybox" Name="Shy Gal Clone">
-        <bitfield Key="Subtype">
-            <checkbox Length="1" Name="Has mask?">
-                <tooltip>If set, Shy Gal will have a mask</tooltip>
-            </checkbox>
-        </bitfield>
-    </entity>
-    <entity ID="782" Variant="3" Image="icons/npc_shygal_mask.png" Kind="Toybox" Name="Shy Gal Mask" />
+    <entity ID="999" Variant="412" Subtype="1" Image="icons/grid_copper_poop.png" Kind="Toybox" Name="Copper Poop" />
 
     <group Name="Toybox Enemies">
-        <entity Name="Shy Gal Clone"/>
-        <entity Name="Shy Gal Mask"/>
+        <entity Name="Stumpy"/>
+        <entity Name="Tonsil (Toybox)"/>
+    </group>
+    <group Name="Toybox Pickups">
+        <entity Name="Lonely Key"/>
+        <entity Name="Sleepy Troll Bomb"/>
+    </group>
+    <group Name="Toybox Grids">
+        <entity Name="Copper Poop"/>
     </group>
 
-    <group Name="Toybox Bosses">
-        <entity Name="Shy Gal" />
-    </group>
 
-    <group Name="Caves Bosses">
-        <entity Name="Shy Gal" />
+    <group Label="Troll Bombs">
+        <entity Name="Sleepy Troll Bomb" />
     </group>
-
+    <group Label="Keys">
+        <entity Name="Lonely Key" />
+    </group>
+    <group Label="Poops">
+        <entity Name="Copper Poop" />
+    </group>
 </data>

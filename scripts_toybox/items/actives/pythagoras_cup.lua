@@ -61,36 +61,17 @@ local function dupeItem(_, pickup)
     Isaac.CreateTimer(function()
         NO_DUPE = true
 
-        --local centerPos = pickup.Position
-        --local offsetDist = 30
-
-        local optionsIndex = pickup.OptionsPickupIndex
-        if(optionsIndex==0) then
-            optionsIndex = pickup:SetNewOptionsPickupIndex()
-        end
-
         local rng = pickup:GetDropRNG()
- 
-        for _=1, ITEM_CLONES do
-            local item = Game():GetItemPool():GetCollectible(room:GetItemPool(rng:RandomInt(2^32-1)+1), true)
-            pickup:AddCollectibleCycle(item)
+        local worked = pickup:TryInitOptionCycle(ITEM_CLONES)
+        if(not worked) then
+            local pool = Game():GetItemPool()
+            for i=1, ITEM_CLONES do
+                local itempool = room:GetItemPool(math.max(1,rng:Next()))
+                if(itempool==ItemPoolType.POOL_NULL) then itempool = pool:GetLastPool() end
 
-            --[[
-            local spawnPos = centerPos+offsetDist*Vector.FromAngle(360*i/ITEM_CLONES-45)
-            spawnPos = room:FindFreePickupSpawnPosition(spawnPos)
-
-            local newItem = Isaac.Spawn(5,100,0,spawnPos,Vector.Zero,nil):ToPickup()
-            newItem.OptionsPickupIndex = optionsIndex
-            
-            if(pickup.Price<0 and pickup.Price~=PickupPrice.PRICE_FREE) then
-                newItem:MakeShopItem(-2)
-            elseif(pickup:IsShopItem()) then
-                newItem:MakeShopItem(-1)
-                if(pickup.Price==PickupPrice.PRICE_FREE) then
-                    newItem.Price = PickupPrice.PRICE_FREE
-                end
+                local item = pool:GetCollectible(itempool, true)
+                pickup:AddCollectibleCycle(item)
             end
-            --]]
         end
 
         NO_DUPE = false

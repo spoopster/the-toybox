@@ -8,14 +8,14 @@ ToyboxMod.ACHIEVEMENTS = {
 ---@param threshold Difficulty?
 function ToyboxMod:completionMarkCondition(playerType, mark, threshold)
     return function()
-        return Isaac.GetCompletionMark(playerType, mark)>(threshold or Difficulty.DIFFICULTY_NORMAL)
+        return (Isaac.GetCompletionMark(playerType, mark) or 0)>(threshold or Difficulty.DIFFICULTY_NORMAL)
     end
 end
 ---@param playerType PlayerType
 ---@param threshold Difficulty?
 function ToyboxMod:allMarkCondition(playerType, threshold)
     return function()
-        return Isaac.AllMarksFilled(playerType)>(threshold or Difficulty.DIFFICULTY_NORMAL)
+        return (Isaac.AllMarksFilled(playerType) or 0)>(threshold or Difficulty.DIFFICULTY_NORMAL)
     end
 end
 

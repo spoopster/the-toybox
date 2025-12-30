@@ -267,6 +267,8 @@ ToyboxMod.FAMILIAR_GOOD_JOB_STAR = Isaac.GetEntityVariantByName("Good Job Star")
 ToyboxMod.FAMILIAR_DECOY = Isaac.GetEntityVariantByName("Cardboard Decoy") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_PAPER_PLATE = Isaac.GetEntityVariantByName("Paper Plate") ---@type FamiliarVariant
 
+ToyboxMod.BOMB_SLEEPY_TROLL_BOMB = Isaac.GetEntityVariantByName("Sleepy Troll Bomb") ---@type BombVariant
+
 ToyboxMod.SLOT_PYRAMID_DONATION = Isaac.GetEntityVariantByName("Pyramid Donation Machine") ---@type SlotVariant
 ToyboxMod.SLOT_JUICE_FOUNTAIN = Isaac.GetEntityVariantByName("Juice Fountain") ---@type SlotVariant
 
@@ -286,6 +288,8 @@ ToyboxMod.EFFECT_METEOR = Isaac.GetEntityVariantByName("Meteor") ---@type Effect
 ToyboxMod.EFFECT_SMOKE_TRAIL = Isaac.GetEntityVariantByName("Smoke Trail") ---@type EffectVariant
 ToyboxMod.EFFECT_FLAME_BREATH_HELPER = Isaac.GetEntityVariantByName("Flame Breath Helper") ---@type EffectVariant
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
+
+ToyboxMod.EFFECT_GRID_HELPER = Isaac.GetEntityVariantByName("Toybox Grid Helper") ---@type EffectVariant
 
 ToyboxMod.TEAR_COOL = Isaac.GetEntityVariantByName("Cool Tear") ---@type TearVariant
 --ToyboxMod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear") ---@type TearVariant
@@ -366,6 +370,8 @@ ToyboxMod.EFFECT_AURA_DARK_MANTLE = Isaac.GetEntitySubTypeByName("Dark Mantle Au
 ToyboxMod.EFFECT_AURA_HOLY_MANTLE = Isaac.GetEntitySubTypeByName("Holy Mantle Aura")
 ToyboxMod.EFFECT_AURA_44 = Isaac.GetEntitySubTypeByName("4 4 Aura")
 
+ToyboxMod.GRID_COPPER_POOP = Isaac.GetEntitySubTypeByName("Copper Poop")
+
 ToyboxMod.SHADER_EMPTY = "ToyboxEmptyShader" ---@type ShaderType
 ToyboxMod.SHADER_BLOOM = "ToyboxBloomShader" ---@type ShaderType
 ToyboxMod.SHADER_ASCENSION = "ToyboxAscensionShader" ---@type ShaderType
@@ -401,6 +407,8 @@ ToyboxMod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
 
 ToyboxMod.NPC_MAIN = Isaac.GetEntityTypeByName("Stumpy")
 ToyboxMod.VAR_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
+ToyboxMod.VAR_TONSIL = Isaac.GetEntityVariantByName("Tonsil")
+
 ToyboxMod.VAR_DOODLE = Isaac.GetEntityVariantByName("Doodledude")
 
 
@@ -428,8 +436,9 @@ ToyboxMod.CUSTOM_CALLBACKS = {
     POST_ROOM_CLEAR = "TOYBOX_POST_ROOM_CLEAR",
     POST_CUSTOM_CHAMPION_DEATH = "TOYBOX_POST_CUSTOM_CHAMPION_DEATH",
     POST_CUSTOM_CHAMPION_INIT = "TOYBOX_POST_CUSTOM_CHAMPION_INIT",
-    POST_POOP_DESTROY = "TOYBOX_POST_POOP_DESTROY",
+    POST_POOP_DAMAGE = "TOYBOX_POST_POOP_DAMAGE",
     POOP_SPAWN_DROP = "TOYBOX_POOP_SPAWN_DROP",
+    POST_POOP_INIT = "TOYBOX_POST_POOP_INIT",
 }
 
 ToyboxMod.DAMAGE_TYPE = {

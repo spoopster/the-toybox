@@ -3,6 +3,9 @@ local NUKE_ROCKET_SUBTYPE = 124
 local NUKE_ROCKET_DMG = 50
 local NUKE_SHOCKWAVE_DMG = 100
 
+local POISON_DURATION = 30*5
+local POISON_DMG = 3
+
 ---@param rng RNG
 ---@param pl EntityPlayer
 local function bigRedButtonUse(_, _, rng, pl, flags, slot, vdata)
@@ -37,44 +40,14 @@ local function nukeUpdate(_, bomb)
         expl.CollisionDamage = NUKE_SHOCKWAVE_DMG
         expl.TargetPosition = bomb.Position
 
-        local cornerTL = room:GetTopLeftPos()
-        local cornerBR = room:GetBottomRightPos()
-        local centerPos = room:GetCenterPos()
+        
+        room:GetFXLayers():AddPoopFx(Color(1,1,1,1,0,0.6,0,1,2,1,1))
 
-        local farthestPos = Vector(
-            (math.abs(cornerTL.X-bomb.Position.X)>math.abs(cornerBR.X-bomb.Position.X) and cornerTL.X or cornerBR.X),
-            (math.abs(cornerTL.Y-bomb.Position.Y)>math.abs(cornerBR.Y-bomb.Position.Y) and cornerTL.Y or cornerBR.Y)
-        )
-
-        farthestPos = farthestPos+Vector(80,80)*Vector(ToyboxMod:sign(farthestPos.X-centerPos.X), ToyboxMod:sign(farthestPos.Y-centerPos.Y))
-
-        local cloudSize = 1.5
-        local cloudRadius = 40*cloudSize
-
-        local bombPos = bomb.Position
-        local bombSp = bomb.SpawnerEntity
-
-        local numClouds = math.ceil(farthestPos:Distance(bomb.Position)/(1.9*cloudRadius))
-        local cloudIdx = 0
-        Isaac.CreateTimer(function()
-            local cloudsToSpawn = 2*math.pi*cloudIdx*cloudRadius*1.5//cloudRadius
-            if(cloudsToSpawn==0) then
-                cloudsToSpawn = 1
+        for _, ent in ipairs(Isaac.GetRoomEntities()) do
+            if(ent and ToyboxMod:isValidEnemy(ent)) then
+                ent:AddPoison(EntityRef(expl.SpawnerEntity), POISON_DURATION, POISON_DMG)
             end
-
-            for i=1, cloudsToSpawn do
-                local spawnPos = Vector.FromAngle(360*i/cloudsToSpawn):Resized(cloudIdx*cloudRadius*1.5)+bombPos
-                if(room:IsPositionInRoom(spawnPos, -80)) then
-                    local cloud = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SMOKE_CLOUD, 0, spawnPos, Vector.Zero, bombSp):ToEffect()
-                    cloud:SetTimeout(30*3)
-                    cloud.Scale = cloudSize
-                    cloud.SpriteScale = Vector(cloudSize,cloudSize)
-                    cloud.SpriteRotation = cloud:GetDropRNG():RandomInt(360)
-                end
-            end
-
-            cloudIdx = cloudIdx+1
-        end, 2, numClouds+1, false)
+        end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, nukeUpdate, BombVariant.BOMB_ROCKET_GIGA)

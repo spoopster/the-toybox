@@ -64,7 +64,10 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_GRID_ENTITY_SPAWN, replaceRockSpawn, GridEntityType.GRID_ROCK)
 
 --! TRANSF
+---@param poop GridEntityPoop
 local function poopHeal(_, poop)
+    if(poop.State~=1000) then return end
+
     local shouldDoTransfEffect = nil
     for _, player in ipairs(ToyboxMod:getAllAtlasA()) do
         player = player:ToPlayer()
@@ -88,7 +91,7 @@ local function poopHeal(_, poop)
         end
     end
 end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DESTROY, poopHeal)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DAMAGE, poopHeal)
 
 local function changePoopPickupPool(_, pickup, poop)
     local isAtlasPoop = false

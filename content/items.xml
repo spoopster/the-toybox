@@ -730,7 +730,7 @@
     maxcharges="3"
 />
 <passive id="79" name="Finger Trap"
-    description="Damage up + shotspeed down"
+    description="DMG up + shotspeed down"
     gfx="chinese_finger_trap.png"
     quality="2"
     tags="offensive summonable"

@@ -8,6 +8,7 @@ local POOPS_WITH_DROPS = {
 
 ---@param poop GridEntityPoop
 local function checkPoopPickup(_, poop, poopVar)
+    if(poop.State~=1000) then return end
     if(POOPS_WITH_DROPS[poopVar]~=1) then return end
 
     local data = ToyboxMod:getGridEntityDataTable(poop)
@@ -41,4 +42,4 @@ local function checkPoopPickup(_, poop, poopVar)
         end
     end
 end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DESTROY, checkPoopPickup)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DAMAGE, checkPoopPickup)
