@@ -46,11 +46,14 @@ local function tonsilUpdate(_, npc)
             offset.X = 1
         end
 
-        npc.Position = npc.Position-npc.Velocity*offset*0.5
+        npc.Position = npc.Position-npc.Velocity*offset*0.8*(npc.I1*0.3+1)
         npc.Velocity = npc.Velocity*mult*0.8
         npc.V1 = npc.V1*mult
+        npc.I1 = npc.I1+1
 
         sfx:Play(905, 0.5, 2, false, 0.8+math.random()*0.2)
+    else
+        npc.I1 = 0
     end
 
     npc:AddVelocity(npc.V1*0.7)
@@ -91,5 +94,54 @@ local function tonsilUpdate(_, npc)
         npc.ProjectileCooldown = npc.ProjectileCooldown-1
     end
     npc.StateFrame = npc.StateFrame+1
+    --npc.I1 = 0
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, tonsilUpdate, ToyboxMod.NPC_MAIN)
+
+---@param npc EntityNPC
+---@param coll Entity
+local function postTonsilCollision(_, npc, coll, low)
+    if(not (npc.Variant==ToyboxMod.VAR_TONSIL)) then return end
+
+    local diff = (coll.Position-npc.Position):Normalized()
+
+    local npcCapsule = (npc:GetCollisionCapsule())
+    local collCapsule = (coll:GetCollisionCapsule())
+
+    local normVel = npc.Velocity:Normalized()
+
+    local npcCapOffX = npc:GetCollisionCapsule(-npc.Velocity*Vector(1,0))
+    local npcCapOffY = npc:GetCollisionCapsule(-npc.Velocity*Vector(0,1))
+
+    local mult = Vector(1,1)
+    local offset = Vector(0,0)
+    if(npcCapOffX:Collide(collCapsule,Vector.Zero)) then
+        mult.Y = -1
+        offset.Y = 1
+    end
+    if(npcCapOffY:Collide(collCapsule,Vector.Zero)) then
+        mult.X = -1
+        offset.X = 1
+    end
+
+    npc.Position = npc.Position-npc.Velocity*offset*0.7
+    npc.Velocity = npc.Velocity*mult*0.9
+    npc.V1 = npc.V1*mult
+    npc.I1 = 1
+    npc:SetColor(Color(1,1,1,1,1,1,1), 2, 1, false, false)
+
+    --[ [
+    if(coll.Type==ToyboxMod.NPC_MAIN and coll.Variant==ToyboxMod.VAR_TONSIL and coll:ToNPC().I1==0) then
+        coll = coll:ToNPC() ---@cast coll EntityNPC
+        
+        coll.Position = coll.Position-coll.Velocity*offset*0.7
+        coll.Velocity = coll.Velocity*mult*0.9
+        coll.V1 = coll.V1*mult
+        coll.I1 = 1
+        coll:SetColor(Color(1,1,1,1,1,1,1), 2, 1, false, false)
+    end
+    --]]
+
+    sfx:Play(905, 0.5, 2, false, 0.8+math.random()*0.2)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_COLLISION, postTonsilCollision, ToyboxMod.NPC_MAIN)
