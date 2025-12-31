@@ -15,7 +15,7 @@ local VALID_ROCKS = {
     [GridEntityType.GRID_ROCK] = true,
     [GridEntityType.GRID_ROCKT] = true,
     [GridEntityType.GRID_ROCK_BOMB] = true,
-    --[GridEntityType.GRID_ROCK_ALT] = true,
+    [GridEntityType.GRID_ROCK_ALT] = true,
     --[GridEntityType.GRID_TNT] = true,
     [GridEntityType.GRID_ROCK_SS] = true,
     [GridEntityType.GRID_ROCK_SPIKED] = true,
@@ -46,8 +46,6 @@ local function stumpyUpdte(_, npc)
 
     npc.Velocity = Vector.Zero
     npc:UpdateDirtColor(true)
-
-    print(npc.State==NpcState.STATE_ATTACK, npc.State==NpcState.STATE_IDLE, npc.StateFrame, npc.I1)
 
     if(npc.State==NpcState.STATE_IDLE) then
         if(npc.StateFrame==1) then
@@ -156,13 +154,13 @@ local function stumpyUpdte(_, npc)
 
         if(sp:IsEventTriggered("Shoot") and (npc.Target and npc.Target:Exists())) then
             local dir = (npc.Target.Position-npc.Position)
-            local proj = npc:FireGridEntity(data.STUMPY_ROCKSPRITE, data.STUMPY_ROCKDESC, dir:Resized(7), Game():GetRoom():GetBackdropType())
+            local proj = npc:FireGridEntity(data.STUMPY_ROCKSPRITE, data.STUMPY_ROCKDESC, dir:Resized(7), BackdropType.BACKDROP_NULL)
 
             local heightScale = 1.8
             proj.FallingAccel = 1.2*heightScale-0.1
             proj.FallingSpeed = -17.5*heightScale
             proj.Height = proj.Height-20
-            ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", (data.STUMPY_ROCKDESC.Type==GridEntityType.GRID_POOP and 2 or 1))
+            ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", data.STUMPY_ROCKDESC.Type)
 
             data.STUMPY_ROCKDESC = nil
             data.STUMPY_ROCKSPRITE = nil
@@ -231,16 +229,21 @@ local function spawnRockOnDeath(_, npc)
         proj.FallingAccel = 0.75
         proj.FallingSpeed = -5
         proj.Height = proj.Height-sp:GetNullFrame("rockpos"):GetPos().Y
-        ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", (data.STUMPY_ROCKDESC.Type==GridEntityType.GRID_POOP and 2 or 1))
+        ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", data.STUMPY_ROCKDESC.Type)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, spawnRockOnDeath, ToyboxMod.NPC_MAIN)
 
+---@param proj EntityProjectile
 local function rockProjectileDeath(_, proj)
     local rockprojtype = ToyboxMod:getEntityData(proj, "STUMPY_ROCKPROJ")
     if(not rockprojtype) then return end
 
-    if(rockprojtype==1) then
+    if(rockprojtype==GridEntityType.GRID_POOP) then
+        local type = FLY_PICKER:PickOutcome(proj:GetDropRNG())
+        --local fly = Isaac.Spawn(type,0,0,proj.Position,Vector.Zero,nil)
+        --fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+    else
         local spawnData = {
             SpawnType = "CIRCLELINE",
             SpawnData = {EntityType.ENTITY_EFFECT,EffectVariant.ROCK_EXPLOSION,0},
@@ -258,10 +261,8 @@ local function rockProjectileDeath(_, proj)
             DestroyGrid = 1,
         }
         ToyboxMod:spawnCustomObjects(spawnData)
-    elseif(rockprojtype==2) then
-        local type = FLY_PICKER:PickOutcome(proj:GetDropRNG())
-        local fly = Isaac.Spawn(type,0,0,proj.Position,Vector.Zero,nil)
-        --fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
     end
+
+    proj:Remove()
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PROJECTILE_DEATH, rockProjectileDeath)
