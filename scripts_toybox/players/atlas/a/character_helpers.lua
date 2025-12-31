@@ -210,57 +210,50 @@ local function getBiasWeight(f)
     return ToyboxMod:lerp(ToyboxMod.SAME_MANTLE_BIAS[math.floor(f)], ToyboxMod.SAME_MANTLE_BIAS[math.floor(f)+1], f-math.floor(f))
 end
 
-function ToyboxMod:getRandomMantle(rng, ignoreBias)
-    local ownedMantles = {}
-    if(ignoreBias~=true) then
-        for _, val in pairs(ToyboxMod.MANTLE_DATA) do
-            ownedMantles[val.ID] = 0
+---@param rng RNG?
+---@param ignoreBias boolean?
+---@param consumableId boolean?
+function ToyboxMod:getRandomMantle(rng, ignoreBias, consumableId)
+    local MANTLE_PICKER = WeightedOutcomePicker()
+
+    if(ignoreBias) then
+        for _, mData in pairs(ToyboxMod.MANTLE_DATA) do
+            if(mData.WEIGHT) then
+                local outc = (consumableId and mData.CONSUMABLE_SUBTYPE or mData.ID)
+                MANTLE_PICKER:AddOutcomeFloat(outc, mData.WEIGHT)
+            end
         end
+    else
+        local ownedMantles = {}
+
         local atlases = ToyboxMod:getAllAtlasA()
+        local numAtlasA = #atlases
         for _, p in ipairs(atlases) do
             local data = ToyboxMod:getAtlasATable(p:ToPlayer())
             local transf = data.TRANSFORMATION
-            ownedMantles[transf] = (ownedMantles[transf] or 0)+data.HP_CAP
+            ownedMantles[transf] = (ownedMantles[transf] or 0)+data.HP_CAP/numAtlasA
             for _, mantle in ipairs(data.MANTLES) do
-                if(mantle.TYPE~=transf) then ownedMantles[mantle.TYPE] = (ownedMantles[mantle.TYPE] or 0)+1 end
+                if(mantle.TYPE~=transf) then ownedMantles[mantle.TYPE] = (ownedMantles[mantle.TYPE] or 0)+1/numAtlasA end
             end
         end
-        local numAtlasA = #atlases
-        for _, val in pairs(ToyboxMod.MANTLE_DATA) do
-            ownedMantles[val.ID] = ownedMantles[val.ID]/numAtlasA
-        end
-    end
-
-    local maxWeight = 0
-    for _, mData in ipairs(ToyboxMod.MANTLE_PICKER) do
-        local outcome = mData.OUTCOME or ToyboxMod.MANTLE_DATA.DEFAULT.ID
-
-        if(ignoreBias~=true and not ToyboxMod:isBadMantle(outcome)) then
-            maxWeight = maxWeight+mData.WEIGHT*(getBiasWeight(ownedMantles[outcome]))
-        else
-            maxWeight = maxWeight+mData.WEIGHT
+        
+        for _, mData in pairs(ToyboxMod.MANTLE_DATA) do
+            if(mData.WEIGHT) then
+                local outc = (consumableId and mData.CONSUMABLE_SUBTYPE or mData.ID)
+                local weightmult = 1
+                if(not ToyboxMod:isBadMantle(mData.ID)) then
+                    weightmult = getBiasWeight(ownedMantles[mData.ID] or 0) or 1
+                end
+                
+                MANTLE_PICKER:AddOutcomeFloat(outc, mData.WEIGHT*weightmult)
+            end
         end
     end
 
     rng = (rng or ToyboxMod:generateRng())
-    local selWeight = rng:RandomFloat()*maxWeight
-    local curWeight = 0
+    local outcome = MANTLE_PICKER:PickOutcome(rng)
 
-    for _, mData in ipairs(ToyboxMod.MANTLE_PICKER) do
-        local outcome = mData.OUTCOME or ToyboxMod.MANTLE_DATA.DEFAULT.ID
-
-        if(ignoreBias~=true and not ToyboxMod:isBadMantle(outcome)) then
-            curWeight = curWeight+mData.WEIGHT*(getBiasWeight(ownedMantles[mData.OUTCOME or ToyboxMod.MANTLE_DATA.DEFAULT.ID]))
-        else
-            curWeight = curWeight+mData.WEIGHT
-        end
-
-        if(selWeight<curWeight) then
-            return mData.OUTCOME
-        end
-    end
-
-    return ToyboxMod.MANTLE_DATA.DEFAULT.ID
+    return outcome
 end
 
 function ToyboxMod:getNumMantlesByType(player, type)

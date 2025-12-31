@@ -301,9 +301,15 @@ ToyboxMod.PICKUP_SMORGASBORD = Isaac.GetEntityVariantByName("Smorgasbord") ---@t
 ToyboxMod.PICKUP_ETERNAL_MOUND = Isaac.GetEntityVariantByName("Eternal Mound") ---@type PickupVariant
 ToyboxMod.PICKUP_LONELY_KEY = Isaac.GetEntityVariantByName("Lonely Key") ---@type PickupVariant
 
+ToyboxMod.PICKUP_RANDOM_SELECTOR = Isaac.GetEntityVariantByName("Toybox Random Mantle") ---@type PickupVariant
+ToyboxMod.PICKUP_CARD_SPAWNER = Isaac.GetEntityVariantByName("Toybox Card Spawner") ---@type PickupVariant
+
 ToyboxMod.PICKUP_COIN_INK_1 = Isaac.GetEntitySubTypeByName("Ink (1)") ---@type CoinSubType
 ToyboxMod.PICKUP_COIN_INK_2 = Isaac.GetEntitySubTypeByName("Ink (2)") ---@type CoinSubType
 ToyboxMod.PICKUP_COIN_INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)") ---@type CoinSubType
+
+ToyboxMod.PICKUP_RANDOM_MANTLE = Isaac.GetEntitySubTypeByName("Toybox Random Mantle")
+ToyboxMod.PICKUP_RANDOM_MANTLE_NOBIAS = Isaac.GetEntitySubTypeByName("Toybox Random Mantle (No Bias)")
 
 ToyboxMod.TEARFLAGS = {
     PLASMA = 1<<0,
@@ -479,6 +485,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Rock!",
         TRANSF_DESC = "Useless",
+
+        WEIGHT = 1,
     },
     POOP = {
         ID = 2,
@@ -494,6 +502,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Poop!",
         TRANSF_DESC = "Poop healing + better poop drops",
+        
+        WEIGHT = 1,
     },
     BONE = {
         ID = 3,
@@ -509,6 +519,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Bone!",
         TRANSF_DESC = "Panic = sorrow",
+        
+        WEIGHT = 1,
     },
     DARK = {
         ID = 4,
@@ -524,6 +536,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Dark!",
         TRANSF_DESC = "Dark aura",
+        
+        WEIGHT = 1,
     },
     HOLY = {
         ID = 5,
@@ -540,6 +554,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Holy!",
         TRANSF_DESC = "Flight + holy aura",
+        
+        WEIGHT = 1,
     },
     SALT = {
         ID = 6,
@@ -556,6 +572,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Salt!",
         TRANSF_DESC = "On-command salt chariot",
+        
+        WEIGHT = 1,
     },
     GLASS = {
         ID = 7,
@@ -571,6 +589,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Glass!",
         TRANSF_DESC = "DMG up + brittler protection",
+        
+        WEIGHT = 1,
     },
     METAL = {
         ID = 8,
@@ -586,6 +606,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Metal!",
         TRANSF_DESC = "Better defense",
+        
+        WEIGHT = 1,
     },
     GOLD = {
         ID = 9,
@@ -601,6 +623,8 @@ ToyboxMod.MANTLE_DATA = {
 
         TRANSF_NAME = "Gold!",
         TRANSF_DESC = "Penny tears",
+        
+        WEIGHT = 1,
     },
 
     TAR = {

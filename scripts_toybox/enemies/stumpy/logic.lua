@@ -47,6 +47,8 @@ local function stumpyUpdte(_, npc)
     npc.Velocity = Vector.Zero
     npc:UpdateDirtColor(true)
 
+    print(npc.State==NpcState.STATE_ATTACK, npc.State==NpcState.STATE_IDLE, npc.StateFrame, npc.I1)
+
     if(npc.State==NpcState.STATE_IDLE) then
         if(npc.StateFrame==1) then
             local room = Game():GetRoom()
@@ -102,6 +104,7 @@ local function stumpyUpdte(_, npc)
 
             local numRocks = #rocksToPickFrom
             if(numRocks<=0) then
+                npc.I1 = 0
                 npc.StateFrame = 0
                 npc.State = NpcState.STATE_IDLE
             else
@@ -176,12 +179,11 @@ local function stumpyUpdte(_, npc)
         if(sp:IsFinished("PopOutRock")) then
             sp:Play("IdleRock", true)
         end
-        if(sp:IsFinished("Attack")) then
+        if(sp:IsFinished("Attack") and npc.I1~=0) then
             npc.State = NpcState.STATE_SPECIAL
             npc.StateFrame = 0
 
-            npc.I1 = 0
-            --npc.I1 = 1
+            npc.I1 = 1
         end
     elseif(npc.State==NpcState.STATE_SPECIAL) then
         if(npc.StateFrame==1) then
@@ -214,6 +216,7 @@ local function renderRockOnStumpy(_, npc, offset)
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_NPC_RENDER, math.huge, renderRockOnStumpy, ToyboxMod.NPC_MAIN)
 
+---@param npc Entity
 local function spawnRockOnDeath(_, npc)
     if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
     npc = npc:ToNPC()

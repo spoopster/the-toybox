@@ -3,11 +3,13 @@
 	<group Name="Toybox">
         <group Name="Toybox Enemies" Label="Enemies"/>
         <group Name="Toybox Pickups" Label="Pickups"/>
+        <group Name="Toybox Consumables" Label="Consumables"/>
         <group Name="Toybox Grids" Label="Grids"/>
     </group>
-    
+
+    <!-- ENEMIES -->
     <entity ID="783" Variant="1" Image="icons/enemy_stumpy.png" Kind="Toybox" Name="Stumpy" />
-    <entity ID="783" Variant="2" Image="icons/enemy_tonsil.png" Kind="Toybox" Name="Tonsil (Toybox)">
+    <entity ID="783" Variant="2" Image="icons/enemy_tonsil.png" Kind="Toybox" Name="Tonsil (Toybox)" Label="Tonsil">
         <bitfield Key="Subtype">
             <dropdown Name="Starting Direction" Length="2">
                 <choice>Down-Right</choice>
@@ -18,14 +20,32 @@
         </bitfield>
     </entity>
 
+    <!-- PICKUPS -->
     <entity ID="4" Variant="522" Image="icons/pickup_sleepy_troll_bomb.png" Kind="Toybox" Name="Sleepy Troll Bomb" />
     <entity ID="5" Variant="751" Image="icons/pickup_lonely_key.png" Kind="Toybox" Name="Lonely Key" >
         <bitfield Key="Subtype">
             <checkbox Length="1" Name="Revealed?"/>
         </bitfield>
     </entity>
+
+    <entity ID="5" Variant="502" Image="icons/pickup_smorgasbord.png" Kind="Toybox" Name="Smorgasbord" />
+
+    <entity ID="5" Variant="603" Subtype="0" Image="icons/pickup_random_mantle.png" Kind="Toybox" Name="Mantle - Random" />
+    <entity ID="5" Variant="603" Subtype="1" Image="icons/pickup_random_mantle_nobias.png" Kind="Toybox" Name="Mantle - Random (NO BIAS)" />
+    <entity ID="5" Variant="604" Subtype="1" Image="icons/pickup_mantle_rock.png" Kind="Toybox" Name="Mantle - Rock" />
+    <entity ID="5" Variant="604" Subtype="2" Image="icons/pickup_mantle_poop.png" Kind="Toybox" Name="Mantle - Poop" />
+    <entity ID="5" Variant="604" Subtype="3" Image="icons/pickup_mantle_bone.png" Kind="Toybox" Name="Mantle - Bone" />
+    <entity ID="5" Variant="604" Subtype="4" Image="icons/pickup_mantle_dark.png" Kind="Toybox" Name="Mantle - Dark" />
+    <entity ID="5" Variant="604" Subtype="5" Image="icons/pickup_mantle_holy.png" Kind="Toybox" Name="Mantle - Holy" />
+    <entity ID="5" Variant="604" Subtype="6" Image="icons/pickup_mantle_salt.png" Kind="Toybox" Name="Mantle - Salt" />
+    <entity ID="5" Variant="604" Subtype="7" Image="icons/pickup_mantle_glass.png" Kind="Toybox" Name="Mantle - Glass" />
+    <entity ID="5" Variant="604" Subtype="8" Image="icons/pickup_mantle_metal.png" Kind="Toybox" Name="Mantle - Metal" />
+    <entity ID="5" Variant="604" Subtype="9" Image="icons/pickup_mantle_gold.png" Kind="Toybox" Name="Mantle - Gold" />
+
+    <!-- GRIDS -->
     <entity ID="999" Variant="412" Subtype="1" Image="icons/grid_copper_poop.png" Kind="Toybox" Name="Copper Poop" />
 
+    <!-- TOYBOX GROUPINGS -->
     <group Name="Toybox Enemies">
         <entity Name="Stumpy"/>
         <entity Name="Tonsil (Toybox)"/>
@@ -33,12 +53,45 @@
     <group Name="Toybox Pickups">
         <entity Name="Lonely Key"/>
         <entity Name="Sleepy Troll Bomb"/>
+        <entity Name="Smorgasbord"/>
+    </group>
+    <group Name="Toybox Consumables">
+        <entity Name="Mantle - Random"/>
+        <entity Name="Mantle - Random (NO BIAS)"/>
+        <entity Name="Mantle - Rock"/>
+        <entity Name="Mantle - Poop"/>
+        <entity Name="Mantle - Bone"/>
+        <entity Name="Mantle - Dark"/>
+        <entity Name="Mantle - Holy"/>
+        <entity Name="Mantle - Salt"/>
+        <entity Name="Mantle - Glass"/>
+        <entity Name="Mantle - Metal"/>
+        <entity Name="Mantle - Gold"/>
     </group>
     <group Name="Toybox Grids">
         <entity Name="Copper Poop"/>
     </group>
 
+    <!-- VANILLA ENEMY GROUPINGS -->
+    <group Label="Basement Enemies">
+        <entity Name="Tonsil (Toybox)" />
+    </group>
+    <group Label="Cellar Enemies">
+        <entity Name="Tonsil (Toybox)" />
+    </group>
+    <group Label="Caves Enemies">
+        <entity Name="Tonsil (Toybox)" />
+        <entity Name="Stumpy" />
+    </group>
+    <group Label="Catacombs Enemies">
+        <entity Name="Stumpy" />
+    </group>
 
+    <!-- VANILLA MISC GROUPING -->
+    <group Label="(Pickups) Random">
+        <entity Name="Mantle - Random"/>
+        <entity Name="Mantle - Random (NO BIAS)"/>
+    </group>
     <group Label="Troll Bombs">
         <entity Name="Sleepy Troll Bomb" />
     </group>

@@ -20,9 +20,7 @@ local function upgradeHalfHearts(_, pickup, var, sub, rvar, rsub, rng)
         chance = chance+HEART_REPLACEMENT_CHANCES[ToyboxMod:getRightmostMantleIdx(player)]
     end
     if(rng:RandomFloat()<chance) then
-        local mantle = ToyboxMod:getRandomMantle(rng)
-        local cons = ToyboxMod.MANTLE_DATA[ToyboxMod:getMantleKeyFromId(mantle)].CONSUMABLE_SUBTYPE
-        return {PickupVariant.PICKUP_TAROTCARD, cons, true}
+        return {ToyboxMod.PICKUP_RANDOM_SELECTOR, ToyboxMod.PICKUP_RANDOM_MANTLE, true}
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_SELECTION, upgradeHalfHearts)

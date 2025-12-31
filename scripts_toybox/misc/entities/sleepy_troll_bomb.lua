@@ -33,10 +33,26 @@ local function postBombUpdate(_, bomb)
             sp:Play("Idle", true)
             bomb:SetExplosionCountdown(bomb:GetExplosionCountdown()+1)
 
+            --[[
             for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_BOMB)) do
                 local otherbomb = ent:ToBomb() ---@type EntityBomb
                 if(otherbomb:GetExplosionCountdown()==0) then
                     if(otherbomb.RadiusMultiplier*40*2.5>=otherbomb.Position:Distance(bomb.Position)) then
+                        bomb.SubType = 1
+                        bomb:GetSprite():Play("HopAwake", true)
+                    end
+                end
+            end
+            --]]
+            for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION)) do
+                if(ent.FrameCount==1) then
+                    local expsp = ent.SpawnerEntity
+                    local radiusmult = 1
+                    if(expsp and expsp:ToBomb()) then
+                        radiusmult = expsp:ToBomb().RadiusMultiplier
+                    end
+
+                    if(ent.Position:Distance(bomb.Position)-bomb.Size<=radiusmult*40*2.5) then
                         bomb.SubType = 1
                         bomb:GetSprite():Play("HopAwake", true)
                     end
