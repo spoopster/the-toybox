@@ -5,6 +5,17 @@ local PROJ_COOLDOWN = 30*2
 local PROJ_SPEED = 11
 local PROJ_DISTANCE_SHOOT = 40*5
 
+local function isValidForTonsilCollision(pos)
+    local room = Game():GetRoom()
+    local idx = room:GetGridIndex(pos)
+    if(room:GetGridCollision(idx)<GridCollisionClass.COLLISION_OBJECT) then return end
+
+    local ent = room:GetGridEntity(idx)
+    if(ent and ToyboxMod:getGridEntityData(ent, "ENEMYONLY_GATE")) then return end
+
+    return true
+end
+
 ---@param npc EntityNPC
 local function tonsilInit(_, npc)
     if(not (npc.Variant==ToyboxMod.VAR_TONSIL)) then return end
@@ -12,7 +23,11 @@ local function tonsilInit(_, npc)
     npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_BULLET
     npc:GetSprite():Play("Idle", true)
 
-    npc.V1 = Vector(1,1):Rotated(npc.SubType*90)
+    if(npc.SubType==0) then
+        npc.SubType = npc:GetDropRNG():RandomInt(1,4)
+    end
+
+    npc.V1 = Vector(1,1):Rotated((npc.SubType-1)*90)
     npc.State = NpcState.STATE_IDLE
     npc.ProjectileCooldown = PROJ_COOLDOWN
 end
@@ -28,20 +43,15 @@ local function tonsilUpdate(_, npc)
         sp:Play("Idle", true)
     end
 
-    local room = Game():GetRoom()
-    local coll = room:GetGridCollisionAtPos(npc.Position)
-    if(coll>=GridCollisionClass.COLLISION_OBJECT) then
+    if(isValidForTonsilCollision(npc.Position)) then
         local mult = Vector(1,1)
         local offset = Vector(0,0)
 
-        local collX = room:GetGridCollisionAtPos(npc.Position-npc.Velocity*Vector(1,0))
-        if(collX>=GridCollisionClass.COLLISION_OBJECT) then
+        if(isValidForTonsilCollision(npc.Position-npc.Velocity*Vector(1,0))) then
             mult.Y = -1
             offset.Y = 1
         end
-
-        local collY = room:GetGridCollisionAtPos(npc.Position-npc.Velocity*Vector(0,1))
-        if(collY>=GridCollisionClass.COLLISION_OBJECT) then
+        if(isValidForTonsilCollision(npc.Position-npc.Velocity*Vector(0,1))) then
             mult.X = -1
             offset.X = 1
         end

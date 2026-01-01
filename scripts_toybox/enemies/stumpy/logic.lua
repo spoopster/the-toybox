@@ -241,7 +241,7 @@ local function rockProjectileDeath(_, proj)
 
     if(rockprojtype==GridEntityType.GRID_POOP) then
         local type = FLY_PICKER:PickOutcome(proj:GetDropRNG())
-        --local fly = Isaac.Spawn(type,0,0,proj.Position,Vector.Zero,nil)
+        local fly = Isaac.Spawn(type,0,0,proj.Position,Vector.Zero,nil)
         --fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
     else
         local spawnData = {

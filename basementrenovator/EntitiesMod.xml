@@ -11,7 +11,8 @@
     <entity ID="783" Variant="1" Image="icons/enemy_stumpy.png" Kind="Toybox" Name="Stumpy" />
     <entity ID="783" Variant="2" Image="icons/enemy_tonsil.png" Kind="Toybox" Name="Tonsil (Toybox)" Label="Tonsil">
         <bitfield Key="Subtype">
-            <dropdown Name="Starting Direction" Length="2">
+            <dropdown Length="3" Name="Starting direction">
+                <choice>Random</choice>
                 <choice>Down-Right</choice>
                 <choice>Down-Left</choice>
                 <choice>Up-Left</choice>
@@ -19,12 +20,27 @@
             </dropdown>
         </bitfield>
     </entity>
+    <entity ID="783" Variant="3" Image="icons/enemy_eye_spy.png" Kind="Toybox" Name="Eye Spy (Toybox)" Label="Eye Spy">
+        <bitfield Key="Subtype">
+            <dropdown Length="2" Name="Starting face direction">
+                <choice Value="0">Down</choice>
+                <choice Value="1">Left</choice>
+                <choice Value="2">Up</choice>
+                <choice Value="3">Right</choice>
+            </dropdown>
+            <checkbox Name="Spin counter-clockwise?">
+                <tooltip>If checked, spins counter-clockwise. Otherwise, spins clockwise.</tooltip>
+            </checkbox>
+        </bitfield>
+    </entity>
 
     <!-- PICKUPS -->
     <entity ID="4" Variant="522" Image="icons/pickup_sleepy_troll_bomb.png" Kind="Toybox" Name="Sleepy Troll Bomb" />
     <entity ID="5" Variant="751" Image="icons/pickup_lonely_key.png" Kind="Toybox" Name="Lonely Key" >
         <bitfield Key="Subtype">
-            <checkbox Length="1" Name="Revealed?"/>
+            <checkbox Length="1" Name="Revealed?">
+                <tooltip>If checked, the key will have its true nature revealed. Otherwise, it masks its devilish true colors.</tooltip>
+            </checkbox>
         </bitfield>
     </entity>
 
@@ -42,13 +58,42 @@
     <entity ID="5" Variant="604" Subtype="8" Image="icons/pickup_mantle_metal.png" Kind="Toybox" Name="Mantle - Metal" />
     <entity ID="5" Variant="604" Subtype="9" Image="icons/pickup_mantle_gold.png" Kind="Toybox" Name="Mantle - Gold" />
 
+    <entity name="Switch Block (1)" id="1000" variant="412" subtype="4" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Block (2)" id="1000" variant="412" subtype="5" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Block (3)" id="1000" variant="412" subtype="6" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Block (4)" id="1000" variant="412" subtype="7" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Block (Inactive) (1)" id="1000" variant="412" subtype="8" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Block (Inactive) (2)" id="1000" variant="412" subtype="9" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Block (Inactive) (3)" id="1000" variant="412" subtype="10" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Block (Inactive) (4)" id="1000" variant="412" subtype="11" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Plate (1)" id="1000" variant="412" subtype="12" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Plate (2)" id="1000" variant="412" subtype="13" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Plate (3)" id="1000" variant="412" subtype="14" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Switch Plate (4)" id="1000" variant="412" subtype="15" anm2path="effects/effect_dead_grub.anm2" />
+
     <!-- GRIDS -->
     <entity ID="999" Variant="412" Subtype="1" Image="icons/grid_copper_poop.png" Kind="Toybox" Name="Copper Poop" />
+    <entity ID="999" Variant="412" Subtype="2" Image="icons/grid_playeronly_block.png" Kind="Toybox" Name="Player-Only Block" />
+    <entity ID="999" Variant="412" Subtype="3" Image="icons/grid_enemyonly_block.png" Kind="Toybox" Name="Enemy-Only Block" />
+
+    <entity ID="999" Variant="412" Subtype="4" Image="icons/grid_switch_block_group1.png" Kind="Toybox" Name="Switch Block - Group 1" />
+    <entity ID="999" Variant="412" Subtype="5" Image="icons/grid_switch_block_group2.png" Kind="Toybox" Name="Switch Block - Group 2" />
+    <entity ID="999" Variant="412" Subtype="6" Image="icons/grid_switch_block_group3.png" Kind="Toybox" Name="Switch Block - Group 3" />
+    <entity ID="999" Variant="412" Subtype="7" Image="icons/grid_switch_block_group4.png" Kind="Toybox" Name="Switch Block - Group 4" />
+    <entity ID="999" Variant="412" Subtype="8" Image="icons/grid_switch_block_inactive_group1.png" Kind="Toybox" Name="Inactive Switch Block - Group 1" />
+    <entity ID="999" Variant="412" Subtype="9" Image="icons/grid_switch_block_inactive_group2.png" Kind="Toybox" Name="Inactive Switch Block - Group 2" />
+    <entity ID="999" Variant="412" Subtype="10" Image="icons/grid_switch_block_inactive_group3.png" Kind="Toybox" Name="Inactive Switch Block - Group 3" />
+    <entity ID="999" Variant="412" Subtype="11" Image="icons/grid_switch_block_inactive_group4.png" Kind="Toybox" Name="Inactive Switch Block - Group 4" />
+    <entity ID="999" Variant="412" Subtype="12" Image="icons/grid_switch_plate_group1.png" Kind="Toybox" Name="Switch Plate - Group 1" />
+    <entity ID="999" Variant="412" Subtype="13" Image="icons/grid_switch_plate_group2.png" Kind="Toybox" Name="Switch Plate - Group 2" />
+    <entity ID="999" Variant="412" Subtype="14" Image="icons/grid_switch_plate_group3.png" Kind="Toybox" Name="Switch Plate - Group 3" />
+    <entity ID="999" Variant="412" Subtype="15" Image="icons/grid_switch_plate_group4.png" Kind="Toybox" Name="Switch Plate - Group 4" />
 
     <!-- TOYBOX GROUPINGS -->
     <group Name="Toybox Enemies">
         <entity Name="Stumpy"/>
         <entity Name="Tonsil (Toybox)"/>
+        <entity Name="Eye Spy (Toybox)"/>
     </group>
     <group Name="Toybox Pickups">
         <entity Name="Lonely Key"/>
@@ -70,6 +115,21 @@
     </group>
     <group Name="Toybox Grids">
         <entity Name="Copper Poop"/>
+        <entity Name="Player-Only Block"/>
+        <entity Name="Enemy-Only Block"/>
+
+        <entity Name="Switch Block - Group 1"/>
+        <entity Name="Switch Block - Group 2"/>
+        <entity Name="Switch Block - Group 3"/>
+        <entity Name="Switch Block - Group 4"/>
+        <entity Name="Inactive Switch Block - Group 1"/>
+        <entity Name="Inactive Switch Block - Group 2"/>
+        <entity Name="Inactive Switch Block - Group 3"/>
+        <entity Name="Inactive Switch Block - Group 4"/>
+        <entity Name="Switch Plate - Group 1"/>
+        <entity Name="Switch Plate - Group 2"/>
+        <entity Name="Switch Plate - Group 3"/>
+        <entity Name="Switch Plate - Group 4"/>
     </group>
 
     <!-- VANILLA ENEMY GROUPINGS -->
@@ -97,6 +157,10 @@
     </group>
     <group Label="Keys">
         <entity Name="Lonely Key" />
+    </group>
+    <group Label="Grids">
+        <entity Name="Player-Only Block"/>
+        <entity Name="Enemy-Only Block"/>
     </group>
     <group Label="Poops">
         <entity Name="Copper Poop" />

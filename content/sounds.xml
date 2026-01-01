@@ -80,6 +80,11 @@
 		<sample weight="1" path="poof.wav" />
 	</sound>
 
+	<sound name="(TOYBOX) Rock Scrape">
+	<sample weight="1" path="rock_scrape2.wav" />
+		<sample weight="1" path="rock_scrape3.wav" />
+	</sound>
+
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />
 	</sound>

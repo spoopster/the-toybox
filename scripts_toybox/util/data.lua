@@ -2,32 +2,39 @@
 local MODEntityData = {}
 local MODExtraData = {}             --! ONE=RUN ONLY, NOT ENTITY DEPENDENT
 local MODPersistentData = {}        --! PERSISTS ACROSS RUNS
-local MODGridEntityData = {}
+ToyboxMod.GridEntityData = {}
+
+local function getGridEntSeed(ent)
+    return tostring(ent:GetSaveState().SpawnSeed)..tostring(ent:GetGridIndex())
+end
 
 function ToyboxMod:getGridEntityDataTable(entity)
-    if(not MODGridEntityData[entity:GetSaveState().SpawnSeed]) then MODGridEntityData[entity:GetSaveState().SpawnSeed]={} end
+    local seed = getGridEntSeed(entity)
+    if(not ToyboxMod.GridEntityData[seed]) then ToyboxMod.GridEntityData[seed]={} end
 
-    return MODGridEntityData[entity:GetSaveState().SpawnSeed]
+    return ToyboxMod.GridEntityData[seed]
 end
 function ToyboxMod:getGridEntityData(entity, key)
-    if(not MODGridEntityData[entity:GetSaveState().SpawnSeed]) then MODGridEntityData[entity:GetSaveState().SpawnSeed]={} end
+    local seed = getGridEntSeed(entity)
+    if(not ToyboxMod.GridEntityData[seed]) then ToyboxMod.GridEntityData[seed]={} end
 
-    return MODGridEntityData[entity:GetSaveState().SpawnSeed][key]
+    return ToyboxMod.GridEntityData[seed][key]
 end
 function ToyboxMod:setGridEntityData(entity, key, val)
+    local seed = getGridEntSeed(entity)
     local exists = true
-    if(not MODGridEntityData[entity:GetSaveState().SpawnSeed]) then
-        MODGridEntityData[entity:GetSaveState().SpawnSeed]={}
+    if(not ToyboxMod.GridEntityData[seed]) then
+        ToyboxMod.GridEntityData[seed]={}
         exists=false
     end
 
-    MODGridEntityData[entity:GetSaveState().SpawnSeed][key]=val
+    ToyboxMod.GridEntityData[seed][key]=val
 
     return exists
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, math.huge,
     function()
-        MODGridEntityData = {}
+        --ToyboxMod.GridEntityData = {}
     end
 )
 

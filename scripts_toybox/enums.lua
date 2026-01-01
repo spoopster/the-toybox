@@ -287,6 +287,7 @@ ToyboxMod.EFFECT_JUICE_TRAIL = Isaac.GetEntityVariantByName("Good Juice Trail") 
 ToyboxMod.EFFECT_METEOR = Isaac.GetEntityVariantByName("Meteor") ---@type EffectVariant
 ToyboxMod.EFFECT_SMOKE_TRAIL = Isaac.GetEntityVariantByName("Smoke Trail") ---@type EffectVariant
 ToyboxMod.EFFECT_FLAME_BREATH_HELPER = Isaac.GetEntityVariantByName("Flame Breath Helper") ---@type EffectVariant
+ToyboxMod.EFFECT_FEAR_LIGHT = Isaac.GetEntityVariantByName("Enemy Fear Light") ---@type EffectVariant
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 
 ToyboxMod.EFFECT_GRID_HELPER = Isaac.GetEntityVariantByName("Toybox Grid Helper") ---@type EffectVariant
@@ -345,6 +346,7 @@ ToyboxMod.SFX_HAZE = Isaac.GetSoundIdByName("(TOYBOX) Haze")
 ToyboxMod.SFX_DRILL = Isaac.GetSoundIdByName("(TOYBOX) Drill")
 ToyboxMod.SFX_MEOW = Isaac.GetSoundIdByName("(TOYBOX) Meow")
 ToyboxMod.SFX_POOF = Isaac.GetSoundIdByName("(TOYBOX) Poof")
+ToyboxMod.SFX_ROCK_SCRAPE = Isaac.GetSoundIdByName("(TOYBOX) Rock Scrape")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then
@@ -377,6 +379,20 @@ ToyboxMod.EFFECT_AURA_HOLY_MANTLE = Isaac.GetEntitySubTypeByName("Holy Mantle Au
 ToyboxMod.EFFECT_AURA_44 = Isaac.GetEntitySubTypeByName("4 4 Aura")
 
 ToyboxMod.GRID_COPPER_POOP = Isaac.GetEntitySubTypeByName("Copper Poop")
+ToyboxMod.GRID_PLAYERONLY_BLOCK = Isaac.GetEntitySubTypeByName("Player-Only Block")
+ToyboxMod.GRID_ENEMYONLY_BLOCK = Isaac.GetEntitySubTypeByName("Enemy-Only Block")
+ToyboxMod.GRID_SWITCH_BLOCK_1 = Isaac.GetEntitySubTypeByName("Switch Block (1)")
+ToyboxMod.GRID_SWITCH_BLOCK_2 = Isaac.GetEntitySubTypeByName("Switch Block (2)")
+ToyboxMod.GRID_SWITCH_BLOCK_3 = Isaac.GetEntitySubTypeByName("Switch Block (3)")
+ToyboxMod.GRID_SWITCH_BLOCK_4 = Isaac.GetEntitySubTypeByName("Switch Block (4)")
+ToyboxMod.GRID_SWITCH_BLOCK_INACTIVE_1 = Isaac.GetEntitySubTypeByName("Switch Block (Inactive) (1)")
+ToyboxMod.GRID_SWITCH_BLOCK_INACTIVE_2 = Isaac.GetEntitySubTypeByName("Switch Block (Inactive) (2)")
+ToyboxMod.GRID_SWITCH_BLOCK_INACTIVE_3 = Isaac.GetEntitySubTypeByName("Switch Block (Inactive) (3)")
+ToyboxMod.GRID_SWITCH_BLOCK_INACTIVE_4 = Isaac.GetEntitySubTypeByName("Switch Block (Inactive) (4)")
+ToyboxMod.GRID_SWITCH_PLATE_1 = Isaac.GetEntitySubTypeByName("Switch Plate (1)")
+ToyboxMod.GRID_SWITCH_PLATE_2 = Isaac.GetEntitySubTypeByName("Switch Plate (2)")
+ToyboxMod.GRID_SWITCH_PLATE_3 = Isaac.GetEntitySubTypeByName("Switch Plate (3)")
+ToyboxMod.GRID_SWITCH_PLATE_4 = Isaac.GetEntitySubTypeByName("Switch Plate (4)")
 
 ToyboxMod.SHADER_EMPTY = "ToyboxEmptyShader" ---@type ShaderType
 ToyboxMod.SHADER_BLOOM = "ToyboxBloomShader" ---@type ShaderType
@@ -414,6 +430,7 @@ ToyboxMod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
 ToyboxMod.NPC_MAIN = Isaac.GetEntityTypeByName("Stumpy")
 ToyboxMod.VAR_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
 ToyboxMod.VAR_TONSIL = Isaac.GetEntityVariantByName("Tonsil")
+ToyboxMod.VAR_EYE_SPY = Isaac.GetEntityVariantByName("Eye Spy")
 
 ToyboxMod.VAR_DOODLE = Isaac.GetEntityVariantByName("Doodledude")
 
@@ -444,6 +461,7 @@ ToyboxMod.CUSTOM_CALLBACKS = {
     POST_CUSTOM_CHAMPION_INIT = "TOYBOX_POST_CUSTOM_CHAMPION_INIT",
     POST_POOP_DAMAGE = "TOYBOX_POST_POOP_DAMAGE",
     POOP_SPAWN_DROP = "TOYBOX_POOP_SPAWN_DROP",
+    POST_GRID_INIT = "TOYBOX_POST_GRID_INIT",
     POST_POOP_INIT = "TOYBOX_POST_POOP_INIT",
 }
 

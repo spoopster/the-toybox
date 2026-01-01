@@ -89,13 +89,15 @@ function ToyboxMod:saveProgress()
 
     save.persistentData = convertDataToSaveData(ToyboxMod:getPersistentDataTable(), persistentBaseData)
 
-    save.configData = convertDataToSaveData(ToyboxMod:cloneTable(ToyboxMod.CONFIG), {})
+    save.configData = convertDataToSaveData({}, ToyboxMod:cloneTable(ToyboxMod.CONFIG))
+
+    save.gridData = convertDataToSaveData({}, ToyboxMod:cloneTable(ToyboxMod.GridEntityData))
 
 	ToyboxMod:SaveData(json.encode(save))
 end
 
 function ToyboxMod:saveNewFloor()
-    if(ToyboxMod.IS_DATA_LOADED) then ToyboxMod:saveProgress() end
+    if(ToyboxMod.IS_DATA_LOADED) then ToyboxMod:saveProgress(); ToyboxMod.GridEntityData = {} end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, ToyboxMod.saveNewFloor)
 function ToyboxMod:saveGameExit(save)
@@ -123,6 +125,7 @@ function ToyboxMod:dataSaveInit(player)
     if(#Isaac.FindByType(1)==0) then
         ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getExtraDataTable(), extraBaseData)
         ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getPersistentDataTable(), persistentBaseData)
+        ToyboxMod.GridEntityData = {}
     end
 
     if(Game():GetFrameCount()~=0 and ToyboxMod:HasData()) then
@@ -141,6 +144,7 @@ function ToyboxMod:dataSaveInit(player)
                 ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getExtraDataTable(), convertSaveDataToTable(save.extraData))
             end
             if(save.persistentData) then ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getPersistentDataTable(), convertSaveDataToTable(save.persistentData)) end
+            if(save.gridData) then ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod.GridEntityData, convertSaveDataToTable(save.gridData)) end
         end
     else
         if(Game():GetFrameCount()==0 and ToyboxMod:HasData() and #Isaac.FindByType(1)==0) then

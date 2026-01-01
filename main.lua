@@ -38,6 +38,7 @@ include("scripts_toybox.util.callbacks.post_room_clear")
 include("scripts_toybox.util.callbacks.post_custom_champion_death")
 include("scripts_toybox.util.callbacks.post_poop_damage")
 include("scripts_toybox.util.callbacks.poop_spawn_drop")
+include("scripts_toybox.util.callbacks.post_grid_init")
 include("scripts_toybox.util.callbacks.post_poop_init")
 -- LIBRARIES
 include("scripts_toybox.util.custom_object_spawn")
@@ -55,6 +56,7 @@ include("scripts_toybox.statuseffects.overflowing")
 include("scripts_toybox.enemies.stone creep.logic")
 include("scripts_toybox.enemies.stumpy.logic")
 include("scripts_toybox.enemies.tonsil.logic")
+include("scripts_toybox.enemies.eye spy.logic")
 include("scripts_toybox.enemies.doodle.logic")
 -- BOSSES
 --SHYGALS
@@ -83,8 +85,13 @@ include("scripts_toybox.misc.tinted_rooms.room_effects")
 -- ENTITIES
 include("scripts_toybox.misc.entities.meteor")
 include("scripts_toybox.misc.entities.flame_breath_helper")
-include("scripts_toybox.misc.entities.copper_poop")
 include("scripts_toybox.misc.entities.sleepy_troll_bomb")
+
+-- GRIDS
+include("scripts_toybox.misc.grids.copper_poop")
+include("scripts_toybox.misc.grids.player_only_gate")
+include("scripts_toybox.misc.grids.enemy_only_gate")
+include("scripts_toybox.misc.grids.block_and_plate")
 
 -- MILCOM
 include("scripts_toybox.players.milcom.a.milcom")
