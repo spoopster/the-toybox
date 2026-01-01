@@ -510,7 +510,7 @@
     </entity>
     <entity name="Eye Spy"
         id="783" variant="3" anm2path="enemies/eye_spy.anm2" friction="1"
-        baseHP="1" stageHP="0" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13"
+        baseHP="1" stageHP="0" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="13" shutdoors="false"
         numGridCollisionPoints="12" shadowSize="14" tags="noreroll">
 		<gibs amount="6" blood="1" bone="1" dust="0" eye="0" gut="1" large="0" rock="0"/>
     </entity>

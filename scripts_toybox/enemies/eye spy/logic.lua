@@ -6,6 +6,8 @@ local START_ROTATION_DURATION = 36
 local LIGHT_ARC = 30
 local MAX_LIGHT_DIST = 5*40
 
+local MIN_FEAR_CNT = 30*2
+
 -----------------------------------------------------------------------------------------------------
 --------------------------------------------- NPC LOGIC ---------------------------------------------
 -----------------------------------------------------------------------------------------------------
@@ -146,7 +148,7 @@ local function lightUpdate(_, effect)
     end
 
     for _, ent in ipairs(entitiesToFear) do
-        ent:AddFear(EntityRef(sp), 2)
+        ent:AddFear(EntityRef(sp), math.max(0, MIN_FEAR_CNT-ent:GetFearCountdown()))
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, lightUpdate, ToyboxMod.EFFECT_FEAR_LIGHT)
