@@ -15,7 +15,7 @@ local VALID_ROCKS = {
     [GridEntityType.GRID_ROCK] = true,
     [GridEntityType.GRID_ROCKT] = true,
     [GridEntityType.GRID_ROCK_BOMB] = true,
-    [GridEntityType.GRID_ROCK_ALT] = true,
+    --[GridEntityType.GRID_ROCK_ALT] = true,
     --[GridEntityType.GRID_TNT] = true,
     [GridEntityType.GRID_ROCK_SS] = true,
     [GridEntityType.GRID_ROCK_SPIKED] = true,
@@ -189,7 +189,7 @@ local function stumpyUpdte(_, npc)
         end
 
         if(npc.StateFrame==GROUND_HIDE_DURATION) then
-            npc.StateFrame = 0
+            npc.StateFrame = -math.random(0,5)
             if(npc.I1==0) then
                 npc.State = NpcState.STATE_IDLE
             else

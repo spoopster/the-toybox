@@ -47,7 +47,7 @@ local function replaceHelper(_, effect)
     elseif(SWITCH_PLATE_SUB_GROUPS[effect.SubType]) then
         local room = Game():GetRoom()
         local idx = room:GetGridIndex(effect.Position)
-        local worked = room:SpawnGridEntity(idx, GridEntityType.GRID_PRESSURE_PLATE, 0, effect.InitSeed)
+        local worked = room:SpawnGridEntity(idx, GridEntityType.GRID_PRESSURE_PLATE, 1, effect.InitSeed)
         if(worked) then
             local block = room:GetGridEntity(idx)
             if(block) then
@@ -142,8 +142,8 @@ local function plateUpdate(_, ent)
     local sp = ent:GetSprite()
 
     local validEntity = false
-    for _, other in ipairs(Isaac.FindInRadius(ent.Position, 8, EntityPartition.PLAYER)) do
-        if(true) then
+    for _, other in ipairs(Isaac.FindInRadius(ent.Position, 8, EntityPartition.PLAYER | EntityPartition.ENEMY)) do
+        if(other:ToPlayer() or (other:IsEnemy() and not other:IsFlying())) then
             validEntity = true
             break
         end

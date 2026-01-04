@@ -76,6 +76,7 @@ local function tonsilUpdate(_, npc)
     if(npc.Target and npc.Target:Exists()) then
         if(npc.State==NpcState.STATE_IDLE and npc.ProjectileCooldown==0) then
             local distCheck = (npc.Target.Position:Distance(npc.Position)<=PROJ_DISTANCE_SHOOT)
+            local room = Game():GetRoom()
             local lineCheck, vec = room:CheckLine(npc.Position, npc.Target.Position, LineCheckMode.PROJECTILE, 1000)
             if(distCheck and lineCheck) then
                 npc.State = NpcState.STATE_ATTACK

@@ -48,3 +48,19 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_GRID_COLLISION, cancelGridColl)
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_BOMB_GRID_COLLISION, cancelGridColl)
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PROJECTILE_GRID_COLLISION, cancelGridColl)
+
+---@param npc EntityNPC
+local function postnpcrender(_, npc)
+    local room = Game():GetRoom()
+    local idx = room:GetGridIndex((npc.Position))
+    local ent = room:GetGridEntity(idx)
+    if(not (ent and ToyboxMod:getGridEntityData(ent, "ENEMYONLY_GATE"))) then return end
+
+    local centerpos = room:GetGridPosition(idx)
+    local dist = centerpos:Distance(npc.Position)/20
+    local frac = dist
+    if(centerpos.X+centerpos.Y>npc.Position.X+npc.Position.Y) then frac = -dist end
+
+    return Vector(0, -math.abs(dist-1)*40)
+end
+--ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_RENDER, postnpcrender)
