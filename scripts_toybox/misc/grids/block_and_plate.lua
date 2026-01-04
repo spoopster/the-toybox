@@ -143,7 +143,7 @@ local function plateUpdate(_, ent)
 
     local validEntity = false
     for _, other in ipairs(Isaac.FindInRadius(ent.Position, 8, EntityPartition.PLAYER | EntityPartition.ENEMY)) do
-        if(other:ToPlayer() or (other:IsEnemy() and not other:IsFlying())) then
+        if(other:ToPlayer() or (other:IsEnemy()--[[] ] and not other:IsFlying()]])) then
             validEntity = true
             break
         end
