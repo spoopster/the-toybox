@@ -201,12 +201,17 @@ local function blockUpdate(_, ent)
         ent.State = 1
     end
 
+    local room = Game():GetRoom()
+
     if(ent.State==2) then
         ent.CollisionClass = GridCollisionClass.COLLISION_NONE
+        room:SetGridPath(ent:GetGridIndex(), 500)
 
         sp:Update()
 
         return false
+    else
+        room:SetGridPath(ent:GetGridIndex(), 1000)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_UPDATE, blockUpdate, GridEntityType.GRID_PILLAR)

@@ -82,6 +82,8 @@ include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")
 include("scripts_toybox.misc.tinted_rooms.minimap_logic")
 include("scripts_toybox.misc.tinted_rooms.room_effects")
 
+--include("scripts_toybox.misc.graveyard_room")
+
 -- ENTITIES
 include("scripts_toybox.misc.entities.meteor")
 include("scripts_toybox.misc.entities.flame_breath_helper")
