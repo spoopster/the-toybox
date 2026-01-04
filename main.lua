@@ -40,6 +40,7 @@ include("scripts_toybox.util.callbacks.post_poop_damage")
 include("scripts_toybox.util.callbacks.poop_spawn_drop")
 include("scripts_toybox.util.callbacks.post_grid_init")
 include("scripts_toybox.util.callbacks.post_poop_init")
+include("scripts_toybox.util.callbacks.post_render_minimap_room")
 -- LIBRARIES
 include("scripts_toybox.util.custom_object_spawn")
 include("scripts_toybox.util.throwables")
@@ -82,7 +83,8 @@ include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")
 include("scripts_toybox.misc.tinted_rooms.minimap_logic")
 include("scripts_toybox.misc.tinted_rooms.room_effects")
 
---include("scripts_toybox.misc.graveyard_room")
+include("scripts_toybox.misc.custom_special_rooms.logic")
+include("scripts_toybox.misc.graveyard_room")
 
 -- ENTITIES
 include("scripts_toybox.misc.entities.meteor")

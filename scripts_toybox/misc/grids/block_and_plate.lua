@@ -29,11 +29,14 @@ local function replaceHelper(_, effect)
     if(SWITCH_BLOCK_SUB_GROUPS[effect.SubType]) then
         local room = Game():GetRoom()
         local idx = room:GetGridIndex(effect.Position)
+
+        room:RemoveGridEntityImmediate(idx, 0, false)
         local worked = room:SpawnGridEntity(idx, GridEntityType.GRID_PILLAR, 0, effect.InitSeed)
         if(worked) then
             local block = room:GetGridEntity(idx)
             if(block) then
                 local data = ToyboxMod:getGridEntityDataTable(block)
+                data.GRID_INIT = nil
                 data.SWITCH_BLOCK = true
                 data.SWITCH_GRID = SWITCH_BLOCK_SUB_GROUPS[effect.SubType]
                 block.State = (SWITCH_BLOCK_SUB_INACTIVE[effect.SubType] and 2 or 1)
@@ -47,11 +50,14 @@ local function replaceHelper(_, effect)
     elseif(SWITCH_PLATE_SUB_GROUPS[effect.SubType]) then
         local room = Game():GetRoom()
         local idx = room:GetGridIndex(effect.Position)
+        
+        room:RemoveGridEntityImmediate(idx, 0, false)
         local worked = room:SpawnGridEntity(idx, GridEntityType.GRID_PRESSURE_PLATE, 1, effect.InitSeed)
         if(worked) then
             local block = room:GetGridEntity(idx)
             if(block) then
                 local data = ToyboxMod:getGridEntityDataTable(block)
+                data.GRID_INIT = nil
                 data.SWITCH_PLATE = true
                 data.SWITCH_GRID = SWITCH_PLATE_SUB_GROUPS[effect.SubType]
                 block.State = 0

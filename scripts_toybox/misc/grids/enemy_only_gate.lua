@@ -4,11 +4,14 @@ local function replaceHelper(_, effect)
         effect.Visible = false
         local room = Game():GetRoom()
         local idx = room:GetGridIndex(effect.Position)
+
+        room:RemoveGridEntityImmediate(idx, 0, false)
         local worked = room:SpawnGridEntity(idx, GridEntityType.GRID_ROCKB, 0, effect.InitSeed)
         if(worked) then
             local block = room:GetGridEntity(idx)
             if(block) then
                 local data = ToyboxMod:getGridEntityDataTable(block)
+                data.GRID_INIT = nil
                 data.ENEMYONLY_GATE = true
 
                 block:Update()

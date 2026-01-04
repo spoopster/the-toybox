@@ -171,8 +171,8 @@ local function mapRenderAuras()
 
         if(normalMapOpacity>0) then
             local colormod = Color(1,1,1,normalMapOpacity)
-            for x=math.max(roomPos.X-4, 0), math.min(roomPos.X+4, 12) do
-                for y=math.max(roomPos.Y-4, 0), math.min(roomPos.Y+4, 12) do
+            for x=math.floor(math.max(roomPos.X-4, 0)), math.floor(math.min(roomPos.X+4, 12)) do
+                for y=math.floor(math.max(roomPos.Y-4, 0)), math.floor(math.min(roomPos.Y+4, 12)) do
                     local idx = x+y*13
                     local roomToRender = level:GetRoomByIdx(idx)
                     if(data.TINTED_ROOM_POSITIONS[tostring(idx)]) then

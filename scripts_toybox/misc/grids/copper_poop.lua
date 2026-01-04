@@ -13,11 +13,14 @@ local function replaceHelper(_, effect)
         effect.Visible = false
         local room = Game():GetRoom()
         local idx = room:GetGridIndex(effect.Position)
+
+        room:RemoveGridEntityImmediate(idx, 0, false)
         local worked = room:SpawnGridEntity(idx, GridEntityType.GRID_POOP, GridPoopVariant.NORMAL, effect.InitSeed)
         if(worked) then
             local poop = room:GetGridEntity(idx)
             if(poop) then
                 local data = ToyboxMod:getGridEntityDataTable(poop)
+                data.GRID_INIT = nil
                 data.COPPER_POOP = true
 
                 poop:Update()

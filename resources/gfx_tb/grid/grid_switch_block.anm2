@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="1/1/2026 1:28:04 AM" Version="130" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/4/2026 10:45:42 PM" Version="131" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="grid_switch_block.png" Id="0"/>
@@ -29,7 +29,7 @@
 			</LayerAnimations>
 			<NullAnimations/>
 			<Triggers>
-				<Trigger EventId="1" AtFrame="1"/>
+				<Trigger EventId="1" AtFrame="0"/>
 			</Triggers>
 		</Animation>
 		<Animation Name="black-retract" FrameNum="9" Loop="false">
@@ -48,7 +48,7 @@
 			</LayerAnimations>
 			<NullAnimations/>
 			<Triggers>
-				<Trigger EventId="0" AtFrame="3"/>
+				<Trigger EventId="0" AtFrame="2"/>
 			</Triggers>
 		</Animation>
 	</Animations>

@@ -1,0 +1,8 @@
+<data>
+    <room Name="Graveyard Room" Type="25" Subtype="100">
+        <Gfx BGPrefix="icons/backgrounds/graveyard_room"/>
+    </room>
+    <room Name="Temple Room" Type="25" Subtype="101">
+        <Gfx BGPrefix="icons/backgrounds/temple_room"/>
+    </room>
+</data>

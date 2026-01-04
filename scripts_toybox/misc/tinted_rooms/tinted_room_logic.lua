@@ -177,6 +177,6 @@ local function test(_, _, rng, player, flags)
     for _, _ in pairs(ToyboxMod.TINTED_ROOM) do numblablabla = numblablabla+1 end
 
     local sel = rng:RandomInt(numblablabla)
-    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel), TINT_AURA_SIZE)
+    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel), 5)
 end
---ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)
+ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)
