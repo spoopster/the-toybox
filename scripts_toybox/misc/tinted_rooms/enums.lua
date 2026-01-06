@@ -32,6 +32,18 @@ for key, val in pairs(ToyboxMod.TINTED_ROOM_COLOR) do
     ToyboxMod.TINTED_ROOM_COLOR_BITWISE[ToyboxMod.TINTED_ROOM[key]] = val
 end
 
+ToyboxMod.TINTED_ROOM_PICKER = WeightedOutcomePicker()
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.RED, 1)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.BLUE, 1)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.GREEN, 1)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.YELLOW, 1)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.PURPLE, 1)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.CYAN, 100)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.WHITE, 1)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.BLACK, 1)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.BROWN, 1)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.PINK, 1)
+
 ToyboxMod.ROOM_DIMENSIONS = {
     [RoomShape.ROOMSHAPE_1x1] = Vector(1,1),
     [RoomShape.ROOMSHAPE_IH] = Vector(1,1),

@@ -939,24 +939,6 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{Collectible105}} All non-timed active items have 6 charges and trigger the effect of The D6",
     },
-    Modifiers = {
-        {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = function(descObj)
-                return ToyboxMod.CONFIG.SUPER_RETROFALL_BROS
-            end,
-            ToModify = function(descObj)
-                local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
-                local data = ToyboxMod.SUPER_RETROFALL_DICE[selId]
-
-                descObj.Description = string.gsub(descObj.Description, "{{Collectible105}}", "{{Collectible"..data.ID.."}}")
-                descObj.Description = string.gsub(descObj.Description, "6 charges", data.Charges.." charges")
-                descObj.Description = string.gsub(descObj.Description, "The D6", data.Name)
-
-                return descObj.Description
-            end
-        },
-    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_BRUNCH,
@@ -2209,7 +2191,7 @@ enums.FUNCTIONS.AddCard({
     Name = "Mantle - Gold",
     Description = {
         "{{Coin}} Removes 1 coin, spawns a random pickup",
-        "Only has a 5% chance to be consumed on use",
+        "Only has a 10% chance to be consumed on use",
     },
     Modifiers = {
         {
@@ -2637,16 +2619,9 @@ enums.FUNCTIONS.AddGlobalModifier({
 
                 return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL)
             end,
-            ToModify = function(descObj)
-                if(ToyboxMod.CONFIG.SUPER_RETROFALL_BROS) then
-                    local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
-                    local data = ToyboxMod.SUPER_RETROFALL_DICE[selId]
-
-                    return "{{Collectible"..ToyboxMod.COLLECTIBLE_RETROFALL.."}} Triggers the effect of "..data.Name
-                else
-                    return "{{Collectible"..ToyboxMod.COLLECTIBLE_RETROFALL.."}} Triggers the effect of The D6"
-                end
-            end
+            ToModify = {
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_RETROFALL.."}} Triggers the effect of The D6",
+            }
         }
     }
 })

@@ -1,20 +1,5 @@
 local REPLACED_CHARGE = 6
 
-ToyboxMod.SUPER_RETROFALL_DICE = {
-    {ID=CollectibleType.COLLECTIBLE_D1, Charges=4, Suffix="d1", Name="D1"},
-    {ID=CollectibleType.COLLECTIBLE_D4, Charges=6, Suffix="d4", Name="D4"},
-    {ID=CollectibleType.COLLECTIBLE_D6, Charges=6, Suffix="d6", Name="The D6"},
-    {ID=CollectibleType.COLLECTIBLE_ETERNAL_D6, Charges=2, Suffix="ed6", Name="Eternal D6"},
-    {ID=CollectibleType.COLLECTIBLE_D7, Charges=3, Suffix="d7", Name="D7"},
-    {ID=CollectibleType.COLLECTIBLE_D8, Charges=4, Suffix="d8", Name="D8"},
-    {ID=CollectibleType.COLLECTIBLE_D10, Charges=2, Suffix="d10", Name="D10"},
-    {ID=CollectibleType.COLLECTIBLE_D12, Charges=3, Suffix="d12", Name="D12"},
-    {ID=CollectibleType.COLLECTIBLE_D20, Charges=6, Suffix="d20", Name="D20"},
-    {ID=CollectibleType.COLLECTIBLE_D100, Charges=6, Suffix="d100", Name="D100"},
-    {ID=CollectibleType.COLLECTIBLE_SPINDOWN_DICE, Charges=6, Suffix="spindown", Name="Spindown Dice"},
-    {ID=ToyboxMod.COLLECTIBLE_D, Charges=1, Suffix="d0", Name="D0"},
-}
-
 function ToyboxMod:canApplyRetrofall(id)
     local conf = Isaac.GetItemConfig():GetCollectible(id)
     if(not (conf and conf.Type==ItemType.ITEM_ACTIVE and conf.ChargeType==ItemConfig.CHARGE_NORMAL)) then return false end
@@ -33,24 +18,14 @@ local function doRetrofallReroll(_)
         end
     end
     --]]
-    if(ToyboxMod.CONFIG.SUPER_RETROFALL_BROS) then
-        local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
-        Isaac.GetPlayer():UseActiveItem(ToyboxMod.SUPER_RETROFALL_DICE[selId].ID, UseFlag.USE_NOANIM, -1)
-    else
-        Isaac.GetPlayer():UseActiveItem(CollectibleType.COLLECTIBLE_D6, UseFlag.USE_NOANIM, -1)
-    end
+    Isaac.GetPlayer():UseActiveItem(CollectibleType.COLLECTIBLE_D6, UseFlag.USE_NOANIM, -1)
 end
 
 ---@param id CollectibleType
 ---@param pl EntityPlayer
 local function replaceRetroCharge(_, id, pl, vardata, current)
     if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL) and ToyboxMod:canApplyRetrofall(id)) then
-        if(ToyboxMod.CONFIG.SUPER_RETROFALL_BROS) then
-            local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
-            return ToyboxMod.SUPER_RETROFALL_DICE[selId].Charges
-        else
-            return REPLACED_CHARGE
-        end
+        return REPLACED_CHARGE
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, replaceRetroCharge)
@@ -59,12 +34,7 @@ local function giveExtraInitialCharge(_, id, charge, firstTime, slot, var, pl)
     if(not (firstTime and pl:HasCollectible(ToyboxMod.COLLECTIBLE_RETROFALL) and ToyboxMod:canApplyRetrofall(id))) then return end
 
     if(charge==Isaac.GetItemConfig():GetCollectible(id).MaxCharges) then
-        if(ToyboxMod.CONFIG.SUPER_RETROFALL_BROS) then
-            local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
-            return {id, ToyboxMod.SUPER_RETROFALL_DICE[selId].Charges, firstTime, slot, var}
-        else
-            return {id, REPLACED_CHARGE, firstTime, slot, var}
-        end
+        return {id, REPLACED_CHARGE, firstTime, slot, var}
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, giveExtraInitialCharge)
@@ -253,16 +223,3 @@ local function replaceRetrofallDesc(_, title, subtitle, sticky, curse)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ITEM_TEXT_DISPLAY, replaceRetrofallDesc)
-
-local function superRetrofallStart(_, isContinued)
-    if(not ToyboxMod.CONFIG.SUPER_RETROFALL_BROS) then return end
-
-    if(not isContinued) then
-        local rng = ToyboxMod:generateRng()
-        ToyboxMod:setExtraData("SUPER_RETROFALL_ID", rng:RandomInt(#ToyboxMod.SUPER_RETROFALL_DICE)+1)
-    end
-
-    local selId = ToyboxMod:getExtraData("SUPER_RETROFALL_ID") or 3
-    Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_RETROFALL).GfxFileName = "gfx_tb/items/collectibles/retrofall/retrofall_"..ToyboxMod.SUPER_RETROFALL_DICE[selId].Suffix..".png"
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, superRetrofallStart)

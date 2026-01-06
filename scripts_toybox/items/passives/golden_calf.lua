@@ -8,7 +8,7 @@ local HP_MOD = 0.5
 ---@param npc EntityNPC
 local function resummonOnKill(_, npc)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_GOLDEN_CALF)) then return end
-    if(npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then return end
+    if(npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) or not ToyboxMod:isValidEnemy(npc)) then return end
 
     local pl = PlayerManager.FirstCollectibleOwner(ToyboxMod.COLLECTIBLE_GOLDEN_CALF)
     local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_GOLDEN_CALF)

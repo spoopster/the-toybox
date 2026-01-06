@@ -49,6 +49,7 @@ local function evaluateTintedRoomEffects()
         pl:AddCacheFlags(CacheFlag.CACHE_ALL)
         ToyboxMod:setEntityData(pl, "IN_TINTED_ROOM", ToyboxMod:isTintedRoom())
     end
+    Isaac.RunCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_NEW_ROOM_TINTED)
 
     --print(ToyboxMod:getTintedRoomTint())
 
@@ -153,7 +154,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_LEVEL_LAYOUT_GENERATED, resetTintedRo
 local function evaluateTintedRoom(_)
     evaluateTintedRoomEffects()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, evaluateTintedRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, evaluateTintedRoom)
 
 local function workTintedRoomGradient(_)
     local buffer = ToyboxMod:getExtraData("TINTED_ROOM_GRADIENT")
@@ -164,7 +165,13 @@ local function workTintedRoomGradient(_)
         local idx = (frames//TINT_GRADIENT_DURATION)%(#buffer)+1
 
         local col = ToyboxMod.TINTED_ROOM_COLOR_BITWISE[buffer[idx]]
-        local modif = ColorModifier(1+col.Red*0.3, 1+col.Green*0.3, 1+col.Blue*0.3, col.Alpha*0.6, 0, 1.05)
+        local modif = ColorModifier(col.Red, col.Green, col.Blue, col.Alpha*0.4, 0, 1.05)
+        if(buffer[idx]==ToyboxMod.TINTED_ROOM.BLACK or buffer[idx]==ToyboxMod.TINTED_ROOM.WHITE) then
+            modif.R = modif.R+0.5
+            modif.G = modif.G+0.5
+            modif.B = modif.B+0.5
+        end
+
         Game():SetColorModifier(modif, true, 0.02)
     end
 end
@@ -176,7 +183,7 @@ local function test(_, _, rng, player, flags)
     local numblablabla = 0
     for _, _ in pairs(ToyboxMod.TINTED_ROOM) do numblablabla = numblablabla+1 end
 
-    local sel = rng:RandomInt(numblablabla)
-    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, 1<<(sel), 5)
+    local sel = ToyboxMod.TINTED_ROOM_PICKER:PickOutcome(rng)
+    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, sel, 5)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)
+--ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)

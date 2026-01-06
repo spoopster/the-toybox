@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="1/4/2026 10:45:42 PM" Version="131" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/5/2026 11:03:19 PM" Version="135" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="grid_switch_block.png" Id="0"/>
@@ -48,7 +48,7 @@
 			</LayerAnimations>
 			<NullAnimations/>
 			<Triggers>
-				<Trigger EventId="0" AtFrame="2"/>
+				<Trigger EventId="0" AtFrame="3"/>
 			</Triggers>
 		</Animation>
 	</Animations>

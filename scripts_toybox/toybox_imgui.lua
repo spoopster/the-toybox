@@ -181,31 +181,6 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 	end
 
 	do -- ITEM SHADER
-		local optionID = getOptionID("EpicItemShaders")
-
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
-			"Cool Item Shader"
-		)
-		ImGui.AddCombobox("ToyboxOptionsWindow", optionID, "", nil, {"None", "Retro", "Gold (QUALITY 5!)"}, 0, false)
-		ImGui.AddCallback(optionID,
-			ImGuiCallback.Render,
-			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.EPIC_ITEM_MODE)
-			end
-		)
-		ImGui.AddCallback(optionID,
-			ImGuiCallback.Edited,
-			function(v)
-				ToyboxMod.CONFIG.EPIC_ITEM_MODE = v
-			end
-		)
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-			"Applies a cool shader to all spawned items."
-		)
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
-	end
-
-	do -- ITEM SHADER
 		local optionID = getOptionID("DadsSlipperColor")
 
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
@@ -221,31 +196,6 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
 			"Changes the color of Dad's Slipper."
-		)
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
-	end
-
-	do -- MORE STATS
-		local optionID = getOptionID("SuperRETROMode")
-
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
-			"Super RETRO Mode"
-		)
-		ImGui.AddCheckbox("ToyboxOptionsWindow", optionID, "", nil, false)
-		ImGui.AddCallback(optionID,
-			ImGuiCallback.Render,
-			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.SUPER_RETROFALL_BROS)
-			end
-		)
-		ImGui.AddCallback(optionID,
-			ImGuiCallback.Edited,
-			function(v)
-				ToyboxMod.CONFIG.SUPER_RETROFALL_BROS = v
-			end
-		)
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-			"Makes RETROFALL mimic a random dice instead of just The D6."
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 	end

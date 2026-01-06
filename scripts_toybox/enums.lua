@@ -354,6 +354,8 @@ for name, soundEffect in pairs(ToyboxMod) do
     end
 end
 
+ToyboxMod.BACKDROOP_GRAVEYARD = Isaac.GetBackdropIdByName("Graveyard")
+
 ToyboxMod.GIANTBOOK_BIG_BANG = Isaac.GetGiantBookIdByName("Big Bang (TOYBOX)")
 ToyboxMod.GIANTBOOK_MOMS_PHOTOBOOK = Isaac.GetGiantBookIdByName("Mom's Photobook")
 
@@ -464,6 +466,7 @@ ToyboxMod.CUSTOM_CALLBACKS = {
     POST_GRID_INIT = "TOYBOX_POST_GRID_INIT",
     POST_POOP_INIT = "TOYBOX_POST_POOP_INIT",
     POST_RENDER_MINIMAP_ROOM = "TOYBOX_POST_RENDER_MINIMAP_ROOM",
+    POST_NEW_ROOM_TINTED = "TOYBOX_POST_NEW_ROOM_TINTED",
 }
 
 ToyboxMod.DAMAGE_TYPE = {

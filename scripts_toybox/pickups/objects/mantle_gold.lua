@@ -4,6 +4,7 @@ local sfx = SFXManager()
 local COINS_REMOVE = 1
 local REMOVE_CHANCE = 0.1--0.05
 
+---@param player EntityPlayer
 local function useMantle(_, _, player, _)
     if(ToyboxMod:isAtlasA(player)) then
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.GOLD.ID)
@@ -21,6 +22,8 @@ local function useMantle(_, _, player, _)
                 player:SetCard(1, player:GetCard(0))
                 player:SetCard(0, ToyboxMod.CARD_MANTLE_GOLD)
             end
+
+            player:AnimateCard(ToyboxMod.CARD_MANTLE_GOLD, "HideItem")
         else
             sfx:Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
 

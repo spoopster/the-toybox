@@ -139,7 +139,6 @@ local function postTonsilCollision(_, npc, coll, low)
     npc.Velocity = npc.Velocity*mult*0.9
     npc.V1 = npc.V1*mult
     npc.I1 = 1
-    npc:SetColor(Color(1,1,1,1,1,1,1), 2, 1, false, false)
 
     --[ [
     if(coll.Type==ToyboxMod.NPC_MAIN and coll.Variant==ToyboxMod.VAR_TONSIL and coll:ToNPC().I1==0) then
@@ -149,7 +148,6 @@ local function postTonsilCollision(_, npc, coll, low)
         coll.Velocity = coll.Velocity*mult*0.9
         coll.V1 = coll.V1*mult
         coll.I1 = 1
-        coll:SetColor(Color(1,1,1,1,1,1,1), 2, 1, false, false)
     end
     --]]
 

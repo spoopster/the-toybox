@@ -119,7 +119,9 @@ local function switchBlockInit(_, ent, _, _)
     sp:Load("gfx_tb/grid/grid_switch_block.anm2", false)
     sp:ReplaceSpritesheet(0, "gfx_tb/grid/grid_switch_block_"..tostring(ToyboxMod:getGridEntityData(ent, "SWITCH_GRID") or 1)..".png", true)
     sp:Play((ent.State==2 and "black-retract" or "black"), true)
-    sp:SetFrame(sp:GetCurrentAnimationData():GetLength()-1)
+    while(not sp:IsFinished()) do
+        sp:Update()
+    end
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, switchBlockInit, GridEntityType.GRID_PILLAR)
 
@@ -136,6 +138,17 @@ local function switchPlateInit(_, ent, _, _)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, switchPlateInit, GridEntityType.GRID_PRESSURE_PLATE)
 
+local function surroundingEntOnBlock(pos)
+    local anysurroundingentity = nil
+    for _, other in ipairs(Isaac.FindInRadius(pos, 16, EntityPartition.PLAYER | EntityPartition.ENEMY)) do
+        if(other:ToPlayer() or (other:IsEnemy()--[[] ] and not other:IsFlying()]])) then
+            anysurroundingentity = true
+            break
+        end
+    end
+    return anysurroundingentity
+end
+
 ---@param ent GridEntityPressurePlate
 local function plateUpdate(_, ent)
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_PLATE")) then return end
@@ -147,13 +160,7 @@ local function plateUpdate(_, ent)
 
     local sp = ent:GetSprite()
 
-    local validEntity = false
-    for _, other in ipairs(Isaac.FindInRadius(ent.Position, 8, EntityPartition.PLAYER | EntityPartition.ENEMY)) do
-        if(other:ToPlayer() or (other:IsEnemy()--[[] ] and not other:IsFlying()]])) then
-            validEntity = true
-            break
-        end
-    end
+    local validEntity = surroundingEntOnBlock(ent.Position)
 
     if(ent.State==1) then
         if(validEntity) then
@@ -164,11 +171,11 @@ local function plateUpdate(_, ent)
             local adj = ToyboxMod:getGridEntityData(ent, "SWITCH_PLATE_NEIGHBORHOOD") or {}
 
             for _, grididx in ipairs(adj) do
-                local othersp = room:GetGridEntity(grididx):GetSprite()
-                if(othersp:GetAnimation()=="black") then
-                    othersp:Play("black-retract", true)
+                local otherent = room:GetGridEntity(grididx)
+                if(otherent.State==1) then
+                    otherent.State = 2
                 else
-                    othersp:Play("black", true)
+                    otherent.State = 1
                 end
             end
 
@@ -195,24 +202,31 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_PRESSUREPLATE_UPDATE, plat
 ---@param ent GridEntityRock
 local function blockUpdate(_, ent)
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_BLOCK")) then return end
+    if(not ToyboxMod:getGridEntityData(ent, "GRID_INIT")) then return end
 
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_VISITED")) then
         getBlockNeighborhood(ent)
     end
 
     local sp = ent:GetSprite()
-    if(sp:IsEventTriggered("makewalkable")) then
-        ent.State = 2
-    elseif(sp:IsEventTriggered("makeunwalkable")) then
-        ent.State = 1
-    end
-
     local room = Game():GetRoom()
 
     if(ent.State==2) then
-        ent.CollisionClass = GridCollisionClass.COLLISION_NONE
-        room:SetGridPath(ent:GetGridIndex(), 500)
+        if(sp:GetAnimation()~="black-retract" and sp:IsFinished()) then
+            sp:Play("black-retract", true)
+        end
+    elseif(ent.State==1) then
+        if(sp:GetAnimation()~="black" and sp:IsFinished()) then
+            local anynearbyentities = surroundingEntOnBlock(ent.Position)
+            if(not anynearbyentities) then
+                sp:Play("black", true)
+            end
+        end
+    end
 
+    if((sp:GetAnimation()=="black-retract" and sp:WasEventTriggered("makewalkable")) or (sp:GetAnimation()=="black" and not sp:WasEventTriggered("makeunwalkable"))) then
+        ent.CollisionClass = GridCollisionClass.COLLISION_NONE
+        room:SetGridPath(ent:GetGridIndex(), 0)
         sp:Update()
 
         return false
@@ -226,8 +240,12 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_UPDATE, blockUpdate, 
 local function blockRender(_, ent)
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_BLOCK")) then return end
 
-    if(ent.State==2) then
-        ent:GetSprite():Render(Isaac.WorldToRenderPosition(ent.Position)+Game():GetRoom():GetRenderScrollOffset())
+    local sp = ent:GetSprite()
+    if((sp:GetAnimation()=="black-retract" and sp:WasEventTriggered("makewalkable")) or (sp:GetAnimation()=="black" and not sp:WasEventTriggered("makeunwalkable"))) then
+        --sp:Render(Isaac.WorldToRenderPosition(ent.Position)+Game():GetRoom():GetRenderScrollOffset())
     end
+
+    sp:Render(Isaac.WorldToRenderPosition(ent.Position)+Game():GetRoom():GetRenderScrollOffset())
+    return false
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_ROCK_RENDER, blockRender, GridEntityType.GRID_PILLAR)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, blockRender, GridEntityType.GRID_PILLAR)

@@ -1,0 +1,12 @@
+<backdrops gfxroot="gfx_tb/backdrop/" gridgfxroot="gfx_tb/grid/" effectsgfxroot="gfx_tb/effects/">
+    <backdrop name="Graveyard" reftype="14" gfx="graveyard.png" walls="1" wallvariants="3" floors="1" floorvariants="6"
+        lfloorgfx   = "graveyard_lfloor.png"
+        nfloorgfx   = "graveyard_nfloor.png"
+        props       = "graveyard_props.anm2"
+        rocks       = "graveyard_rocks.png"
+        pit         = "graveyard_pit.png"
+        bridge      = "graveyard_bridge.png"
+        door        = "graveyard_door.png"
+        holeinwall  = "graveyard_doorhole.png"
+    />
+</backdrops>

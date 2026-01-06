@@ -9,6 +9,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_POOP_UPDATE, updateGrid)
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_ROCK_UPDATE, updateGrid)
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_PIT_UPDATE, updateGrid)
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_PRESSUREPLATE_UPDATE, updateGrid)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_DOOR_UPDATE, updateGrid)
 
 local function initOnNewRoom(_)
     local room = Game():GetRoom()

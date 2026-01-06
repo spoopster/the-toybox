@@ -186,10 +186,11 @@ local function stumpyUpdte(_, npc)
     elseif(npc.State==NpcState.STATE_SPECIAL) then
         if(npc.StateFrame==1) then
             npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+            npc.I2 = math.random(0,5)
         end
 
-        if(npc.StateFrame==GROUND_HIDE_DURATION) then
-            npc.StateFrame = -math.random(0,5)
+        if(npc.StateFrame==GROUND_HIDE_DURATION+npc.I2) then
+            npc.StateFrame = 0
             if(npc.I1==0) then
                 npc.State = NpcState.STATE_IDLE
             else
