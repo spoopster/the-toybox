@@ -9,7 +9,7 @@ local HEART_REPLACEMENT_CHANCES = {
 
 ---@param pickup EntityPickup
 local function upgradeHalfHearts(_, pickup, var, sub, rvar, rsub, rng)
-    if(var~=10 or not (rvar==0 or rsub==0)) then return end
+    --if(var~=10 or not (rvar==0 or rsub==0)) then return end
 
     local allAtlasA = ToyboxMod:getAllAtlasA()
     if(#allAtlasA==0) then return end

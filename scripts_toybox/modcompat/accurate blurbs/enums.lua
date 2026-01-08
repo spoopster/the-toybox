@@ -72,7 +72,6 @@ local TRINKETS = {
     [ToyboxMod.TRINKET_WONDER_DRUG] =             "More common gold pills and horse pills",
     [ToyboxMod.TRINKET_AMBER_FOSSIL] =            "Blue flies may be locusts",
     [ToyboxMod.TRINKET_JONAS_LOCK] =              "Pills give a random stat up",
-    [ToyboxMod.TRINKET_SINE_WORM] =               "Tears + range up + tears accelerate and decelerate",
     [ToyboxMod.TRINKET_BIG_BLIND] =               "Enemies may drop coins when hurt",
     [ToyboxMod.TRINKET_BATH_WATER] =              "Damaging creep puddle when hurt",
     [ToyboxMod.TRINKET_BLACK_RUNE_SHARD] =        "Blue insects may be coins",

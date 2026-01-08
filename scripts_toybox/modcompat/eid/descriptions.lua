@@ -1452,6 +1452,7 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+--[[
 enums.FUNCTIONS.AddTrinket({
     ID = ToyboxMod.TRINKET_SINE_WORM,
     Name = "Sine Worm",
@@ -1479,6 +1480,7 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+--]]
 enums.FUNCTIONS.AddTrinket({
     ID = ToyboxMod.TRINKET_BIG_BLIND,
     Name = "Big Blind",
@@ -1843,6 +1845,31 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_GASOLINE,
+    Name = "Gasoline",
+    Description = {
+        "{{Burning}} On Fire debuff lasts forever, and deals damage 50% more often",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"50%%", "100%%"}
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"50%%", "150%%"}
+            }
+        },
+    },
+})
+
+
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_PRISMSTONE,

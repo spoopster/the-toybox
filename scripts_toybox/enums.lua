@@ -186,7 +186,6 @@ ToyboxMod.TRINKET_ANTIBIOTICS = Isaac.GetTrinketIdByName("Antibiotics")
 ToyboxMod.TRINKET_WONDER_DRUG = Isaac.GetTrinketIdByName("Wonder Drug")
 ToyboxMod.TRINKET_AMBER_FOSSIL = Isaac.GetTrinketIdByName("Amber Fossil")
 ToyboxMod.TRINKET_JONAS_LOCK = Isaac.GetTrinketIdByName("Jonas' Lock")
-ToyboxMod.TRINKET_SINE_WORM = Isaac.GetTrinketIdByName("Sine Worm")
 ToyboxMod.TRINKET_BIG_BLIND = Isaac.GetTrinketIdByName("Big Blind")
 ToyboxMod.TRINKET_BATH_WATER = Isaac.GetTrinketIdByName("Bath Water")
 ToyboxMod.TRINKET_BLACK_RUNE_SHARD = Isaac.GetTrinketIdByName("Black Rune Shard")
@@ -202,9 +201,11 @@ ToyboxMod.TRINKET_MAKEUP_KIT = Isaac.GetTrinketIdByName("Make-Up Kit")
 ToyboxMod.TRINKET_ZAP_CAP = Isaac.GetTrinketIdByName("Zap Cap")
 ToyboxMod.TRINKET_MISPRINT = Isaac.GetTrinketIdByName("Misprint")
 ToyboxMod.TRINKET_CUTOUT = Isaac.GetTrinketIdByName("Cutout")
+ToyboxMod.TRINKET_GASOLINE = Isaac.GetTrinketIdByName("Gasoline")
 
---ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")            --*UNUSED
---ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")            --*UNUSED
+--ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
+--ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED
+--ToyboxMod.TRINKET_SINE_WORM = Isaac.GetTrinketIdByName("Sine Worm")                   --*UNUSED
 
 ToyboxMod.CARD_PRISMSTONE = Isaac.GetCardIdByName("Prismstone")
 ToyboxMod.CARD_FOIL_CARD = Isaac.GetCardIdByName("Foil Card")
@@ -420,22 +421,11 @@ ToyboxMod.RED_HEART_SUBTYPES = {
 }
 
 ToyboxMod.NPC_DUMMY_NPC = Isaac.GetEntityTypeByName("Toybox Dummy NPC")
-
-ToyboxMod.NPC_BOSS = Isaac.GetEntityTypeByName("Shy Gal")
-ToyboxMod.BOSS_SHYGAL = Isaac.GetEntityVariantByName("Shy Gal")
-ToyboxMod.NPC_SHYGAL_CLONE = Isaac.GetEntityVariantByName("Shy Gal Clone")
-ToyboxMod.NPC_SHYGAL_MASK = Isaac.GetEntityVariantByName("Shy Gal Mask")
-
-ToyboxMod.BOSS_RED_MEGALODON = Isaac.GetEntityVariantByName("Red Megalodon")
-ToyboxMod.NPC_STONE_CREEP_VAR = Isaac.GetEntityVariantByName("Stone Creep")
-
-ToyboxMod.NPC_MAIN = Isaac.GetEntityTypeByName("Stumpy")
-ToyboxMod.VAR_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
-ToyboxMod.VAR_TONSIL = Isaac.GetEntityVariantByName("Tonsil")
-ToyboxMod.VAR_EYE_SPY = Isaac.GetEntityVariantByName("Eye Spy")
-
-ToyboxMod.VAR_DOODLE = Isaac.GetEntityVariantByName("Doodledude")
-
+ToyboxMod.NPC_ENEMY = Isaac.GetEntityTypeByName("Stumpy")
+ToyboxMod.NPC_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
+ToyboxMod.NPC_TONSIL = Isaac.GetEntityVariantByName("Tonsil")
+ToyboxMod.NPC_EYE_SPY = Isaac.GetEntityVariantByName("Eye Spy")
+ToyboxMod.NPC_KING_HOST = Isaac.GetEntityVariantByName("King Host")
 
 
 ---@type CallbackID[]

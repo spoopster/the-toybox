@@ -54,17 +54,12 @@ include("scripts_toybox.statuseffects.electrified")
 include("scripts_toybox.statuseffects.overflowing")
 
 -- ENEMIES
-include("scripts_toybox.enemies.stone creep.logic")
 include("scripts_toybox.enemies.stumpy.logic")
 include("scripts_toybox.enemies.tonsil.logic")
 include("scripts_toybox.enemies.eye spy.logic")
-include("scripts_toybox.enemies.doodle.logic")
+include("scripts_toybox.enemies.king host.logic")
 -- BOSSES
---SHYGALS
-    include("scripts_toybox.bosses.shygal.shygal_logic")
---RED MEGALODON
-    include("scripts_toybox.bosses.red megalodon.red_megalodon_logic")
-include("scripts_toybox.bosses.stageapi")
+--include("scripts_toybox.bosses.stageapi")
 
 -- TEMPORARY ITEMS
 include("scripts_toybox.misc.temporary_items")
@@ -264,7 +259,6 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")
     include("scripts_toybox.items.trinkets.amber_fossil")
-    include("scripts_toybox.items.trinkets.sine_worm")
     include("scripts_toybox.items.trinkets.big_blind")
     include("scripts_toybox.items.trinkets.jonas_lock")
     include("scripts_toybox.items.trinkets.big_boy_bathwater")
@@ -281,14 +275,16 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.trinkets.zap_cap")
     include("scripts_toybox.items.trinkets.misprint")
     include("scripts_toybox.items.trinkets.cutout")
+    include("scripts_toybox.items.trinkets.gasoline")
 --UNUSED
-    --include("scripts_toybox.items.actives.btrain")
+    --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")
     --include("scripts_toybox.items.unused.scattered_tome")
     --include("scripts_toybox.items.unused.toy_gun")
     --include("scripts_toybox.items.unused.foam_bullet")
     --include("scripts_toybox.items.unused.malicious_brain")
     --include("scripts_toybox.items.unused.limit_break")
+    --include("scripts_toybox.items.unused.sine_worm")
 --JOKE
     include("scripts_toybox.items.troll.equalizer")
     include("scripts_toybox.items.troll.golden_prayer_card")

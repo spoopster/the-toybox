@@ -26,7 +26,7 @@ local VALID_ROCKS = {
 
 ---@param npc EntityNPC
 local function stumpyInit(_, npc)
-    if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_STUMPY)) then return end
 
     npc:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
     npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
@@ -36,11 +36,11 @@ local function stumpyInit(_, npc)
     npc.StateFrame = IDLE_WAIT_DURATION
     npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, stumpyInit, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, stumpyInit, ToyboxMod.NPC_ENEMY)
 
 ---@param npc EntityNPC
 local function stumpyUpdte(_, npc)
-    if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_STUMPY)) then return end
     local sp = npc:GetSprite()
     local data = ToyboxMod:getEntityDataTable(npc)
 
@@ -201,11 +201,11 @@ local function stumpyUpdte(_, npc)
 
     npc.StateFrame = npc.StateFrame+1
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, stumpyUpdte, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, stumpyUpdte, ToyboxMod.NPC_ENEMY)
 
 ---@param npc EntityNPC
 local function renderRockOnStumpy(_, npc, offset)
-    if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_STUMPY)) then return end
     local sp = npc:GetSprite()
     local data = ToyboxMod:getEntityDataTable(npc)
 
@@ -213,11 +213,11 @@ local function renderRockOnStumpy(_, npc, offset)
     local renderPos = Isaac.WorldToRenderPosition(npc.Position)+offset+sp:GetNullFrame("rockpos"):GetPos()*1.2
     data.STUMPY_ROCKSPRITE:Render(renderPos)
 end
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_NPC_RENDER, math.huge, renderRockOnStumpy, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_NPC_RENDER, math.huge, renderRockOnStumpy, ToyboxMod.NPC_ENEMY)
 
 ---@param npc Entity
 local function spawnRockOnDeath(_, npc)
-    if(not (npc.Variant==ToyboxMod.VAR_STUMPY)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_STUMPY)) then return end
     npc = npc:ToNPC()
 
     local sp = npc:GetSprite()
@@ -233,7 +233,7 @@ local function spawnRockOnDeath(_, npc)
         ToyboxMod:setEntityData(proj, "STUMPY_ROCKPROJ", data.STUMPY_ROCKDESC.Type)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, spawnRockOnDeath, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, spawnRockOnDeath, ToyboxMod.NPC_ENEMY)
 
 ---@param proj EntityProjectile
 local function rockProjectileDeath(_, proj)

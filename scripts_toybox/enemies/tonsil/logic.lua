@@ -18,7 +18,7 @@ end
 
 ---@param npc EntityNPC
 local function tonsilInit(_, npc)
-    if(not (npc.Variant==ToyboxMod.VAR_TONSIL)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_TONSIL)) then return end
 
     npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_BULLET
     npc:GetSprite():Play("Idle", true)
@@ -31,11 +31,11 @@ local function tonsilInit(_, npc)
     npc.State = NpcState.STATE_IDLE
     npc.ProjectileCooldown = PROJ_COOLDOWN
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, tonsilInit, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, tonsilInit, ToyboxMod.NPC_ENEMY)
 
 ---@param npc EntityNPC
 local function tonsilUpdate(_, npc)
-    if(not (npc.Variant==ToyboxMod.VAR_TONSIL)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_TONSIL)) then return end
 
     local sp = npc:GetSprite()
     if(sp:IsFinished("Shoot")) then
@@ -107,12 +107,12 @@ local function tonsilUpdate(_, npc)
     npc.StateFrame = npc.StateFrame+1
     --npc.I1 = 0
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, tonsilUpdate, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, tonsilUpdate, ToyboxMod.NPC_ENEMY)
 
 ---@param npc EntityNPC
 ---@param coll Entity
 local function postTonsilCollision(_, npc, coll, low)
-    if(not (npc.Variant==ToyboxMod.VAR_TONSIL)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_TONSIL)) then return end
 
     local diff = (coll.Position-npc.Position):Normalized()
 
@@ -141,7 +141,7 @@ local function postTonsilCollision(_, npc, coll, low)
     npc.I1 = 1
 
     --[ [
-    if(coll.Type==ToyboxMod.NPC_MAIN and coll.Variant==ToyboxMod.VAR_TONSIL and coll:ToNPC().I1==0) then
+    if(coll.Type==ToyboxMod.NPC_ENEMY and coll.Variant==ToyboxMod.NPC_TONSIL and coll:ToNPC().I1==0) then
         coll = coll:ToNPC() ---@cast coll EntityNPC
         
         coll.Position = coll.Position-coll.Velocity*offset*0.7
@@ -153,4 +153,4 @@ local function postTonsilCollision(_, npc, coll, low)
 
     sfx:Play(905, 0.5, 2, false, 0.8+math.random()*0.2)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_COLLISION, postTonsilCollision, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_COLLISION, postTonsilCollision, ToyboxMod.NPC_ENEMY)

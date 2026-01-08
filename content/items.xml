@@ -1090,13 +1090,10 @@
 
     achievement="Jonas' Lock"
 />
-<trinket id="6" name="Sine Worm"
-    description="Bwoeowoeow!"
-    gfx="sine_worm.png"
-    tags="noeden"
-    cache="firedelay range"
-
-    hidden="true"
+<trinket id="6" name="Gasoline"
+    description="Burn everything"
+    gfx="no_sprite.png"
+    cache=""
 />
 <trinket id="7" name="Big Blind"
     description="Ante up!"
@@ -1172,6 +1169,11 @@
     cache=""
 
     achievement="Cutout"
+/>
+<trinket id="20" name="Nightcap"
+    description="Nighty night!"
+    gfx="nightcap.png"
+    cache=""
 />
 
 <null id="1" name="toybox null save"

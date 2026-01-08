@@ -458,44 +458,6 @@
     </entity>
 
     <!-- NPCS -->
-    <entity name="Toybox Dummy NPC"
-        anm2path="enemies/red_megalodon.anm2" friction="1"
-        baseHP="1" boss="0" champion="0" collisionDamage="1" collisionMass="1" collisionRadius="1"
-        numGridCollisionPoints="8" shadowSize="1" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-
-    <entity name="Shy Gal"
-        id="782" variant="1" subtype="0" anm2path="bosses/shygals/boss_shygal.anm2" friction="1"
-        baseHP="180" boss="1" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="15"
-        numGridCollisionPoints="8" shadowSize="20" stageHP="0">
-		<gibs amount="10" blood="1" bone="1" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Shy Gal Clone"
-        id="782" variant="2" subtype="0" anm2path="bosses/shygals/boss_shygal.anm2" friction="1"
-        baseHP="18" boss="0" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="15"
-        numGridCollisionPoints="8" shadowSize="20" stageHP="3">
-        <gibs amount="25" blood="1" bone="1" eye="1" gut="1" large="0" />
-    </entity>
-    <entity name="Shy Gal Mask"
-        id="782" variant="3" subtype="0" anm2path="bosses/shygals/shygal_mask.anm2" friction="1"
-        baseHP="1" boss="0" champion="0" collisionDamage="1" collisionMass="80" collisionRadius="8"
-        numGridCollisionPoints="8" shadowSize="12" stageHP="0">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Red Megalodon"
-        id="782" variant="4" subtype="0" anm2path="enemies/red_megalodon.anm2" friction="1"
-        baseHP="100" boss="1" champion="0" collisionDamage="1" collisionMass="75" collisionRadius="35"
-        numGridCollisionPoints="8" shadowSize="20" stageHP="0">
-		<gibs amount="10" blood="1" bone="1" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Stone Creep"
-        id="240" variant="100" subtype="0" anm2path="enemies/stone_creep.anm2" friction="1"
-        baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="14" collisionRadius="13"
-        numGridCollisionPoints="12" shadowSize="0" stageHP="0" tags="spider" shutdoors="false">
-		<gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1"/>
-    </entity>
-    
     <entity name="Stumpy"
         id="783" variant="1" subtype="0" anm2path="enemies/stumpy.anm2" friction="1"
         baseHP="15" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="16"
@@ -514,11 +476,10 @@
         numGridCollisionPoints="12" shadowSize="14" tags="noreroll">
 		<gibs amount="6" blood="1" bone="1" dust="0" eye="0" gut="1" large="0" rock="0"/>
     </entity>
-
-    <entity name="Doodledude"
-        id="783" variant="222" subtype="0" anm2path="enemies/doodle.anm2" friction="1"
-        baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="20"
-        numGridCollisionPoints="12" shadowSize="0" stageHP="3">
-		<gibs amount="6" blood="1" bone="1" dust="0" eye="0" gut="0" large="0" rock="0"/>
+    <entity name="King Host"
+        id="783" variant="4" anm2path="enemies/king_host.anm2" friction="1"
+        baseHP="20" stageHP="5" boss="0" champion="1" collisionDamage="0" collisionMass="30" collisionRadius="26"
+        numGridCollisionPoints="12" shadowSize="39" tags="noreroll">
+		<gibs amount="16" blood="1" bone="0" dust="0" eye="1" gut="1" large="1" rock="0"/>
     </entity>
 </entities>

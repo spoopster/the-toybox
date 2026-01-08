@@ -21,7 +21,7 @@ end
 
 ---@param npc EntityNPC
 local function eyeSpyInit(_, npc)
-    if(not (npc.Variant==ToyboxMod.VAR_EYE_SPY)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_EYE_SPY)) then return end
 
     local dir = (npc.SubType & 3)
     if(dir==0) then npc.I1=0
@@ -49,11 +49,11 @@ local function eyeSpyInit(_, npc)
     npc:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
     npc:AddEntityFlags(EntityFlag.FLAG_NO_TARGET | EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, eyeSpyInit, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, eyeSpyInit, ToyboxMod.NPC_ENEMY)
 
 ---@param npc EntityNPC
 local function eyeSpyUpdate(_, npc)
-    if(not (npc.Variant==ToyboxMod.VAR_EYE_SPY)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_EYE_SPY)) then return end
 
     local sp = npc:GetSprite()
 
@@ -79,22 +79,22 @@ local function eyeSpyUpdate(_, npc)
 
     npc.StateFrame = npc.StateFrame+1
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, eyeSpyUpdate, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, eyeSpyUpdate, ToyboxMod.NPC_ENEMY)
 
 ---@param npc EntityNPC
 local function eyeSpyDeath(_, npc)
-    if(not (npc.Variant==ToyboxMod.VAR_EYE_SPY)) then return end
+    if(not (npc.Variant==ToyboxMod.NPC_EYE_SPY)) then return end
 
     npc.Child:Remove()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, eyeSpyDeath, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, eyeSpyDeath, ToyboxMod.NPC_ENEMY)
 
 local function eyeSpyTakeDmg(_, npc)
-    if(npc.Variant==ToyboxMod.VAR_EYE_SPY) then
+    if(npc.Variant==ToyboxMod.NPC_EYE_SPY) then
         return false
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, eyeSpyTakeDmg, ToyboxMod.NPC_MAIN)
+ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, eyeSpyTakeDmg, ToyboxMod.NPC_ENEMY)
 
 -----------------------------------------------------------------------------------------------------
 -------------------------------------------- LIGHT LOGIC --------------------------------------------
