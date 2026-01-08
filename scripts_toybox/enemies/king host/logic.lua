@@ -7,7 +7,7 @@ local MIN_COOLDOWN_ATTACKED = 30*2
 local MAX_COOLDOWN = 30*6
 local BOMB_ANIM_MIN_COOLDOWN = 30*2.5
 
-local DISTANCE_MAX = 40*6
+local DISTANCE_MAX = 40*20
 
 ---@param npc EntityNPC
 local function kingHostInit(_, npc)
@@ -45,11 +45,16 @@ local function kingHostUpdate(_, npc)
         end
 
         if(npc.ProjectileCooldown==0) then
-            local target = npc:GetPlayerTarget()
-            if(target and target.Position:Distance(npc.Position)<DISTANCE_MAX) then
-                if(Game():GetRoom():CheckLine(npc.Position, target.Position, LineCheckMode.PROJECTILE)) then
-                    npc.State = NpcState.STATE_ATTACK
-                    npc.StateFrame = 0
+            local room = Game():GetRoom()
+            local screenpos = room:WorldToScreenPosition(npc.Position)
+            local screenbounds = Vector(Isaac.GetScreenWidth(), Isaac.GetScreenHeight())
+            if(screenpos.X>0 and screenpos.X<screenbounds.X and screenpos.Y>0 and screenpos.Y<screenbounds.Y) then
+                local target = npc:GetPlayerTarget()
+                if(target and target.Position:Distance(npc.Position)<DISTANCE_MAX) then
+                    if(room:CheckLine(npc.Position, target.Position, LineCheckMode.PROJECTILE)) then
+                        npc.State = NpcState.STATE_ATTACK
+                        npc.StateFrame = 0
+                    end
                 end
             end
         end

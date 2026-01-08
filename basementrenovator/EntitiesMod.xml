@@ -33,6 +33,7 @@
             </checkbox>
         </bitfield>
     </entity>
+    <entity ID="783" Variant="4" Image="icons/enemy_king_host.png" Kind="Toybox" Name="King Host" />
 
     <!-- PICKUPS -->
     <entity ID="4" Variant="522" Image="icons/pickup_sleepy_troll_bomb.png" Kind="Toybox" Name="Sleepy Troll Bomb" />
@@ -94,6 +95,7 @@
         <entity Name="Stumpy"/>
         <entity Name="Tonsil (Toybox)"/>
         <entity Name="Eye Spy (Toybox)"/>
+        <entity Name="King Host"/>
     </group>
     <group Name="Toybox Pickups">
         <entity Name="Lonely Key"/>
@@ -146,6 +148,9 @@
     <group Label="Catacombs Enemies">
         <entity Name="Stumpy" />
     </group>
+    <group Label="Chapter 4 (Main Path) Enemies">
+        <entity Name="King Host" />
+    </group>
 
     <!-- VANILLA MISC GROUPING -->
     <group Label="(Pickups) Random">
@@ -161,6 +166,20 @@
     <group Label="Grids">
         <entity Name="Player-Only Block"/>
         <entity Name="Enemy-Only Block"/>
+    </group>
+    <group Label="Events">
+        <entity Name="Switch Block - Group 1"/>
+        <entity Name="Switch Block - Group 2"/>
+        <entity Name="Switch Block - Group 3"/>
+        <entity Name="Switch Block - Group 4"/>
+        <entity Name="Inactive Switch Block - Group 1"/>
+        <entity Name="Inactive Switch Block - Group 2"/>
+        <entity Name="Inactive Switch Block - Group 3"/>
+        <entity Name="Inactive Switch Block - Group 4"/>
+        <entity Name="Switch Plate - Group 1"/>
+        <entity Name="Switch Plate - Group 2"/>
+        <entity Name="Switch Plate - Group 3"/>
+        <entity Name="Switch Plate - Group 4"/>
     </group>
     <group Label="Poops">
         <entity Name="Copper Poop" />
