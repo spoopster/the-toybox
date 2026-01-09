@@ -1175,6 +1175,31 @@
     gfx="nightcap.png"
     cache=""
 />
+<trinket id="21" name="Lootbox"
+    description="Super special shopkeepers"
+    gfx="no_sprite.png"
+    cache=""
+/>
+<trinket id="22" name="Spiteful Penny"
+    description="Wealth of hatred"
+    gfx="spited_penny.png"
+    cache=""
+/>
+<trinket id="23" name="Library Card"
+    description="Accessible knowledge"
+    gfx="no_sprite.png"
+    cache=""
+/>
+<trinket id="24" name="Lifetime Supply"
+    description="Unlimited pickups"
+    gfx="no_sprite.png"
+    cache=""
+/>
+<trinket id="25" name="Rubbing Alcohol"
+    description="Feel the burn"
+    gfx="rubbing_alcohol.png"
+    cache=""
+/>
 
 <null id="1" name="toybox null save"
     persistent="true"

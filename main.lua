@@ -54,10 +54,10 @@ include("scripts_toybox.statuseffects.electrified")
 include("scripts_toybox.statuseffects.overflowing")
 
 -- ENEMIES
-include("scripts_toybox.enemies.stumpy.logic")
-include("scripts_toybox.enemies.tonsil.logic")
-include("scripts_toybox.enemies.eye spy.logic")
-include("scripts_toybox.enemies.king host.logic")
+include("scripts_toybox.enemies.stumpy")
+include("scripts_toybox.enemies.tonsil")
+include("scripts_toybox.enemies.eye_spy")
+include("scripts_toybox.enemies.king_host")
 -- BOSSES
 --include("scripts_toybox.bosses.stageapi")
 
@@ -276,6 +276,12 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.trinkets.misprint")
     include("scripts_toybox.items.trinkets.cutout")
     include("scripts_toybox.items.trinkets.gasoline")
+    include("scripts_toybox.items.trinkets.lootbox")
+    include("scripts_toybox.items.trinkets.nightcap")
+    include("scripts_toybox.items.trinkets.spiteful_penny")
+    include("scripts_toybox.items.trinkets.library_card")
+    include("scripts_toybox.items.trinkets.lifetime_supply")
+    include("scripts_toybox.items.trinkets.rubbing_alcohol")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")

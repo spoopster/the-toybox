@@ -68,8 +68,9 @@ local function maxVectorComponents(vec, num)
     return Vector(math.max(vec.X, num), math.max(vec.Y, num))
 end
 
-local function runcallback(isBig, roomIdx, roomPos, roomSize, mapAlpha, TLclamp, BRclamp, brclamp2)
-    Isaac.RunCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_RENDER_MINIMAP_ROOM,
+local function runcallback(isBig, roomIdx, roomPos, roomSize, mapAlpha, TLclamp, BRclamp, brclamp2, rtype)
+    Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.POST_RENDER_MINIMAP_ROOM,
+        rtype,
         isBig, -- is it rendered on the big map?
         roomIdx, -- room grid index
         roomPos, -- room render position
@@ -81,7 +82,7 @@ local function runcallback(isBig, roomIdx, roomPos, roomSize, mapAlpha, TLclamp,
     )
 end
 
-local function tryRenderAuraAtLevelIdxSmall(renderRoom, centerPos, centerSize, colormod)
+local function tryRenderAuraAtLevelIdxSmall(renderRoom, centerPos, centerSize, colormod, rtype)
     if(renderRoom.DisplayFlags == RoomDescriptor.DISPLAY_NONE) then return end
 
     local topLeftPos = ToyboxMod:gridIndexToPositionVector(renderRoom.GridIndex)
@@ -103,10 +104,10 @@ local function tryRenderAuraAtLevelIdxSmall(renderRoom, centerPos, centerSize, c
     local bottomRightClamp = maxVectorComponents(relativePos+roomSize-SMALL_MINIMAP_SIZE, 0)
     local bottomRightClamp2 = maxVectorComponents(relativePos+ROOM_GRID_SIZE-SMALL_MINIMAP_SIZE, 0)
 
-    runcallback(false, renderRoom.SafeGridIndex, mapCornerPos+relativePos, roomSize, colormod, topLeftClamp, bottomRightClamp, bottomRightClamp2)
+    runcallback(false, renderRoom.SafeGridIndex, mapCornerPos+relativePos, roomSize, colormod, topLeftClamp, bottomRightClamp, bottomRightClamp2, rtype)
 end
 
-local function tryRenderAuraAtLevelIdxBig(renderRoom, bounds, colormod)
+local function tryRenderAuraAtLevelIdxBig(renderRoom, bounds, colormod, rtype)
     if(renderRoom.DisplayFlags == RoomDescriptor.DISPLAY_NONE) then return end
 
     local mapCornerPos = Vector(Isaac.GetScreenWidth(), 0)+Vector(-24,12)*Options.HUDOffset+Vector(-1,0)*Minimap.GetDisplayedSize()+Vector(0,2)
@@ -119,7 +120,7 @@ local function tryRenderAuraAtLevelIdxBig(renderRoom, bounds, colormod)
         shape = renderRoom.Data.Shape
     end
 
-    runcallback(true, renderRoom.SafeGridIndex, mapCornerPos+relativePos, ROOM_GRID_SIZE_BIG*ToyboxMod.ROOM_DIMENSIONS[shape], colormod, nil, nil, nil)
+    runcallback(true, renderRoom.SafeGridIndex, mapCornerPos+relativePos, ROOM_GRID_SIZE_BIG*ToyboxMod.ROOM_DIMENSIONS[shape], colormod, nil, nil, nil, rtype)
 end
 
 local function mapRenderAuras()
@@ -143,7 +144,7 @@ local function mapRenderAuras()
                     local idx = x+y*13
                     local roomToRender = level:GetRoomByIdx(idx)
                     if(roomToRender.SafeGridIndex==idx) then
-                        tryRenderAuraAtLevelIdxSmall(roomToRender, roomPos, roomSize, normalMapOpacity)
+                        tryRenderAuraAtLevelIdxSmall(roomToRender, roomPos, roomSize, normalMapOpacity, (roomToRender.Data and roomToRender.Data.Type or 0))
                     end
                 end
             end
@@ -168,7 +169,7 @@ local function mapRenderAuras()
                     local idx = x+y*13
                     local roomToRender = level:GetRoomByIdx(idx)
                     if(roomToRender.SafeGridIndex==idx) then
-                        tryRenderAuraAtLevelIdxBig(roomToRender, mapbounds, expandedMapOpacity)
+                        tryRenderAuraAtLevelIdxBig(roomToRender, mapbounds, expandedMapOpacity, (roomToRender.Data and roomToRender.Data.Type or 0))
                     end
                 end
             end

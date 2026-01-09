@@ -1868,6 +1868,116 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_LOOTBOX,
+    Name = "Lootbox",
+    Description = {
+        "Shopkeepers have a 50% chance to be replaced by a random chest",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"50%%", "100%%"}
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"50%%", "100%%"}
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_SPITEFUL_PENNY,
+    Name = "Spiteful Penny",
+    Description = {
+        "Picking up a coin deals 5 damage to all enemies in the room, and has a 10% chance to deal fake damage to Isaac",
+        "Damage and chance increases with the coin's value"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"5 damage", "10 damage"},
+                {"10%% chance", "20%% chance"}
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"5 damage", "15 damage"},
+                {"10%% chance", "30%% chance"}
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_NIGHTCAP,
+    Name = "Nightcap",
+    Description = {
+        "Makes all Troll Bombs sleepy",
+        "Sleepy Troll Bombs don't wake up when you touch them"
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_LIBRARY_CARD,
+    Name = "Library Card",
+    Description = {
+        "{{Library}} Treasure Room items are replaced with Library items",
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_LIFETIME_SUPPLY,
+    Name = "Lifetime Supply",
+    Description = {
+        "At the start of every floor, gain {{Coin}} Coins, {{Bomb}} Bombs, and {{Key}} Keys until you have at least 3 of each",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"3 of each", "4 of each"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"3 of each", "5 of each"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_RUBBING_ALCOHOL,
+    Name = "Rubbing Alcohol",
+    Description = {
+        "{{Poison}} Poison and {{Burning}} Burning deal 2x Damage",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"2x Damage", "2.5x Damage"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"2x Damage", "3x Damage"},
+            }
+        },
+    },
+})
 
 
 

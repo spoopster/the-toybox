@@ -202,6 +202,12 @@ ToyboxMod.TRINKET_ZAP_CAP = Isaac.GetTrinketIdByName("Zap Cap")
 ToyboxMod.TRINKET_MISPRINT = Isaac.GetTrinketIdByName("Misprint")
 ToyboxMod.TRINKET_CUTOUT = Isaac.GetTrinketIdByName("Cutout")
 ToyboxMod.TRINKET_GASOLINE = Isaac.GetTrinketIdByName("Gasoline")
+ToyboxMod.TRINKET_NIGHTCAP = Isaac.GetTrinketIdByName("Nightcap")
+ToyboxMod.TRINKET_LOOTBOX = Isaac.GetTrinketIdByName("Lootbox")
+ToyboxMod.TRINKET_SPITEFUL_PENNY = Isaac.GetTrinketIdByName("Spiteful Penny")
+ToyboxMod.TRINKET_LIBRARY_CARD = Isaac.GetTrinketIdByName("Library Card")
+ToyboxMod.TRINKET_LIFETIME_SUPPLY = Isaac.GetTrinketIdByName("Lifetime Supply")
+ToyboxMod.TRINKET_RUBBING_ALCOHOL = Isaac.GetTrinketIdByName("Rubbing Alcohol")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED
@@ -419,6 +425,18 @@ ToyboxMod.RED_HEART_SUBTYPES = {
     --[HeartSubType.HEART_ROTTEN] = true,
     --[HeartSubType.HEART_BLENDED] = true,
 }
+
+ToyboxMod.CHEST_PICKER = WeightedOutcomePicker()
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_CHEST,        1)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_LOCKEDCHEST,  1)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_REDCHEST,     0.5)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_BOMBCHEST,    0.5)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_ETERNALCHEST, 0.1)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_SPIKEDCHEST,  0.1)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_MIMICCHEST,   0.1)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_WOODENCHEST,  0.5)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_MEGACHEST,    0.01)
+    ToyboxMod.CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_HAUNTEDCHEST, 0.1)
 
 ToyboxMod.NPC_DUMMY_NPC = Isaac.GetEntityTypeByName("Toybox Dummy NPC")
 ToyboxMod.NPC_ENEMY = Isaac.GetEntityTypeByName("Stumpy")

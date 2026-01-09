@@ -1,18 +1,4 @@
-
-
 local ROOM_FREQ = 10
-
-local CHEST_PICKER = WeightedOutcomePicker()
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_CHEST,        1)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_LOCKEDCHEST,  1)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_REDCHEST,     0.5)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_BOMBCHEST,    0.5)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_ETERNALCHEST, 0.1)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_SPIKEDCHEST,  0.1)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_MIMICCHEST,   0.1)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_WOODENCHEST,  0.5)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_MEGACHEST,    0.01)
-CHEST_PICKER:AddOutcomeFloat(PickupVariant.PICKUP_HAUNTEDCHEST, 0.1)
 
 ---@param pl EntityPlayer
 local function evalCache(_, pl)
@@ -40,7 +26,7 @@ local function familiarUpdate(_, fam)
     if(fam.RoomClearCount==ROOM_FREQ) then
         local rng = fam:GetDropRNG()
 
-        local picked = CHEST_PICKER:PickOutcome(fam:GetDropRNG())
+        local picked = ToyboxMod.CHEST_PICKER:PickOutcome(fam:GetDropRNG())
         local pos = Game():GetRoom():FindFreePickupSpawnPosition(fam.Position)
         local chest = Isaac.Spawn(EntityType.ENTITY_PICKUP,picked,0,pos,Vector.Zero,nil):ToPickup()
 

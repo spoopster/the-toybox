@@ -885,3 +885,105 @@ end
 function ToyboxMod:dotProduct(v1, v2)
     return v1.X*v2.X+v1.Y*v2.Y
 end
+
+local entityPickupGroups = {
+    ["5.10.-1"] = "heart",
+    ["5.20.-1"] = "coin",
+    ["5.30.-1"] = "key",
+    ["5.40.-1"] = "bomb",
+    ["5.42.-1"] = "poop",
+    ["5.50.-1"] = "chest",
+    ["5.51.-1"] = "chest",
+    ["5.52.-1"] = "chest",
+    ["5.53.-1"] = "chest",
+    ["5.54.-1"] = "chest",
+    ["5.55.-1"] = "chest",
+    ["5.56.-1"] = "chest",
+    ["5.57.-1"] = "chest",
+    ["5.58.-1"] = "chest",
+    ["5.60.-1"] = "chest",
+    ["5.69.-1"] = "chest",
+    ["5.360.-1"] = "chest",
+    ["5.70.-1"] = "pill",
+    ["5.90.-1"] = "battery",
+    ["5.100.-1"] = "item",
+    ["5.350.-1"] = "trinket",
+    ["6.4.-1"] = "beggar",
+    ["6.5.-1"] = "beggar",
+    ["6.6.-1"] = "beggar",
+    ["6.7.-1"] = "beggar",
+    ["6.9.-1"] = "beggar",
+    ["6.13.-1"] = "beggar",
+    ["6.15.-1"] = "beggar",
+    ["6.18.-1"] = "beggar",
+    ["6.1.-1"] = "slot",
+    ["6.2.-1"] = "slot",
+    ["6.3.-1"] = "slot",
+    ["6.8.-1"] = "slot",
+    ["6.10.-1"] = "slot",
+    ["6.12.-1"] = "slot",
+    ["6.16.-1"] = "slot",
+    ["6.17.-1"] = "slot",
+    ["6.19.-1"] = "slot",
+    ["1000.161.980"] = "portal",
+}
+local gridEntityGroups = {
+    ["18.-1"] = "ladder",
+}
+
+---@param roomDesc RoomDescriptor
+function ToyboxMod:getNumPickupGroupsInRoom(roomDesc)
+    roomDesc = roomDesc or Game():GetLevel():GetCurrentRoomDesc()
+
+    local numgroups = 0
+    local seenGroups = {}
+
+    local entState = roomDesc:GetEntitiesSaveState()
+    local gridState = roomDesc:GetGridEntitiesSaveState()
+
+    for i=0, #entState-1 do
+        local ent = entState:Get(i)
+        if(ent) then
+            local str1 = tostring(ent:GetType())
+            local str2 = str1.."."..tostring(ent:GetVariant())
+            local str3 = str2.."."..tostring(ent:GetSubType())
+            str2 = str2..".-1"
+            str1 = str1..".-1.-1"
+
+            local group = entityPickupGroups[str1] or entityPickupGroups[str2] or entityPickupGroups[str3] or nil
+
+            if(group and not seenGroups[group]) then
+                seenGroups[group] = true
+                numgroups = numgroups+1
+            end
+        end
+    end
+    for i=0, #gridState-1 do
+        local ent = gridState:Get(i)
+        if(ent) then
+            local str1 = tostring(ent.Type)
+            local str2 = str1.."."..tostring(ent.Variant)
+            str1 = str1..".-1"
+
+            local group = gridEntityGroups[str1] or gridEntityGroups[str2] or nil
+
+            if(group and not seenGroups[group]) then
+                seenGroups[group] = true
+                numgroups = numgroups+1
+            end
+        end
+    end
+
+    return numgroups
+end
+
+function ToyboxMod:getRoomIconPosOffset(room)
+    local numgroups = ToyboxMod:getNumPickupGroupsInRoom(room)+1
+    if(numgroups==2) then
+        return Vector(-4,0)
+    end
+    if(numgroups>2) then
+        return Vector(-4,-4)
+    end
+    return Vector(0,0)
+end

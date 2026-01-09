@@ -4,8 +4,7 @@ local REPLACE_CHANCE = 0.02
 local function postTrollBombInit(_, bomb)
     if(bomb:GetDropRNG():RandomFloat()<REPLACE_CHANCE) then
         local sleepy = Isaac.Spawn(EntityType.ENTITY_BOMB,ToyboxMod.BOMB_SLEEPY_TROLL_BOMB,0,bomb.Position,bomb.Velocity,bomb.SpawnerEntity):ToBomb()
-        sleepy:SetExplosionCountdown(sleepy:GetExplosionCountdown())
-
+        
         bomb.Visible = false
         bomb:Remove()
     end
@@ -59,6 +58,8 @@ local function postBombUpdate(_, bomb)
                 end
             end
         end
+
+        bomb.Velocity = bomb.Velocity*0.96
     else
         bomb.Velocity = bomb.Velocity*0.96
     end
@@ -69,7 +70,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, postBombUpdate, ToyboxMo
 ---@param coll Entity
 local function postBombCollision(_, bomb, coll)
     if(bomb.SubType==0) then
-        if(coll:ToPlayer() or coll:ToNPC()) then
+        if((coll:ToPlayer() and not coll:ToPlayer():HasTrinket(ToyboxMod.TRINKET_NIGHTCAP)) or coll:ToNPC()) then
             bomb.SubType = 1
             bomb:GetSprite():Play("HopAwake", true)
         end
