@@ -22,6 +22,7 @@
 	<achievement name="Bone Boy!" text="" gfx="ach_bone_boy.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Ascension" text="" gfx="ach_ascension.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Miracle Mantle" text="" gfx="ach_miracle_mantle.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Conglomerate" text="" gfx="ach_mantles.png" gfxback="achpaper_atlas.png" />
 
 	<!-- Jonas unlocks -->
 	<achievement name="Giant Capsule" text="" gfx="ach_giant_capsule.png" gfxback="achpaper_jonas.png" />
@@ -50,5 +51,6 @@
 	<achievement name="Cutout" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="More Champions!" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Misprint" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
+	<achievement name="Coloring Book" text="" gfx="ach_misprint.png" gfxback="achpaper_atlas.png" />
 	
 </achievements>

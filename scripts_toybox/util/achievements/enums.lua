@@ -18,7 +18,8 @@ ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_PRISMSTONE, ToyboxMod:completionM
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_AMBER_FOSSIL, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_ATLAS_A, CompletionType.MOTHER))
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_STEEL_SOUL, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_ATLAS_A, CompletionType.BEAST))
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_HOSTILE_TAKEOVER, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_ATLAS_A, CompletionType.DELIRIUM))
-ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_MANTLES, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_ATLAS_A, CompletionType.MEGA_SATAN))
+--ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_MANTLES, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_ATLAS_A, CompletionType.MEGA_SATAN))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CONGLOMERATE, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_ATLAS_A, CompletionType.MEGA_SATAN))
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_MIRACLE_MANTLE, ToyboxMod:allMarkCondition(ToyboxMod.PLAYER_ATLAS_A, Difficulty.DIFFICULTY_HARD))
 
 -- jonas
@@ -48,5 +49,6 @@ ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_GREEN_APPLE, ToyboxMod:completion
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_EFFIGY, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_MILCOM_A, CompletionType.MOTHER))
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CUTOUT, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_MILCOM_A, CompletionType.BEAST))
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_MALICE, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_MILCOM_A, CompletionType.DELIRIUM))
-ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CHAMPIONS, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_MILCOM_A, CompletionType.MEGA_SATAN))
+--ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CHAMPIONS, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_MILCOM_A, CompletionType.MEGA_SATAN))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_COLORING_BOOK, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_MILCOM_A, CompletionType.MEGA_SATAN))
 --ToyboxMod:addAchievement(???, ToyboxMod:allMarkCondition(ToyboxMod.PLAYER_MILCOM_A, Difficulty.DIFFICULTY_HARD))

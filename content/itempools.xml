@@ -142,6 +142,7 @@
         <Item Name="Reading Glasses"/>
         <Item Name="Melted Candle"/>
         <Item Name="Trendsetter"/>
+        <Item Name="Coloring Book"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -161,6 +162,7 @@
         <Item Name="Reading Glasses"/>
         <Item Name="Melted Candle"/>
         <Item Name="Trendsetter"/>
+        <Item Name="Coloring Book"/>
     </Pool>
 
     <Pool Name="devil">
@@ -256,6 +258,7 @@
     <Pool Name="library">
         <Item Name="Art of War"/>
         <Item Name="Mom's Photobook"/>
+        <Item Name="Coloring Book"/>
     </Pool>
 
     <Pool Name="redChest">

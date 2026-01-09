@@ -1000,7 +1000,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_MOMS_PHOTOBOOK,
     Name = "Mom's Photobook",
     Description = {
-        "{{Confusion}} Confuses all enemies in the room for 5 seconds",
+        "{{Confusion}} Confuses all enemies in the room for 7 seconds",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1348,6 +1348,14 @@ enums.FUNCTIONS.AddItem({
         "The first room clear reward each floor replaces all room clear rewards for the rest of the floor",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_COLORING_BOOK,
+    Name = "Coloring Book",
+    Description = {
+        "Turns all non-champion non-boss enemies in the room into champions",
+    },
+})
+
 
 --- OTHER ITEM MODIFIERS ---
 

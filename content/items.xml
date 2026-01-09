@@ -945,6 +945,28 @@
 
     luck="3"
 />
+<active id="104" name="Coloring Book"
+    description="Stay within the lines"
+    gfx="no_sprite.png"
+    quality="2"
+    tags="offensive book"
+    cache=""
+
+    maxcharges="4"
+
+    achievement="Coloring Book"
+/>
+<passive id="105" name="Conglomerate"
+    description="Tougher shell"
+    gfx="no_sprite.png"
+    quality="3"
+    tags="offensive noeden"
+    cache=""
+
+    hidden="true"
+
+    achievement="Conglomerate"
+/>
 
 <passive id="109" name="RETROFALL"
     description="Classic roller"

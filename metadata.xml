@@ -10,12 +10,12 @@ Report any bugs found on [url=https://github.com/spoopster/the-toybox]the GitHub
 So far the mod has:
 - 3 playable characters: Atlas, Milcom and Jonas;
 	- Atlas and Jonas have a full* set of unlocks, Milcom's unlocks are not added yet (though some of them are in the mod, just unlocked by default)
-- 92?? findable items, and a few more you can only access by snooping in the files;
-- 17 trinkets;
+- 101?? findable items, and a few more you can only access by snooping in the files;
+- 26 trinkets;
 - 5 new (unlockable) cards, 16 new (unlockable) pill effects, 9 new (unlockable) objects;
 [strike]- It makes Hell blue;[/strike]
 - It makes Planetariums yellow!;</description>
-    <version>1.10</version>
+    <version>1.11</version>
     <visibility>Friends Only</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

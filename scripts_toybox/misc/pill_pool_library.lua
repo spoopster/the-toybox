@@ -78,6 +78,7 @@ ToyboxMod.PILL_ACHIEVEMENTS = {
     [PillEffect.PILLEFFECT_SUNSHINE] = Achievement.SUNSHINE_PILL,
     [PillEffect.PILLEFFECT_VURP] = Achievement.VURP,
 
+    --[[] ]
     [ToyboxMod.PILL_I_BELIEVE] = ToyboxMod.ACHIEVEMENT_PILLS,
     [ToyboxMod.PILL_DYSLEXIA] = ToyboxMod.ACHIEVEMENT_PILLS,
     [ToyboxMod.PILL_DMG_UP] = ToyboxMod.ACHIEVEMENT_PILLS,
@@ -94,6 +95,7 @@ ToyboxMod.PILL_ACHIEVEMENTS = {
     [ToyboxMod.PILL_HEARTBURN] = ToyboxMod.ACHIEVEMENT_PILLS,
     [ToyboxMod.PILL_MUSCLE_ATROPHY] = ToyboxMod.ACHIEVEMENT_PILLS,
     [ToyboxMod.PILL_CAPSULE] = ToyboxMod.ACHIEVEMENT_PILLS,
+    --]]
 }
 
 --! ff pill conversions

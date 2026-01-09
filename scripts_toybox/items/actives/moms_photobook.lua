@@ -1,7 +1,7 @@
 
 local sfx = SFXManager()
 
-local CONFUSION_DURATION = 30*4
+local CONFUSION_DURATION = 30*7
 
 ---@param pl EntityPlayer
 local function momsPhotobookUse(_, item, rng, pl, flags, slot, vdata)

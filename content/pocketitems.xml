@@ -155,72 +155,54 @@
         hud="Mantle - Rock"
         type="object"
         pickup="2837"
-
-        achievement="Mantles"
     />
 	<card id="201" name="Mantle - Poop"
         description="..."
         hud="Mantle - Poop"
         type="object"
         pickup="2838"
-
-        achievement="Mantles"
     />
     <card id="202" name="Mantle - Bone"
         description="..."
         hud="Mantle - Bone"
         type="object"
         pickup="2839"
-
-        achievement="Mantles"
     />
     <card id="203" name="Mantle - Dark"
         description="..."
         hud="Mantle - Dark"
         type="object"
         pickup="2840"
-
-        achievement="Mantles"
     />
     <card id="204" name="Mantle - Holy"
         description="..."
         hud="Mantle - Holy"
         type="object"
         pickup="2841"
-
-        achievement="Mantles"
     />
     <card id="205" name="Mantle - Salt"
         description="..."
         hud="Mantle - Salt"
         type="object"
         pickup="2842"
-
-        achievement="Mantles"
     />
     <card id="206" name="Mantle - Glass"
         description="..."
         hud="Mantle - Glass"
         type="object"
         pickup="2843"
-
-        achievement="Mantles"
     />
     <card id="207" name="Mantle - Metal"
         description="..."
         hud="Mantle - Metal"
         type="object"
         pickup="2844"
-
-        achievement="Mantles"
     />
     <card id="208" name="Mantle - Gold"
         description="..."
         hud="Mantle - Gold"
         type="object"
         pickup="2845"
-
-        achievement="Mantles"
     />
 
     <card id="209" name="Laurel"
