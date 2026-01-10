@@ -15,7 +15,7 @@ local function usePill(_, effect, player, flags, color)
     --print(numToRemove)
     player:AddHearts(-numToRemove)
     player:AddMaxHearts(-numToRemove)
-    player:AddBoneHearts(math.ceil(numToRemove/2))
+    player:AddBoneHearts(math.max(1, math.ceil(numToRemove/2)))
 
     sfx:Play((isHorse and SoundEffect.SOUND_THUMBSDOWN_AMPLIFIED or SoundEffect.SOUND_THUMBS_DOWN))
     player:AnimateSad()

@@ -2498,7 +2498,7 @@ enums.FUNCTIONS.AddPill({
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
-                {"second", "0.5 seconds"},
+                {"every second", "every 0.5 seconds"},
             }
         },
     }
@@ -2546,7 +2546,7 @@ enums.FUNCTIONS.AddPill({
     HorseModifiers = {
         {
             ToModify = {
-                "\1 +1.5 Damage",
+                "\1 +1.5 flat Damage",
             }
         },
         {
@@ -2597,7 +2597,7 @@ enums.FUNCTIONS.AddPill({
         },
         {
             ToModify = {
-                "\1 +1 Damage"
+                "\1 +1 flat Damage"
             }
         },
     }

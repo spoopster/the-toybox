@@ -1,6 +1,13 @@
-
+local function isSilverTreasureRoom(idx)
+    if(Game():IsGreedMode()) then
+        return idx==98
+    end
+    return false
+end
 
 local function isLibraryCardLibrary(idx)
+    if(isSilverTreasureRoom(idx)) then return false end
+
     local room = Game():GetLevel():GetRoomByIdx(idx)
     if(room.VisitedCount>0 and (ToyboxMod:getExtraData("LIBRARY_CARD_VISITED_IDXS") or {})[room.SafeGridIndex]) then
         return true
@@ -109,6 +116,8 @@ local MINIMAP_ICON_SPRITE = Sprite("gfx_tb/ui/ui_minimap_icons.anm2", true)
 MINIMAP_ICON_SPRITE:Play("IconLibraryTreasureRoom", true)
 
 local function roomIconRender(_, isBig, idx, pos, size, alpha, tlclamp, brclamp, brclamp2)
+    if(isSilverTreasureRoom(idx)) then return end
+
     if(isLibraryCardLibrary(idx)) then
         MINIMAP_ICON_SPRITE:Play("IconLibraryTreasureRoom", true)
     else

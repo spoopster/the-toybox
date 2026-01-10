@@ -4,7 +4,7 @@ ToyboxMod.CONFIG = {
 
     CHAMPIONS_IN_GREED = true,
 
-    MANTLE_WEIGHT = 0.5,
+    MANTLE_WEIGHT = 1,
     MOD_CHAMPION_CHANCE = 0.05,
 
     GOOD_JUICE_LESSLAG = 0,
