@@ -14,14 +14,14 @@ local dirString = {
     [Direction.RIGHT] = "Right",
 }
 
----@param player EntityPlayer
-local function evalCache(_, player, flags)
-    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_ZERO_GRAVITY)) then return end
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_ZERO_GRAVITY)) then return end
 
-    local num = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_ZERO_GRAVITY)
-    ToyboxMod:addBasicDamageUp(player, DMG_UP*num)
+    return val+DMG_UP*player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_ZERO_GRAVITY)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_DAMAGE)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.DAMAGE_UP)
 
 local function validGridColl(pl, coll)
     if(pl.CanFly and coll==GridCollisionClass.COLLISION_WALL) then

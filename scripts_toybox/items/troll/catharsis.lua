@@ -55,8 +55,15 @@ local function evalCache(_, pl)
     local finalTps = ToyboxMod:toTps(tearsToFiredelay(finalTearsStat))*tearsMult
     pl.MaxFireDelay = ToyboxMod:toFireDelay(math.min(finalTps, TEAR_CAP*tearsMult))
 
-    ToyboxMod:addBasicTearsUp(pl, TEARS_UP*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_CATHARSIS))
-
     ignoreTearCalc = false
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, -math.huge, evalCache, CacheFlag.CACHE_FIREDELAY)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_CATHARSIS)) then return end
+
+    return val+TEARS_UP*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_CATHARSIS)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.TEARS_UP)

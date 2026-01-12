@@ -6,7 +6,7 @@ local GOLD_MULT = 0.2
 local PILL_STAT_UPS = {
     SPEED = 0.15,
     FIREDELAY = 0.35,
-    DAMAGE = 0.45,
+    DAMAGE = 0.5,
     RANGE = 1.25,
     SHOTSPEED = 0.15,
     LUCK = 0.5,
@@ -46,17 +46,29 @@ local function evalCache(_, player, flag)
     local statTable = ToyboxMod:getEntityData(player, "JONAS_LOCK_STATBONUSES")
 
     if(flag==CacheFlag.CACHE_SPEED) then
-        player.MoveSpeed = player.MoveSpeed+statTable.SPEED*STAT_MULTS
-    elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(player, statTable.FIREDELAY*STAT_MULTS)
-    elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, statTable.DAMAGE*STAT_MULTS)
+        player.MoveSpeed = player.MoveSpeed+(statTable.SPEED or 0)*STAT_MULTS
     elseif(flag==CacheFlag.CACHE_RANGE) then
-        player.TearRange = player.TearRange+statTable.RANGE*40*STAT_MULTS
+        player.TearRange = player.TearRange+(statTable.RANGE or 0)*40*STAT_MULTS
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
-        player.ShotSpeed = player.ShotSpeed+statTable.SHOTSPEED*STAT_MULTS
+        player.ShotSpeed = player.ShotSpeed+(statTable.SHOTSPEED or 0)*STAT_MULTS
     elseif(flag==CacheFlag.CACHE_LUCK) then
-        player.Luck = player.Luck+statTable.LUCK*STAT_MULTS
+        player.Luck = player.Luck+(statTable.LUCK or 0)*STAT_MULTS
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    if(not pl:HasTrinket(ToyboxMod.TRINKET_JONAS_LOCK)) then return end
+
+    local statTable = ToyboxMod:getEntityData(pl, "JONAS_LOCK_STATBONUSES")
+
+    if(stat==EvaluateStatStage.TEARS_UP) then
+        return val+(statTable.FIREDELAY or 0)*STAT_MULTS
+    elseif(stat==EvaluateStatStage.DAMAGE_UP) then
+        return val+(statTable.DAMAGE or 0)*STAT_MULTS
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat)

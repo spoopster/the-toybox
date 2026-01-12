@@ -25,11 +25,7 @@ local BLACK_INVALID_ROOMTYPES = {
 ---@param pl EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, pl, flag)
-    if(flag==CacheFlag.CACHE_DAMAGE and ToyboxMod:hasTintedRoomTint("RED")) then
-        ToyboxMod:addBasicDamageUp(pl, RED_DMG)
-    elseif(flag==CacheFlag.CACHE_FIREDELAY and ToyboxMod:hasTintedRoomTint("BLUE")) then
-        ToyboxMod:addBasicTearsUp(pl, BLUE_TEARS)
-    elseif(flag==CacheFlag.CACHE_LUCK and ToyboxMod:hasTintedRoomTint("GREEN")) then
+    if(flag==CacheFlag.CACHE_LUCK and ToyboxMod:hasTintedRoomTint("GREEN")) then
         pl.Luck = pl.Luck+GREEN_LUCK
     elseif(flag==CacheFlag.CACHE_SIZE and ToyboxMod:hasTintedRoomTint("BROWN")) then
         pl.SpriteScale = pl.SpriteScale*BROWN_SIZE
@@ -37,6 +33,19 @@ local function evalCache(_, pl, flag)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+
+    if(stat==EvaluateStatStage.TEARS_UP and ToyboxMod:hasTintedRoomTint("BLUE")) then
+        return val+BLUE_TEARS
+    elseif(stat==EvaluateStatStage.DAMAGE_UP and ToyboxMod:hasTintedRoomTint("RED")) then
+        return val+RED_DMG
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat)
 
 ---@param pl EntityPlayer
 local function playerUpdate(_, pl)

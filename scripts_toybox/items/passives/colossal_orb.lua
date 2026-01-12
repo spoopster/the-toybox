@@ -1,8 +1,5 @@
-
 local sfx = SFXManager()
 
-local DMG_UP = 1
-local SPEED_UP = -0.2
 local SIZE_UP = 1.33
 
 local TIMER_DUR = 30
@@ -14,16 +11,9 @@ local CONCUSS_DURATION = 30*4
 local function evalCache(_, pl, flag)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_COLOSSAL_ORB)) then return end
     local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_COLOSSAL_ORB)
-
-    if(flag==CacheFlag.CACHE_SPEED) then
-        --pl.MoveSpeed = pl.MoveSpeed+SPEED_UP*mult
-    elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        --ToyboxMod:addBasicDamageUp(pl, DMG_UP*mult)
-    elseif(flag==CacheFlag.CACHE_SIZE) then
-        pl.SpriteScale = pl.SpriteScale*(SIZE_UP^mult)
-    end
+    pl.SpriteScale = pl.SpriteScale*(SIZE_UP^mult)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SIZE)
 
 local function shockwaveOnEntry(_)
     local room = Game():GetRoom()

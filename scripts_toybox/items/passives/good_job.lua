@@ -10,28 +10,14 @@ local STACK_MULT = 1.5
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JOB)) then return end
-    local mult = (ToyboxMod:getEntityData(player, "GOOD_JOB_CLEARS") or 0)
-    local stacks = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_GOOD_JOB)
 
-    mult = mult*((STACK_MULT-1)*(stacks-1)+1)
-
-    if(flag==CacheFlag.CACHE_SPEED) then
-        player.MoveSpeed = player.MoveSpeed+SPEED_UP*mult
-    elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, DMG_UP*mult)
-    elseif(flag==CacheFlag.CACHE_LUCK) then
-        player.Luck = player.Luck+LUCK_UP*mult
-    --[[]]
-    elseif(flag==CacheFlag.CACHE_FAMILIARS) then
-        player:CheckFamiliar(
-            ToyboxMod.FAMILIAR_GOOD_JOB_STAR,
-            (ToyboxMod:getEntityData(player, "GOOD_JOB_FLAWLESS")~=nil and 1 or 0),
-            player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_GOOD_JOB)
-        )
-    --]]
-    end
+    player:CheckFamiliar(
+        ToyboxMod.FAMILIAR_GOOD_JOB_STAR,
+        (ToyboxMod:getEntityData(player, "GOOD_JOB_FLAWLESS")~=nil and 1 or 0),
+        player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_GOOD_JOB)
+    )
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_FAMILIARS)
 
 ---@param pl EntityPlayer
 local function enterBossRoom(_, pl)
@@ -87,8 +73,10 @@ local function clearRoomFlawless(_, pl)
         local spawnPos = room:FindFreePickupSpawnPosition(pl.Position, 40)
         local chest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_CHEST, 0, spawnPos, Vector.Zero, nil):ToPickup()
 
-        data.GOOD_JOB_CLEARS = (data.GOOD_JOB_CLEARS or 0)+1
-        pl:AddCacheFlags(CacheFlag.CACHE_SPEED | CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_LUCK, true)
+        for _=1, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_GOOD_JOB) do
+            pl:AddCollectibleEffect(ToyboxMod.COLLECTIBLE_GOOD_JOB)
+        end
+        --pl:AddCacheFlags(CacheFlag.CACHE_SPEED | CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_LUCK, true)
 
         data.GOOD_JOB_FLAWLESS = false
 

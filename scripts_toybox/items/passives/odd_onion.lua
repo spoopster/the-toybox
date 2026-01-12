@@ -8,18 +8,6 @@ local REPLACABLE_ITEMS = {
 }
 
 ---@param pl EntityPlayer
----@param flag CacheFlag
-local function evalCache(_, pl, flag)
-    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_ODD_ONION)) then return end
-
-    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_ODD_ONION)
-    if(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(pl, DMG_UP*mult)
-    end
-end
---ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
-
----@param pl EntityPlayer
 local function addTempTearsUp(_, pl)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_ODD_ONION)) then return end
 

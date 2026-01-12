@@ -8,18 +8,17 @@ local LOSEMANTLE_DMG = 60
 local AURA_DMG = 0.5
 local BASE_AURA_RADIUS = 80
 
----@param player EntityPlayer
----@param flag CacheFlag
-local function evalCache(_, player, flag)
-    if(not ToyboxMod:isAtlasA(player)) then return end
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    if(not ToyboxMod:isAtlasA(pl)) then return end
 
-    local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.DARK.ID)
-
-    if(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, DMG_BONUS*numMantles)
-    end
+    local numMantles = ToyboxMod:getNumMantlesByType(pl, ToyboxMod.MANTLE_DATA.DARK.ID)
+    
+    return val+DMG_BONUS*numMantles
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.DAMAGE_UP)
 
 ---@param player EntityPlayer
 local function mantleDestroyed(_, player, mantle)
@@ -77,20 +76,19 @@ local function checkEnterExitDarkRadius(_, pl)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, checkEnterExitDarkRadius)
 
----@param player EntityPlayer
----@param flag CacheFlag
-local function evalAuraCache(_, player, flag)
-    if(not ToyboxMod:isAtlasA(player)) then return end
-    if(not ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.DARK.ID)) then return end
+---@param pl EntityPlayer
+---@param val number
+local function evalStatAura(_, pl, stat, val)
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    if(not ToyboxMod:isAtlasA(pl)) then return end
+    if(not ToyboxMod:atlasHasTransformation(pl, ToyboxMod.MANTLE_DATA.DARK.ID)) then return end
 
-    local aurasNum = ToyboxMod:getEntityData(player, "DARK_AURA_ENEMIES") or 0
+    local aurasNum = ToyboxMod:getEntityData(pl, "DARK_AURA_ENEMIES") or 0
     if(aurasNum<=0) then return end
-
-    if(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, AURA_DMG*aurasNum)
-    end
+    
+    return val+AURA_DMG*aurasNum
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalAuraCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStatAura, EvaluateStatStage.DAMAGE_UP)
 
 ---@param effect EntityEffect
 local function darkAuraUpdate(_, effect)

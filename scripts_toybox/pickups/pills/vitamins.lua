@@ -34,11 +34,19 @@ local function tempDamage(_, player, flag)
         player.TearRange = player.TearRange+RANGE_UP*40*(data.VITAMINS_HORSE and HORSE_MULT or 1)
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
         player.ShotSpeed = player.ShotSpeed+SHOTSPEED_UP*(data.VITAMINS_HORSE and HORSE_MULT or 1)
-    elseif(data.VITAMINS_HORSE and flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, DMG_UP)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, tempDamage)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    local data = ToyboxMod:getEntityDataTable(pl)
+    if((data.VITAMINS_DURATION or 0)<=0 or not data.VITAMINS_HORSE) then return end
+
+    return val+DMG_UP
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.DAMAGE_UP)
 
 ---@param player EntityPlayer
 local function reduceDuration(_, player)

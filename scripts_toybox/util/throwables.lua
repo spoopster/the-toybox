@@ -10,7 +10,7 @@ function ToyboxMod:registerThrowableActive(item, willDischarge, willRemove)
 end
 
 local function useThrowable(_, item, rng, player, flags, slot)
-    if(flags & UseFlag.USE_CARBATTERY ~= 0) then return end
+    if(flags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY) then return end
     local pData = ToyboxMod:getEntityDataTable(player)
 
     if(pData.THROWABLE_DATA and item==pData.THROWABLE_DATA.ITEM) then

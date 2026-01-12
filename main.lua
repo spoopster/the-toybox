@@ -78,6 +78,8 @@ include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")
 include("scripts_toybox.misc.tinted_rooms.minimap_logic")
 include("scripts_toybox.misc.tinted_rooms.room_effects")
 
+include("scripts_toybox.misc.consumable_weights")
+
 include("scripts_toybox.misc.custom_special_rooms.logic")
 include("scripts_toybox.misc.custom_special_rooms.graveyard_room")
 
@@ -317,6 +319,8 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.pickups.cards.alien_mind")
     include("scripts_toybox.pickups.cards.4_starred_ladybug")
     include("scripts_toybox.pickups.cards.green_apple")
+    include("scripts_toybox.pickups.cards.the_wise_men")
+    include("scripts_toybox.pickups.cards.the_crypt")
 --OBJECTS
     include("scripts_toybox.pickups.objects.mantle_rock")
     include("scripts_toybox.pickups.objects.mantle_poop")

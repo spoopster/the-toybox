@@ -26,11 +26,19 @@ local function cacheEval(_, player, flag)
 
     if(flag==CacheFlag.CACHE_FIREDELAY) then
         player.MaxFireDelay = ToyboxMod:toFireDelay(ToyboxMod:toTps(player.MaxFireDelay)*TEARS_MULT)
-    elseif(flag==CacheFlag.CACHE_DAMAGE and data.ARTHRITIS_HORSE) then
-        ToyboxMod:addBasicDamageUp(player, DMG_UP)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, cacheEval)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    local data = ToyboxMod:getEntityDataTable(pl)
+    if((data.ARTHRITIS_DURATION or 0)<=0 or not data.ARTHRITIS_HORSE) then return end
+
+    return val+DMG_UP
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.DAMAGE_UP)
 
 ---@param player EntityPlayer
 local function reduceDuration(_, player)

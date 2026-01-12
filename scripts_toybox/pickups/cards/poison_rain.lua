@@ -24,10 +24,9 @@ local function usePoisonRain(_, _, pl, _)
             ent:SetPoisonCountdown(POISON_DURATION)
         end
     end
-
-    sfx:Play(SoundEffect.SOUND_BLACK_POOF, 1.3)
     sfx:Play(SoundEffect.SOUND_THUNDER, 1.2, 2, false, 0.9+math.random()*0.2)
     sfx:Play(ToyboxMod.SFX_WATER_LOOP, 0.6, 0, true, 0.9)
+    sfx:Play(ToyboxMod.SFX_POISON)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, usePoisonRain, ToyboxMod.CARD_POISON_RAIN)
 

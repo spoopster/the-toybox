@@ -127,10 +127,6 @@ local function evalBonus(_, player, flag)
 
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+(data.PILLBONUS_SPEED or 0.1)*mult
-    elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(player, (data.PILLBONUS_TEARS or 0.2)*mult)
-    elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, (data.PILLBONUS_DMG or 0.3)*mult)
     elseif(flag==CacheFlag.CACHE_RANGE) then
         player.TearRange = player.TearRange+40*(data.PILLBONUS_RANGE or 0.3)*mult
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
@@ -140,6 +136,24 @@ local function evalBonus(_, player, flag)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalBonus)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    if(pl:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
+
+    local data = ToyboxMod:getJonasATable(pl)
+    if(math.floor(data.PILLS_POPPED or 0)<=0) then return end
+    local mult = math.floor(data.PILLS_POPPED or 0)^data.PILLBONUS_DIMINISHING_POW
+
+    if(stat==EvaluateStatStage.TEARS_UP) then
+        return val+(data.PILLBONUS_TEARS or 0.2)*mult
+    elseif(stat==EvaluateStatStage.DAMAGE_UP) then
+        return val+(data.PILLBONUS_DMG or 0.3)*mult
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat)
 
 --he starts shaking when close to losing bonus
 ---@param player EntityPlayer

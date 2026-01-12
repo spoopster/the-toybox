@@ -273,7 +273,8 @@ function ToyboxMod:addTps(player, n)
 end
 
 function ToyboxMod:renderingAboveWater()
-    return Game():GetRoom():GetRenderMode()==RenderMode.RENDER_NORMAL or Game():GetRoom():GetRenderMode()==RenderMode.RENDER_WATER_ABOVE
+    local rmode = Game():GetRoom():GetRenderMode()
+    return rmode==RenderMode.RENDER_NORMAL or rmode==RenderMode.RENDER_WATER_ABOVE or rmode==RenderMode.RENDER_WATER_REFRACT
 end
 
 function ToyboxMod:getKeyFromVal(table, val)

@@ -20,8 +20,15 @@ local function evalCache(_, pl, flag)
             pl:EvaluateItems()
             alreadyUpdating = false
         end
-    elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(pl, pl.Luck*DMG_PER_LUCK)
     end
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE, evalCache)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_RED_CLOVER)) then return end
+
+    return val+pl.Luck*DMG_PER_LUCK
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.DAMAGE_UP)

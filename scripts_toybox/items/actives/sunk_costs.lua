@@ -35,19 +35,6 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useSunkCosts, ToyboxMod.COLLECTIBLE_SUNK_COSTS)
 
 ---@param player EntityPlayer
----@param flag CacheFlag
-local function evalCache(_, player, flag)
-    if(not player:GetEffects():GetCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS)) then return end
-
-    local mult = player:GetEffects():GetCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS).Count
-
-    if(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(player, mult*(player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) and TEARSTOADD_BATTERY or TEARSTOADD))
-    end
-end
---ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
-
----@param player EntityPlayer
 local function postNewRoom(_, player)
     local col = player.Color
     col:SetColorize(1,1,1,0)

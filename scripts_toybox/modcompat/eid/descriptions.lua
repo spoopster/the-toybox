@@ -74,8 +74,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_LION_SKULL,
     Name = "Lion Skull",
     Description = {
-        "\1 +0.15 flat Damage on room clear",
-        "\2 On hit, -0.15 flat Damage for each room cleared since the last time you got hit",
+        "\1 +0.15 Damage on room clear",
+        "\2 On hit, -0.15 Damage for each room cleared since the last time you got hit",
         "The damage down will wear off as you clear rooms",
     },
     StackModifiers = {
@@ -752,8 +752,8 @@ enums.FUNCTIONS.AddItem({
         "{{Timer}} For the room:",
         "Gives stats that wear off over 10 seconds:",
         "{{Blank}} \1 +0.2 Speed",
-        "{{Blank}} \1 +2 flat Damage",
-        "{{Blank}} \1 +1 Firerate",
+        "{{Blank}} \1 +2 Damage",
+        "{{Blank}} \1 +1 Tears",
         "On death, enemies spawn puddles of slowing tar",
         "Touching a puddle absorbs it and extends the temporary stats"
     },
@@ -1202,7 +1202,7 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{BossRoom}} Clearing a Boss Room without taking damage gives:",
         "\1 +0.1 Speed",
-        "\1 +0.5 flat Damage",
+        "\1 +0.5 Damage",
         "\1 +1 Luck",
         "{{Chest}} A Chest",
     },
@@ -2029,6 +2029,82 @@ enums.FUNCTIONS.AddCard({
     },
 })
 enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_GREEN_APPLE,
+    Name = "Green Apple",
+    Description = {
+        "Grants progress towards 3 random transformation",
+        "Cannot pick transformations Isaac has already obtained"
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_WISE_MEN,
+    Name = "S - The Wise Men",
+    Description = {
+        "{{Collectible651}} Grants a modified Star of Bethlehem for the room",
+        "The star will wander around the room instead of towards the Boss Room",
+        "{{SoulHeart}} Upon room clear, the star will turn into a Soul Heart"
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_ANGEL,
+    Name = "IS - The Angel",
+    Description = {
+        "{{Collectible33}} Triggers the effects of The Bible",
+        "Grants spectral tears for the room",
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_GATE,
+    Name = "IIS - The Gate",
+    Description = {
+        "On use, Isaac holds up the card",
+        "While held up, touching any lock will open it for free and has a 33% chance to destroy the card",
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_APOCALYPSE,
+    Name = "IIIS - Apocalypse",
+    Description = {
+        "didy",
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_CRYPT,
+    Name = "IVS - The Crypt",
+    Description = {
+        "{{SuperSecretRoom}} Teleports Isaac to the Super Secret Room",
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_REAPER,
+    Name = "VS - The Reaper",
+    Description = {
+        "{{Timer}} For the rest of the room, every 5 seconds a random enemy will take 20 damage and be slowed for 5 seconds",
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_DRAGON,
+    Name = "VIS - The Dragon",
+    Description = {
+        "{{GoldenHeart}} Spawns 2 Golden Hearts",
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_DUALITY,
+    Name = "VIIS - Duality",
+    Description = {
+        "{{BlendedHeart}} Spawns 2 Blended Hearts",
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_BARON,
+    Name = "VIIIS - The Baron",
+    Description = {
+        "didy",
+    },
+})
+
+enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_LAUREL,
     Name = "Laurel",
     Description = {
@@ -2546,7 +2622,7 @@ enums.FUNCTIONS.AddPill({
     HorseModifiers = {
         {
             ToModify = {
-                "\1 +1.5 flat Damage",
+                "\1 +1.5 Damage",
             }
         },
         {
@@ -2597,7 +2673,7 @@ enums.FUNCTIONS.AddPill({
         },
         {
             ToModify = {
-                "\1 +1 flat Damage"
+                "\1 +1 Damage"
             }
         },
     }
@@ -2803,7 +2879,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_CATHARSIS,
     Name = "Catharsis",
     Description = {
-        "\1 +1 Firerate",
+        "\1 +1 Tears",
         "\1 Firerate cap is doubled",
     },
 })
@@ -2822,7 +2898,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_ZERO_GRAVITY,
     Name = "Zero-Gravity",
     Description = {
-        "\1 +1.5 flat Damage",
+        "\1 +1.5 Damage",
         "You move on a 2 second delay",
         "Releasing movement buttons makes you instantly teleport to the desired position"
     },

@@ -238,6 +238,8 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_UPDATE, blockUpdate, 
 
 ---@param ent GridEntityRock
 local function blockRender(_, ent)
+    
+    if(not ToyboxMod:renderingAboveWater()) then return end
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_BLOCK")) then return end
 
     local sp = ent:GetSprite()
@@ -245,7 +247,14 @@ local function blockRender(_, ent)
         --sp:Render(Isaac.WorldToRenderPosition(ent.Position)+Game():GetRoom():GetRenderScrollOffset())
     end
 
-    sp:Render(Isaac.WorldToRenderPosition(ent.Position)+Game():GetRoom():GetRenderScrollOffset())
+    local room = Game():GetRoom()
+    local rpos = Isaac.WorldToRenderPosition(ent.Position)+room:GetRenderScrollOffset()
+    if(room:GetRenderMode()==RenderMode.RENDER_WATER_REFRACT) then
+        rpos = rpos-room:GetRenderSurfaceTopLeft()
+    end
+
+    sp:Render(rpos)
+
     return false
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, blockRender, GridEntityType.GRID_PILLAR)

@@ -39,8 +39,3 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, postNpcDeath)
 
 if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_BONE] = true end
-
-local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_MANTLE_BONE).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

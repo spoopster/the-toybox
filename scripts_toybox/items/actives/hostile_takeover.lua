@@ -93,19 +93,27 @@ local function evalCache(_, pl, flag)
 
     if(flag==CacheFlag.CACHE_SPEED) then
         pl.MoveSpeed = pl.MoveSpeed+statFrac*SPEED_UP
-    elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(pl, statFrac*TEARS_UP)
-    elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(pl, statFrac*DMG_UP)
-    --elseif(flag==CacheFlag.CACHE_RANGE) then
-    --    pl.TearRange = pl.TearRange+statFrac*RANGE_UP*40
-    --elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
-    --    pl.ShotSpeed = pl.ShotSpeed+statFrac*SHOTSPEED_UP
-    --elseif(flag==CacheFlag.CACHE_LUCK) then
-    --    pl.Luck = pl.Luck+statFrac*LUCK_UP
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    local timer = (ToyboxMod:getEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER") or 0)
+    if(timer<=0) then return end
+
+    local numEffects = pl:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)
+    local statFrac = timer/STAT_DECREASE_TIMER*(1+(numEffects-1)*STACK_BONUS)
+
+    if(stat==EvaluateStatStage.TEARS_UP) then
+        return val+statFrac*TEARS_UP
+    elseif(stat==EvaluateStatStage.DAMAGE_UP) then
+        return val+statFrac*DMG_UP
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat)
 
 
 ---@param npc EntityNPC

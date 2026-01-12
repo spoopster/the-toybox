@@ -89,10 +89,6 @@ local function evalCache(_, player, flags)
     
     if(statData=="SPEED") then
         player.MoveSpeed = player.MoveSpeed+statMult
-    elseif(statData=="TEARS") then
-        ToyboxMod:addBasicTearsUp(player, statMult)
-    elseif(statData=="DAMAGE") then
-        ToyboxMod:addBasicDamageUp(player, statMult)
     elseif(statData=="RANGE") then
         player.TearRange = player.TearRange+40*statMult
     elseif(statData=="SHOTSPEED") then
@@ -102,6 +98,30 @@ local function evalCache(_, player, flags)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)) then return end
+
+    if(not PICKUP_TABLE[ToyboxMod:getExtraData("EQUALIZER_PICKUP")]) then
+        pickPickupStat(pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_EQUALIZER))
+    end
+
+    local pickupData = ToyboxMod:getExtraData("EQUALIZER_PICKUP")
+    local statData = ToyboxMod:getExtraData("EQUALIZER_STAT")
+    if(flags~=CacheFlag[STAT_TABLE[statData].Cache]) then return end
+
+    local statMult = STAT_TABLE[statData].StatVal*PICKUP_TABLE[pickupData].StatMult*pl[PICKUP_TABLE[pickupData].NumFunc](pl)
+
+    if(stat==EvaluateStatStage.TEARS_UP and statData=="TEARS") then
+        return val+statMult
+    elseif(stat==EvaluateStatStage.DAMAGE_UP and statData=="DAMAGE") then
+        return val+statMult
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat)
 
 local function updatePickups(_)
     local extraData = ToyboxMod:getExtraDataTable()

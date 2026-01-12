@@ -66,8 +66,3 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, fireShockwaves, EntityType.ENTITY_PLAYER)
 
 if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_ROCK] = true end
-
-local function decreaseWeight(_)
-    Isaac.GetItemConfig():GetCard(ToyboxMod.CARD_MANTLE_ROCK).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 0.5)
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

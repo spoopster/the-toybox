@@ -135,7 +135,7 @@
         mimiccharge="1"
         hidden="true"
     />
-    <card id="1" name="Green Apple"
+    <card id="15" name="Green Apple"
         description="Transformation booster"
         hud="Green Apple"
         type="special"
@@ -144,6 +144,78 @@
         mimiccharge="12"
 
         achievement="Green Apple"
+    />
+    <card id="16" name="S - The Wise Men"
+        description="Follow the star"
+        hud="S - The Wise Men"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+    />
+    <card id="17" name="IS - The Angel"
+        description=" "
+        hud="IS - The Angel"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+    />
+    <card id="18" name="IIS - The Gate"
+        description=" "
+        hud="IIS - The Gate"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+    />
+    <card id="19" name="IIIS - Apocalypse"
+        description=" "
+        hud="IIIS - Apocalypse"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+    />
+    <card id="20" name="IVS - The Crypt"
+        description=" "
+        hud="IVS - The Crypt"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+    />
+    <card id="21" name="VS - The Reaper"
+        description=" "
+        hud="VS - The Reaper"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+    />
+    <card id="22" name="VIS - The Dragon"
+        description=" "
+        hud="VIS - The Dragon"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+    />
+    <card id="23" name="VIIS - Duality"
+        description=" "
+        hud="VIIS - Duality"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+    />
+    <card id="24" name="VIIIS - The Baron"
+        description=" "
+        hud="VIIIS - The Baron"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
     />
 
 <!-- RUNES / SOUL STONES -->

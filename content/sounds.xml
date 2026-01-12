@@ -4,7 +4,6 @@
         <sample weight="1" path="4_4_scream_2.wav" />
         <sample weight="1" path="4_4_scream_3.wav" />
 	</sound>
-	
 	<sound name="(TOYBOX) Silk Bag Shield">
 		<sample weight="1" path="silk_bag_shield.wav" />  
 	</sound>
@@ -19,14 +18,12 @@
 	<sound name="(TOYBOX) Bullet Hit">
 		<sample weight="1" path="bullet_hit.wav" />  
 	</sound>
-
 	<sound name="(TOYBOX) Powerup">
 		<sample weight="1" path="mario_powerup.wav" />
 	</sound>
 	<sound name="(TOYBOX) Powerdown">
 		<sample weight="1" path="mario_powerdown.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Virus Spawn">
 		<sample weight="1" path="drmario_spawn.wav" />
 	</sound>
@@ -36,53 +33,51 @@
 	<sound name="(TOYBOX) Virus Die">
 		<sample weight="1" path="drmario_death.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Shadow Scream">
 		<sample weight="1" path="shadow_scream.wav" />
 		<sample weight="1" path="shadow_scream2.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Whistle">
 		<sample weight="1" path="bloody_whistle.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Whip">
 		<sample weight="1" path="whip.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Colossal Orb Shockwave">
 		<sample weight="1" path="colossal_shockwave.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Burp">
 		<sample weight="1" path="burp.wav" />
 		<sample weight="1" path="burp2.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Hypnosis">
 		<sample weight="1" path="hypnosis_1.wav" />
 		<sample weight="1" path="hypnosis_2.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Haze">
 		<sample weight="1" path="haze.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Drill">
 		<sample weight="1" path="drill.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Meow">
 		<sample weight="1" path="meow.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Poof">
 		<sample weight="1" path="poof.wav" />
 	</sound>
-
 	<sound name="(TOYBOX) Rock Scrape">
-	<sample weight="1" path="rock_scrape2.wav" />
+		<sample weight="1" path="rock_scrape2.wav" />
 		<sample weight="1" path="rock_scrape3.wav" />
+	</sound>
+	<sound name="(TOYBOX) Poison">
+		<sample weight="1" path="poison.wav" />
+	</sound>
+	<sound name="(TOYBOX) Star Spawn">
+		<sample weight="1" path="star_spawn.wav" />
+	</sound>
+	<sound name="(TOYBOX) Star Transform">
+		<sample weight="1" path="star_transform.wav" />
 	</sound>
 
 	<sound name="(TOYBOX) Water Loop (Copy)">

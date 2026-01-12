@@ -40,19 +40,18 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mantleKill)
 
 --! TRANSFORMATION
----@param player EntityPlayer
----@param flag CacheFlag
-local function evalCache(_, player, flag)
-    if(not ToyboxMod:isAtlasA(player)) then return end
-    if(not ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.BONE.ID)) then return end
-    local data = ToyboxMod:getAtlasATable(player)
-    local numMantlesMissing = data.HP_CAP-ToyboxMod:getRightmostMantleIdx(player)
 
-    if(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(player, MISSINGMANTLES_TEARS*numMantlesMissing)
-    end
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not ToyboxMod:isAtlasA(pl)) then return end
+    if(not ToyboxMod:atlasHasTransformation(pl, ToyboxMod.MANTLE_DATA.BONE.ID)) then return end
+    local data = ToyboxMod:getAtlasATable(pl)
+    local numMantlesMissing = data.HP_CAP-ToyboxMod:getRightmostMantleIdx(pl)
+    
+    return val+MISSINGMANTLES_TEARS*numMantlesMissing
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.TEARS_UP)
 
 local function mantleDamage(_, player, dmg, flags, source, frames)
     player = player:ToPlayer()

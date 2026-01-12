@@ -18,16 +18,23 @@ end
 local function evalCache(_, player, flag)
     if(not ToyboxMod:isAtlasA(player)) then return end
 
-    local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.SALT.ID)
     if(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(player, TEARS_UP*numMantles)
-
         if((ToyboxMod:getAtlasAData(player, "SALT_CHARIOT_ENABLED") or 0)~=0) then
             player.MaxFireDelay = ToyboxMod:toFireDelay(ACTIVE_TEARS_MULT*ToyboxMod:toTps(player.MaxFireDelay))
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE, evalCache)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not ToyboxMod:isAtlasA(pl)) then return end
+    local numMantles = ToyboxMod:getNumMantlesByType(pl, ToyboxMod.MANTLE_DATA.SALT.ID)
+
+    return val+TEARS_UP*numMantles
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.TEARS_UP)
 
 ---@param player EntityPlayer
 local function toggleAutofire(_, player)

@@ -100,7 +100,9 @@
     gfx="goodjod.png"
     quality="2"
     tags="offensive"
-    cache="speed damage luck"
+    cache="familiars"
+
+    effectspeed="0.1" effectdamage="0.5" effectluck="1"
 />
 <passive id="12" name="Odd Onion"
     description="Damage + tears up?"
@@ -519,6 +521,9 @@
 
     cache="firedelay damage range luck"
     passivecache="true"
+
+    speed="0.2" tears="0.5" damage="-1" luck="-2"
+    effecttears="2" effectdamage="2.5" effectrange="60" effectluck="4"
 
     maxcharges="1"
     activegfx="activegfx/white_daisy.png"
@@ -947,7 +952,7 @@
 />
 <active id="104" name="Coloring Book"
     description="Stay within the lines"
-    gfx="no_sprite.png"
+    gfx="coloring_book.png"
     quality="2"
     tags="offensive book"
     cache=""
@@ -958,7 +963,7 @@
 />
 <passive id="105" name="Conglomerate"
     description="Tougher shell"
-    gfx="no_sprite.png"
+    gfx="conglomerate.png"
     quality="3"
     tags="offensive noeden"
     cache=""
@@ -1114,7 +1119,7 @@
 />
 <trinket id="6" name="Gasoline"
     description="Burn everything"
-    gfx="no_sprite.png"
+    gfx="gasoline.png"
     cache=""
 />
 <trinket id="7" name="Big Blind"
@@ -1199,7 +1204,7 @@
 />
 <trinket id="21" name="Lootbox"
     description="Super special shopkeepers"
-    gfx="no_sprite.png"
+    gfx="lootbox.png"
     cache=""
 />
 <trinket id="22" name="Spiteful Penny"
@@ -1209,7 +1214,7 @@
 />
 <trinket id="23" name="Library Card"
     description="Accessible knowledge"
-    gfx="no_sprite.png"
+    gfx="library_card.png"
     cache=""
 />
 <trinket id="24" name="Lifetime Supply"

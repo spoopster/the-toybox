@@ -243,6 +243,15 @@ ToyboxMod.CARD_MANTLE_METAL = Isaac.GetCardIdByName("Mantle - Metal")
 ToyboxMod.CARD_MANTLE_GOLD = Isaac.GetCardIdByName("Mantle - Gold")
 ToyboxMod.CARD_LAUREL = Isaac.GetCardIdByName("Laurel")
 ToyboxMod.CARD_YANNY = Isaac.GetCardIdByName("Yanny")
+ToyboxMod.CARD_THE_WISE_MEN = Isaac.GetCardIdByName("S - The Wise Men")
+ToyboxMod.CARD_THE_ANGEL = Isaac.GetCardIdByName("IS - The Angel")
+ToyboxMod.CARD_THE_GATE = Isaac.GetCardIdByName("IIS - The Gate")
+ToyboxMod.CARD_APOCALYPSE = Isaac.GetCardIdByName("IIIS - Apocalypse")
+ToyboxMod.CARD_THE_CRYPT = Isaac.GetCardIdByName("IVS - The Crypt")
+ToyboxMod.CARD_THE_REAPER = Isaac.GetCardIdByName("VS - The Reaper")
+ToyboxMod.CARD_THE_DRAGON = Isaac.GetCardIdByName("VIS - The Dragon")
+ToyboxMod.CARD_DUALITY = Isaac.GetCardIdByName("VIIS - Duality")
+ToyboxMod.CARD_THE_BARON = Isaac.GetCardIdByName("VIIIS - The Baron")
 
 ToyboxMod.PILL_I_BELIEVE = Isaac.GetPillEffectByName("I Believe I Can Fly!")
 ToyboxMod.PILL_DYSLEXIA = Isaac.GetPillEffectByName("Dyslexia")
@@ -276,6 +285,7 @@ ToyboxMod.FAMILIAR_PYTHAGORAS_CUP = Isaac.GetEntityVariantByName("Pythagoras' Cu
 ToyboxMod.FAMILIAR_GOOD_JOB_STAR = Isaac.GetEntityVariantByName("Good Job Star") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_DECOY = Isaac.GetEntityVariantByName("Cardboard Decoy") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_PAPER_PLATE = Isaac.GetEntityVariantByName("Paper Plate") ---@type FamiliarVariant
+ToyboxMod.FAMILIAR_WISE_MEN_STAR = Isaac.GetEntityVariantByName("Wise Men Star") ---@type FamiliarVariant
 
 ToyboxMod.BOMB_SLEEPY_TROLL_BOMB = Isaac.GetEntityVariantByName("Sleepy Troll Bomb") ---@type BombVariant
 
@@ -357,6 +367,9 @@ ToyboxMod.SFX_DRILL = Isaac.GetSoundIdByName("(TOYBOX) Drill")
 ToyboxMod.SFX_MEOW = Isaac.GetSoundIdByName("(TOYBOX) Meow")
 ToyboxMod.SFX_POOF = Isaac.GetSoundIdByName("(TOYBOX) Poof")
 ToyboxMod.SFX_ROCK_SCRAPE = Isaac.GetSoundIdByName("(TOYBOX) Rock Scrape")
+ToyboxMod.SFX_POISON = Isaac.GetSoundIdByName("(TOYBOX) Poison")
+ToyboxMod.SFX_STAR_SPAWN = Isaac.GetSoundIdByName("(TOYBOX) Star Spawn")
+ToyboxMod.SFX_STAR_TRANSFORM = Isaac.GetSoundIdByName("(TOYBOX) Star Transform")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then

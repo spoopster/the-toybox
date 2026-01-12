@@ -9,23 +9,20 @@ local ENUM_DMG_INCREASE = 0.15
 local ENUM_DMG_DECREASE = 0.15
 
 ---@param player EntityPlayer
----@param flag CacheFlag
-local function evalCache(_, player, flag)
+local function evalStat(_, player, _, val)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_LION_SKULL)) then return end
 
     local mult = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LION_SKULL)
     local bonus = ToyboxMod:getEntityData(player, "LION_SKULL_MARKS") or 0
 
-    if(flag==CacheFlag.CACHE_DAMAGE) then
-        local dmgIncrease = 0
+    local dmgIncrease = 0
         
-        if(bonus<0) then dmgIncrease = bonus*ENUM_DMG_DECREASE
-        else dmgIncrease = bonus*ENUM_DMG_INCREASE end
+    if(bonus<0) then dmgIncrease = bonus*ENUM_DMG_DECREASE
+    else dmgIncrease = bonus*ENUM_DMG_INCREASE end
 
-        ToyboxMod:addBasicDamageUp(player, dmgIncrease)
-    end
+    return val+dmgIncrease
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.FLAT_DAMAGE)
 
 local function increaseLionMark(_)
     for i=0, Game():GetNumPlayers()-1 do

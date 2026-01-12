@@ -347,10 +347,6 @@ local function evalJuiceStats(_, pl, flags)
     local data = ToyboxMod:getEntityData(pl, "GOOD_JUICE_STATS") or {}
     if(flags==CacheFlag.CACHE_SPEED) then
         pl.MoveSpeed = pl.MoveSpeed+(data.SPEED or 0)
-    elseif(flags==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(pl, (data.TEARS or 0))
-    elseif(flags==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(pl, (data.DAMAGE or 0))
     elseif(flags==CacheFlag.CACHE_RANGE) then
         pl.TearRange = pl.TearRange+(data.RANGE or 0)*40
     elseif(flags==CacheFlag.CACHE_SHOTSPEED) then
@@ -360,6 +356,22 @@ local function evalJuiceStats(_, pl, flags)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalJuiceStats)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JUICE)) then return end
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    
+    local data = ToyboxMod:getEntityData(pl, "GOOD_JUICE_STATS") or {}
+
+    if(stat==EvaluateStatStage.TEARS_UP) then
+        return val+(data.TEARS or 0)
+    elseif(stat==EvaluateStatStage.DAMAGE_UP) then
+        return val+(data.DAMAGE or 0)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat)
 
 
 local MAP_HELD = 0

@@ -24,10 +24,6 @@ local function evalCache(_, player, flag)
 
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+(statTable.SPEED or 0)
-    elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(player, (statTable.TEARS or 0))
-    elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, (statTable.DAMAGE or 0))
     elseif(flag==CacheFlag.CACHE_RANGE) then
         player.TearRange = player.TearRange+(statTable.RANGE or 0)*40
     elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
@@ -37,6 +33,22 @@ local function evalCache(_, player, flag)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_NOSE_CANDY)) then return end
+
+    local statTable = ToyboxMod:getEntityData(pl, "NOSE_CANDY_STATBONUSES") or {}
+
+    if(stat==EvaluateStatStage.TEARS_UP) then
+        return val+(statTable.TEARS or 0)
+    elseif(stat==EvaluateStatStage.DAMAGE_UP) then
+        return val+(statTable.DAMAGE or 0)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat)
 
 ---@param player EntityPlayer
 local function addNoseCandyBonuses(_, player)

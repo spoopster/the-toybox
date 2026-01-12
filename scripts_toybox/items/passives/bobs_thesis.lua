@@ -7,13 +7,6 @@ local PLACEHOLDER_GIVING_ITEM = false
 local PLACEHOLDER_GIVE_ITEM_FREQ = 15
 local PLACEHOLDER_FAST_THRESHOLD = 3*30
 
-local PLACEHOLDER_SPEED = 0.15
-local PLACEHOLDER_TEARS = 0.5
-local PLACEHOLDER_DMG = 0.5
-local PLACEHOLDER_RANGE = 1
-local PLACEHOLDER_SHOTSPEED = 0.1
-local PLACEHOLDER_LUCK = 1
-
 ---@param poolType ItemPoolType
 ---@param dec boolean
 ---@param seed integer
@@ -25,29 +18,6 @@ local function getCollectibleSpawn(_, poolType, dec, seed)
     end
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, CallbackPriority.IMPORTANT, getCollectibleSpawn)
-
----@param pl EntityPlayer
----@param flag CacheFlag
-local function givePlaceholderStats(_, pl, flag)
-    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_PLACEHOLDER)) then return end
-
-    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_PLACEHOLDER)
-
-    if(flag==CacheFlag.CACHE_SPEED) then
-        pl.MoveSpeed = pl.MoveSpeed+mult*PLACEHOLDER_SPEED
-    elseif(flag==CacheFlag.CACHE_FIREDELAY) then
-        ToyboxMod:addBasicTearsUp(pl, mult*PLACEHOLDER_TEARS)
-    elseif(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(pl, mult*PLACEHOLDER_DMG)
-    elseif(flag==CacheFlag.CACHE_RANGE) then
-        pl.TearRange = pl.TearRange+mult*40*PLACEHOLDER_RANGE
-    elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
-        pl.ShotSpeed = pl.ShotSpeed+mult*PLACEHOLDER_SHOTSPEED
-    elseif(flag==CacheFlag.CACHE_LUCK) then
-        pl.Luck = pl.Luck+mult*PLACEHOLDER_LUCK
-    end
-end
---ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, givePlaceholderStats)
 
 ---@param pl EntityPlayer
 local function stopHoldingThePlaces(_, pl)

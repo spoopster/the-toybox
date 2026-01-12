@@ -14,7 +14,6 @@ local function evalCache(_, player, flag)
     local numMantles = ToyboxMod:getNumMantlesByType(player, ToyboxMod.MANTLE_DATA.GLASS.ID)
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
-        ToyboxMod:addBasicDamageUp(player, MANTLE_DMG_UP*numMantles)
         if(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.GLASS.ID)) then
             player.Damage = player.Damage*TRANSF_DMG_MULT
         end
@@ -23,7 +22,17 @@ local function evalCache(_, player, flag)
         player.ShotSpeed = player.ShotSpeed+SHOTSPEED_UP*numMantles
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE, evalCache)
+
+---@param pl EntityPlayer
+---@param val number
+local function evalStat(_, pl, stat, val)
+    if(not ToyboxMod:isAtlasA(pl)) then return end
+    local numMantles = ToyboxMod:getNumMantlesByType(pl, ToyboxMod.MANTLE_DATA.GLASS.ID)
+
+    return val+MANTLE_DMG_UP*numMantles
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.DAMAGE_UP)
 
 ---@param player EntityPlayer
 local function destroyGlassMantles(_, player, mantle)
