@@ -1,7 +1,13 @@
 ToyboxMod = RegisterMod("toyboxMod", 1) ---@type ModReference
 
-ToyboxMod.HiddenItemManager = include("scripts_toybox.util.hiddenitemmanager")
-ToyboxMod.HiddenItemManager:Init(ToyboxMod)
+--[[] ]
+local ogfunc = ToyboxMod.AddCallback
+function ToyboxMod:AddCallback(callbackId, callbackFn, entityId)
+    ogfunc(ToyboxMod, callbackId, function(...)
+        callbackFn(args)
+    end, entityId)
+end
+--]]
 
 --! INCLUDE SHIT
 include("scripts_toybox.enums")
@@ -284,6 +290,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.trinkets.library_card")
     include("scripts_toybox.items.trinkets.lifetime_supply")
     include("scripts_toybox.items.trinkets.rubbing_alcohol")
+    include("scripts_toybox.items.trinkets.inside_joke")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")
@@ -321,6 +328,8 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.pickups.cards.green_apple")
     include("scripts_toybox.pickups.cards.the_wise_men")
     include("scripts_toybox.pickups.cards.the_crypt")
+    include("scripts_toybox.pickups.cards.the_dragon")
+    include("scripts_toybox.pickups.cards.duality")
 --OBJECTS
     include("scripts_toybox.pickups.objects.mantle_rock")
     include("scripts_toybox.pickups.objects.mantle_poop")

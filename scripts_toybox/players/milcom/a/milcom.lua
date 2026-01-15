@@ -40,9 +40,14 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, postMilcomUpdate)
 
 ---@param pickup EntityPickup
 local function rerollBombOrKeyInit(_, pickup)
-    if(not (pickup:IsShopItem() and (pickup.Variant==PickupVariant.PICKUP_BOMB or pickup.Variant==PickupVariant.PICKUP_KEY))) then return end
+    if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
+    
+    if(not pickup:IsShopItem()) then return end
+    if(not (pickup.Variant==PickupVariant.PICKUP_BOMB or pickup.Variant==PickupVariant.PICKUP_KEY)) then return end
 
-    pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_SHOPITEM, 0)
-    pickup:MakeShopItem(pickup.ShopItemId)
+    local id = pickup.ShopItemId
+    local new = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_SHOPITEM, 0, pickup.Position, Vector.Zero, nil):ToPickup()
+    new:MakeShopItem(id)
+    pickup:Remove()
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, rerollBombOrKeyInit)

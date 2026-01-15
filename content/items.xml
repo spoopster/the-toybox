@@ -1227,6 +1227,11 @@
     gfx="rubbing_alcohol.png"
     cache=""
 />
+<trinket id="26" name="Inside Joke"
+    description="&quot;Trophy hunter&quot;"
+    gfx="inside_joke.png"
+    cache="damage"
+/>
 
 <null id="1" name="toybox null save"
     persistent="true"

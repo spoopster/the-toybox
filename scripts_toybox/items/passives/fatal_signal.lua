@@ -61,7 +61,7 @@ local function doGlitchEffect(_, pickup)
         ToyboxMod:setEntityData(pickup, "GLITCH_DURATION", 24)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, doGlitchEffect)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, doGlitchEffect, PickupVariant.PICKUP_COLLECTIBLE)
 
 local function clearSeedsTable(_)
     MARKED_SEEDS = {}

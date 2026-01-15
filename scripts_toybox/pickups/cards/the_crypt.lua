@@ -11,7 +11,6 @@ local function useTheCrypt(_, _, pl, flags)
             break
         end
     end
-    print(secretidx)
     if(secretidx) then
         Game():StartRoomTransition(secretidx, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, pl)
     else

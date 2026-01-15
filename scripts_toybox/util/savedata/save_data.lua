@@ -71,6 +71,8 @@ local extraBaseData = include("scripts_toybox.util.savedata.extras_basedata")   
 local persistentBaseData = include("scripts_toybox.util.savedata.persistent_basedata")      --! PERSISTS THROUGHOUT ALL RUNS
 
 function ToyboxMod:saveProgress()
+    local svstart = (Isaac.GetNanoTime()//1000000)/1000
+    print(svstart, "START SAVE")
     local save = {}
 
     --save.milcomData = {}
@@ -94,6 +96,10 @@ function ToyboxMod:saveProgress()
     save.gridData = convertDataToSaveData({}, ToyboxMod:cloneTable(ToyboxMod.GridEntityData))
 
 	ToyboxMod:SaveData(json.encode(save))
+
+    local svend = (Isaac.GetNanoTime()//1000000)/1000
+    print(svend, "END SAVE")
+    print(math.floor((svend-svstart)*10000)/10000, "SAVE TIME DURATION")
 end
 
 function ToyboxMod:saveNewFloor()
@@ -109,7 +115,6 @@ local function loadImportantData(_, slot)
     ToyboxMod.IS_DATA_LOADED = false
     if(ToyboxMod:HasData()) then
         local sd = json.decode(Isaac.LoadModData(ToyboxMod))
-
         if(sd and sd.configData) then
             ToyboxMod.CONFIG = ToyboxMod.CONFIG or {}
             ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod.CONFIG, convertSaveDataToTable(sd.configData))

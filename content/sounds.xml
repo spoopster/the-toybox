@@ -79,6 +79,9 @@
 	<sound name="(TOYBOX) Star Transform">
 		<sample weight="1" path="star_transform.wav" />
 	</sound>
+	<sound name="(TOYBOX) Breath">
+		<sample weight="1" path="evil_breath.wav" />
+	</sound>
 
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />

@@ -1,12 +1,14 @@
 local REPLACE_CHANCE = 1/60
 
 ---@param pickup EntityPickup
-local function replaceKey(_, pickup)
-    if(pickup.SubType==KeySubType.KEY_NORMAL and pickup:GetDropRNG():RandomFloat()<REPLACE_CHANCE) then
-        pickup:Morph(EntityType.ENTITY_PICKUP,ToyboxMod.PICKUP_LONELY_KEY,0,true)
+local function replaceKeys(_, pickup, var, sub, rvar, rsub, rng)
+    if(not (var==PickupVariant.PICKUP_KEY and sub==KeySubType.KEY_NORMAL) or not (rvar==0 or rsub==0)) then return end
+
+    if(rng:RandomFloat()<REPLACE_CHANCE) then
+        return {ToyboxMod.PICKUP_LONELY_KEY, 0, true}
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, replaceKey, PickupVariant.PICKUP_KEY)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_SELECTION, replaceKeys)
 
 ---@param pickup EntityPickup
 ---@param coll Entity

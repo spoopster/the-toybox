@@ -61,6 +61,7 @@ local BASEDATA = {
         LUCK = 0,
     },
     GOOD_JOB_CLEARS = 0,
+    INSIDE_JOKE_ROOMS = 0,
 
     TEMPORARY_ITEMS = {},
     TEMPORARY_ITEMS_ROOM = {},

@@ -27,7 +27,7 @@ local function decreaseWeight(_)
         conf:GetCard(id).Weight = (ToyboxMod.CONFIG.MANTLE_WEIGHT or 1.5)
     end
     for _, id in ipairs(ALT_TAROT_IDS) do
-        conf:GetCard(id).Weight = 0--(ToyboxMod.CONFIG.ALT_TAROT_WEIGHT or 0.5)
+        conf:GetCard(id).Weight = (ToyboxMod.CONFIG.ALT_TAROT_WEIGHT or 0.5)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, decreaseWeight)

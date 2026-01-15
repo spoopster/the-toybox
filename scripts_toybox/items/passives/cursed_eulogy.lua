@@ -65,7 +65,7 @@ local function doEvilEffect(_, pickup)
         pickup:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, doEvilEffect)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, doEvilEffect, PickupVariant.PICKUP_COLLECTIBLE)
 
 local function clearSeedsTable(_)
     MARKED_SEEDS = {}

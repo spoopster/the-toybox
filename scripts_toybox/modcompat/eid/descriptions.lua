@@ -1986,6 +1986,32 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_INSIDE_JOKE,
+    Name = "Inside Joke",
+    Description = {
+        "\1 x1.5 Damage",
+        "Taking damage disables this trinket for the next 3 rooms"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"x1.5", "x2"},
+                {"3", "5"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"x1.5", "x2.5"},
+                {"3", "7"},
+            }
+        },
+    },
+})
 
 
 

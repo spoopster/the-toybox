@@ -211,6 +211,7 @@ ToyboxMod.TRINKET_SPITEFUL_PENNY = Isaac.GetTrinketIdByName("Spiteful Penny")
 ToyboxMod.TRINKET_LIBRARY_CARD = Isaac.GetTrinketIdByName("Library Card")
 ToyboxMod.TRINKET_LIFETIME_SUPPLY = Isaac.GetTrinketIdByName("Lifetime Supply")
 ToyboxMod.TRINKET_RUBBING_ALCOHOL = Isaac.GetTrinketIdByName("Rubbing Alcohol")
+ToyboxMod.TRINKET_INSIDE_JOKE = Isaac.GetTrinketIdByName("Inside Joke")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED
@@ -370,6 +371,7 @@ ToyboxMod.SFX_ROCK_SCRAPE = Isaac.GetSoundIdByName("(TOYBOX) Rock Scrape")
 ToyboxMod.SFX_POISON = Isaac.GetSoundIdByName("(TOYBOX) Poison")
 ToyboxMod.SFX_STAR_SPAWN = Isaac.GetSoundIdByName("(TOYBOX) Star Spawn")
 ToyboxMod.SFX_STAR_TRANSFORM = Isaac.GetSoundIdByName("(TOYBOX) Star Transform")
+ToyboxMod.SFX_BREATH = Isaac.GetSoundIdByName("(TOYBOX) Breath")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then
