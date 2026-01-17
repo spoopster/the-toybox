@@ -68,7 +68,7 @@ local function maxVectorComponents(vec, num)
     return Vector(math.max(vec.X, num), math.max(vec.Y, num))
 end
 
-local function runcallback(isBig, roomIdx, roomPos, roomSize, mapAlpha, TLclamp, BRclamp, brclamp2, rtype)
+local function runcallback(isBig, roomIdx, roomPos, roomSize, mapAlpha, TLclamp, BRclamp, brclamp2, rtype, ismirror)
     Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.POST_RENDER_MINIMAP_ROOM,
         rtype,
         isBig, -- is it rendered on the big map?
@@ -78,14 +78,18 @@ local function runcallback(isBig, roomIdx, roomPos, roomSize, mapAlpha, TLclamp,
         mapAlpha, -- alpha
         TLclamp, -- top left map clamp?
         BRclamp, -- bottom left map clamp?
-        brclamp2
+        brclamp2,
+        ismirror
     )
 end
 
-local function tryRenderAuraAtLevelIdxSmall(renderRoom, centerPos, centerSize, colormod, rtype)
+local function tryRenderAuraAtLevelIdxSmall(renderRoom, centerPos, centerSize, colormod, rtype, ismirror)
+    ismirror = ismirror
     if(renderRoom.DisplayFlags == RoomDescriptor.DISPLAY_NONE) then return end
 
     local topLeftPos = ToyboxMod:gridIndexToPositionVector(renderRoom.GridIndex)
+    --topLeftPos.X = (ismirror and (12-topLeftPos.X) or topLeftPos.X)
+
     local isInBoundsX = (centerPos.X+centerSize.X-4<=topLeftPos.X) and (centerPos.X+3>=topLeftPos.X)
     local isInBoundsY = (centerPos.Y+centerSize.X-4<=topLeftPos.Y) and (centerPos.Y+3>=topLeftPos.Y)
     if(not (isInBoundsX and isInBoundsY)) then return end
@@ -98,21 +102,26 @@ local function tryRenderAuraAtLevelIdxSmall(renderRoom, centerPos, centerSize, c
     end
     local roomSize = ROOM_GRID_SIZE*ToyboxMod.ROOM_DIMENSIONS[shape]
 
-    local relativePos = floorVector((ROOM_GRID_SIZE-Vector(1,1))*(Vector(3,3)-centerSize/2+topLeftPos-centerPos))
+    local relativePos = floorVector((ROOM_GRID_SIZE-Vector(1,1))*(Vector(3,3)-centerSize/2+(topLeftPos-centerPos)))
+    local relativePosmirror = floorVector((ROOM_GRID_SIZE-Vector(1,1))*(Vector(2.5,2.5)+(topLeftPos-centerPos-(centerSize-Vector(1,1))/2)*Vector(ismirror and -1 or 1, 1)))
 
     local topLeftClamp = maxVectorComponents(-relativePos, 0)
     local bottomRightClamp = maxVectorComponents(relativePos+roomSize-SMALL_MINIMAP_SIZE, 0)
-    local bottomRightClamp2 = maxVectorComponents(relativePos+ROOM_GRID_SIZE-SMALL_MINIMAP_SIZE, 0)
+    local bottomRightClamp1x1 = maxVectorComponents(relativePos+ROOM_GRID_SIZE-SMALL_MINIMAP_SIZE, 0)
+    if(ismirror) then
+        --bottomRightClamp1x1 = maxVectorComponents(relativePos+roomSize-ROOM_GRID_SIZE-SMALL_MINIMAP_SIZE, 0)
+    end
 
-    runcallback(false, renderRoom.SafeGridIndex, mapCornerPos+relativePos, roomSize, colormod, topLeftClamp, bottomRightClamp, bottomRightClamp2, rtype)
+    runcallback(false, renderRoom.SafeGridIndex, mapCornerPos+relativePosmirror, roomSize, colormod, topLeftClamp, bottomRightClamp, bottomRightClamp1x1, rtype, ismirror)
 end
 
-local function tryRenderAuraAtLevelIdxBig(renderRoom, bounds, colormod, rtype)
+local function tryRenderAuraAtLevelIdxBig(renderRoom, bounds, colormod, rtype, ismirror)
     if(renderRoom.DisplayFlags == RoomDescriptor.DISPLAY_NONE) then return end
 
     local mapCornerPos = Vector(Isaac.GetScreenWidth(), 0)+Vector(-24,12)*Options.HUDOffset+Vector(-1,0)*Minimap.GetDisplayedSize()+Vector(0,2)
 
     local topLeftPos = ToyboxMod:gridIndexToPositionVector(renderRoom.GridIndex)
+    --topLeftPos.X = (ismirror and (12-topLeftPos.X) or topLeftPos.X)
     local relativePos = floorVector((ROOM_GRID_SIZE_BIG-Vector(1,1))*(topLeftPos-Vector(bounds.Left, bounds.Up)))
 
     local shape = RoomShape.ROOMSHAPE_1x1
@@ -120,7 +129,7 @@ local function tryRenderAuraAtLevelIdxBig(renderRoom, bounds, colormod, rtype)
         shape = renderRoom.Data.Shape
     end
 
-    runcallback(true, renderRoom.SafeGridIndex, mapCornerPos+relativePos, ROOM_GRID_SIZE_BIG*ToyboxMod.ROOM_DIMENSIONS[shape], colormod, nil, nil, nil, rtype)
+    runcallback(true, renderRoom.SafeGridIndex, mapCornerPos+relativePos, ROOM_GRID_SIZE_BIG*ToyboxMod.ROOM_DIMENSIONS[shape], colormod, nil, nil, nil, rtype, ismirror)
 end
 
 local function mapRenderAuras()
@@ -138,13 +147,15 @@ local function mapRenderAuras()
         local roomSize = ToyboxMod.ROOM_DIMENSIONS[(curRoom.Data and curRoom.Data.Shape or 1)]
         if(curRoom.Data and curRoom.Data.Subtype==BossType.DELIRIUM) then roomSize = ToyboxMod.ROOM_DIMENSIONS[RoomShape.ROOMSHAPE_1x1] end
 
+        local isMirror = (level:GetDimension()==Dimension.MIRROR and level:HasMirrorDimension())
+
         if(normalMapOpacity>0) then
             for x=math.max(roomPos.X-4, 0), math.min(roomPos.X+4, 12) do
                 for y=math.max(roomPos.Y-4, 0), math.min(roomPos.Y+4, 12) do
                     local idx = x+y*13
                     local roomToRender = level:GetRoomByIdx(idx)
                     if(roomToRender.SafeGridIndex==idx) then
-                        tryRenderAuraAtLevelIdxSmall(roomToRender, roomPos, roomSize, normalMapOpacity, (roomToRender.Data and roomToRender.Data.Type or 0))
+                        tryRenderAuraAtLevelIdxSmall(roomToRender, roomPos, roomSize, normalMapOpacity, (roomToRender.Data and roomToRender.Data.Type or 0), isMirror)
                     end
                 end
             end
@@ -152,11 +163,13 @@ local function mapRenderAuras()
         if(expandedMapOpacity>0) then
             local mapbounds = {Left=12, Right=0, Up=12, Down=0}
             for x=0,12 do
+                local realx = x
+
                 for y=0,12 do
-                    local room = level:GetRoomByIdx(x+y*13)
+                    local room = level:GetRoomByIdx(realx+y*13)
                     if(room.Data and room.DisplayFlags~=RoomDescriptor.DISPLAY_NONE) then
-                        mapbounds.Left = math.min(x, mapbounds.Left)
-                        mapbounds.Right = math.max(x, mapbounds.Right)
+                        mapbounds.Left = math.min(realx, mapbounds.Left)
+                        mapbounds.Right = math.max(realx, mapbounds.Right)
 
                         mapbounds.Up = math.min(y, mapbounds.Up)
                         mapbounds.Down = math.max(y, mapbounds.Down)
@@ -164,12 +177,22 @@ local function mapRenderAuras()
                 end
             end
 
-            for x=mapbounds.Left, mapbounds.Right do
-                for y=mapbounds.Up, mapbounds.Down do
-                    local idx = x+y*13
+            local oldbounds = {Left=mapbounds.Left, Right=mapbounds.Right, Up=mapbounds.Up, Down=mapbounds.Down}
+
+            if(isMirror) then
+                local temp = mapbounds.Right
+                mapbounds.Right = 12-mapbounds.Right
+                mapbounds.Left = 12-temp
+            end
+
+            for x=oldbounds.Left, oldbounds.Right do
+                local realx = x
+
+                for y=oldbounds.Up, oldbounds.Down do
+                    local idx = realx+y*13
                     local roomToRender = level:GetRoomByIdx(idx)
                     if(roomToRender.SafeGridIndex==idx) then
-                        tryRenderAuraAtLevelIdxBig(roomToRender, mapbounds, expandedMapOpacity, (roomToRender.Data and roomToRender.Data.Type or 0))
+                        tryRenderAuraAtLevelIdxBig(roomToRender, mapbounds, expandedMapOpacity, (roomToRender.Data and roomToRender.Data.Type or 0), isMirror)
                     end
                 end
             end

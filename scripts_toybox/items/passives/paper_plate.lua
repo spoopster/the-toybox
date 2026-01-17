@@ -32,16 +32,19 @@ local function pickRandomWallPos(fam)
             local isValidColl = (coll==GridCollisionClass.COLLISION_NONE or coll==GridCollisionClass.COLLISION_PIT)
             if(isValidColl) then
                 local isAdjacentToDoor = false
+                local isAdjacentToWall = false
                 local adjacents = {-1, -room:GetGridWidth(), 1, room:GetGridWidth()}
                 for _, offset in ipairs(adjacents) do
                     local ent = room:GetGridEntity(i+offset)
                     if(ent and ent:ToDoor()) then
                         isAdjacentToDoor = true
                         break
+                    elseif(ent and ent:ToWall()) then
+                        isAdjacentToWall = true
                     end
                 end
 
-                if(not isAdjacentToDoor) then
+                if(isAdjacentToWall and not isAdjacentToDoor) then
                     local nearbyBoys = false
                     for _, otherfam in ipairs(Isaac.GetRoomEntities()) do
                         if(otherfam.Position:Distance(pos)<=(WALL_CENTER_OFFSET+5)) then
@@ -51,6 +54,9 @@ local function pickRandomWallPos(fam)
                     end
 
                     if(not nearbyBoys) then
+                        local adjacentWalls = false
+
+
                         table.insert(validIndexes, i)
                     end
                 end
@@ -69,8 +75,8 @@ local function pickRandomWallPos(fam)
     local adjacents = {-1, -room:GetGridWidth(), 1, room:GetGridWidth()}
     local directions = {Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.UP}
     for i, offset in ipairs(adjacents) do
-        local coll = room:GetGridCollision(fam.MoveDirection+offset)
-        if(coll==GridCollisionClass.COLLISION_WALL or coll==GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER) then
+        local ent = room:GetGridEntity(fam.MoveDirection+offset)
+        if(ent and ent:ToWall()) then
             table.insert(adjacentdirections, directions[i])
         end
     end

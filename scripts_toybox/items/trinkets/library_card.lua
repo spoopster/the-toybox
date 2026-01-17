@@ -115,21 +115,46 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, resetPermaLibraries)
 local MINIMAP_ICON_SPRITE = Sprite("gfx_tb/ui/ui_minimap_icons.anm2", true)
 MINIMAP_ICON_SPRITE:Play("IconLibraryTreasureRoom", true)
 
-local function roomIconRender(_, isBig, idx, pos, size, alpha, tlclamp, brclamp, brclamp2)
+local function roomIconRender(_, isBig, idx, pos, size, alpha, tlclamp, brclamp, brclamp2, ismirror)
     if(isSilverTreasureRoom(idx)) then return end
 
     if(isLibraryCardLibrary(idx)) then
         MINIMAP_ICON_SPRITE:Play("IconLibraryTreasureRoom", true)
     else
+        --MINIMAP_ICON_SPRITE:Play("IconVanillaTreasureRoom", true)
         MINIMAP_ICON_SPRITE:Play("IconVanillaTreasureRoom", true)
     end
 
-    local rpos = pos
+    local rpos = pos+(ismirror and Vector(16,0) or Vector.Zero)
     if(isBig) then
         rpos = rpos+size/2-Vector(2,2)+ToyboxMod:getRoomIconPosOffset(Game():GetLevel():GetRoomByIdx(idx))
+        if(ismirror) then rpos = rpos-Vector(4,0) end
     end
 
+    if(brclamp2) then
+        brclamp2 = brclamp2+Vector(5,6)
+    end
+    if(tlclamp) then
+        tlclamp = tlclamp+Vector(2,2)
+    end
+
+    if(ismirror) then
+        rpos.X = rpos.X+(brclamp2 and (brclamp2.X-5) or 0)-(tlclamp and (tlclamp.X-2) or 0)
+
+        local temp = 0
+        if(brclamp2) then
+            temp = brclamp2.X
+            --brclamp2.X = brclamp2.X-3
+            --brclamp2.X = (tlclamp and (tlclamp.X-2) or 0)+5
+        end
+        if(tlclamp) then
+            --tlclamp.X = tlclamp.X+3
+            --tlclamp.X = temp-5+2
+        end
+    end
+
+    MINIMAP_ICON_SPRITE.FlipX = ismirror
     MINIMAP_ICON_SPRITE.Color = Color(1,1,1,alpha)
-    MINIMAP_ICON_SPRITE:Render(rpos, tlclamp, (brclamp2 and brclamp2+Vector(5,6)))
+    MINIMAP_ICON_SPRITE:Render(rpos, tlclamp, brclamp2)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_RENDER_MINIMAP_ROOM, roomIconRender, RoomType.ROOM_TREASURE)
