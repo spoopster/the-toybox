@@ -169,7 +169,6 @@
         pickup="2805"
 
         mimiccharge="12"
-        hidden="true"
     />
     <card id="19" name="IIIS - Apocalypse"
         description="The end is nigh"

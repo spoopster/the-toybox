@@ -191,6 +191,15 @@ EID:addIcon("Card"..tostring(ToyboxMod.CARD_DARK_EXPLOSION), "Cards", 23, 16, 16
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_ENDLESS_CHAOS), "Cards", 24, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_CHAIN_REACTION), "Cards", 25, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_GREEN_APPLE), "Cards", 26, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_WISE_MEN), "Cards", 27, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_ANGEL), "Cards", 28, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_GATE), "Cards", 29, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_APOCALYPSE), "Cards", 30, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_CRYPT), "Cards", 31, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_REAPER), "Cards", 32, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_DRAGON), "Cards", 33, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_DUALITY), "Cards", 34, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_BARON), "Cards", 35, 16, 16, 0, 0, iconSprite)
 
 --- MISC
 EID:addIcon("ToyboxIconElectrifiedStatus", "Misc", 0, 16, 16, 0, 0, iconSprite)
@@ -242,6 +251,15 @@ STORED.CONSTANTS = {
     Icon_CardYanny = "{{Card" .. tostring(ToyboxMod.CARD_YANNY) .. "}}",
     Icon_CardPrismstone = "{{Card" .. tostring(ToyboxMod.CARD_PRISMSTONE) .. "}}",
     Icon_CardFoilCard = "{{Card" .. tostring(ToyboxMod.CARD_FOIL_CARD) .. "}}",
+    Icon_CardTheWiseMen = "{{Card" .. tostring(ToyboxMod.CARD_THE_WISE_MEN) .. "}}",
+    Icon_CardTheAngel = "{{Card" .. tostring(ToyboxMod.CARD_THE_ANGEL) .. "}}",
+    Icon_CardTheGate = "{{Card" .. tostring(ToyboxMod.CARD_THE_GATE) .. "}}",
+    Icon_CardApocalypse = "{{Card" .. tostring(ToyboxMod.CARD_APOCALYPSE) .. "}}",
+    Icon_CardTheCrypt = "{{Card" .. tostring(ToyboxMod.CARD_THE_CRYPT) .. "}}",
+    Icon_CardTheReaper = "{{Card" .. tostring(ToyboxMod.CARD_THE_REAPER) .. "}}",
+    Icon_CardTheDragon = "{{Card" .. tostring(ToyboxMod.CARD_THE_DRAGON) .. "}}",
+    Icon_CardDuality = "{{Card" .. tostring(ToyboxMod.CARD_DUALITY) .. "}}",
+    Icon_CardTheBaron = "{{Card" .. tostring(ToyboxMod.CARD_THE_BARON) .. "}}",
 
     Icon_StatusElectrified = "{{ToyboxIconElectrifiedStatus}}",
     Icon_StatusOverflowing = "{{ToyboxIconOverflowingStatus}}",
@@ -299,7 +317,7 @@ STORED.CONSTANTS = {
         DoubleModifiers = {"TrinketDouble", nil, "{{ColorGold}}"},
         TripleModifiers = {"TrinketTriple", nil, "{{ColorRainbow}}"},
         HorseModifiers = {"PillHorse", nil, nil},
-        TarotClothModifiers = {"CardTarotCloth", nil, nil},
+        TarotClothModifiers = {"CardTarotCloth", "{{Collectible451}}", "{{ColorShinyPurple}}"},
     }
 }
 

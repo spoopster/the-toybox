@@ -13,6 +13,16 @@ local function useTheCrypt(_, _, pl, flags)
     end
     if(secretidx) then
         Game():StartRoomTransition(secretidx, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, pl)
+
+        if(flags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY) then
+            Isaac.CreateTimer(function()
+                local room = Game():GetRoom()
+                if(room:GetType()==RoomType.ROOM_SUPERSECRET and room:IsFirstVisit()) then
+                    local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos())
+                    local chest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_OLDCHEST, 0, pos, Vector.Zero, nil):ToPickup()
+                end
+            end, 1,1,true)
+        end
     else
         pl:UseActiveItem(CollectibleType.COLLECTIBLE_TELEPORT, UseFlag.USE_NOANIM, -1)
     end

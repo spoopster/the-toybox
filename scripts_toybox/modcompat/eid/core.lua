@@ -40,13 +40,17 @@ local function formatModifier(modifier, icon, color)
             for i, text in ipairs(newModifier.ToModify) do
                 if(newModifier.Type==STORED.CONSTANTS.DescriptionModifier.REPLACE) then
                     text[2] = string.gsub(text[2], "{{CR}}", "{{CR}}"..(color or ""))
-                    text[2] = (color or "")..text[2]..(color and "{{CR}}" or "")
+                    if(modifier.ColorOverride~=false) then
+                        text[2] = (color or "")..text[2]..(color and "{{CR}}" or "")
+                    end
                     text[2] = (icon and (icon.." ") or "")..text[2]
 
                     newModifier.ToModify[i] = text
                 else
                     text = string.gsub(text, "{{CR}}", "{{CR}}"..(color or ""))
-                    text = (color or "")..text..(color and "{{CR}}" or "")
+                    if(modifier.ColorOverride~=false) then
+                        text = (color or "")..text..(color and "{{CR}}" or "")
+                    end
                     text = (icon and (icon.." ") or "")..text
 
                     newModifier.ToModify[i] = text
@@ -188,20 +192,18 @@ for id, data in pairs(STORED.PILLS) do
             table.insert(modifiersToAdd, formatModifier(modifier))
         end
     end
-    if(data.HorseModifiers) then
-        local horseFunc = function(descObj)
-            return (descObj.ObjSubType & PillColor.PILL_GIANT_FLAG ~= 0)
-        end
+    for modifierName, modifierData in pairs(STORED.CONSTANTS.ModifierFunctionKey) do
+        if(data[modifierName]) then
+            for _, modifier in ipairs(data[modifierName]) do
+                local tempNewMod = formatModifier(modifier, modifierData[2], modifierData[3])
 
-        for _, modifier in ipairs(data.HorseModifiers) do
-            local newModifier = formatModifier(modifier)
+                local newModifier = ToyboxMod:cloneTable(tempNewMod)
+                newModifier.Condition = function(descObj)
+                    return STORED.CONSTANTS.ModifierCondition[modifierData[1]](descObj) and tempNewMod.Condition(descObj)
+                end
 
-            local horseModifier = ToyboxMod:cloneTable(newModifier)
-            horseModifier.Condition = function(descObj)
-                return horseFunc(descObj) and newModifier.Condition(descObj)
+                table.insert(modifiersToAdd, newModifier)
             end
-            
-            table.insert(modifiersToAdd, horseModifier)
         end
     end
 
@@ -224,20 +226,18 @@ for id, data in pairs(STORED.CARDS) do
             table.insert(modifiersToAdd, formatModifier(modifier))
         end
     end
-    if(data.TarotClothModifiers) then
-        local clothFunc = function(descObj)
-            return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH)
-        end
+    for modifierName, modifierData in pairs(STORED.CONSTANTS.ModifierFunctionKey) do
+        if(data[modifierName]) then
+            for _, modifier in ipairs(data[modifierName]) do
+                local tempNewMod = formatModifier(modifier, modifierData[2], modifierData[3])
 
-        for _, modifier in ipairs(data.TarotClothModifiers) do
-            local newModifier = formatModifier(modifier)
+                local newModifier = ToyboxMod:cloneTable(tempNewMod)
+                newModifier.Condition = function(descObj)
+                    return STORED.CONSTANTS.ModifierCondition[modifierData[1]](descObj) and tempNewMod.Condition(descObj)
+                end
 
-            local clothModifier = ToyboxMod:cloneTable(newModifier)
-            clothModifier.Condition = function(descObj)
-                return clothFunc(descObj) and newModifier.Condition(descObj)
+                table.insert(modifiersToAdd, newModifier)
             end
-            
-            table.insert(modifiersToAdd, clothModifier)
         end
     end
 

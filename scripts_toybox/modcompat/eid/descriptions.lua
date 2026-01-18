@@ -2070,6 +2070,15 @@ enums.FUNCTIONS.AddCard({
         "The star will wander around the room instead of towards the Boss Room",
         "{{SoulHeart}} Upon room clear, the star will turn into a Soul Heart"
     },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ColorOverride = false,
+            ToModify = {
+                "The familiar's aura is 50% larger"
+            }
+        },
+    }
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_THE_ANGEL,
@@ -2083,9 +2092,17 @@ enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_THE_GATE,
     Name = "IIS - The Gate",
     Description = {
-        "On use, Isaac holds up the card",
-        "While held up, touching any lock will open it for free and has a 33% chance to destroy the card",
+        "{{GoldenKey}} Grants a Golden Key for the room",
     },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ColorOverride = false,
+            ToModify = {
+                "{{GoldenBomb}} Also grants a Golden Bomb for the room"
+            }
+        },
+    }
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_APOCALYPSE,
@@ -2100,6 +2117,15 @@ enums.FUNCTIONS.AddCard({
     Description = {
         "{{SuperSecretRoom}} Teleports Isaac to the Super Secret Room",
     },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ColorOverride = false,
+            ToModify = {
+                "If the Super Secret Room hasn't been entered yet, spawns an {{OldChest}} Old Chest in the room"
+            }
+        },
+    }
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_THE_REAPER,
@@ -2114,6 +2140,14 @@ enums.FUNCTIONS.AddCard({
     Description = {
         "{{GoldenHeart}} Spawns 2 Golden Hearts",
     },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"2", "3"}
+            }
+        },
+    }
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_DUALITY,
@@ -2121,6 +2155,14 @@ enums.FUNCTIONS.AddCard({
     Description = {
         "{{BlendedHeart}} Spawns 2 Blended Hearts",
     },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"2", "3"}
+            }
+        },
+    }
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_THE_BARON,

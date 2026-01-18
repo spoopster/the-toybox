@@ -85,6 +85,8 @@ include("scripts_toybox.misc.tinted_rooms.minimap_logic")
 include("scripts_toybox.misc.tinted_rooms.room_effects")
 
 include("scripts_toybox.misc.consumable_weights")
+include("scripts_toybox.misc.golden_key_logic")
+include("scripts_toybox.misc.golden_bomb_logic")
 
 include("scripts_toybox.misc.custom_special_rooms.logic")
 include("scripts_toybox.misc.custom_special_rooms.graveyard_room")
@@ -330,6 +332,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.pickups.cards.the_crypt")
     include("scripts_toybox.pickups.cards.the_dragon")
     include("scripts_toybox.pickups.cards.duality")
+    include("scripts_toybox.pickups.cards.the_gate")
 --OBJECTS
     include("scripts_toybox.pickups.objects.mantle_rock")
     include("scripts_toybox.pickups.objects.mantle_poop")
