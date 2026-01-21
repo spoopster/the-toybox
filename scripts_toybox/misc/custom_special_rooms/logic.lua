@@ -4,6 +4,7 @@ ToyboxMod.ROOM_TYPE_DATA = {
     GRAVEYARD_ROOM = {
         Id = 100,
         IconAnim = "IconGraveyardRoom",
+        MinimapIcon = "ToyboxGraveyardRoom",
         Backdrop = ToyboxMod.BACKDROOP_GRAVEYARD,
         DoorGfx = "gfx_tb/grid/graveyard_door.png",
         Locked = true,
@@ -11,6 +12,7 @@ ToyboxMod.ROOM_TYPE_DATA = {
     TEMPLE_ROOM = {
         Id = 101,
         IconAnim = "IconTempleRoom",
+        MinimapIcon = "ToyboxTempleRoom",
         Backdrop = ToyboxMod.BACKDROOP_GRAVEYARD,
     }
 }

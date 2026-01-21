@@ -89,6 +89,8 @@ include("scripts_toybox.misc.consumable_weights")
 include("scripts_toybox.misc.golden_key_logic")
 include("scripts_toybox.misc.golden_bomb_logic")
 
+include("scripts_toybox.misc.custom_room_icons")
+
 include("scripts_toybox.misc.custom_special_rooms.logic")
 include("scripts_toybox.misc.custom_special_rooms.graveyard_room")
 
