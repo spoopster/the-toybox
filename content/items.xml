@@ -972,13 +972,69 @@
 
     achievement="Conglomerate"
 />
+<active id="106" name="Enema"
+    description="Foe cleanser"
+    gfx="enema.png"
+    quality="1"
+    tags="offensive noeden"
+    cache=""
 
+    chargetype="timed"
+    maxcharges="600"
+    hidden="true"
+/>
+<passive id="107" name="Ember"
+    description="Wildfire"
+    gfx="ember.png"
+    quality="3"
+    tags="offensive noeden"
+    cache=""
+
+    hidden="true"
+/>
+<passive id="108" name="Dissociation"
+    description="Lose yourself"
+    gfx="dissociation.png"
+    quality="1"
+    tags="offensive noeden"
+    cache=""
+
+    hidden="true"
+/>
 <passive id="109" name="RETROFALL"
     description="Classic roller"
     gfx="RETROFALL.png"
     quality="4"
     tags="offensive summonable"
     cache=""
+/>
+<passive id="110" name="Angel Dust"
+    description=" "
+    gfx="angel_dust.png"
+    quality="2"
+    tags="offensive noeden"
+    cache=""
+
+    hidden="true"
+/>
+<active id="111" name="Puggy's Claw"
+    description=" "
+    gfx="puggys_claw.png"
+    quality="2"
+    tags="offensive noeden"
+    cache=""
+
+    maxcharges="4"
+    hidden="true"
+/>
+<passive id="112" name="Magic Seed"
+    description=" "
+    gfx="magic_seed.png"
+    quality="2"
+    tags="offensive noeden"
+    cache=""
+
+    hidden="true"
 />
 
 <active id="491" name="Cursed D6"
@@ -1231,6 +1287,21 @@
     description="&quot;Trophy hunter&quot;"
     gfx="inside_joke.png"
     cache="damage"
+/>
+<trinket id="27" name="Citrusberry"
+    description="Emergency heal"
+    gfx="citrusberry.png"
+    cache=""
+/>
+<trinket id="28" name="Neverstone"
+    description="Nothing ever happens"
+    gfx="neverstone.png"
+    cache=""
+/>
+<trinket id="29" name="Catnip"
+    description=" "
+    gfx="catnip.png"
+    cache=""
 />
 
 <null id="1" name="toybox null save"

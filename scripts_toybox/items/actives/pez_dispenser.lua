@@ -191,11 +191,11 @@ local function takeDispenserConsumable(_, _, rng, player, flags)
     dropDispenserConsumable(player, selIndex, false)
 
     if(toRemove.IsPill) then
-        player:AddPill(toRemove.ID)
-        --player:UsePill(Game():GetItemPool():GetPillEffect(toRemove.ID, player), toRemove.ID)
+        --player:AddPill(toRemove.ID)
+        player:UsePill(Game():GetItemPool():GetPillEffect(toRemove.ID, player), toRemove.ID)
     else
-        player:AddCard(toRemove.ID)
-        --player:UseCard(toRemove.ID)
+        --player:AddCard(toRemove.ID)
+        player:UseCard(toRemove.ID)
     end
     sfx:Play(SoundEffect.SOUND_PLOP)
 

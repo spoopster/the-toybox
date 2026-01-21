@@ -47,6 +47,8 @@ local function dupeItem(_, pickup)
         return
     end
 
+    print("Hello", MORPHED_ITEMS[GetPtrHash(pickup)])
+
     if(MORPHED_ITEMS[GetPtrHash(pickup)]~=nil) then return end
 
     if(Game():GetLevel():GetDimension()==Dimension.DEATH_CERTIFICATE) then return end
@@ -65,7 +67,7 @@ local function dupeItem(_, pickup)
         local worked = pickup:TryInitOptionCycle(ITEM_CLONES)
         if(not worked) then
             local pool = Game():GetItemPool()
-            for i=1, ITEM_CLONES do
+            for _=1, ITEM_CLONES do
                 local itempool = room:GetItemPool(math.max(1,rng:Next()))
                 if(itempool==ItemPoolType.POOL_NULL) then itempool = pool:GetLastPool() end
 
@@ -81,6 +83,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, dupeItem, PickupVariant.
 
 ---@param pickup EntityPickup
 local function invalidateMorphedItem(_, pickup)
+    if(pickup.Variant~=PickupVariant.PICKUP_COLLECTIBLE) then return end
     MORPHED_ITEMS[GetPtrHash(pickup)] = true
     Isaac.CreateTimer(function ()
         MORPHED_ITEMS[GetPtrHash(pickup)] = nil

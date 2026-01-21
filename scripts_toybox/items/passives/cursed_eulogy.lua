@@ -35,7 +35,7 @@ local function tryReplacePool(_, pool, dec, seed)
         end
 
         CANCEL_CHECK_EFFECT = true
-        local pickedItem = Game():GetItemPool():GetCollectible(pickedPool, true, rng:RandomInt(2^32-1), CollectibleType.COLLECTIBLE_BREAKFAST)
+        local pickedItem = Game():GetItemPool():GetCollectible(pickedPool, dec, rng:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
         CANCEL_CHECK_EFFECT = false
 
         table.insert(MARKED_SEEDS, seed)
@@ -48,7 +48,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, tryReplacePool)
 local function doEvilEffect(_, pickup)
     local shouldDoEvilEffect = false
 
-    local poolSeed = ToyboxMod:generateRng(pickup.InitSeed):RandomInt(2^32-1)
+    local poolSeed = ToyboxMod:generateRng(pickup.InitSeed):Next()
     for _, seed in ipairs(MARKED_SEEDS) do
         if(seed==poolSeed) then
             shouldDoEvilEffect = true

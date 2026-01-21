@@ -60,3 +60,8 @@ local function playerRetriggerClear(_, pl)
     )
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, playerRetriggerClear)
+
+local function canceasouihfasash(_)
+    CANCEL_RETRIGGER = false
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, canceasouihfasash)
