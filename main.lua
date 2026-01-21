@@ -385,6 +385,8 @@ include("scripts_toybox.fortnite funnies.trinket_collection")
 
 -- EID
 include("scripts_toybox.modcompat.eid.core")
+-- MINIMAPI
+include("scripts_toybox.modcompat.minimapi.core")
 -- ACCURATE BLURBS
 include("scripts_toybox.modcompat.accurate blurbs.accurate_blurbs")
 -- FIEND FOLIO FUZZY PICKLE

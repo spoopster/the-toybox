@@ -47,8 +47,6 @@ local function dupeItem(_, pickup)
         return
     end
 
-    print("Hello", MORPHED_ITEMS[GetPtrHash(pickup)])
-
     if(MORPHED_ITEMS[GetPtrHash(pickup)]~=nil) then return end
 
     if(Game():GetLevel():GetDimension()==Dimension.DEATH_CERTIFICATE) then return end

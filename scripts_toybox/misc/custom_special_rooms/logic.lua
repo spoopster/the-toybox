@@ -77,7 +77,7 @@ local function removeMissingIcons(_)
     local sp = Minimap.GetIconsSprite()
     local layer = sp:GetLayer(0)
     if(layer:GetSpritesheetPath()==layer:GetSpritesheetPath()) then
-        sp:ReplaceSpritesheet(0, "gfx_tb/ui/ui_vanilla_icons_missing.png", true)
+        --sp:ReplaceSpritesheet(0, "gfx_tb/ui/ui_vanilla_icons_missing.png", true)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_MINIMAP_RENDER, removeMissingIcons)
