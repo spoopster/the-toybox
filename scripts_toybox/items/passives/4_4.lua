@@ -1,7 +1,7 @@
 local sfx = SFXManager()
 
 local CONFUSE_FREQ = 5
-local CONFUSE_RADIUS = 50
+local CONFUSE_RADIUS = 60
 local CONFUSE_DURATION = math.floor(30*1.2)
 
 ---@param pl EntityPlayer
@@ -11,6 +11,7 @@ local function confuseNearbyEnemies(_, pl)
     local data = ToyboxMod:getEntityDataTable(pl)
     local isFiring = ToyboxMod:isPlayerShooting(pl) and pl:IsExtraAnimationFinished()
 
+    --[[
     if(isFiring and not (data.FOURFOUR_AURA and data.FOURFOUR_AURA:Exists() and not data.FOURFOUR_AURA:IsDead())) then
         local aura = Isaac.Spawn(1000,ToyboxMod.EFFECT_AURA,ToyboxMod.EFFECT_AURA_44,pl.Position,Vector.Zero,pl):ToEffect()
         aura.Parent = pl
@@ -24,16 +25,14 @@ local function confuseNearbyEnemies(_, pl)
 
         data.FOURFOUR_AURA = aura
     end
+    --]]
 
-    if(isFiring and Game():GetFrameCount()%CONFUSE_FREQ==0) then
+    if(Game():GetFrameCount()%CONFUSE_FREQ==0) then
         local plRef = EntityRef(pl)
 
-        for _, ent in ipairs(Isaac.FindInRadius(pl.Position, CONFUSE_RADIUS, EntityPartition.ENEMY)) do
+        for _, ent in ipairs(Isaac.FindInRadius(pl.Position, CONFUSE_RADIUS+pl.Size, EntityPartition.ENEMY)) do
             if(ToyboxMod:isValidEnemy(ent)) then
-                local confcount = ent:GetConfusionCountdown()
-                if(confcount<CONFUSE_DURATION) then
-                    ent:AddConfusion(plRef, CONFUSE_DURATION-confcount, false)
-                end
+                ent:AddConfusion(plRef, -CONFUSE_DURATION, false)
             end
         end
     end

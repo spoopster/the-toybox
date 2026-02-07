@@ -5,13 +5,23 @@ local DMG_MULT = 0.5
 local TAKE_DMG_MULT = 2
 local TAKE_DMG_INC = 2
 
+local CARBATTERY_DMG_MULT = 2
+
 ---@param player EntityPlayer
-local function useMantle(_, _, player, _)
+---@param flags UseFlag
+local function useMantle(_, _, player, flags)
+    if(player:HasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE) and flags & UseFlag.USE_CARBATTERY == 0) then return end
+
     if(ToyboxMod:isAtlasA(player)) then
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.GLASS.ID)
     else
         local data = ToyboxMod:getEntityDataTable(player)
         data.MANTLEGLASS_ACTIVE = (data.MANTLEGLASS_ACTIVE or 0)+1
+        if(flags & UseFlag.USE_CARBATTERY ~= 0) then
+            if(data.MANTLEGLASS_ACTIVE==data.MANTLEGLASS_ACTIVE//1) then
+                data.MANTLEGLASS_ACTIVE = data.MANTLEGLASS_ACTIVE+0.5
+            end
+        end
         player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true)
 
         sfx:Play(SoundEffect.SOUND_GLASS_BREAK)
@@ -34,7 +44,7 @@ local function evalCache(_, player, flag)
     if(not (glassNum and glassNum>0)) then return end
 
     if(flag==CacheFlag.CACHE_DAMAGE) then
-        player.Damage = player.Damage*(1+glassNum*DMG_MULT)
+        player.Damage = player.Damage*(1+(glassNum//1)*(glassNum~=glassNum//1 and CARBATTERY_DMG_MULT or DMG_MULT))
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
@@ -69,6 +79,9 @@ local function spawnBloodPoof(_, player, dmg, flags, source)
     if(data.MANTLEGLASS_ACTIVE and data.MANTLEGLASS_ACTIVE>0 and dmg>0) then
         local blood = Isaac.Spawn(1000,16,4,player.Position,Vector.Zero,player):ToEffect()
         sfx:Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
+        if(data.MANTLEGLASS_ACTIVE~=data.MANTLEGLASS_ACTIVE//1) then
+            player:Die()
+        end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, spawnBloodPoof, EntityType.ENTITY_PLAYER)

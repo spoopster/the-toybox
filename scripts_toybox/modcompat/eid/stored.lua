@@ -218,6 +218,7 @@ EID:addColor("ToyboxColorLimitBreak", nil, MakeSwagColor({{162,164,222},{255,234
 EID:addColor("ToyboxColorHorsePill", nil, MakeSwagColor({{184,169,163},{111,134,192}}, 80))
 EID:addColor("ToyboxColorJonas", MakeColor({173,189,228}))
 EID:addColor("ToyboxColorItemStack", MakeColor({196,167,196}))
+EID:addColor("ToyboxColorConglomerate", nil, MakeSwagColor({{119,137,147},{91,99,104}}, 80))
 
 STORED.CONSTANTS = {
     --- ICONS ---
@@ -275,6 +276,7 @@ STORED.CONSTANTS = {
     Color_HorsePill = "{{CToyboxColorHorsePill}}",
     Color_Jonas = "{{ToyboxColorJonas}}",
     Color_ItemStack = "{{ToyboxColorItemStack}}",
+    Color_Conglomerate = "{{ToyboxColorConglomerate}}",
 
     --- ENUMS ---
     DescriptionModifier = {
@@ -309,6 +311,16 @@ STORED.CONSTANTS = {
         CardTarotCloth = function(descObj)
             return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH)
         end,
+
+        CardConglomerate = function(descObj)
+            return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE)
+        end,
+        CardConglomerateNoAtlas = function(descObj)
+            return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE) and ToyboxMod:isAnybodyNotAtlasA()
+        end,
+        CardConglomerateYesAtlas = function(descObj)
+            return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE) and ToyboxMod:isAnyPlayerAtlasA()
+        end,
     },
     ModifierFunctionKey = {
         StackModifiers = {"ItemStack", "{{Collectible347}}", "{{ToyboxColorItemStack}}"},
@@ -318,6 +330,7 @@ STORED.CONSTANTS = {
         TripleModifiers = {"TrinketTriple", nil, "{{ColorRainbow}}"},
         HorseModifiers = {"PillHorse", nil, nil},
         TarotClothModifiers = {"CardTarotCloth", "{{Collectible451}}", "{{ColorShinyPurple}}"},
+        ConglomerateModifiers = {"CardConglomerate", "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}}", "{{ToyboxColorConglomerate}}"},
     }
 }
 

@@ -1,7 +1,7 @@
 
 
 local COSTUME_PATH = "gfx_tb/characters/costume_atlas_rock.anm2"
-local COSTUME_DEFAULT = "gfx_tb/characters/costumes/character_atlas_horn.png"
+local COSTUME_DEFAULT = "gfx_tb/characters/costumes/character_atlas.png"
 ToyboxMod.HORN_COSTUMES = {}
 
 local function compareSort(tableA, tableB)
@@ -70,7 +70,7 @@ local function evaluateHorn(_, player)
         end
     end
 
-    sp:ReplaceSpritesheet(1, costumeSprite)
+    sp:ReplaceSpritesheet(0, costumeSprite)
     sp:LoadGraphics()
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, evaluateHorn, 0)

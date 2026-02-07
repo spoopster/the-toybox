@@ -56,7 +56,7 @@ local function addNoseCandyBonuses(_, player)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_NOSE_CANDY)) then return end
 
     local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_NOSE_CANDY)
-    local statTable = ToyboxMod:getEntityDataTable(player).NOSE_CANDY_STATBONUSES
+    local statTable = ToyboxMod:getEntityDataTable(player).NOSE_CANDY_STATBONUSES or {}
     local num = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_NOSE_CANDY)
     num = 1+(num-1)/2
 

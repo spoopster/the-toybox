@@ -50,6 +50,9 @@ end
 function ToyboxMod:areAllPlayersAtlasA()
     return #ToyboxMod:getAllAtlasA()==Game():GetNumPlayers()
 end
+function ToyboxMod:isAnybodyNotAtlasA()
+    return not ToyboxMod:areAllPlayersAtlasA()
+end
 
 function ToyboxMod:atlasHasTransformation(player, transformation)
     return (ToyboxMod:getAtlasAData(player, "TRANSFORMATION")==transformation or ToyboxMod:getAtlasAData(player, "BIRTHRIGHT_TRANSFORMATION")==transformation)
@@ -256,12 +259,17 @@ function ToyboxMod:getRandomMantle(rng, ignoreBias, consumableId)
     return outcome
 end
 
-function ToyboxMod:getNumMantlesByType(player, type)
+---@param player EntityPlayer
+function ToyboxMod:getNumMantlesByType(player, type, trueCount)
     local data = ToyboxMod:getAtlasATable(player)
     local s = 0
     for i=1, ToyboxMod:getRightmostMantleIdx(player) do
         s = s+(data.MANTLES[i].TYPE==type and 1 or 0)
     end
+    if(not trueCount and player:HasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE)) then
+        s = s*(1+player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_CONGLOMERATE))
+    end
+    
     return s
 end
 

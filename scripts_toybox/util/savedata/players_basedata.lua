@@ -62,6 +62,18 @@ local BASEDATA = {
     },
     GOOD_JOB_CLEARS = 0,
     INSIDE_JOKE_ROOMS = 0,
+    DISSOCIATION_STATS = {
+        SPEED = 0,
+        TEARS = 0,
+        DAMAGE = 0,
+        RANGE = 0,
+        SHOTSPEED = 0,
+        LUCK = 0,
+    },
+    EMBER_WEAPON_FIRED_COUNTER = 0,
+    ENEMA_STATS = {},
+    PUGGYS_CLAW_COUNTERS = 0,
+    MANTLEPOOP_QUEUE = 0,
 
     TEMPORARY_ITEMS = {},
     TEMPORARY_ITEMS_ROOM = {},

@@ -179,7 +179,7 @@ enums.FUNCTIONS.AddItem({
     Name = "4 4",
     Description = {
         "\1 +0.5 Tears",
-        "{{Confusion}} While firing, nearby enemies are Confused",
+        "{{Confusion}} Confuses enemies in a small radius around Isaac",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -274,7 +274,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_MISSING_PAGE_3,
     Name = "Missing Page 3",
     Description = {
-        "{{DeathMark}} Enemies have a 4% chance to spawn as a Skull champion",
+        "{{DeathMark}} Enemies have a 6% chance to spawn as a Skull champion",
         --"{{Blank}} {{ColorGray}}Skull champions have 2x health and trigger {{Collectible35}} The Necronomicon effect on death{{CR}}",
         "{{BlackHeart}} Skull champions are guaranteed to drop a black heart on death",
     },
@@ -1355,7 +1355,55 @@ enums.FUNCTIONS.AddItem({
         "Turns all non-champion non-boss enemies in the room into champions",
     },
 })
-
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_DISSOCIATION,
+    Name = "Dissociation",
+    Description = {
+        "\1 Grants 7 random stat increases on pick-up",
+        "\2 At the start of every floor, decreases a random stat"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_ANGEL_DUST,
+    Name = "Angel Dust",
+    Description = {
+        "\1 +2 Damage",
+        "{{Fear}} In active rooms, every 10 seconds, Isaac will be Feared for 2 seconds"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_EMBER,
+    Name = "Ember",
+    Description = {
+        "Every 10 tears, Isaac shoots a cluster of burning hot coal tears",
+        "{{Burning}} When an enemy takes burning damage, it spreads the burning debuff to other nearby enemies"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_ENEMA,
+    Name = "Enema",
+    Description = {
+        "Removes all status effects from enemies",
+        "{{Timer}} Temporarily grants a random stat up for every status effect instance removed"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_PUGGYS_CLAW,
+    Name = "Puggy's Claw",
+    Description = {
+        "\1 +0.3 flat Damage for the room",
+        "Damage granted by this is permanently increased by +0.02 for every enemy killed while the effect is active",
+        "Damage resets at the start of every run",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CONGLOMERATE,
+    Name = "Conglomerate",
+    Description = {
+        enums.CONSTANTS.Icon_CardMantleRock.." 5% chance for mantles to replace random card spawns",
+        enums.CONSTANTS.Icon_CardMantleRock.." Mantle effects are enhanced",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 
@@ -2012,6 +2060,105 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_CITRUSBERRY,
+    Name = "Citrusberry",
+    Description = {
+        "On hit, if Isaac has less than half of his max health, {{HealingRed}} heal 25% Max Health and {{SoulHeart}} gain 1 Soul Heart",
+        "Always heals at least 1 Heart",
+        "Can only activate once per floor"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"25%%", "50%%"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"25%%", "75%%"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_CITRUSBERRY_CONSUMED,
+    Name = "Citrusberry",
+    Description = {
+        "On hit, if Isaac has less than half of his max health, {{HealingRed}} heal 25% Max Health and {{SoulHeart}} gain 1 Soul Heart",
+        "Always heals at least 1 Heart",
+        "Can only activate once per floor"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"25%%", "50%%"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"25%%", "75%%"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_NEVERSTONE,
+    Name = "Neverstone",
+    Description = {
+        "Enemy HP no longer scales based on the current stage",
+        "Enemies no longer have boss armor",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ToModify = {
+                "Enemies with scaling HP have less health",
+                "Enemies with boss armor take 25% more damage",
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ToModify = {
+                "Enemies with scaling HP have even less health",
+                "Enemies with boss armor take 50% more damage",
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_CATNIP,
+    Name = "Catnip",
+    Description = {
+        "Enemies hit by familiars are slowed for 2 seconds",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"2 seconds", "3 seconds"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"2 seconds", "4 seconds"},
+            }
+        },
+    },
+})
 
 
 
@@ -2197,6 +2344,14 @@ enums.FUNCTIONS.AddCard({
     },
     Modifiers = {
         {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}} "..enums.CONSTANTS.Color_Conglomerate.."Size up{{CR}}",
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}} "..enums.CONSTANTS.Color_Conglomerate.."Grants {{Collectible302}} Leo{{CR}}",
+            }
+        },
+        {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
             ToModify = {
@@ -2219,8 +2374,18 @@ enums.FUNCTIONS.AddCard({
                 enums.CONSTANTS.Icon_AtlasRock .. " {{ColorGray}}Transformation{{CR}}",
                 "No effect",
             },
-        }
-    }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "Does nothing",
+                    "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}} "..enums.CONSTANTS.Color_Conglomerate.."Still does nothing{{CR}}",
+                },
+            }
+        },
+    },
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_MANTLE_POOP,
@@ -2230,6 +2395,13 @@ enums.FUNCTIONS.AddCard({
         "When thrown, it leaves liquid poop creep under it as it flies"
     },
     Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}} "..enums.CONSTANTS.Color_Conglomerate.."Throw 2 more poops in quick succession{{CR}}",
+            }
+        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
@@ -2256,8 +2428,22 @@ enums.FUNCTIONS.AddCard({
                 "+10% chance to get pickups from poops",
                 "Poops can now drop keys, bombs, consumables and batteries",
             },
-        }
-    }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "+3.33%% chance",
+                    enums.CONSTANTS.Color_Conglomerate.."+6.67%% chance{{CR}}",
+                },
+                {
+                    "2 blue flies",
+                    enums.CONSTANTS.Color_Conglomerate.."2-4 blue flies{{CR}}",
+                },
+            }
+        },
+    },
 })
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_MANTLE_BONE,
@@ -2267,6 +2453,14 @@ enums.FUNCTIONS.AddCard({
         "{{Timer}} For the room, enemies have a 67% chance to spawn an orbital bone shard on death",
     },
     Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                {"{{Charm}} Spawns a friendly Bony", "{{Collectible"..ToyboxMod.COLLECTIBLE_BONE_BOY.."}} "..enums.CONSTANTS.Color_Conglomerate.."Grants a Bone Boy for the floor{{CR}}"},
+                {"67%%", " "..enums.CONSTANTS.Color_Conglomerate.."100%%{{CR}}"},
+            }
+        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
@@ -2292,7 +2486,17 @@ enums.FUNCTIONS.AddCard({
                 "Fire bones in a circle around you when damaged",
                 "+0.6 Tears for every missing Mantle",
             },
-        }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "+10%% chance",
+                    enums.CONSTANTS.Color_Conglomerate.."+20%% chance{{CR}}",
+                },
+            }
+        },
     }
 })
 enums.FUNCTIONS.AddCard({
@@ -2303,6 +2507,20 @@ enums.FUNCTIONS.AddCard({
         "{{BlackHeart}} 10% chance for enemies killed by this to drop a Black Heart",
     },
     Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                {"10%%", " "..enums.CONSTANTS.Color_Conglomerate.."15%%{{CR}}"},
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}} "..enums.CONSTANTS.Color_Conglomerate.."Also deals 40 damage to all enemies in the room{{CR}}",
+            }
+        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
@@ -2328,7 +2546,17 @@ enums.FUNCTIONS.AddCard({
                 "Gain a dark aura that gives +0.5 Damage for every enemy inside it",
                 "Losing any Mantle deals 60 damage to all enemies"
             },
-        }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "+0.4 Damage",
+                    " "..enums.CONSTANTS.Color_Conglomerate.."+0.8 Damage{{CR}}",
+                },
+            }
+        },
     }
 })
 enums.FUNCTIONS.AddCard({
@@ -2339,6 +2567,13 @@ enums.FUNCTIONS.AddCard({
         "{{Timer}} Your tears gain a damaging aura for the room"
     },
     Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                {"for the room", enums.CONSTANTS.Color_Conglomerate.."and homing as long as you have an Eternal Heart"},
+            }
+        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
@@ -2364,7 +2599,21 @@ enums.FUNCTIONS.AddCard({
                 "Flight",
                 "Gain an aura that deals 10 damage per second",
             },
-        }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "+0.5 Range",
+                    " "..enums.CONSTANTS.Color_Conglomerate.."+1 Range{{CR}}",
+                },
+                {
+                    "+3.33%% chance",
+                    enums.CONSTANTS.Color_Conglomerate.."+6.67%% chance{{CR}}",
+                },
+            }
+        },
     }
 })
 enums.FUNCTIONS.AddCard({
@@ -2374,6 +2623,14 @@ enums.FUNCTIONS.AddCard({
         "{{Timer}} Gives the effect of a random \"Tears Up\" item for the room",
     },
     Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                {"a random \"Tears Up\" item", enums.CONSTANTS.Color_Conglomerate.."2 random \"Tears Up\" items{{CR}}"},
+                {"the room", enums.CONSTANTS.Color_Conglomerate.."the floor{{CR}}"},
+            }
+        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
@@ -2398,7 +2655,17 @@ enums.FUNCTIONS.AddCard({
                 "Press the DROP key to enter or leave \"salt statue\" form",
                 "While in this form, you have x2.5 Tears but are immobile",
             },
-        }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "+0.33 Tears",
+                    " "..enums.CONSTANTS.Color_Conglomerate.."+0.67 Tears{{CR}}",
+                },
+            }
+        },
     }
 })
 enums.FUNCTIONS.AddCard({
@@ -2410,6 +2677,20 @@ enums.FUNCTIONS.AddCard({
         "\2 Damage taken is doubled and increased by 1 extra heart"
     },
     Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                {"x1.5 Damage", " "..enums.CONSTANTS.Color_Conglomerate.."x3 Damage{{CR}}"},
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}} "..enums.CONSTANTS.Color_Conglomerate.."Taking damage kills you{{CR}}",
+            }
+        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
@@ -2436,7 +2717,21 @@ enums.FUNCTIONS.AddCard({
                 "\1 x1.5 Damage",
                 "!!! Taking damage has a 90% chance to destroy all Mantles",
             },
-        }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "+0.5 Damage",
+                    " "..enums.CONSTANTS.Color_Conglomerate.."+1 Damage{{CR}}",
+                },
+                {
+                    "+0.1 Shotspeed",
+                    " "..enums.CONSTANTS.Color_Conglomerate.."+0.2 Shotspeed{{CR}}",
+                },
+            }
+        },
     }
 })
 enums.FUNCTIONS.AddCard({
@@ -2447,6 +2742,20 @@ enums.FUNCTIONS.AddCard({
         "All of your full Soul/Black Hearts gain a metal shield that blocks 1 damage",
     },
     Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                {"+1 Soul Heart", " "..enums.CONSTANTS.Color_Conglomerate.."+2 Soul Hearts{{CR}}"},
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}} "..enums.CONSTANTS.Color_Conglomerate.."Grants a one-use Holy Mantle shield{{CR}}",
+            }
+        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
@@ -2472,7 +2781,21 @@ enums.FUNCTIONS.AddCard({
                 "+10% chance to block damage",
                 "Spike damage is always blocked",
             },
-        }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "-0.1 Speed",
+                    " "..enums.CONSTANTS.Color_Conglomerate.."-0.2 Speed{{CR}}",
+                },
+                {
+                    "+5%% chance",
+                    enums.CONSTANTS.Color_Conglomerate.."+10%% chance{{CR}}",
+                },
+            }
+        },
     }
 })
 enums.FUNCTIONS.AddCard({
@@ -2483,6 +2806,13 @@ enums.FUNCTIONS.AddCard({
         "Only has a 10% chance to be consumed on use",
     },
     Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateNoAtlas,
+            ToModify = {
+                {"10%%", enums.CONSTANTS.Color_Conglomerate.."5%%{{CR}}"},
+            }
+        },
         {
             Type = enums.CONSTANTS.DescriptionModifier.APPEND_TOP,
             Condition = ToyboxMod.isAnyPlayerAtlasA,
@@ -2508,7 +2838,17 @@ enums.FUNCTIONS.AddCard({
                 "Tears have a 5% chance to spawn a penny upon hitting an enemy",
                 "Losing any Mantle turns nearby enemies to gold",
             },
-        }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Condition = enums.CONSTANTS.ModifierCondition.CardConglomerateYesAtlas,
+            ToModify = {
+                {
+                    "+1 Luck",
+                    " "..enums.CONSTANTS.Color_Conglomerate.."+2 Luck{{CR}}",
+                },
+            }
+        },
     }
 })
 

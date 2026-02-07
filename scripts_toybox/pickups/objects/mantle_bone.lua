@@ -3,15 +3,30 @@ local sfx = SFXManager()
 
 local SPUR_CHANCE = 0.67
 
-local function useMantle(_, _, player, _)
+local CARBATTERY_SPUR_CHANCE = 1
+
+---@param player EntityPlayer
+---@param flags UseFlag
+local function useMantle(_, _, player, flags)
+    if(player:HasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE) and flags & UseFlag.USE_CARBATTERY == 0) then return end
+
     if(ToyboxMod:isAtlasA(player)) then
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.BONE.ID)
     else
-        local bone = Isaac.Spawn(227,0,0,player.Position,Vector.Zero,player):ToNPC()
-        bone:AddCharmed(EntityRef(player),-1)
+        if(flags & UseFlag.USE_CARBATTERY ~= 0) then
+            ToyboxMod:addItemForLevel(player, ToyboxMod.COLLECTIBLE_BONE_BOY, 1)
+        else
+            local bone = Isaac.Spawn(227,0,0,player.Position,Vector.Zero,player):ToNPC()
+            bone:AddCharmed(EntityRef(player),-1)
+        end
 
         local data = ToyboxMod:getEntityDataTable(player)
         data.MANTLEBONE_ACTIVE = (data.MANTLEBONE_ACTIVE or 0)+1
+        if(flags & UseFlag.USE_CARBATTERY ~= 0) then
+            if(data.MANTLEBONE_ACTIVE==data.MANTLEBONE_ACTIVE//1) then
+                data.MANTLEBONE_ACTIVE = data.MANTLEBONE_ACTIVE+0.5
+            end
+        end
         sfx:Play(SoundEffect.SOUND_DEATH_BURST_BONE)
     end
 end
@@ -30,8 +45,8 @@ local function postNpcDeath(_, npc)
         local rng = pl:GetCardRNG(ToyboxMod.CARD_MANTLE_BONE)
         local data = ToyboxMod:getEntityDataTable(pl)
         if(data.MANTLEBONE_ACTIVE and data.MANTLEBONE_ACTIVE>0) then
-            for _=1, data.MANTLEBONE_ACTIVE do
-                if(rng:RandomFloat()<SPUR_CHANCE) then pl:AddBoneOrbital(npc.Position) end
+            for _=1, data.MANTLEBONE_ACTIVE//1 do
+                if(rng:RandomFloat()<(data.MANTLEBONE_ACTIVE~=data.MANTLEBONE_ACTIVE//1 and CARBATTERY_SPUR_CHANCE or SPUR_CHANCE)) then pl:AddBoneOrbital(npc.Position) end
             end
         end
     end

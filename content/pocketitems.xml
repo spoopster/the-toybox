@@ -197,7 +197,7 @@
         hidden="true"
     />
     <card id="22" name="VIS - The Dragon"
-        description="There be treausre"
+        description="There be treasure"
         hud="VIS - The Dragon"
         type="tarot"
         pickup="2805"

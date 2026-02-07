@@ -33,7 +33,7 @@ void main(void)
     lowp float seed = ColorizeOut.r;
 
     lowp vec2 scaledCoord = floor(gl_FragCoord.xy/pixelscale)*pixelscale;
-    lowp float lum = pow(gold_noise(scaledCoord, seed), 0.3)/texColor.a;
+    lowp float lum = pow(gold_noise(scaledCoord, seed), 0.3)/pow(texColor.a, 0.2);
     lowp vec3 finalcolor = vec3(0.0,0.0,0.0);
     if(lum<threshold)
     {

@@ -49,6 +49,7 @@ include("scripts_toybox.util.callbacks.post_poop_init")
 --include("scripts_toybox.util.callbacks.post_render_minimap_room")
 --include("scripts_toybox.util.callbacks.post_minimap_room_render")
 -- LIBRARIES
+include("scripts_toybox.util.hud_helper")
 include("scripts_toybox.util.custom_object_spawn")
 include("scripts_toybox.util.throwables")
 include("scripts_toybox.util.statuseffects")
@@ -241,6 +242,10 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.malice")
     include("scripts_toybox.items.passives.paper_plate")
     include("scripts_toybox.items.passives.trendsetter")
+    include("scripts_toybox.items.passives.dissociation")
+    include("scripts_toybox.items.passives.angel_dust")
+    include("scripts_toybox.items.passives.ember")
+    include("scripts_toybox.items.passives.conglomerate")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -268,6 +273,8 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.actives.white_daisy")
     include("scripts_toybox.items.actives.melted_candle")
     include("scripts_toybox.items.actives.coloring_book")
+    include("scripts_toybox.items.actives.enema")
+    include("scripts_toybox.items.actives.puggys_claw")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")
@@ -296,6 +303,9 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.trinkets.lifetime_supply")
     include("scripts_toybox.items.trinkets.rubbing_alcohol")
     include("scripts_toybox.items.trinkets.inside_joke")
+    include("scripts_toybox.items.trinkets.citrusberry")
+    include("scripts_toybox.items.trinkets.neverstone")
+    include("scripts_toybox.items.trinkets.catnip")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")
@@ -382,7 +392,9 @@ include("scripts_toybox.fortnite funnies.retro mode")
 --include("scripts_toybox.fortnite funnies.stupid enemy title")
 include("scripts_toybox.fortnite funnies.cool title screen")
 include("scripts_toybox.fortnite funnies.slop-o-meter")
+
 include("scripts_toybox.fortnite funnies.trinket_collection")
+include("scripts_toybox.fortnite funnies.epic_collection")
 
 
 -- EID

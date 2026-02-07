@@ -4,8 +4,13 @@ local sfx = SFXManager()
 local COINS_REMOVE = 1
 local REMOVE_CHANCE = 0.1--0.05
 
+local CARBATTERY_REMOVE_CHANCE = 0.05
+
 ---@param player EntityPlayer
-local function useMantle(_, _, player, _)
+---@param flags UseFlag
+local function useMantle(_, _, player, flags)
+    if(player:HasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE) and flags & UseFlag.USE_CARBATTERY == 0) then return end
+
     if(ToyboxMod:isAtlasA(player)) then
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.GOLD.ID)
     else
@@ -18,7 +23,7 @@ local function useMantle(_, _, player, _)
             local dir = Vector.FromAngle(rng:RandomInt(0,360)):Resized(4)
             local pickup = Isaac.Spawn(5,0,NullPickupSubType.NO_COLLECTIBLE,player.Position,dir,player)
 
-            if(rng:RandomFloat()<1-REMOVE_CHANCE) then
+            if(rng:RandomFloat()<1-(flags & UseFlag.USE_CARBATTERY ~= 0 and CARBATTERY_REMOVE_CHANCE or REMOVE_CHANCE)) then
                 player:SetCard(1, player:GetCard(0))
                 player:SetCard(0, ToyboxMod.CARD_MANTLE_GOLD)
             end

@@ -167,6 +167,13 @@ ToyboxMod.COLLECTIBLE_MALICE = Isaac.GetItemIdByName("Malice")
 ToyboxMod.COLLECTIBLE_PAPER_PLATE = Isaac.GetItemIdByName("Paper Plate")
 ToyboxMod.COLLECTIBLE_TRENDSETTER = Isaac.GetItemIdByName("Trendsetter")
 ToyboxMod.COLLECTIBLE_COLORING_BOOK = Isaac.GetItemIdByName("Coloring Book")
+ToyboxMod.COLLECTIBLE_CONGLOMERATE = Isaac.GetItemIdByName("Conglomerate")
+ToyboxMod.COLLECTIBLE_ENEMA = Isaac.GetItemIdByName("Enema")
+ToyboxMod.COLLECTIBLE_EMBER = Isaac.GetItemIdByName("Ember")
+ToyboxMod.COLLECTIBLE_DISSOCIATION = Isaac.GetItemIdByName("Dissociation")
+ToyboxMod.COLLECTIBLE_ANGEL_DUST = Isaac.GetItemIdByName("Angel Dust")
+ToyboxMod.COLLECTIBLE_PUGGYS_CLAW = Isaac.GetItemIdByName("Puggy's Claw")
+ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -212,6 +219,10 @@ ToyboxMod.TRINKET_LIBRARY_CARD = Isaac.GetTrinketIdByName("Library Card")
 ToyboxMod.TRINKET_LIFETIME_SUPPLY = Isaac.GetTrinketIdByName("Lifetime Supply")
 ToyboxMod.TRINKET_RUBBING_ALCOHOL = Isaac.GetTrinketIdByName("Rubbing Alcohol")
 ToyboxMod.TRINKET_INSIDE_JOKE = Isaac.GetTrinketIdByName("Inside Joke")
+ToyboxMod.TRINKET_CITRUSBERRY = Isaac.GetTrinketIdByName("Citrusberry")
+    ToyboxMod.TRINKET_CITRUSBERRY_CONSUMED = Isaac.GetTrinketIdByName("Citrusberry ")
+ToyboxMod.TRINKET_NEVERSTONE = Isaac.GetTrinketIdByName("Neverstone")
+ToyboxMod.TRINKET_CATNIP = Isaac.GetTrinketIdByName("Catnip")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED
@@ -372,6 +383,8 @@ ToyboxMod.SFX_POISON = Isaac.GetSoundIdByName("(TOYBOX) Poison")
 ToyboxMod.SFX_STAR_SPAWN = Isaac.GetSoundIdByName("(TOYBOX) Star Spawn")
 ToyboxMod.SFX_STAR_TRANSFORM = Isaac.GetSoundIdByName("(TOYBOX) Star Transform")
 ToyboxMod.SFX_BREATH = Isaac.GetSoundIdByName("(TOYBOX) Breath")
+ToyboxMod.SFX_WATER_NOISE = Isaac.GetSoundIdByName("(TOYBOX) Water Noise")
+ToyboxMod.SFX_ROAR = Isaac.GetSoundIdByName("(TOYBOX) Roar")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then

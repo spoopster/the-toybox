@@ -32,7 +32,7 @@
         <Item Name="Golden Calf"/>
         <Item Name="Beer Can"/>
         <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
-        <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Butterfly Effect" Weight="0.2" DecreaseBy="0.2"/>
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
         <Item Name="Reading Glasses"/>
@@ -45,6 +45,9 @@
         <Item Name="Bloody Whistle"/>
         <Item Name="Bob's Heart"/>
         <Item Name="Paper Plate"/>
+        <Item Name="Conglomerate" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Ember"/>
+        <Item Name="Angel Dust"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -90,6 +93,9 @@
         <Item Name="Bloody Whistle"/>
         <Item Name="Bob's Heart"/>
         <Item Name="Paper Plate"/>
+        <Item Name="Conglomerate" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Ember"/>
+        <Item Name="Angel Dust"/>
     </Pool>
 
     <Pool Name="boss">
@@ -143,6 +149,8 @@
         <Item Name="Melted Candle"/>
         <Item Name="Trendsetter"/>
         <Item Name="Coloring Book"/>
+        <Item Name="Conglomerate"/>
+        <Item Name="Enema"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -163,6 +171,8 @@
         <Item Name="Melted Candle"/>
         <Item Name="Trendsetter"/>
         <Item Name="Coloring Book"/>
+        <Item Name="Conglomerate"/>
+        <Item Name="Enema"/>
     </Pool>
 
     <Pool Name="devil">
@@ -176,6 +186,7 @@
         <Item Name="Effigy"/>
         <Item Name="Red Clover"/>
         <Item Name="Black Soul"/>
+        <Item Name="Puggy's Claw"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -187,6 +198,7 @@
         <Item Name="Effigy"/>
         <Item Name="Red Clover"/>
         <Item Name="Black Soul"/>
+        <Item Name="Puggy's Claw"/>
     </Pool>
 
     <Pool Name="angel">
@@ -217,6 +229,7 @@
         <Item Name="Horse Tranquilizer"/>
         <Item Name="Golden Calf"/>
         <Item Name="Black Soul"/>
+        <Item Name="Dissociation"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
@@ -224,6 +237,7 @@
         <Item Name="Horse Tranquilizer"/>
         <Item Name="Golden Calf"/>
         <Item Name="Black Soul"/>
+        <Item Name="Dissociation"/>
     </Pool>
 
     <Pool Name="secret">
@@ -239,6 +253,7 @@
         <Item Name="Langton Loop"/>
         <Item Name="White Daisy"/>
         <Item Name="Malice"/>
+        <Item Name="Dissociation"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -253,6 +268,7 @@
         <Item Name="Langton Loop"/>
         <Item Name="White Daisy"/>
         <Item Name="Malice"/>
+        <Item Name="Dissociation"/>
     </Pool>
 
     <Pool Name="library">
@@ -271,6 +287,7 @@
         <Item Name="Red Clover"/>
         <Item Name="Malice"/>
         <Item Name="Bloody Whistle"/>
+        <Item Name="Puggy's Claw"/>
     </Pool>
 
     <Pool Name="goldenChest">
@@ -306,6 +323,7 @@
         <Item Name="Horse Tranquilizer"/>
         <Item Name="Blood Ritual"/>
         <Item Name="Painkillers"/>
+        <Item Name="Angel Dust"/>
     </Pool>
 
     <Pool Name="bombBum">

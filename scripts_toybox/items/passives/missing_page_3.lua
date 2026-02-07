@@ -1,6 +1,6 @@
 
 
-local DEATH_CHAMP_CHANCE = 4*0.01 --4%
+local DEATH_CHAMP_CHANCE = 0.06
 local HARD_BLACK_CHANCE = 0.33
 
 ---@param npc EntityNPC

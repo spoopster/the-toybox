@@ -965,41 +965,36 @@
     description="Tougher shell"
     gfx="conglomerate.png"
     quality="3"
-    tags="offensive noeden"
+    tags="offensive"
     cache=""
-
-    hidden="true"
 
     achievement="Conglomerate"
 />
 <active id="106" name="Enema"
     description="Foe cleanser"
     gfx="enema.png"
-    quality="1"
-    tags="offensive noeden"
+    quality="0"
+    tags="offensive"
     cache=""
 
     chargetype="timed"
-    maxcharges="600"
-    hidden="true"
+    maxcharges="180"
+
+    shopprice="10"
 />
 <passive id="107" name="Ember"
     description="Wildfire"
     gfx="ember.png"
-    quality="3"
-    tags="offensive noeden"
+    quality="2"
+    tags="offensive"
     cache=""
-
-    hidden="true"
 />
 <passive id="108" name="Dissociation"
     description="Lose yourself"
     gfx="dissociation.png"
     quality="1"
-    tags="offensive noeden"
-    cache=""
-
-    hidden="true"
+    tags="offensive"
+    cache="all"
 />
 <passive id="109" name="RETROFALL"
     description="Classic roller"
@@ -1009,32 +1004,22 @@
     cache=""
 />
 <passive id="110" name="Angel Dust"
-    description=" "
+    description="Induced paranoia"
     gfx="angel_dust.png"
-    quality="2"
-    tags="offensive noeden"
+    quality="3"
+    tags="offensive"
     cache=""
 
-    hidden="true"
+    damage="2"
 />
 <active id="111" name="Puggy's Claw"
-    description=" "
+    description="Feral beast"
     gfx="puggys_claw.png"
-    quality="2"
-    tags="offensive noeden"
-    cache=""
+    quality="3"
+    tags="offensive"
+    cache="damage"
 
     maxcharges="4"
-    hidden="true"
-/>
-<passive id="112" name="Magic Seed"
-    description=" "
-    gfx="magic_seed.png"
-    quality="2"
-    tags="offensive noeden"
-    cache=""
-
-    hidden="true"
 />
 
 <active id="491" name="Cursed D6"
@@ -1275,7 +1260,7 @@
 />
 <trinket id="24" name="Lifetime Supply"
     description="Unlimited pickups"
-    gfx="no_sprite.png"
+    gfx="lifetime_supply.png"
     cache=""
 />
 <trinket id="25" name="Rubbing Alcohol"
@@ -1284,7 +1269,7 @@
     cache=""
 />
 <trinket id="26" name="Inside Joke"
-    description="&quot;Trophy hunter&quot;"
+    description="You wouldn't get it"
     gfx="inside_joke.png"
     cache="damage"
 />
@@ -1299,9 +1284,18 @@
     cache=""
 />
 <trinket id="29" name="Catnip"
-    description=" "
+    description="Mellowed out"
     gfx="catnip.png"
     cache=""
+/>
+
+<trinket id="100" name="Citrusberry "
+    description="Emergency heal"
+    gfx="citrusberry_consumed.png"
+    cache=""
+    
+    tags="noeden"
+    hidden="true"
 />
 
 <null id="1" name="toybox null save"

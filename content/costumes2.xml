@@ -1,15 +1,22 @@
 <costumes anm2root="gfx_tb/characters/">
     <costume id="2" anm2path="costume_eyestrain.anm2" type="passive" hasSkinAlt="true"/>
+    <costume id="13" anm2path="costume_caramel_apple.anm2" type="passive"/>
     <costume id="34" anm2path="costume_glass_vessel.anm2" type="active" priority="1"/>
     <costume id="37" anm2path="costume_hostile_takeover.anm2" type="active"/>
+    <costume id="38" anm2path="costume_steel_soul.anm2" type="passive"/>
     <costume id="43" anm2path="costume_ascension.anm2" type="active" isFlying="true"/>
     <costume id="47" anm2path="costume_clown_phd.anm2" type="passive"/>
     <costume id="50" anm2path="costume_love_letter.anm2" type="passive" hasSkinAlt="true"/>
     <costume id="57" anm2path="costume_cursed_eulogy.anm2" type="passive"/>
     <costume id="61" anm2path="costume_bobs_thesis.anm2" type="passive" hasSkinAlt="true"/>
+    <costume id="68" anm2path="costume_beer_can.anm2" type="passive" hasSkinAlt="true"/>
     <costume id="87" anm2path="costume_gambling_addiction.anm2" type="passive" priority="1"/>
+    <costume id="94" anm2path="costume_red_clover.anm2" type="passive"/>
+    <costume id="98" anm2path="costume_reading_glasses.anm2" type="passive"/>
+    <costume id="101" anm2path="costume_malice.anm2" type="passive"/>
     <costume id="103" anm2path="costume_trendsetter.anm2" type="passive" hasSkinAlt="true"/>
     <costume id="109" anm2path="costume_retrofall.anm2" type="passive" hasSkinAlt="true" priority="1"/>
+    <costume id="111" anm2path="costume_puggys_claw.anm2" type="active"/>
 
     <costume id="999" anm2path="costume_atlas_tar.anm2" type="none" priority="99"/>
 	<costume id="1000" anm2path="costume_atlas_rock.anm2" type="none" priority="99"/>
