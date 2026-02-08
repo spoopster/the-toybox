@@ -89,11 +89,15 @@ local function invalidateMorphedItem(_, pickup)
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_MORPH, CallbackPriority.LATE, invalidateMorphedItem)
 
+---@param id CollectibleType
 ---@param firstTime boolean
 ---@param pl EntityPlayer
-local function increaseCupState(_, _, _, firstTime, _, _, pl)
+local function increaseCupState(_, id, _, firstTime, _, _, pl)
     if(not firstTime) then return end
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_PYTHAGORAS_CUP_PASSIVE)) then return end
+
+    local conf = Isaac.GetItemConfig():GetCollectible(id)
+    if(conf and conf:HasTags(ItemConfig.TAG_QUEST)) then return end
 
     local plHash = GetPtrHash(pl)
     for _, fam in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, ToyboxMod.FAMILIAR_PYTHAGORAS_CUP)) do

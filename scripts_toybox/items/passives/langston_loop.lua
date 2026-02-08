@@ -22,6 +22,41 @@ local EPICFETUS_TARGET_SCALEMULT = 0.8
 local EPICFETUS_TARGET_LOOP_INTERVAL = 40*5
 local EPICFETUS_TARGET_DELAY = 60
 
+---@generic T
+---@param tbl T
+---@param deeperCopy? boolean
+---@param seen? table<table, table>
+---@return T
+local function DeepCopy(tbl, deeperCopy, seen)
+    seen = seen or {}
+
+    if seen[tbl] then
+        return seen[tbl]
+    end
+
+    local copy = {}
+
+    seen[tbl] = copy
+
+    for k, v in pairs(tbl) do
+        local newK = deeperCopy and type(k) == "table" and DeepCopy(k, true, seen) or k
+        local newV = deeperCopy and type(v) == "table" and DeepCopy(v, true, seen) or v
+
+        copy[newK] = newV
+    end
+
+    return copy
+end
+
+---@param dest Entity
+---@param source Entity
+local function copyData(dest, source)
+    local copiedData = DeepCopy(source:GetData(), true)
+    for key, val in pairs(copiedData) do
+        dest:GetData()[key] = val
+    end
+end
+
 ---@param ent Entity
 ---@return EntityPlayer?
 local function getPlayerForEnt(ent)
@@ -83,7 +118,7 @@ local function langstonTearUpdate(_, tear)
                 newTear.KnockbackMultiplier = tear.KnockbackMultiplier
                 newTear.Color = tear.Color
 
-                ToyboxMod:cloneTableWithoutDeleteing(newTear:GetData(), tear:GetData())
+                copyData(newTear, tear)
                 ToyboxMod:setEntityData(newTear, "LANGSTON_LOOP_BLACKLIST", tear)
                 ToyboxMod:setEntityData(newTear, "LANGSTON_LOOP_LUDOANGLE", tear.Velocity:GetAngleDegrees())
 
@@ -135,7 +170,7 @@ local function langstonTearUpdate(_, tear)
                 newTear.KnockbackMultiplier = tear.KnockbackMultiplier
                 newTear.Color = tear.Color
 
-                ToyboxMod:cloneTableWithoutDeleteing(newTear:GetData(), tear:GetData())
+                copyData(newTear, tear)
                 ToyboxMod:setEntityData(newTear, "LANGSTON_LOOP_BLACKLIST", true)
 
                 newTear:Update()
@@ -227,7 +262,7 @@ local function langstonLaserUpdate(_, laser)
 
                         newLaser.Color = laser.Color
 
-                        ToyboxMod:cloneTableWithoutDeleteing(newLaser:GetData(), laser:GetData())
+                        copyData(newLaser, laser)
                         ToyboxMod:setEntityData(newLaser, "LANGSTON_LOOP_BLACKLIST", laser)
                         preexistingLasers[laserIdx] = newLaser
                     end
@@ -279,7 +314,7 @@ local function langstonLaserUpdate(_, laser)
 
                 newLaser.Color = laser.Color
 
-                ToyboxMod:cloneTableWithoutDeleteing(newLaser:GetData(), laser:GetData())
+                copyData(newLaser, laser)
                 ToyboxMod:setEntityData(newLaser, "LANGSTON_LOOP_BLACKLIST", true)
             end
 
@@ -312,7 +347,7 @@ local function langstonLaserUpdate(_, laser)
 
                 newLaser.Color = laser.Color
 
-                ToyboxMod:cloneTableWithoutDeleteing(newLaser:GetData(), laser:GetData())
+                copyData(newLaser, laser)
                 ToyboxMod:setEntityData(newLaser, "LANGSTON_LOOP_BLACKLIST", true)
                 ToyboxMod:setEntityData(newLaser, "LANGSTON_LOOP_LUDOANGLE", laser.Velocity:GetAngleDegrees())
 
@@ -460,7 +495,7 @@ local function langstonBombUpdate(_, bomb)
 
             newBomb:SetLoadCostumes(true)
 
-            ToyboxMod:cloneTableWithoutDeleteing(newBomb:GetData(), bomb:GetData())
+            copyData(newBomb, bomb)
             ToyboxMod:setEntityData(newBomb, "LANGSTON_LOOP_BLACKLIST", true)
 
             newBomb:Update()
@@ -507,7 +542,7 @@ local function langstonRocketUpdate(_, rocket)
         newRocket.State = 1
         newRocket.SpriteScale = rocket.SpriteScale*EPICFETUS_TARGET_SCALEMULT
 
-        ToyboxMod:cloneTableWithoutDeleteing(newRocket:GetData(), rocket:GetData())
+        copyData(newRocket, rocket)
         ToyboxMod:setEntityData(newRocket, "LANGSTON_LOOP_BLACKLIST", true)
 
         newRocket:Update()
