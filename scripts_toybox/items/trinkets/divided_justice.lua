@@ -14,11 +14,24 @@ local function tryReplacePickup(_, pickup)
     local isBomb = (pickup.Variant==PickupVariant.PICKUP_BOMB and pickup.SubType==BombSubType.BOMB_NORMAL)
     local isKey = (pickup.Variant==PickupVariant.PICKUP_KEY and pickup.SubType==KeySubType.KEY_NORMAL)
     local isHeart = (pickup.Variant==PickupVariant.PICKUP_HEART and (pickup.SubType==HeartSubType.HEART_FULL or pickup.SubType==HeartSubType.HEART_HALF))
+    local isPoop = (pickup.Variant==PickupVariant.PICKUP_POOP and pickup.SubType==PoopPickupSubType.POOP_BIG)
 
-    if(isPenny or isBomb or isKey or isHeart) then
+    if(isPenny or isBomb or isKey or isHeart or isPoop) then
         local chance = PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_DIVIDED_JUSTICE)*REPLACE_CHANCE
         if(ToyboxMod:generateRng(pickup.InitSeed):RandomFloat()<chance) then
-            pickup:Morph(EntityType.ENTITY_PICKUP,ToyboxMod.PICKUP_SMORGASBORD,0,true)
+            local isEveryPlayerTbb = true
+            for _, pl in ipairs(PlayerManager.GetPlayers()) do
+                if(pl:GetPlayerType()~=PlayerType.PLAYER_BLUEBABY_B) then
+                    isEveryPlayerTbb = false
+                    break
+                end
+            end
+
+            if(isEveryPlayerTbb) then
+                pickup:Morph(EntityType.ENTITY_PICKUP,ToyboxMod.PICKUP_SMORGASBORD,1,true)
+            else
+                pickup:Morph(EntityType.ENTITY_PICKUP,ToyboxMod.PICKUP_SMORGASBORD,0,true)
+            end
         end
     end
 

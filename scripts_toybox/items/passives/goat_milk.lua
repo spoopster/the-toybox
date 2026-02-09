@@ -1,5 +1,8 @@
 local ENUM_SKEW_MNMX = {Min=0.45,Max=1.35}
 
+local GOAT_MILK_COLOR = Color.Lerp(Color.TearSoy, Color.TearAlmond, 0.75)
+local GOAT_MILK_LASERCOLOR = Color.Lerp(Color.LaserSoy, Color.LaserAlmond, 0.75)
+
 local function skewWeaponFiredelay(fd, rng, num)
     local randFl = rng:RandomFloat()
     if(num>1) then
@@ -22,3 +25,13 @@ local function playerAttack(_, ent, weap, dir, cMod)
     end
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_ATTACK, playerAttack)
+
+---@param player EntityPlayer
+---@param flag CacheFlag
+local function evalCache(_, player, flag)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_GOAT_MILK)) then return end
+
+    player.TearColor = GOAT_MILK_COLOR
+    player.LaserColor = GOAT_MILK_LASERCOLOR
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_TEARCOLOR)

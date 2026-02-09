@@ -47,7 +47,7 @@
     gfx="goat_milk.png"
     quality="1"
     tags="offensive summonable tearsup"
-    cache=""
+    cache="tearcolor"
 
     tears="0.5"
 />
@@ -1162,6 +1162,8 @@
     description="Burn everything"
     gfx="gasoline.png"
     cache=""
+
+    achievement="Gasoline"
 />
 <trinket id="7" name="Big Blind"
     description="Ante up!"

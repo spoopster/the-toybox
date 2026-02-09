@@ -15,9 +15,12 @@ ToyboxMod.PLAYER_JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true)
 ToyboxMod.ACHIEVEMENT_MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom")
 ToyboxMod.ACHIEVEMENT_ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas")
 ToyboxMod.ACHIEVEMENT_JONAS_B = Isaac.GetAchievementIdByName("Tainted Jonas")
+--- ACHIEVEMENTS - Challenges
+ToyboxMod.ACHIEVEMENT_CH_SCIENTOLOGY = Isaac.GetAchievementIdByName("Scientology Challenge")
 --- ACHIEVEMENTS - Misc.
 ToyboxMod.ACHIEVEMENT_WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug")
 ToyboxMod.ACHIEVEMENT_HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer")
+ToyboxMod.ACHIEVEMENT_GASOLINE = Isaac.GetAchievementIdByName("Gasoline")
 --- ACHIEVEMENTS - Atlas
 ToyboxMod.ACHIEVEMENT_PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone")
 ToyboxMod.ACHIEVEMENT_GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel")

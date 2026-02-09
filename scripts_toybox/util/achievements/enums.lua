@@ -1,10 +1,18 @@
 -- misc
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_HORSE_TRANQUILIZER, function(d)
     return d:Unlocked(Achievement.HORSE_PILLS)
-end)
+end, false)
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_WONDER_DRUG, function(d)
     return d:Unlocked(Achievement.HORSE_PILLS) and d:Unlocked(Achievement.GOLDEN_PILLS)
-end)
+end, false)
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_GASOLINE, function(d, p)
+    return (p.BURNING_BASEMENT_CLEARS or 0)>=5
+end, false)
+
+-- challenges
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CH_SCIENTOLOGY, function(d)
+    return d:Unlocked(ToyboxMod.ACHIEVEMENT_ATHEISM)
+end, false)
 
 -- atlas
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_ROCK_CANDY, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_ATLAS_A, CompletionType.BOSS_RUSH))

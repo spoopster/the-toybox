@@ -67,13 +67,15 @@ local function renderAtheismDealIcon(_)
 
     statsSprite:SetFrame(9)
     statsSprite.Color = Color(1,1,1,0.5,0,0,0)
-    statsSprite:Render(pos-Vector(0,1))
+    statsSprite:Render(pos+Vector(0,1))
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderAtheismDealIcon)
 
 ---@param pl EntityPlayer
 local function addAtheism(_, _, _, firstTime, _, _, pl)
     pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, 1)
+    local data = ToyboxMod:getEntityDataTable(pl)
+    data.ATHEISM_JUST_GOT = (data.ATHEISM_JUST_GOT or 0)+1
 
     local devilRoomData = Game():GetLevel():GetRoomByIdx(GridRooms.ROOM_DEVIL_IDX).Data
     if(firstTime and not (devilRoomData and devilRoomData.Type==RoomType.ROOM_TREASURE)) then
@@ -95,7 +97,9 @@ local function addDualitiesOnInit(_, pl)
     local atheismNum = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_ATHEISM)
     if(atheismNum==0) then return end
 
-    pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, atheismNum)
+    local data = ToyboxMod:getEntityDataTable(pl)
+    pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, atheismNum-(data.ATHEISM_JUST_GOT or 0))
+    data.ATHEISM_JUST_GOT = nil
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, addDualitiesOnInit)
 

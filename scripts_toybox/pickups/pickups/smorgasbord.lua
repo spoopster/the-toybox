@@ -83,6 +83,7 @@ local function tryCollectPickup(pl, pickup)
     return true
 end
 
+---@param pickup EntityPickup
 local function bundleUpdate(_, pickup)
     local sp = pickup:GetSprite()
     if(sp:IsEventTriggered("DropSoundHeart")) then
@@ -95,7 +96,11 @@ local function bundleUpdate(_, pickup)
         sfx:Play(SoundEffect.SOUND_KEY_DROP0)
     end
     if(sp:IsEventTriggered("DropSoundBomb")) then
-        sfx:Play(SoundEffect.SOUND_FETUS_LAND)
+        if(pickup.Variant==1) then
+            sfx:Play(SoundEffect.SOUND_SPLATTER)
+        else
+            sfx:Play(SoundEffect.SOUND_FETUS_LAND)
+        end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, bundleUpdate, ToyboxMod.PICKUP_SMORGASBORD)
@@ -116,17 +121,27 @@ local function preBundleCollision(_, pickup, coll, low)
 
     pl:AddHearts(hpToAdd)
     pl:AddCoins(1)
-    pl:AddBombs(1)
+    if(pickup.SubType==1) then
+        pl:AddPoopMana(3)
+    elseif(pickup.SubType~=1 and pl:GetPlayerType()~=PlayerType.PLAYER_BLUEBABY_B) then
+        pl:AddBombs(1)
+    end
     pl:AddKeys(1)
 
     sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES)
     sfx:Play(SoundEffect.SOUND_PENNYPICKUP)
-    sfx:Play(SoundEffect.SOUND_FETUS_FEET)
+    if(pickup.SubType==1) then
+        sfx:Play(SoundEffect.SOUND_PING_PONG, 1, 2, false, 0.9+math.random()*0.3)
+    else
+        sfx:Play(SoundEffect.SOUND_FETUS_FEET)
+    end
     sfx:Play(SoundEffect.SOUND_KEYPICKUP_GAUNTLET)
 
     Game():GetLevel():SetHeartPicked()
     Game():ClearStagesWithoutHeartsPicked()
-    Game():SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
+    if(pickup.SubType~=1) then
+        Game():SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
+    end
 
     return true
 end

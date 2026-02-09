@@ -57,6 +57,7 @@ include("scripts_toybox.util.statuseffects")
 include("scripts_toybox.util.data")
 -- ACHIEVEMENTS
 include("scripts_toybox.util.achievements.core")
+include("scripts_toybox.util.achievements.event_counters")
 
 include("scripts_toybox.statuseffects.electrified")
 include("scripts_toybox.statuseffects.overflowing")
@@ -392,6 +393,7 @@ include("scripts_toybox.fortnite funnies.retro mode")
 --include("scripts_toybox.fortnite funnies.stupid enemy title")
 include("scripts_toybox.fortnite funnies.cool title screen")
 include("scripts_toybox.fortnite funnies.slop-o-meter")
+include("scripts_toybox.fortnite funnies.commands")
 
 include("scripts_toybox.fortnite funnies.trinket_collection")
 include("scripts_toybox.fortnite funnies.epic_collection")
