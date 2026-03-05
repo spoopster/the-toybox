@@ -67,6 +67,8 @@ include("scripts_toybox.enemies.stumpy")
 include("scripts_toybox.enemies.tonsil")
 include("scripts_toybox.enemies.eye_spy")
 include("scripts_toybox.enemies.king_host")
+include("scripts_toybox.enemies.tar_baby")
+
 -- BOSSES
 --include("scripts_toybox.bosses.stageapi")
 
@@ -971,4 +973,15 @@ function ToyboxMod:getBits(t,v,s)
     print("V", sv)
     print("S", ss)
 end
+--]]
+
+--[[
+local function dkjdjs(_, sss)
+    local enum = nil
+    for key, val in pairs(SoundEffect) do
+        if(val==sss) then enum=key; break end
+    end
+    print(sss, enum)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_SFX_PLAY, dkjdjs)
 --]]

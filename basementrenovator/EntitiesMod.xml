@@ -34,6 +34,13 @@
         </bitfield>
     </entity>
     <entity ID="783" Variant="4" Image="icons/enemy_king_host.png" Kind="Toybox" Name="King Host" />
+    <entity ID="783" Variant="5" Image="icons/enemy_tar_baby.png" Kind="Toybox" Name="Tar Baby" >
+        <bitfield Key="Subtype">
+            <checkbox Length="1" Name="Spawn pit">
+                <tooltip>Spawns a pit under the Tar Baby if checked.</tooltip>
+            </checkbox>
+        </bitfield>
+    </entity>
 
     <!-- PICKUPS -->
     <entity ID="4" Variant="522" Image="icons/pickup_sleepy_troll_bomb.png" Kind="Toybox" Name="Sleepy Troll Bomb" />
@@ -96,6 +103,7 @@
         <entity Name="Tonsil (Toybox)"/>
         <entity Name="Eye Spy (Toybox)"/>
         <entity Name="King Host"/>
+        <entity Name="Tar Baby"/>
     </group>
     <group Name="Toybox Pickups">
         <entity Name="Lonely Key"/>
@@ -150,6 +158,9 @@
     </group>
     <group Label="Chapter 4 (Main Path) Enemies">
         <entity Name="King Host" />
+    </group>
+    <group Label="Dank Depths Enemies">
+        <entity Name="Tar Baby" />
     </group>
 
     <!-- VANILLA MISC GROUPING -->

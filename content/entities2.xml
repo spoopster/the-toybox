@@ -498,7 +498,13 @@
     <entity name="King Host"
         id="783" variant="4" anm2path="enemies/king_host.anm2" friction="1"
         baseHP="45" stageHP="0" boss="0" champion="1" collisionDamage="0" collisionMass="30" collisionRadius="26"
-        numGridCollisionPoints="12" shadowSize="39" tags="noreroll">
+        numGridCollisionPoints="12" shadowSize="39" tags="">
 		<gibs amount="16" blood="1" bone="0" dust="0" eye="1" gut="1" large="1" rock="0"/>
+    </entity>
+    <entity name="Tar Baby"
+        id="783" variant="5" anm2path="enemies/tar_baby.anm2" friction="1"
+        baseHP="30" stageHP="0" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13"
+        numGridCollisionPoints="8" shadowSize="16" tags="" gridCollision="walls">
+		<gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
     </entity>
 </entities>

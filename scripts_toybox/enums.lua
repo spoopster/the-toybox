@@ -478,6 +478,7 @@ ToyboxMod.NPC_STUMPY = Isaac.GetEntityVariantByName("Stumpy")
 ToyboxMod.NPC_TONSIL = Isaac.GetEntityVariantByName("Tonsil")
 ToyboxMod.NPC_EYE_SPY = Isaac.GetEntityVariantByName("Eye Spy")
 ToyboxMod.NPC_KING_HOST = Isaac.GetEntityVariantByName("King Host")
+ToyboxMod.NPC_TAR_BABY = Isaac.GetEntityVariantByName("Tar Baby")
 
 
 ---@type CallbackID[]
