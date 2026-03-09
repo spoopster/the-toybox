@@ -8,10 +8,7 @@ local BIAS_MAX_CHANCE_MOD = 0.25
 ---@param pl EntityPlayer
 ---@param rng RNG
 local function useDeliveryBox(_, _, rng, pl, flag, slot, varData)
-    local discharge = false
-
     if(pl:GetNumCoins()>=COINS_CONSUME) then
-        discharge = true
         pl:AddCoins(-COINS_CONSUME)
 
         local quantityDif = (pl:GetNumKeys()-pl:GetNumBombs())/BIAS_MAX_DIF
@@ -26,12 +23,30 @@ local function useDeliveryBox(_, _, rng, pl, flag, slot, varData)
 
         local spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
         local spawnedPickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickedVariant, 0, spawnPos, Vector.Zero, pl):ToPickup()
+
+        return {
+            Discharge = true,
+            Remove = false,
+            ShowAnim = true,
+        }
+    else
+        return {
+            Discharge = false,
+            Remove = false,
+            ShowAnim = false,
+        }
     end
 
-    return {
-        Discharge = discharge,
-        Remove = false,
-        ShowAnim = true,
-    }
+    
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useDeliveryBox, ToyboxMod.COLLECTIBLE_DELIVERY_BOX)
+
+---@param player EntityPlayer
+local function renderUnder(_, player, slot, offset, a, scale)
+    if(player:GetNumCoins()<COINS_CONSUME) then
+        return {
+            HideOutline = true,
+        }
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_ACTIVE_ITEM, renderUnder, ToyboxMod.COLLECTIBLE_DELIVERY_BOX)

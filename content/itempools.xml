@@ -48,6 +48,7 @@
         <Item Name="Conglomerate" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Ember"/>
         <Item Name="Angel Dust"/>
+        <Item Name="Blockchain"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -96,6 +97,7 @@
         <Item Name="Conglomerate" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Ember"/>
         <Item Name="Angel Dust"/>
+        <Item Name="Blockchain"/>
     </Pool>
 
     <Pool Name="boss">
@@ -150,7 +152,6 @@
         <Item Name="Trendsetter"/>
         <Item Name="Coloring Book"/>
         <Item Name="Conglomerate"/>
-        <Item Name="Enema"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -172,7 +173,6 @@
         <Item Name="Trendsetter"/>
         <Item Name="Coloring Book"/>
         <Item Name="Conglomerate"/>
-        <Item Name="Enema"/>
     </Pool>
 
     <Pool Name="devil">
@@ -372,6 +372,7 @@
         <Item Name="Langton Loop"/>
         <Item Name="Loose Bowels"/>
         <Item Name="Tammy's Tail"/>
+        <Item Name="Blockchain"/>
     </Pool>
 
     <Pool Name="ultraSecret">

@@ -5,8 +5,13 @@ local FIRE_TEARS_MIN = 2
 local FIRE_TEARS_MAX = 5
 local FIRE_TEARS_ARC = 14
 
+local CONTACT_BURN_DURATION = 30*4
+local CONTACT_BURN_DMG = 5
+local CONTACT_BURN_DMG_EXTRAMULT = 4
+
 local FIRE_SPREAD_RADIUS = 20
 local FIRE_SPREAD_SIZEMULT = 1.5
+local FIRE_SPREAD_DURMULT = 1.5
 
 ---@param dir Vector
 ---@param amount number
@@ -45,7 +50,18 @@ local function postTriggerWeaponFired(_, dir, amount, owner, weapon)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, postTriggerWeaponFired)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, postTriggerWeaponFired)
+
+---@param pl EntityPlayer
+---@param coll Entity
+---@param low boolean
+local function postPlayerColl(_, pl, coll, low)
+    if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_EMBER) and ToyboxMod:isValidEnemy(coll)) then
+        local dmg = CONTACT_BURN_DMG+(pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_EMBER)-1)*CONTACT_BURN_DMG_EXTRAMULT
+        coll:AddBurn(EntityRef(pl), -CONTACT_BURN_DURATION, dmg)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_COLLISION, postPlayerColl)
 
 ---@param ent Entity
 ---@param dmg integer
@@ -56,7 +72,7 @@ local function increaseDebuffDamage(_, ent, dmg, flags, source, cnt)
     if(flags & DamageFlag.DAMAGE_POISON_BURN == DamageFlag.DAMAGE_POISON_BURN and ent:GetBurnDamageTimer()%20==2) then
         for _, otherEnt in ipairs(Isaac.FindInRadius(ent.Position, ent.Size*FIRE_SPREAD_SIZEMULT+FIRE_SPREAD_RADIUS, EntityPartition.ENEMY)) do
             if(ToyboxMod:isValidEnemy(otherEnt)) then
-                otherEnt:AddBurn(source, -(ent:GetBurnCountdown()*1.5)//1, dmg)
+                otherEnt:AddBurn(source, -(ent:GetBurnCountdown()*FIRE_SPREAD_DURMULT)//1, dmg)
             end
         end
     end

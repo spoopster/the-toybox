@@ -56,13 +56,13 @@ local function renderWhiteDaisy(_, pl, slot)
 
     return {CropOffset = Vector(32*data,0)}
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_ACTIVE_ITEM, renderWhiteDaisy)
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_ACTIVE_ITEM, renderWhiteDaisy, ToyboxMod.COLLECTIBLE_WHITE_DAISY)
 
 ---@param id CollectibleType
 ---@param pl EntityPlayer
 local function removeWhiteDaisyCharge(_, id, pl, vardata, current)
-    if(id==ToyboxMod.COLLECTIBLE_WHITE_DAISY and vardata>=MAX_USES) then
+    if(vardata>=MAX_USES) then
         return 0
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, removeWhiteDaisyCharge)
+ToyboxMod:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, removeWhiteDaisyCharge, ToyboxMod.COLLECTIBLE_WHITE_DAISY)

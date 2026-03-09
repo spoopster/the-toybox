@@ -45,18 +45,27 @@ local function increasePaintingValue(_)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ROOM_CLEAR, increasePaintingValue)
 
----@param pl EntityPlayer
----@param slot ActiveSlot
----@param offset Vector
-local function renderPaintingValue(_, pl, slot, offset, alpha, scale, chargebaroffset)
-    if(pl:GetActiveItem(slot)~=ToyboxMod.COLLECTIBLE_OIL_PAINTING) then return end
-    --if(slot~=ActiveSlot.SLOT_PRIMARY) then return end
+local priceSprite = Sprite("gfx_tb/ui/ui_active_price.anm2", true)
+priceSprite:Play("Basic", true)
 
-    local val = math.min(pl:GetActiveItemDesc(slot).VarData, pl:GetMaxCoins())
-    local str = "+"..tostring(val)
-    local rpos = offset+Vector(24,18)*scale
-    local boxwidth = 30
+---@param player EntityPlayer
+local function renderPaintingValue(_, player, slot, offset, a, scale)
+    local price = math.min(player:GetActiveItemDesc(slot).VarData, player:GetMaxCoins())
+    local priceSize = math.max(1, math.ceil(math.log(price+1, 10)))
+    local priceDigitSize = Vector(4,0)*scale
+    local pricePos = offset+Vector(20,22)*scale+priceSize*priceDigitSize
 
-    VALUE_FONT:DrawStringScaled(str, rpos.X-boxwidth, rpos.Y, scale, scale, KColor(1,1,1,alpha), boxwidth*2, true)
+    priceSprite.Scale = Vector(scale,scale)
+
+    priceSprite:SetFrame(10)
+    priceSprite:Render(pricePos)
+    for _=1, priceSize do
+        pricePos = pricePos-priceDigitSize
+
+        priceSprite:SetFrame(price%10)
+        priceSprite:Render(pricePos)
+
+        price = price//10
+    end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, renderPaintingValue)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, renderPaintingValue, ToyboxMod.COLLECTIBLE_OIL_PAINTING)

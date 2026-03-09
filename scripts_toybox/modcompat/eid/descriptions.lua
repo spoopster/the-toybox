@@ -1375,10 +1375,12 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_EMBER,
     Name = "Ember",
     Description = {
-        "Every 10 tears, Isaac shoots a cluster of burning hot coal tears",
+        "\1 +0.2 Speed",
+        "{{Burning}} Touching enemies burns them for 4 seconds",
         "{{Burning}} When an enemy takes burning damage, it spreads the burning debuff to other nearby enemies"
     },
 })
+--[[
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_ENEMA,
     Name = "Enema",
@@ -1387,6 +1389,7 @@ enums.FUNCTIONS.AddItem({
         "{{Timer}} Temporarily grants a random stat up for every status effect instance removed"
     },
 })
+--]]
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_PUGGYS_CLAW,
     Name = "Puggy's Claw",
@@ -1402,6 +1405,14 @@ enums.FUNCTIONS.AddItem({
     Description = {
         enums.CONSTANTS.Icon_CardMantleRock.." 5% chance for mantles to replace random card spawns",
         enums.CONSTANTS.Icon_CardMantleRock.." Mantle effects are enhanced",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_BLOCKCHAIN,
+    Name = "Blockchain",
+    Description = {
+        "{{Coin}} Pay 1 coin to spawn a random pickup",
+        "Price goes up by 1 coin every 10 uses",
     },
 })
 

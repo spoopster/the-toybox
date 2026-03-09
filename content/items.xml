@@ -265,6 +265,7 @@
     cache=""
     
     maxcharges="6"
+    activegfx="activegfx/gilded_apple.png"
 
     achievement="Gilded Apple"
 />
@@ -970,17 +971,14 @@
 
     achievement="Conglomerate"
 />
-<active id="106" name="Enema"
-    description="Foe cleanser"
-    gfx="enema.png"
-    quality="0"
+<active id="106" name="Blockchain"
+    description="Non fungible tokens"
+    gfx="blockchain.png"
+    quality="3"
     tags="offensive"
     cache=""
 
-    chargetype="timed"
-    maxcharges="180"
-
-    shopprice="10"
+    maxcharges="0"
 />
 <passive id="107" name="Ember"
     description="Wildfire"
@@ -988,6 +986,8 @@
     quality="2"
     tags="offensive"
     cache=""
+
+    speed="0.2"
 />
 <passive id="108" name="Dissociation"
     description="Lose yourself"
@@ -1274,6 +1274,8 @@
     description="You wouldn't get it"
     gfx="inside_joke.png"
     cache="damage"
+
+    achievement="Inside Joke"
 />
 <trinket id="27" name="Citrusberry"
     description="Emergency heal"

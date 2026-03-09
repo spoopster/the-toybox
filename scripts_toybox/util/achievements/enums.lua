@@ -8,6 +8,9 @@ end, false)
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_GASOLINE, function(d, p)
     return (p.BURNING_BASEMENT_CLEARS or 0)>=5
 end, false)
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_INSIDE_JOKE, function(d, p)
+    return (p.LION_SKULL_CAPPED_OUT or 0)>0
+end, false)
 
 -- challenges
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CH_SCIENTOLOGY, function(d)

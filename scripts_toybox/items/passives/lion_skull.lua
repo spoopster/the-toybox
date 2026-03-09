@@ -33,6 +33,7 @@ local function increaseLionMark(_)
 
             if(bonus<0) then bonus = math.min(0, bonus+ENUM_MARKS_INCREASE_CATCHUP)
             else bonus = bonus+ENUM_MARKS_INCREASE*mult end
+
             bonus = math.min(bonus, ENUM_MARKS_MAX*mult)
             ToyboxMod:setEntityData(pl, "LION_SKULL_MARKS", bonus)
 
@@ -50,9 +51,18 @@ local function applyMarkPenalties(_, player, _, flags, source)
     if(source.Type==6) then return end
     if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
 
+    local wasPositive = false
+
     local bonus = ToyboxMod:getEntityData(player, "LION_SKULL_MARKS") or 0
-    if(bonus>0) then bonus = -bonus end
+    if(bonus>0) then
+        bonus = -bonus
+        wasPositive = true
+    end
     ToyboxMod:setEntityData(player, "LION_SKULL_MARKS", bonus)
+
+    if(wasPositive and -bonus==ENUM_MARKS_MAX*player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LION_SKULL)) then
+        ToyboxMod:incrementEventCounter("LION_SKULL_CAPPED_OUT") -- Unlocks Inside Joke
+    end
 
     player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true)
 end

@@ -21,6 +21,7 @@ ToyboxMod.ACHIEVEMENT_CH_SCIENTOLOGY = Isaac.GetAchievementIdByName("Scientology
 ToyboxMod.ACHIEVEMENT_WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug")
 ToyboxMod.ACHIEVEMENT_HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer")
 ToyboxMod.ACHIEVEMENT_GASOLINE = Isaac.GetAchievementIdByName("Gasoline")
+ToyboxMod.ACHIEVEMENT_INSIDE_JOKE = Isaac.GetAchievementIdByName("Inside Joke")
 --- ACHIEVEMENTS - Atlas
 ToyboxMod.ACHIEVEMENT_PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone")
 ToyboxMod.ACHIEVEMENT_GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel")
@@ -171,12 +172,12 @@ ToyboxMod.COLLECTIBLE_PAPER_PLATE = Isaac.GetItemIdByName("Paper Plate")
 ToyboxMod.COLLECTIBLE_TRENDSETTER = Isaac.GetItemIdByName("Trendsetter")
 ToyboxMod.COLLECTIBLE_COLORING_BOOK = Isaac.GetItemIdByName("Coloring Book")
 ToyboxMod.COLLECTIBLE_CONGLOMERATE = Isaac.GetItemIdByName("Conglomerate")
-ToyboxMod.COLLECTIBLE_ENEMA = Isaac.GetItemIdByName("Enema")
 ToyboxMod.COLLECTIBLE_EMBER = Isaac.GetItemIdByName("Ember")
 ToyboxMod.COLLECTIBLE_DISSOCIATION = Isaac.GetItemIdByName("Dissociation")
 ToyboxMod.COLLECTIBLE_ANGEL_DUST = Isaac.GetItemIdByName("Angel Dust")
 ToyboxMod.COLLECTIBLE_PUGGYS_CLAW = Isaac.GetItemIdByName("Puggy's Claw")
-ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
+ToyboxMod.COLLECTIBLE_BLOCKCHAIN = Isaac.GetItemIdByName("Blockchain")
+--ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -186,14 +187,15 @@ ToyboxMod.COLLECTIBLE_GOLDEN_SCHOOLBAG = Isaac.GetItemIdByName("Golden Schoolbag
 ToyboxMod.COLLECTIBLE_ZERO_GRAVITY = Isaac.GetItemIdByName("Zero-Gravity")
 ToyboxMod.COLLECTIBLE_SUPER_HAMBURGER = Isaac.GetItemIdByName("Super Hamburger")
 ToyboxMod.COLLECTIBLE_CURSED_D6 = Isaac.GetItemIdByName("Cursed D6")
-    
---ToyboxMod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")                      --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
+
+--ToyboxMod.COLLECTIBLE_BTRAIN = Isaac.GetItemIdByName("B-Train")                       --*LOST MEDIA (its actually just the origin of Fast Forward from d!edith)
 
 ToyboxMod.COLLECTIBLE_PORTABLE_TELLER = Isaac.GetItemIdByName("Portable Teller")
 
---ToyboxMod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")         --*UNUSED (i dont like the item)
---ToyboxMod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")                     --*UNUSED (same as above)
---ToyboxMod.COLLECTIBLE_MALICIOUS_BRAIN = Isaac.GetItemIdByName("Malicious Brain")     --*UNUSED (same)
+--ToyboxMod.COLLECTIBLE_LASER_POINTER = Isaac.GetItemIdByName("Laser Pointer")          --*UNUSED (i dont like the item)
+--ToyboxMod.COLLECTIBLE_TOY_GUN = Isaac.GetItemIdByName("Toy Gun")                      --*UNUSED (same as above)
+--ToyboxMod.COLLECTIBLE_MALICIOUS_BRAIN = Isaac.GetItemIdByName("Malicious Brain")      --*UNUSED (same)
+--ToyboxMod.COLLECTIBLE_ENEMA = Isaac.GetItemIdByName("Enema")                          --*UNUSED (same as above)
 
 ToyboxMod.TRINKET_ANTIBIOTICS = Isaac.GetTrinketIdByName("Antibiotics")
 ToyboxMod.TRINKET_WONDER_DRUG = Isaac.GetTrinketIdByName("Wonder Drug")
