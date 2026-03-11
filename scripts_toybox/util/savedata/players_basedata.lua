@@ -106,6 +106,13 @@ local BASEDATA = {
     MANTLEHOLY_ACTIVE = 0,
     MANTLEGLASS_ACTIVE = 0,
 
+    HYDRA_HEADS = 0,
+
+    TRANSFORMATIONS = {
+        FANCY = {true, false, 0},
+        HYDRA = {true, false, 0},
+    },
+
     --! MISC
     MATTMAN_CHANCE_TEARS_HIT = 0,
     MATTMAN_CHANCE_TEARS_DIED = 0,

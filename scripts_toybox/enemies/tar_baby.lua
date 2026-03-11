@@ -18,7 +18,7 @@ local function isPositionPit(pos)
         return true
     else
         for _, creep in ipairs(Isaac.FindByType(1000,EffectVariant.CREEP_BLACK)) do
-            if(creep.Position:Distance(pos)<creep.SpriteScale.X*15) then
+            if(creep:Exists() and creep:ToEffect().Timeout>0 and creep.Position:Distance(pos)<creep.SpriteScale.X*15) then
                 return true
             end
         end
@@ -279,24 +279,31 @@ ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, tarBabyUpdate, ToyboxMod.NPC_E
 local function haemoProjDeath(_, proj)
     if(ToyboxMod:getEntityData(proj, "TARBABY_BURSTPROJ")) then
         local sp = proj.SpawnerEntity
-        if(sp and sp:ToNPC()) then
-            local rng = ToyboxMod:generateRng()
+        local rng = ToyboxMod:generateRng()
 
-            local numProj = 8+math.random(0,3)
-            for i=1, numProj do
-                local angle = (i/numProj)*360+(rng:RandomFloat()-0.5)*360/numProj
-                local vel = Vector.FromAngle(angle):Resized(3+rng:RandomFloat()*5)
+        local numProj = 8+math.random(0,3)
+        for i=1, numProj do
+            local angle = (i/numProj)*360+(rng:RandomFloat()-0.5)*360/numProj
+            local vel = Vector.FromAngle(angle):Resized(3+rng:RandomFloat()*5)
 
-                local pp = ProjectileParams()
-                pp.Color = Color.ProjectileTar
-                pp.FallingAccelModifier = 1.4+rng:RandomFloat()*0.5
-                pp.FallingSpeedModifier = -4-rng:RandomFloat()*3
-                pp.Scale = 0.8+rng:RandomFloat()*0.9
-                
-                local nproj = sp:ToNPC():FireProjectilesEx(proj.Position, vel, ProjectileMode.SINGLE, pp)[1]
-
-                ToyboxMod:setEntityData(nproj, "TARBABY_TARPROJ", true)
+            local pp = ProjectileParams()
+            pp.Color = Color.ProjectileTar
+            pp.FallingAccelModifier = 1.4+rng:RandomFloat()*0.5
+            pp.FallingSpeedModifier = -4-rng:RandomFloat()*3
+            pp.Scale = 0.8+rng:RandomFloat()*0.9
+            
+            local nproj
+            if(sp and sp:ToNPC()) then
+                nproj = sp:ToNPC():FireProjectilesEx(proj.Position, vel, ProjectileMode.SINGLE, pp)[1]
+            else
+                nproj = Isaac.Spawn(9,0,0,proj.Position,vel,sp):ToProjectile()
+                nproj.Color = pp.Color
+                nproj.FallingAccel = pp.FallingAccelModifier
+                nproj.FallingSpeed = pp.FallingSpeedModifier
+                nproj.Scale = pp.Scale
             end
+
+            ToyboxMod:setEntityData(nproj, "TARBABY_TARPROJ", true)
         end
     end
     if(ToyboxMod:getEntityData(proj, "TARBABY_TARPROJ")) then

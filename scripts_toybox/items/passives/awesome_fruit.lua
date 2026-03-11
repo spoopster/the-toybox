@@ -7,6 +7,10 @@ local function postAddAwesomeFruit(_, _, _, firstTime, _, _, pl)
     for i=0,13 do
         pl:IncrementPlayerFormCounter(i, 1)
     end
+
+    for tKey, _ in pairs(ToyboxMod.TRANSFORMATIONS) do
+        ToyboxMod:incrementCustomTransformationCounter(pl, tKey, 1)
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, postAddAwesomeFruit, ToyboxMod.COLLECTIBLE_AWESOME_FRUIT)
 

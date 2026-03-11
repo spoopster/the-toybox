@@ -82,6 +82,7 @@
     gfx="lion_skull.png"
     quality="1"
     tags="offensive summonable"
+    customtags="head"
     cache="damage"
 
     devilprice="1"
@@ -145,6 +146,7 @@
     gfx="garlic.png"
     quality="3"
     tags="offensive summonable"
+    customtags="head"
     cache="tearcolor tearflag range"
 
     range="-40"
@@ -262,6 +264,7 @@
     gfx="golden_apple.png"
     quality="3"
     tags="nolostbr"
+    customtags="fancy"
     cache=""
     
     maxcharges="6"
@@ -342,6 +345,7 @@
     gfx="hostile_takeover.png"
     quality="3"
     tags="offensive"
+    customtags="head"
     cache="all"
 
     maxcharges="6"
@@ -563,6 +567,7 @@
     gfx="hemorrhage.png"
     quality="1"
     tags="nolostbr"
+    customtags="head"
     cache=""
 />
 <passive id="60" name="Fish"
@@ -679,6 +684,7 @@
     gfx="golden_calf.png"
     quality="3"
     tags="offensive summonable"
+    customtags="fancy"
 
     cache=""
 
@@ -820,6 +826,7 @@
     gfx="pyramid_scheme.png"
     quality="2"
     tags="offensive summonable"
+    customtags="fancy"
     cache=""
 />
 <active id="89" name="Pythagoras' Cup"
@@ -896,6 +903,7 @@
     gfx="oil_painting.png"
     quality="1"
     tags="offensive"
+    customtags="fancy"
     cache=""
 
     shopprice="10"
@@ -908,6 +916,7 @@
     gfx="reading_glasses.png"
     quality="2"
     tags="nolostbr summonable"
+    customtags="fancy"
     cache=""
 />
 <passive id="99" name="Langton Loop"
@@ -947,6 +956,7 @@
     gfx="trendsetter.png"
     quality="3"
     tags="offensive"
+    customtags="fancy"
     cache=""
 
     luck="3"
@@ -1020,6 +1030,15 @@
     cache="damage"
 
     maxcharges="4"
+/>
+<passive id="112" name="Bodybag"
+    description="HP up?"
+    gfx="no_sprite.png"
+    quality="1"
+    tags="offensive"
+    cache=""
+
+    maxhearts="2"
 />
 
 <active id="491" name="Cursed D6"
@@ -1290,6 +1309,11 @@
 <trinket id="29" name="Catnip"
     description="Mellowed out"
     gfx="catnip.png"
+    cache=""
+/>
+<trinket id="30" name="Trail Mix"
+    description="A healthy snack"
+    gfx="trail_mix.png"
     cache=""
 />
 

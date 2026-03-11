@@ -114,6 +114,7 @@
         <Item Name="Surprise Egg"/>
         <Item Name="Bloodflower"/>
         <Item Name="Loose Bowels"/>
+        <Item Name="Bodybag"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
@@ -129,6 +130,7 @@
         <Item Name="Surprise Egg"/>
         <Item Name="Bloodflower"/>
         <Item Name="Loose Bowels"/>
+        <Item Name="Bodybag"/>
     </Pool>
 
     <Pool Name="shop">

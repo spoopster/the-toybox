@@ -30,6 +30,11 @@ RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_COIN_INK_1, 96)
 RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_COIN_INK_2, 3)
 RANDOM_INK_PICKER:AddOutcomeWeight(ToyboxMod.PICKUP_COIN_INK_5, 1)
 
+local INVALID_ROOMTYPES = {
+    [RoomType.ROOM_BOSS] = true,
+    [RoomType.ROOM_BOSSRUSH] = true,
+}
+
 local function getInkValue(_, pickup)
     if(inkValue[pickup.SubType]) then
         return inkValue[pickup.SubType]
@@ -57,7 +62,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postInkUpdate, PickupV
 
 local function cancelRoomSpawns()
     if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
-    if(Game():GetRoom():GetType()==RoomType.ROOM_DEFAULT) then
+    if(not INVALID_ROOMTYPES[Game():GetRoom():GetType()]) then
         return true
     end
 end

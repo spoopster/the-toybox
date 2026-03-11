@@ -150,7 +150,7 @@ EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_ATLAS_A_TAR), "Players", 1, 16, 
 EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_JONAS_A), "Players", 2, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_MILCOM_A), "Players", 3, 16, 16, 0, 0, iconSprite)
 
---- TRANSFORMATIONS
+--- TRANSFORMATIONS (MANTLE)
 EID:addIcon("ToyboxIconRockTransformation", "MantleTransformations", 0, 16, 16, 0, 0, iconSprite)
 EID:addIcon("ToyboxIconPoopTransformation", "MantleTransformations", 1, 16, 16, 0, 0, iconSprite)
 EID:addIcon("ToyboxIconBoneTransformation", "MantleTransformations", 2, 16, 16, 0, 0, iconSprite)
@@ -162,6 +162,10 @@ EID:addIcon("ToyboxIconMetalTransformation", "MantleTransformations", 7, 16, 16,
 EID:addIcon("ToyboxIconGoldTransformation", "MantleTransformations", 8, 16, 16, 0, 0, iconSprite)
 EID:addIcon("ToyboxIconEmptyTransformation", "MantleTransformations", 10, 16, 16, 0, 0, iconSprite)
 EID:addIcon("ToyboxIconTarTransformation", "MantleTransformations", 9, 16, 16, 0, 0, iconSprite)
+
+--- TRANSFORMATIONS (REGULAR)
+EID:addIcon("ToyboxFancyTransformation", "Transformations", 0, 16, 16, 0, 0, iconSprite)
+EID:addIcon("ToyboxHydraTransformation", "Transformations", 1, 16, 16, 0, 0, iconSprite)
 
 --- CARDS
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_PRISMSTONE), "Cards", 0, 16, 16, 0, 0, iconSprite)

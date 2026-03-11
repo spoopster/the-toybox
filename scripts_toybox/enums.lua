@@ -177,6 +177,7 @@ ToyboxMod.COLLECTIBLE_DISSOCIATION = Isaac.GetItemIdByName("Dissociation")
 ToyboxMod.COLLECTIBLE_ANGEL_DUST = Isaac.GetItemIdByName("Angel Dust")
 ToyboxMod.COLLECTIBLE_PUGGYS_CLAW = Isaac.GetItemIdByName("Puggy's Claw")
 ToyboxMod.COLLECTIBLE_BLOCKCHAIN = Isaac.GetItemIdByName("Blockchain")
+ToyboxMod.COLLECTIBLE_BODYBAG = Isaac.GetItemIdByName("Bodybag")
 --ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
@@ -228,6 +229,7 @@ ToyboxMod.TRINKET_CITRUSBERRY = Isaac.GetTrinketIdByName("Citrusberry")
     ToyboxMod.TRINKET_CITRUSBERRY_CONSUMED = Isaac.GetTrinketIdByName("Citrusberry ")
 ToyboxMod.TRINKET_NEVERSTONE = Isaac.GetTrinketIdByName("Neverstone")
 ToyboxMod.TRINKET_CATNIP = Isaac.GetTrinketIdByName("Catnip")
+ToyboxMod.TRINKET_TRAIL_MIX = Isaac.GetTrinketIdByName("Trail Mix")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED
@@ -390,6 +392,9 @@ ToyboxMod.SFX_STAR_TRANSFORM = Isaac.GetSoundIdByName("(TOYBOX) Star Transform")
 ToyboxMod.SFX_BREATH = Isaac.GetSoundIdByName("(TOYBOX) Breath")
 ToyboxMod.SFX_WATER_NOISE = Isaac.GetSoundIdByName("(TOYBOX) Water Noise")
 ToyboxMod.SFX_ROAR = Isaac.GetSoundIdByName("(TOYBOX) Roar")
+ToyboxMod.SFX_RETRO_COIN = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Coin")
+ToyboxMod.SFX_RETRO_UPGRADE = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Upgrade")
+ToyboxMod.SFX_RETRO_FAIL = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Fail")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then
@@ -512,6 +517,8 @@ ToyboxMod.CUSTOM_CALLBACKS = {
     POST_POOP_INIT = "TOYBOX_POST_POOP_INIT",
     POST_RENDER_MINIMAP_ROOM = "TOYBOX_POST_RENDER_MINIMAP_ROOM",
     POST_NEW_ROOM_TINTED = "TOYBOX_POST_NEW_ROOM_TINTED",
+    POST_GET_CUSTOM_TRANSFORMATION = "TOYBOX_POST_GET_CUSTOM_TRANSFORMATION",
+    POST_LOSE_CUSTOM_TRANSFORMATION = "TOYBOX_POST_LOSE_CUSTOM_TRANSFORMATION",
 }
 
 ToyboxMod.DAMAGE_TYPE = {

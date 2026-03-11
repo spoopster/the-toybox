@@ -89,6 +89,17 @@
 		<sample weight="1" path="roar.wav" />
 	</sound>
 
+	<sound name="(TOYBOX) Blockchain Coin">
+		<sample weight="1" path="blockchain_coin.wav" />
+	</sound>
+	<sound name="(TOYBOX) Blockchain Upgrade">
+		<sample weight="1" path="blockchain_levelup.wav" />
+		<sample weight="1" path="blockchain_levelup2.wav" />
+	</sound>
+	<sound name="(TOYBOX) Blockchain Fail">
+		<sample weight="1" path="blockchain_fail.wav" />
+	</sound>
+
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />
 	</sound>

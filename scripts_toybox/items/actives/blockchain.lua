@@ -27,17 +27,25 @@ local function useBlockchain(_, _, rng, pl, flags, slot)
         local dir = Vector.FromAngle(rng:RandomInt(0,360)):Resized(4)
         local pickup = Isaac.Spawn(5,0,NullPickupSubType.NO_COLLECTIBLE,pl.Position,dir,pl):ToPickup()
 
+        local upgradeSfx = false
+
         if(slot~=-1) then
             pl:SetActiveVarData(pl:GetActiveItemDesc(slot).VarData+1, slot)
+            if(pl:GetActiveItemDesc(slot).VarData%PRICE_INCREMENT_FREQ==0) then
+                upgradeSfx = true
+            end
         end
 
-        sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
+        sfx:Play((upgradeSfx and ToyboxMod.SFX_RETRO_UPGRADE or ToyboxMod.SFX_RETRO_COIN), 1, 2, false, 0.95+math.random()*0.1)
+
         return {
             Discharge = true,
             Remove = false,
             ShowAnim = true,
         }
     else
+        sfx:Play(ToyboxMod.SFX_RETRO_FAIL, 1, 2, false, 0.95+math.random()*0.1)
+
         return {
             Discharge = false,
             Remove = false,

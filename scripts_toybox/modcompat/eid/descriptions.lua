@@ -1415,6 +1415,14 @@ enums.FUNCTIONS.AddItem({
         "Price goes up by 1 coin every 10 uses",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_BODYBAG,
+    Name = "Bodybag",
+    Description = {
+        "{{EmptyHeart}} +1 Empty Heart container",
+        "{{Heart}} Spawns 6 random hearts",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 
@@ -2170,7 +2178,31 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
-
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_TRAIL_MIX,
+    Name = "Trail Mix",
+    Description = {
+        "{{UnknownHeart}} Spawns 1 random heart",
+        "{{UnknownHeart}} At the start of every floor, spawns 1 random heart",
+        "The hearts have equal chance to be of ANY variant"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"spawns 1 random heart", "{{ColorWhite}}spawns{{CR}} 2 random hearts"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"spawns 1 random heart", "{{ColorWhite}}spawns{{CR}} 3 random hearts"},
+            }
+        },
+    },
+})
 
 
 enums.FUNCTIONS.AddCard({
@@ -3153,7 +3185,7 @@ enums.FUNCTIONS.AddPlayer({
     },
     BirthrightDescription = {
         "You can have 2 mantle transformations at once",
-        "When you get a new transformation, your original one moves to a second slot",
+        "When you get a new transformation, your original one moves to the second slot",
         "While at no mantles, lose both transformations",
     }
 })
@@ -3178,7 +3210,7 @@ enums.FUNCTIONS.AddPlayer({
     Description = {
         enums.CONSTANTS.Icon_Ink .. " Coins, Bombs and Keys become Ink when gained, and consume Ink when used:",
         "{{Blank}} {{Coin}}=1"..enums.CONSTANTS.Icon_Ink..", {{Bomb}}=4"..enums.CONSTANTS.Icon_Ink..", {{Key}}=7"..enums.CONSTANTS.Icon_Ink,
-        "No room clear rewards in normal rooms",
+        "No room clear rewards",
         "Higher champion chance, champions drop 2-6 Ink",
     },
     BirthrightDescription = {

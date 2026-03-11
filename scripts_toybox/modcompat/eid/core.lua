@@ -6,6 +6,37 @@ if(not EID) then return end
 include("scripts_toybox.modcompat.eid.descriptions")
 local STORED = require("scripts_toybox.modcompat.eid.stored")
 
+local transformationTagToId = {}
+
+for _, tData in pairs(ToyboxMod.TRANSFORMATIONS) do
+    local tId = "Toybox"..tData.EIDName.."Transformation"
+    EID:createTransformation(tId, tData.StreakName)
+    if(tData.NumReq and tData.NumReq~=3) then
+        EID.TransformationData[tId] = {NumNeeded=tData.NumReq}
+    end
+
+    if(tData.CustomTag) then
+        transformationTagToId[tData.CustomTag] = tId
+    end
+    if(tData.VanillaItems) then
+        for _, id in ipairs(tData.VanillaItems) do
+            EID:assignTransformation("collectible", id, tId)
+        end
+    end
+end
+
+local iconf = Isaac.GetItemConfig()
+for id=1, iconf:GetCollectibles().Size-1 do
+    local conf = iconf:GetCollectible(id)
+    if(conf) then
+        for tag, tId in pairs(transformationTagToId) do
+            if(conf:HasCustomTag(tag)) then
+                EID:assignTransformation("collectible", id, tId)
+            end
+        end
+    end
+end
+
 local function getTypeMatchFunction(itemType, itemId)
     if(itemType==PickupVariant.PICKUP_COLLECTIBLE) then
         return function(descObj)
@@ -182,7 +213,7 @@ for id, data in pairs(STORED.PILLS) do
     if(data.Description) then
         EID:addPill(id, STORED.FUNCTIONS.StringTableToDescription(data.Description), data.Name or "", "en_us")
 
-        local pill = Isaac.GetItemConfig():GetPillEffect(id)
+        local pill = iconf:GetPillEffect(id)
         EID:addPillMetadata(id, pill.MimicCharge, tostring(pill.EffectClass)..(pill.EffectSubClass>0 and (pill.EffectSubClass==2 and "-" or "+") or ""))
     end
 
@@ -216,7 +247,7 @@ for id, data in pairs(STORED.CARDS) do
     if(data.Description) then
         EID:addCard(id, STORED.FUNCTIONS.StringTableToDescription(data.Description), data.Name or "", "en_us")
 
-        local card = Isaac.GetItemConfig():GetCard(id)
+        local card = iconf:GetCard(id)
         EID:addCardMetadata(id, card.MimicCharge, card:IsRune())
     end
 

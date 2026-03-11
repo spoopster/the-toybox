@@ -58,6 +58,10 @@ include("scripts_toybox.util.data")
 -- ACHIEVEMENTS
 include("scripts_toybox.util.achievements.core")
 include("scripts_toybox.util.achievements.event_counters")
+-- TRANSFORMATIONS
+include("scripts_toybox.misc.transformations.core")
+    include("scripts_toybox.misc.transformations.effects.fancy")
+    include("scripts_toybox.misc.transformations.effects.hydra")
 
 include("scripts_toybox.statuseffects.electrified")
 include("scripts_toybox.statuseffects.overflowing")
@@ -249,6 +253,8 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.angel_dust")
     include("scripts_toybox.items.passives.ember")
     include("scripts_toybox.items.passives.conglomerate")
+    --include("scripts_toybox.items.passives.chest_alien")
+    include("scripts_toybox.items.passives.bodybag")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -310,6 +316,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.trinkets.citrusberry")
     include("scripts_toybox.items.trinkets.neverstone")
     include("scripts_toybox.items.trinkets.catnip")
+    include("scripts_toybox.items.trinkets.trail_mix")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")

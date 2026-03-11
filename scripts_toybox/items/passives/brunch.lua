@@ -7,8 +7,10 @@ local function addBrunch(_, _, _, firstTime, _, _, pl)
 
     pl:AddRottenHearts(2)
     
-    local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 2, pl.Position, Vector.Zero, pl):ToFamiliar()
-    fly.Player = pl
+    for _=1, NUM_LOCSTS do
+        local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 2, pl.Position, Vector.Zero, pl):ToFamiliar()
+        fly.Player = pl
+    end
 
     fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 end
