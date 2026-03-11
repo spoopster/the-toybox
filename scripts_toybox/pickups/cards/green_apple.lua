@@ -40,12 +40,32 @@ TRANSF_PICKER:AddOutcomeWeight(12, 1)
 TRANSF_PICKER:AddOutcomeWeight(13, 1)
 TRANSF_PICKER:AddOutcomeWeight(14, 1)
 
+for tKey, tData in pairs(ToyboxMod.TRANSFORMATIONS) do
+    if(tData.GreenAppleID) then
+        TRANSF_PICKER:AddOutcomeWeight(tData.GreenAppleID+100, 1)
+        TRANSF_DATA[tData.GreenAppleID+100] = {
+            tKey,
+            tData.GreenAppleSFX
+        }
+    end
+end
+
 ---@param pl EntityPlayer
 local function getRandomTransformation(pl, counterextras)
     local anyTransformationAvailable = false
     local invalidTransformations = {[0]=true}
     for _, outcome in pairs(TRANSF_PICKER:GetOutcomes()) do
-        if((pl:GetPlayerFormCounter(TRANSF_DATA[outcome.Value][1])+(counterextras[TRANSF_DATA[outcome.Value][1]] or 0))>=3) then
+        local req = 3
+        local sum = (counterextras[TRANSF_DATA[outcome.Value][1]] or 0)
+        if(outcome.Value>=100) then
+            sum = sum + (ToyboxMod:getCustomTransformationCounter(pl, TRANSF_DATA[outcome.Value][1]))
+            req = ToyboxMod:getCustomTransformationRequirement(TRANSF_DATA[outcome.Value][1])
+        else
+            sum = sum + (pl:GetPlayerFormCounter(TRANSF_DATA[outcome.Value][1]))
+            req = 3
+        end
+
+        if(sum>=req) then
             invalidTransformations[outcome.Value] = true
         else
             anyTransformationAvailable = true
@@ -153,7 +173,11 @@ local function updateGreenAppleFortune(_)
                         local pl = (tb.Player or Isaac.GetPlayer())
                         Isaac.CreateTimer(function()
                             if(pl) then
-                                pl:IncrementPlayerFormCounter(iddata[1], 1)
+                                if(tb[indexJustGot]>=100) then
+                                    ToyboxMod:incrementCustomTransformationCounter(pl, iddata[1], 1)
+                                else
+                                    pl:IncrementPlayerFormCounter(iddata[1], 1)
+                                end
                             end
                         end, 1,1,true)
 
@@ -185,7 +209,11 @@ local function updateGreenAppleFortune(_)
             if(tb) then
                 for i=1, tb.LastIndex or 0 do
                     local finalpos = iconpos+Vector(icondistance*(i-1),0)
-                    ICON_SPRITE:SetFrame(tb[i])
+                    if(tb[i]>=100) then
+                        ICON_SPRITE:SetFrame("Modded", tb[i]-100)
+                    else
+                        ICON_SPRITE:SetFrame("Idle", tb[i])
+                    end
                     ICON_SPRITE:Render(finalpos)
                 end
             end

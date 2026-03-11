@@ -1,7 +1,6 @@
 return {
     FANCY = {
         StreakName = "Fancy",
-        EIDName = "Fancy",
         CustomTag = "fancy",
         VanillaItems = {
             CollectibleType.COLLECTIBLE_PHD,
@@ -21,10 +20,13 @@ return {
         },
         NumReq = 3,
         Costume = Isaac.GetCostumeIdByPath("gfx_tb/characters/costume_fancy.anm2"),
+
+        EIDName = "Fancy",
+        GreenAppleID = 0,
+        GreenAppleSFX = SoundEffect.SOUND_CASH_REGISTER,
     },
     HYDRA = {
         StreakName = "Hydra",
-        EIDName = "Hydra",
         CustomTag = "head",
         VanillaItems = {
             CollectibleType.COLLECTIBLE_CRICKETS_HEAD,
@@ -47,5 +49,9 @@ return {
         },
         NumReq = 3,
         Costume = Isaac.GetCostumeIdByPath("gfx_tb/characters/costume_hydra.anm2"),
+
+        EIDName = "Hydra",
+        GreenAppleID = 1,
+        GreenAppleSFX = ToyboxMod.SFX_BREATH,
     },
 }

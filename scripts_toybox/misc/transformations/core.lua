@@ -14,6 +14,22 @@ function ToyboxMod:hasCustomTransformation(pl, transfKey)
     return data.TRANSFORMATIONS[transfKey][2]
 end
 
+---@param pl EntityPlayer
+---@param transfKey string
+function ToyboxMod:getCustomTransformationCounter(pl, transfKey)
+    local data = ToyboxMod:getEntityDataTable(pl)
+    data.TRANSFORMATIONS = data.TRANSFORMATIONS or {}
+    data.TRANSFORMATIONS[transfKey] = data.TRANSFORMATIONS[transfKey] or {true, false, 0}
+
+    return (data.TRANSFORMATIONS[transfKey][3] or 0)
+end
+
+---@param transfKey string
+function ToyboxMod:getCustomTransformationRequirement(transfKey)
+    local transfData = ToyboxMod.TRANSFORMATIONS[transfKey]
+    return (transfData.NumReq or BASE_TRANSF_REQ)
+end
+
 ---@param id CollectibleType
 ---@param transfKey string
 function ToyboxMod:isItemInCustomTransformation(id, transfKey)
