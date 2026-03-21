@@ -3,7 +3,7 @@ local REPLACE_CHANCE = 0.02
 ---@param bomb EntityBomb
 local function postTrollBombInit(_, bomb)
     if(bomb:GetDropRNG():RandomFloat()<REPLACE_CHANCE) then
-        local shouldconvert = ((bomb.SpawnerEntity==nil) or (not bomb.SpawnerEntity:ToNPC())) and Game():GetRoom():GetFrameCount()>0
+        local shouldconvert = ((bomb.SpawnerEntity==nil) or (not (bomb.SpawnerEntity:ToNPC() or bomb.SpawnerEntity:ToEffect()))) and Game():GetRoom():GetFrameCount()>0
         if(shouldconvert) then
             local sleepy = Isaac.Spawn(EntityType.ENTITY_BOMB,ToyboxMod.BOMB_SLEEPY_TROLL_BOMB,0,bomb.Position,bomb.Velocity,bomb.SpawnerEntity):ToBomb()
             

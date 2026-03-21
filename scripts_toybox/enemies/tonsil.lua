@@ -16,11 +16,26 @@ local function isValidForTonsilCollision(pos)
     return true
 end
 
+---@param vec Vector
+local function vectorToDir(vec)
+    local a = vec:GetAngleDegrees()
+    return math.floor((a+225)%360/90)
+end
+---@param dir Direction
+local function dirToVector(dir)
+    local angle = 90
+    if(dir==Direction.RIGHT) then angle = 0
+    elseif(dir==Direction.LEFT) then angle = 180
+    elseif(dir==Direction.UP) then angle = 270 end
+
+    return Vector.FromAngle(angle)
+end
+
 ---@param npc EntityNPC
 local function tonsilInit(_, npc)
     if(not (npc.Variant==ToyboxMod.NPC_TONSIL)) then return end
 
-    npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_BULLET
+    npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NOPITS
     npc:GetSprite():Play("Idle", true)
 
     if(npc.SubType==0) then
@@ -43,36 +58,18 @@ local function tonsilUpdate(_, npc)
         sp:Play("Idle", true)
     end
 
-    if(isValidForTonsilCollision(npc.Position)) then
-        local mult = Vector(1,1)
-        local offset = Vector(0,0)
-
-        if(isValidForTonsilCollision(npc.Position-npc.Velocity*Vector(1,0))) then
-            mult.Y = -1
-            offset.Y = 1
-        end
-        if(isValidForTonsilCollision(npc.Position-npc.Velocity*Vector(0,1))) then
-            mult.X = -1
-            offset.X = 1
-        end
-
-        npc.Position = npc.Position-npc.Velocity*offset*0.8*(npc.I1*0.3+1)
-        npc.Velocity = npc.Velocity*mult*0.8
-        npc.V1 = npc.V1*mult
-        npc.I1 = npc.I1+1
-
+    if(npc.FrameCount>1 and math.abs(npc.V1:Normalized():Dot(npc.Velocity:Normalized()))<=0.5) then
         sfx:Play(905, 0.5, 2, false, 0.8+math.random()*0.2)
-    else
-        npc.I1 = 0
     end
 
-    npc:AddVelocity(npc.V1*0.7)
-    npc.Velocity = npc.Velocity*0.85
+    local dirVec = dirToVector(vectorToDir(npc.Velocity:Rotated(45)))
+    dirVec = dirVec:Rotated(-45)
+    npc.Velocity = ToyboxMod:lerp(npc.Velocity, dirVec:Resized(5), 0.2)
+    npc.V1 = npc.Velocity
 
     if(npc.FrameCount%30==0 or not (npc.Target and npc.Target:Exists() and not npc.Target:IsDead())) then
         npc.Target = npc:GetPlayerTarget()
     end
-
     if(npc.Target and npc.Target:Exists()) then
         if(npc.State==NpcState.STATE_IDLE and npc.ProjectileCooldown==0) then
             local distCheck = (npc.Target.Position:Distance(npc.Position)<=PROJ_DISTANCE_SHOOT)
@@ -113,43 +110,6 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, tonsilUpdate, ToyboxMod.NP
 ---@param coll Entity
 local function postTonsilCollision(_, npc, coll, low)
     if(not (npc.Variant==ToyboxMod.NPC_TONSIL)) then return end
-
-    local diff = (coll.Position-npc.Position):Normalized()
-
-    local npcCapsule = (npc:GetCollisionCapsule())
-    local collCapsule = (coll:GetCollisionCapsule())
-
-    local normVel = npc.Velocity:Normalized()
-
-    local npcCapOffX = npc:GetCollisionCapsule(-npc.Velocity*Vector(1,0))
-    local npcCapOffY = npc:GetCollisionCapsule(-npc.Velocity*Vector(0,1))
-
-    local mult = Vector(1,1)
-    local offset = Vector(0,0)
-    if(npcCapOffX:Collide(collCapsule,Vector.Zero)) then
-        mult.Y = -1
-        offset.Y = 1
-    end
-    if(npcCapOffY:Collide(collCapsule,Vector.Zero)) then
-        mult.X = -1
-        offset.X = 1
-    end
-
-    npc.Position = npc.Position-npc.Velocity*offset*0.7
-    npc.Velocity = npc.Velocity*mult*0.9
-    npc.V1 = npc.V1*mult
-    npc.I1 = 1
-
-    --[ [
-    if(coll.Type==ToyboxMod.NPC_ENEMY and coll.Variant==ToyboxMod.NPC_TONSIL and coll:ToNPC().I1==0) then
-        coll = coll:ToNPC() ---@cast coll EntityNPC
-        
-        coll.Position = coll.Position-coll.Velocity*offset*0.7
-        coll.Velocity = coll.Velocity*mult*0.9
-        coll.V1 = coll.V1*mult
-        coll.I1 = 1
-    end
-    --]]
 
     sfx:Play(905, 0.5, 2, false, 0.8+math.random()*0.2)
 end

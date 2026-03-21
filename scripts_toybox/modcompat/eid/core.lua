@@ -66,7 +66,7 @@ local function formatModifier(modifier, icon, color)
     newModifier.Type = newModifier.Type or STORED.CONSTANTS.DescriptionModifier.APPEND
     newModifier.Condition = newModifier.Condition or function(descObj) return true end
 
-    if(icon or color) then
+    if((icon or color) and not newModifier.IgnoreMarkup) then
         if(type(newModifier.ToModify)~="function") then
             for i, text in ipairs(newModifier.ToModify) do
                 if(newModifier.Type==STORED.CONSTANTS.DescriptionModifier.REPLACE) then

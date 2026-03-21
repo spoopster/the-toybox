@@ -160,7 +160,6 @@
         pickup="2805"
 
         mimiccharge="12"
-        hidden="true"
     />
     <card id="18" name="IIS - The Gate"
         description="Master key"
@@ -177,7 +176,6 @@
         pickup="2805"
 
         mimiccharge="12"
-        hidden="true"
     />
     <card id="20" name="IVS - The Crypt"
         description="Beyond the veil"
@@ -194,7 +192,6 @@
         pickup="2805"
 
         mimiccharge="12"
-        hidden="true"
     />
     <card id="22" name="VIS - The Dragon"
         description="There be treasure"
@@ -219,7 +216,6 @@
         pickup="2805"
 
         mimiccharge="12"
-        hidden="true"
     />
 
 <!-- RUNES / SOUL STONES -->

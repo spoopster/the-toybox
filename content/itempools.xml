@@ -21,11 +21,9 @@
         <Item Name="Plasma Globe"/>
         <Item Name="Hostile Takeover"/>
         <Item Name="Haemorrhage"/>
-        <Item Name="Bob's Thesis"/>
         <Item Name="Asteroid Belt"/>
         <Item Name="Barbed Wire"/>
         <Item Name="Chocolate Bar"/>
-        <Item Name="Food Stamps"/>
         <Item Name="Lucky Pebbles"/>
         <Item Name="Hemolymph"/>
         <Item Name="Colossal Orb"/>
@@ -38,7 +36,7 @@
         <Item Name="Reading Glasses"/>
         <Item Name="Langton Loop"/>
         <Item Name="Curious Carrot"/>
-        <Item Name="Garlic Head"/>
+        <Item Name="Garlic"/>
         <Item Name="White Daisy"/>
         <Item Name="Tammy's Tail"/>
         <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
@@ -49,6 +47,14 @@
         <Item Name="Ember"/>
         <Item Name="Angel Dust"/>
         <Item Name="Blockchain"/>
+        <Item Name="Nose Candy"/>
+        <Item Name="Saltpeter"/>
+        <Item Name="Giant Capsule"/>
+        <Item Name="Dr. Bum"/>
+        <Item Name="Ascension"/>
+        <Item Name="Glass Vessel"/>
+        <Item Name="Pyramid Scheme"/>
+        <Item Name="AIDS"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -71,11 +77,9 @@
         <Item Name="Plasma Globe"/>
         <Item Name="Hostile Takeover"/>
         <Item Name="Haemorrhage"/>
-        <Item Name="Bob's Thesis"/>
         <Item Name="Asteroid Belt"/>
         <Item Name="Barbed Wire"/>
         <Item Name="Chocolate Bar"/>
-        <Item Name="Food Stamps"/>
         <Item Name="Lucky Pebbles"/>
         <Item Name="Hemolymph"/>
         <Item Name="Golden Calf"/>
@@ -87,7 +91,7 @@
         <Item Name="Reading Glasses"/>
         <Item Name="Langton Loop"/>
         <Item Name="Curious Carrot"/>
-        <Item Name="Garlic Head"/>
+        <Item Name="Garlic"/>
         <Item Name="White Daisy"/>
         <Item Name="Tammy's Tail"/>
         <Item Name="Fatal Signal" Weight="0.5" DecreaseBy="0.5"/>
@@ -98,6 +102,13 @@
         <Item Name="Ember"/>
         <Item Name="Angel Dust"/>
         <Item Name="Blockchain"/>
+        <Item Name="Nose Candy"/>
+        <Item Name="Giant Capsule"/>
+        <Item Name="Dr. Bum"/>
+        <Item Name="Ascension"/>
+        <Item Name="Glass Vessel"/>
+        <Item Name="Pyramid Scheme"/>
+        <Item Name="AIDS"/>
     </Pool>
 
     <Pool Name="boss">
@@ -112,7 +123,6 @@
         <Item Name="Dad's Slipper"/>
         <Item Name="Finger Trap"/>
         <Item Name="Surprise Egg"/>
-        <Item Name="Bloodflower"/>
         <Item Name="Loose Bowels"/>
         <Item Name="Bodybag"/>
     </Pool>
@@ -128,14 +138,13 @@
         <Item Name="Dad's Slipper"/>
         <Item Name="Finger Trap"/>
         <Item Name="Surprise Egg"/>
-        <Item Name="Bloodflower"/>
         <Item Name="Loose Bowels"/>
         <Item Name="Bodybag"/>
     </Pool>
 
     <Pool Name="shop">
         <Item Name="Dad's Prescription"/>
-        <Item Name="D0"/>
+        <Item Name="D"/>
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>
@@ -157,7 +166,7 @@
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
-        <Item Name="D0"/>
+        <Item Name="D"/>
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>
@@ -184,7 +193,6 @@
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Cursed Eulogy"/>
         <Item Name="Catharsis"/>
-        <Item Name="Haemorrhage"/>
         <Item Name="Effigy"/>
         <Item Name="Red Clover"/>
         <Item Name="Black Soul"/>
@@ -196,7 +204,6 @@
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Cursed Eulogy"/>
         <Item Name="Catharsis"/>
-        <Item Name="Haemorrhage"/>
         <Item Name="Effigy"/>
         <Item Name="Red Clover"/>
         <Item Name="Black Soul"/>
@@ -206,7 +213,7 @@
     <Pool Name="angel">
         <Item Name="Silk Bag"/>
         <Item Name="Blessed Ring"/>
-        <Item Name="Glass Vessel"/>
+        <Item Name="Glass Vessel" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Ascension"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Blessed Bombs"/>
@@ -216,7 +223,7 @@
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
         <Item Name="Blessed Ring"/>
-        <Item Name="Glass Vessel"/>
+        <Item Name="Glass Vessel" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Ascension"/>
         <Item Name="Atheism" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Blessed Bombs"/>
@@ -232,6 +239,7 @@
         <Item Name="Golden Calf"/>
         <Item Name="Black Soul"/>
         <Item Name="Dissociation"/>
+        <Item Name="Angel Dust"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
@@ -240,6 +248,7 @@
         <Item Name="Golden Calf"/>
         <Item Name="Black Soul"/>
         <Item Name="Dissociation"/>
+        <Item Name="Angel Dust"/>
     </Pool>
 
     <Pool Name="secret">
@@ -256,6 +265,10 @@
         <Item Name="White Daisy"/>
         <Item Name="Malice"/>
         <Item Name="Dissociation"/>
+        <Item Name="Missing Page 3"/>
+        <Item Name="Bob's Thesis"/>
+        <Item Name="4 4"/>
+        <Item Name="Bone Boy"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -271,6 +284,10 @@
         <Item Name="White Daisy"/>
         <Item Name="Malice"/>
         <Item Name="Dissociation"/>
+        <Item Name="Missing Page 3"/>
+        <Item Name="Bob's Thesis"/>
+        <Item Name="4 4"/>
+        <Item Name="Bone Boy"/>
     </Pool>
 
     <Pool Name="library">
@@ -290,6 +307,7 @@
         <Item Name="Malice"/>
         <Item Name="Bloody Whistle"/>
         <Item Name="Puggy's Claw"/>
+        <Item Name="Haemorrhage"/>
     </Pool>
 
     <Pool Name="goldenChest">
@@ -299,8 +317,9 @@
         <Item Name="Coffee Cup"/>
         <Item Name="Plasma Globe"/>
         <Item Name="A Spoonful of Mayonnaise"/>
-        <Item Name="D0"/>
+        <Item Name="D"/>
         <Item Name="Paper Plate"/>
+        <Item Name="Surprise Egg"/>
     </Pool>
 
     <Pool Name="woodenChest">
@@ -318,6 +337,13 @@
         <Item Name="Mom's Photobook"/>
     </Pool>
 
+    <Pool Name="beggar">
+        <Item Name="Candy Dispenser"/>
+        <Item Name="Dr. Bum"/>
+        <Item Name="Surprise Egg"/>
+        <Item Name="A Spoonful of Mayonnaise"/>
+    </Pool>
+
     <Pool Name="demonBeggar">
         <Item Name="Pliers"/>
         <Item Name="Black Soul"/>
@@ -326,6 +352,8 @@
         <Item Name="Blood Ritual"/>
         <Item Name="Painkillers"/>
         <Item Name="Angel Dust"/>
+        <Item Name="Nose Candy"/>
+        <Item Name="Hemolymph"/>
     </Pool>
 
     <Pool Name="bombBum">
@@ -336,11 +364,13 @@
     <Pool Name="batteryBum">
         <Item Name="Solar Panel"/>
         <Item Name="Plasma Globe"/>
+        <Item Name="Laser Brain"/>
     </Pool>
 
     <Pool Name="rottenBeggar">
         <Item Name="Bob's Heart"/>
         <Item Name="Bob's Thesis"/>
+        <Item Name="Fish"/>
     </Pool>
 
     <Pool Name="craneGame">
@@ -352,29 +382,25 @@
         <Item Name="Good Job"/>
         <Item Name="Curious Carrot"/>
         <Item Name="4 4"/>
-        <Item Name="Pliers"/>
         <Item Name="Goat Milk"/>
         <Item Name="Coconut Oil"/>
         <Item Name="Laser Brain"/>
-        <Item Name="Sunk Costs"/>
         <Item Name="Evil Rock"/>
-        <Item Name="Bone Boy"/>
         <Item Name="Steel Soul"/>
-        <Item Name="Clown PHD"/>
         <Item Name="Alphabet Box"/>
-        <Item Name="Love Letter"/>
-        <Item Name="Quake Bombs"/>
         <Item Name="Hostile Takeover"/>
-        <Item Name="Asteroid Belt"/>
+        <Item Name="Meteor Shower"/>
         <Item Name="Chocolate Bar"/>
-        <Item Name="Food Stamps"/>
         <Item Name="Golden Calf"/>
         <Item Name="Beer Can"/>
         <Item Name="Butterfly Effect"/>
         <Item Name="Langton Loop"/>
-        <Item Name="Loose Bowels"/>
         <Item Name="Tammy's Tail"/>
         <Item Name="Blockchain"/>
+        <Item Name="Condensed Milk"/>
+        <Item Name="Garlic"/>
+        <Item Name="Giant Capsule"/>
+        <Item Name="Big Red Button"/>
     </Pool>
 
     <Pool Name="ultraSecret">
@@ -387,5 +413,6 @@
         <Item Name="Bloodflower"/>
         <Item Name="Red Clover"/>
         <Item Name="Big Red Button"/>
+        <Item Name="AIDS"/>
     </Pool>
 </ItemPools>

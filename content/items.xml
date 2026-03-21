@@ -54,11 +54,11 @@
 <passive id="6" name="Loose Bowels"
     description="Can't control it..."
     gfx="loose_bowels.png"
-    quality="2"
+    quality="1"
     tags="offensive summonable poop"           
     cache=""
 
-    range="80"
+    range="120"
 />
 <active id="7" name="Pliers"
     description="The pain is temporary"
@@ -141,7 +141,7 @@
     tags="offensive summonable"
     cache=""
 />
-<passive id="16" name="Garlic Head"
+<passive id="16" name="Garlic"
     description="Poison aura tears"
     gfx="garlic.png"
     quality="3"
@@ -228,7 +228,7 @@
     tags="summonable offensive"
     cache=""
 />
-<active id="26" name="D0"
+<active id="26" name="D"
     description="Reroll your... uhh..."
     gfx="d.png"
     quality="0"
@@ -345,7 +345,6 @@
     gfx="hostile_takeover.png"
     quality="3"
     tags="offensive"
-    customtags="head"
     cache="all"
 
     maxcharges="6"
@@ -571,7 +570,7 @@
     cache=""
 />
 <passive id="60" name="Fish"
-    description="After 9 years in development"
+    description="Affront to nature"
     gfx="fish.png"
     quality="2"
     tags="offensive dead"
@@ -1039,6 +1038,15 @@
     cache=""
 
     maxhearts="2"
+/>
+<passive id="113" name="AIDS"
+    description="Everything tears"
+    gfx="aids.png"
+    quality="3"
+    tags="offensive"
+    cache=""
+
+    luck="1"
 />
 
 <active id="491" name="Cursed D6"

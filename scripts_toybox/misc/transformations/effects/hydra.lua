@@ -10,6 +10,7 @@ local REG_HEAD_MASS = 3
 local function initHydraHeadData(pl, mass)
     return {
         Pos = pl.Position,
+        PosOffset = Vector.Zero,
         Vel = Vector.Zero,
         Mass = mass,
     }
@@ -106,10 +107,11 @@ local function updateHeads(_, pl)
         hData = hData or initHydraHeadData(pl)
 
         if(Game():GetRoom():GetFrameCount()==0) then
-            hData.Pos = pl.Position+HEAD_BASE_POS_OFFS*pl.SpriteScale+pl.TearsOffset+pl:GetFlyingOffset()
+            hData.Pos = pl.Position+hData.PosOffset
         end
 
         hData.Pos = hData.Pos+hData.Vel*1
+        hData.PosOffset = hData.Pos-pl.Position
 
         local posDif = (pl.Position+HEAD_BASE_POS_OFFS*pl.SpriteScale+pl.TearsOffset+pl:GetFlyingOffset()-hData.Pos)
         local len = posDif:Length()
@@ -137,7 +139,9 @@ local function updateHeads(_, pl)
                     local mSum = hData.Mass+hData2.Mass
 
                     hData.Pos = hData.Pos+resizeDif*hData2.Mass/mSum
+                    hData.PosOffset = hData.Pos-pl.Position
                     hData2.Pos = hData2.Pos-resizeDif*hData.Mass/mSum
+                    hData2.PosOffset = hData2.Pos-pl.Position
                     hData.Vel = hData.Vel+(resizeDif*hData2.Mass/mSum)*1.1
                     hData2.Vel = hData2.Vel-(resizeDif*hData.Mass/mSum)*1.1
                 end

@@ -39,6 +39,15 @@
 		trinket="44" 
 	/>
 
+	<player birthright="Makeshift bombs" name="Bandit"
+		nameimage="jonas_name.png" portrait="jonas_portrait.png" skin="character_bandit.png"
+		costumeSuffix="jonas_a" skinColor="5"
+
+		items="40"
+		heartcontainers="6" redhearts="6"
+		hidden="true"
+	/>
+
 
 	<!-- TAINTEDS -->
 
@@ -68,6 +77,17 @@
 		heartcontainers="6" redhearts="6"
 
 		achievement="Tainted Jonas" bSkinParent="Jonas"
+		
+	/>
+
+	<player birthright="-" name="Bandit" 
+		nameimage="milcom_name.png" portrait="portrait_jonas.png" skin="character_jonas.png"
+		costumeSuffix="bandit_b" skinColor="-1"
+
+		heartcontainers="6" redhearts="6"
+
+		achievement="Tainted Jonas" bSkinParent="Bandit"
+		hidden="true"
 		
 	/>
 </players>

@@ -11,6 +11,8 @@ ToyboxMod.PLAYER_MILCOM_B = Isaac.GetPlayerTypeByName("Milcom", true)
 ToyboxMod.PLAYER_ATLAS_B = Isaac.GetPlayerTypeByName("Atlas", true)
 ToyboxMod.PLAYER_JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true)
 
+ToyboxMod.PLAYER_BANDIT_A = Isaac.GetPlayerTypeByName("Bandit", false)
+
 --- ACHIEVEMENTS - Players
 ToyboxMod.ACHIEVEMENT_MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom")
 ToyboxMod.ACHIEVEMENT_ATLAS_B = Isaac.GetAchievementIdByName("Tainted Atlas")
@@ -135,7 +137,7 @@ ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS = Isaac.GetItemIdByName("Conjunctivitis")
 ToyboxMod.COLLECTIBLE_FOOD_STAMPS = Isaac.GetItemIdByName("Food Stamps")
 ToyboxMod.COLLECTIBLE_GOLDEN_CALF = Isaac.GetItemIdByName("Golden Calf")
 ToyboxMod.COLLECTIBLE_RETROFALL = Isaac.GetItemIdByName("RETROFALL")
-ToyboxMod.COLLECTIBLE_D = Isaac.GetItemIdByName("D0")
+ToyboxMod.COLLECTIBLE_D = Isaac.GetItemIdByName("D")
 ToyboxMod.COLLECTIBLE_BRUNCH = Isaac.GetItemIdByName("Brunch")
 ToyboxMod.COLLECTIBLE_TOAST = Isaac.GetItemIdByName("Toast")
 ToyboxMod.COLLECTIBLE_DELIVERY_BOX = Isaac.GetItemIdByName("Delivery Box")
@@ -163,7 +165,7 @@ ToyboxMod.COLLECTIBLE_OIL_PAINTING = Isaac.GetItemIdByName("Oil Painting")
 ToyboxMod.COLLECTIBLE_READING_GLASSES = Isaac.GetItemIdByName("Reading Glasses")
 ToyboxMod.COLLECTIBLE_LANGTON_LOOP = Isaac.GetItemIdByName("Langton Loop")
 ToyboxMod.COLLECTIBLE_CURIOUS_CARROT = Isaac.GetItemIdByName("Curious Carrot")
-ToyboxMod.COLLECTIBLE_GARLIC = Isaac.GetItemIdByName("Garlic Head")
+ToyboxMod.COLLECTIBLE_GARLIC = Isaac.GetItemIdByName("Garlic")
 ToyboxMod.COLLECTIBLE_WHITE_DAISY = Isaac.GetItemIdByName("White Daisy")
 ToyboxMod.COLLECTIBLE_MELTED_CANDLE = Isaac.GetItemIdByName("Melted Candle")
 ToyboxMod.COLLECTIBLE_TAMMYS_TAIL = Isaac.GetItemIdByName("Tammy's Tail")
@@ -178,6 +180,7 @@ ToyboxMod.COLLECTIBLE_ANGEL_DUST = Isaac.GetItemIdByName("Angel Dust")
 ToyboxMod.COLLECTIBLE_PUGGYS_CLAW = Isaac.GetItemIdByName("Puggy's Claw")
 ToyboxMod.COLLECTIBLE_BLOCKCHAIN = Isaac.GetItemIdByName("Blockchain")
 ToyboxMod.COLLECTIBLE_BODYBAG = Isaac.GetItemIdByName("Bodybag")
+ToyboxMod.COLLECTIBLE_AIDS = Isaac.GetItemIdByName("AIDS")
 --ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
@@ -327,11 +330,15 @@ ToyboxMod.EFFECT_METEOR = Isaac.GetEntityVariantByName("Meteor") ---@type Effect
 ToyboxMod.EFFECT_SMOKE_TRAIL = Isaac.GetEntityVariantByName("Smoke Trail") ---@type EffectVariant
 ToyboxMod.EFFECT_FLAME_BREATH_HELPER = Isaac.GetEntityVariantByName("Flame Breath Helper") ---@type EffectVariant
 ToyboxMod.EFFECT_FEAR_LIGHT = Isaac.GetEntityVariantByName("Enemy Fear Light") ---@type EffectVariant
+ToyboxMod.EFFECT_APOCALYPSE_HELPER = Isaac.GetEntityVariantByName("Apocalypse Helper") ---@type EffectVariant
+
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
+ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant
 
 ToyboxMod.EFFECT_GRID_HELPER = Isaac.GetEntityVariantByName("Toybox Grid Helper") ---@type EffectVariant
 
 ToyboxMod.TEAR_COOL = Isaac.GetEntityVariantByName("Cool Tear") ---@type TearVariant
+ToyboxMod.TEAR_AIDS = Isaac.GetEntityVariantByName("AIDS Tear") ---@type TearVariant
 --ToyboxMod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear") ---@type TearVariant
 --ToyboxMod.TEAR_BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear") ---@type TearVariant
 --ToyboxMod.TEAR_SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear") ---@type TearVariant
@@ -406,6 +413,7 @@ ToyboxMod.BACKDROOP_GRAVEYARD = Isaac.GetBackdropIdByName("Graveyard")
 
 ToyboxMod.GIANTBOOK_BIG_BANG = Isaac.GetGiantBookIdByName("Big Bang (TOYBOX)")
 ToyboxMod.GIANTBOOK_MOMS_PHOTOBOOK = Isaac.GetGiantBookIdByName("Mom's Photobook")
+ToyboxMod.GIANTBOOK_THE_ANGEL = Isaac.GetGiantBookIdByName("The Angel")
 
 ToyboxMod.FAMILIAR_VIRUS_RED = 0
 ToyboxMod.FAMILIAR_VIRUS_YELLOW_1 = 1

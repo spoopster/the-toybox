@@ -494,23 +494,6 @@ function ToyboxMod:getLuckAffectedChance(luck, baseChance, maxLuck, maxChance)
     else return ToyboxMod:lerp(baseChance,maxChance or 1,f) end
 end
 
-function ToyboxMod:getTearPoofVariantFromTear(tear)
-    local s = tear:ToTear().Scale
-    local h = tear:ToTear().Height
-
-	if(s > 0.8) then
-		if(h < -5) then
-			return EffectVariant.TEAR_POOF_A    -- Wall impact
-		else
-			return EffectVariant.TEAR_POOF_B    -- Floor impact
-		end
-	elseif(s > 0.4) then
-		return EffectVariant.TEAR_POOF_SMALL
-	else
-		return EffectVariant.TEAR_POOF_VERYSMALL
-	end
-end
-
 function ToyboxMod:getRandomFreePos(margin)
     margin = margin or 80
 
@@ -879,6 +862,40 @@ function ToyboxMod:getTearAnimSuffix(tear)
 	elseif(scale <= 2.175) then return 11
 	elseif(scale <= 2.55) then return 12
     else return 13 end
+end
+
+---@param tear EntityTear
+---@param forcePlay boolean?
+---@param animPrefix string?
+function ToyboxMod:playTearScaleAnim(tear, forcePlay, animPrefix)
+    animPrefix = animPrefix or "RegularTear"
+    local resAnim = animPrefix..tostring(ToyboxMod:getTearAnimSuffix(tear))
+    local sp = tear:GetSprite()
+
+    if(sp:GetAnimation()~=resAnim) then
+        if(forcePlay) then
+            sp:Play(resAnim, true)
+        else
+            sp:SetAnimation(resAnim, false)
+        end
+    end
+end
+
+function ToyboxMod:getTearPoofVariantFromTear(tear)
+    local s = tear:ToTear().Scale
+    local h = tear:ToTear().Height
+
+	if(s > 0.8) then
+		if(h < -5) then
+			return EffectVariant.TEAR_POOF_A    -- Wall impact
+		else
+			return EffectVariant.TEAR_POOF_B    -- Floor impact
+		end
+	elseif(s > 0.4) then
+		return EffectVariant.TEAR_POOF_SMALL
+	else
+		return EffectVariant.TEAR_POOF_VERYSMALL
+	end
 end
 
 ---@param v1 Vector

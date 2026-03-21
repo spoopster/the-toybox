@@ -165,6 +165,9 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
 --include("scripts_toybox.players.jonas.b.jonas")
 --include("scripts_toybox.players.jonas.b.closet_unlock")
 
+-- BANDIT
+include("scripts_toybox.players.bandit.a.bandit")
+
 -- ITEMS
 --PASSIVES
     include("scripts_toybox.items.passives.coconut_oil")
@@ -255,6 +258,7 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.items.passives.conglomerate")
     --include("scripts_toybox.items.passives.chest_alien")
     include("scripts_toybox.items.passives.bodybag")
+    include("scripts_toybox.items.passives.aids")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -357,6 +361,10 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
     include("scripts_toybox.pickups.cards.the_dragon")
     include("scripts_toybox.pickups.cards.duality")
     include("scripts_toybox.pickups.cards.the_gate")
+    include("scripts_toybox.pickups.cards.apocalypse")
+    include("scripts_toybox.pickups.cards.the_reaper")
+    include("scripts_toybox.pickups.cards.the_baron")
+    include("scripts_toybox.pickups.cards.the_angel")
 --OBJECTS
     include("scripts_toybox.pickups.objects.mantle_rock")
     include("scripts_toybox.pickups.objects.mantle_poop")
@@ -404,6 +412,7 @@ include("scripts_toybox.fortnite funnies.retro mode")
 include("scripts_toybox.fortnite funnies.cool title screen")
 include("scripts_toybox.fortnite funnies.slop-o-meter")
 include("scripts_toybox.fortnite funnies.commands")
+include("scripts_toybox.fortnite funnies.kanye")
 
 include("scripts_toybox.fortnite funnies.trinket_collection")
 include("scripts_toybox.fortnite funnies.epic_collection")
@@ -992,4 +1001,8 @@ local function dkjdjs(_, sss)
     print(sss, enum)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_SFX_PLAY, dkjdjs)
+--]]
+
+--[ [
+
 --]]

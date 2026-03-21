@@ -605,7 +605,7 @@ enums.FUNCTIONS.AddItem({
         "\1 +1 Range",
         "\1 +0.1 Shotspeed",
         "\1 +1 Luck",
-        "At the start of next floor, will turn into an item from the ITEMPOOL pool"
+        "At the start of next floor, will turn into an item from the itempool it was obtained froom"
     },
     Modifiers = {
         {
@@ -615,7 +615,7 @@ enums.FUNCTIONS.AddItem({
                 local poolName = EID:getDescriptionEntry("itemPoolNames")[lastPool]
                 local poolIcon = (EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")
 
-                return string.gsub(descObj.Description, "ITEMPOOL", poolIcon.." {{ColorSilver}}"..poolName.."{{CR}}")
+                return string.gsub(descObj.Description, "itempool it was obtained froom", poolIcon.." {{ColorSilver}}"..poolName.."{{CR}} itempool")
             end
         },
     }
@@ -779,7 +779,7 @@ enums.FUNCTIONS.AddItem({
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_D,
-    Name = "D0",
+    Name = "D",
     Description = {
         "{{Timer}} Adds anywhere from +3 minutes to -3 minutes to the game's timer",
     },
@@ -889,7 +889,6 @@ enums.FUNCTIONS.AddItem({
     Name = "Art of War",
     Description = {
         "{{Timer}} Grants a random tear replacement item for the room",
-        "Picks items from the following list:"
     },
     Modifiers = {
         {
@@ -897,7 +896,7 @@ enums.FUNCTIONS.AddItem({
                 return true
             end,
             ToModify = function(descObj)
-                local s = "{{Blank}} "
+                local s = "Picks items from the following list:#{{Blank}} "
                 for _, item in ipairs(ToyboxMod.TEAR_REPLACEMENT_ITEMS) do
                     s = s.."{{Collectible"..item[1].."}} "
                 end
@@ -1221,7 +1220,7 @@ enums.FUNCTIONS.AddItem({
         "Hold up a throwable Giga Rocket",
         "When the rocket lands:",
         "{{Collectible483}} Deals 100 damage to all enemies in the room",
-        "{{Poison}} Fills the room with poison clouds",
+        "{{Poison}} Poisons all enemies in the room",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1268,7 +1267,7 @@ enums.FUNCTIONS.AddItem({
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_GARLIC,
-    Name = "Garlic Head",
+    Name = "Garlic",
     Description = {
         "\2 -1 Range",
         "\2 x0.9 Range",
@@ -1311,8 +1310,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_LOOSE_BOWELS,
     Name = "Loose Bowels",
     Description = {
-        "\1 +2 Range",
-        "Every 5-10 seconds, Isaac farts",
+        "\1 +3 Range",
+        "Every 6-8 seconds, Isaac farts",
         --"The farts poison enemies and deflect projectiles"
     },
 })
@@ -1421,6 +1420,15 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{EmptyHeart}} +1 Empty Heart container",
         "{{Heart}} Spawns 6 random hearts",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_AIDS,
+    Name = "AIDS",
+    Description = {
+        "\1 +1 Luck",
+        "10% chance to shoot a rainbow tear with 3x damage that poisons, fears, slows, charms, petrifies, burns, baits, homes, freezes on kill, and shrinks as it travels",
+        "{{Luck}} 20% chance at 20 luck",
     },
 })
 
@@ -2355,10 +2363,72 @@ enums.FUNCTIONS.AddCard({
     }
 })
 enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_APOCALYPSE,
+    Name = "IIIS - Apocalypse",
+    Description = {
+        "For the room, a Horseman will periodically charge through the room, hurting players and enemies",
+        "Each Horseman has a different attack as it moves through the room",
+    },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"a Horseman", "2 Horsemen"}
+            }
+        },
+    }
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_REAPER,
+    Name = "VS - The Reaper",
+    Description = {
+        "{{Slow}} For the room, every 5 seconds a random enemy will take 20 damage and become Slowed for 5 seconds",
+    },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            IgnoreMarkup = true,
+            ToModify = {
+                {"{{Slow}}", "{{Weakness}}"}
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"Slowed", "Weakened"}
+            }
+        },
+    }
+})
+enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_THE_BARON,
     Name = "VIIIS - The Baron",
     Description = {
-        "didy",
+        "Rerolls all pickups in the room into rarer pickups",
+    },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ToModify = {
+                "Rerolls an additional time, resulting in even rarer pickups"
+            }
+        }
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_ANGEL,
+    Name = "IS - The Angel",
+    Description = {
+        "{{Collectible33}} Triggers the effects of The Bible",
+        "{{Timer}} Grants spectral tears for the room"
+    },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ToModify = {
+                "Also grants {{Collectible182}} Sacred Heart for the room"
+            }
+        }
     },
 })
 

@@ -9,4 +9,9 @@
 		<layer name="bg" r="228" g="228" b="228" a="153" />
 		<layer name="poof2" r="225" g="225" b="225" a="128" />
 	</entry>
+	<entry id="2" anm2="GiantBook.anm2" anim="Appear" gfx="giantbook_the_angel.png" name="The Angel">
+		<layer name="poof" r="228" g="228" b="228" a="255" />
+		<layer name="bg" r="228" g="228" b="228" a="153" />
+		<layer name="poof2" r="225" g="225" b="225" a="128" />
+	</entry>
 </giantbook>
