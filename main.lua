@@ -112,6 +112,7 @@ include("scripts_toybox.misc.grids.copper_poop")
 include("scripts_toybox.misc.grids.player_only_gate")
 include("scripts_toybox.misc.grids.enemy_only_gate")
 include("scripts_toybox.misc.grids.block_and_plate")
+include("scripts_toybox.misc.grids.grave")
 
 -- MILCOM
 include("scripts_toybox.players.milcom.a.milcom")

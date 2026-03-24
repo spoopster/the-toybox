@@ -173,6 +173,8 @@ local function renderHeads(_, pl)
         return (a[2].Y<b[2].Y)
     end)
 
+    beamSprite.Scale = pl:GetSprite().Scale
+
     data.ALLOW_RENDER_HYDRA_HEADS = true
     for _, headYDat in ipairs(headY) do
         local headData = data.HYDRA_HEAD_DATA[headYDat[1]] or {initHydraHeadData(pl, (i==0 and BASE_HEAD_MASS or REG_HEAD_MASS))}
@@ -181,7 +183,7 @@ local function renderHeads(_, pl)
         local bpos2 = Isaac.WorldToRenderPosition(headData.Pos+Vector(0,-20)*pl.SpriteScale)
         local bdir = (bpos2-bpos1):Normalized()
         local bdist = bpos1:Distance(bpos2)
-        local step = 7
+        local step = 7*(1+0.5*(pl:GetSprite().Scale.Y-1))
 
         while(bdist>=0) do
             beamSprite:Render(bpos1+Game():GetRoom():GetRenderScrollOffset())

@@ -20,6 +20,12 @@ if(MinimapAPI) then
                         end
                     end
                 end
+
+                for _, data in ipairs(ToyboxMod.CUSTOM_ICONS) do
+                    if(data.Condition(v)) then
+                        v.PermanentIcons = { data.Icon }
+                    end
+                end
             end
         end
     end

@@ -67,6 +67,8 @@ ToyboxMod.ACHIEVEMENT_MALICE = Isaac.GetAchievementIdByName("Malice")
 --ToyboxMod.ACHIEVEMENT_CHAMPIONS = Isaac.GetAchievementIdByName("More Champions!")
 ToyboxMod.ACHIEVEMENT_COLORING_BOOK = Isaac.GetAchievementIdByName("Coloring Book")
 
+ToyboxMod.POOL_GRAVEYARD = Isaac.GetPoolIdByName("graveyard")
+
 ToyboxMod.COLLECTIBLE_COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil")
 ToyboxMod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")
 ToyboxMod.COLLECTIBLE_EYESTRAIN = Isaac.GetItemIdByName("Eyestrain")
@@ -451,6 +453,8 @@ ToyboxMod.GRID_SWITCH_PLATE_1 = Isaac.GetEntitySubTypeByName("Switch Plate (1)")
 ToyboxMod.GRID_SWITCH_PLATE_2 = Isaac.GetEntitySubTypeByName("Switch Plate (2)")
 ToyboxMod.GRID_SWITCH_PLATE_3 = Isaac.GetEntitySubTypeByName("Switch Plate (3)")
 ToyboxMod.GRID_SWITCH_PLATE_4 = Isaac.GetEntitySubTypeByName("Switch Plate (4)")
+ToyboxMod.GRID_GRAVE_EMPTY = Isaac.GetEntitySubTypeByName("Tombstone (Empty)")
+ToyboxMod.GRID_GRAVE_RANDOM = Isaac.GetEntitySubTypeByName("Tombstone (Random)")
 
 ToyboxMod.SHADER_EMPTY = "ToyboxEmptyShader" ---@type ShaderType
 ToyboxMod.SHADER_BLOOM = "ToyboxBloomShader" ---@type ShaderType

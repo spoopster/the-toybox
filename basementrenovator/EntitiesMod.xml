@@ -66,18 +66,6 @@
     <entity ID="5" Variant="604" Subtype="8" Image="icons/pickup_mantle_metal.png" Kind="Toybox" Name="Mantle - Metal" />
     <entity ID="5" Variant="604" Subtype="9" Image="icons/pickup_mantle_gold.png" Kind="Toybox" Name="Mantle - Gold" />
 
-    <entity name="Switch Block (1)" id="1000" variant="412" subtype="4" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Block (2)" id="1000" variant="412" subtype="5" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Block (3)" id="1000" variant="412" subtype="6" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Block (4)" id="1000" variant="412" subtype="7" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Block (Inactive) (1)" id="1000" variant="412" subtype="8" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Block (Inactive) (2)" id="1000" variant="412" subtype="9" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Block (Inactive) (3)" id="1000" variant="412" subtype="10" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Block (Inactive) (4)" id="1000" variant="412" subtype="11" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Plate (1)" id="1000" variant="412" subtype="12" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Plate (2)" id="1000" variant="412" subtype="13" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Plate (3)" id="1000" variant="412" subtype="14" anm2path="effects/effect_dead_grub.anm2" />
-    <entity name="Switch Plate (4)" id="1000" variant="412" subtype="15" anm2path="effects/effect_dead_grub.anm2" />
 
     <!-- GRIDS -->
     <entity ID="999" Variant="412" Subtype="1" Image="icons/grid_copper_poop.png" Kind="Toybox" Name="Copper Poop" />
@@ -96,6 +84,29 @@
     <entity ID="999" Variant="412" Subtype="13" Image="icons/grid_switch_plate_group2.png" Kind="Toybox" Name="Switch Plate - Group 2" />
     <entity ID="999" Variant="412" Subtype="14" Image="icons/grid_switch_plate_group3.png" Kind="Toybox" Name="Switch Plate - Group 3" />
     <entity ID="999" Variant="412" Subtype="15" Image="icons/grid_switch_plate_group4.png" Kind="Toybox" Name="Switch Plate - Group 4" />
+
+    <entity ID="999" Variant="412" Subtype="16" Image="icons/grid_tombstone.png" Kind="Toybox" Name="Tombstone (Safe)" />
+    <entity ID="999" Variant="412" Image="icons/grid_tombstone_danger.png" Kind="Toybox" Name="Tombstone (Dangerous)" >
+        <bitfield Key="Subtype">
+            <dropdown Length="5" Name="Enemy spawned when broken">
+                <choice Value="17">Random</choice>
+                <choice Value="18">Host</choice>
+                <choice Value="19">Bony</choice>
+                <choice Value="20">Necro</choice>
+                <choice Value="21">Wizoob</choice>
+                <choice Value="22">Lil' Haunt</choice>
+                <choice Value="23">Polty</choice>
+                <choice Value="24">Dust</choice>
+                <choice Value="25">Rotten Gaper</choice>
+                <choice Value="26">Charger</choice>
+                <choice Value="27">Spitty</choice>
+                <choice Value="28">Big Bony</choice>
+                <choice Value="29">Floating Knight</choice>
+                <choice Value="30">Knight</choice>
+                <choice Value="31">Small Maggot</choice>
+            </dropdown>
+        </bitfield>
+    </entity>
 
     <!-- TOYBOX GROUPINGS -->
     <group Name="Toybox Enemies">
@@ -127,6 +138,9 @@
         <entity Name="Copper Poop"/>
         <entity Name="Player-Only Block"/>
         <entity Name="Enemy-Only Block"/>
+
+        <entity Name="Tombstone (Safe)"/>
+        <entity Name="Tombstone (Dangerous)"/>
 
         <entity Name="Switch Block - Group 1"/>
         <entity Name="Switch Block - Group 2"/>
@@ -177,6 +191,8 @@
     <group Label="Grids">
         <entity Name="Player-Only Block"/>
         <entity Name="Enemy-Only Block"/>
+        <entity Name="Tombstone (Safe)"/>
+        <entity Name="Tombstone (Dangerous)"/>
     </group>
     <group Label="Events">
         <entity Name="Switch Block - Group 1"/>

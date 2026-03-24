@@ -415,4 +415,53 @@
         <Item Name="Big Red Button"/>
         <Item Name="AIDS"/>
     </Pool>
+
+    <Pool Name="graveyard">
+        <Item Name="Cricket's Head"/>
+        <Item Name="Tammy's Head"/>
+        <Item Name="Bob's Rotten Head"/>
+        <Item Name="Dead Cat"/>
+        <Item Name="Parasite"/>
+        <Item Name="Dead Bird"/>
+        <Item Name="Infestation"/>
+        <Item Name="The Mulligan"/>
+        <Item Name="Ghost Baby"/>
+        <Item Name="Cricket's Body"/>
+        <Item Name="Infestation 2"/>
+        <Item Name="Death's Touch"/>
+        <Item Name="Dry Baby"/>
+        <Item Name="Rotten Baby"/>
+        <Item Name="Leech"/>
+        <Item Name="Lil Haunt"/>
+        <Item Name="Dead Onion"/>
+        <Item Name="Host Hat"/>
+        <Item Name="Compound Fracture"/>
+        <Item Name="Parasitoid"/>
+        <Item Name="Finger!" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Ghost Pepper"/>
+        <Item Name="Marrow"/>
+        <Item Name="Slipped Rib"/>
+        <Item Name="Pointy Rib"/>
+        <Item Name="Book of the Dead"/>
+        <Item Name="Jaw Bone"/>
+        <Item Name="Brittle Bones"/>
+        <Item Name="The Intruder"/>
+        <Item Name="Bird Cage"/>
+        <Item Name="Lost Soul"/>
+        <Item Name="Rotten Tomato"/>
+        <Item Name="Yuck Heart"/>
+        <Item Name="Tinytoma"/>
+        <Item Name="Vade Retro"/>
+        <Item Name="Spirit Shackles"/>
+        <Item Name="Bone Spurs"/>
+        <Item Name="Isaac's Tomb"/>
+        <Item Name="Vengeful Spirit"/>
+        <Item Name="Ghost Bombs"/>
+        <Item Name="Lion Skull"/>
+        <Item Name="Bone Boy"/>
+        <Item Name="Haemorrhage"/>
+        <Item Name="Fish" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Tammy's Tail"/>
+        <Item Name="Puggy's Claw"/>
+    </Pool>
 </ItemPools>

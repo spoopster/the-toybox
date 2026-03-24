@@ -1,27 +1,24 @@
-local BASE_CHANCE = 0.1
-local INCREMENT_PER_EMPTY_HEART = 0.05
-local MAX_CHANCE = 0.5
-local LOST_CHANCE_INCREMENT = 0.1
+local BASE_CHANCE = 0.3
+local DECREMENT_PER_FULL_HEART = 0.05
+local LOST_BASE_CHANCE = 0.1
 
 local function getGraveyardChance()
     local chance = BASE_CHANCE
     local players = PlayerManager.GetPlayers()
     local nump = #players
     for _, pl in ipairs(players) do
-        local addedChance = 0
-        local emptyHearts = (pl:GetEffectiveMaxHearts()-pl:GetHearts())//2
-        addedChance = addedChance+emptyHearts*INCREMENT_PER_EMPTY_HEART
+        local addedChance
         if(pl:GetHealthType()==HealthType.LOST) then
-            addedChance = addedChance+LOST_CHANCE_INCREMENT
-        elseif(pl:GetSoulHearts()+pl:GetHearts()<=2) then
-            addedChance = 1
+            addedChance = LOST_BASE_CHANCE
+        else
+            addedChance = BASE_CHANCE-(math.ceil(pl:GetHearts()/2)+math.ceil(pl:GetSoulHearts()/2))*DECREMENT_PER_FULL_HEART
+            addedChance = math.max(addedChance, 0)
         end
 
         chance = chance+addedChance/nump
     end
-    chance = math.min(chance, MAX_CHANCE)
 
-    return 0
+    return chance
 end
 
 local function addNewBossRoom(_)
@@ -32,21 +29,132 @@ local function addNewBossRoom(_)
     local chance = getGraveyardChance()
     if(rng:RandomFloat()<chance) then
         local newBossRoom = RoomConfigHolder.GetRandomRoom(Random(), true, StbType.SPECIAL_ROOMS, RoomType.ROOM_TELEPORTER, nil, nil, nil, nil, nil, nil, 100)
-        local possibleRooms = level:FindValidRoomPlacementLocations(newBossRoom, -1, false, false)
+        local possibleRooms = level:FindValidRoomPlacementLocations(newBossRoom, level:GetDimension(), false, false)
 
         local finalRoom
         while(#possibleRooms>0 and not finalRoom) do
             local idx = rng:RandomInt(#possibleRooms)+1
         
-            finalRoom = level:TryPlaceRoom(newBossRoom, possibleRooms[idx], -1, 0, true, true, false)
+            finalRoom = level:TryPlaceRoom(newBossRoom, possibleRooms[idx], level:GetDimension(), 0, true, true, false)
             table.remove(possibleRooms, idx)
+        end
+
+        if(finalRoom) then
+            level:UpdateVisibility()
+            if(MinimapAPI) then
+                MinimapAPI:CheckForNewRedRooms()
+            end
         end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, addNewBossRoom)
 
-local function gggg(_)
-    local iconssprite = Minimap.GetIconsSprite()
-    iconssprite.Rotation = 0
+local GRAVEYARD_COLOR_MOD = ColorModifier(0.87,0.92,1.07,0.5,0,1.05)
+
+local function spawnMist(pos, dir, instant)
+    local mist = Isaac.Spawn(1000,138,0,pos,dir,nil):ToEffect()
+    local sp = mist:GetSprite()
+    sp:SetFrame(math.random(1,sp:GetCurrentAnimationData():GetLength())-1)
+    sp:Stop()
+
+    mist.DepthOffset = 100
+    mist.RenderZOffset = 100
+    mist.SortingLayer = SortingLayer.SORTING_NORMAL
+
+    ToyboxMod:setEntityData(mist, "STUPID_GRAVEYARD_MIST", (instant and 1 or 0))
+
+    mist.Color = Color(1,1,1,(instant and 0.7 or 0))
+    mist:Update()
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_MINIMAP_RENDER, gggg)
+
+local function makeChoiceCollectibles(_)
+    if(not ToyboxMod:isCustomSpecialRoom(Game():GetLevel():GetCurrentRoomDesc(), "GRAVEYARD_ROOM")) then
+        local curmodifier = Game():GetCurrentColorModifier()
+        if(curmodifier==GRAVEYARD_COLOR_MOD) then
+            Game():SetColorModifier(Game():GetTargetColorModifier(),true,0.08)
+        end
+        return
+    end
+
+    Game():SetColorModifier(GRAVEYARD_COLOR_MOD,false)
+
+    local optionsIdx
+    for _, ent in ipairs(Isaac.FindByType(5,100)) do
+        if(ent.SubType~=0) then
+            if(optionsIdx) then
+                ent:ToPickup().OptionsPickupIndex = optionsIdx
+            else
+                optionsIdx = ent:ToPickup():SetNewOptionsPickupIndex()
+            end
+        end
+    end
+
+    local room = Game():GetRoom()
+    for i=-1,1,2 do
+        local rng = ToyboxMod:generateRng()
+        local tlpos = room:GetTopLeftPos()
+        local brpos = room:GetBottomRightPos()
+
+        local pos = Vector(0,rng:RandomInt(tlpos.Y+10, brpos.Y-10))
+        local vel = Vector.Zero
+        if(i==1) then
+            pos.X = rng:RandomInt(tlpos.X+40, (tlpos.X+brpos.X)/2-20)
+            vel = Vector(1,0)
+        else
+            pos.X = rng:RandomInt((tlpos.X+brpos.X)/2+20, brpos.X-40)
+            vel = Vector(-1,0)
+        end
+
+        vel = vel*(0.5+math.random()*0.7)
+
+        spawnMist(pos, vel, true)
+    end
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_NEW_ROOM, CallbackPriority.IMPORTANT, makeChoiceCollectibles)
+
+local function spawnScrollingMist(_)
+    if(not ToyboxMod:isCustomSpecialRoom(Game():GetLevel():GetCurrentRoomDesc(), "GRAVEYARD_ROOM")) then return end
+
+    local room = Game():GetRoom()
+    if(room:GetFrameCount()%140==20) then
+        local rng = ToyboxMod:generateRng()
+        local pos = Vector(0,rng:RandomInt(room:GetTopLeftPos().Y, room:GetBottomRightPos().Y))
+        local vel = Vector.Zero
+        if(rng:RandomFloat()<0.5) then
+            pos.X = room:GetTopLeftPos().X-400
+            vel = Vector(1,0)
+        else
+            pos.X = room:GetBottomRightPos().X+400
+            vel = Vector(-1,0)
+        end
+
+        vel = vel*(0.5+math.random()*0.7)
+
+        spawnMist(pos, vel)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, spawnScrollingMist)
+
+---@param effect EntityEffect
+local function mistUpdate(_, effect)
+    if(not ToyboxMod:getEntityData(effect, "STUPID_GRAVEYARD_MIST")) then return end
+
+    local START_INVISIBLE = (ToyboxMod:getEntityData(effect, "STUPID_GRAVEYARD_MIST")==1 and -1 or 80)
+    local LIFE_DURATION = 30*15
+    local INVISIBLE_DIE = 100
+    local ALPHA_MOD = 0.7
+
+    if(effect.FrameCount<=START_INVISIBLE) then
+        effect.Color = Color(1,1,1,ALPHA_MOD*effect.FrameCount/START_INVISIBLE)
+    elseif(effect.FrameCount<=START_INVISIBLE+LIFE_DURATION) then
+        effect.Color = Color(1,1,1,ALPHA_MOD*1)
+    elseif(effect.FrameCount<=START_INVISIBLE+LIFE_DURATION+INVISIBLE_DIE) then
+        if(effect.FrameCount==START_INVISIBLE+LIFE_DURATION+INVISIBLE_DIE) then
+            effect:Remove()
+            return
+        end
+
+        effect.Color = Color(1,1,1,ALPHA_MOD*(1-(effect.FrameCount-START_INVISIBLE-LIFE_DURATION)/INVISIBLE_DIE))
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mistUpdate, EffectVariant.MIST)

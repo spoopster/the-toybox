@@ -112,6 +112,7 @@ local function horsemanUpdate(_, effect)
             local creep = Isaac.Spawn(1000,EffectVariant.CREEP_GREEN,0,effect.Position,Vector.Zero,effect):ToEffect()
             creep.SpriteScale = Vector(1,1)*1.5
             creep:SetTimeout(30*3)
+            creep:Update()
         end
 
         if(not room:IsPositionInRoom(effect.Position,20)) then

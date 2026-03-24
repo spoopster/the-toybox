@@ -6,9 +6,18 @@ local function useTheCrypt(_, _, pl, flags)
     local secretidx
     for i=0, 168 do
         local room = level:GetRoomByIdx(i)
-        if(room.Data and room.Data.Type==RoomType.ROOM_SUPERSECRET) then
+        if(ToyboxMod:isCustomSpecialRoom(room, "GRAVEYARD_ROOM")) then
             secretidx = room.SafeGridIndex
             break
+        end
+    end
+    if(not secretidx) then
+        for i=0, 168 do
+            local room = level:GetRoomByIdx(i)
+            if(room.Data and room.Data.Type==RoomType.ROOM_SUPERSECRET) then
+                secretidx = room.SafeGridIndex
+                break
+            end
         end
     end
     if(secretidx) then

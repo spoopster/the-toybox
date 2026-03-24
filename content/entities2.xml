@@ -295,6 +295,9 @@
     <entity name="Switch Plate (2)" id="1000" variant="412" subtype="13" anm2path="effects/effect_dead_grub.anm2" />
     <entity name="Switch Plate (3)" id="1000" variant="412" subtype="14" anm2path="effects/effect_dead_grub.anm2" />
     <entity name="Switch Plate (4)" id="1000" variant="412" subtype="15" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Tombstone (Empty)" id="1000" variant="412" subtype="16" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="Tombstone (Random)" id="1000" variant="412" subtype="17" anm2path="effects/effect_dead_grub.anm2" />
+    <entity name="the next grid entity" id="1000" variant="412" subtype="48" anm2path="effects/effect_dead_grub.anm2" />
 
     <!-- PICKUPS -->
     <entity name="Ink (1)"
