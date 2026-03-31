@@ -2,10 +2,10 @@ local sfx = SFXManager()
 
 local BONEHEART_ADD = 1
 
-local INTENSITY_DURATION = 5*60
-local INTENSITY_UPDATE_FREQ = 30
+local INTENSITY_DURATION = 14*60
+local INTENSITY_UPDATE_FREQ = 20
 
-local TEARS_MULT_MAX = 5
+local TEARS_MULT_MAX = 4
 
 ---@param player EntityPlayer
 local function addHaemorrhage(_, item, _, firstTime, _, _, player)
@@ -68,3 +68,29 @@ local function increaseIntensity(_, ent, _, flags, source)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, increaseIntensity, EntityType.ENTITY_PLAYER)
+
+--- stolen from Foks <3 thank you
+local function getBloodTearVariant(tear)
+	local bloodVariant = {
+		[TearVariant.BLUE] = TearVariant.BLOOD,
+		[TearVariant.CUPID_BLUE] = TearVariant.CUPID_BLOOD,
+		[TearVariant.NAIL] = TearVariant.NAIL_BLOOD,
+		[TearVariant.PUPULA] = TearVariant.PUPULA_BLOOD,
+		[TearVariant.GODS_FLESH] = TearVariant.GODS_FLESH_BLOOD,
+		[TearVariant.GLAUCOMA] = TearVariant.GLAUCOMA_BLOOD,
+		[TearVariant.EYE] = TearVariant.EYE_BLOOD,
+		--[TearVariant.KEY] = TearVariant.KEY_BLOOD,
+	}
+	return bloodVariant[type(tear) == "number" and tear or tear.Variant] -- You can either just put the tear entity there or get the variant from a number
+end
+
+---@param pl EntityPlayer
+---@param params TearParams
+local function evalParams(_, pl, params, weap, dmg, tearDisp, source)
+    if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_HEMORRHAGE))) then return end
+    if(not ((ToyboxMod:getEntityData(pl, "HAEMORRHAGE_COUNTDOWN") or 0)>0)) then return end
+
+    local bVar = getBloodTearVariant(params.TearVariant)
+    params.TearVariant = (bVar or params.TearVariant)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, evalParams)

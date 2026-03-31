@@ -1131,7 +1131,9 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_BUTTERFLY_EFFECT,
     Name = "Butterfly Effect",
     Description = {
-        "\1 ^1.25 Damage",
+        "\1 +0.2 flat Damage",
+        "\1 x1.2 Damage",
+        "\1 ^1.2 Damage",
     },
 })
 enums.FUNCTIONS.AddItem({
