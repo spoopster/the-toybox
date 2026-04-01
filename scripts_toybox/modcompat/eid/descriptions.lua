@@ -274,7 +274,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_MISSING_PAGE_3,
     Name = "Missing Page 3",
     Description = {
-        "{{DeathMark}} Enemies have a 6% chance to spawn as a Skull champion",
+        "{{DeathMark}} A random enemy every room will become a Skull champion",
         --"{{Blank}} {{ColorGray}}Skull champions have 2x health and trigger {{Collectible35}} The Necronomicon effect on death{{CR}}",
         "{{BlackHeart}} Skull champions are guaranteed to drop a black heart on death",
     },
@@ -285,7 +285,7 @@ enums.FUNCTIONS.AddItem({
                 return Game():IsHardMode()
             end,
             ToModify = {
-                {"are guaranteed", "have a 33%% chance"}
+                {"are guaranteed", "have a 50%% chance"}
             }
         }
     },
@@ -2014,7 +2014,7 @@ enums.FUNCTIONS.AddTrinket({
     ID = ToyboxMod.TRINKET_LIBRARY_CARD,
     Name = "Library Card",
     Description = {
-        "{{Library}} Treasure Room items are replaced with Library items",
+        enums.CONSTANTS.Icon_RoomLibraryTreasure.." Treasure Room items are replaced with Library items",
     },
 })
 enums.FUNCTIONS.AddTrinket({

@@ -51,6 +51,7 @@ include("scripts_toybox.util.callbacks.post_poop_init")
 -- LIBRARIES
 include("scripts_toybox.util.hud_helper")
 include("scripts_toybox.util.custom_object_spawn")
+include("scripts_toybox.util.custom_tearflags")
 include("scripts_toybox.util.throwables")
 include("scripts_toybox.util.statuseffects")
 -- DATA ( entity / extra / persistent )

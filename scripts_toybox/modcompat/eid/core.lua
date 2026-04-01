@@ -6,6 +6,21 @@ if(not EID) then return end
 include("scripts_toybox.modcompat.eid.descriptions")
 local STORED = require("scripts_toybox.modcompat.eid.stored")
 
+--#region POOL LOGIC
+local pools = {
+    [ToyboxMod.POOL_GRAVEYARD] = {
+        "Graveyard", STORED.CONSTANTS.Icon_PoolGraveyard
+    },
+}
+
+for i, pooldata in pairs(pools) do
+    EID:addItemPoolName(i, pooldata[1])
+    EID:assignItemPoolMarkup(i, pooldata[2])
+end
+
+--#endregion
+
+--#region TRANSFORMATION LOGIC
 local transformationTagToId = {}
 
 for _, tData in pairs(ToyboxMod.TRANSFORMATIONS) do
@@ -36,6 +51,7 @@ for id=1, iconf:GetCollectibles().Size-1 do
         end
     end
 end
+--#endregion
 
 local function getTypeMatchFunction(itemType, itemId)
     if(itemType==PickupVariant.PICKUP_COLLECTIBLE) then

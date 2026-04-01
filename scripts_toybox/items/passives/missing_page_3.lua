@@ -1,7 +1,7 @@
 
 
-local DEATH_CHAMP_CHANCE = 0.06
-local HARD_BLACK_CHANCE = 0.33
+--local DEATH_CHAMP_CHANCE = 0.1
+local HARD_BLACK_CHANCE = 0.5
 
 ---@param npc EntityNPC
 local function npcInit(_, npc)
@@ -23,7 +23,52 @@ local function npcInit(_, npc)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, npcInit)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, npcInit)
+
+local function newRoom(_)
+    if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_MISSING_PAGE_3)) then return end
+
+    local validEnemies = {}
+    for _, ent in ipairs(Isaac.GetRoomEntities()) do
+        if(ToyboxMod:isValidEnemy(ent)) then
+            local conf = EntityConfig.GetEntity(ent.Type, ent.Variant, ent.SubType)
+            if(conf and conf:CanBeChampion()) then
+                table.insert(validEnemies, ent:ToNPC())
+            end
+        end
+    end
+
+    local num = PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_MISSING_PAGE_3)
+    local pl = PlayerManager.FirstCollectibleOwner(ToyboxMod.COLLECTIBLE_MISSING_PAGE_3)
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_MISSING_PAGE_3)
+
+    local picker = WeightedOutcomePicker()
+    for i, npc in ipairs(validEnemies) do
+        local dist = npc.Position:Distance(pl.Position)
+        dist = (dist/(40*2))^2
+
+        picker:AddOutcomeFloat(i, dist, 100)
+    end
+
+    for _=1, num do
+        if(picker:GetNumOutcomes()>0) then
+            local picked = picker:PickOutcome(rng)
+            picker:RemoveOutcome(picked)
+
+            local npc = validEnemies[picked]
+            local oldHits = npc.MaxHitPoints
+            npc:MakeChampion(math.max(Random(),1), ChampionColor.DEATH, true)
+            if(num==1) then
+                npc.HitPoints = npc.MaxHitPoints
+            else
+                npc.MaxHitPoints = oldHits
+            end
+        else
+            break
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, newRoom)
 
 ---@param npc EntityNPC
 local function npcDeath(_, npc)

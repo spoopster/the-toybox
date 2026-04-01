@@ -1,6 +1,8 @@
 
 local sfx = SFXManager()
 
+
+
 local CHARM_CHANCE = 0.1
 local CHARM_STACKCHANCE = 0.05
 local CHARM_MAXCHANCE = 0.25
@@ -13,6 +15,32 @@ local CHARM_DMGMULT = 0.5
 local CHARM_STACKMULT = 0.25
 
 local CHARM_INVINCIBILITY = 60
+
+ToyboxMod:addTearFlagEnum(
+    "LOVELETTER_CHARM",
+    ---@param npc EntityNPC
+    ---@param source Entity
+    function(npc, flag, source, pos, dmg, key)
+        npc:AddCharmed(EntityRef(ToyboxMod:getPlayerFromEnt(source)), math.max(0, CHARM_DURATION-npc:GetCharmedCountdown()))
+    end,
+    nil,
+    CHARM_COLOR
+)
+
+---@param pl EntityPlayer
+local function giveTearflag(_, pl, _)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_LOVE_LETTER)) then return end
+
+    ToyboxMod:addTearFlag(
+        pl,
+        "LOVELETTER_CHARM",
+        function(player)
+            return math.min(CHARM_MAXCHANCE, CHARM_CHANCE+player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LOVE_LETTER)*CHARM_STACKCHANCE)
+        end,
+        ToyboxMod.COLLECTIBLE_LOVE_LETTER
+    )
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, giveTearflag, CacheFlag.CACHE_TEARFLAG)
 
 ---@param ent Entity
 local function postCharmedTakeDMG(_, ent, dmg, flags, source, cooldown)
@@ -60,78 +88,3 @@ local function playerTakeDMGFromCharm(_, p, dmg, flags, source, cooldown)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, playerTakeDMGFromCharm)
-
-
-
----@param player EntityPlayer
-local function getTriggerChance(player, chancemult)
-    local itemNum = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LOVE_LETTER)
-    if(itemNum==0) then return 0 end
-    return chancemult*math.min(CHARM_MAXCHANCE, CHARM_CHANCE+(itemNum-1)*CHARM_STACKCHANCE)
-end
-
----@param ent Entity
-local function applyLetterCharm(_, ent, amount, flags, ref, frames)
-    if(not (ref.Entity and ToyboxMod:getEntityData(ref.Entity, "LOVELETTER_CHARM"))) then return end
-
-    ent:AddCharmed(ref, math.max(0, CHARM_DURATION-ent:GetCharmedCountdown()))
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, applyLetterCharm)
-
----@param tear EntityTear
----@param player EntityPlayer
-local function letterFireTear(_, tear, player, isLudo)
-    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_LOVE_LETTER)) then return end
-    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_LOVE_LETTER)
-
-    if(rng:RandomFloat()>=getTriggerChance(player, (isLudo and 0.75 or 1))) then return end
-
-    tear.Color = CHARM_COLOR
-    tear:AddTearFlags(TearFlags.TEAR_CHARM)
-end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_TEAR, letterFireTear)
-
----@param bomb EntityBomb
----@param player EntityPlayer
-local function letterFireBomb(_, bomb, player)
-    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_LOVE_LETTER)) then return end
-    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_LOVE_LETTER)
-
-    if(rng:RandomFloat()>=getTriggerChance(player, 1.5)) then return end
-
-    bomb.Color = CHARM_COLOR
-    bomb:AddTearFlags(TearFlags.TEAR_CHARM)
-end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_BOMB, letterFireBomb)
-
----@param rocket EntityEffect
----@param player EntityPlayer
-local function letterFireRocket(_, rocket, player)
-    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_LOVE_LETTER)) then return end
-    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_LOVE_LETTER)
-
-    if(rng:RandomFloat()>=getTriggerChance(player, 1.5)) then return end
-
-    ToyboxMod:setEntityData(rocket, "LOVELETTER_CHARM", true)
-    ToyboxMod:setEntityData(rocket, "EXPLOSION_COLOR", CHARM_COLOR)
-end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_FIRE_ROCKET, letterFireRocket)
----@param rocket EntityEffect
----@param target EntityEffect
-local function letterCopyTargetData(_, rocket, target)
-    ToyboxMod:setEntityData(rocket, "LOVELETTER_CHARM", ToyboxMod:getEntityData(target, "LOVELETTER_CHARM"))
-end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.ROCKET_COPY_TARGET_DATA, letterCopyTargetData)
-
----@param player EntityPlayer
----@param ent Entity
-local function laserKnifeDamage(_, dmgtype, player, ent)
-    if(not (dmgtype==ToyboxMod.DAMAGE_TYPE.LASER or dmgtype==ToyboxMod.DAMAGE_TYPE.KNIFE)) then return end
-
-    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_LOVE_LETTER)) then return end
-    local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_LOVE_LETTER)
-    if(rng:RandomFloat()>=getTriggerChance(player, 0.8)) then return end
-
-    ent:AddCharmed(EntityRef(player), CHARM_DURATION)
-end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_EXTRA_DMG, laserKnifeDamage)

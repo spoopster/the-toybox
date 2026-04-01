@@ -205,6 +205,15 @@ EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_DRAGON), "Cards", 33, 16, 16, 0,
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_DUALITY), "Cards", 34, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_BARON), "Cards", 35, 16, 16, 0, 0, iconSprite)
 
+--- ROOMS
+EID:addIcon("Graveyard", "RoomIcons", 0, 16, 16, 0, 0, iconSprite)
+EID:addIcon("TempleRoom", "RoomIcons", 1, 16, 16, 0, 0, iconSprite)
+EID:addIcon("LibraryTreasureRoom", "RoomIcons", 2, 16, 16, 0, 0, iconSprite)
+
+--- POOLS
+EID:addIcon("ItemPoolGraveyard", "PoolIcons", 0, 11, 11, 0, 0, iconSprite)
+EID:addIcon("ItemPoolTempleRoom", "PoolIcons", 1, 11, 11, 0, 0, iconSprite)
+
 --- MISC
 EID:addIcon("ToyboxIconElectrifiedStatus", "Misc", 0, 16, 16, 0, 0, iconSprite)
 EID:addIcon("ToyboxIconOverflowingStatus", "Misc", 1, 16, 16, 0, 0, iconSprite)
@@ -243,6 +252,9 @@ STORED.CONSTANTS = {
     Icon_PlayerJonas = "{{Player" .. tostring(ToyboxMod.PLAYER_JONAS_A) .. "}}",
     Icon_PlayerMilcom = "{{Player" .. tostring(ToyboxMod.PLAYER_MILCOM_A) .. "}}",
 
+    Icon_TransfFancy = "{{ToyboxFancyTransformation}}",
+    Icon_TransfHydra = "{{ToyboxHydraTransformation}}",
+
     Icon_CardMantleRock = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_ROCK) .. "}}",
     Icon_CardMantlePoop = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_POOP) .. "}}",
     Icon_CardMantleBone = "{{Card" .. tostring(ToyboxMod.CARD_MANTLE_BONE) .. "}}",
@@ -265,6 +277,13 @@ STORED.CONSTANTS = {
     Icon_CardTheDragon = "{{Card" .. tostring(ToyboxMod.CARD_THE_DRAGON) .. "}}",
     Icon_CardDuality = "{{Card" .. tostring(ToyboxMod.CARD_DUALITY) .. "}}",
     Icon_CardTheBaron = "{{Card" .. tostring(ToyboxMod.CARD_THE_BARON) .. "}}",
+
+    Icon_RoomGraveyard = "{{Graveyard}}",
+    Icon_RoomTemple = "{{TempleRoom}}",
+    Icon_RoomLibraryTreasure = "{{LibraryTreasureRoom}}",
+
+    Icon_PoolGraveyard = "{{ItemPoolGraveyard}}",
+    Icon_PoolTemple = "{{ItemPoolTempleRoom}}",
 
     Icon_StatusElectrified = "{{ToyboxIconElectrifiedStatus}}",
     Icon_StatusOverflowing = "{{ToyboxIconOverflowingStatus}}",

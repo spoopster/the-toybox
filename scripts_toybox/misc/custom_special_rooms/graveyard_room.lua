@@ -1,9 +1,9 @@
-local BASE_CHANCE = 0.3
-local DECREMENT_PER_FULL_HEART = 0.05
+local BASE_CHANCE = 0.05
+local INCREMENT_PER_MISSING_HEAR = 0.05
 local LOST_BASE_CHANCE = 0.1
 
 local function getGraveyardChance()
-    local chance = BASE_CHANCE
+    local chance = 0
     local players = PlayerManager.GetPlayers()
     local nump = #players
     for _, pl in ipairs(players) do
@@ -11,8 +11,8 @@ local function getGraveyardChance()
         if(pl:GetHealthType()==HealthType.LOST) then
             addedChance = LOST_BASE_CHANCE
         else
-            addedChance = BASE_CHANCE-(math.ceil(pl:GetHearts()/2)+math.ceil(pl:GetSoulHearts()/2))*DECREMENT_PER_FULL_HEART
-            addedChance = math.max(addedChance, 0)
+            local missingHp = (pl:GetEffectiveMaxHearts()-pl:GetHearts())//2
+            addedChance = BASE_CHANCE+missingHp*INCREMENT_PER_MISSING_HEAR
         end
 
         chance = chance+addedChance/nump

@@ -478,7 +478,7 @@
     gfx="love_letter.png"
     quality="2"
     tags="offensive"
-    cache=""
+    cache="tearflag"
 />
 <passive id="51" name="Quake Bombs"
     description="Blast blast +5 bombs"
