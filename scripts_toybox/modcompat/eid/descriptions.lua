@@ -1433,6 +1433,13 @@ enums.FUNCTIONS.AddItem({
         "{{Luck}} 20% chance at 20 luck",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_HIDDEN_BLADE,
+    Name = "Hidden Blade",
+    Description = {
+        "When entering an uncleared room, 50% chance to grant a single-use combat active in your extra pocket slot",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

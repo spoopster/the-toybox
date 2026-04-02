@@ -13,7 +13,7 @@ local function tryCopyCollectible(_, id, _, firstTime, _, _, pl)
         local tmult = pl:GetTrinketMultiplier(ToyboxMod.TRINKET_MISPRINT)
         local mult = NUM_COPIES*tmult
 
-        ToyboxMod:addTemporaryItem(pl, id, COPY_DURATION+tmult*MULT_DURATION_INCREASE, mult)
+        ToyboxMod:addInnateCollectible(pl, id, mult, "Misprint", true, COPY_DURATION+tmult*MULT_DURATION_INCREASE, mult)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, tryCopyCollectible)

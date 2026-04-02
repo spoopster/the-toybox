@@ -65,6 +65,7 @@
     gfx="pliers.png"
     quality="0"
     tags="tearsup nolostbr"
+    customtags="combat"
     cache=""
 
     maxcharges="0"
@@ -129,6 +130,7 @@
     gfx="blood_ritual.png"
     quality="3"
     tags="offensive"
+    customtags="combat"
     cache=""
     
     maxcharges="3"
@@ -172,6 +174,7 @@
     gfx="brainfreeze.png"
     quality="2"
     tags="offensive noeden"
+    customtags="combat"
     cache=""
     
     maxcharges="4"
@@ -252,6 +255,7 @@
     gfx="sunk_costs.png"
     quality="1"
     tags="tearsup"
+    customtags="combat"
     cache=""
     
     maxcharges="0"
@@ -345,6 +349,7 @@
     gfx="hostile_takeover.png"
     quality="3"
     tags="offensive"
+    customtags="combat"
     cache="all"
 
     maxcharges="6"
@@ -522,6 +527,7 @@
     gfx="white_daisy.png"
     quality="1"
     tags="offensive"
+    customtags="combat"
 
     cache="firedelay damage range luck"
     passivecache="true"
@@ -537,7 +543,7 @@
     gfx="melted_candle.png"
     quality="2"
     tags="offensive"
-
+    customtags="combat"
     cache=""
 
     maxcharges="180"
@@ -557,6 +563,7 @@
     gfx="bloody_whistle.png"
     quality="0"
     tags="offensive"
+    customtags="combat"
     cache=""
 
     maxcharges="3"
@@ -596,6 +603,7 @@
     gfx="art_of_war.png"
     quality="2"
     tags="offensive book"
+    customtags="combat"
 
     maxcharges="3"
     cache=""
@@ -736,6 +744,7 @@
     gfx="moms_photobook.png"
     quality="0"
     tags="offensive mom book"
+    customtags="combat"
     cache=""
 
     maxcharges="3"
@@ -893,6 +902,7 @@
     gfx="big_red_button.png"
     quality="4"
     tags="offensive"
+    customtags="combat"
     cache=""
 
     maxcharges="6"
@@ -1026,13 +1036,14 @@
     gfx="puggys_claw.png"
     quality="3"
     tags="offensive"
+    customtags="combat"
     cache="damage"
 
     maxcharges="4"
 />
 <passive id="112" name="Bodybag"
     description="HP up?"
-    gfx="no_sprite.png"
+    gfx="bodybag.png"
     quality="1"
     tags="offensive"
     cache=""
@@ -1047,6 +1058,13 @@
     cache=""
 
     luck="1"
+/>
+<passive id="114" name="Hidden Blade"
+    description="Come prepared"
+    gfx="hidden_blade.png"
+    quality="3"
+    tags="offensive"
+    cache=""
 />
 
 <active id="491" name="Cursed D6"

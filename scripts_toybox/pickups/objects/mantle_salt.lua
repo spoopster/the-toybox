@@ -37,9 +37,9 @@ local function useMantle(_, _, player, flags)
             end
 
             if(flags & UseFlag.USE_CARBATTERY ~= 0) then
-                ToyboxMod:addItemForLevel(player, finalItem, 1)
+                ToyboxMod:addInnateCollectible(player, finalItem, 1, "ForLevel_SaltMantleCard", true)
             else
-                ToyboxMod:addItemForRoom(player, finalItem, 1)
+                ToyboxMod:addInnateCollectible(player, finalItem, 1, "ForRoom_SaltMantleCard", true)
             end
             
             Isaac.CreateTimer(function()

@@ -14,7 +14,7 @@ local function useMantle(_, _, player, flags)
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.BONE.ID)
     else
         if(flags & UseFlag.USE_CARBATTERY ~= 0) then
-            ToyboxMod:addItemForLevel(player, ToyboxMod.COLLECTIBLE_BONE_BOY, 1)
+            ToyboxMod:addInnateCollectible(player, ToyboxMod.COLLECTIBLE_BONE_BOY, 1, "ForLevel_BoneMantleCard", true)
         else
             local bone = Isaac.Spawn(227,0,0,player.Position,Vector.Zero,player):ToNPC()
             bone:AddCharmed(EntityRef(player),-1)

@@ -183,6 +183,7 @@ ToyboxMod.COLLECTIBLE_PUGGYS_CLAW = Isaac.GetItemIdByName("Puggy's Claw")
 ToyboxMod.COLLECTIBLE_BLOCKCHAIN = Isaac.GetItemIdByName("Blockchain")
 ToyboxMod.COLLECTIBLE_BODYBAG = Isaac.GetItemIdByName("Bodybag")
 ToyboxMod.COLLECTIBLE_AIDS = Isaac.GetItemIdByName("AIDS")
+ToyboxMod.COLLECTIBLE_HIDDEN_BLADE = Isaac.GetItemIdByName("Hidden Blade")
 --ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
@@ -544,6 +545,97 @@ ToyboxMod.DAMAGE_TYPE = {
     ROCKET = 1<<6,
     TEAR = 1<<7,
 }
+
+ToyboxMod.COMBAT_ACTIVES = {
+    [CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = true,
+    [CollectibleType.COLLECTIBLE_NECRONOMICON] = true,
+    [CollectibleType.COLLECTIBLE_MR_BOOM] = true,
+    [CollectibleType.COLLECTIBLE_TAMMYS_HEAD] = true,
+    [CollectibleType.COLLECTIBLE_MOMS_BRA] = true,
+    [CollectibleType.COLLECTIBLE_KAMIKAZE] = true,
+    [CollectibleType.COLLECTIBLE_MOMS_PAD] = true,
+    [CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD] = true,
+    [CollectibleType.COLLECTIBLE_DOCTORS_REMOTE] = true,
+    [CollectibleType.COLLECTIBLE_SHOOP_DA_WHOOP] = true,
+    [CollectibleType.COLLECTIBLE_LEMON_MISHAP] = true,
+    [CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = true,
+    [CollectibleType.COLLECTIBLE_HOURGLASS] = true,
+    [CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN] = true,
+    [CollectibleType.COLLECTIBLE_THE_NAIL] = true,
+    [CollectibleType.COLLECTIBLE_MONSTROS_TOOTH] = true,
+    [CollectibleType.COLLECTIBLE_GAMEKID] = true,
+    [CollectibleType.COLLECTIBLE_PINKING_SHEARS] = true,
+    [CollectibleType.COLLECTIBLE_BEAN] = true,
+    [CollectibleType.COLLECTIBLE_MONSTER_MANUAL] = true,
+    [CollectibleType.COLLECTIBLE_RAZOR_BLADE] = true,
+    [CollectibleType.COLLECTIBLE_PONY] = true,
+    [CollectibleType.COLLECTIBLE_BEST_FRIEND] = true,
+    [CollectibleType.COLLECTIBLE_GUPPYS_HEAD] = true,
+    [CollectibleType.COLLECTIBLE_CRACK_THE_SKY] = true,
+    [CollectibleType.COLLECTIBLE_CANDLE] = true,
+    [CollectibleType.COLLECTIBLE_SPIDER_BUTT] = true,
+    [CollectibleType.COLLECTIBLE_WHITE_PONY] = true,
+    [CollectibleType.COLLECTIBLE_BLOOD_RIGHTS] = true,
+    [CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = true,
+    [CollectibleType.COLLECTIBLE_BOX_OF_SPIDERS] = true,
+    [CollectibleType.COLLECTIBLE_RED_CANDLE] = true,
+    [CollectibleType.COLLECTIBLE_FLUSH] = true,
+    [CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS] = true,
+    [CollectibleType.COLLECTIBLE_BUTTER_BEAN] = true,
+    [CollectibleType.COLLECTIBLE_MAGIC_FINGERS] = true,
+    [CollectibleType.COLLECTIBLE_ISAACS_TEARS] = true,
+    [CollectibleType.COLLECTIBLE_SCISSORS] = true,
+    [CollectibleType.COLLECTIBLE_BOOMERANG] = true,
+    [CollectibleType.COLLECTIBLE_MEGA_BEAN] = true,
+    [CollectibleType.COLLECTIBLE_GLASS_CANNON] = true,
+    [CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS] = true,
+    [CollectibleType.COLLECTIBLE_FRIEND_BALL] = true,
+    [CollectibleType.COLLECTIBLE_TEAR_DETONATOR] = true,
+    [CollectibleType.COLLECTIBLE_KIDNEY_BEAN] = true,
+    [CollectibleType.COLLECTIBLE_MINE_CRAFTER] = true,
+    [CollectibleType.COLLECTIBLE_JAR_OF_FLIES] = true,
+    [CollectibleType.COLLECTIBLE_MEGA_BLAST] = true,
+    [CollectibleType.COLLECTIBLE_PAUSE] = true,
+    [CollectibleType.COLLECTIBLE_WAIT_WHAT] = true,
+    [CollectibleType.COLLECTIBLE_BROWN_NUGGET] = true,
+    [CollectibleType.COLLECTIBLE_SHARP_STRAW] = true,
+    [CollectibleType.COLLECTIBLE_DELIRIOUS] = true,
+    [CollectibleType.COLLECTIBLE_BLACK_HOLE] = true,
+    [CollectibleType.COLLECTIBLE_SPRINKLER] = true,
+    [CollectibleType.COLLECTIBLE_TELEKINESIS] = true,
+    [CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD] = true,
+    [CollectibleType.COLLECTIBLE_GOLDEN_RAZOR] = true,
+    [CollectibleType.COLLECTIBLE_SULFUR] = true,
+    [CollectibleType.COLLECTIBLE_FREE_LEMONADE] = true,
+    [CollectibleType.COLLECTIBLE_WAVY_CAP] = true,
+    [CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true,
+    [CollectibleType.COLLECTIBLE_SCOOPER] = true,
+    [CollectibleType.COLLECTIBLE_LARYNX] = true,
+    [CollectibleType.COLLECTIBLE_SHARP_KEY] = true,
+    [CollectibleType.COLLECTIBLE_MEGA_MUSH] = true,
+    [CollectibleType.COLLECTIBLE_MEAT_CLEAVER] = true,
+    [CollectibleType.COLLECTIBLE_ERASER] = true,
+    [CollectibleType.COLLECTIBLE_URN_OF_SOULS] = true,
+    [CollectibleType.COLLECTIBLE_PLUM_FLUTE] = true,
+    [CollectibleType.COLLECTIBLE_VADE_RETRO] = true,
+    [CollectibleType.COLLECTIBLE_SPIN_TO_WIN] = true,
+    [CollectibleType.COLLECTIBLE_JAR_OF_WISPS] = true,
+    [CollectibleType.COLLECTIBLE_FRIEND_FINDER] = true,
+    [CollectibleType.COLLECTIBLE_BERSERK] = true,
+    [CollectibleType.COLLECTIBLE_DARK_ARTS] = true,
+    [CollectibleType.COLLECTIBLE_SUPLEX] = true,
+    [CollectibleType.COLLECTIBLE_ANIMA_SOLA] = true,
+    [CollectibleType.COLLECTIBLE_GELLO] = true,
+    [CollectibleType.COLLECTIBLE_DECAP_ATTACK] = true,
+}
+for key, id in pairs(ToyboxMod) do
+    if(string.find(key, "COLLECTIBLE_")) then
+        local conf = Isaac.GetItemConfig():GetCollectible(id)
+        if(conf and conf:HasCustomTag("combat")) then
+            ToyboxMod.COMBAT_ACTIVES[id] = true
+        end
+    end
+end
 
 --#endregion
 --#region --!ATLAS_A

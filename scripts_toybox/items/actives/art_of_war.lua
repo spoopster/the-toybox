@@ -34,7 +34,7 @@ local function artOfWarUse(_, _, rng, pl, flags, slot, vdata)
     data.ART_OF_WAR_ITEMS[pickedItem] = (data.ART_OF_WAR_ITEMS[pickedItem] or 0)+1
     --]]
 
-    ToyboxMod:addItemForRoom(pl, pickedItem, 1)
+    ToyboxMod:addInnateCollectible(pl, pickedItem, 1, "ForRoom_ArtOfWar", true)
 
     pl:AnimateCollectible(pickedItem, "UseItem")
     sfx:Play(SoundEffect.SOUND_MONSTER_YELL_A)
@@ -46,22 +46,3 @@ local function artOfWarUse(_, _, rng, pl, flags, slot, vdata)
     }
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, artOfWarUse, ToyboxMod.COLLECTIBLE_ART_OF_WAR)
-
-local function postPlayerNewRoom(_)
-    for i=0, Game():GetNumPlayers()-1 do
-        local pl = Isaac.GetPlayer(i)
-        local data = ToyboxMod:getEntityDataTable(pl)
-
-        if(data.ART_OF_WAR_ITEMS) then
-            for item, num in pairs(data.ART_OF_WAR_ITEMS) do
-                pl:AddInnateCollectible(item, -num)
-                if(not pl:HasCollectible(item)) then
-                    pl:RemoveCostume(Isaac.GetItemConfig():GetCollectible(item))
-                end
-            end
-
-            data.ART_OF_WAR_ITEMS = nil
-        end
-    end
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postPlayerNewRoom)

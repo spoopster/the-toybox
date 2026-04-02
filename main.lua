@@ -261,6 +261,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     --include("scripts_toybox.items.passives.chest_alien")
     include("scripts_toybox.items.passives.bodybag")
     include("scripts_toybox.items.passives.aids")
+    include("scripts_toybox.items.passives.hidden_blade")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

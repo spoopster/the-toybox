@@ -27,7 +27,7 @@ local function addTempTearsUp(_, pl)
             isOk = (itemConf and itemConf:IsAvailable() and itemConf:HasTags(ItemConfig.TAG_SUMMONABLE) and itemConf:HasTags(ItemConfig.TAG_TEARS_UP))
         until(isOk)
 
-        ToyboxMod:addItemForRoom(pl, finalItem, 1)
+        ToyboxMod:addInnateCollectible(pl, finalItem, 1, "ForRoom_OddOnion", true)
 
         --ToyboxMod.HiddenItemManager:AddForRoom(pl, finalItem, nil, 1, "TOYBOX")
         --pl:AnimateCollectible(finalItem, "UseItem")

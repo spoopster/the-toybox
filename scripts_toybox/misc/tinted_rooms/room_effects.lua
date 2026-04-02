@@ -67,11 +67,11 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, playerUpdate)
 
 local function newRoom(_)
     for _, pl in ipairs(PlayerManager.GetPlayers()) do
-        if(ToyboxMod:hasTintedRoomTint("WHITE") and not pl:HasCollectible(CollectibleType.COLLECTIBLE_WAFER)) then
-            ToyboxMod:addItemForRoom(pl, CollectibleType.COLLECTIBLE_WAFER, 1)
+        if(ToyboxMod:hasTintedRoomTint("WHITE")) then
+            ToyboxMod:addInnateCollectible(pl, CollectibleType.COLLECTIBLE_WAFER, 1, "ForRoom_TintedWhite", true)
         end
-        if(ToyboxMod:hasTintedRoomTint("PURPLE") and not pl:HasCollectible(CollectibleType.COLLECTIBLE_SPOON_BENDER)) then
-            ToyboxMod:addItemForRoom(pl, CollectibleType.COLLECTIBLE_SPOON_BENDER, 1)
+        if(ToyboxMod:hasTintedRoomTint("PURPLE")) then
+            ToyboxMod:addInnateCollectible(pl, CollectibleType.COLLECTIBLE_SPOON_BENDER, 1, "ForRoom_TintedPurple", true)
         end
     end
 end

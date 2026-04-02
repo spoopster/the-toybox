@@ -29,6 +29,7 @@ local function addNewBossRoom(_)
     local chance = getGraveyardChance()
     if(rng:RandomFloat()<chance) then
         local newBossRoom = RoomConfigHolder.GetRandomRoom(Random(), true, StbType.SPECIAL_ROOMS, RoomType.ROOM_TELEPORTER, nil, nil, nil, nil, nil, nil, 100)
+        if(not newBossRoom) then return end
         local possibleRooms = level:FindValidRoomPlacementLocations(newBossRoom, level:GetDimension(), false, false)
 
         local finalRoom

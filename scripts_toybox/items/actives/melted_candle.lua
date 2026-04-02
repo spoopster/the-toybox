@@ -22,14 +22,14 @@ ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useMeltedCandle, ToyboxMod.COLLE
 local function tryUseHeldCandle(_, player)
     if(player:GetItemState()~=ToyboxMod.COLLECTIBLE_MELTED_CANDLE) then return end
 
-    if(player:GetAimDirection():Length()>0.1) then
-        local dir = (player:GetAimDirection():Length()<0.1 and player.Velocity or player:GetAimDirection())
+    if(player:GetAimDirection():Length()>0.01) then
+        local dir = (player:GetAimDirection():Length()<0.01 and player.Velocity or player:GetAimDirection())
         local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_FLAME_BREATH_HELPER, 0, player.Position, dir, player):ToEffect()
         helper.CollisionDamage = FIRE_DMG
 
-        player:SetItemState(0)
         player:DischargeActiveItem(ActiveSlot.SLOT_PRIMARY)
         player:AnimateCollectible(ToyboxMod.COLLECTIBLE_MELTED_CANDLE, "HideItem")
+        player:SetItemState(0)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, tryUseHeldCandle)
