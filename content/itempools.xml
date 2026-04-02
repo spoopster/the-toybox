@@ -55,6 +55,7 @@
         <Item Name="Glass Vessel"/>
         <Item Name="Pyramid Scheme"/>
         <Item Name="AIDS"/>
+        <Item Name="Hidden Blade"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -163,6 +164,7 @@
         <Item Name="Trendsetter"/>
         <Item Name="Coloring Book"/>
         <Item Name="Conglomerate"/>
+        <Item Name="Hidden Blade"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>

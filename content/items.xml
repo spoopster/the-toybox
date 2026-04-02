@@ -985,7 +985,7 @@
     description="Tougher shell"
     gfx="conglomerate.png"
     quality="3"
-    tags="offensive"
+    tags="offensive summonable"
     cache=""
 
     achievement="Conglomerate"
@@ -1003,7 +1003,7 @@
     description="Wildfire"
     gfx="ember.png"
     quality="2"
-    tags="offensive"
+    tags="offensive summonable"
     cache=""
 
     speed="0.2"
@@ -1026,7 +1026,7 @@
     description="Induced paranoia"
     gfx="angel_dust.png"
     quality="3"
-    tags="offensive"
+    tags="offensive summonable"
     cache=""
 
     damage="2"
@@ -1054,7 +1054,7 @@
     description="Everything tears"
     gfx="aids.png"
     quality="3"
-    tags="offensive"
+    tags="offensive summonable"
     cache=""
 
     luck="1"
@@ -1063,7 +1063,7 @@
     description="Come prepared"
     gfx="hidden_blade.png"
     quality="3"
-    tags="offensive"
+    tags="offensive nogreed summonable"
     cache=""
 />
 

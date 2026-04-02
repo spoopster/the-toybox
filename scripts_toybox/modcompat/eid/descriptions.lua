@@ -1437,7 +1437,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_HIDDEN_BLADE,
     Name = "Hidden Blade",
     Description = {
-        "When entering an uncleared room, 50% chance to grant a single-use combat active in your extra pocket slot",
+        "When entering an uncleared room, 66% chance to grant a single-use combat active in your extra pocket slot",
     },
 })
 
