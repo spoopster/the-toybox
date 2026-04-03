@@ -1458,6 +1458,14 @@ enums.FUNCTIONS.AddItem({
         "The damage up wears off faster the larger it is",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MP3_PLAYER,
+    Name = "MP3 Player",
+    Description = {
+        enums.CONSTANTS.Icon_StatusEarworm.." ".."Inflicts all enemies with Earworm for 12 seconds",
+        enums.CONSTANTS.Icon_StatusEarworm.." ".."Enemies with Earworm are 50% faster and take 50% more damage",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

@@ -1083,6 +1083,25 @@
     tags="offensive summonable dead"
     cache="damage"
 />
+<active id="117" name="MP3 Player"
+    description="Bump it"
+    gfx="mp3_player.png"
+    quality="3"
+    tags="offensive"
+    customtags="combat"
+    cache=""
+
+    maxcharges="4"
+/>
+<passive id="118" name="Mouthpiece"
+    description="Range + shotspeed up, musical tears"
+    gfx="mouthpiece.png"
+    quality="3"
+    tags="offensive"
+    cache=""
+
+    range="80" shotspeed="0.2"
+/>
 
 <active id="491" name="Cursed D6"
     description="High-quality destiny"
@@ -1357,6 +1376,11 @@
 <trinket id="30" name="Trail Mix"
     description="A healthy snack"
     gfx="trail_mix.png"
+    cache=""
+/>
+<trinket id="31" name="Earworm"
+    description="In my head"
+    gfx="earworm.png"
     cache=""
 />
 

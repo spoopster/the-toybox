@@ -54,6 +54,7 @@ include("scripts_toybox.util.custom_object_spawn")
 include("scripts_toybox.util.custom_tearflags")
 include("scripts_toybox.util.throwables")
 include("scripts_toybox.util.statuseffects")
+include("scripts_toybox.util.overlay_effects")
 -- DATA ( entity / extra / persistent )
 include("scripts_toybox.util.data")
 -- ACHIEVEMENTS
@@ -64,18 +65,7 @@ include("scripts_toybox.misc.transformations.core")
     include("scripts_toybox.misc.transformations.effects.fancy")
     include("scripts_toybox.misc.transformations.effects.hydra")
 
-include("scripts_toybox.statuseffects.electrified")
-include("scripts_toybox.statuseffects.overflowing")
-
--- ENEMIES
-include("scripts_toybox.enemies.stumpy")
-include("scripts_toybox.enemies.tonsil")
-include("scripts_toybox.enemies.eye_spy")
-include("scripts_toybox.enemies.king_host")
-include("scripts_toybox.enemies.tar_baby")
-
--- BOSSES
---include("scripts_toybox.bosses.stageapi")
+include("scripts_toybox.misc.status_effects.earworm")
 
 -- TEMPORARY ITEMS
 include("scripts_toybox.misc.temporary_items")
@@ -102,6 +92,16 @@ include("scripts_toybox.misc.custom_room_icons")
 
 include("scripts_toybox.misc.custom_special_rooms.logic")
 include("scripts_toybox.misc.custom_special_rooms.graveyard_room")
+
+-- ENEMIES
+include("scripts_toybox.enemies.stumpy")
+include("scripts_toybox.enemies.tonsil")
+include("scripts_toybox.enemies.eye_spy")
+include("scripts_toybox.enemies.king_host")
+include("scripts_toybox.enemies.tar_baby")
+
+-- BOSSES
+--include("scripts_toybox.bosses.stageapi")
 
 -- ENTITIES
 include("scripts_toybox.misc.entities.meteor")
@@ -294,6 +294,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.actives.puggys_claw")
     include("scripts_toybox.items.actives.blockchain")
     include("scripts_toybox.items.actives.snake_ring")
+    include("scripts_toybox.items.actives.mp3_player")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

@@ -186,6 +186,8 @@ ToyboxMod.COLLECTIBLE_AIDS = Isaac.GetItemIdByName("AIDS")
 ToyboxMod.COLLECTIBLE_HIDDEN_BLADE = Isaac.GetItemIdByName("Hidden Blade")
 ToyboxMod.COLLECTIBLE_SNAKE_RING = Isaac.GetItemIdByName("Snake Ring")
 ToyboxMod.COLLECTIBLE_CRICKETS_TAIL = Isaac.GetItemIdByName("Cricket's Tail")
+ToyboxMod.COLLECTIBLE_MP3_PLAYER = Isaac.GetItemIdByName("MP3 Player")
+ToyboxMod.COLLECTIBLE_MOUTHPIECE = Isaac.GetItemIdByName("Mouthpiece")
 --ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
@@ -238,6 +240,7 @@ ToyboxMod.TRINKET_CITRUSBERRY = Isaac.GetTrinketIdByName("Citrusberry")
 ToyboxMod.TRINKET_NEVERSTONE = Isaac.GetTrinketIdByName("Neverstone")
 ToyboxMod.TRINKET_CATNIP = Isaac.GetTrinketIdByName("Catnip")
 ToyboxMod.TRINKET_TRAIL_MIX = Isaac.GetTrinketIdByName("Trail Mix")
+ToyboxMod.TRINKET_EARWORM = Isaac.GetTrinketIdByName("Earworm")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED
@@ -407,6 +410,7 @@ ToyboxMod.SFX_ROAR = Isaac.GetSoundIdByName("(TOYBOX) Roar")
 ToyboxMod.SFX_RETRO_COIN = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Coin")
 ToyboxMod.SFX_RETRO_UPGRADE = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Upgrade")
 ToyboxMod.SFX_RETRO_FAIL = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Fail")
+ToyboxMod.SFX_MP3_PLAYER = Isaac.GetSoundIdByName("(TOYBOX) MP3 Player")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then
