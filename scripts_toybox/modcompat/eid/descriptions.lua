@@ -1396,7 +1396,7 @@ enums.FUNCTIONS.AddItem({
     Name = "Puggy's Claw",
     Description = {
         "\1 +0.3 flat Damage for the room",
-        "Damage granted by this is permanently increased by +0.02 for every enemy killed while the effect is active",
+        "{{DamageSmall}} Damage granted by this is permanently increased by +0.02 for every enemy killed while the effect is active",
         "Damage resets at the start of every run",
     },
 })
@@ -1438,6 +1438,24 @@ enums.FUNCTIONS.AddItem({
     Name = "Hidden Blade",
     Description = {
         "When entering an uncleared room, 66% chance to grant a single-use combat active in your extra pocket slot",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_SNAKE_RING,
+    Name = "Snake Ring",
+    Description = {
+        "\1 +0.1 Fire rate for the room",
+        "{{TearsSmall}} Fire rate granted by this is permanently increased by +0.1 every time the item is used",
+        "Fire rate resets at the start of every run",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CRICKETS_TAIL,
+    Name = "Cricket's Tail",
+    Description = {
+        "{{Battery}} Using an active item grants a fading flat damage up",
+        "{{DamageSmall}} The damage up is equal to the number of charges x 0.5 + 0.5",
+        "The damage up wears off faster the larger it is",
     },
 })
 

@@ -17,7 +17,8 @@ local PICKER_WEIGHT_MULTS = {
 
     [ToyboxMod.COLLECTIBLE_WHITE_DAISY] = 0.1,
     [ToyboxMod.COLLECTIBLE_BIG_RED_BUTTON] = 0.5,
-    [ToyboxMod.COLLECTIBLE_PUGGYS_CLAW] = 0,
+    --[ToyboxMod.COLLECTIBLE_PUGGYS_CLAW] = 0, -- removed because it takes a while to startup?
+    --[ToyboxMod.COLLECTIBLE_SNAKE_RING] = 0, -- removed because it takes a while to startup?
 }
 local ZEROCHARGE_WEIGHT = 1/1.5
 

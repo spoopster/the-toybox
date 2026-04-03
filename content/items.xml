@@ -1066,6 +1066,23 @@
     tags="offensive nogreed summonable"
     cache=""
 />
+<active id="115" name="Snake Ring"
+    description="Infinity ouroboros"
+    gfx="snake_ring.png"
+    quality="2"
+    tags="offensive"
+    customtags="combat"
+    cache="firedelay"
+
+    maxcharges="3"
+/>
+<passive id="116" name="Cricket's Tail"
+    description="Active item warcry"
+    gfx="crickets_tail.png"
+    quality="2"
+    tags="offensive summonable dead"
+    cache="damage"
+/>
 
 <active id="491" name="Cursed D6"
     description="High-quality destiny"

@@ -184,6 +184,8 @@ ToyboxMod.COLLECTIBLE_BLOCKCHAIN = Isaac.GetItemIdByName("Blockchain")
 ToyboxMod.COLLECTIBLE_BODYBAG = Isaac.GetItemIdByName("Bodybag")
 ToyboxMod.COLLECTIBLE_AIDS = Isaac.GetItemIdByName("AIDS")
 ToyboxMod.COLLECTIBLE_HIDDEN_BLADE = Isaac.GetItemIdByName("Hidden Blade")
+ToyboxMod.COLLECTIBLE_SNAKE_RING = Isaac.GetItemIdByName("Snake Ring")
+ToyboxMod.COLLECTIBLE_CRICKETS_TAIL = Isaac.GetItemIdByName("Cricket's Tail")
 --ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")

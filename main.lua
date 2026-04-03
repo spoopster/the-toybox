@@ -262,6 +262,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.bodybag")
     include("scripts_toybox.items.passives.aids")
     include("scripts_toybox.items.passives.hidden_blade")
+    include("scripts_toybox.items.passives.crickets_tail")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -292,6 +293,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     --include("scripts_toybox.items.actives.enema")
     include("scripts_toybox.items.actives.puggys_claw")
     include("scripts_toybox.items.actives.blockchain")
+    include("scripts_toybox.items.actives.snake_ring")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

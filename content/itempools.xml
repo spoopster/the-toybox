@@ -56,6 +56,8 @@
         <Item Name="Pyramid Scheme"/>
         <Item Name="AIDS"/>
         <Item Name="Hidden Blade"/>
+        <Item Name="Snake Ring"/>
+        <Item Name="Cricket's Tail"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -110,6 +112,8 @@
         <Item Name="Glass Vessel"/>
         <Item Name="Pyramid Scheme"/>
         <Item Name="AIDS"/>
+        <Item Name="Snake Ring"/>
+        <Item Name="Cricket's Tail"/>
     </Pool>
 
     <Pool Name="boss">
@@ -310,6 +314,7 @@
         <Item Name="Bloody Whistle"/>
         <Item Name="Puggy's Claw"/>
         <Item Name="Haemorrhage"/>
+        <Item Name="Snake Ring"/>
     </Pool>
 
     <Pool Name="goldenChest">
@@ -403,6 +408,7 @@
         <Item Name="Garlic"/>
         <Item Name="Giant Capsule"/>
         <Item Name="Big Red Button"/>
+        <Item Name="Cricket's Tail"/>
     </Pool>
 
     <Pool Name="ultraSecret">
@@ -465,5 +471,6 @@
         <Item Name="Fish" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Tammy's Tail"/>
         <Item Name="Puggy's Claw"/>
+        <Item Name="Cricket's Tail"/>
     </Pool>
 </ItemPools>
