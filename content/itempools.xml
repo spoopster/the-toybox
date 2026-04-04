@@ -58,6 +58,7 @@
         <Item Name="Hidden Blade"/>
         <Item Name="Snake Ring"/>
         <Item Name="Cricket's Tail"/>
+        <Item Name="Mouthpiece"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -114,6 +115,7 @@
         <Item Name="AIDS"/>
         <Item Name="Snake Ring"/>
         <Item Name="Cricket's Tail"/>
+        <Item Name="Mouthpiece"/>
     </Pool>
 
     <Pool Name="boss">
@@ -169,6 +171,7 @@
         <Item Name="Coloring Book"/>
         <Item Name="Conglomerate"/>
         <Item Name="Hidden Blade"/>
+        <Item Name="MP3 Player"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -190,6 +193,7 @@
         <Item Name="Trendsetter"/>
         <Item Name="Coloring Book"/>
         <Item Name="Conglomerate"/>
+        <Item Name="MP3 Player"/>
     </Pool>
 
     <Pool Name="devil">
@@ -225,6 +229,7 @@
         <Item Name="Blessed Bombs"/>
         <Item Name="Pythagoras' Cup"/>
         <Item Name="The Good Juice"/>
+        <Item Name="Reliquary"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
@@ -235,6 +240,7 @@
         <Item Name="Blessed Bombs"/>
         <Item Name="Pythagoras' Cup"/>
         <Item Name="The Good Juice"/>
+        <Item Name="Reliquary"/>
     </Pool>
 
     <Pool Name="curse">
@@ -275,6 +281,7 @@
         <Item Name="Bob's Thesis"/>
         <Item Name="4 4"/>
         <Item Name="Bone Boy"/>
+        <Item Name="Reliquary"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -294,6 +301,7 @@
         <Item Name="Bob's Thesis"/>
         <Item Name="4 4"/>
         <Item Name="Bone Boy"/>
+        <Item Name="Reliquary"/>
     </Pool>
 
     <Pool Name="library">
@@ -409,6 +417,7 @@
         <Item Name="Giant Capsule"/>
         <Item Name="Big Red Button"/>
         <Item Name="Cricket's Tail"/>
+        <Item Name="MP3 Player"/>
     </Pool>
 
     <Pool Name="ultraSecret">

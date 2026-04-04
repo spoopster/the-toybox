@@ -1097,10 +1097,20 @@
     description="Range + shotspeed up, musical tears"
     gfx="mouthpiece.png"
     quality="3"
-    tags="offensive"
-    cache=""
+    tags="offensive summonable"
+    cache="tearflag"
 
     range="80" shotspeed="0.2"
+/>
+<active id="119" name="Reliquary"
+    description="Relic seeker"
+    gfx="reliquary.png"
+    quality="2"
+    tags="offensive"
+    customtags=""
+    cache=""
+
+    maxcharges="5"
 />
 
 <active id="491" name="Cursed D6"
@@ -1363,9 +1373,9 @@
     gfx="citrusberry.png"
     cache=""
 />
-<trinket id="28" name="Neverstone"
-    description="Nothing ever happens"
-    gfx="neverstone.png"
+<trinket id="28" name="Slingshot"
+    description="Defense breaker"
+    gfx="slingshot.png"
     cache=""
 />
 <trinket id="29" name="Catnip"

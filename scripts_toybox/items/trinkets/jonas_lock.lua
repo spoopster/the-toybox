@@ -43,7 +43,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_USE_PILL, usePill)
 local function evalCache(_, player, flag)
     if(not player:HasTrinket(ToyboxMod.TRINKET_JONAS_LOCK)) then return end
 
-    local statTable = ToyboxMod:getEntityData(player, "JONAS_LOCK_STATBONUSES")
+    local statTable = ToyboxMod:getEntityData(player, "JONAS_LOCK_STATBONUSES") or {SPEED=0,FIREDELAY=0,DAMAGE=0,RANGE=0,SHOTSPEED=0,LUCK=0}
 
     if(flag==CacheFlag.CACHE_SPEED) then
         player.MoveSpeed = player.MoveSpeed+(statTable.SPEED or 0)*STAT_MULTS
@@ -63,7 +63,7 @@ local function evalStat(_, pl, stat, val)
     if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
     if(not pl:HasTrinket(ToyboxMod.TRINKET_JONAS_LOCK)) then return end
 
-    local statTable = ToyboxMod:getEntityData(pl, "JONAS_LOCK_STATBONUSES")
+    local statTable = ToyboxMod:getEntityData(pl, "JONAS_LOCK_STATBONUSES") or {SPEED=0,FIREDELAY=0,DAMAGE=0,RANGE=0,SHOTSPEED=0,LUCK=0}
 
     if(stat==EvaluateStatStage.TEARS_UP) then
         return val+(statTable.FIREDELAY or 0)*STAT_MULTS

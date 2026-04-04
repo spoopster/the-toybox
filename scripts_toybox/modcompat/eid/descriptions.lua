@@ -1466,6 +1466,25 @@ enums.FUNCTIONS.AddItem({
         enums.CONSTANTS.Icon_StatusEarworm.." ".."Enemies with Earworm are 50% faster and take 50% more damage",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_RELIQUARY,
+    Name = "Reliquary",
+    Description = {
+        "Spawns an orbital wisp that grants a random trinket's effect",
+        "The wisp can take damage and is destroyed after taking damage 6 times",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MOUTHPIECE,
+    Name = "Mouthpiece",
+    Description = {
+        "\1 +2 Range",
+        "\1 +0.2 Shotspeed",
+        enums.CONSTANTS.Icon_StatusEarworm.." ".."5% chance to shoot out a tear that inflicts Earworm for 7 seconds (30% at 10 Luck)",
+        enums.CONSTANTS.Icon_StatusEarworm.." ".."Enemies with Earworm are 50% faster and take 50% more damage",
+    },
+})
+
 
 --- OTHER ITEM MODIFIERS ---
 
@@ -2173,8 +2192,8 @@ enums.FUNCTIONS.AddTrinket({
     },
 })
 enums.FUNCTIONS.AddTrinket({
-    ID = ToyboxMod.TRINKET_NEVERSTONE,
-    Name = "Neverstone",
+    ID = ToyboxMod.TRINKET_SLINGSHOT,
+    Name = "Slingshot",
     Description = {
         "Enemy HP no longer scales based on the current stage",
         "Enemies no longer have boss armor",
@@ -2242,6 +2261,30 @@ enums.FUNCTIONS.AddTrinket({
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
                 {"spawns 1 random heart", "{{ColorWhite}}spawns{{CR}} 3 random hearts"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_EARWORM,
+    Name = "Earworm",
+    Description = {
+        enums.CONSTANTS.Icon_StatusEarworm.." ".."Entering a room has a 15% chance to inflict Earworm on random enemies",
+        enums.CONSTANTS.Icon_StatusEarworm.." ".."Enemies with Earworm are 50% faster and take 50% more damage",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"15%%", "25%%"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"15%%", "35%%"},
             }
         },
     },

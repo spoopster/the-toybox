@@ -3,11 +3,11 @@ local BOSSARMOR_DMG_MULT = 0.25
 
 ---@param npc EntityNPC
 local function removeStageHP(_, npc)
-    if(not PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_NEVERSTONE)) then return end
+    if(not PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_SLINGSHOT)) then return end
 
     local conf = EntityConfig.GetEntity(npc.Type, npc.Variant, npc.SubType)
     if(conf and conf:GetStageHP()~=0) then
-        local mult = PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_NEVERSTONE)
+        local mult = PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_SLINGSHOT)
 
         local stageHp = conf:GetStageHP()
         local stage = Game():GetLevel():GetAbsoluteStage()
@@ -28,11 +28,11 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, removeStageHP)
 ---@params source EntityRef
 ---@params frames integer
 local function removeBossArmor(_, ent, amount, flags, source, frames)
-    if(not PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_NEVERSTONE)) then return end
+    if(not PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_SLINGSHOT)) then return end
 
     local conf = EntityConfig.GetEntity(ent.Type, ent.Variant, ent.SubType)
     if(conf and conf:GetShieldStrength()~=0) then
-        local mult = PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_NEVERSTONE)
+        local mult = PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_SLINGSHOT)
         return {
             Damage = amount*(1+(mult-1)*BOSSARMOR_DMG_MULT),
             DamageFlags = flags | DamageFlag.DAMAGE_IGNORE_ARMOR,

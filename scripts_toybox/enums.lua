@@ -188,6 +188,7 @@ ToyboxMod.COLLECTIBLE_SNAKE_RING = Isaac.GetItemIdByName("Snake Ring")
 ToyboxMod.COLLECTIBLE_CRICKETS_TAIL = Isaac.GetItemIdByName("Cricket's Tail")
 ToyboxMod.COLLECTIBLE_MP3_PLAYER = Isaac.GetItemIdByName("MP3 Player")
 ToyboxMod.COLLECTIBLE_MOUTHPIECE = Isaac.GetItemIdByName("Mouthpiece")
+ToyboxMod.COLLECTIBLE_RELIQUARY = Isaac.GetItemIdByName("Reliquary")
 --ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
@@ -237,7 +238,7 @@ ToyboxMod.TRINKET_RUBBING_ALCOHOL = Isaac.GetTrinketIdByName("Rubbing Alcohol")
 ToyboxMod.TRINKET_INSIDE_JOKE = Isaac.GetTrinketIdByName("Inside Joke")
 ToyboxMod.TRINKET_CITRUSBERRY = Isaac.GetTrinketIdByName("Citrusberry")
     ToyboxMod.TRINKET_CITRUSBERRY_CONSUMED = Isaac.GetTrinketIdByName("Citrusberry ")
-ToyboxMod.TRINKET_NEVERSTONE = Isaac.GetTrinketIdByName("Neverstone")
+ToyboxMod.TRINKET_SLINGSHOT = Isaac.GetTrinketIdByName("Slingshot")
 ToyboxMod.TRINKET_CATNIP = Isaac.GetTrinketIdByName("Catnip")
 ToyboxMod.TRINKET_TRAIL_MIX = Isaac.GetTrinketIdByName("Trail Mix")
 ToyboxMod.TRINKET_EARWORM = Isaac.GetTrinketIdByName("Earworm")
@@ -316,6 +317,7 @@ ToyboxMod.FAMILIAR_GOOD_JOB_STAR = Isaac.GetEntityVariantByName("Good Job Star")
 ToyboxMod.FAMILIAR_DECOY = Isaac.GetEntityVariantByName("Cardboard Decoy") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_PAPER_PLATE = Isaac.GetEntityVariantByName("Paper Plate") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_WISE_MEN_STAR = Isaac.GetEntityVariantByName("Wise Men Star") ---@type FamiliarVariant
+ToyboxMod.FAMILIAR_TRINKET_WISP = Isaac.GetEntityVariantByName("Trinket Wisp Familiar") ---@type FamiliarVariant
 
 ToyboxMod.BOMB_SLEEPY_TROLL_BOMB = Isaac.GetEntityVariantByName("Sleepy Troll Bomb") ---@type BombVariant
 

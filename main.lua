@@ -263,6 +263,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.aids")
     include("scripts_toybox.items.passives.hidden_blade")
     include("scripts_toybox.items.passives.crickets_tail")
+    include("scripts_toybox.items.passives.mouthpiece")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -295,6 +296,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.actives.blockchain")
     include("scripts_toybox.items.actives.snake_ring")
     include("scripts_toybox.items.actives.mp3_player")
+    include("scripts_toybox.items.actives.reliquary")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")
@@ -324,9 +326,10 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.trinkets.rubbing_alcohol")
     include("scripts_toybox.items.trinkets.inside_joke")
     include("scripts_toybox.items.trinkets.citrusberry")
-    include("scripts_toybox.items.trinkets.neverstone")
+    include("scripts_toybox.items.trinkets.slingshot")
     include("scripts_toybox.items.trinkets.catnip")
     include("scripts_toybox.items.trinkets.trail_mix")
+    include("scripts_toybox.items.trinkets.earworm")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")

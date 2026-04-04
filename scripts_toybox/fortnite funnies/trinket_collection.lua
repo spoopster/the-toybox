@@ -87,6 +87,18 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_MODS_LOADED, CallbackPriority
 
 getTrinkets()
 
+function ToyboxMod:getTrinketCollectionSprite(id)
+    local node = XMLData.GetEntryById(XMLNode.TRINKET, id)
+    local cachedSprite = MOD_ANM_TABLE[node.sourceid] ---@type Sprite
+    local frame = id-(FIRST_TRINKET_ID[node.sourceid] or 0)
+
+    if(not (cachedSprite and cachedSprite:GetCurrentAnimationData():GetLength()>frame)) then
+        return nil
+    end
+    cachedSprite:SetFrame(frame)
+    return cachedSprite
+end
+
 if(EID) then
     local ogFunc = EID.OnMenuRender
     EID:RemoveCallback(ModCallbacks.MC_MAIN_MENU_RENDER, ogFunc)
