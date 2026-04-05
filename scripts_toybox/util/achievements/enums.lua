@@ -45,7 +45,7 @@ ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_FOIL_CARD, ToyboxMod:completionMa
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CANDY_DISPENSER, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_JONAS_A, CompletionType.MOTHER))
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_JONAS_MASK, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_JONAS_A, CompletionType.BEAST))
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_GIANT_CAPSULE, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_JONAS_A, CompletionType.DELIRIUM))
-ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_PILLS, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_JONAS_A, CompletionType.MEGA_SATAN))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_DADS_PIPE, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_JONAS_A, CompletionType.MEGA_SATAN))
 --ToyboxMod:addAchievement(???, ToyboxMod:allMarkCondition(ToyboxMod.PLAYER_JONAS_A, Difficulty.DIFFICULTY_HARD))
 
 -- milcom

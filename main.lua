@@ -297,6 +297,8 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.actives.snake_ring")
     include("scripts_toybox.items.actives.mp3_player")
     include("scripts_toybox.items.actives.reliquary")
+    include("scripts_toybox.items.actives.dads_pipe")
+    include("scripts_toybox.items.actives.not_a_pipe")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

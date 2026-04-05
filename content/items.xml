@@ -1114,6 +1114,32 @@
 
     maxcharges="5"
 />
+<active id="120" name="Dad's Pipe"
+    description="This is not a pipe"
+    gfx="dads_pipe.png"
+    quality="2"
+    tags="offensive"
+    customtags="combat"
+    cache=""
+
+    chargetype="timed"
+    maxcharges="120"
+
+    achievement="Dad's Pipe"
+/>
+<active id="121" name="Not a Pipe"
+    description="This is not a... huh?"
+    gfx="not_a_pipe.png"
+    quality="2"
+    tags="offensive"
+    customtags="combat"
+    cache=""
+
+    chargetype="timed"
+    maxcharges="150"
+
+    achievement="Not a Pipe"
+/>
 
 <active id="491" name="Cursed D6"
     description="High-quality destiny"

@@ -172,6 +172,7 @@
         <Item Name="Conglomerate"/>
         <Item Name="Hidden Blade"/>
         <Item Name="MP3 Player"/>
+        <Item Name="Dad's Pipe"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -194,6 +195,7 @@
         <Item Name="Coloring Book"/>
         <Item Name="Conglomerate"/>
         <Item Name="MP3 Player"/>
+        <Item Name="Dad's Pipe"/>
     </Pool>
 
     <Pool Name="devil">
@@ -346,6 +348,7 @@
         <Item Name="Dad's Slipper"/>
         <Item Name="Mom's Photobook"/>
         <Item Name="Dad's Prescription"/>
+        <Item Name="Dad's Pipe"/>
     </Pool>
 
     <Pool Name="momsChest">

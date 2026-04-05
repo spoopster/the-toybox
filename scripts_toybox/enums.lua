@@ -50,7 +50,8 @@ ToyboxMod.ACHIEVEMENT_ANTIBIOTICS = Isaac.GetAchievementIdByName("Antibiotics")
 ToyboxMod.ACHIEVEMENT_FOIL_CARD = Isaac.GetAchievementIdByName("Foil Card")
 ToyboxMod.ACHIEVEMENT_CLOWN_PHD = Isaac.GetAchievementIdByName("Clown PHD")
 ToyboxMod.ACHIEVEMENT_JONAS_LOCK = Isaac.GetAchievementIdByName("Jonas' Lock")
-ToyboxMod.ACHIEVEMENT_PILLS = Isaac.GetAchievementIdByName("Pill Diversity!")
+--ToyboxMod.ACHIEVEMENT_PILLS = Isaac.GetAchievementIdByName("Pill Diversity!")
+ToyboxMod.ACHIEVEMENT_DADS_PIPE = Isaac.GetAchievementIdByName("Dad's Pipe")
 ToyboxMod.ACHIEVEMENT_DRILL = Isaac.GetAchievementIdByName("Drill")
 --- ACHIEVEMENTS - Milcom
 ToyboxMod.ACHIEVEMENT_DELIVERY_BOX = Isaac.GetAchievementIdByName("Delivery Box")
@@ -189,6 +190,8 @@ ToyboxMod.COLLECTIBLE_CRICKETS_TAIL = Isaac.GetItemIdByName("Cricket's Tail")
 ToyboxMod.COLLECTIBLE_MP3_PLAYER = Isaac.GetItemIdByName("MP3 Player")
 ToyboxMod.COLLECTIBLE_MOUTHPIECE = Isaac.GetItemIdByName("Mouthpiece")
 ToyboxMod.COLLECTIBLE_RELIQUARY = Isaac.GetItemIdByName("Reliquary")
+ToyboxMod.COLLECTIBLE_DADS_PIPE = Isaac.GetItemIdByName("Dad's Pipe")
+ToyboxMod.COLLECTIBLE_NOT_A_PIPE = Isaac.GetItemIdByName("Not a Pipe")
 --ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
@@ -341,6 +344,8 @@ ToyboxMod.EFFECT_SMOKE_TRAIL = Isaac.GetEntityVariantByName("Smoke Trail") ---@t
 ToyboxMod.EFFECT_FLAME_BREATH_HELPER = Isaac.GetEntityVariantByName("Flame Breath Helper") ---@type EffectVariant
 ToyboxMod.EFFECT_FEAR_LIGHT = Isaac.GetEntityVariantByName("Enemy Fear Light") ---@type EffectVariant
 ToyboxMod.EFFECT_APOCALYPSE_HELPER = Isaac.GetEntityVariantByName("Apocalypse Helper") ---@type EffectVariant
+ToyboxMod.EFFECT_PIPE_SMOKE = Isaac.GetEntityVariantByName("Pipe Smoke") ---@type EffectVariant
+ToyboxMod.EFFECT_PIPE_BOOMERANG = Isaac.GetEntityVariantByName("Pipe Boomerang") ---@type EffectVariant
 
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant

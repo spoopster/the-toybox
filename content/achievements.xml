@@ -3,7 +3,7 @@
 	<achievement name="Wonder Drug" text="" gfx="ach_wonder_drug.png" />
 	<achievement name="Horse Tranquilizer" text="" gfx="ach_horse_tranquilizer.png" />
 	<achievement name="Gasoline" text="" gfx="ach_gasoline.png" />
-	<achievement name="Inside Joke" text="" gfx="ach_inside_joke.png" />
+	<achievement name="Inside Joke" text="" gfx="ach_inside_joke_alt.png" />
 
 	<!-- characters -->
 	<achievement name="Tainted Atlas" text="" gfx="ach_blank.png" />
@@ -26,7 +26,7 @@
 	<achievement name="Bone Boy!" text="" gfx="ach_bone_boy.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Ascension" text="" gfx="ach_ascension.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Miracle Mantle" text="" gfx="ach_miracle_mantle.png" gfxback="achpaper_atlas.png" />
-	<achievement name="Conglomerate" text="" gfx="ach_mantles.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Conglomerate" text="" gfx="ach_conglomerate.png" gfxback="achpaper_atlas.png" />
 
 	<!-- Jonas unlocks -->
 	<achievement name="Giant Capsule" text="" gfx="ach_giant_capsule.png" gfxback="achpaper_jonas.png" />
@@ -40,6 +40,7 @@
 	<achievement name="Clown PHD" text="" gfx="ach_clown_phd.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Jonas' Lock" text="" gfx="ach_jonas_lock.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Drill" text="" gfx="ach_drill.png" gfxback="achpaper_jonas.png" />
+	<achievement name="Dad's Pipe" text="" gfx="ach_dads_pipe.png" gfxback="achpaper_jonas.png" />
 
 	<!-- Milcom unlocks -->
 	<achievement name="Delivery Box" text="" gfx="ach_delivery_box.png" gfxback="achpaper_milcom.png" />

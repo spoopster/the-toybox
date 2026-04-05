@@ -1484,6 +1484,24 @@ enums.FUNCTIONS.AddItem({
         enums.CONSTANTS.Icon_StatusEarworm.." ".."Enemies with Earworm are 50% faster and take 50% more damage",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_DADS_PIPE,
+    Name = "Dad's Pipe",
+    Description = {
+        "Throw a smoke cloud",
+        "The cloud deals contact damage, slows enemies and grows in size over the course of 4 seconds",
+        "The damage dealt decreases as the cloud grows in size"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_NOT_A_PIPE,
+    Name = "Not a Pipe",
+    Description = {
+        "Throw out the pipe as a boomerang",
+        "The pipe deals low contact damage, and spawns damaging smoke clouds each time it hits an enemy",
+        "The smoke clouds slow enemies and grow in size"
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---
