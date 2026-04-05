@@ -35,10 +35,29 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, playerHurtAddBlueFam
 
 ---@param pl EntityPlayer
 local function checkTrinketCombo(_, pl, trAdded, firstTime)
-    while(pl:HasTrinket(TrinketType.TRINKET_FISH_HEAD) and pl:HasTrinket(TrinketType.TRINKET_FISH_TAIL)) do
+    local fishHeadNum = 0
+    local fishTailNum = 0
+
+    for i=0,1 do
+        local tr = (pl:GetTrinket(i) & ~TrinketType.TRINKET_GOLDEN_FLAG)
+        if(tr==TrinketType.TRINKET_FISH_HEAD) then
+            fishHeadNum = fishHeadNum+1
+        elseif(tr==TrinketType.TRINKET_FISH_TAIL) then
+            fishTailNum = fishTailNum+1
+        end
+    end
+
+    local smelted = pl:GetSmeltedTrinkets()
+    fishHeadNum = fishHeadNum+smelted[TrinketType.TRINKET_FISH_HEAD].trinketAmount+smelted[TrinketType.TRINKET_FISH_HEAD].goldenTrinketAmount
+    fishTailNum = fishTailNum+smelted[TrinketType.TRINKET_FISH_TAIL].trinketAmount+smelted[TrinketType.TRINKET_FISH_TAIL].goldenTrinketAmount
+
+    while(fishHeadNum>0 and fishTailNum>0) do
         pl:TryRemoveTrinket(TrinketType.TRINKET_FISH_HEAD)
         pl:TryRemoveTrinket(TrinketType.TRINKET_FISH_TAIL)
         pl:AddCollectible(ToyboxMod.COLLECTIBLE_FISH)
+
+        fishHeadNum = fishHeadNum-1
+        fishTailNum = fishTailNum-1
 
         pl:AnimateCollectible(ToyboxMod.COLLECTIBLE_FISH)
         sfx:Play(SoundEffect.SOUND_POWERUP1)

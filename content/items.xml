@@ -1110,6 +1110,8 @@
     customtags=""
     cache=""
 
+    activegfx="activegfx/reliquary.png"
+
     maxcharges="5"
 />
 

@@ -37,6 +37,15 @@ local function useReliquary(_, _, rng, player, flags)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useReliquary, ToyboxMod.COLLECTIBLE_RELIQUARY)
 
+---@param pl EntityPlayer
+---@param slot EntitySlot
+local function renderReliquary(_, pl, slot)
+    return {
+        CropOffset = Vector(32*(pl:GetActiveCharge(slot)>=pl:GetActiveMaxCharge(slot) and 1 or 0),0),
+    }
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_ACTIVE_ITEM, renderReliquary, ToyboxMod.COLLECTIBLE_RELIQUARY)
+
 ---@param player EntityPlayer
 ---@param id TrinketType
 ---@param position? Vector Default: player.Position

@@ -20,6 +20,9 @@ local PICKER_WEIGHT_MULTS = {
     [ToyboxMod.COLLECTIBLE_BIG_RED_BUTTON] = 0.5,
     [ToyboxMod.COLLECTIBLE_PUGGYS_CLAW] = 0, -- removed because it takes a while to startup?
     [ToyboxMod.COLLECTIBLE_SNAKE_RING] = 0, -- removed because it takes a while to startup?
+
+    --[ToyboxMod.COLLECTIBLE_MELTED_CANDLE] = 10000,
+    --[CollectibleType.COLLECTIBLE_CANDLE] = 10000,
 }
 local ZEROCHARGE_WEIGHT = 1/1.5
 
@@ -163,4 +166,4 @@ local function asdasdasd(_, player)
 
     ToyboxMod:setEntityData(player, "ORIGINAL_SLOT1", nil)
 end
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, CallbackPriority.IMPORTANT-10, asdasdasd)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, CallbackPriority.LATE, asdasdasd)
