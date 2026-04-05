@@ -89,7 +89,7 @@
         <Item Name="Golden Calf"/>
         <Item Name="Beer Can"/>
         <Item Name="The Good Juice" Weight="0.5" DecreaseBy="0.5"/>
-        <Item Name="Butterfly Effect" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Butterfly Effect" Weight="0.2" DecreaseBy="0.2"/>
         <Item Name="Bloodflower"/>
         <Item Name="Drill"/>
         <Item Name="Reading Glasses"/>
@@ -113,6 +113,7 @@
         <Item Name="Glass Vessel"/>
         <Item Name="Pyramid Scheme"/>
         <Item Name="AIDS"/>
+        <Item Name="Hidden Blade"/>
         <Item Name="Snake Ring"/>
         <Item Name="Cricket's Tail"/>
         <Item Name="Mouthpiece"/>
@@ -194,6 +195,7 @@
         <Item Name="Trendsetter"/>
         <Item Name="Coloring Book"/>
         <Item Name="Conglomerate"/>
+        <Item Name="Hidden Blade"/>
         <Item Name="MP3 Player"/>
         <Item Name="Dad's Pipe"/>
     </Pool>
