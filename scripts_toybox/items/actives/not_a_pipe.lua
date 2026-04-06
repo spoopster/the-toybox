@@ -16,7 +16,7 @@ local function replacePipe(_, isContinued)
     if(isContinued) then return end
 
     local rng = ToyboxMod:generateRng(Game():GetSeeds():GetStartSeed())
-    if(rng:RandomFloat()<REPLACE_CHANCE) then
+    if(rng:RandomFloat()<REPLACE_CHANCE and Isaac.GetPersistentGameData():Unlocked(ToyboxMod.ACHIEVEMENT_DADS_PIPE)) then
         local pools = {
             {ItemPoolType.POOL_SHOP, 1},
             {ItemPoolType.POOL_OLD_CHEST, 1},
