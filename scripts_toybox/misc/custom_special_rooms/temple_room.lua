@@ -1,7 +1,7 @@
 local sfx = SFXManager()
 
 local TEMPLE_ROOM_COUNT = 3
-local TEMPLE_CHANCE = 0.05
+local TEMPLE_CHANCE = 10.05
 
 ---@param rng RNG
 local function shouldMakeTemple(rng)
@@ -531,7 +531,6 @@ local function enterTrialRoom(_)
         end
 
         local slab = Isaac.Spawn(1000, ToyboxMod.EFFECT_TEMPLE_SLAB, templeMainData[tostring(room.SafeGridIndex)], pos, Vector.Zero, nil):ToEffect()
-        slab.DepthOffset = -500
 
         return
     end
@@ -618,6 +617,9 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalTrialStats)
 ---@param effect EntityEffect
 local function initSlab(_, effect)
     local sp = effect:GetSprite()
+
+    effect.DepthOffset = -500
+    effect.SortingLayer = SortingLayer.SORTING_BACKGROUND
 
     if(effect.SubType==0) then
         sp:Play("Idle", true)
