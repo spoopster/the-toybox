@@ -78,6 +78,8 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addRandomStatUps, To
 local function addRandomStatDowns(_, player)
     if(player.FrameCount==0) then return end
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_DISSOCIATION)) then return end
+    
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE)) then return end
 
     local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_DISSOCIATION)
     local statTable = ToyboxMod:getEntityDataTable(player).DISSOCIATION_STATS or {}

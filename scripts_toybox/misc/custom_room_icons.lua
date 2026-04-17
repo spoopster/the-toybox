@@ -6,7 +6,7 @@ end
 
 if(MinimapAPI) then
     local function replaceIcon(_)
-        for _,v in ipairs(MinimapAPI:GetLevel()) do
+        for _, v in ipairs(MinimapAPI:GetLevel()) do
             if(not v.ToyboxCustomIconsDone) then
                 v.ToyboxCustomIconsDone = true
 
@@ -20,11 +20,11 @@ if(MinimapAPI) then
                         end
                     end
                 end
+            end
 
-                for _, data in ipairs(ToyboxMod.CUSTOM_ICONS) do
-                    if(data.Condition(v)) then
-                        v.PermanentIcons = { data.Icon }
-                    end
+            for _, data in ipairs(ToyboxMod.CUSTOM_ICONS) do
+                if(data.Condition(v)) then
+                    v.PermanentIcons = { data.Icon }
                 end
             end
         end

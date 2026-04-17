@@ -34,6 +34,8 @@ MinimapAPI:AddIcon("ToyboxFountainSlot", ICONS_SPRITE, "IconSlots", 1)
 MinimapAPI:AddIcon("ToyboxGraveyardRoom", ICONS_SPRITE, "IconRooms", 0)
 MinimapAPI:AddIcon("ToyboxTempleRoom", ICONS_SPRITE, "IconRooms", 1)
 MinimapAPI:AddIcon("ToyboxTreasureRoomLibrary", ICONS_SPRITE, "IconRooms", 2)
+MinimapAPI:AddIcon("ToyboxTempleTrialRoom", ICONS_SPRITE, "IconRooms", 3)
+MinimapAPI:AddIcon("ToyboxTempleTrialRoomInactive", ICONS_SPRITE, "IconRooms", 4)
 
 --- PICKUPS!
 MinimapAPI:AddPickup("ToyboxPokemonCard","ToyboxPokemonCard",5,300,-1,MinimapAPI.PickupNotCollected,"cards",10001,function(p) return not isCanTripped() and iconf:GetCard(p.SubType).PickupSubtype == 2801 end)

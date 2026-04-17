@@ -60,7 +60,7 @@ local function trinketWispInit(_, familiar)
         familiar.Parent = familiar.Player
     end
 
-    familiar.CollisionDamage = 7
+    familiar.CollisionDamage = familiar.Player.Damage*2
 
     local playerHash = GetPtrHash(familiar.Player)
     local layers = {}

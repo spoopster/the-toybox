@@ -346,6 +346,7 @@ ToyboxMod.EFFECT_FEAR_LIGHT = Isaac.GetEntityVariantByName("Enemy Fear Light") -
 ToyboxMod.EFFECT_APOCALYPSE_HELPER = Isaac.GetEntityVariantByName("Apocalypse Helper") ---@type EffectVariant
 ToyboxMod.EFFECT_PIPE_SMOKE = Isaac.GetEntityVariantByName("Pipe Smoke") ---@type EffectVariant
 ToyboxMod.EFFECT_PIPE_BOOMERANG = Isaac.GetEntityVariantByName("Pipe Boomerang") ---@type EffectVariant
+ToyboxMod.EFFECT_TEMPLE_SLAB = Isaac.GetEntityVariantByName("Temple Slab") ---@type EffectVariant
 
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant
@@ -426,6 +427,7 @@ for name, soundEffect in pairs(ToyboxMod) do
 end
 
 ToyboxMod.BACKDROOP_GRAVEYARD = Isaac.GetBackdropIdByName("Graveyard")
+ToyboxMod.BACKDROOP_TEMPLE = Isaac.GetBackdropIdByName("Temple")
 
 ToyboxMod.GIANTBOOK_BIG_BANG = Isaac.GetGiantBookIdByName("Big Bang (TOYBOX)")
 ToyboxMod.GIANTBOOK_MOMS_PHOTOBOOK = Isaac.GetGiantBookIdByName("Mom's Photobook")

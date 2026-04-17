@@ -16,7 +16,7 @@ local function initOnNewRoom(_)
     for i=0, room:GetGridSize()-1 do
         local ent = room:GetGridEntity(i)
         if(ent) then
-            Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, ent:GetType(), ent, ent:GetType(), ToyboxMod:getGridEntityData(ent, "GRID_INIT"))
+            Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, ent:GetType(), ent, ent:GetType(), not ToyboxMod:getGridEntityData(ent, "GRID_INIT"))
             ToyboxMod:setGridEntityData(ent, "GRID_INIT", true)
         end
     end

@@ -9,4 +9,14 @@
         door        = "graveyard_door.png"
         holeinwall  = "graveyard_doorhole.png"
     />
+    <backdrop name="Temple" reftype="1" gfx="temple.png" walls="1" wallvariants="3" floors="1" floorvariants="6"
+        lfloorgfx   = "temple_lfloor.png"
+        nfloorgfx   = "temple_nfloor.png"
+        props       = "temple_props.anm2"
+        rocks       = "temple_rocks.png"
+        pit         = "temple_pit.png"
+        bridge      = "temple_bridge.png"
+        door        = "temple_door.png"
+        holeinwall  = "temple_doorhole.png"
+    />
 </backdrops>

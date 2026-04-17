@@ -8,7 +8,17 @@ local COMMANDS = {
                 pl:EvaluateItems()
             end
         end
-    }
+    },
+    {
+        Name = "fullmap",
+        Description = "Macro for granting the map-revealing items",
+        Function = function()
+            for _, pl in ipairs(PlayerManager.GetPlayers()) do
+                pl:AddCollectible(CollectibleType.COLLECTIBLE_MIND)
+                pl:AddCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE)
+            end
+        end
+    },
 }
 
 for _, data in ipairs(COMMANDS) do

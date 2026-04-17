@@ -1363,6 +1363,17 @@ enums.FUNCTIONS.AddItem({
         "\1 Grants 7 random stat increases on pick-up",
         "\2 At the start of every floor, decreases a random stat"
     },
+    Modifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            Condition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE)
+            end,
+            ToModify = {
+                "{{Collectible260}} No longer decreases stats",
+            }
+        }
+    },
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_ANGEL_DUST,

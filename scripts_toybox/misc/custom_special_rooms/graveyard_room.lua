@@ -23,7 +23,7 @@ end
 
 local function addNewBossRoom(_)
     local level = Game():GetLevel()
-    local stage = level:GetAbsoluteStage()+(level:GetStageType()>=StageType.STAGETYPE_REPENTANCE and 1 or 0)
+    local stage = level:GetAbsoluteStage()--+(level:GetStageType()>=StageType.STAGETYPE_REPENTANCE and 1 or 0)
     if(stage%2==0) then return end -- only odd stages
     local rng = level:GetGenerationRNG()
     local chance = getGraveyardChance()

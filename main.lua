@@ -92,6 +92,7 @@ include("scripts_toybox.misc.custom_room_icons")
 
 include("scripts_toybox.misc.custom_special_rooms.logic")
 include("scripts_toybox.misc.custom_special_rooms.graveyard_room")
+include("scripts_toybox.misc.custom_special_rooms.temple_room")
 
 -- ENEMIES
 include("scripts_toybox.enemies.stumpy")
@@ -1003,7 +1004,7 @@ function ToyboxMod:getBits(t,v,s)
 end
 --]]
 
---[[
+--[[] ]
 local function dkjdjs(_, sss)
     local enum = nil
     for key, val in pairs(SoundEffect) do
@@ -1016,4 +1017,36 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_SFX_PLAY, dkjdjs)
 
 --[ [
 
+--]]
+
+--[[
+---@param pl EntityPlayer
+local function postRenderHead(_, pl, renderpos)
+    local time = pl.FrameCount/30
+    local stime = math.sin(math.rad(pl.FrameCount))
+    --pl:GetSprite().Offset = Vector.Zero
+    pl:GetSprite().Scale = Vector(1,1)
+    return renderpos+Vector(3.5,1.5)+Vector.FromAngle(1.5*time*360)*3
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_RENDER_PLAYER_HEAD, postRenderHead)
+
+---@param pl EntityPlayer
+local function postRenderHead(_, pl, renderpos)
+    local time = math.sin(math.rad(pl.FrameCount*18))
+    --pl:GetSprite().Offset = Vector.Zero
+    pl:GetSprite().Scale = Vector(1+(time-1)/2*0.15,1+(-time)*0.1)
+    return renderpos
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_RENDER_PLAYER_BODY, postRenderHead)
+
+---@param pl EntityPlayer
+local function prePlayerRender(_, pl, offset)
+    local cLayers = pl:GetCostumeLayerMap()
+    local cost = pl:GetCostumeSpriteDescs()
+
+    pl:GetSprite().Rotation = 0
+    pl:GetSprite().Offset = Vector.Zero
+    pl:GetSprite().Scale = Vector(1,1)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_RENDER, prePlayerRender)
 --]]
