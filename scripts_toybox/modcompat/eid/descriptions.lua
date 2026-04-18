@@ -1513,6 +1513,18 @@ enums.FUNCTIONS.AddItem({
         "The smoke clouds slow enemies and grow in size"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT,
+    Name = "Chicchan",
+    Description = {
+        "{{BossRoom}} Entering a boss room or taking damage in a boss room grants for the room:",
+        "\1 +1 Damage",
+        "\1 +0.7 Tears",
+        "\1 +1.5 Range",
+        "\1 +2 Luck",
+        "This effect also works in miniboss rooms or Boss Rush"
+    },
+})
 
 
 --- OTHER ITEM MODIFIERS ---

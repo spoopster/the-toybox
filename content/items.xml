@@ -1140,6 +1140,15 @@
 
     achievement="Dad's Pipe"
 />
+<passive id="122" name="Chicchan"
+    description="Survival instinct"
+    gfx="chicchan_serpent.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+
+    effectdamage="1" effecttears="0.7" effectrange="60" effectluck="2"
+/>
 
 <active id="491" name="Cursed D6"
     description="High-quality destiny"

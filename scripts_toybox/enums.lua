@@ -192,6 +192,7 @@ ToyboxMod.COLLECTIBLE_MOUTHPIECE = Isaac.GetItemIdByName("Mouthpiece")
 ToyboxMod.COLLECTIBLE_RELIQUARY = Isaac.GetItemIdByName("Reliquary")
 ToyboxMod.COLLECTIBLE_DADS_PIPE = Isaac.GetItemIdByName("Dad's Pipe")
 ToyboxMod.COLLECTIBLE_NOT_A_PIPE = Isaac.GetItemIdByName("Not a Pipe")
+ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT = Isaac.GetItemIdByName("Chicchan")
 --ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
