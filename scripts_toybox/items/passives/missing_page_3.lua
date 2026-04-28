@@ -1,7 +1,7 @@
 
 
 --local DEATH_CHAMP_CHANCE = 0.1
-local HARD_BLACK_CHANCE = 0.5
+local HARD_BLACK_CHANCE = 0.1667
 
 ---@param npc EntityNPC
 local function npcInit(_, npc)
@@ -75,10 +75,7 @@ local function npcDeath(_, npc)
     if(not (npc:IsChampion() and npc:GetChampionColorIdx()==ChampionColor.DEATH)) then return end
 
     if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_MISSING_PAGE_3)) then
-        local chance = 1
-        if(Game():IsHardMode()) then chance = HARD_BLACK_CHANCE end
-
-        if(npc:GetDropRNG():RandomFloat()<chance) then
+        if(npc:GetDropRNG():RandomFloat()<HARD_BLACK_CHANCE) then
             local heart = Isaac.Spawn(5,10,HeartSubType.HEART_BLACK,Game():GetRoom():FindFreePickupSpawnPosition(npc.Position),Vector.Zero,nil):ToPickup()
         end
     end

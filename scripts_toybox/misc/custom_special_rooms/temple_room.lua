@@ -150,6 +150,11 @@ local ROOMSHAPE_DOORSLOT_POS = {
     },
 }
 
+local invalidSpawns = {
+    [EntityType.ENTITY_POKY] = true,
+    [EntityType.ENTITY_GRUDGE] = true,
+}
+
 ---@param room RoomConfigRoom
 ---@param idx integer
 ---@return integer[]
@@ -308,22 +313,35 @@ local function placeRooms(currentRoom, chosenStb, rooms)
     for _=1, 2 do
         local r = RoomConfig.GetRandomRoom(Random(), true, chosenStb, RoomType.ROOM_DEFAULT, nil, nil, nil, 10)
         if(r) then
-            for i=0, r.Width//13-1 do
-                for j=0, r.Height//7-1 do
-                    for ri=1, #rooms do
-                        local possiblePositions = getDoorSlotIndexes(rooms[ri].roomData, rooms[ri].index)
-                        for _, pos in pairs(possiblePositions) do
-                            local newPos = Vector(pos%13, pos//13)-Vector(i,j)
-                            if(canPlaceRoomAtIndex(r, newPos, rooms)) then
-                                local newRooms = {}
-                                for idx, data in ipairs(rooms) do
-                                    newRooms[idx] = {roomData=data.roomData, index=data.index}
-                                end
-                                table.insert(newRooms, {roomData=r, index=newPos.X+newPos.Y*13})
+            local hasValidSpawns = false
+            for i=0, r.Spawns.Size-1 do
+                local sp = r.Spawns:Get(i)
+                for j=0, sp.Entries.Size-1 do
+                    local ent = sp.Entries:Get(j)
+                    if(ent.Type>=10 and not invalidSpawns[ent.Type]) then
+                        hasValidSpawns = true
+                    end
+                end
+            end
 
-                                local newRet = placeRooms(currentRoom+1, chosenStb, newRooms)
-                                for _, retRooms in ipairs(newRet) do
-                                    table.insert(returns, retRooms)
+            if(hasValidSpawns) then
+                for i=0, r.Width//13-1 do
+                    for j=0, r.Height//7-1 do
+                        for ri=1, #rooms do
+                            local possiblePositions = getDoorSlotIndexes(rooms[ri].roomData, rooms[ri].index)
+                            for _, pos in pairs(possiblePositions) do
+                                local newPos = Vector(pos%13, pos//13)-Vector(i,j)
+                                if(canPlaceRoomAtIndex(r, newPos, rooms)) then
+                                    local newRooms = {}
+                                    for idx, data in ipairs(rooms) do
+                                        newRooms[idx] = {roomData=data.roomData, index=data.index}
+                                    end
+                                    table.insert(newRooms, {roomData=r, index=newPos.X+newPos.Y*13})
+
+                                    local newRet = placeRooms(currentRoom+1, chosenStb, newRooms)
+                                    for _, retRooms in ipairs(newRet) do
+                                        table.insert(returns, retRooms)
+                                    end
                                 end
                             end
                         end
@@ -395,7 +413,6 @@ local function addNewBossRoom(_)
                     print(rooms[idx].roomData.Shape, math.tointeger(rooms[idx].index), doors)
                     --]]
                     if(not placed) then
-                        print("FAILED")
                         break
                     end
 
@@ -512,7 +529,9 @@ local function enterTrialRoom(_)
             templeMainData[tostring(room.SafeGridIndex)] = 2
 
             local rng = ToyboxMod:generateRng(room.SpawnSeed)
-            local id = Game():GetItemPool():GetCollectible(ItemPoolType.POOL_CURSE, true, rng:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
+
+            local curPool = Game():GetRoom():GetItemPool(rng:Next())
+            local id = Game():GetItemPool():GetCollectible(curPool, true, rng:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
             local item = Isaac.Spawn(5,100,id,pos,Vector.Zero,nil)
         end
 

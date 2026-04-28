@@ -487,4 +487,9 @@
         <Item Name="Puggy's Claw"/>
         <Item Name="Cricket's Tail"/>
     </Pool>
+
+    <Pool Name="temple">
+        <Item Name="Chicchan"/>
+        <Item Name="Etznab"/>
+    </Pool>
 </ItemPools>

@@ -267,6 +267,8 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.mouthpiece")
 
     include("scripts_toybox.items.passives.chicchan_serpent")
+    --include("scripts_toybox.items.passives.oc_dog")
+    include("scripts_toybox.items.passives.etznab_knife")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

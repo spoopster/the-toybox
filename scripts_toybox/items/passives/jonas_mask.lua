@@ -342,8 +342,9 @@ local function shadowFamiliarUpdate(_, fam)
             local vel = Vector.FromAngle(rng:RandomInt(360))*(rng:RandomFloat()*0.4+0.6)*0.1
             local particle = Isaac.Spawn(1000, EffectVariant.HAEMO_TRAIL, 0, fam.Position+Vector(0,-17), vel, fam):ToEffect()
             particle.DepthOffset = -1000
-            particle.Color = Color(0,0,0,1)
+            particle.Color = Color(0,0,0,1,0,0,0,2)
             particle.SpriteScale = Vector(1,1)*0.5
+            particle:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
 
             if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_CRAWLER) then
                 particle.SpriteOffset = Vector(0,7)

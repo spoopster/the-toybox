@@ -69,6 +69,7 @@ ToyboxMod.ACHIEVEMENT_MALICE = Isaac.GetAchievementIdByName("Malice")
 ToyboxMod.ACHIEVEMENT_COLORING_BOOK = Isaac.GetAchievementIdByName("Coloring Book")
 
 ToyboxMod.POOL_GRAVEYARD = Isaac.GetPoolIdByName("graveyard")
+ToyboxMod.POOL_TEMPLE = Isaac.GetPoolIdByName("temple")
 
 ToyboxMod.COLLECTIBLE_COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil")
 ToyboxMod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")
@@ -193,7 +194,7 @@ ToyboxMod.COLLECTIBLE_RELIQUARY = Isaac.GetItemIdByName("Reliquary")
 ToyboxMod.COLLECTIBLE_DADS_PIPE = Isaac.GetItemIdByName("Dad's Pipe")
 ToyboxMod.COLLECTIBLE_NOT_A_PIPE = Isaac.GetItemIdByName("Not a Pipe")
 ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT = Isaac.GetItemIdByName("Chicchan")
---ToyboxMod.COLLECTIBLE_MAGIC_SEED = Isaac.GetItemIdByName("Magic Seed")
+ToyboxMod.COLLECTIBLE_ETZNAB_KNIFE = Isaac.GetItemIdByName("Etznab")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -348,6 +349,7 @@ ToyboxMod.EFFECT_APOCALYPSE_HELPER = Isaac.GetEntityVariantByName("Apocalypse He
 ToyboxMod.EFFECT_PIPE_SMOKE = Isaac.GetEntityVariantByName("Pipe Smoke") ---@type EffectVariant
 ToyboxMod.EFFECT_PIPE_BOOMERANG = Isaac.GetEntityVariantByName("Pipe Boomerang") ---@type EffectVariant
 ToyboxMod.EFFECT_TEMPLE_SLAB = Isaac.GetEntityVariantByName("Temple Slab") ---@type EffectVariant
+ToyboxMod.EFFECT_BLOOD_COLLECT = Isaac.GetEntityVariantByName("Blood Coin Collect") ---@type EffectVariant
 
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant

@@ -40,6 +40,7 @@ local function tryUseHeldCandle(_, player)
         dir = dir+player:GetTearMovementInheritance(dir)
 
         local smoke = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_PIPE_SMOKE, 0, player.Position, dir, player):ToEffect()
+        smoke:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
 
         player:DischargeActiveItem(ActiveSlot.SLOT_PRIMARY)
         player:AnimateCollectible(ToyboxMod.COLLECTIBLE_DADS_PIPE, "HideItem")
@@ -59,7 +60,7 @@ local function smokeInit(_, effect)
     effect.SpriteOffset = Vector(0,-15)
     effect.DepthOffset = effect.DepthOffset+40
 
-    effect.Color = Color(1,1,1,0)
+    effect.Color = Color(1,1,1,0,0,0,0,1/effect.SpriteScale.X)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, smokeInit, ToyboxMod.EFFECT_PIPE_SMOKE)
 
@@ -78,8 +79,9 @@ local function smokeUpdate(_, effect)
         effect.Velocity = effect.Velocity:Resized(maxvel)
     end
 
-    effect.SpriteScale = effect.SpriteScale*ToyboxMod:lerp(SMOKE_FINALSCALE, SMOKE_SCALE, frac)/ToyboxMod:lerp(SMOKE_FINALSCALE, SMOKE_SCALE, prevFrac)
-    effect.Color = Color(1,1,1,frac^0.5)
+    local scale = ToyboxMod:lerp(SMOKE_FINALSCALE, SMOKE_SCALE, frac)/ToyboxMod:lerp(SMOKE_FINALSCALE, SMOKE_SCALE, prevFrac)
+    effect.SpriteScale = effect.SpriteScale*scale
+    effect.Color = Color(1,1,1,frac^0.5,0,0,0,1/effect.SpriteScale.X)
 
     if(effect.FrameCount%SMOKE_DAMAGEFREQ==0 and effect.Timeout>SMOKE_STOPDMG_THRESHOLD) then
         local rad = ToyboxMod:lerp(SMOKE_FINALSCALE, SMOKE_SCALE, frac)

@@ -21,7 +21,7 @@ local NAME_FONT = Font()
 NAME_FONT:Load("font/pftempestasevencondensed.fnt")
 
 local EID_OFFSET = "CandyDispenser"
-local EID_POS_OFFSET = Vector(0,30)
+local EID_POS_OFFSET = Vector(0,16)
 
 local function getSpriteDataForConsumable(id, isPill, isSmall)
     if(isSmall) then
@@ -315,7 +315,8 @@ local function renderInventory()
     local selectedIndex = ToyboxMod:clamp(ToyboxMod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1, 1, math.max(1, #dispenserInventory))
     ToyboxMod:setEntityData(player, "PILLCRUSHER_SELECTED", selectedIndex)
 
-    local renderPos = Vector(47,41)+Vector(20,12)*Options.HUDOffset
+    local renderPos = Vector(46,25)+ToyboxMod:getExtraHudOffset()
+
     local renderOffset = Vector(12,0)
     local smallRenderOffset = Vector(0,0)
     local currentPos = renderPos

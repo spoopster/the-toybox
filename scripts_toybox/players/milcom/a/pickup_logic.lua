@@ -55,7 +55,7 @@ local function postEvaluateCustomCache(_, pl, flag, val)
 
     local maxCoins = (PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_DEEP_POCKETS) and 999 or 99)
     if(flag=="maxcoins") then
-        return maxCoins
+        return maxCoins+1000000
     elseif(flag=="maxbombs") then
         return math.floor(maxCoins/(birthrightEffect and ToyboxMod.MILCOM_BOMB_VALUE_BIRTHRIGHT or ToyboxMod.MILCOM_BOMB_VALUE or 5))
     elseif(flag=="maxkeys") then

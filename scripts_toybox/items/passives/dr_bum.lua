@@ -18,11 +18,11 @@ local function getDrBumPill(fam)
     local rng = fam.Player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_DR_BUM)
     local mult = fam:GetMultiplier()
 
-    local pill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:Next())))
-    local currentSub = conf:GetPillEffect(pill).EffectSubClass
+    local pill = pool:GetPill(math.max(1, rng:Next()))
+    local currentSub = conf:GetPillEffect(pool:GetPillEffect(pill)).EffectSubClass
     for i=1, ADVANTAGE_ROLLS+math.max(0, (mult-1)*EXTRA_ADVANTAGE_BFFS) do
-        local newPill = pool:GetPillEffect(pool:GetPill(math.max(1, rng:Next())))
-        local newSub = conf:GetPillEffect(newPill).EffectSubClass
+        local newPill = pool:GetPill(math.max(1, rng:Next()))
+        local newSub = conf:GetPillEffect(pool:GetPillEffect(pill)).EffectSubClass
 
         if(newSub==ToyboxMod.PILL_SUBCLASS.GOOD and (currentSub==ToyboxMod.PILL_SUBCLASS.BAD or currentSub==ToyboxMod.PILL_SUBCLASS.NEUTRAL)) then
             pill = newPill
@@ -33,7 +33,7 @@ local function getDrBumPill(fam)
         end
     end
 
-    return pool:GetPillColor(pill)
+    return pill
 end
 
 ---@param pl EntityPlayer

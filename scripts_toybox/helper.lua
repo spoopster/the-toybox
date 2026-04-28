@@ -1005,3 +1005,52 @@ function ToyboxMod:getRoomIconPosOffset(room)
     end
     return Vector(0,0)
 end
+
+---@generic T
+---@param tbl T
+---@param deeperCopy? boolean
+---@param seen? table<table, table>
+---@return T
+function ToyboxMod:deepCopy(tbl, deeperCopy, seen)
+    seen = seen or {}
+
+    if seen[tbl] then
+        return seen[tbl]
+    end
+
+    local copy = {}
+
+    seen[tbl] = copy
+
+    for k, v in pairs(tbl) do
+        local newK = deeperCopy and type(k) == "table" and ToyboxMod:deepCopy(k, true, seen) or k
+        local newV = deeperCopy and type(v) == "table" and ToyboxMod:deepCopy(v, true, seen) or v
+
+        copy[newK] = newV
+    end
+
+    return copy
+end
+
+---@param dest Entity
+---@param source Entity
+function ToyboxMod:copyEntityData(dest, source)
+    local copiedData = ToyboxMod:deepCopy(source:GetData(), true)
+    for key, val in pairs(copiedData) do
+        dest:GetData()[key] = val
+    end
+end
+
+function ToyboxMod:getExtraHudOffset()
+    local pos = Vector(20,12)*Options.HUDOffset
+    local pl = Isaac.GetPlayer()
+
+    if(pl:GetPlayerType()==PlayerType.PLAYER_ISAAC_B or pl:GetPlayerType()==PlayerType.PLAYER_BLUEBABY_B) then
+        pos = pos+Vector(0,26)
+    end
+    if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_PEZ_DISPENSER)) then
+        pos = pos+Vector(0,16)
+    end
+
+    return pos
+end

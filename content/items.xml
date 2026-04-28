@@ -1149,6 +1149,16 @@
 
     effectdamage="1" effecttears="0.7" effectrange="60" effectluck="2"
 />
+<passive id="123" name="Etznab"
+    description="Blood money"
+    gfx="etznab_knife.png"
+    quality="3"
+    tags="offensive"
+    cache=""
+
+    persistent="true"
+    effectdamage="0.08"
+/>
 
 <active id="491" name="Cursed D6"
     description="High-quality destiny"

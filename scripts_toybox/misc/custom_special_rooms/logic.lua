@@ -16,7 +16,7 @@ ToyboxMod.ROOM_TYPE_DATA = {
         MinimapIcon = "ToyboxTempleRoom",
         Backdrop = ToyboxMod.BACKDROOP_TEMPLE,
         DoorGfx = "gfx_tb/grid/temple_door.png",
-        Pool = ToyboxMod.POOL_GRAVEYARD,
+        Pool = ToyboxMod.POOL_TEMPLE,
     }
 }
 
@@ -58,6 +58,7 @@ local function setRoomPool(_)
 
     local pool = ToyboxMod.ROOM_TYPE_DATA[ID_TO_TABLEKEY[desc.Data.Subtype]].Pool
     if(pool) then
+        print("Set pool", pool)
         Game():GetRoom():SetItemPool(pool)
     end
 end

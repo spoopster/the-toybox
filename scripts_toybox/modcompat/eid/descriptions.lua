@@ -276,23 +276,11 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{DeathMark}} A random enemy every room will become a Skull champion",
         --"{{Blank}} {{ColorGray}}Skull champions have 2x health and trigger {{Collectible35}} The Necronomicon effect on death{{CR}}",
-        "{{BlackHeart}} Skull champions are guaranteed to drop a black heart on death",
-    },
-    Modifiers = {
-        {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
-            Condition = function(descObj)
-                return Game():IsHardMode()
-            end,
-            ToModify = {
-                {"are guaranteed", "have a 50%% chance"}
-            }
-        }
+        "{{BlackHeart}} Skull champions have a 16% chance to drop a black heart on death",
     },
     StackModifiers = {
         {
             ToModify = {
-                "+4% chance for Skull champions to spawn for every item stack",
                 "Skull champions spawned by this item don't have increased health",
             }
         }
@@ -1523,6 +1511,14 @@ enums.FUNCTIONS.AddItem({
         "\1 +1.5 Range",
         "\1 +2 Luck",
         "This effect also works in miniboss rooms or Boss Rush"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_ETZNAB_KNIFE,
+    Name = "Etznab",
+    Description = {
+        enums.CONSTANTS.Icon_BloodCoin.." ".."15% chance to gain a \"blood coin\" when you kill an enemy, up to 20",
+        enums.CONSTANTS.Icon_BloodCoin.." ".."Blood coins are spent before regular coins when buying items, and grant \1 +0.08 Damage each",
     },
 })
 

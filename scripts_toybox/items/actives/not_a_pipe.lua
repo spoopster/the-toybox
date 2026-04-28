@@ -116,6 +116,8 @@ local function pipeUpdate(_, effect)
         local smoke = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_PIPE_SMOKE, 0, effect.Position, dir, effect.SpawnerEntity):ToEffect()
         smoke.SpriteScale = smoke.SpriteScale*0.7
         smoke.CollisionDamage = smoke.CollisionDamage*0.5
+
+        smoke:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
     end
 
     if(not effect.SpawnerEntity) then return end
