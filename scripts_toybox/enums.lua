@@ -193,8 +193,15 @@ ToyboxMod.COLLECTIBLE_MOUTHPIECE = Isaac.GetItemIdByName("Mouthpiece")
 ToyboxMod.COLLECTIBLE_RELIQUARY = Isaac.GetItemIdByName("Reliquary")
 ToyboxMod.COLLECTIBLE_DADS_PIPE = Isaac.GetItemIdByName("Dad's Pipe")
 ToyboxMod.COLLECTIBLE_NOT_A_PIPE = Isaac.GetItemIdByName("Not a Pipe")
+
+--- MAYAN SIGNS
 ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT = Isaac.GetItemIdByName("Chicchan")
 ToyboxMod.COLLECTIBLE_ETZNAB_KNIFE = Isaac.GetItemIdByName("Etznab")
+ToyboxMod.COLLECTIBLE_OC_DOG = Isaac.GetItemIdByName("Oc")
+ToyboxMod.COLLECTIBLE_IMIX_CROCODILE = Isaac.GetItemIdByName("Imix")
+ToyboxMod.COLLECTIBLE_CIB_VULTURE = Isaac.GetItemIdByName("Cib")
+ToyboxMod.COLLECTIBLE_MEN_EAGLE = Isaac.GetItemIdByName("Men")
+ToyboxMod.COLLECTIBLE_CABAN_EARTH = Isaac.GetItemIdByName("Caban")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -422,6 +429,7 @@ ToyboxMod.SFX_RETRO_COIN = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Coin")
 ToyboxMod.SFX_RETRO_UPGRADE = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Upgrade")
 ToyboxMod.SFX_RETRO_FAIL = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Fail")
 ToyboxMod.SFX_MP3_PLAYER = Isaac.GetSoundIdByName("(TOYBOX) MP3 Player")
+ToyboxMod.SFX_EVIL = Isaac.GetSoundIdByName("(TOYBOX) Evil Sound")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then

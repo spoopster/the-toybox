@@ -141,6 +141,31 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 	end
 
+	do -- MAYAN ITEM TRANSLATIONS
+		local optionID = getOptionID("MayanTranslations")
+
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
+			"Mayan Zodiac Translations"
+		)
+		ImGui.AddCheckbox("ToyboxOptionsWindow", optionID, "", nil, true)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Render,
+			function()
+				ImGui.UpdateData(optionID, ImGuiData.Value, (ToyboxMod.CONFIG.MAYAN_ITEM_TRANSLATIONS==1))
+			end
+		)
+		ImGui.AddCallback(optionID,
+			ImGuiCallback.Edited,
+			function(v)
+				ToyboxMod.CONFIG.MAYAN_ITEM_TRANSLATIONS = (v and 1 or 0)
+			end
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
+			"Give alternate names to the Mayan Zodiac items for better readability (requires a game restart)."
+		)
+		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
+	end
+
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 	ImGui.AddText("ToyboxOptionsWindow", "", true, "")
 	
@@ -148,7 +173,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped, "VANILLA TWEAKS")
 	ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 
-	do -- GOOD JUICE LAG
+	do -- CHAMPIONS IN GREED LAG
 		local optionID = getOptionID("GreedChampions")
 
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,

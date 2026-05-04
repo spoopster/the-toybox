@@ -1506,8 +1506,8 @@ enums.FUNCTIONS.AddItem({
     Name = "Chicchan",
     Description = {
         "{{BossRoom}} Entering a boss room or taking damage in a boss room grants for the room:",
-        "\1 +1 Damage",
         "\1 +0.7 Tears",
+        "\1 +1 Damage",
         "\1 +1.5 Range",
         "\1 +2 Luck",
         "This effect also works in miniboss rooms or Boss Rush"
@@ -1521,7 +1521,64 @@ enums.FUNCTIONS.AddItem({
         enums.CONSTANTS.Icon_BloodCoin.." ".."Blood coins are spent before regular coins when buying items, and grant \1 +0.08 Damage each",
     },
 })
-
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_OC_DOG,
+    Name = "Oc",
+    Description = {
+        "Familiars copy your firerate, damage, and tear effects",
+        "{{Trinket183}} Grants the effects of The Twins",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_IMIX_CROCODILE,
+    Name = "Imix",
+    Description = {
+        "At the start of every floor:",
+        "\1 +0.2 Speed",
+        "\1 +1 Tears",
+        "\1 +1 Range",
+        "\1 +0.16 Shotspeed",
+        "These stats wear off over 1m 30s, and extend when an enemy dies",
+        "Defeating the floor's boss makes the remaining stats permanent"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CIB_VULTURE,
+    Name = "Cib",
+    Description = {
+        "\1 +8 Luck",
+        "\1 +2 Luck at the start of every floor",
+        "\2 -1 Luck when you take damage"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MEN_EAGLE,
+    Name = "Men",
+    Description = {
+        "\1 +0.2 Speed",
+        "Flight",
+        "When presented with a choice between pickups, you can take all of them",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CABAN_EARTH,
+    Name = "Caban",
+    Description = {
+        "Every floor, an additional item will spawn in the following rooms:",
+        "{{TreasureRoom}} Treasure Room",
+        "{{Shop}} Shop",
+        "{{SecretRoom}} Secret Room",
+        "{{AngelDevilChanceSmall}} Angel/Devil Room",
+        "When you take one of these extra items, the other ones will become uncollectable",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Can pick up an additional extra item",
+            }
+        }
+    }
+})
 
 --- OTHER ITEM MODIFIERS ---
 

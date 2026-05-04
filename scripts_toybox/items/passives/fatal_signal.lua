@@ -16,6 +16,8 @@ local function tryReplacePool(_, sel, pool, dec, seed)
 
     local rng = ToyboxMod:generateRng(seed)
     local itempool = Game():GetItemPool()
+    print(itempool:HasCollectible(sel), sel, pool, dec, seed)
+
     pool = itempool:GetLastPool()
 
     local item = sel
@@ -34,6 +36,7 @@ local function tryReplacePool(_, sel, pool, dec, seed)
     if(sel~=item) then
         if(dec) then
             itempool:RemoveCollectible(item)
+            itempool:ResetCollectible(sel)
         end
 
         table.insert(MARKED_SEEDS, seed)

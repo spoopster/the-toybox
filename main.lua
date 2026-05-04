@@ -267,8 +267,12 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.mouthpiece")
 
     include("scripts_toybox.items.passives.chicchan_serpent")
-    --include("scripts_toybox.items.passives.oc_dog")
+    include("scripts_toybox.items.passives.oc_dog")
     include("scripts_toybox.items.passives.etznab_knife")
+    include("scripts_toybox.items.passives.imix_crocodile")
+    include("scripts_toybox.items.passives.cib_vulture")
+    include("scripts_toybox.items.passives.men_eagle")
+    include("scripts_toybox.items.passives.caban_earth")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -445,6 +449,8 @@ include("scripts_toybox.modcompat.fuzzy pickle.main")
 
 -- IMGUI
 include("scripts_toybox.toybox_imgui")
+
+include("scripts_toybox.fortnite funnies.mayan_translation")
 
 --[[
 local circule = 8

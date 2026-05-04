@@ -148,6 +148,26 @@ local function virusInit(_, familiar)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, virusInit, ToyboxMod.FAMILIAR_VIRUS)
 
+---@param tear EntityTear
+local function familiarFireProj(_, tear)
+    local virusData = VIRUS_INFO[tear.SpawnerEntity and tear.SpawnerEntity.SubType] or VIRUS_INFO[0]
+    if(not virusData) then return end
+
+    tear.CollisionDamage = BASE_DMG*(virusData.DMGMULT or 1)
+    tear.Velocity:Resize(BASE_VEL*(virusData.SHOTSPEEDMULT or 1))
+    if(virusData.COLOR) then
+        tear.Color = virusData.COLOR
+    end
+
+    local rng = tear.SpawnerEntity and tear.SpawnerEntity:GetDropRNG() or ToyboxMod:generateRng()
+    for _, flagData in pairs(virusData.FLAGS or {}) do
+        if(rng:RandomFloat()<(flagData[2] or 1)) then
+            tear:AddTearFlags(flagData[1])
+        end
+    end
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, CallbackPriority.IMPORTANT, familiarFireProj, ToyboxMod.FAMILIAR_VIRUS)
+
 ---@param familiar EntityFamiliar
 local function virusUpdate(_, familiar)
     if(familiar.Hearts<0) then
@@ -176,17 +196,8 @@ local function virusUpdate(_, familiar)
 
             sp:SetAnimation("FloatShoot", false)
             local tear = familiar:FireProjectile(fireVec)
-            tear.CollisionDamage = BASE_DMG*(virusData.DMGMULT or 1)
-            tear.Velocity:Resize(BASE_VEL*(virusData.SHOTSPEEDMULT or 1))
-            if(virusData.COLOR) then
-                tear.Color = virusData.COLOR
-            end
-            for _, flagData in pairs(virusData.FLAGS or {}) do
-                if(rng:RandomFloat()<(flagData[2] or 1)) then
-                    tear:AddTearFlags(flagData[1])
-                end
-            end
-            tear:Update()
+
+            --tear:Update()
             sfx:Play(ToyboxMod.SFX_VIRUS_SHOOT, 0.5, 1, false, 0.95+rng:RandomFloat()*0.1, 0)
 
             familiar.FireCooldown = fireCool

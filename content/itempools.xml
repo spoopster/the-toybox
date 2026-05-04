@@ -491,5 +491,9 @@
     <Pool Name="temple">
         <Item Name="Chicchan"/>
         <Item Name="Etznab"/>
+        <Item Name="Oc"/>
+        <Item Name="Imix"/>
+        <Item Name="Cib"/>
+        <Item Name="Men"/>
     </Pool>
 </ItemPools>

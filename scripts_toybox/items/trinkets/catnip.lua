@@ -11,9 +11,9 @@ local function slowEnemy(_, ent, amount, _, ref, _)
     local fam = ref.Entity
     if(fam and fam:ToFamiliar()) then
         fam = fam:ToFamiliar()
-    elseif(fam.SpawnerEntity and fam.SpawnerEntity:ToFamiliar()) then
+    elseif(fam and fam.SpawnerEntity and fam.SpawnerEntity:ToFamiliar()) then
             fam = fam.SpawnerEntity:ToFamiliar()
-    elseif(fam.Parent and fam.Parent:ToFamiliar()) then
+    elseif(fam and fam.Parent and fam.Parent:ToFamiliar()) then
         fam = fam.Parent:ToFamiliar()
     else
         return

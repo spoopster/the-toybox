@@ -105,6 +105,7 @@
     cache="familiars"
 
     effectspeed="0.1" effectdamage="0.5" effectluck="1"
+    persistent="true"
 />
 <passive id="12" name="Odd Onion"
     description="Damage + tears up?"
@@ -1140,6 +1141,7 @@
 
     achievement="Dad's Pipe"
 />
+
 <passive id="122" name="Chicchan"
     description="Survival instinct"
     gfx="chicchan_serpent.png"
@@ -1158,6 +1160,43 @@
 
     persistent="true"
     effectdamage="0.08"
+/>
+<passive id="124" name="Oc"
+    description="The tribe"
+    gfx="oc_dog.png"
+    quality="4"
+    tags="offensive"
+    cache="familiars"
+/>
+<passive id="125" name="Imix"
+    description="Speed is key"
+    gfx="imix_crocodile.png"
+    quality="3"
+    tags="offensive"
+    cache="all"
+/>
+<passive id="126" name="Cib"
+    description="Luck WAY up"
+    gfx="cib_vulture.png"
+    quality="3"
+    tags="offensive"
+    cache="luck"
+/>
+<passive id="127" name="Men"
+    description="The illusion of choice"
+    gfx="men_eagle.png"
+    quality="4"
+    tags="offensive"
+    cache="flying"
+
+    speed="0.2"
+/>
+<passive id="128" name="Caban"
+    description="Boons of the earth"
+    gfx="caban_earth.png"
+    quality="4"
+    tags="offensive"
+    cache=""
 />
 
 <active id="491" name="Cursed D6"
