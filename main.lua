@@ -265,6 +265,10 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.hidden_blade")
     include("scripts_toybox.items.passives.crickets_tail")
     include("scripts_toybox.items.passives.mouthpiece")
+    include("scripts_toybox.items.passives.vampire_teeth")
+    include("scripts_toybox.items.passives.y2k")
+    include("scripts_toybox.items.passives.minds_eye")
+    include("scripts_toybox.items.passives.mindflayer_baby")
 
     include("scripts_toybox.items.passives.chicchan_serpent")
     include("scripts_toybox.items.passives.oc_dog")
@@ -273,6 +277,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.cib_vulture")
     include("scripts_toybox.items.passives.men_eagle")
     include("scripts_toybox.items.passives.caban_earth")
+    include("scripts_toybox.items.passives.lamat_rabbit")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -308,6 +313,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.actives.reliquary")
     include("scripts_toybox.items.actives.dads_pipe")
     include("scripts_toybox.items.actives.not_a_pipe")
+    include("scripts_toybox.items.actives.prospector_pick")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

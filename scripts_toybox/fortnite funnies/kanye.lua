@@ -21,14 +21,14 @@ local function kanyeInit(_, effect)
     local sp = effect:GetSprite()
     sp:SetCustomShader("spriteshaders/sphereshader")
     sp:Play("Idle", true)
-    sp.Color = Color(1,0,0,1,0,0,0,1,1,1,(Game():GetFrameCount()/KANYE_SPIN_FREQ)%1)
+    sp.Color = Color(1,0,0,1,0,0,0, 20, ((Game():GetFrameCount()/KANYE_SPIN_FREQ)%1)*360, 0)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, kanyeInit, ToyboxMod.EFFECT_KANYE)
 
 ---@param effect EntityEffect
 local function kanyeUpdate(_, effect)
     local sp = effect:GetSprite()
-    sp.Color = Color(1,0,0,1,0,0,0,1,1,1,(Game():GetFrameCount()/KANYE_SPIN_FREQ)%1)
+    sp.Color = Color(1,0,0,1,0,0,0, 20, ((Game():GetFrameCount()/KANYE_SPIN_FREQ)%1)*360, 0)
 
     for _, ent in ipairs(Isaac.FindInRadius(effect.Position, effect.Size, EntityPartition.PLAYER)) do
         if(ent:ToPlayer() and not ent:IsDead()) then

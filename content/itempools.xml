@@ -174,6 +174,7 @@
         <Item Name="Hidden Blade"/>
         <Item Name="MP3 Player"/>
         <Item Name="Dad's Pipe"/>
+        <Item Name="Y2K"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -198,6 +199,7 @@
         <Item Name="Hidden Blade"/>
         <Item Name="MP3 Player"/>
         <Item Name="Dad's Pipe"/>
+        <Item Name="Y2K"/>
     </Pool>
 
     <Pool Name="devil">
@@ -211,6 +213,8 @@
         <Item Name="Red Clover"/>
         <Item Name="Black Soul"/>
         <Item Name="Puggy's Claw"/>
+        <Item Name="Vampire Teeth"/>
+        <Item Name="Flayer Baby"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -222,6 +226,8 @@
         <Item Name="Red Clover"/>
         <Item Name="Black Soul"/>
         <Item Name="Puggy's Claw"/>
+        <Item Name="Vampire Teeth"/>
+        <Item Name="Flayer Baby"/>
     </Pool>
 
     <Pool Name="angel">
@@ -256,6 +262,7 @@
         <Item Name="Black Soul"/>
         <Item Name="Dissociation"/>
         <Item Name="Angel Dust"/>
+        <Item Name="Mind's Eye"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
@@ -265,6 +272,7 @@
         <Item Name="Black Soul"/>
         <Item Name="Dissociation"/>
         <Item Name="Angel Dust"/>
+        <Item Name="Mind's Eye"/>
     </Pool>
 
     <Pool Name="secret">
@@ -286,6 +294,8 @@
         <Item Name="4 4"/>
         <Item Name="Bone Boy"/>
         <Item Name="Reliquary"/>
+        <Item Name="Y2K"/>
+        <Item Name="Mind's Eye"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -306,6 +316,8 @@
         <Item Name="4 4"/>
         <Item Name="Bone Boy"/>
         <Item Name="Reliquary"/>
+        <Item Name="Y2K"/>
+        <Item Name="Mind's Eye"/>
     </Pool>
 
     <Pool Name="library">
@@ -327,6 +339,8 @@
         <Item Name="Puggy's Claw"/>
         <Item Name="Haemorrhage"/>
         <Item Name="Snake Ring"/>
+        <Item Name="Vampire Teeth"/>
+        <Item Name="Flayer Baby"/>
     </Pool>
 
     <Pool Name="goldenChest">
@@ -436,6 +450,7 @@
         <Item Name="Red Clover"/>
         <Item Name="Big Red Button"/>
         <Item Name="AIDS"/>
+        <Item Name="Y2K"/>
     </Pool>
 
     <Pool Name="graveyard">
@@ -495,5 +510,7 @@
         <Item Name="Imix"/>
         <Item Name="Cib"/>
         <Item Name="Men"/>
+        <Item Name="Caban"/>
+        <Item Name="Lamat"/>
     </Pool>
 </ItemPools>

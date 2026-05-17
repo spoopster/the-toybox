@@ -92,6 +92,14 @@ lowp mat3 roty(lowp float angle)
         -sin(angle), 0.0, cos(angle)
     );
 }
+lowp mat3 rotz(lowp float angle)
+{
+    return mat3(
+        cos(angle), -sin(angle), 0.0,
+        sin(angle), cos(angle), 0.0,
+        0.0, 0.0, 1.0
+    );
+}
 
 lowp float pixelscale = 1.;
 lowp float desiredRes = 32.0;
@@ -104,11 +112,12 @@ void main(void)
 
 	lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - mod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
 
-    lowp float time = ColorizeOut.a;
-    lowp int frame = int(floor(time*30.));
-    frame = int(min(float(frame),float(0)));
-
     lowp vec3 finalcolor = texColor.rgb;
+
+    if(ColorizeOut.a>0.)
+    {
+        spherepos.z = ColorizeOut.a;
+    }
 
     // Normalized pixel coordinates (from 0 to 1)
     //vec2 uv = fragCoord/iResolution.xy;
@@ -133,8 +142,9 @@ void main(void)
         lowp vec3 hitpoint = ray.origin + ray.dir * m;
 
         lowp mat3 transf = mat3(1.0);
-        transf = transf*rotx(radians(20.));
-        transf = transf*roty(radians(time*360.));
+        transf = transf*rotx(radians(ColorizeOut.r));
+        transf = transf*roty(radians(ColorizeOut.g));
+        transf = transf*rotz(radians(ColorizeOut.b));
 
         lowp vec3 normalized = (hitpoint-spherepos.xyz);
         normalized = normalized*transf;
@@ -159,13 +169,13 @@ void main(void)
     else
     {
         lowp float alph = 0.0;
-        for(int i=-2; i<=2; i++)
+        for(int i=-3; i<=3; i++)
         {
-            for(int j=-2; j<=2; j++)
+            for(int j=-3; j<=3; j++)
             {
-                if(int(abs(float(i))+abs(float(j)))<=2 && (i!=0 && j!=0))
+                if(abs(float(i))+abs(float(j))<=3. && (i!=0 && j!=0))
                 {
-                    lowp vec2 coordoffset = vec2(float(i),float(j))*1.7*pixelscale/TextureSizeOut.xy;
+                    lowp vec2 coordoffset = vec2(float(i),float(j))*1.*pixelscale/TextureSizeOut.xy;
                     lowp vec2 newuv = (retrocoord+coordoffset-0.5/texsizenorm)*vec2(1.,-1.)*texsizenorm;
 
                     Ray ray2;
@@ -187,7 +197,7 @@ void main(void)
         // background
         lowp vec3 col = vec3(0.0);
         finalcolor = col;
-        gl_FragColor = vec4(finalcolor + ColorOffsetOut * texColor.a, alph);
+        gl_FragColor = vec4(finalcolor + ColorOffsetOut * texColor.a, alph*texColor.a);
     }
 
     

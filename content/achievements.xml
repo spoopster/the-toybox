@@ -4,6 +4,7 @@
 	<achievement name="Horse Tranquilizer" text="" gfx="ach_horse_tranquilizer.png" />
 	<achievement name="Gasoline" text="" gfx="ach_gasoline.png" />
 	<achievement name="Inside Joke" text="" gfx="ach_inside_joke_alt.png" />
+	<achievement name="Bob's Thesis" text="" gfx="ach_bobs_thesis.png" />
 
 	<!-- characters -->
 	<achievement name="Tainted Atlas" text="" gfx="ach_blank.png" />

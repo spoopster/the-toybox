@@ -104,6 +104,9 @@
 	<sound name="(TOYBOX) Evil Sound">
 		<sample weight="1" path="evil_sound.wav" />
 	</sound>
+	<sound name="(TOYBOX) Rewind">
+		<sample weight="1" path="rewind.wav" />
+	</sound>
 
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />

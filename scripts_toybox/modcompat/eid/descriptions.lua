@@ -1502,6 +1502,55 @@ enums.FUNCTIONS.AddItem({
     },
 })
 enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH,
+    Name = "Vampire Teeth",
+    Description = {
+        "{{BleedingOut}} 10% chance to shoot a tear that inflicts bleeding on enemies",
+        "{{Luck}} 50% chance at 20 luck",
+        "{{BleedingOut}} Bleeding enemies heal you for {{HalfHeart}} half a heart when they die",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_PROSPECTORS_PICK,
+    Name = "Prospector Pick",
+    Description = {
+        "{{Rune}} Spawns a random rune",
+        enums.CONSTANTS.Icon_CardMantleRock.." ".."Spawns a random mantle instead if used on a decorative floor tile (grass, small rocks, papers, gems etc.)",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_Y2K,
+    Name = "Y2K",
+    Description = {
+        "{{Timer}} When the timer exceeds 10 minutes:",
+        "{{SoulHeart}} +1 Soul Heart",
+        "\1 +1 Damage",
+        "Timer resets back to 0",
+        "The requirement for this effect to trigger increases by 5 minutes"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MINDS_EYE,
+    Name = "Mind's Eye",
+    Description = {
+        "Grants an eye familiar that constantly chases you",
+        "!!! It has an aura that hurts you for a full heart of damage if you stand inside",
+        "{{BleedingOut}} The aura also damages enemies and makes them bleed for 4 seconds",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MINDFLAYER_BABY,
+    Name = "Flayer Baby",
+    Description = {
+        "Bounces around the room",
+        "{{Weakness}} Has an aura that weakens enemies",
+        "!!! While standing in the aura:",
+        "\2 -0.3 Speed",
+        "\2 x0.6 Damage multiplier"
+    },
+})
+
+enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT,
     Name = "Chicchan",
     Description = {
@@ -1567,7 +1616,7 @@ enums.FUNCTIONS.AddItem({
         "Every floor, an additional item will spawn in the following rooms:",
         "{{TreasureRoom}} Treasure Room",
         "{{Shop}} Shop",
-        "{{SecretRoom}} Secret Room",
+        --"{{SecretRoom}} Secret Room", -- nah thats wack
         "{{AngelDevilChanceSmall}} Angel/Devil Room",
         "When you take one of these extra items, the other ones will become uncollectable",
     },
@@ -1575,6 +1624,22 @@ enums.FUNCTIONS.AddItem({
         {
             ToModify = {
                 "Can pick up an additional extra item",
+            }
+        }
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_LAMAT_RABBIT,
+    Name = "Lamat",
+    Description = {
+        "Your chance-based tear effects are rolled with advantage",
+        "{{Luck}} 15% x Luck chance for an additional roll",
+        "Every 100% chance guarantees an additional roll",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Rolls an additional time",
             }
         }
     }

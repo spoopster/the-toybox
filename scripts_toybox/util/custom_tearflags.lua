@@ -40,6 +40,8 @@ end
 function ToyboxMod:getFinalFlags(source)
     local flags = {}
     if(source and ToyboxMod:getEntityData(source, TEARFLAG_TABLE_KEY)) then
+        local numLamatRerolls = ToyboxMod:getLamatRabbitRerollsNum(source)
+
         local cFlags = ToyboxMod:getEntityData(source, TEARFLAG_TABLE_KEY)
         for _, flag in ipairs(cFlags) do
 --[[
@@ -77,7 +79,19 @@ function ToyboxMod:getFinalFlags(source)
                     end
                 end
 
-                if(rng:RandomFloat()<chance) then
+                local rolled = false
+                if(chance<1) then
+                    for _=1, numLamatRerolls+1 do
+                        if(rng:RandomFloat()<chance) then
+                            rolled = true
+                            break
+                        end
+                    end
+                else
+                    rolled = true
+                end
+
+                if(rolled) then
                     table.insert(flags, {Flag=flagData.Flag, Key=flagKey})
                 end
             end

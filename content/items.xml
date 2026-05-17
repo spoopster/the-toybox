@@ -851,8 +851,8 @@
     description="Less is more...?"
     gfx="pythagoras_cup.png"
     quality="2"
-    tags="offensive noeden"
-    cache="uniquefamiliar"
+    tags="offensive noeden uniquefamiliar"
+    cache=""
 
     hidden="true"
 />
@@ -1095,7 +1095,7 @@
     maxcharges="4"
 />
 <passive id="118" name="Mouthpiece"
-    description="Range + shotspeed up, musical tears"
+    description="Musical tears"
     gfx="mouthpiece.png"
     quality="3"
     tags="offensive summonable"
@@ -1141,8 +1141,48 @@
 
     achievement="Dad's Pipe"
 />
+<passive id="122" name="Vampire Teeth"
+    description="Bloodletter"
+    gfx="vampire_teeth.png"
+    quality="2"
+    tags="offensive"
+    cache="tearflag"
+/>
+<active id="123" name="Prospector Pick"
+    description="There's gold in them thar hills"
+    gfx="prospector_pick.png"
+    quality="3"
+    tags="offensive"
+    cache=""
 
-<passive id="122" name="Chicchan"
+    maxcharges="6"
+/>
+<passive id="124" name="Y2K"
+    description="Back to 0"
+    gfx="y2k.png"
+    quality="1"
+    tags="offensive"
+    cache=""
+
+    effectdamage="1"
+    persistent="true"
+/>
+<familiar id="125" name="Mind's Eye"
+    description="I am everywhere"
+    gfx="minds_eye.png"
+    quality="2"
+    tags="offensive uniquefamiliar"
+    cache=""
+/>
+<familiar id="126" name="Flayer Baby"
+    description="Break break break my mind"
+    gfx="mindflayer_baby.png"
+    quality="0"
+    tags="offensive"
+    cache=""
+/>
+
+<passive id="130" name="Chicchan"
     description="Survival instinct"
     gfx="chicchan_serpent.png"
     quality="2"
@@ -1151,7 +1191,7 @@
 
     effectdamage="1" effecttears="0.7" effectrange="60" effectluck="2"
 />
-<passive id="123" name="Etznab"
+<passive id="131" name="Etznab"
     description="Blood money"
     gfx="etznab_knife.png"
     quality="3"
@@ -1161,28 +1201,28 @@
     persistent="true"
     effectdamage="0.08"
 />
-<passive id="124" name="Oc"
+<passive id="132" name="Oc"
     description="The tribe"
     gfx="oc_dog.png"
     quality="4"
     tags="offensive"
     cache="familiars"
 />
-<passive id="125" name="Imix"
+<passive id="133" name="Imix"
     description="Speed is key"
     gfx="imix_crocodile.png"
     quality="3"
     tags="offensive"
     cache="all"
 />
-<passive id="126" name="Cib"
+<passive id="134" name="Cib"
     description="Luck WAY up"
     gfx="cib_vulture.png"
     quality="3"
     tags="offensive"
     cache="luck"
 />
-<passive id="127" name="Men"
+<passive id="135" name="Men"
     description="The illusion of choice"
     gfx="men_eagle.png"
     quality="4"
@@ -1191,10 +1231,17 @@
 
     speed="0.2"
 />
-<passive id="128" name="Caban"
+<passive id="136" name="Caban"
     description="Boons of the earth"
     gfx="caban_earth.png"
     quality="4"
+    tags="offensive"
+    cache=""
+/>
+<passive id="137" name="Lamat"
+    description="Roll with advantage"
+    gfx="lamat_rabbit.png"
+    quality="2"
     tags="offensive"
     cache=""
 />

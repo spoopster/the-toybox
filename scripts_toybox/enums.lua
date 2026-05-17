@@ -193,6 +193,11 @@ ToyboxMod.COLLECTIBLE_MOUTHPIECE = Isaac.GetItemIdByName("Mouthpiece")
 ToyboxMod.COLLECTIBLE_RELIQUARY = Isaac.GetItemIdByName("Reliquary")
 ToyboxMod.COLLECTIBLE_DADS_PIPE = Isaac.GetItemIdByName("Dad's Pipe")
 ToyboxMod.COLLECTIBLE_NOT_A_PIPE = Isaac.GetItemIdByName("Not a Pipe")
+ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH = Isaac.GetItemIdByName("Vampire Teeth")
+ToyboxMod.COLLECTIBLE_PROSPECTORS_PICK = Isaac.GetItemIdByName("Prospector Pick")
+ToyboxMod.COLLECTIBLE_Y2K = Isaac.GetItemIdByName("Y2K")
+ToyboxMod.COLLECTIBLE_MINDS_EYE = Isaac.GetItemIdByName("Mind's Eye")
+ToyboxMod.COLLECTIBLE_MINDFLAYER_BABY = Isaac.GetItemIdByName("Flayer Baby")
 
 --- MAYAN SIGNS
 ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT = Isaac.GetItemIdByName("Chicchan")
@@ -202,6 +207,7 @@ ToyboxMod.COLLECTIBLE_IMIX_CROCODILE = Isaac.GetItemIdByName("Imix")
 ToyboxMod.COLLECTIBLE_CIB_VULTURE = Isaac.GetItemIdByName("Cib")
 ToyboxMod.COLLECTIBLE_MEN_EAGLE = Isaac.GetItemIdByName("Men")
 ToyboxMod.COLLECTIBLE_CABAN_EARTH = Isaac.GetItemIdByName("Caban")
+ToyboxMod.COLLECTIBLE_LAMAT_RABBIT = Isaac.GetItemIdByName("Lamat")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -330,6 +336,8 @@ ToyboxMod.FAMILIAR_DECOY = Isaac.GetEntityVariantByName("Cardboard Decoy") ---@t
 ToyboxMod.FAMILIAR_PAPER_PLATE = Isaac.GetEntityVariantByName("Paper Plate") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_WISE_MEN_STAR = Isaac.GetEntityVariantByName("Wise Men Star") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_TRINKET_WISP = Isaac.GetEntityVariantByName("Trinket Wisp Familiar") ---@type FamiliarVariant
+ToyboxMod.FAMILIAR_MINDS_EYE = Isaac.GetEntityVariantByName("Mind's Eye Follower") ---@type FamiliarVariant
+ToyboxMod.FAMILIAR_MINDFLAYER_BABY = Isaac.GetEntityVariantByName("Flayer Baby") ---@type FamiliarVariant
 
 ToyboxMod.BOMB_SLEEPY_TROLL_BOMB = Isaac.GetEntityVariantByName("Sleepy Troll Bomb") ---@type BombVariant
 
@@ -357,6 +365,7 @@ ToyboxMod.EFFECT_PIPE_SMOKE = Isaac.GetEntityVariantByName("Pipe Smoke") ---@typ
 ToyboxMod.EFFECT_PIPE_BOOMERANG = Isaac.GetEntityVariantByName("Pipe Boomerang") ---@type EffectVariant
 ToyboxMod.EFFECT_TEMPLE_SLAB = Isaac.GetEntityVariantByName("Temple Slab") ---@type EffectVariant
 ToyboxMod.EFFECT_BLOOD_COLLECT = Isaac.GetEntityVariantByName("Blood Coin Collect") ---@type EffectVariant
+ToyboxMod.EFFECT_MINDS_EYE = Isaac.GetEntityVariantByName("Watching Eye") ---@type EffectVariant
 
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant
@@ -430,6 +439,7 @@ ToyboxMod.SFX_RETRO_UPGRADE = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Upgrad
 ToyboxMod.SFX_RETRO_FAIL = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Fail")
 ToyboxMod.SFX_MP3_PLAYER = Isaac.GetSoundIdByName("(TOYBOX) MP3 Player")
 ToyboxMod.SFX_EVIL = Isaac.GetSoundIdByName("(TOYBOX) Evil Sound")
+ToyboxMod.SFX_REWIND = Isaac.GetSoundIdByName("(TOYBOX) Rewind")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then
@@ -464,6 +474,7 @@ ToyboxMod.EFFECT_AURA_BOMB_BLESSED = Isaac.GetEntitySubTypeByName("Bomb Blessed 
 ToyboxMod.EFFECT_AURA_DARK_MANTLE = Isaac.GetEntitySubTypeByName("Dark Mantle Aura")
 ToyboxMod.EFFECT_AURA_HOLY_MANTLE = Isaac.GetEntitySubTypeByName("Holy Mantle Aura")
 ToyboxMod.EFFECT_AURA_44 = Isaac.GetEntitySubTypeByName("4 4 Aura")
+ToyboxMod.EFFECT_AURA_MINDFLAYER = Isaac.GetEntitySubTypeByName("Mindflayer Aura")
 
 ToyboxMod.GRID_COPPER_POOP = Isaac.GetEntitySubTypeByName("Copper Poop")
 ToyboxMod.GRID_PLAYERONLY_BLOCK = Isaac.GetEntitySubTypeByName("Player-Only Block")

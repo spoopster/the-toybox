@@ -45,7 +45,8 @@
 
 		items="40"
 		heartcontainers="6" redhearts="6"
-		hidden="true"
+		damagemodifier="-1"
+		shotspeedmodifier="-0.2"
 	/>
 
 

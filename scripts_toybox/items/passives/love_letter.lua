@@ -1,7 +1,4 @@
-
 local sfx = SFXManager()
-
-
 
 local CHARM_CHANCE = 0.1
 local CHARM_STACKCHANCE = 0.05

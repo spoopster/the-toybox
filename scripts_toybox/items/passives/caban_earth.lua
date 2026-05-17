@@ -1,7 +1,7 @@
 local VALID_ROOMTYPES = {
     [RoomType.ROOM_TREASURE] = true,
     [RoomType.ROOM_SHOP] = true,
-    [RoomType.ROOM_SECRET] = true,
+    --[RoomType.ROOM_SECRET] = true, -- nah thats wack
     [RoomType.ROOM_ANGEL] = true,
     [RoomType.ROOM_DEVIL] = true,
 }
