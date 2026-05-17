@@ -393,18 +393,10 @@
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
-    <entity name="Toybox Random Mantle"
-        id="5" variant="603" subtype="0" anm2path="pickups/card_mantle_rock.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="15"
-        numGridCollisionPoints="12" shadowSize="22" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity name="Toybox Random Mantle (No Bias)"
-        id="5" variant="603" subtype="1" anm2path="pickups/card_mantle_rock.anm2" friction="1"
-        baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="15"
-        numGridCollisionPoints="12" shadowSize="22" stageHP="0">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
+    <entity name="Toybox Random Mantle"             id="5" variant="603" subtype="0" />
+    <entity name="Toybox Random Mantle (No Bias)"   id="5" variant="603" subtype="1" />
+    <entity name="Toybox Random Alt Tarot Card"     id="5" variant="603" subtype="2" />
+    <entity name="Toybox Random Yu-Gi-Oh! Card"     id="5" variant="603" subtype="3" />
 
     <entity name="Toybox Card Spawner"
         id="5" variant="604" anm2path="pickups/card_mantle_rock.anm2" friction="1"

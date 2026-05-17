@@ -3526,6 +3526,21 @@ enums.FUNCTIONS.AddPlayer({
     }
 })
 
+enums.FUNCTIONS.AddPlayer({
+    ID = ToyboxMod.PLAYER_BANDIT_A,
+    Name = "Bandit",
+    Description = {
+        "{{Bomb}} If you have bombs, shooting will consume a bomb and increase the damage and radius of the fired bomb",
+        "Bombs may replace coins, hearts, and keys",
+        "{{Collectible40}} Kamikaze! damages red hearts first"
+    },
+    BirthrightDescription = {
+        "{{Bomb}} +3 Bombs",
+        "{{Bomb}} All items grant +3 Bombs on pickup",
+        "{{Collectible563}} Bomb-buffed shots will have random bomb modifiers"
+    }
+})
+
 
 --- GLOBALS ---
 

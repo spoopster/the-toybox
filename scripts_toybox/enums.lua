@@ -392,6 +392,8 @@ ToyboxMod.PICKUP_COIN_INK_5 = Isaac.GetEntitySubTypeByName("Ink (5)") ---@type C
 
 ToyboxMod.PICKUP_RANDOM_MANTLE = Isaac.GetEntitySubTypeByName("Toybox Random Mantle")
 ToyboxMod.PICKUP_RANDOM_MANTLE_NOBIAS = Isaac.GetEntitySubTypeByName("Toybox Random Mantle (No Bias)")
+ToyboxMod.PICKUP_RANDOM_ALT_TAROT = Isaac.GetEntitySubTypeByName("Toybox Random Alt Tarot Card")
+ToyboxMod.PICKUP_RANDOM_YU_GI_OH = Isaac.GetEntitySubTypeByName("Toybox Random Yu-Gi-Oh! Card")
 
 ToyboxMod.TEARFLAGS = {
     PLASMA = 1<<0,

@@ -149,6 +149,7 @@ EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_ATLAS_A), "Players", 0, 16, 16, 
 EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_ATLAS_A_TAR), "Players", 1, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_JONAS_A), "Players", 2, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_MILCOM_A), "Players", 3, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Player"..tostring(ToyboxMod.PLAYER_BANDIT_A), "Players", 4, 16, 16, 0, 0, iconSprite)
 
 --- TRANSFORMATIONS (MANTLE)
 EID:addIcon("ToyboxIconRockTransformation", "MantleTransformations", 0, 16, 16, 0, 0, iconSprite)

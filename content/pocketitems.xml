@@ -1,5 +1,15 @@
 <pocketitems>
 <!-- CARDS -->
+    <card id="300" name="Toybox Consumable Picker"
+        description="You probably shouldn't have this"
+        hud="VIIIS - The Baron"
+        type="otherstuff"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+
     <card id="0" name="Prismstone"
         description="Draw 3, discard 2"
         hud="Prismstone"
@@ -20,6 +30,7 @@
 
         achievement="Foil Card"
     />
+
     <card id="2" name="Alien Mind"
         description="Take control"
         hud="Alien Mind"
@@ -27,6 +38,7 @@
         pickup="2802"
 
         mimiccharge="1"
+        weight="0"
     />
     <card id="3" name="Poison Rain"
         description="Pouring acid"
@@ -35,6 +47,7 @@
         pickup="2802"
 
         mimiccharge="1"
+        weight="0"
     />
     <card id="4" name="4-Starred Ladybug"
         description="Doomsday clock"
@@ -43,6 +56,7 @@
         pickup="2802"
 
         mimiccharge="1"
+        weight="0"
     />
     <card id="5" name="Talisman"
         description="---"
@@ -51,6 +65,7 @@
         pickup="2803"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
     <card id="6" name="Grim"
@@ -60,6 +75,7 @@
         pickup="2803"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
     <card id="7" name="Familiar"
@@ -69,6 +85,7 @@
         pickup="2803"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
     <card id="8" name="Sigil"
@@ -78,6 +95,7 @@
         pickup="2803"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
     <card id="9" name="Ectoplasm"
@@ -87,6 +105,7 @@
         pickup="2803"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
     <card id="10" name="Trance"
@@ -96,7 +115,7 @@
         pickup="2803"
 
         mimiccharge="1"
-
+        weight="0"
         hidden="true"
     />
     <card id="11" name="Deja Vu"
@@ -106,6 +125,7 @@
         pickup="2803"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
     <card id="12" name="Dark Explosion"
@@ -115,6 +135,7 @@
         pickup="2802"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
     <card id="13" name="Endless Chaos"
@@ -124,6 +145,7 @@
         pickup="2802"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
     <card id="14" name="Chain Reaction"
@@ -133,8 +155,10 @@
         pickup="2802"
 
         mimiccharge="1"
+        weight="0"
         hidden="true"
     />
+
     <card id="15" name="Green Apple"
         description="Transformation booster"
         hud="Green Apple"
@@ -145,6 +169,7 @@
 
         achievement="Green Apple"
     />
+
     <card id="16" name="S - The Wise Men"
         description="Follow the star"
         hud="S - The Wise Men"
@@ -152,6 +177,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
     <card id="17" name="IS - The Angel"
         description="Soar above the clouds"
@@ -160,6 +186,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
     <card id="18" name="IIS - The Gate"
         description="Master key"
@@ -168,6 +195,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
     <card id="19" name="IIIS - Apocalypse"
         description="The end is nigh"
@@ -176,6 +204,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
     <card id="20" name="IVS - The Crypt"
         description="Beyond the veil"
@@ -184,6 +213,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
     <card id="21" name="VS - The Reaper"
         description="Black death"
@@ -192,6 +222,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
     <card id="22" name="VIS - The Dragon"
         description="There be treasure"
@@ -200,6 +231,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
     <card id="23" name="VIIS - Duality"
         description="Pick and choose"
@@ -208,6 +240,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
     <card id="24" name="VIIIS - The Baron"
         description="A capital investment"
@@ -216,6 +249,7 @@
         pickup="2805"
 
         mimiccharge="12"
+        weight="0"
     />
 
 <!-- RUNES / SOUL STONES -->
@@ -227,54 +261,72 @@
         hud="Mantle - Rock"
         type="object"
         pickup="2837"
+
+        weight="0"
     />
 	<card id="201" name="Mantle - Poop"
         description="..."
         hud="Mantle - Poop"
         type="object"
         pickup="2838"
+
+        weight="0"
     />
     <card id="202" name="Mantle - Bone"
         description="..."
         hud="Mantle - Bone"
         type="object"
         pickup="2839"
+
+        weight="0"
     />
     <card id="203" name="Mantle - Dark"
         description="..."
         hud="Mantle - Dark"
         type="object"
         pickup="2840"
+
+        weight="0"
     />
     <card id="204" name="Mantle - Holy"
         description="..."
         hud="Mantle - Holy"
         type="object"
         pickup="2841"
+
+        weight="0"
     />
     <card id="205" name="Mantle - Salt"
         description="..."
         hud="Mantle - Salt"
         type="object"
         pickup="2842"
+
+        weight="0"
     />
     <card id="206" name="Mantle - Glass"
         description="..."
         hud="Mantle - Glass"
         type="object"
         pickup="2843"
+
+        weight="0"
     />
     <card id="207" name="Mantle - Metal"
         description="..."
         hud="Mantle - Metal"
         type="object"
         pickup="2844"
+
+        weight="0"
     />
     <card id="208" name="Mantle - Gold"
         description="..."
         hud="Mantle - Gold"
         type="object"
         pickup="2845"
+
+        weight="0"
     />
 
     <card id="209" name="Laurel"
@@ -282,12 +334,16 @@
         hud="Laurel"
         type="object"
         pickup="2846"
+
+        weight="0"
     />
     <card id="210" name="Yanny"
         description="Punish them all"
         hud="Yanny"
         type="object"
         pickup="6482"
+
+        weight="0"
     />
 
 <!-- PILLS -->

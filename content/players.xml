@@ -44,7 +44,7 @@
 		costumeSuffix="jonas_a" skinColor="5"
 
 		items="40"
-		heartcontainers="6" redhearts="6"
+		heartcontainers="4" redhearts="4" soulhearts="2"
 		damagemodifier="-1"
 		shotspeedmodifier="-0.2"
 	/>

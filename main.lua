@@ -84,7 +84,7 @@ include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")
 include("scripts_toybox.misc.tinted_rooms.minimap_logic")
 include("scripts_toybox.misc.tinted_rooms.room_effects")
 
-include("scripts_toybox.misc.consumable_weights")
+include("scripts_toybox.misc.custom_card_pool")
 include("scripts_toybox.misc.golden_key_logic")
 include("scripts_toybox.misc.golden_bomb_logic")
 
@@ -1065,4 +1065,34 @@ local function prePlayerRender(_, pl, offset)
     pl:GetSprite().Scale = Vector(1,1)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_RENDER, prePlayerRender)
+--]]
+
+--[[
+local results = {}
+
+function ToyboxMod:trySpawnCard()
+    local card = Isaac.Spawn(5,300,0,Vector(200,200),Vector.Zero,nil):ToPickup()
+
+    local id = card.SubType
+    local conf = Isaac.GetItemConfig():GetCard(id)
+    if(conf and conf.CardType) then
+        results[conf.CardType] = (results[conf.CardType] or 0)+1
+    end
+
+    card:Remove()
+end
+
+function ToyboxMod:printResults()
+    for i, val in pairs(results) do
+        local finalkey = nil
+        for key, id in pairs(ItemConfig) do
+            if(string.find(key, "CARDTYPE_") and i==id) then
+                finalkey = key
+                break
+            end
+        end
+
+        print(finalkey, ":", val)
+    end
+end
 --]]

@@ -45,48 +45,23 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		local optionID = getOptionID("MantleWeight")
 
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
-			"Mantle Weight"
+			"Custom Consumable Chance"
 		)
-		ImGui.AddSliderFloat("ToyboxOptionsWindow", optionID, "", nil, 0.5, 0, 2, "%.1f")
+		ImGui.AddSliderFloat("ToyboxOptionsWindow", optionID, "", nil, 0.1, 0, 1, "%.1f")
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.MANTLE_WEIGHT)
+				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.CUSTOM_CARD_POOL_CHANCE)
 			end
 		)
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Edited,
 			function(v)
-				ToyboxMod.CONFIG.MANTLE_WEIGHT = v
+				ToyboxMod.CONFIG.CUSTOM_CARD_POOL_CHANCE = v
 			end
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-			"The weight of Mantle consumables"
-		)
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
-	end
-
-	do -- MANTLE WEIGHT
-		local optionID = getOptionID("AltTarotWeight")
-
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
-			"Alt Tarots Weight"
-		)
-		ImGui.AddSliderFloat("ToyboxOptionsWindow", optionID, "", nil, 0.5, 0, 2, "%.1f")
-		ImGui.AddCallback(optionID,
-			ImGuiCallback.Render,
-			function()
-				ImGui.UpdateData(optionID, ImGuiData.Value, ToyboxMod.CONFIG.ALT_TAROT_WEIGHT)
-			end
-		)
-		ImGui.AddCallback(optionID,
-			ImGuiCallback.Edited,
-			function(v)
-				ToyboxMod.CONFIG.ALT_TAROT_WEIGHT = v
-			end
-		)
-		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.TextWrapped,
-			"The weight of Alt Tarot cards"
+			"Chance for a custom Toybox consumable set (Mantles, Alt Tarots, Science) to replace regular consumables."
 		)
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Separator)
 	end
