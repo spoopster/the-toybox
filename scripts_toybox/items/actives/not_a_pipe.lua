@@ -117,7 +117,7 @@ local function pipeUpdate(_, effect)
         smoke.SpriteScale = smoke.SpriteScale*0.7
         smoke.CollisionDamage = smoke.CollisionDamage*0.5
 
-        smoke:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
+        smoke:GetSprite():SetCustomShader("shaders_tb/pixelate")
     end
 
     if(not effect.SpawnerEntity) then return end

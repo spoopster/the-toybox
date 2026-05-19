@@ -27,7 +27,7 @@ local JUICE_PARTICLE_INITARC = 25
 
 local juiceSprite = Sprite("gfx_tb/effects/effect_juice.anm2")
 juiceSprite:Play("Idle", true)
-juiceSprite:GetLayer("main"):SetCustomShader("spriteshaders/rainbowshader")
+juiceSprite:GetLayer("main"):SetCustomShader("shaders_tb/rainbowshader")
 
 local juiceFrameThresholds = {
     [0] = 7,
@@ -310,7 +310,7 @@ local function postSlotInit(_, slot)
     slot:SetSize(slot.Size, Vector(2,1)*slot.SizeMulti, 24)
 
     local sp = slot:GetSprite()
-    sp:GetLayer("juice"):SetCustomShader("spriteshaders/rainbowshader")
+    sp:GetLayer("juice"):SetCustomShader("shaders_tb/rainbowshader")
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, postSlotInit, ToyboxMod.SLOT_JUICE_FOUNTAIN)
 

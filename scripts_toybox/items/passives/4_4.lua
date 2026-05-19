@@ -21,7 +21,7 @@ local function confuseNearbyEnemies(_, pl)
         aura.Scale = CONFUSE_RADIUS/40
         aura.SpriteScale = aura.SpriteScale*aura.Scale
 
-        aura:GetSprite():SetCustomShader("spriteshaders/44shader")
+        aura:GetSprite():SetCustomShader("shaders_tb/44")
 
         data.FOURFOUR_AURA = aura
     end

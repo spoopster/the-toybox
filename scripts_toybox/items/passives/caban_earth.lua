@@ -62,7 +62,7 @@ local function postCabanPickupInit(_, pickup)
     sp:ReplaceSpritesheet(5, "gfx_tb/pickups/pickup_caban_altar.png", true)
 
     if(tryInvalidate and not pickup.Touched) then
-        sp:GetLayer("head"):SetCustomShader("spriteshaders/earthshader")
+        sp:GetLayer("head"):SetCustomShader("shaders_tb/earth")
         sp:Stop()
         sp:SetFrame(0)
 

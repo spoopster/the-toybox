@@ -344,7 +344,7 @@ local function shadowFamiliarUpdate(_, fam)
             particle.DepthOffset = -1000
             particle.Color = Color(0,0,0,1,0,0,0,2)
             particle.SpriteScale = Vector(1,1)*0.5
-            particle:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
+            particle:GetSprite():SetCustomShader("shaders_tb/pixelate")
 
             if(fam.SubType==ToyboxMod.FAMILIAR_MASK_SHADOW_CRAWLER) then
                 particle.SpriteOffset = Vector(0,7)

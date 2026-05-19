@@ -50,7 +50,7 @@ local function postHypnosInit(_, familiar)
     local sprite = familiar:GetSprite()
     sprite:Play("Idle", true)
     sprite.Offset = Vector(0, -22)
-    sprite:GetLayer("goozma"):SetCustomShader("spriteshaders/goozmashader")
+    sprite:GetLayer("goozma"):SetCustomShader("shaders_tb/goozmashader")
 
     local data = ToyboxMod:getEntityDataTable(familiar)
     data.BRAIN_ANGLE = 0

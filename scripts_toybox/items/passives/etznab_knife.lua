@@ -89,7 +89,7 @@ local function giveBloodCoin(_, npc)
             local particle = Isaac.Spawn(1000,111,0,pos,Vector.Zero,nil):ToEffect()
             particle.SpriteScale = Vector.One*((1-pos:Distance(pl.Position)/maxdist)*0.6+0.1)
             particle.Color = Color(0,0,0,1,200/255,0,0,2)
-            particle:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
+            particle:GetSprite():SetCustomShader("shaders_tb/pixelate")
 
             pos = pos+dir*20
         end
@@ -100,7 +100,7 @@ local function giveBloodCoin(_, npc)
         poof.SpriteScale = Vector(1,1)*0.5
         poof.Color = Color(0,0,0,1,200/255,0,0,2)
         poof:GetSprite().PlaybackSpeed = 1.25
-        poof:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
+        poof:GetSprite():SetCustomShader("shaders_tb/pixelate")
 
         sfx:Play(SoundEffect.SOUND_PENNYPICKUP,nil,nil,nil,0.7)
         sfx:Play(SoundEffect.SOUND_MEAT_JUMPS)

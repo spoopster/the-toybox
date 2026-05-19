@@ -27,12 +27,12 @@ local function updatePlayerHit(_, pl)
         local poof1 = Isaac.Spawn(1000,16,3,pl.Position,Vector.Zero,nil)
         poof1.SpriteScale = Vector(1,1)*0.75
         poof1.Color = Color(1,1,1,1,0.3,0,0,1/0.75)
-        poof1:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
+        poof1:GetSprite():SetCustomShader("shaders_tb/pixelate")
 
         local poof2 = Isaac.Spawn(1000,16,4,pl.Position,Vector.Zero,nil)
         poof2.SpriteScale = Vector(1,1)*0.75
         poof2.Color = Color(1,1,1,1,0.3,0,0,1/0.75)
-        poof2:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
+        poof2:GetSprite():SetCustomShader("shaders_tb/pixelate")
 
         --sfx:Play(SoundEffect.SOUND_MAGGOT_BURST_OUT)
         sfx:Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
@@ -67,7 +67,7 @@ local function eyeFamiliarInit(_, fam)
 
     fam.SpriteOffset = EYE_OFFSET
     local sp = fam:GetSprite()
-    sp:SetCustomShader("spriteshaders/sphereshader")
+    sp:SetCustomShader("shaders_tb/sphere")
     sp:Play("Idle", true)
     sp.Color = Color(1,1,1, 1, 0,0,0, 20, 90, 0, (fam:GetMultiplier()>1 and 5 or 7.9))
 end
@@ -213,7 +213,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, eyeFamiliarUpdate, Toybox
 local function eyeEffectInit(_, effect)
     local sp = effect:GetSprite()
     sp:Play("Aura", true)
-    sp:SetCustomShader("spriteshaders/eyeshader")
+    sp:SetCustomShader("shaders_tb/eye")
 
     effect.DepthOffset = -1000
 

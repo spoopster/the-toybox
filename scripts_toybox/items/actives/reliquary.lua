@@ -122,7 +122,7 @@ local function trinketWispInit(_, familiar)
                 layer:SetColor(Color((73/231)^0.8,1,(62/231)^0.8,0.9))
                 layer:GetBlendMode():SetMode(BlendType.ADDITIVE)
 
-                layer:SetCustomShader("spriteshaders/wispshader")
+                layer:SetCustomShader("shaders_tb/wisp")
             end
         end
     else

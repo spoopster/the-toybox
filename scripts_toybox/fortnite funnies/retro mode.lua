@@ -2,7 +2,7 @@
 
 local function makeItemRetro(_, pickup)
     if(ToyboxMod.CONFIG.EPIC_ITEM_MODE==1) then
-        pickup:GetSprite():GetLayer("head"):SetCustomShader("spriteshaders/hologramshader")
+        pickup:GetSprite():GetLayer("head"):SetCustomShader("shaders_tb/hologram")
         ToyboxMod:setEntityData(pickup, "PREFERREDOPTIONS_HOLOGRAM", 1)
     end
 end

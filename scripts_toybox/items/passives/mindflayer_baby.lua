@@ -88,7 +88,7 @@ local function mindflayerBabyUpdate(_, fam)
 
         aura:GetSprite():GetLayer(0):GetBlendMode():SetMode(BlendType.OVERLAY)
         aura:GetSprite():Play("Appear", true)
-        aura:GetSprite():SetCustomShader("spriteshaders/flayershader")
+        aura:GetSprite():SetCustomShader("shaders_tb/flayer")
 
         ToyboxMod:setEntityData(fam, "MINDFLAYER_AURA", aura)
     end

@@ -40,7 +40,7 @@ local function tryUseHeldCandle(_, player)
         dir = dir+player:GetTearMovementInheritance(dir)
 
         local smoke = Isaac.Spawn(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_PIPE_SMOKE, 0, player.Position, dir, player):ToEffect()
-        smoke:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
+        smoke:GetSprite():SetCustomShader("shaders_tb/pixelate")
 
         player:DischargeActiveItem(ActiveSlot.SLOT_PRIMARY)
         player:AnimateCollectible(ToyboxMod.COLLECTIBLE_DADS_PIPE, "HideItem")

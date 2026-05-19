@@ -51,7 +51,7 @@ local function healOnBleedKill(_, npc)
                 local particle = Isaac.Spawn(1000,111,0,pos,Vector.Zero,nil):ToEffect()
                 particle.SpriteScale = Vector.One*((1-pos:Distance(pl.Position)/maxdist)*0.6+0.1)
                 particle.Color = Color(0,0,0,1,200/255,0,0,2)
-                particle:GetSprite():SetCustomShader("spriteshaders/pixelateshader")
+                particle:GetSprite():SetCustomShader("shaders_tb/pixelate")
 
                 pos = pos+dir*20
             end

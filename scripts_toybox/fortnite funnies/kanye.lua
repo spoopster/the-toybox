@@ -19,7 +19,7 @@ local function kanyeInit(_, effect)
     effect.SpriteOffset = Vector(0, -27)
 
     local sp = effect:GetSprite()
-    sp:SetCustomShader("spriteshaders/sphereshader")
+    sp:SetCustomShader("shaders_tb/sphere")
     sp:Play("Idle", true)
     sp.Color = Color(1,0,0,1,0,0,0, 20, ((Game():GetFrameCount()/KANYE_SPIN_FREQ)%1)*360, 0)
 end
