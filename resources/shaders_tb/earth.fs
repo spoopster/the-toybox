@@ -16,25 +16,25 @@ uniform sampler2D Texture0;
 #define MM 0
 
 lowp float ofs = 0.5;
-int FAULT = 1;                 // 0: crest 1: fault
+lowp int FAULT = 1;                 // 0: crest 1: fault
 
 lowp float RATIO = 0.8,              // stone length/width ratio
- /*   STONE_slope = .3,        // 0.  .3  .3  -.3
-      STONE_height = 1.,       // 1.  1.  .6   .7
-      profile = 1.,            // z = height + slope * dist ^ prof
+ /*   STONE_slope = 0.3,        // 0.  .3  .3  -.3
+      STONE_height = 1.0,       // 1.  1.  .6   .7
+      profile = 1.0,            // z = height + slope * dist ^ prof
  */   
-      CRACK_depth = 1.,
-      CRACK_zebra_scale = .5,  // fractal shape of the fault zebra
-      CRACK_zebra_amp = .5,
+      CRACK_depth = 1.0,
+      CRACK_zebra_scale = 0.5,  // fractal shape of the fault zebra
+      CRACK_zebra_amp = 0.5,
       CRACK_profile = 1.25,      // fault vertical shape  1.  .2 
-      CRACK_slope = 80.,       //                      10.  1.4
-      CRACK_width = .0;
+      CRACK_slope = 80.0,       //                      10.  1.4
+      CRACK_width = 0.0;
     
 // === Voronoi =====================================================
 // --- Base Voronoi. inspired by https://www.shadertoy.com/view/MslGD8
 
 #define hash22(p)  fract( 18.5453 * sin( p * mat2(127.1,311.7,269.5,183.3)) )
-#define disp(p) ( -ofs + (1.+2.*ofs) * hash22(p) )
+#define disp(p) ( -ofs + (1.0+2.0*ofs) * hash22(p) )
 
 lowp vec3 voronoi( lowp vec2 u )  // returns len + id
 {
@@ -42,7 +42,7 @@ lowp vec3 voronoi( lowp vec2 u )  // returns len + id
 	lowp float m = 1e9,d;
 
     for( int k=0; k < 25; k++ ) {
-        lowp vec2 p = iu + vec2(int(mod(float(k),5.))-2,k/5-2),
+        lowp vec2 p = iu + vec2(int(mod(float(k),5.0))-2,k/5-2),
             o = disp(p),
       	      r = p - u + o;
 		d = dot(r,r);
@@ -58,7 +58,7 @@ lowp vec3 voronoiB( lowp vec2 u )  // returns len + id
     lowp vec2 iu = floor(u), C, P;
 	lowp float m = 1e9,d;
     for( int k=0; k < 25; k++ ) {
-        lowp vec2  p = iu + vec2(int(mod(float(k),5.))-2,k/5-2),
+        lowp vec2  p = iu + vec2(int(mod(float(k),5.0))-2,k/5-2),
               o = disp(p),
       	      r = p - u + o;
 		d = dot(r,r);
@@ -68,12 +68,12 @@ lowp vec3 voronoiB( lowp vec2 u )  // returns len + id
     m = 1e9;
     
     for( int k=0; k < 25; k++ ) {
-        lowp vec2 p = iu+C + vec2(int(mod(float(k),5.))-2,k/5-2),
+        lowp vec2 p = iu+C + vec2(int(mod(float(k),5.0))-2,k/5-2),
 		     o = disp(p),
              r = p-u + o;
 
         if( dot(P-r,P-r)>1e-5 )
-        m = min( m, .5*dot( (P+r), normalize(r-P) ) );
+        m = min( m, 0.5*dot( (P+r), normalize(r-P) ) );
     }
 
     return vec3( m, P+u );
@@ -87,21 +87,21 @@ int MOD = 1;  // type of Perlin noise
 #define hash21(p) fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123)
 lowp float noise2(lowp vec2 p) {
     lowp vec2 i = floor(p);
-    lowp vec2 f = fract(p); f = f*f*(3.-2.*f); // smoothstep
+    lowp vec2 f = fract(p); f = f*f*(3.0-2.0*f); // smoothstep
 
     lowp float v= mix( mix(hash21(i+vec2(0,0)),hash21(i+vec2(1,0)),f.x),
                   mix(hash21(i+vec2(0,1)),hash21(i+vec2(1,1)),f.x), f.y);
 	return   MOD==0 ? v
-	       : MOD==1 ? 2.*v-1.
-           : MOD==2 ? abs(2.*v-1.)
-                    : 1.-abs(2.*v-1.);
+	       : MOD==1 ? 2.0*v-1.0
+           : MOD==2 ? abs(2.0*v-1.0)
+                    : 1.0-abs(2.0*v-1.0);
 }
 
 lowp float fbm2(lowp vec2 p) {
-    lowp float v = 0.,  a = .5;
-    lowp mat2 R = rot(.37);
+    lowp float v = 0.0, a = 0.5;
+    lowp mat2 R = rot(0.37);
 
-    for (int i = 0; i < 9; i++, p*=2.,a/=2.) 
+    for (int i = 0; i < 9; i++, p*=2.0,a/=2.0) 
         p *= R,
         v += a * noise2(p);
 
@@ -109,27 +109,27 @@ lowp float fbm2(lowp vec2 p) {
 }
 #define noise22(p) vec2(noise2(p),noise2(p+17.7))
 lowp vec2 fbm22(lowp vec2 p) {
-    lowp vec2 v = vec2(0);
-    lowp float a = .5;
-    lowp mat2 R = rot(.37);
+    lowp vec2 v = vec2(0.0,0.0);
+    lowp float a = 0.5;
+    lowp mat2 R = rot(0.37);
 
-    for (int i = 0; i < 6; i++, p*=2.,a/=2.) 
+    for (int i = 0; i < 6; i++, p*=2.0,a/=2.0) 
         p *= R,
         v += a * noise22(p);
 
     return v;
 }
 lowp vec2 mfbm22(lowp vec2 p) {  // multifractal fbm 
-    lowp vec2 v = vec2(1);
-    lowp float a = .5;
-    lowp mat2 R = rot(.37);
+    lowp vec2 v = vec2(1.0, 1.0);
+    lowp float a = 0.5;
+    lowp mat2 R = rot(0.37);
 
-    for (int i = 0; i < 6; i++, p*=2.,a/=2.) 
+    for (int i = 0; i < 6; i++, p*=2.0,a/=2.0) 
         p *= R,
-        //v *= 1.+noise22(p);
+        //v *= 1.0+noise22(p);
           v += v * a * noise22(p);
 
-    return v-1.;
+    return v-1.0;
 }
 
 lowp vec3 rgbToHsl(lowp vec3 color)
@@ -175,7 +175,7 @@ void main(void)
     lowp vec4 texColor = Color0 * texture2D(Texture0, PixelationAmountOut > 0.0 ? TexCoord0 - mod(TexCoord0, pa) + pa * 0.5 : TexCoord0);
     lowp float time = ColorizeOut.r+0.0;
 
-    lowp vec2 newCoord = TexCoord0+vec2(time*10.,0.0);
+    lowp vec2 newCoord = TexCoord0+vec2(time*10.0,0.0);
     lowp float pixelscale = 1.0;
     newCoord = floor(newCoord*TextureSizeOut.xy/pixelscale)*pixelscale/TextureSizeOut.xy;
 
@@ -194,14 +194,14 @@ void main(void)
     lowp vec3 H0;
     lowp vec4 crackColor;
 
-    for(lowp float i=0.; i<CRACK_depth ; i++) {
+    for(lowp float i=0.0; i<CRACK_depth ; i++) {
         lowp vec2 V =  newCoord / vec2(RATIO,1),
              D = CRACK_zebra_amp * fbm22(newCoord/CRACK_zebra_scale) * CRACK_zebra_scale;
-        lowp vec3  H = voronoiB( V + D ); if (i==0.) H0=H;
+        lowp vec3  H = voronoiB( V + D ); if (i==0.0) H0=H;
         lowp float d = H.x;
-        d = min( 1., CRACK_slope * pow(max(0.,d-CRACK_width),CRACK_profile) );
+        d = min( 1.0, CRACK_slope * pow(max(0.0,d-CRACK_width),CRACK_profile) );
   
-        crackColor += vec4(1.-d) / exp2(i);
+        crackColor += vec4(1.0-d) / exp2(i);
     }
     crackColor.rgb = vec3(1.0,1.0,1.0)-crackColor.rgb;
     color.rgb *= crackColor.rgb;

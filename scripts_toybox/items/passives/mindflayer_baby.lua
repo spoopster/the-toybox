@@ -84,7 +84,7 @@ local function mindflayerBabyUpdate(_, fam)
 
         aura.Scale = desiredAuraScale/BASE_AURA_RADIUS
         aura.SpriteScale = Vector(1,1)*desiredAuraScale/(2*40)
-        aura.Color = Color(1,1,1,1,0,0,0,0,aura.Scale,aura.Position.X/1000, aura.Position.Y/1000)
+        aura.Color = Color(1,1,1,1,0,0,0,0,aura.Scale*BASE_AURA_RADIUS/(2*40),aura.Position.X/1000, aura.Position.Y/1000)
 
         aura:GetSprite():GetLayer(0):GetBlendMode():SetMode(BlendType.OVERLAY)
         aura:GetSprite():Play("Appear", true)
@@ -112,7 +112,7 @@ local function auraUpdate(_, effect)
     if(sp:GetAnimation()=="Idle") then
         alpha = alpha*(1+0.1*math.sin(math.rad(effect.FrameCount-sp:GetAnimationData("Appear"):GetLength())*15))
     end
-    effect.Color = Color(1,1,1,alpha,0,0,0, effect.FrameCount/30, effect.Scale, effect.Position.X/1000, effect.Position.Y/1000)
+    effect.Color = Color(1,1,1,alpha,0,0,0, effect.FrameCount/30, effect.Scale*BASE_AURA_RADIUS/(2*40), effect.Position.X/1000, effect.Position.Y/1000)
 
     if(sp:GetAnimation()=="Idle" and effect.FrameCount%2==0) then
         for _, ent in ipairs(Isaac.FindInRadius(effect.Position, BASE_AURA_RADIUS*effect.Scale, EntityPartition.ENEMY)) do
