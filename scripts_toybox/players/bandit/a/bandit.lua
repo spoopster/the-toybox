@@ -110,12 +110,22 @@ local function pickupReplaceWithBombInit(_, pickup)
     if(pickup.Variant==PickupVariant.PICKUP_KEY) then
         local rng = ToyboxMod:generateRng(pickup.InitSeed)
         if(rng:RandomFloat()<KEY_REPLACE_CHANCE) then
+            local wasshop = pickup:IsShopItem()
+            local shopid = pickup.ShopItemId
             pickup:Morph(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_BOMB,0)
+            if(wasshop) then
+                pickup:MakeShopItem(shopid)
+            end
         end
     elseif(pickup.Variant==PickupVariant.PICKUP_COIN or pickup.Variant==PickupVariant.PICKUP_HEART) then
         local rng = ToyboxMod:generateRng(pickup.InitSeed)
         if(rng:RandomFloat()<COIN_HEART_REPLACE_CHANCE) then
+            local wasshop = pickup:IsShopItem()
+            local shopid = pickup.ShopItemId
             pickup:Morph(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_BOMB,0)
+            if(wasshop) then
+                pickup:MakeShopItem(shopid)
+            end
         end
     end
 end
