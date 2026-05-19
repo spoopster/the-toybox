@@ -88,6 +88,8 @@ function ToyboxMod:updateMantles(player)
             desiredHealth = desiredHealth+hpToAdd
         end
     end
+    if(player:GetMaxHearts()>0) then player:AddMaxHearts(-player:GetMaxHearts()) end
+    if(player:GetBoneHearts()<3) then player:AddBoneHearts(3-player:GetBoneHearts()) end
     player:AddHearts(desiredHealth-player:GetHearts())
     ToyboxMod.DONT_IGNORE_ATLAS_HEALING = false
 

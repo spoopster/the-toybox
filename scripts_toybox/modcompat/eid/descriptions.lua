@@ -1644,6 +1644,17 @@ enums.FUNCTIONS.AddItem({
         }
     }
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MULAC_WATER,
+    Name = "Mulac",
+    Description = {
+        "\1 +0.3 Speed",
+        "Fully clearing the floor (except the Secret and Boss rooms) grants the following:",
+        "{{Collectible185}} Dead Dove for the rest of the floor",
+        "{{AngelDevilChance}} +100% deal chance",
+        "{{Card81}} Triggers Soul of Isaac in the Devil/Angel Room",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

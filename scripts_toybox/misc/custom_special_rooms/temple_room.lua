@@ -1,7 +1,7 @@
 local sfx = SFXManager()
 
 local TEMPLE_ROOM_COUNT = 3
-local TEMPLE_CHANCE = 10.05
+local TEMPLE_CHANCE = 0.05
 
 ---@param rng RNG
 local function shouldMakeTemple(rng)

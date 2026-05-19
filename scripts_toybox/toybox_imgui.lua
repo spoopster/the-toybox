@@ -47,7 +47,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 		ImGui.AddElement("ToyboxOptionsWindow", "", ImGuiElement.Text,
 			"Custom Consumable Chance"
 		)
-		ImGui.AddSliderFloat("ToyboxOptionsWindow", optionID, "", nil, 0.1, 0, 1, "%.1f")
+		ImGui.AddSliderFloat("ToyboxOptionsWindow", optionID, "", nil, 0.15, 0, 1, "%.1f")
 		ImGui.AddCallback(optionID,
 			ImGuiCallback.Render,
 			function()

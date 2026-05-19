@@ -278,6 +278,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.men_eagle")
     include("scripts_toybox.items.passives.caban_earth")
     include("scripts_toybox.items.passives.lamat_rabbit")
+    include("scripts_toybox.items.passives.mulac_water")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -1096,3 +1097,40 @@ function ToyboxMod:printResults()
     end
 end
 --]]
+
+function ToyboxMod:printStatMults()
+    local pl = Isaac.GetPlayer()
+
+    local lowest = nil
+    local lowestStat = 10000000
+    local stats = {
+        {"SPEED", (pl.MoveSpeed/1.)^1.793},
+        {"FIRE RATE", ToyboxMod:toTps(pl.MaxFireDelay)/ToyboxMod:toTps(10.)},
+        {"DAMAGE", pl.Damage/3.5},
+        {"RANGE", pl.TearRange/(6.5*40)},
+        --{"SHOT SPEED", pl.ShotSpeed/1.},
+    }
+
+    print("STAT MULTS:")
+    for _, data in ipairs(stats) do
+        if(data[2]<lowestStat) then
+            lowest = data[1]
+            lowestStat = data[2]
+        end
+        print("    ", data[1]..":", data[2])
+    end
+    print("LOWEST STAT MULT:", lowest, "|", lowestStat)
+end
+
+function ToyboxMod:givePrizes(speed)
+    local pl = Isaac.GetPlayer()
+
+    for _=1, 5 do
+        pl:AddCollectible(CollectibleType.COLLECTIBLE_CONSOLATION_PRIZE)
+    end
+
+    pl.MoveSpeed = speed
+    ToyboxMod:printStatMults()
+
+    pl:AddCollectible(CollectibleType.COLLECTIBLE_CONSOLATION_PRIZE)
+end

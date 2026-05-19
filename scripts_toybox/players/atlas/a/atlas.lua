@@ -37,6 +37,17 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, postAtlasInit)
 
 ---@param player EntityPlayer
+local function postAtlasRevive(_, player)
+    if(not ToyboxMod:isAtlasA(player)) then return end
+    Isaac.CreateTimer(function()
+        if(player) then
+            ToyboxMod:updateMantles(player)
+        end
+    end,1,2,true)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_REVIVE, postAtlasRevive)
+
+---@param player EntityPlayer
 local function postAtlasUpdate(_, player)
     if(not ToyboxMod:isAtlasA(player)) then return end
     if(not (player:IsFootstepFrame(-1) and player.Velocity:Length()>1)) then return end

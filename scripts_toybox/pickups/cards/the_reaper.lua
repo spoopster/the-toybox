@@ -33,7 +33,6 @@ local function reaperUpdate(_)
             ent:TakeDamage(DAMAGE_DEALT, 0, EntityRef(rData[1]), 0)
             if(rData[2]==2) then
                 ent:AddWeakness(EntityRef(rData[1]), -DMG_INTERVAL)
-                
             else
                 local toAdd = math.max(0, DMG_INTERVAL-ent:GetSlowingCountdown())
                 ent:AddSlowing(EntityRef(rData[1]), toAdd, SLOW_INTENSITY, Color(1,1,1.3,1,0.16,0.16,0.16))
@@ -54,3 +53,8 @@ local function reaperUpdate(_)
     ToyboxMod:setExtraData("REAPER_DATA", rData)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, reaperUpdate)
+
+local function reaperNewRoom(_)
+    ToyboxMod:setExtraData("REAPER_DATA", nil)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, reaperNewRoom)

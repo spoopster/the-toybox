@@ -1,5 +1,8 @@
 local BOMB_MODIFIER_WEIGHT = 3
 
+local BUFFSHOT_DMG_MULT = 1.33
+local BUFFSHOT_EXTRA_DMG = 40
+
 local KEY_REPLACE_CHANCE = 0.2
 local COIN_HEART_REPLACE_CHANCE = 0.1
 
@@ -31,7 +34,7 @@ local function banditPostFireBomb(_, bomb)
     local pl = ToyboxMod:getPlayerFromEnt(bomb)
     if(pl and pl:GetPlayerType()==ToyboxMod.PLAYER_BANDIT_A) then
         if(pl:GetNumBombs()>0 or pl:HasGoldenBomb()) then
-            bomb.ExplosionDamage = bomb.ExplosionDamage*1.66
+            bomb.ExplosionDamage = bomb.ExplosionDamage*BUFFSHOT_DMG_MULT+BUFFSHOT_EXTRA_DMG
             bomb.RadiusMultiplier = bomb.RadiusMultiplier*1.25
             bomb:SetScale(bomb:GetScale()*1.25)
 

@@ -2,7 +2,7 @@
 local RANDOM_SELECTOR = WeightedOutcomePicker()
 RANDOM_SELECTOR:AddOutcomeFloat(ToyboxMod.PICKUP_RANDOM_MANTLE, 0.25, 100)
 RANDOM_SELECTOR:AddOutcomeFloat(ToyboxMod.PICKUP_RANDOM_ALT_TAROT, 1, 100)
-RANDOM_SELECTOR:AddOutcomeFloat(ToyboxMod.PICKUP_RANDOM_YU_GI_OH, 0.25, 100)
+RANDOM_SELECTOR:AddOutcomeFloat(ToyboxMod.PICKUP_RANDOM_YU_GI_OH, 0.15, 100)
 
 ---@param rng RNG
 ---@param onlyRunes boolean
