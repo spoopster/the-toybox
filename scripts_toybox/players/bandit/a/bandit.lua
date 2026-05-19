@@ -112,7 +112,7 @@ local function pickupReplaceWithBombInit(_, pickup)
         if(rng:RandomFloat()<KEY_REPLACE_CHANCE) then
             local wasshop = pickup:IsShopItem()
             local shopid = pickup.ShopItemId
-            pickup:Morph(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_BOMB,0)
+            pickup:Morph(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_BOMB,BombSubType.BOMB_NORMAL)
             if(wasshop) then
                 pickup:MakeShopItem(shopid)
             end
@@ -122,7 +122,7 @@ local function pickupReplaceWithBombInit(_, pickup)
         if(rng:RandomFloat()<COIN_HEART_REPLACE_CHANCE) then
             local wasshop = pickup:IsShopItem()
             local shopid = pickup.ShopItemId
-            pickup:Morph(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_BOMB,0)
+            pickup:Morph(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_BOMB,BombSubType.BOMB_NORMAL)
             if(wasshop) then
                 pickup:MakeShopItem(shopid)
             end
