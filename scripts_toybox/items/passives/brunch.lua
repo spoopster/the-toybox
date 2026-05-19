@@ -6,13 +6,13 @@ local function addBrunch(_, _, _, firstTime, _, _, pl)
     if(not firstTime) then return end
 
     pl:AddRottenHearts(2)
-    
+
     for _=1, NUM_LOCSTS do
         local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 2, pl.Position, Vector.Zero, pl):ToFamiliar()
         fly.Player = pl
-    end
 
-    fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+        fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addBrunch, ToyboxMod.COLLECTIBLE_BRUNCH)
 
