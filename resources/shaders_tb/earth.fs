@@ -56,7 +56,7 @@ lowp vec3 voronoi( lowp vec2 u )  // returns len + id
 lowp vec3 voronoiB( lowp vec2 u )  // returns len + id
 {
     lowp vec2 iu = floor(u), C, P;
-	lowp float m = 1e9,d;
+	lowp float m = float(1e9),d;
     for( int k=0; k < 25; k++ ) {
         lowp vec2  p = iu + vec2(int(mod(float(k),5.0))-2,k/5-2),
               o = disp(p),
@@ -65,14 +65,14 @@ lowp vec3 voronoiB( lowp vec2 u )  // returns len + id
         if( d < m ) m = d, C = p-iu, P = r;
     }
 
-    m = 1e9;
+    m = float(1e9);
     
     for( int k=0; k < 25; k++ ) {
         lowp vec2 p = iu+C + vec2(int(mod(float(k),5.0))-2,k/5-2),
 		     o = disp(p),
              r = p-u + o;
 
-        if( dot(P-r,P-r)>1e-5 )
+        if( dot(P-r,P-r)>0.00001 )
         m = min( m, 0.5*dot( (P+r), normalize(r-P) ) );
     }
 
@@ -89,8 +89,8 @@ lowp float noise2(lowp vec2 p) {
     lowp vec2 i = floor(p);
     lowp vec2 f = fract(p); f = f*f*(3.0-2.0*f); // smoothstep
 
-    lowp float v= mix( mix(hash21(i+vec2(0,0)),hash21(i+vec2(1,0)),f.x),
-                  mix(hash21(i+vec2(0,1)),hash21(i+vec2(1,1)),f.x), f.y);
+    lowp float v= mix( mix(hash21(i+vec2(0.0,0.0)),hash21(i+vec2(1.0,0.0)),f.x),
+                  mix(hash21(i+vec2(0.0,1.0)),hash21(i+vec2(1.0,1.0)),f.x), f.y);
 	return   MOD==0 ? v
 	       : MOD==1 ? 2.0*v-1.0
            : MOD==2 ? abs(2.0*v-1.0)
@@ -191,17 +191,17 @@ void main(void)
     color.rgb = hslToRgb(hsl);
     //color.g += 0.15;
 
-    lowp vec3 H0;
-    lowp vec4 crackColor;
+    lowp vec3 H0 = vec3(0.0,0.0,0.0);
+    lowp vec3 crackColor = vec3(0.0,0.0,0.0);
 
     for(lowp float i=0.0; i<CRACK_depth ; i++) {
-        lowp vec2 V =  newCoord / vec2(RATIO,1),
+        lowp vec2 V =  newCoord / vec2(RATIO,1.0),
              D = CRACK_zebra_amp * fbm22(newCoord/CRACK_zebra_scale) * CRACK_zebra_scale;
         lowp vec3  H = voronoiB( V + D ); if (i==0.0) H0=H;
         lowp float d = H.x;
         d = min( 1.0, CRACK_slope * pow(max(0.0,d-CRACK_width),CRACK_profile) );
   
-        crackColor += vec4(1.0-d) / exp2(i);
+        crackColor += vec3(1.0-d, 1.0-d, 1.0-d) / exp2(i);
     }
     crackColor.rgb = vec3(1.0,1.0,1.0)-crackColor.rgb;
     color.rgb *= crackColor.rgb;
