@@ -31,7 +31,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle)
 
 ---@param pickup EntityPickup
 local function tryReplaceCard(_, pickup, var, sub, rvar, rsub, rng)
-    if(not (var==PickupVariant.PICKUP_TAROTCARD and rvar==0 or rsub==0)) then return end
+    if(not (var==PickupVariant.PICKUP_TAROTCARD and (rvar==0 or rsub==0))) then return end
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE)) then return end
 
     if(not VALID_MANTLES[sub]) then
@@ -49,7 +49,7 @@ HudHelper.RegisterHUDElement({
     Priority = HudHelper.Priority.HIGH,
     Condition = function (player)
         if not player:HasCollectible(ToyboxMod.COLLECTIBLE_CONGLOMERATE) then return false end
-        local config = RunicTablet.Util:GetCardConfig(player:GetCard(0))
+        local config = Isaac.GetItemConfig():GetCard(player:GetCard(0))
         return config and config.ID > 0 and VALID_MANTLES[config.ID]
     end,
 	OnRender = function(player, _, layout, position, alpha, scale)

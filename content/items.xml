@@ -477,7 +477,7 @@
     tags="offensive nocantrip"
     cache=""
 
-    maxcharges="4"
+    maxcharges="6"
 />
 <passive id="50" name="Love Letter"
     description="Isaac from Hell"
