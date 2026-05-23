@@ -55,6 +55,9 @@ local function familiarFireProj(_, baseTear)
         newTear.KnockbackMultiplier = tear.KnockbackMultiplier * newTear.KnockbackMultiplier
 
         if(tear.Variant~=TearVariant.BLUE) then
+            if(tear.SubType~=0) then
+                newTear.SubType = tear.SubType
+            end
             newTear:ChangeVariant(tear.Variant)
         end
 

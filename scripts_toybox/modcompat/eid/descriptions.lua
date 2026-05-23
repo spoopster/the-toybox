@@ -1549,6 +1549,23 @@ enums.FUNCTIONS.AddItem({
         "\2 x0.6 Damage multiplier"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_YES_BABY,
+    Name = "Yes Baby",
+    Description = {
+        "Shoots a burst of 3 tears",
+        "Each tear deals 4.5 damage",
+    },
+    BFFSModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"3 tears", "4 tears"},
+                {"4.5", "9"},
+            },
+        },
+    },
+})
 
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT,

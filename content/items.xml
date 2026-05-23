@@ -1181,6 +1181,13 @@
     tags="offensive"
     cache=""
 />
+<familiar id="127" name="Yes Baby"
+    description="Oh yeah, baby!"
+    gfx="yes_baby.png"
+    quality="3"
+    tags="offensive"
+    cache=""
+/>
 
 <passive id="130" name="Chicchan"
     description="Survival instinct"

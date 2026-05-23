@@ -198,6 +198,7 @@ ToyboxMod.COLLECTIBLE_PROSPECTORS_PICK = Isaac.GetItemIdByName("Prospector Pick"
 ToyboxMod.COLLECTIBLE_Y2K = Isaac.GetItemIdByName("Y2K")
 ToyboxMod.COLLECTIBLE_MINDS_EYE = Isaac.GetItemIdByName("Mind's Eye")
 ToyboxMod.COLLECTIBLE_MINDFLAYER_BABY = Isaac.GetItemIdByName("Flayer Baby")
+ToyboxMod.COLLECTIBLE_YES_BABY = Isaac.GetItemIdByName("Yes Baby")
 
 --- MAYAN SIGNS
 ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT = Isaac.GetItemIdByName("Chicchan")
@@ -339,6 +340,7 @@ ToyboxMod.FAMILIAR_WISE_MEN_STAR = Isaac.GetEntityVariantByName("Wise Men Star")
 ToyboxMod.FAMILIAR_TRINKET_WISP = Isaac.GetEntityVariantByName("Trinket Wisp Familiar") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_MINDS_EYE = Isaac.GetEntityVariantByName("Mind's Eye Follower") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_MINDFLAYER_BABY = Isaac.GetEntityVariantByName("Flayer Baby") ---@type FamiliarVariant
+ToyboxMod.FAMILIAR_YES_BABY = Isaac.GetEntityVariantByName("Yes Baby") ---@type FamiliarVariant
 
 ToyboxMod.BOMB_SLEEPY_TROLL_BOMB = Isaac.GetEntityVariantByName("Sleepy Troll Bomb") ---@type BombVariant
 
@@ -375,6 +377,7 @@ ToyboxMod.EFFECT_GRID_HELPER = Isaac.GetEntityVariantByName("Toybox Grid Helper"
 
 ToyboxMod.TEAR_COOL = Isaac.GetEntityVariantByName("Cool Tear") ---@type TearVariant
 ToyboxMod.TEAR_AIDS = Isaac.GetEntityVariantByName("AIDS Tear") ---@type TearVariant
+ToyboxMod.TEAR_YES = Isaac.GetEntityVariantByName("Yes Tear") ---@type TearVariant
 --ToyboxMod.TEAR_METEOR = Isaac.GetEntityVariantByName("Meteor Tear") ---@type TearVariant
 --ToyboxMod.TEAR_BULLET = Isaac.GetEntityVariantByName("Foam Bullet Tear") ---@type TearVariant
 --ToyboxMod.TEAR_SOUNDWAVE = Isaac.GetEntityVariantByName("Soundwave Tear") ---@type TearVariant

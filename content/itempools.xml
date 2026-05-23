@@ -59,6 +59,7 @@
         <Item Name="Snake Ring"/>
         <Item Name="Cricket's Tail"/>
         <Item Name="Mouthpiece"/>
+        <Item Name="Yes Baby"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -117,6 +118,7 @@
         <Item Name="Snake Ring"/>
         <Item Name="Cricket's Tail"/>
         <Item Name="Mouthpiece"/>
+        <Item Name="Yes Baby"/>
     </Pool>
 
     <Pool Name="boss">
@@ -400,11 +402,20 @@
         <Item Name="Plasma Globe"/>
         <Item Name="Laser Brain"/>
     </Pool>
-
+    
     <Pool Name="rottenBeggar">
         <Item Name="Bob's Heart"/>
         <Item Name="Bob's Thesis"/>
         <Item Name="Fish"/>
+    </Pool>
+
+    <Pool Name="babyShop">
+        <Item Name="Jonas' Mask"/>
+        <Item Name="Bone Boy"/>
+        <Item Name="Effigy"/>
+        <Item Name="Paper Plate"/>
+        <Item Name="Flayer Baby"/>
+        <Item Name="Yes Baby"/>
     </Pool>
 
     <Pool Name="craneGame">

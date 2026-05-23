@@ -1,9 +1,9 @@
 local COPPER_POOP_CHANCE = 0.01
 
 local COINS_PICKER = WeightedOutcomePicker()
-    COINS_PICKER:AddOutcomeWeight(1, 1)
     COINS_PICKER:AddOutcomeWeight(2, 1)
     COINS_PICKER:AddOutcomeWeight(3, 1)
+    COINS_PICKER:AddOutcomeWeight(4, 1)
 
 local COPPER_COLOR = Color(255/100,255/59,255/49,1,0,0,0,197/255*0.8,131/255*0.8,70/255*0.8,1)
 

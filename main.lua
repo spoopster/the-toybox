@@ -269,6 +269,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.y2k")
     include("scripts_toybox.items.passives.minds_eye")
     include("scripts_toybox.items.passives.mindflayer_baby")
+    include("scripts_toybox.items.passives.yes_baby")
 
     include("scripts_toybox.items.passives.chicchan_serpent")
     include("scripts_toybox.items.passives.oc_dog")
