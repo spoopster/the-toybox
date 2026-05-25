@@ -82,6 +82,13 @@ local BASEDATA = {
 
     CIB_LUCK_OFFSET = 0,
 
+    EB_GRASS_STATS = {
+        SPEED = 0,
+        TEARS = 0,
+        DAMAGE = 0,
+        RANGE = 0,
+    },
+
     TEMPORARY_ITEMS = {},
     TEMPORARY_ITEMS_ROOM = {},
     TEMPORARY_ITEMS_LEVEL = {},

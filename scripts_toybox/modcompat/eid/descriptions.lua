@@ -1710,7 +1710,16 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "\1 +2 Luck",
         "{{Luck}} Using a slot machine or beggar has a luck-based chance to use it again for free",
-        "Guarantees 1 free use for every 4 Luck, and may grant 1 additional use based on the remaining Luck"
+        "Guarantees 1 free use for every 4 Luck, the remaining Luck grants a chance for an additional use"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_EB_GRASS,
+    Name = "Eb",
+    Description = {
+        "{{DonationMachine}} Every 3 Donation Machine uses will {{Collectible644}} increase your lowest stat and {{HealingRed}} heal half a heart",
+        "{{DonationMachine}} Donation Machines can't jam or break",
+        "{{SecretRoom}} A Donation Machine will spawn in the Secret Room if there is no Shop on the level"
     },
 })
 

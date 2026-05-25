@@ -471,6 +471,7 @@
         <Item Name="Big Red Button"/>
         <Item Name="AIDS"/>
         <Item Name="Y2K"/>
+        <Item Name="Vampire Teeth"/>
     </Pool>
 
     <Pool Name="graveyard">
@@ -534,5 +535,6 @@
         <Item Name="Lamat"/>
         <Item Name="Mulac"/>
         <Item Name="Ik"/>
+        <Item Name="Eb"/>
     </Pool>
 </ItemPools>

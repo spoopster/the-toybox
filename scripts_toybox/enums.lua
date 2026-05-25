@@ -213,6 +213,7 @@ ToyboxMod.COLLECTIBLE_CABAN_EARTH = Isaac.GetItemIdByName("Caban")
 ToyboxMod.COLLECTIBLE_LAMAT_RABBIT = Isaac.GetItemIdByName("Lamat")
 ToyboxMod.COLLECTIBLE_MULAC_WATER = Isaac.GetItemIdByName("Mulac")
 ToyboxMod.COLLECTIBLE_IK_WIND = Isaac.GetItemIdByName("Ik")
+ToyboxMod.COLLECTIBLE_EB_GRASS = Isaac.GetItemIdByName("Eb")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")

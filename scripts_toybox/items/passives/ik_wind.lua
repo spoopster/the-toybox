@@ -25,8 +25,16 @@ local function slotUpdate(_, slot)
                         OverlayAnim = sp:GetOverlayAnimation(),
                         Timeout = slot:GetTimeout(),
                         PlaybackSpeed = sp.PlaybackSpeed,
-                        Frame = 0,
+                        LayerFrames = {},
+                        StopAnim = sp:IsPlaying(),
+                        StopOverlayAnim = sp:IsOverlayPlaying(),
                     }
+                    for _, layer in ipairs(sp:GetCurrentAnimationData():GetAllLayers()) do
+                        local lID = layer:GetLayerID()
+                        if(sp:GetLayerFrameData(lID)) then
+                            data.IK_EXTRA_DATA.LayerFrames[lID] = sp:GetLayerFrameData(lID):GetStartFrame()
+                        end
+                    end
                 end
             --end
         end
@@ -45,6 +53,23 @@ local function slotUpdate(_, slot)
                     sp.PlaybackSpeed = 2
                     sp:Play(data.IK_EXTRA_DATA.Anim, true)
                     sp:PlayOverlay(data.IK_EXTRA_DATA.OverlayAnim, true)
+
+                    if(not data.IK_EXTRA_DATA.StopAnim) then
+                        sp:Stop(false)
+                    end
+                    if(not data.IK_EXTRA_DATA.StopOverlayAnim) then
+                        sp:StopOverlay()
+                    end
+
+                    if(slot.Variant==SlotVariant.DONATION_MACHINE or slot.Variant==SlotVariant.GREED_DONATION_MACHINE) then
+                        local pgd = Isaac.GetPersistentGameData()
+                        local val = (slot.Variant==SlotVariant.GREED_DONATION_MACHINE and pgd:GetEventCounter(EventCounter.GREED_DONATION_MACHINE_COUNTER) or pgd:GetEventCounter(EventCounter.DONATION_MACHINE_COUNTER))
+
+                        sp:SetLayerFrame(3, (val)%10)
+                        sp:SetLayerFrame(2, (val//10)%10)
+                        sp:SetLayerFrame(1, (val//100)%10)
+                    end
+
                     slot:SetTimeout(data.IK_EXTRA_DATA.Timeout//2)
                 end
                 slot:SetState(SlotState.REWARD)

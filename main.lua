@@ -283,6 +283,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.lamat_rabbit")
     include("scripts_toybox.items.passives.mulac_water")
     include("scripts_toybox.items.passives.ik_wind")
+    include("scripts_toybox.items.passives.eb_grass")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
