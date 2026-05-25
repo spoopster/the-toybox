@@ -1054,3 +1054,18 @@ function ToyboxMod:getExtraHudOffset()
 
     return pos
 end
+
+--- stolen from Foks <3 thank you
+function ToyboxMod:getBloodTearVariant(tear)
+	local bloodVariant = {
+		[TearVariant.BLUE] = TearVariant.BLOOD,
+		[TearVariant.CUPID_BLUE] = TearVariant.CUPID_BLOOD,
+		[TearVariant.NAIL] = TearVariant.NAIL_BLOOD,
+		[TearVariant.PUPULA] = TearVariant.PUPULA_BLOOD,
+		[TearVariant.GODS_FLESH] = TearVariant.GODS_FLESH_BLOOD,
+		[TearVariant.GLAUCOMA] = TearVariant.GLAUCOMA_BLOOD,
+		[TearVariant.EYE] = TearVariant.EYE_BLOOD,
+		--[TearVariant.KEY] = TearVariant.KEY_BLOOD,
+	}
+	return bloodVariant[type(tear) == "number" and tear or tear.Variant] -- You can either just put the tear entity there or get the variant from a number
+end

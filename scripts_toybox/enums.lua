@@ -199,6 +199,8 @@ ToyboxMod.COLLECTIBLE_Y2K = Isaac.GetItemIdByName("Y2K")
 ToyboxMod.COLLECTIBLE_MINDS_EYE = Isaac.GetItemIdByName("Mind's Eye")
 ToyboxMod.COLLECTIBLE_MINDFLAYER_BABY = Isaac.GetItemIdByName("Flayer Baby")
 ToyboxMod.COLLECTIBLE_YES_BABY = Isaac.GetItemIdByName("Yes Baby")
+ToyboxMod.COLLECTIBLE_PSYCHO_BABY = Isaac.GetItemIdByName("Psycho Baby")
+ToyboxMod.COLLECTIBLE_GIMP_BABY = Isaac.GetItemIdByName("Gimp Baby")
 
 --- MAYAN SIGNS
 ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT = Isaac.GetItemIdByName("Chicchan")
@@ -210,6 +212,7 @@ ToyboxMod.COLLECTIBLE_MEN_EAGLE = Isaac.GetItemIdByName("Men")
 ToyboxMod.COLLECTIBLE_CABAN_EARTH = Isaac.GetItemIdByName("Caban")
 ToyboxMod.COLLECTIBLE_LAMAT_RABBIT = Isaac.GetItemIdByName("Lamat")
 ToyboxMod.COLLECTIBLE_MULAC_WATER = Isaac.GetItemIdByName("Mulac")
+ToyboxMod.COLLECTIBLE_IK_WIND = Isaac.GetItemIdByName("Ik")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -341,6 +344,8 @@ ToyboxMod.FAMILIAR_TRINKET_WISP = Isaac.GetEntityVariantByName("Trinket Wisp Fam
 ToyboxMod.FAMILIAR_MINDS_EYE = Isaac.GetEntityVariantByName("Mind's Eye Follower") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_MINDFLAYER_BABY = Isaac.GetEntityVariantByName("Flayer Baby") ---@type FamiliarVariant
 ToyboxMod.FAMILIAR_YES_BABY = Isaac.GetEntityVariantByName("Yes Baby") ---@type FamiliarVariant
+ToyboxMod.FAMILIAR_PSYCHO_BABY = Isaac.GetEntityVariantByName("Psycho Baby") ---@type FamiliarVariant
+ToyboxMod.FAMILIAR_GIMP_BABY = Isaac.GetEntityVariantByName("Gimp Baby") ---@type FamiliarVariant
 
 ToyboxMod.BOMB_SLEEPY_TROLL_BOMB = Isaac.GetEntityVariantByName("Sleepy Troll Bomb") ---@type BombVariant
 

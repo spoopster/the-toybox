@@ -60,6 +60,8 @@
         <Item Name="Cricket's Tail"/>
         <Item Name="Mouthpiece"/>
         <Item Name="Yes Baby"/>
+        <Item Name="Gimp Baby"/>
+        <Item Name="Psycho Baby"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -119,6 +121,8 @@
         <Item Name="Cricket's Tail"/>
         <Item Name="Mouthpiece"/>
         <Item Name="Yes Baby"/>
+        <Item Name="Gimp Baby"/>
+        <Item Name="Psycho Baby"/>
     </Pool>
 
     <Pool Name="boss">
@@ -217,6 +221,7 @@
         <Item Name="Puggy's Claw"/>
         <Item Name="Vampire Teeth"/>
         <Item Name="Flayer Baby"/>
+        <Item Name="Psycho Baby"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -230,6 +235,7 @@
         <Item Name="Puggy's Claw"/>
         <Item Name="Vampire Teeth"/>
         <Item Name="Flayer Baby"/>
+        <Item Name="Psycho Baby"/>
     </Pool>
 
     <Pool Name="angel">
@@ -265,6 +271,7 @@
         <Item Name="Dissociation"/>
         <Item Name="Angel Dust"/>
         <Item Name="Mind's Eye"/>
+        <Item Name="Gimp Baby"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
@@ -275,6 +282,7 @@
         <Item Name="Dissociation"/>
         <Item Name="Angel Dust"/>
         <Item Name="Mind's Eye"/>
+        <Item Name="Gimp Baby"/>
     </Pool>
 
     <Pool Name="secret">
@@ -448,6 +456,7 @@
         <Item Name="Big Red Button"/>
         <Item Name="Cricket's Tail"/>
         <Item Name="MP3 Player"/>
+        <Item Name="Yes Baby"/>
     </Pool>
 
     <Pool Name="ultraSecret">
@@ -524,5 +533,6 @@
         <Item Name="Caban"/>
         <Item Name="Lamat"/>
         <Item Name="Mulac"/>
+        <Item Name="Ik"/>
     </Pool>
 </ItemPools>

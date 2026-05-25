@@ -1184,8 +1184,22 @@
 <familiar id="127" name="Yes Baby"
     description="Oh yeah, baby!"
     gfx="yes_baby.png"
-    quality="3"
-    tags="offensive"
+    quality="2"
+    tags="offensive baby"
+    cache=""
+/>
+<familiar id="128" name="Psycho Baby"
+    description="Bloodthirsty buddy"
+    gfx="psycho_baby.png"
+    quality="0"
+    tags="offensive baby"
+    cache=""
+/>
+<familiar id="129" name="Gimp Baby"
+    description="Masochist buddy"
+    gfx="gimp_baby.png"
+    quality="1"
+    tags="offensive baby"
     cache=""
 />
 
@@ -1260,6 +1274,15 @@
     cache=""
 
     speed="0.3"
+/>
+<passive id="139" name="Ik"
+    description="Luck of the draw"
+    gfx="ik_wind.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+
+    luck="2"
 />
 
 <active id="491" name="Cursed D6"

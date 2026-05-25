@@ -270,6 +270,8 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.minds_eye")
     include("scripts_toybox.items.passives.mindflayer_baby")
     include("scripts_toybox.items.passives.yes_baby")
+    include("scripts_toybox.items.passives.psycho_baby")
+    include("scripts_toybox.items.passives.gimp_baby")
 
     include("scripts_toybox.items.passives.chicchan_serpent")
     include("scripts_toybox.items.passives.oc_dog")
@@ -280,6 +282,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.caban_earth")
     include("scripts_toybox.items.passives.lamat_rabbit")
     include("scripts_toybox.items.passives.mulac_water")
+    include("scripts_toybox.items.passives.ik_wind")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

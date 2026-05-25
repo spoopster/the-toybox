@@ -1566,6 +1566,38 @@ enums.FUNCTIONS.AddItem({
         },
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_GIMP_BABY,
+    Name = "Gimp Baby",
+    Description = {
+        "Shoots 2.5 damage tears with high fire rate",
+        "Blocks enemy projectiles",
+    },
+    BFFSModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"2.5 damage", "5 damage"},
+            },
+        },
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_PSYCHO_BABY,
+    Name = "Psycho Baby",
+    Description = {
+        "Shoots 6 damage tears with very low fire rate",
+        "Upon killing an enemy for the first time each room, will gain increased damage and fire rate for the room",
+    },
+    BFFSModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"6 damage", "12 damage"},
+            },
+        },
+    },
+})
 
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT,
@@ -1670,6 +1702,15 @@ enums.FUNCTIONS.AddItem({
         "{{Collectible185}} Dead Dove for the rest of the floor",
         "{{AngelDevilChance}} +100% deal chance",
         "{{Card81}} Triggers Soul of Isaac in the Devil/Angel Room",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_IK_WIND,
+    Name = "Ik",
+    Description = {
+        "\1 +2 Luck",
+        "{{Luck}} Using a slot machine or beggar has a luck-based chance to use it again for free",
+        "Guarantees 1 free use for every 4 Luck, and may grant 1 additional use based on the remaining Luck"
     },
 })
 
