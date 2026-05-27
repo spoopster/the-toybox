@@ -1285,11 +1285,11 @@
     luck="2"
 />
 <passive id="140" name="Eb"
-    description="Positive vibes"
+    description="Spread positivity"
     gfx="eb_grass.png"
     quality="2"
     tags="offensive"
-    cache="speed firedelay damage range"
+    cache=""
 />
 
 <active id="491" name="Cursed D6"

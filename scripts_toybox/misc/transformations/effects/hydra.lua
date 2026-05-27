@@ -1,5 +1,6 @@
 local MAX_EXTRA_HEAD_NUM = 4
 local NEGATIVE_TEARS_MULT = 0.1
+local NEGATIVE_TEARS_POW = 0.75
 
 local MAX_HEAD_DISTANCE = 50
 local HEAD_BASE_POS_OFFS = Vector(0,-10)
@@ -66,7 +67,7 @@ local function evalStat(_, pl, stat, val)
     if(not ToyboxMod:hasCustomTransformation(pl, "HYDRA")) then return end
 
     local numHeads = ToyboxMod:getEntityData(pl, "HYDRA_HEADS") or 0
-    return val*(1-NEGATIVE_TEARS_MULT*numHeads)
+    return val*((1/(numHeads+1))^NEGATIVE_TEARS_POW)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.FLAT_TEARS)
 
