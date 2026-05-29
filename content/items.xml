@@ -1160,7 +1160,7 @@
 <passive id="124" name="Y2K"
     description="Back to 0"
     gfx="y2k.png"
-    quality="1"
+    quality="2"
     tags="offensive"
     cache=""
 

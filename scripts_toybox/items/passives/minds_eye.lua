@@ -240,7 +240,7 @@ local function eyeEffectRender(_, effect, offs)
 
     local rpos = Isaac.WorldToRenderPosition(effect.Position)+offs
     local posScale = 1/500
-    effect.Color = Color(1,1,1,effect.Color.A+data.DIDDY_MANGO,0,0,0,(Game():GetFrameCount()/30/5),rpos.X*posScale, rpos.Y*posScale, trueScale)
+    effect.Color = Color(1,1,1,effect.Color.A+data.DIDDY_MANGO,0,0,0,(Game():GetFrameCount()/30/5),effect.Position.X*posScale, effect.Position.Y*posScale, trueScale)
     if(effect.FrameCount>20) then
         effect.State = 1
     end

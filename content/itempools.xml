@@ -62,6 +62,7 @@
         <Item Name="Yes Baby"/>
         <Item Name="Gimp Baby"/>
         <Item Name="Psycho Baby"/>
+        <Item Name="RETROFALL"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -123,6 +124,7 @@
         <Item Name="Yes Baby"/>
         <Item Name="Gimp Baby"/>
         <Item Name="Psycho Baby"/>
+        <Item Name="RETROFALL"/>
     </Pool>
 
     <Pool Name="boss">
@@ -162,7 +164,7 @@
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>
-        <Item Name="RETROFALL"/>
+        <Item Name="RETROFALL" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Beer Can"/>
         <Item Name="Food Stamps"/>
         <Item Name="Delivery Box"/>
@@ -188,7 +190,7 @@
         <Item Name="Love Letter"/>
         <Item Name="Jonas' Mask"/>
         <Item Name="Candy Dispenser"/>
-        <Item Name="RETROFALL"/>
+        <Item Name="RETROFALL" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Beer Can"/>
         <Item Name="Food Stamps"/>
         <Item Name="Delivery Box"/>
