@@ -110,7 +110,7 @@ local function getItemInGraveyard(_, _, _, firstTime)
 
         for i=0, room:GetGridSize() do
             local ent = room:GetGridEntity(i)
-            if(ent and ent:IsBreakableRock() and ent.State~=1000 and ToyboxMod:getGridEntityData(ent, "GRAVE_SUB") and ToyboxMod:getGridEntityData(ent, "GRAVE_SUB")>ToyboxMod.GRID_GRAVE_EMPTY) then
+            if(ent and ent:IsBreakableRock() and ent.State~=2 and ToyboxMod:getGridEntityData(ent, "GRAVE_SUB") and ToyboxMod:getGridEntityData(ent, "GRAVE_SUB")>ToyboxMod.GRID_GRAVE_EMPTY) then
                 ToyboxMod:setGridEntityData(ent, "GRAVE_NO_PICKUPS", true)
                 if(not ToyboxMod:getGridEntityData(ent, "ALREADY_QUEUE_FOR_DESTROY")) then
                     ToyboxMod:setGridEntityData(ent, "ALREADY_QUEUE_FOR_DESTROY", true)

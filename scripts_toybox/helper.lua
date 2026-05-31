@@ -393,7 +393,7 @@ end
 ---@param entity Entity
 function ToyboxMod:isValidEnemy(entity)
     entity = entity:ToNPC()
-    return entity and (entity:IsEnemy() and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))
+    return entity and (entity:IsEnemy() and entity:IsActiveEnemy() and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))
 end
 function ToyboxMod:getAllValidEnemies()
     local t = {}

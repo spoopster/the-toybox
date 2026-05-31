@@ -47,7 +47,7 @@ local function eyeSpyInit(_, npc)
     sp.PlaybackSpeed = 1
 
     npc:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-    npc:AddEntityFlags(EntityFlag.FLAG_NO_TARGET | EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
+    npc:AddEntityFlags(EntityFlag.FLAG_NO_TARGET | EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_HIDE_HP_BAR)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, eyeSpyInit, ToyboxMod.NPC_ENEMY)
 

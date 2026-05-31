@@ -27,6 +27,8 @@ local function kingHostUpdate(_, npc)
         npc.State = NpcState.STATE_IDLE
         npc.ProjectileCooldown = INIT_COOLDOWN
         npc.I2 = 0
+
+        npc:AddEntityFlags(EntityFlag.FLAG_NO_TARGET)
     end
 
     if(npc.State==NpcState.STATE_IDLE) then
@@ -54,6 +56,7 @@ local function kingHostUpdate(_, npc)
                     if(room:CheckLine(npc.Position, target.Position, LineCheckMode.PROJECTILE)) then
                         npc.State = NpcState.STATE_ATTACK
                         npc.StateFrame = 0
+                        npc:ClearEntityFlags(EntityFlag.FLAG_NO_TARGET)
                     end
                 end
             end
@@ -71,6 +74,8 @@ local function kingHostUpdate(_, npc)
             npc.State = NpcState.STATE_IDLE
             npc.StateFrame = 0
             npc.ProjectileCooldown = SHOOT_COOLDOWN
+
+            npc:AddEntityFlags(EntityFlag.FLAG_NO_TARGET)
         end
 
         if(sp:IsEventTriggered("Open")) then
