@@ -92,7 +92,7 @@ local function clearRoomFlawless(_, pl)
         sfx:Play(SoundEffect.SOUND_THUMBSUP)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, clearRoomFlawless)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, clearRoomFlawless)
 
 --[[]]
 

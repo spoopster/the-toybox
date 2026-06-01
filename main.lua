@@ -284,6 +284,8 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.mulac_water")
     include("scripts_toybox.items.passives.ik_wind")
     include("scripts_toybox.items.passives.eb_grass")
+    include("scripts_toybox.items.passives.kan_lizard")
+    include("scripts_toybox.items.passives.manik_deer")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -353,6 +355,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.trinkets.catnip")
     include("scripts_toybox.items.trinkets.trail_mix")
     include("scripts_toybox.items.trinkets.earworm")
+    include("scripts_toybox.items.trinkets.7th_page")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")

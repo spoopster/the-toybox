@@ -71,7 +71,7 @@ local function increaseDebuffDamage(_, ent, dmg, flags, source, cnt)
 
     if(flags & DamageFlag.DAMAGE_POISON_BURN == DamageFlag.DAMAGE_POISON_BURN and ent:GetBurnDamageTimer()%20==2) then
         for _, otherEnt in ipairs(Isaac.FindInRadius(ent.Position, ent.Size*FIRE_SPREAD_SIZEMULT+FIRE_SPREAD_RADIUS, EntityPartition.ENEMY)) do
-            if(ToyboxMod:isValidEnemy(otherEnt)) then
+            if(GetPtrHash(otherEnt)~=GetPtrHash(ent) and ToyboxMod:isValidEnemy(otherEnt)) then
                 otherEnt:AddBurn(source, -(ent:GetBurnCountdown()*FIRE_SPREAD_DURMULT)//1, dmg)
             end
         end

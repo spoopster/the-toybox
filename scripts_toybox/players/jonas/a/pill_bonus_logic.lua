@@ -102,7 +102,7 @@ local function incrementBonusReset(_, pl)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, incrementBonusReset)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, incrementBonusReset)
 
 local function resetBonusNewLevel(_, player)
     if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end

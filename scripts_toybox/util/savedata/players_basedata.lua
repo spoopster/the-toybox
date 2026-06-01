@@ -76,18 +76,24 @@ local BASEDATA = {
     MANTLEPOOP_QUEUE = 0,
     SNAKE_RING_COUNTERS = 0,
     CRICKETS_TAIL_DAMAGE = 0,
-
     IMIX_STAT_COUNTER = 0,
     IMIX_STAT_BASELINE = 0,
-
     CIB_LUCK_OFFSET = 0,
-
     EB_GRASS_STATS = {
         SPEED = 0,
         TEARS = 0,
         DAMAGE = 0,
         RANGE = 0,
     },
+    MANIK_STATS = {
+        SPEED = 0,
+        TEARS = 0,
+        DAMAGE = 0,
+        RANGE = 0,
+        SHOTSPEED = 0,
+        LUCK = 0,
+    },
+    MANIK_FLAGS = {},
 
     TEMPORARY_ITEMS = {},
     TEMPORARY_ITEMS_ROOM = {},

@@ -933,15 +933,15 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "\1 +1 Heart container",
         "{{RottenHeart}} +1 Rotten Heart",
-        "Gives 1 green locust",
+        "{{Trinket114}} Gives 1 poison locust",
     },
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_TOAST,
     Name = "Toast",
     Description = {
-        "\1 +1 Health",
-        "{{HealingRed}} Heals 1 heart",
+        "{{BlackHeart}} +1 Black Heart",
+
     },
     Modifiers = {
         {
@@ -1720,6 +1720,24 @@ enums.FUNCTIONS.AddItem({
         "{{DonationMachine}} Every 3 Donation Machine uses will {{Collectible644}} increase your lowest stat and {{HealingRed}} heal half a heart",
         "{{DonationMachine}} Donation Machines can't jam or break",
         "{{SecretRoom}} A Donation Machine will spawn in the Secret Room if there is no Shop on the level"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_KAN_LIZARD,
+    Name = "Kan",
+    Description = {
+        "Familiars grant \1 +0.4 Fire Rate and \1 +0.4 Damage",
+        "{{Trinket54}} Grants the effects of Isaac's Head",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MANIK_DEER,
+    Name = "Manik",
+    Description = {
+        "On room clear:",
+        "\1 Increases a random stat",
+        "{{Collectible418}} Chooses a random tear effect, grants a 10% chance for fired tears to have that effect",
+        "These bonuses reset at the start of the next floor"
     },
 })
 
@@ -2522,6 +2540,30 @@ enums.FUNCTIONS.AddTrinket({
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
                 {"15%%", "35%%"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_7TH_PAGE,
+    Name = "The 7th Page",
+    Description = {
+        "Pickup spawns have a 1/7 chance to be doubled",
+        "Doesn't work on items and trinkets",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"doubled", "tripled"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"doubled", "quadrupled"},
             }
         },
     },

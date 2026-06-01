@@ -115,7 +115,7 @@ local function tryClearMapRoomClear(_)
         1,1,false
     )
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_TRIGGER_CLEAR, tryClearMapRoomClear)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, tryClearMapRoomClear)
 
 local function maxDealChance(_)
     if(ToyboxMod:getExtraData("MULAC_FULLCLEARED")) then

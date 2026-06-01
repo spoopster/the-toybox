@@ -214,6 +214,8 @@ ToyboxMod.COLLECTIBLE_LAMAT_RABBIT = Isaac.GetItemIdByName("Lamat")
 ToyboxMod.COLLECTIBLE_MULAC_WATER = Isaac.GetItemIdByName("Mulac")
 ToyboxMod.COLLECTIBLE_IK_WIND = Isaac.GetItemIdByName("Ik")
 ToyboxMod.COLLECTIBLE_EB_GRASS = Isaac.GetItemIdByName("Eb")
+ToyboxMod.COLLECTIBLE_KAN_LIZARD = Isaac.GetItemIdByName("Kan")
+ToyboxMod.COLLECTIBLE_MANIK_DEER = Isaac.GetItemIdByName("Manik")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -266,6 +268,7 @@ ToyboxMod.TRINKET_SLINGSHOT = Isaac.GetTrinketIdByName("Slingshot")
 ToyboxMod.TRINKET_CATNIP = Isaac.GetTrinketIdByName("Catnip")
 ToyboxMod.TRINKET_TRAIL_MIX = Isaac.GetTrinketIdByName("Trail Mix")
 ToyboxMod.TRINKET_EARWORM = Isaac.GetTrinketIdByName("Earworm")
+ToyboxMod.TRINKET_7TH_PAGE = Isaac.GetTrinketIdByName("The 7th Page")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED

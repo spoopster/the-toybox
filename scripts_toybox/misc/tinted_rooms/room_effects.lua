@@ -105,7 +105,7 @@ local function blackRetriggerClear(_, _)
         BLACK_CANCEL_RETRIGGER = false
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_TRIGGER_CLEAR, blackRetriggerClear)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, blackRetriggerClear)
 ---@param pl EntityPlayer
 local function blackRetriggerClearPlayer(_, pl)
     if(not BLACK_CANCEL_RETRIGGER and ToyboxMod:hasTintedRoomTint("BLACK") and BLACK_INVALID_ROOMTYPES[Game():GetRoom():GetType()]) then
@@ -116,4 +116,4 @@ local function blackRetriggerClearPlayer(_, pl)
         BLACK_CANCEL_RETRIGGER = false
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, blackRetriggerClearPlayer)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, blackRetriggerClearPlayer)

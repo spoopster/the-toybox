@@ -540,5 +540,7 @@
         <Item Name="Mulac"/>
         <Item Name="Ik"/>
         <Item Name="Eb"/>
+        <Item Name="Kan"/>
+        <Item Name="Manik"/>
     </Pool>
 </ItemPools>

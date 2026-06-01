@@ -34,7 +34,7 @@ local function retriggerClear(_, _)
         false
     )
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_TRIGGER_CLEAR, retriggerClear)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, retriggerClear)
 
 local function playerRetriggerClear(_, pl)
     if(CANCEL_RETRIGGER) then return end
@@ -59,7 +59,7 @@ local function playerRetriggerClear(_, pl)
         false
     )
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, playerRetriggerClear)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, playerRetriggerClear)
 
 local function canceasouihfasash(_)
     CANCEL_RETRIGGER = false

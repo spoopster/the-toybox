@@ -13,16 +13,16 @@ local function colorEqual(color1, color2)
 end
 
 ---@param pl EntityPlayer
-local function addMango(_, _, _, firstTime, _, _, pl)
-    pl:AddInnateTrinket(TrinketType.TRINKET_THE_TWINS, 1, "ToyboxOcDogTwins")
+local function setTwinsAdd(_, _, _, firstTime, _, _, pl)
+    pl:SetInnateTrinketCount(TrinketType.TRINKET_THE_TWINS, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_OC_DOG), "ToyboxOcDogTwins")
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addMango, ToyboxMod.COLLECTIBLE_OC_DOG)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, setTwinsAdd, ToyboxMod.COLLECTIBLE_OC_DOG)
 
 ---@param pl EntityPlayer
-local function removeMango(_, pl)
-    pl:RemoveInnateTrinket(TrinketType.TRINKET_THE_TWINS, 1, "ToyboxOcDogTwins")
+local function setTwinsRemove(_, pl)
+    pl:SetInnateTrinketCount(TrinketType.TRINKET_THE_TWINS, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_OC_DOG), "ToyboxOcDogTwins")
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, removeMango, ToyboxMod.COLLECTIBLE_OC_DOG)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, setTwinsRemove, ToyboxMod.COLLECTIBLE_OC_DOG)
 
 ---@param baseTear EntityTear
 local function familiarFireProj(_, baseTear)

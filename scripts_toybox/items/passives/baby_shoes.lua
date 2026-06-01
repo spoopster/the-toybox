@@ -31,4 +31,4 @@ local function evalCacheOnRoomClear()
         1, 1, false
     )
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_TRIGGER_CLEAR, evalCacheOnRoomClear)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, evalCacheOnRoomClear)

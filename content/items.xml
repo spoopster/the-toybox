@@ -715,7 +715,8 @@
     cache=""
 
     maxhearts="2"
-    hearts="4"
+    hearts="2"
+    blackhearts="2"
 />
 <active id="76" name="Delivery Box"
     description="Same-day shipping"
@@ -1227,7 +1228,7 @@
     gfx="oc_dog.png"
     quality="4"
     tags="offensive"
-    cache="familiars"
+    cache=""
 />
 <passive id="133" name="Imix"
     description="Speed is key"
@@ -1290,6 +1291,20 @@
     quality="2"
     tags="offensive"
     cache=""
+/>
+<passive id="141" name="Kan"
+    description="The family"
+    gfx="kan_lizard.png"
+    quality="3"
+    tags="offensive"
+    cache="damage firedelay"
+/>
+<passive id="142" name="Manik"
+    description="Survive and adapt"
+    gfx="manik_deer.png"
+    quality="3"
+    tags="offensive"
+    cache="tearflag speed firedelay damage range shotspeed luck"
 />
 
 <active id="491" name="Cursed D6"
@@ -1570,6 +1585,11 @@
 <trinket id="31" name="Earworm"
     description="In my head"
     gfx="earworm.png"
+    cache=""
+/>
+<trinket id="32" name="The 7th Page"
+    description="7"
+    gfx="7th_page.png"
     cache=""
 />
 

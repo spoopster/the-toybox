@@ -41,7 +41,7 @@ local function addPoopFlies(_, player)
         if(rng:RandomFloat()<MANTLE_FLY_CHANCE) then player:AddBlueFlies(MANTLE_FLY_NUM, player.Position, nil) end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, addPoopFlies)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, addPoopFlies)
 
 local function replaceRockSpawn(_, t,v,vardata,idx,seed)
     local finalChance = 0

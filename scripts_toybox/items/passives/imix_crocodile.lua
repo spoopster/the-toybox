@@ -48,7 +48,7 @@ local function makeStatsPermanent(_, pl)
         end, 3, 4, false)
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, makeStatsPermanent)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, makeStatsPermanent)
 
 ---@param pl EntityPlayer
 local function postPeffectUpdate(_, pl)
