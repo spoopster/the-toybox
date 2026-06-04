@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="4/18/2026 11:45:51 AM" Version="16" Fps="30"/>
+	<Info CreatedBy="Unknown" CreatedOn="6/2/2026 10:20:26 PM" Version="18" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="effect_temple_slab.png" Id="0"/>

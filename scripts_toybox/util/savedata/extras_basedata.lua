@@ -67,6 +67,13 @@ local BASEDATA = {
 
     EB_GRASS_DONATION_COUNTER = 0,
 
+    IX_REVEALED_ROOM = -1,
+    IX_FAILED = 0,
+
+    AHAU_TRIGGERED = 0,
+    AHAU_ROOM_SUBS = {},
+    AHAU_ROOM_UPGR = {},
+
     MINDS_EYE_POSITIONS = {},
 
     SUPER_RETROFALL_ID = 3,

@@ -286,6 +286,8 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.eb_grass")
     include("scripts_toybox.items.passives.kan_lizard")
     include("scripts_toybox.items.passives.manik_deer")
+    include("scripts_toybox.items.passives.ix_jaguar")
+    include("scripts_toybox.items.passives.ahau_flower")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

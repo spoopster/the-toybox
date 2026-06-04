@@ -1739,6 +1739,43 @@ enums.FUNCTIONS.AddItem({
         "{{Collectible418}} Chooses a random tear effect, grants a 10% chance for fired tears to have that effect",
         "These bonuses reset at the start of the next floor"
     },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Increases random tear effect chance by +10%",
+            }
+        }
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_IX_JAGUAR,
+    Name = "Ix",
+    Description = {
+        "{{UltraSecretRoom}} At the start of each level, reveals the Ultra Secret Room and an adjacent red room",
+        "Taking damage once will permanently lock the revealed red room",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Each stack allows for an additional hit before locking the red room",
+            }
+        }
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_AHAU_FLOWER,
+    Name = "Ahau",
+    Description = {
+        "The first special room you enter each floor is upgraded, if possible",
+        "Whether or not a room can be upgraded is indicated by a flower patch next to the room's entrance",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Each stack allows for an additional upgraded room",
+            }
+        }
+    }
 })
 
 --- OTHER ITEM MODIFIERS ---

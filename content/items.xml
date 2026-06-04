@@ -1302,9 +1302,23 @@
 <passive id="142" name="Manik"
     description="Survive and adapt"
     gfx="manik_deer.png"
-    quality="3"
+    quality="4"
     tags="offensive"
     cache="tearflag speed firedelay damage range shotspeed luck"
+/>
+<passive id="143" name="Ix"
+    description="Discipline above all else"
+    gfx="ix_jaguar.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+/>
+<passive id="144" name="Ahau"
+    description="Your future is blooming"
+    gfx="ahau_flower.png"
+    quality="3"
+    tags="offensive"
+    cache=""
 />
 
 <active id="491" name="Cursed D6"

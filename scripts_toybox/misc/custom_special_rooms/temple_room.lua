@@ -647,6 +647,13 @@ local function initSlab(_, effect)
     elseif(effect.SubType==2) then
         sp:Play("IdleInactive", true)
     end
+
+    if(math.random()<0.001) then
+        for i=0, 2 do
+            sp:ReplaceSpritesheet(i, "gfx_tb/effects/effect_temple_slab_joe.png")
+        end
+        sp:LoadGraphics()
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, initSlab, ToyboxMod.EFFECT_TEMPLE_SLAB)
 

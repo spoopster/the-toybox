@@ -216,6 +216,8 @@ ToyboxMod.COLLECTIBLE_IK_WIND = Isaac.GetItemIdByName("Ik")
 ToyboxMod.COLLECTIBLE_EB_GRASS = Isaac.GetItemIdByName("Eb")
 ToyboxMod.COLLECTIBLE_KAN_LIZARD = Isaac.GetItemIdByName("Kan")
 ToyboxMod.COLLECTIBLE_MANIK_DEER = Isaac.GetItemIdByName("Manik")
+ToyboxMod.COLLECTIBLE_IX_JAGUAR = Isaac.GetItemIdByName("Ix")
+ToyboxMod.COLLECTIBLE_AHAU_FLOWER = Isaac.GetItemIdByName("Ahau")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -378,6 +380,7 @@ ToyboxMod.EFFECT_PIPE_BOOMERANG = Isaac.GetEntityVariantByName("Pipe Boomerang")
 ToyboxMod.EFFECT_TEMPLE_SLAB = Isaac.GetEntityVariantByName("Temple Slab") ---@type EffectVariant
 ToyboxMod.EFFECT_BLOOD_COLLECT = Isaac.GetEntityVariantByName("Blood Coin Collect") ---@type EffectVariant
 ToyboxMod.EFFECT_MINDS_EYE = Isaac.GetEntityVariantByName("Watching Eye") ---@type EffectVariant
+ToyboxMod.EFFECT_FLOWER_PATCH = Isaac.GetEntityVariantByName("Flower Patch") ---@type EffectVariant
 
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant
@@ -455,6 +458,7 @@ ToyboxMod.SFX_RETRO_FAIL = Isaac.GetSoundIdByName("(TOYBOX) Blockchain Fail")
 ToyboxMod.SFX_MP3_PLAYER = Isaac.GetSoundIdByName("(TOYBOX) MP3 Player")
 ToyboxMod.SFX_EVIL = Isaac.GetSoundIdByName("(TOYBOX) Evil Sound")
 ToyboxMod.SFX_REWIND = Isaac.GetSoundIdByName("(TOYBOX) Rewind")
+ToyboxMod.SFX_BELL = Isaac.GetSoundIdByName("(TOYBOX) Bell")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then
