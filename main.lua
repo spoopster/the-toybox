@@ -1107,7 +1107,7 @@ function ToyboxMod:printResults()
     end
 end
 --]]
-
+--[[
 function ToyboxMod:printStatMults()
     local pl = Isaac.GetPlayer()
 
@@ -1144,3 +1144,6 @@ function ToyboxMod:givePrizes(speed)
 
     pl:AddCollectible(CollectibleType.COLLECTIBLE_CONSOLATION_PRIZE)
 end
+
+
+]]
