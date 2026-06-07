@@ -1,7 +1,7 @@
 ToyboxMod.CUSTOM_ICONS = {}
 
-function ToyboxMod:addCustomRoomIcon(icon, condition)
-    table.insert(ToyboxMod.CUSTOM_ICONS, {Icon=icon,Condition=condition})
+function ToyboxMod:addCustomRoomIcon(icon, condition, additive)
+    table.insert(ToyboxMod.CUSTOM_ICONS, {Icon=icon,Condition=condition, Additive=additive})
 end
 
 if(MinimapAPI) then
@@ -16,7 +16,11 @@ if(MinimapAPI) then
 
                     for _, data in ipairs(ToyboxMod.CUSTOM_ICONS) do
                         if(data.Condition(self)) then
-                            self.PermanentIcons = { data.Icon }
+                            if(data.Additive) then
+                                table.insert(self.PermanentIcons, data.Icon)
+                            else
+                                self.PermanentIcons = { data.Icon }
+                            end
                         end
                     end
                 end
@@ -24,7 +28,27 @@ if(MinimapAPI) then
 
             for _, data in ipairs(ToyboxMod.CUSTOM_ICONS) do
                 if(data.Condition(v)) then
-                    v.PermanentIcons = { data.Icon }
+                    if(data.Additive) then
+                        local shouldadd = true
+                        for _, val in ipairs(v.PermanentIcons) do
+                            if(val==data.Icon) then
+                                shouldadd = false
+                                break
+                            end
+                        end
+                        if(shouldadd) then
+                            table.insert(v.PermanentIcons, data.Icon)
+                        end
+                    else
+                        v.PermanentIcons = { data.Icon }
+                    end
+                elseif(data.Additive) then
+                    for i, val in ipairs(v.PermanentIcons) do
+                        if(val==data.Icon) then
+                            table.remove(v.PermanentIcons, i)
+                            break
+                        end
+                    end
                 end
             end
         end
