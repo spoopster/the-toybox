@@ -5,7 +5,7 @@ local NUM_HEARTS = 6
 local function addBrunch(_, _, _, firstTime, _, _, pl)
     if(not firstTime) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     for i=1, NUM_HEARTS do
         local heart = Isaac.Spawn(5,10,0,room:FindFreePickupSpawnPosition(pl.Position,40),Vector.Zero,nil):ToPickup()
         heart:SetDropDelay(2*(i-1))

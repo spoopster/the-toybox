@@ -11,7 +11,7 @@ SOULHEART_GULPCOL:SetColorize(1.5,1.5,3,1)
 
 ToyboxMod:addPillCrusherEffect(PillEffect.PILLEFFECT_BALLS_OF_STEEL,
 function(_, player, isHorse, rng)
-    for _, ent in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
+    for _, ent in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
         ent = ent:ToNPC()
         if(ent:IsActiveEnemy(false) and ent:IsVulnerableEnemy()) then
             local perc = ent.MaxHitPoints*(isHorse and HORSE_HEALTH_PERCENT or HEALTH_PERCENT)

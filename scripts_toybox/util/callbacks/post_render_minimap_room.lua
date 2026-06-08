@@ -133,7 +133,7 @@ local function tryRenderAuraAtLevelIdxBig(renderRoom, bounds, colormod, rtype, i
 end
 
 local function mapRenderAuras()
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     if(level:GetCurses() & LevelCurse.CURSE_OF_THE_LOST == LevelCurse.CURSE_OF_THE_LOST) then return end
 
     if(MinimapAPI) then

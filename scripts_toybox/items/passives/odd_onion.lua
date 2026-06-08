@@ -13,7 +13,7 @@ local function addTempTearsUp(_, pl)
 
     local num = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_ODD_ONION)
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local rng = ToyboxMod:generateRng(room:GetSpawnSeed())
     local conf = Isaac.GetItemConfig()
     local numCollectibles = conf:GetCollectibles().Size-1
@@ -38,7 +38,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, addTemp
 local function tryReplaceItem(_, selItem, _, decrease, seed)
     if(not REPLACABLE_ITEMS[selItem]) then return end
 
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
     if(pool:HasCollectible(ToyboxMod.COLLECTIBLE_ODD_ONION)) then
         if(ToyboxMod:generateRng(seed):RandomFloat()<REPLACE_CHANCE) then
             pool:RemoveCollectible(ToyboxMod.COLLECTIBLE_ODD_ONION)

@@ -10,7 +10,7 @@ local function evalCache(_, pl)
     local numFamiliers = {[0]=0, [1]=0, [2]=0}
 
     local numCollectibles = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_JONAS_MASK)+pl:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_JONAS_MASK)
-    local rng = ToyboxMod:generateRng(Game():GetLevel():GetDungeonPlacementSeed()+pl:GetPlayerIndex())
+    local rng = ToyboxMod:generateRng(ToyboxMod.GAME:GetLevel():GetDungeonPlacementSeed()+pl:GetPlayerIndex())
     for _=1, numCollectibles do
         local idx = rng:RandomInt(3)
         numFamiliers[idx] = numFamiliers[idx]+1
@@ -157,12 +157,12 @@ local function shadowCrawlerUpdate(fam)
         if(fam.FireCooldown%CRAWLER_ACTION_FREQ==0) then
             local target = nil
             for _, enemy in ipairs(Isaac.FindInRadius(fam.Position, CRAWLER_TARGET_DIST, EntityPartition.ENEMY)) do
-                if(ToyboxMod:isValidEnemy(enemy) and Game():GetRoom():CheckLine(enemy.Position, fam.Position, LineCheckMode.ENTITY)) then
+                if(ToyboxMod:isValidEnemy(enemy) and ToyboxMod.GAME:GetRoom():CheckLine(enemy.Position, fam.Position, LineCheckMode.ENTITY)) then
                     target = enemy
                 end
             end
             if(target==nil) then
-                if(fam.Player and fam.Player.Position:Distance(fam.Position)<CRAWLER_TARGET_DIST and Game():GetRoom():CheckLine(fam.Player.Position, fam.Position, LineCheckMode.ENTITY)) then
+                if(fam.Player and fam.Player.Position:Distance(fam.Position)<CRAWLER_TARGET_DIST and ToyboxMod.GAME:GetRoom():CheckLine(fam.Player.Position, fam.Position, LineCheckMode.ENTITY)) then
                     target = fam.Player
                 end
             end
@@ -171,7 +171,7 @@ local function shadowCrawlerUpdate(fam)
                 data.TARGET_POS = (target.Position-fam.Position):Rotated(rng:RandomInt(CRAWLER_MOVE_RAND_ARC*2+1)-CRAWLER_MOVE_RAND_ARC)
             else
                 data.TARGET_POS = Vector(-1000,-1000)
-                while(not Game():GetRoom():IsPositionInRoom(fam.Position+data.TARGET_POS*CRAWLER_SPEED*4, 5)) do
+                while(not ToyboxMod.GAME:GetRoom():IsPositionInRoom(fam.Position+data.TARGET_POS*CRAWLER_SPEED*4, 5)) do
                     data.TARGET_POS = Vector.FromAngle(rng:RandomInt(360))
                 end
                 data.TARGET_POS = data.TARGET_POS*CRAWLER_JUMP_DIST
@@ -218,7 +218,7 @@ local function shadowCrawlerUpdate(fam)
                 end
 
                 for _, enemy in ipairs(Isaac.FindInRadius(fam.Position, CRAWLER_EXP_RADIUS, EntityPartition.ENEMY)) do
-                    if(ToyboxMod:isValidEnemy(enemy) and Game():GetRoom():CheckLine(enemy.Position, fam.Position, LineCheckMode.EXPLOSION)) then
+                    if(ToyboxMod:isValidEnemy(enemy) and ToyboxMod.GAME:GetRoom():CheckLine(enemy.Position, fam.Position, LineCheckMode.EXPLOSION)) then
                         enemy:TakeDamage(CRAWLER_EXP_DAMAGE, DamageFlag.DAMAGE_EXPLOSION, EntityRef(fam), 0)
                         enemy:AddSlowing(EntityRef(fam), CRAWLER_EXP_SLOWDUR, 0.7, Color(1,0.9,0.9,1,0.3,0,0))
                     end

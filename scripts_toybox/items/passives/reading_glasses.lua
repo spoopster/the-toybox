@@ -5,10 +5,10 @@ local REPLACE_CHANCE = 0.15
 local function spawnPillOnPickup(_, _, _, firstTime, _, _, pl)
     if(not firstTime) then return end
     
-    local pos = Game():GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
+    local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
     local pill = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, pos, Vector.Zero, nil):ToPickup()
 
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
     local colors = ToyboxMod:getPillColorsInRun()
     for _, colData in ipairs(colors) do
         pool:IdentifyPill(colData.COLOR)
@@ -19,7 +19,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, spawnPillOnPickup, T
 ---@param pickup EntityPickup
 local function unidentifySpawnedPill(_, pickup)
     if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_READING_GLASSES)) then
-        Game():GetItemPool():IdentifyPill(pickup.SubType & (~PillColor.PILL_GIANT_FLAG))
+        ToyboxMod.GAME:GetItemPool():IdentifyPill(pickup.SubType & (~PillColor.PILL_GIANT_FLAG))
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, unidentifySpawnedPill, PickupVariant.PICKUP_PILL)

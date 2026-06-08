@@ -8,7 +8,7 @@ local CREEP_TIMEOUT = 30*5
 
 ToyboxMod:addPillCrusherEffect(PillEffect.PILLEFFECT_BAD_TRIP,
 function(_, player, isHorse, rng)
-    for _, ent in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
+    for _, ent in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
         ent = ent:ToNPC()
         if(ent:IsActiveEnemy(false) and ent:IsVulnerableEnemy()) then
             ent:TakeDamage(TRIP_DAMAGE*(isHorse and 3 or 1), 0, EntityRef(player), 0)

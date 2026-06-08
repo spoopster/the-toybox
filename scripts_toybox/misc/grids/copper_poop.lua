@@ -11,7 +11,7 @@ local COPPER_COLOR = Color(255/100,255/59,255/49,1,0,0,0,197/255*0.8,131/255*0.8
 local function replaceHelper(_, effect)
     if(effect.SubType==ToyboxMod.GRID_COPPER_POOP) then
         effect.Visible = false
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local idx = room:GetGridIndex(effect.Position)
 
         room:RemoveGridEntityImmediate(idx, 0, false)
@@ -26,7 +26,7 @@ local function replaceHelper(_, effect)
                 poop:Update()
 
                 local sp = poop:GetSprite()
-                if(Game():GetRoom():GetFrameCount()~=0) then
+                if(ToyboxMod.GAME:GetRoom():GetFrameCount()~=0) then
                     sp:SetFrame(sp:GetCurrentAnimationData():GetLength()-1)
                 end
             end
@@ -51,7 +51,7 @@ ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_INIT, initSprite, Gri
 
 ---@param effect EntityEffect
 local function gibSpawn(_, effect)
-    local ent = Game():GetRoom():GetGridEntityFromPos(effect.Position)
+    local ent = ToyboxMod.GAME:GetRoom():GetGridEntityFromPos(effect.Position)
     if(ent and ent:ToPoop()) then
         local isCopper = ToyboxMod:getGridEntityData(ent:ToPoop(), "COPPER_POOP")
         if(isCopper) then

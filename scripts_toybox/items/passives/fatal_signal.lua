@@ -15,7 +15,7 @@ local function tryReplacePool(_, sel, pool, dec, seed)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FATAL_SIGNAL)) then return end
 
     local rng = ToyboxMod:generateRng(seed)
-    local itempool = Game():GetItemPool()
+    local itempool = ToyboxMod.GAME:GetItemPool()
     print(itempool:HasCollectible(sel), sel, pool, dec, seed)
 
     pool = itempool:GetLastPool()
@@ -73,7 +73,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, clearSeedsTable)
 
 ---@param pickup EntityPickup
 local function pickupGlitchRender(_, pickup)
-    if(Game():IsPaused()) then return end
+    if(ToyboxMod.GAME:IsPaused()) then return end
     local cnt = ToyboxMod:getEntityData(pickup, "GLITCH_DURATION")
     if(not cnt) then return end
 

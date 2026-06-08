@@ -6,31 +6,33 @@ local TEARSTOADD_BATTERY = 1
 local TEARS_PRICE = 5
 
 ---@param player EntityPlayer
-local function preUseSunkCosts(_, _, rng, player, flags)
-    if(player:GetNumCoins()<TEARS_PRICE) then return true end
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, preUseSunkCosts, ToyboxMod.COLLECTIBLE_SUNK_COSTS)
-
----@param player EntityPlayer
 local function useSunkCosts(_, _, rng, player, flags)
-    player:AddCoins(-TEARS_PRICE)
-    sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
+    if(player:GetNumCoins()>=TEARS_PRICE) then
+        player:AddCoins(-TEARS_PRICE)
+        sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
 
-    local mult = 0
-    if(player:GetEffects():GetCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS)) then
-        mult = player:GetEffects():GetCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS).Count
+        local mult = 0
+        if(player:GetEffects():GetCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS)) then
+            mult = player:GetEffects():GetCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS).Count
+        end
+        mult = mult+1
+
+        local col = player.Color
+        col:SetColorize(1,1,0,math.min(1, mult*0.2))
+        player.Color = col
+
+        return {
+            Discharge = true,
+            Remove = false,
+            ShowAnim = true,
+        }
+    else
+        return {
+            Discharge = false,
+            Remove = false,
+            ShowAnim = false,
+        }
     end
-    mult = mult+1
-
-    local col = player.Color
-    col:SetColorize(1,1,0,math.min(1, mult*0.2))
-    player.Color = col
-
-    return {
-        Discharge = true,
-        Remove = false,
-        ShowAnim = true,
-    }
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useSunkCosts, ToyboxMod.COLLECTIBLE_SUNK_COSTS)
 

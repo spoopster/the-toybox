@@ -9,7 +9,7 @@ local PICKER = WeightedOutcomePicker()
 local function cursedD6Use(_, item, rng, player, flags, slot, vdata)
     local outcome = PICKER:PickOutcome(rng)
 
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
     local conf = Isaac.GetItemConfig()
 
     if(outcome==3) then

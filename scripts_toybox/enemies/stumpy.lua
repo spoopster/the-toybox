@@ -49,7 +49,7 @@ local function stumpyUpdte(_, npc)
 
     if(npc.State==NpcState.STATE_IDLE) then
         if(npc.StateFrame==1) then
-            local room = Game():GetRoom()
+            local room = ToyboxMod.GAME:GetRoom()
             local failsafe = 40000
             local nearFirePlace = false
             repeat
@@ -90,7 +90,7 @@ local function stumpyUpdte(_, npc)
     elseif(npc.State==NpcState.STATE_ATTACK) then
         if(npc.StateFrame==1) then
             local rocksToPickFrom = {}
-            local room = Game():GetRoom()
+            local room = ToyboxMod.GAME:GetRoom()
             for i=0, room:GetGridSize()-1 do
                 local gridEnt = room:GetGridEntity(i)
                 if(gridEnt and VALID_ROCKS[gridEnt:GetType()]) then
@@ -224,7 +224,7 @@ local function spawnRockOnDeath(_, npc)
     local data = ToyboxMod:getEntityDataTable(npc)
 
     if(data.STUMPY_ROCKSPRITE) then
-        local proj = npc:FireGridEntity(data.STUMPY_ROCKSPRITE, data.STUMPY_ROCKDESC, Vector.Zero, Game():GetRoom():GetBackdropType())
+        local proj = npc:FireGridEntity(data.STUMPY_ROCKSPRITE, data.STUMPY_ROCKDESC, Vector.Zero, ToyboxMod.GAME:GetRoom():GetBackdropType())
 
         local heightScale = 1.8
         proj.FallingAccel = 0.75

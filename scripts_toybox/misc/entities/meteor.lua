@@ -64,7 +64,7 @@ local function meteorUpdate(_, eff)
     eff:SetShadowSize((1-frac)*SHADOW_SIZE*eff.Scale/100)
 
     if(eff.Timeout==0) then
-        Game():ShakeScreen(9)
+        ToyboxMod.GAME:ShakeScreen(9)
 
         Isaac.Explode(eff.Position, eff, eff.CollisionDamage)
         for _, npc in ipairs(Isaac.FindInRadius(eff.Position, BURN_RADIUS, EntityPartition.ENEMY)) do

@@ -57,11 +57,11 @@ local function giveThePlaces(_, pl)
     PLACEHOLDER_GIVING_ITEM = true
     local numRolls = math.max(0, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BOBS_THESIS)-1)*STACK_PLACEHOLDER_REROLLS
 
-    local chosenItem = Game():GetItemPool():GetCollectible(poolType, false)
+    local chosenItem = ToyboxMod.GAME:GetItemPool():GetCollectible(poolType, false)
     local chosenQuality = conf:GetCollectible(chosenItem).Quality
 
     for _=1, numRolls do
-        local newItem = Game():GetItemPool():GetCollectible(poolType, false)
+        local newItem = ToyboxMod.GAME:GetItemPool():GetCollectible(poolType, false)
         local newQuality = conf:GetCollectible(newItem).Quality
 
         if(newQuality>chosenQuality) then
@@ -70,7 +70,7 @@ local function giveThePlaces(_, pl)
         end
     end
     
-    Game():GetItemPool():RemoveCollectible(chosenItem)
+    ToyboxMod.GAME:GetItemPool():RemoveCollectible(chosenItem)
     PLACEHOLDER_GIVING_ITEM = false
 
     if(conf:GetCollectible(chosenItem).Type==ItemType.ITEM_ACTIVE and pl:GetActiveItem(ActiveSlot.SLOT_PRIMARY)~=0) then

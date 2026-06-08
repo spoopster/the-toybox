@@ -40,7 +40,7 @@ local function postPlayerUpdate(_, player)
     local tableClone = cloneTable(lastFireDirections)
 
     local fireDirection = player:GetFireDirection()
-    if lastFireDirections[1] ~= fireDirection or Game():GetFrameCount() % DIRECTION_FLUSH_MOD == 0 then
+    if lastFireDirections[1] ~= fireDirection or ToyboxMod.GAME:GetFrameCount() % DIRECTION_FLUSH_MOD == 0 then
         for i = 1, #lastFireDirections do
             lastFireDirections[i + 1] = tableClone[i]
         end

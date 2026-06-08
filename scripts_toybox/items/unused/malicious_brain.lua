@@ -171,8 +171,8 @@ local function postHypnosUpdate(_, familiar)
 
     --! RAGE COUNTER UPDATE
     data.BRAIN_ADRENALINECOUNTER = data.BRAIN_ADRENALINECOUNTER or 0
-    if(Game():GetRoom():GetType()==RoomType.ROOM_BOSS and not ToyboxMod:isRoomClear()) then
-        data.BRAIN_ADRENALINECOUNTER = Game():GetRoom():GetFrameCount()
+    if(ToyboxMod.GAME:GetRoom():GetType()==RoomType.ROOM_BOSS and not ToyboxMod:isRoomClear()) then
+        data.BRAIN_ADRENALINECOUNTER = ToyboxMod.GAME:GetRoom():GetFrameCount()
         if((data.BRAIN_ADRENALINECOUNTER%4==0 and data.BRAIN_ADRENALINECOUNTER<=ADRENALE_DURATION) or data.BRAIN_ADRENALINECOUNTER==ADRENALE_DURATION) then
             player:AddCacheFlags(CacheFlag.CACHE_DAMAGE,true)
         end

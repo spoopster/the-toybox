@@ -18,6 +18,8 @@ end)
 
 -- fates reward -- fuck you
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, function(_, tear)
+    if(not tear) then return end
+
 	local player = nil
     local sp = tear.SpawnerEntity
 

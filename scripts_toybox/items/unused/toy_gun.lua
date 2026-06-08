@@ -16,7 +16,7 @@ ToyboxMod:registerThrowableActive(ToyboxMod.COLLECTIBLE_TOY_GUN, false, false)
 local function useToyGun(_, item, player, rng, flags, slot)
     local data = player:GetActiveItemDesc(slot)
     if(data.VarData>0) then
-        if(Game():GetDebugFlags() & DebugFlag.INFINITE_ITEM_CHARGES == 0) then
+        if(ToyboxMod.GAME:GetDebugFlags() & DebugFlag.INFINITE_ITEM_CHARGES == 0) then
             data.VarData = data.VarData-1
         end
 

@@ -13,7 +13,7 @@ local function hurtAllEnemies(dmg, higherChance)
             ent:TakeDamage(dmg,0,EntityRef(nil),0)
 
             local rng = ent:GetDropRNG()
-            if(ent:HasMortalDamage() and Game():GetRoom():IsFirstVisit() and rng:RandomFloat()<(higherChance and CARBATTERY_BLACKHEART_CHANCE or BLACKHEART_CHANCE)) then
+            if(ent:HasMortalDamage() and ToyboxMod.GAME:GetRoom():IsFirstVisit() and rng:RandomFloat()<(higherChance and CARBATTERY_BLACKHEART_CHANCE or BLACKHEART_CHANCE)) then
                 local smoke = Isaac.Spawn(1000,15,2,ent.Position,Vector.Zero,ent):ToEffect()
                 smoke.Color = Color(0.25,0.25,0.25,1)
                 sfx:Play(SoundEffect.SOUND_BEAST_FIRE_RING, 0.8)
@@ -23,7 +23,7 @@ local function hurtAllEnemies(dmg, higherChance)
         end
     end
 
-    Game():ShakeScreen(10)
+    ToyboxMod.GAME:ShakeScreen(10)
     sfx:Play(SoundEffect.SOUND_BLACK_POOF)
 end
 
@@ -48,18 +48,18 @@ local function useMantle(_, _, player, flags)
         if(flags & UseFlag.USE_CARBATTERY ~= 0) then
             player:UseActiveItem(CollectibleType.COLLECTIBLE_NECRONOMICON, UseFlag.USE_NOANIM)
         end
-        hurtAllEnemies(DMG_TODEAL+Game():GetLevel():GetAbsoluteStage()*DMG_TO_DEAL_FLOOR, flags & UseFlag.USE_CARBATTERY ~= 0)
+        hurtAllEnemies(DMG_TODEAL+ToyboxMod.GAME:GetLevel():GetAbsoluteStage()*DMG_TO_DEAL_FLOOR, flags & UseFlag.USE_CARBATTERY ~= 0)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_DARK)
 
 local function hurtNewRoomEnemies(_)
-    if(Game():GetRoom():IsClear()) then return end
+    if(ToyboxMod.GAME:GetRoom():IsClear()) then return end
     if((ToyboxMod:getExtraData("MANTLEDARK_USES") or 0)==0) then return end
 
     local uses = (ToyboxMod:getExtraData("MANTLEDARK_USES") or 0)
 
-    local dmgToDeal = (DMG_TODEAL+Game():GetLevel():GetAbsoluteStage()*DMG_TO_DEAL_FLOOR)*(uses//1)
+    local dmgToDeal = (DMG_TODEAL+ToyboxMod.GAME:GetLevel():GetAbsoluteStage()*DMG_TO_DEAL_FLOOR)*(uses//1)
     if(dmgToDeal<=0) then return end
 
     hurtAllEnemies(dmgToDeal, (uses ~= uses//1))

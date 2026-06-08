@@ -4,7 +4,7 @@
 local function addEgg(_, _, _, firstTime, slot, vData, player)
     if(firstTime~=true) then return end
     
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
     pool:ForceAddPillEffect(ToyboxMod.PILL_CAPSULE)
 
     local color = pool:GetPillColor(ToyboxMod.PILL_CAPSULE)

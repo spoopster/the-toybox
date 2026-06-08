@@ -25,7 +25,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage.FLAT_DAMAGE)
 
 local function increaseLionMark(_)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_LION_SKULL)) then
             local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LION_SKULL)

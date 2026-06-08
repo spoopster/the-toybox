@@ -11,8 +11,8 @@ local function postUpdate(_)
     local cool = math.floor(BASE_BEAM_COOLDOWN/(PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_BLESSED_RING)))
     if(cool<1) then cool=1 end
 
-    if((Game():GetRoom():GetFrameCount()-1)%cool~=0) then return end
-    local r = Game():GetRoom()
+    if((ToyboxMod.GAME:GetRoom():GetFrameCount()-1)%cool~=0) then return end
+    local r = ToyboxMod.GAME:GetRoom()
     local p = PlayerManager.FirstCollectibleOwner(ToyboxMod.COLLECTIBLE_BLESSED_RING)
     local rng = p:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_BLESSED_RING)
 

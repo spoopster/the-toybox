@@ -73,7 +73,7 @@ local function evaluateJuiceCollision(pos, sub, coll)
             pickup:AddKnockback(EntityRef(nil), vel, 15, false)
         elseif(outcome==2) then
             local stat = ({"SPEED","TEARS","DAMAGE","RANGE","SHOTSPEED","LUCK"})[rng:RandomInt(1,6)]
-            for i=0, Game():GetNumPlayers()-1 do
+            for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local pl = Isaac.GetPlayer(i)
                 if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JUICE)) then
                     local data = ToyboxMod:getEntityDataTable(pl)
@@ -231,7 +231,7 @@ local function renderJuiceParticles(_)
 
     local effectsToRender = Isaac.FindByType(1000, ToyboxMod.EFFECT_JUICE_TRAIL)
 
-    local offset = Game():GetRoom():GetRenderScrollOffset()
+    local offset = ToyboxMod.GAME:GetRoom():GetRenderScrollOffset()
 
     juiceSprite:Play("IdleOutline", true)
     for _, ent in ipairs(effectsToRender) do
@@ -251,7 +251,7 @@ local function renderJuiceParticles(_)
         juiceSprite:SetFrame(sp:GetFrame())
         juiceSprite.Rotation = sp.Rotation+ent.SpriteRotation
 
-        juiceSprite.Color = Color(1,1,1,1,0,0,0,rpos.X/40+rpos.Y/40+Game():GetFrameCount()/15)
+        juiceSprite.Color = Color(1,1,1,1,0,0,0,rpos.X/40+rpos.Y/40+ToyboxMod.GAME:GetFrameCount()/15)
         juiceSprite:Render(rpos)
     end
 end
@@ -264,7 +264,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_RENDER, resetRenders)
 --]]
 
 local function renderParticleOverlay(_)
-    local offset = Game():GetRoom():GetRenderScrollOffset()
+    local offset = ToyboxMod.GAME:GetRoom():GetRenderScrollOffset()
 
     for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, ToyboxMod.EFFECT_JUICE_TRAIL)) do
         local sp = ent:GetSprite()
@@ -272,7 +272,7 @@ local function renderParticleOverlay(_)
         juiceSprite:SetFrame(sp:GetFrame())
         juiceSprite.Rotation = sp.Rotation
 
-        juiceSprite.Color = Color(1,1,1,1,0,0,0,rpos.X/40+rpos.Y/40+Game():GetFrameCount()/15)
+        juiceSprite.Color = Color(1,1,1,1,0,0,0,rpos.X/40+rpos.Y/40+ToyboxMod.GAME:GetFrameCount()/15)
         juiceSprite:Render(rpos)
     end
 end
@@ -281,8 +281,8 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_ROOM_RENDER_ENTITIES, renderParticleO
 local function spawnSlotInStartRoom()
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JUICE)) then return end
 
-    local level = Game():GetLevel()
-    local isGreed = Game():IsGreedMode() and level:GetStage()~=LevelStage.STAGE7_GREED
+    local level = ToyboxMod.GAME:GetLevel()
+    local isGreed = ToyboxMod.GAME:IsGreedMode() and level:GetStage()~=LevelStage.STAGE7_GREED
     local isInCorrectRoom = (level:GetCurrentRoomIndex()==level:GetStartingRoomIndex())
     if(isGreed) then
         local shopIndex = level:GetStartingRoomIndex()-13
@@ -295,9 +295,9 @@ local function spawnSlotInStartRoom()
     if(#Isaac.FindByType(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_JUICE_FOUNTAIN)==0) then
         local pos
         if(isGreed) then
-            pos = Game():GetRoom():FindFreePickupSpawnPosition(Vector(560,280))+Vector(20,0)
+            pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(Vector(560,280))+Vector(20,0)
         else
-            pos = Game():GetRoom():FindFreePickupSpawnPosition(Vector(200,200))
+            pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(Vector(200,200))
         end
 
         local slot = Isaac.Spawn(EntityType.ENTITY_SLOT,ToyboxMod.SLOT_JUICE_FOUNTAIN,0,pos,Vector.Zero,nil)
@@ -319,7 +319,7 @@ local function postSlotUpdate(_, slot)
     if(slot:GetTouch()%4==1) then
         local pl = PlayerManager.FirstCollectibleOwner(ToyboxMod.COLLECTIBLE_GOOD_JUICE) or Isaac.GetPlayer()
         if(pl) then
-            local neededJuice = JUICE_REQ_BASE+JUICE_REQ_PER_FLOOR*Game():GetLevel():GetAbsoluteStage()
+            local neededJuice = JUICE_REQ_BASE+JUICE_REQ_PER_FLOOR*ToyboxMod.GAME:GetLevel():GetAbsoluteStage()
 
             if((ToyboxMod:getExtraData("GOOD_JUICE_NUM") or 0)>=neededJuice) then
                 addJuice(-neededJuice)
@@ -329,7 +329,7 @@ local function postSlotUpdate(_, slot)
     end
 
     slot:SetState(1)
-    slot:GetSprite():GetLayer("juice"):SetColor(Color(1,1,1,1,0,0,0,slot.Position.X/40+slot.Position.Y/40+Game():GetFrameCount()/90))
+    slot:GetSprite():GetLayer("juice"):SetColor(Color(1,1,1,1,0,0,0,slot.Position.X/40+slot.Position.Y/40+ToyboxMod.GAME:GetFrameCount()/90))
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, postSlotUpdate, ToyboxMod.SLOT_JUICE_FOUNTAIN)
 
@@ -399,7 +399,7 @@ local function hudRender(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_GOOD_JUICE)) then return end
 
     local data = ToyboxMod:getExtraDataTable()
-    if(not Game():IsPaused()) then
+    if(not ToyboxMod.GAME:IsPaused()) then
         local trueVal = (data.GOOD_JUICE_NUM or 0)
 
         data.GOOD_JUICE_LERP_COUNTER = data.GOOD_JUICE_LERP_COUNTER or trueVal
@@ -407,7 +407,7 @@ local function hudRender(_)
 
         local dif = trueVal-fakeVal
         local adif = math.abs(dif)
-        if(not Game():IsPaused() and adif>0) then
+        if(not ToyboxMod.GAME:IsPaused() and adif>0) then
             local toAdd = 0
             if(adif>25000) then toAdd = 271
             elseif(adif>3000) then toAdd = 27
@@ -424,7 +424,7 @@ local function hudRender(_)
     end
 
     --figure ts out later
-    if(not Game():IsPaused()) then
+    if(not ToyboxMod.GAME:IsPaused()) then
         if(Input.IsActionPressed(ButtonAction.ACTION_MAP, Isaac.GetPlayer().ControllerIndex)) then
             if(MAP_HELD<MAP_MAX) then
                 MAP_HELD = MAP_HELD+1
@@ -443,13 +443,13 @@ local function hudRender(_)
 
     if(trueTransparency<0.01) then return end
     if(isBossIntro) then return end
-    if(Game():GetLevel():GetStage()==LevelStage.STAGE8 and Game():GetRoom():GetType()==RoomType.ROOM_DUNGEON and Game():GetLevel():GetCurrentRoomDesc().Data.Variant==666) then return end
+    if(ToyboxMod.GAME:GetLevel():GetStage()==LevelStage.STAGE8 and ToyboxMod.GAME:GetRoom():GetType()==RoomType.ROOM_DUNGEON and ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().Data.Variant==666) then return end
 
-    local color = lerpKcolor(KColor(1,1,1,1), kcolorFromHue((Game():GetFrameCount()*5)%360), 0.33)
+    local color = lerpKcolor(KColor(1,1,1,1), kcolorFromHue((ToyboxMod.GAME:GetFrameCount()*5)%360), 0.33)
     color.Alpha = trueTransparency
 
     local renderPos = Vector(Isaac.GetScreenWidth()/2, 6)+Vector(0,24)*Options.HUDOffset+Vector(0,16)
-    if(not Game():IsGreedMode()) then renderPos = renderPos+Vector(0,16) end
+    if(not ToyboxMod.GAME:IsGreedMode()) then renderPos = renderPos+Vector(0,16) end
 
     font:DrawString("Juice:", renderPos.X-40, renderPos.Y, color)
     font:DrawString(tostring(math.floor(data.GOOD_JUICE_LERP_COUNTER or 0)), renderPos.X, renderPos.Y, color, 40, false)

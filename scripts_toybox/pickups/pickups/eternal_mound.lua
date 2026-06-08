@@ -34,7 +34,7 @@ local function tryCollectPickup(pl, pickup)
             elseif(price==PickupPrice.PRICE_FREE and PlayerManager.AnyoneHasTrinket(TrinketType.TRINKET_STORE_CREDIT)) then
                 local creditOwner = pl
                 if(not pl:HasTrinket(TrinketType.TRINKET_STORE_CREDIT)) then
-                    for i=0, Game():GetNumPlayers()-1 do
+                    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                         local otherPl = Isaac.GetPlayer(i)
                         if(otherPl:HasTrinket(TrinketType.TRINKET_STORE_CREDIT)) then
                             creditOwner = otherPl
@@ -110,9 +110,9 @@ local function preMoundCollision(_, pickup, coll, low)
     pl:AddEternalHearts(NUM_HEARTS)
     sfx:Play(SoundEffect.SOUND_SUPERHOLY)
 
-    Game():GetLevel():SetHeartPicked()
-    Game():ClearStagesWithoutHeartsPicked()
-    Game():SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
+    ToyboxMod.GAME:GetLevel():SetHeartPicked()
+    ToyboxMod.GAME:ClearStagesWithoutHeartsPicked()
+    ToyboxMod.GAME:SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
 
     return true
 end

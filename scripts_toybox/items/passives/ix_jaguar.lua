@@ -6,8 +6,8 @@ local function revealAdjacentDoors()
 
     local hasDoor = false
 
-    local level = Game():GetLevel()
-    local room = Game():GetRoom()
+    local level = ToyboxMod.GAME:GetLevel()
+    local room = ToyboxMod.GAME:GetRoom()
     local roomDesc = level:GetCurrentRoomDesc()
 
     local isRed = (roomDesc.Flags & RoomDescriptor.FLAG_RED_ROOM ~= 0) or (roomDesc.Data and roomDesc.Data.Type==RoomType.ROOM_ULTRASECRET)
@@ -42,13 +42,13 @@ local function revealAdjacentDoors()
 end
 
 local function addNewBossRoom(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_IX_JAGUAR)) then return end
 
     ToyboxMod:setExtraData("IX_REVEALED_ROOM", -1)
     ToyboxMod:setExtraData("IX_FAILED", 0)
 
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     local rng = ToyboxMod:generateRng(level:GetGenerationRNG():GetSeed())
 
     local usRoom
@@ -113,7 +113,7 @@ local function addNewBossRoom(_)
         end
 
         if(hasNeighbor) then
-            Game():ChangeRoom(level:GetCurrentRoomIndex())
+            ToyboxMod.GAME:ChangeRoom(level:GetCurrentRoomIndex())
         end
 
         revealAdjacentDoors()
@@ -142,7 +142,7 @@ local function applyMarkPenalties(_, player, _, flags, source)
     if(source.Type==6) then return end
     if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
 
-    local room = Game():GetLevel():GetRoomByIdx(ToyboxMod:getExtraData("IX_REVEALED_ROOM"), -1)
+    local room = ToyboxMod.GAME:GetLevel():GetRoomByIdx(ToyboxMod:getExtraData("IX_REVEALED_ROOM"), -1)
     if(room.VisitedCount>0) then return end
 
     if(ToyboxMod:getExtraData("IX_FAILED")<PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_IX_JAGUAR)) then

@@ -9,7 +9,7 @@ local CREEP_DAMAGE = 4
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
 
-    local fart = Game():Fart(player.Position, 85, player)
+    local fart = ToyboxMod.GAME:Fart(player.Position, 85, player)
     
     local cloud = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SMOKE_CLOUD, 0, player.Position, Vector.Zero, nil):ToEffect()
     if(isHorse) then

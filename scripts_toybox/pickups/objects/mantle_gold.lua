@@ -25,8 +25,7 @@ local function useMantle(_, _, player, flags)
 
             if(flags & UseFlag.USE_OWNED == UseFlag.USE_OWNED) then
                 if(rng:RandomFloat()<1-(flags & UseFlag.USE_CARBATTERY ~= 0 and CARBATTERY_REMOVE_CHANCE or REMOVE_CHANCE)) then
-                    player:SetCard(1, player:GetCard(0))
-                    player:SetCard(0, ToyboxMod.CARD_MANTLE_GOLD)
+                    player:Add(ToyboxMod.CARD_MANTLE_GOLD)
                 end
             end
 

@@ -8,7 +8,7 @@ local function usePill(_, effect, color, player, flags)
     if(isDoubling or not player:HasTrinket(ToyboxMod.TRINKET_ANTIBIOTICS)) then return end
     isDoubling = true
 
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
     if((not pool:IsPillIdentified(color)) or player:GetPillRNG(effect):RandomFloat()<DOUBLE_CHANCE) then
 
         local trinketMult = player:GetTrinketMultiplier(ToyboxMod.TRINKET_ANTIBIOTICS)

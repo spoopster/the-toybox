@@ -19,7 +19,7 @@ local function postAddItem(_, item, _, firstTime, _, _, player)
     if(firstTime~=true) then return end
 
     if(item==ToyboxMod.COLLECTIBLE_HORSE_TRANQUILIZER) then
-        local pill = Isaac.Spawn(5,70,0,Game():GetRoom():FindFreePickupSpawnPosition(player.Position,40),Vector.Zero,nil):ToPickup()
+        local pill = Isaac.Spawn(5,70,0,ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position,40),Vector.Zero,nil):ToPickup()
         pill:Morph(5,70,pill.SubType|PillColor.PILL_GIANT_FLAG)
     elseif(player:HasCollectible(ToyboxMod.COLLECTIBLE_HORSE_TRANQUILIZER)) then
         local config = Isaac.GetItemConfig():GetCollectible(item)
@@ -29,8 +29,8 @@ local function postAddItem(_, item, _, firstTime, _, _, player)
         --print(cl==ToyboxMod.PHD_TYPE.GOOD, cl==ToyboxMod.PHD_TYPE.NEUTRAL, cl==ToyboxMod.PHD_TYPE.BAD)
 
         local effect = ToyboxMod:getRandomPillEffect(nil, player, ToyboxMod:getClassByQuality(ToyboxMod:getPlayerPhdMask(player), config.Quality))
-        local usedPillCol = Game():GetItemPool():GetPillColor(effect)
-        if(usedPillCol==-1) then usedPillCol = Game():GetItemPool():GetPill(math.max(1,Random())) end
+        local usedPillCol = ToyboxMod.GAME:GetItemPool():GetPillColor(effect)
+        if(usedPillCol==-1) then usedPillCol = ToyboxMod.GAME:GetItemPool():GetPill(math.max(1,Random())) end
         usedPillCol = usedPillCol | PillColor.PILL_GIANT_FLAG
 
         player:UsePill(effect, usedPillCol, 0)

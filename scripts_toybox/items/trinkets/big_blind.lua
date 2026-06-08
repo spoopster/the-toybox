@@ -18,7 +18,7 @@ end
 local function addToCounter(_, ent, amount, _, _, _)
     if(not (ent and ent:Exists() and ToyboxMod:isValidEnemy(ent))) then return end
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
 
         if(pl:HasTrinket(ToyboxMod.TRINKET_BIG_BLIND)) then
@@ -186,7 +186,7 @@ local function postRender()
     local data = ToyboxMod:getExtraDataTable()
     if(data.BIGBLIND_CONBOI_ACTIVE~=1) then return end
 
-    if(not Game():IsPaused()) then
+    if(not ToyboxMod.GAME:IsPaused()) then
         if(UNFILLED_INDEXES==nil or FINALSTRINGS==nil or RESET_TABLES==true) then
             UNFILLED_INDEXES = {}
             FINALSTRINGS = {}

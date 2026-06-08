@@ -9,7 +9,7 @@ local function coinInit(_, pickup)
     if(not (pickup:GetSprite():GetAnimation()=="Appear" or pickup:GetSprite():GetAnimation()=="AppearFast")) then return end
 
     local numBoosts = 0
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(ToyboxMod:playerHasLimitBreak(pl)) then numBoosts = numBoosts+pl:GetCollectibleNum(CollectibleType.COLLECTIBLE_QUARTER) end
     end

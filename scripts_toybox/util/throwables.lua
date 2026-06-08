@@ -84,7 +84,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, cancelThrowableOnDmg, EntityType.ENTITY_PLAYER)
 
 local function cancelThrowableOnNewRoom(_)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local p = Isaac.GetPlayer(i)
         local pData = ToyboxMod:getEntityDataTable(p)
         if(pData.THROWABLE_DATA) then

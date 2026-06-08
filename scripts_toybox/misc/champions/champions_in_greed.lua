@@ -7,10 +7,10 @@ local function tryMakeChampionsInGreed(_, npc)
     if(CANCEL_INIT) then return end
     if(not ToyboxMod.CONFIG.CHAMPIONS_IN_GREED) then return end
     if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_MALICE)) then return end
-    if(not Game():IsGreedMode()) then return end
+    if(not ToyboxMod.GAME:IsGreedMode()) then return end
     if(not ToyboxMod:isValidEnemy(npc) or npc:IsBoss()) then return end
-    if(npc.FrameCount>=Game():GetRoom():GetFrameCount()) then return end
-    if(not PENTAGRAM_INDEXES[Game():GetRoom():GetGridIndex(npc.Position)]) then return end
+    if(npc.FrameCount>=ToyboxMod.GAME:GetRoom():GetFrameCount()) then return end
+    if(not PENTAGRAM_INDEXES[ToyboxMod.GAME:GetRoom():GetGridIndex(npc.Position)]) then return end
     if(npc:IsChampion() or ToyboxMod:isModChampion(npc)) then return end
 
     local conf = EntityConfig.GetEntity(npc.Type, npc.Variant, npc.SubType)
@@ -39,7 +39,7 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_NPC_INIT, CallbackPriority.LA
 local function pentagramRemoveMark(_, effect)
     local sp = effect:GetSprite()
     if(sp:GetAnimation()=="Summon" and sp:GetFrame()==sp:GetCurrentAnimationData():GetLength()-1) then
-        PENTAGRAM_INDEXES[Game():GetRoom():GetGridIndex(effect.Position)] = true
+        PENTAGRAM_INDEXES[ToyboxMod.GAME:GetRoom():GetGridIndex(effect.Position)] = true
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_EFFECT_UPDATE, pentagramRemoveMark, EffectVariant.SPAWN_PENTAGRAM)

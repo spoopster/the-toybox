@@ -67,7 +67,7 @@ local function zeroGravPlUpdate(_, pl)
         crosshair:Remove()
 
         local nearbyDoor
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         for _, slot in pairs(DoorSlot) do
             local door = room:GetDoor(slot)
             if(door and (nearbyDoor==nil or door.Position:Distance(pl.Position)<nearbyDoor.Position:Distance(pl.Position))) then
@@ -88,7 +88,7 @@ local function zeroGravPlUpdate(_, pl)
 
         local validVel = Vector.Zero
 
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local steps = 10
         local fraq = crosshair.Velocity/10
         

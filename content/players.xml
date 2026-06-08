@@ -6,6 +6,8 @@
 		costumeSuffix="milcom_a" skinColor="-1"
 
 		heartcontainers="6" redhearts="6"
+
+		noshake="true"
 	/>
 
 	<player birthright="Mantle stratification" name="Atlas"

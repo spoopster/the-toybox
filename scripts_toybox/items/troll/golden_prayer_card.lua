@@ -2,7 +2,7 @@
 
 ---@param player EntityPlayer
 local function goldenPrayerCardUse(_, item, rng, player, flags, slot, vdata)
-    local freePos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 80)
+    local freePos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 80)
     Isaac.Spawn(5,ToyboxMod.PICKUP_ETERNAL_MOUND,0,freePos,Vector.Zero,nil):ToPickup()
 
     return {

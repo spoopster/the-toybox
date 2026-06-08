@@ -61,7 +61,7 @@ local function postJonasInit(_, player)
     if(player:GetPlayerType()~=ToyboxMod.PLAYER_JONAS_A) then return end
 
     --make pill pool
-    if(Game():GetFrameCount()==0 or not ToyboxMod:getExtraData("CUSTOM_PILL_POOL")) then
+    if(ToyboxMod.GAME:GetFrameCount()==0 or not ToyboxMod:getExtraData("CUSTOM_PILL_POOL")) then
         local data = ToyboxMod:getJonasATable(player)
         if(canRerollPool) then
             ToyboxMod:calcPillPool(ToyboxMod:generateRng())

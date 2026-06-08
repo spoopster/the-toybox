@@ -5,7 +5,7 @@ local sfx = SFXManager()
 ---@param pl EntityPlayer
 local function bigBangUse(_, _, rng, pl, flags, slot, vdata)
     local conf = Isaac.GetItemConfig()
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
 
     local numItems = #conf:GetCollectibles()
     for i=1, numItems-1 do

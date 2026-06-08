@@ -72,7 +72,7 @@ function ToyboxMod:incrementCustomTransformationCounter(pl, transfKey, num)
                 pl:AddNullCostume(transfData.Costume)
             end
             if(transfData.StreakName) then
-                Game():GetHUD():ShowItemText(transfData.StreakName.."!")
+                ToyboxMod.GAME:GetHUD():ShowItemText(transfData.StreakName.."!")
             end
 
             ---params: EntityPlayer pl, boolean firstTime, string transformation

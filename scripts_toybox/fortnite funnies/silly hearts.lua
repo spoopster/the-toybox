@@ -25,13 +25,13 @@ local function initHeartData(pl, pos, idx)
     }
 end
 function ToyboxMod:invalidateTables()
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         ToyboxMod:setEntityData(pl, "UI_HEART_DATA", nil)
     end
 end
 function ToyboxMod:setHeartValue(key, val)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         local data = ToyboxMod:getEntityDataTable(pl)
 
@@ -42,10 +42,10 @@ function ToyboxMod:setHeartValue(key, val)
 end
 
 local function postHudRender()
-    if(Game():IsPaused()) then return end
-    for i=0, Game():GetNumPlayers()-1 do
+    if(ToyboxMod.GAME:IsPaused()) then return end
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
-        local hud = Game():GetHUD():GetPlayerHUD(i)
+        local hud = ToyboxMod.GAME:GetHUD():GetPlayerHUD(i)
         local data = ToyboxMod:getEntityDataTable(pl)
         local hData = data.UI_HEART_DATA
 
@@ -114,7 +114,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_HUD_RENDER, postHudRender)
 local function preRenderHearts(_, _, sprite, pos, _, pl)
     local data = ToyboxMod:getEntityDataTable(pl)
     local hData = data.UI_HEART_DATA
-    local hud = Game():GetHUD():GetPlayerHUD(pl:GetPlayerIndex())
+    local hud = ToyboxMod.GAME:GetHUD():GetPlayerHUD(pl:GetPlayerIndex())
     local hearts = hud:GetHearts()
     local heartSprite = hud:GetHUD():GetHeartsSprite()
 

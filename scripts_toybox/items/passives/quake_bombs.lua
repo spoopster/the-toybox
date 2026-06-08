@@ -71,7 +71,7 @@ local destrucibleGrids = {
     [GridEntityType.GRID_POOP] = true,
 }
 local function isDestructibleGrid(index)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     local grid = room:GetGridEntity(index)
     if(not grid) then return false end
@@ -94,7 +94,7 @@ local function destroyQuakedGrids(timer)
     local quakeLayers = ToyboxMod:getEntityData(timer, "QUAKE_TIMER_LAYERS")
     if(not quakeLayers) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local currentLayer = (timer.FrameCount//QUAKE_TIMER)
 	--print(currentLayer)
     if(currentLayer<=0) then return end
@@ -125,7 +125,7 @@ end
 local function updateStoredGrids()
     local grids = {}
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local maxIdx = room:GetGridWidth()*room:GetGridHeight()-1
 
     for i=0, maxIdx do
@@ -147,12 +147,12 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, updateStoredGrids)
 local function quakeBombUpdate(_, bomb)
     if(not ToyboxMod:getEntityData(bomb, "QUAKE_BOMB")) then return end
     
-    Game():ShakeScreen(10)
+    ToyboxMod.GAME:ShakeScreen(10)
 
     local quakeLayers = {[0]={}, ["INVALID"]={}}
     local bombRadius = ToyboxMod:getBombRadius(bomb)
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local function getInitialGridsToDestroy(pos)
         local gridsRadius = math.ceil(bombRadius/40)
         local gridAlignedPos = room:GetGridPosition(room:GetGridIndex(pos))

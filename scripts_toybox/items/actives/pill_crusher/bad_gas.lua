@@ -6,10 +6,10 @@ local HORSE_CLOUD_SIZE = 1.5
 
 ToyboxMod:addPillCrusherEffect(PillEffect.PILLEFFECT_BAD_GAS,
 function(_, player, isHorse, rng)
-    for _, ent in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
+    for _, ent in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
         ent = ent:ToNPC()
         if(ent:IsActiveEnemy(false) and ent:IsVulnerableEnemy()) then
-            local fart = Game():ButterBeanFart(ent.Position, FART_RADIUS, ent, true, false)
+            local fart = ToyboxMod.GAME:ButterBeanFart(ent.Position, FART_RADIUS, ent, true, false)
             if(isHorse) then
                 local cloud = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SMOKE_CLOUD, 0, ent.Position, Vector.Zero, ent):ToEffect()
                 cloud:SetTimeout(HORSE_CLOUD_DURATION)

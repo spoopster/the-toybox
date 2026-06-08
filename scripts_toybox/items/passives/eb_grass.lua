@@ -37,19 +37,19 @@ end
 local function removeStateFlags(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EB_GRASS)) then return end
 
-    Game():SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_BROKEN, false)
-    Game():SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_JAMMED, false)
-    Game():SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_BLOWN, false)
+    ToyboxMod.GAME:SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_BROKEN, false)
+    ToyboxMod.GAME:SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_JAMMED, false)
+    ToyboxMod.GAME:SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_BLOWN, false)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, removeStateFlags)
 
 local function spawnDonoIfNone()
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EB_GRASS)) then return end
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     if(room:IsFirstVisit() and room:GetType()==RoomType.ROOM_SECRET) then
         local hasShop = false
-        local rooms = Game():GetLevel():GetRooms()
+        local rooms = ToyboxMod.GAME:GetLevel():GetRooms()
         for i = 0, rooms.Size-1 do
             local levelroom = rooms:Get(i)
             if(levelroom.Data and levelroom.Data.Type==RoomType.ROOM_SHOP) then
@@ -113,7 +113,7 @@ local function slotUpdate(_, slot)
         while(edata.EB_GRASS_DONATION_COUNTER>=DONATE_REQ) do
             edata.EB_GRASS_DONATION_COUNTER = edata.EB_GRASS_DONATION_COUNTER-DONATE_REQ
 
-            for i=0, Game():GetNumPlayers()-1 do
+            for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local pl = Isaac.GetPlayer(i)
                 if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_EB_GRASS)) then
                     increaseLowestStat(pl)

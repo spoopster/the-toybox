@@ -12,7 +12,7 @@ local JUMP_MINDIST = 40*4
 local TARCREEP_TIMEOUT = 30*5
 
 local function isPositionPit(pos)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local ent = room:GetGridEntityFromPos(pos)
     if(ent and ent:GetType()==GridEntityType.GRID_PIT) then
         return true
@@ -37,7 +37,7 @@ local function tarBabyInit(_, npc)
     npc.I2 = -1
 
     if(npc.SubType==1) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local idx = room:GetGridIndex(npc.Position)
 
         room:RemoveGridEntityImmediate(idx, 0, false)
@@ -51,7 +51,7 @@ local function tarBabyUpdate(_, npc)
     if(not (npc.Variant==ToyboxMod.NPC_TAR_BABY)) then return end
 
     local rng = npc:GetDropRNG()
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local sp = npc:GetSprite()
 
     if(npc.State==NpcState.STATE_INIT) then
@@ -321,7 +321,7 @@ local function renderRockOnStumpy(_, npc, offset)
     if(not (npc.Variant==ToyboxMod.NPC_TAR_BABY)) then return end
     
     if(npc.I2~=-1) then
-        local i2pos = Game():GetRoom():GetGridPosition(npc.I2)
+        local i2pos = ToyboxMod.GAME:GetRoom():GetGridPosition(npc.I2)
         i2pos = Isaac.WorldToRenderPosition(i2pos)
         Isaac.RenderText("I2", i2pos.X, i2pos.Y, 1,1,0,1)
     end

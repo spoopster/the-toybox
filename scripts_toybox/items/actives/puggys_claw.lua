@@ -30,7 +30,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evalStat, EvaluateStatStage
 
 ---@param npc EntityNPC
 local function increaseClawDmg(_, npc)
-    if(npc.FrameCount>Game():GetRoom():GetFrameCount() and npc:GetDropRNG():RandomFloat()>=0.25) then return end
+    if(npc.FrameCount>ToyboxMod.GAME:GetRoom():GetFrameCount() and npc:GetDropRNG():RandomFloat()>=0.25) then return end
 
     for _, pl in ipairs(PlayerManager.GetPlayers()) do
         if(pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_PUGGYS_CLAW)) then

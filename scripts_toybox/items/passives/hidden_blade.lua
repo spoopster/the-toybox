@@ -62,7 +62,7 @@ end
 ---@param pl EntityPlayer
 local function tryGiveBladeItem(_, pl)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_HIDDEN_BLADE)) then return end
-    if(Game():GetRoom():IsClear()) then return end
+    if(ToyboxMod.GAME:GetRoom():IsClear()) then return end
 
     local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_HIDDEN_BLADE)
     local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_HIDDEN_BLADE)

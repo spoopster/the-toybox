@@ -25,7 +25,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarInit, ToyboxMod.FAM
 
 ---@param fam EntityFamiliar
 local function familiarUpdate(_, fam)
-    if(Game():GetRoom():GetFrameCount()==4) then
+    if(ToyboxMod.GAME:GetRoom():GetFrameCount()==4) then
         local conf = EntityConfig
         local validEnemies = {}
         for _, ent in ipairs(Isaac.GetRoomEntities()) do
@@ -91,7 +91,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, familiarUpdate, ToyboxMod
 local function postNewRoom(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EFFIGY)) then return end
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
 
         ToyboxMod:setEntityData(pl, "EFFIGY_BLOCKS", 0)

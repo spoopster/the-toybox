@@ -9,7 +9,7 @@ local function usePill(_, effect, player, flags, color)
     local dataTable = ToyboxMod:getExtraDataTable()
 
     local numFlies = EXTRA_FLIES
-    for _, ent in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 2000, EntityPartition.ENEMY)) do
+    for _, ent in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 2000, EntityPartition.ENEMY)) do
         if(ent:IsEnemy() and ent:IsActiveEnemy()) then
             numFlies = numFlies+1
         end

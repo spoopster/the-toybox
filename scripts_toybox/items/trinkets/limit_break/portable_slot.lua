@@ -4,27 +4,27 @@
 local tellerOutcomes = {
     ---@param player EntityPlayer
     [0] = function(player) -- FORTUNE
-        Game():ShowFortune()
+        ToyboxMod.GAME:ShowFortune()
 
         player:AnimateSad()
     end,
     ---@param player EntityPlayer
     [1] = function(player) -- TRINKET
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,350,0,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateCollectible(ToyboxMod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
     end,
     ---@param player EntityPlayer
     [2] = function(player) -- SOUL HEART
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,10,3,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateCollectible(ToyboxMod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
     end,
     ---@param player EntityPlayer
     [3] = function(player) -- CARD
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,300,0,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateCollectible(ToyboxMod.COLLECTIBLE_PORTABLE_TELLER, "UseItem")
@@ -89,42 +89,42 @@ local slotOutcomes = {
     end,
     ---@param player EntityPlayer
     [1] = function(player) -- BOMB
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,40,0,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateCollectible(CollectibleType.COLLECTIBLE_PORTABLE_SLOT, "UseItem")
     end,
     ---@param player EntityPlayer
     [2] = function(player) -- KEY
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,30,0,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateCollectible(CollectibleType.COLLECTIBLE_PORTABLE_SLOT, "UseItem")
     end,
     ---@param player EntityPlayer
     [3] = function(player) -- HEART
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,10,0,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateCollectible(CollectibleType.COLLECTIBLE_PORTABLE_SLOT, "UseItem")
     end,
     ---@param player EntityPlayer
     [4] = function(player) -- PILL
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,70,0,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateCollectible(CollectibleType.COLLECTIBLE_PORTABLE_SLOT, "UseItem")
     end,
     ---@param player EntityPlayer
     [5] = function(player) -- 1 COIN
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local pickup = Isaac.Spawn(5,20,0,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateCollectible(CollectibleType.COLLECTIBLE_PORTABLE_SLOT, "UseItem")
     end,
     ---@param player EntityPlayer
     [6] = function(player) -- 3 COIN
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         for _=1,2 do
             local pos = room:FindFreePickupSpawnPosition(player.Position, 40)
             local pickup = Isaac.Spawn(5,20,0,pos,Vector.Zero,player):ToPickup()
@@ -134,7 +134,7 @@ local slotOutcomes = {
     end,
     ---@param player EntityPlayer
     [7] = function(player) -- BLACK FLY
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 40)
         local fly = Isaac.Spawn(13,0,0,pos,Vector.Zero,player):ToPickup()
 
         player:AnimateSad()

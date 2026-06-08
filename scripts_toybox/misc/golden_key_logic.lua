@@ -21,7 +21,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_COLLISION, goldenKeyColl, PickupVariant.PICKUP_KEY)
 
 local function resetGoldenKey(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
 
     updateGoldenKeyState(false)
 end

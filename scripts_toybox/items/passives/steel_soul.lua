@@ -108,12 +108,12 @@ local f = Font()
 f:Load("font/pftempestasevencondensed.fnt")
 ---@param pl EntityPlayer
 local function renderSoulShields(_, offset, sprite, pos, x, pl)
-    if(Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then return end
+    if(ToyboxMod.GAME:GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then return end
     if(pl:GetPlayerIndex()<0) then return end
 
-    local hud = Game():GetHUD():GetPlayerHUD(math.min(7,pl:GetPlayerIndex()))
+    local hud = ToyboxMod.GAME:GetHUD():GetPlayerHUD(math.min(7,pl:GetPlayerIndex()))
     local h = hud:GetHearts()
-    local sp = Game():GetHUD():GetHeartsSprite()
+    local sp = ToyboxMod.GAME:GetHUD():GetHeartsSprite()
 
     local numMaxReds = math.ceil(pl:GetMaxHearts()/2)
     for i, heartData in pairs(h) do
@@ -157,7 +157,7 @@ local function destroySoulShields(_, pl, dmg, flags, source, frames)
     
     if(numDamageRemoved>0) then
         sfx:Play(ToyboxMod.SFX_ATLASA_METALBLOCK)
-        Game():ShakeScreen(5)
+        ToyboxMod.GAME:ShakeScreen(5)
 
         return {
             Damage=dmg-numDamageRemoved,

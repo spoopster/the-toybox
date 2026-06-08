@@ -45,7 +45,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, addPoopFli
 
 local function replaceRockSpawn(_, t,v,vardata,idx,seed)
     local finalChance = 0
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(ToyboxMod:isAtlasA(pl)) then finalChance = finalChance+ToyboxMod:getNumMantlesByType(pl, ToyboxMod.MANTLE_DATA.POOP.ID) end
     end
@@ -87,7 +87,7 @@ local function poopHeal(_, poop)
     end
     if(shouldDoTransfEffect) then
         if(shouldDoTransfEffect[2]) then
-            Game():Fart(poop.Position, nil, shouldDoTransfEffect[1], 0.8)
+            ToyboxMod.GAME:Fart(poop.Position, nil, shouldDoTransfEffect[1], 0.8)
         end
     end
 end

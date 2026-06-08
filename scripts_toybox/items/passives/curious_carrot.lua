@@ -26,7 +26,7 @@ local function revealRooms(_, pl)
 
     local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CURIOUS_CARROT)
 
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     local rooms = level:GetRooms()
     local roomsNotVisible = {}
 

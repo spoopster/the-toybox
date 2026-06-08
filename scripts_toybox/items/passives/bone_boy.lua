@@ -38,7 +38,7 @@ local function dir2Angle(x)
     else return 0 end
 end
 local function getGridAlignedPos(pos)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     return room:GetGridPosition(room:GetGridIndex(pos))
 end
 local function switchAnim(newAnim, sprite)
@@ -118,7 +118,7 @@ local function boneBoyUpdate(_, familiar)
         local dist = familiar.Position:DistanceSquared(familiar.TargetPosition)
         if(GetPtrHash(familiar.Target)~=GetPtrHash(familiar.Player) and
         ((data.BONEBOY_TIME_SINCE_LAST_SHOT or 0)>0 or
-        (dist<=FIRE_DIST*FIRE_DIST and math.abs(dir2Angle(angleDir)-angleDif)<=FIRE_ANGLE and Game():GetRoom():CheckLine(familiar.Position, familiar.Target.Position, 3)))) then
+        (dist<=FIRE_DIST*FIRE_DIST and math.abs(dir2Angle(angleDir)-angleDif)<=FIRE_ANGLE and ToyboxMod.GAME:GetRoom():CheckLine(familiar.Position, familiar.Target.Position, 3)))) then
             if((data.BONEBOY_TIME_SINCE_LAST_SHOT or 0)<=0) then
                 local anim
                 if(angleDir==Direction.DOWN) then anim="AttackDown"
@@ -233,7 +233,7 @@ local function boneBoyUpdate(_, familiar)
             poof.Color = Color(boneColor.R,boneColor.G,boneColor.B,0.5)
 
             if(familiar.SubType&(1<<0)~=0) then
-                Game():ShakeScreen(10)
+                ToyboxMod.GAME:ShakeScreen(10)
 
                 local dmg = (familiar.SubType&(1<<1)~=0) and 185 or BFFS_EXPL_DMG
                 local expl = Isaac.Explode(familiar.Position, familiar.Player, dmg)

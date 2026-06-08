@@ -2,7 +2,7 @@
 local function replaceHelper(_, effect)
     if(effect.SubType==ToyboxMod.GRID_PLAYERONLY_BLOCK) then
         effect.Visible = false
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local idx = room:GetGridIndex(effect.Position)
 
         room:RemoveGridEntityImmediate(idx, 0, false)

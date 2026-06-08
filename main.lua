@@ -1,5 +1,7 @@
 ToyboxMod = RegisterMod("toyboxMod", 1) ---@type ModReference
 
+ToyboxMod.GAME = Game()
+
 --[[] ]
 local ogfunc = ToyboxMod.AddCallback
 function ToyboxMod:AddCallback(callbackId, callbackFn, entityId)
@@ -550,7 +552,7 @@ local function darkRedRegen(_, rock, off)
 
     rock:GetSprite().Color = Color(col.R,col.G,col.B,col.A*0.4,col.RO,col.GO,col.BO)
     for i=0,NUM_SHADOWS-1 do
-        local ang = Game():GetFrameCount()/FRAMES_TO_SPIN*360+i/NUM_SHADOWS*360
+        local ang = ToyboxMod.GAME:GetFrameCount()/FRAMES_TO_SPIN*360+i/NUM_SHADOWS*360
 
         rock:Render(Vector.FromAngle(ang)*DIST)
     end
@@ -678,7 +680,7 @@ local renderOrder = {
 
 
 function ToyboxMod:triggerSlot(prizetype)
-    local slot = Isaac.Spawn(6,1,0,Game():GetRoom():GetCenterPos(),Vector.Zero,nil):ToSlot()
+    local slot = Isaac.Spawn(6,1,0,ToyboxMod.GAME:GetRoom():GetCenterPos(),Vector.Zero,nil):ToSlot()
 
     slot:SetState(2)
     slot:GetSprite():SetFrame("WiggleEnd", 6)
@@ -753,7 +755,7 @@ function ToyboxMod:triggerSlot(prizetype)
 end
 
 local function renderResults()
-    if(Isaac.GetPlayer().FrameCount>30 and not Game():IsPaused()) then
+    if(Isaac.GetPlayer().FrameCount>30 and not ToyboxMod.GAME:IsPaused()) then
         ToyboxMod:triggerSlot()
     end
 
@@ -808,7 +810,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postCollectableUpdate,
 
 --[[
 local function postNewRoom()
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     --if(not room:IsFirstVisit()) then return end
     
     for _, slot in pairs(DoorSlot) do
@@ -849,7 +851,7 @@ local function postGridEntityDoorRender(_, door, offset)
     local slot = door:GetSaveState().VarData-100
     if(slot<0) then return end
 
-    local ogDoor = Game():GetRoom():GetDoor(slot)
+    local ogDoor = ToyboxMod.GAME:GetRoom():GetDoor(slot)
     ogDoor:GetSprite():Render(Isaac.WorldToRenderPosition(door.Position))
     Isaac.RenderText("PENOR", Isaac.WorldToRenderPosition(door.Position).X, Isaac.WorldToRenderPosition(door.Position).Y,1,1,1,1)
 end
@@ -912,7 +914,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_SPIKES_RENDER, kysbitch)
 
 function ToyboxMod:testSpikeFireHitboxes(spikeidx, fireidx)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     for i=-1, 1 do
         for j=-1, 1 do
@@ -1147,3 +1149,15 @@ end
 
 
 ]]
+
+--[[] ]
+---@param sss EntityEffect
+local function dkjdjs(_, sss)
+    local enum = nil
+    for key, val in pairs(EffectVariant) do
+        if(val==sss.Variant) then enum=key; break end
+    end
+    print(sss.Variant, sss.SubType, sss.State, enum)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, dkjdjs)
+--]]

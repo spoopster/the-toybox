@@ -28,8 +28,8 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, setAllStats)
 ---@param pl EntityPlayer
 local function makeStatsPermanent(_, pl)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_IMIX_CROCODILE)) then return end
-    if(Game():GetRoom():GetType()~=RoomType.ROOM_BOSS) then return end
-    if(not Game():GetRoom():IsCurrentRoomLastBoss()) then return end
+    if(ToyboxMod.GAME:GetRoom():GetType()~=RoomType.ROOM_BOSS) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsCurrentRoomLastBoss()) then return end
 
     local data = ToyboxMod:getEntityDataTable(pl)
     if((data.IMIX_STAT_COUNTER or 0)>0) then
@@ -69,7 +69,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, postPeffectUpdate)
 local function restoreEffect(_, npc)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_IMIX_CROCODILE)) then return end
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_IMIX_CROCODILE)) then
             local data = ToyboxMod:getEntityDataTable(pl)

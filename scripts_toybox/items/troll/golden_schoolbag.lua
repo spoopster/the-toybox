@@ -78,7 +78,7 @@ local function postplayerupdate(_, pl)
         
         pl:UseActiveItem(data.GOLDEN_SCHOOLBAG_DATA[idx].ID, UseFlag.USE_OWNED | UseFlag.USE_ALLOWNONMAIN, -1)
 
-        if(Game():GetDebugFlags() & DebugFlag.INFINITE_ITEM_CHARGES == 0) then
+        if(ToyboxMod.GAME:GetDebugFlags() & DebugFlag.INFINITE_ITEM_CHARGES == 0) then
             data.GOLDEN_SCHOOLBAG_DATA[idx].Charge = 0
         end
     end

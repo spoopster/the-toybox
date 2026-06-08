@@ -199,7 +199,7 @@ local function postNewRoom(_)
         if(ToyboxMod:isValidEnemy(ent)) then
             local willElectrify = nil
 
-            for i=0, Game():GetNumPlayers()-1 do
+            for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local p = Isaac.GetPlayer(i)
                 local tMult = p:GetTrinketMultiplier(ToyboxMod.TRINKET_PLASMA_GLOBE)
 

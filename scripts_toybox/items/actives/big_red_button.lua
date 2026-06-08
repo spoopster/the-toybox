@@ -33,7 +33,7 @@ local function nukeUpdate(_, bomb)
     if(bomb.SubType~=NUKE_ROCKET_SUBTYPE) then return end
 
     if(bomb:GetExplosionCountdown()<=0) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
 
        -- room:MamaMegaExplosion(bomb.Position, (bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer()))
         local expl = Isaac.Spawn(1000, EffectVariant.MAMA_MEGA_EXPLOSION, 0, bomb.Position, Vector.Zero, (bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer())):ToEffect()

@@ -49,9 +49,9 @@ local function dupeItem(_, pickup)
 
     if(MORPHED_ITEMS[GetPtrHash(pickup)]~=nil) then return end
 
-    if(Game():GetLevel():GetDimension()==Dimension.DEATH_CERTIFICATE) then return end
+    if(ToyboxMod.GAME:GetLevel():GetDimension()==Dimension.DEATH_CERTIFICATE) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(room:GetFrameCount()==-1 and not room:IsFirstVisit()) then return end
 
     local conf = Isaac.GetItemConfig()
@@ -64,7 +64,7 @@ local function dupeItem(_, pickup)
         local rng = pickup:GetDropRNG()
         local worked = pickup:TryInitOptionCycle(ITEM_CLONES)
         if(not worked) then
-            local pool = Game():GetItemPool()
+            local pool = ToyboxMod.GAME:GetItemPool()
             for _=1, ITEM_CLONES do
                 local itempool = room:GetItemPool(math.max(1,rng:Next()))
                 if(itempool==ItemPoolType.POOL_NULL) then itempool = pool:GetLastPool() end

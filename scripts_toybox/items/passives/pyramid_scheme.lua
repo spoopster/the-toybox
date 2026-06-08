@@ -10,7 +10,7 @@ local function spawnPyramidNoTreasure()
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_PYRAMID_SCHEME)) then return end
 
     local hasTreasure = false
-    local rooms = Game():GetLevel():GetRooms()
+    local rooms = ToyboxMod.GAME:GetLevel():GetRooms()
     for i = 0, rooms.Size-1 do
         local room = rooms:Get(i)
         if(room.Data and room.Data.Type==RoomType.ROOM_TREASURE) then
@@ -19,7 +19,7 @@ local function spawnPyramidNoTreasure()
     end
 
     if(not hasTreasure) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos()+Vector(0,-1)*40)
 
         local pyramid = Isaac.Spawn(6,ToyboxMod.SLOT_PYRAMID_DONATION,0,pos,Vector.Zero,nil)
@@ -29,7 +29,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, spawnPyramidNoTreasure)
 
 local function spawnPyramidTreasure()
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_PYRAMID_SCHEME)) then return end
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     if(room:IsFirstVisit() and room:GetType()==RoomType.ROOM_TREASURE) then
         local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos())
@@ -95,7 +95,7 @@ local function postSlotUpdate(_, slot)
                 slot:CreateDropsFromExplosion()
 
                 local explosion = Isaac.Spawn(1000,EffectVariant.BOMB_EXPLOSION,0,slot.Position,Vector.Zero,nil):ToEffect()
-                for i=0, Game():GetNumPlayers()-1 do
+                for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                     local pl = Isaac.GetPlayer(i)
                     if(pl.Variant==PlayerVariant.PLAYER) then
                         pl:AnimateSad()

@@ -60,7 +60,7 @@ local function renderTint(sprite, width, pos, TLclamp, BRclamp, tintData, colorm
         end
     end
 
-    local lv = Game():GetLevel()
+    local lv = ToyboxMod.GAME:GetLevel()
     local ismirror = (lv:GetDimension()==Dimension.MIRROR and lv:HasMirrorDimension())
 
     if(ToyboxMod.CONFIG.TINTED_ROOM_DISPLAY_TYPE & ToyboxMod.TINTED_ROOM_DISPLAY.COMPOSITE_FLAG ~= 0) then

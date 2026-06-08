@@ -21,7 +21,7 @@ local function useDeliveryBox(_, _, rng, pl, flag, slot, varData)
             pickedVariant = PickupVariant.PICKUP_KEY
         end
 
-        local spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
+        local spawnPos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
         local spawnedPickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickedVariant, 0, spawnPos, Vector.Zero, pl):ToPickup()
 
         return {

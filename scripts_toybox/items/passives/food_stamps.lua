@@ -11,7 +11,7 @@ local function addCollectibleHp(_, item, _, firstTime, _, _, pl)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)) then return end
     if(item==ToyboxMod.COLLECTIBLE_FOOD_STAMPS and pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)==1) then return end
 
-    if(Game():GetRoom():GetType()==RoomType.ROOM_BOSS) then
+    if(ToyboxMod.GAME:GetRoom():GetType()==RoomType.ROOM_BOSS) then
         pl:AddMaxHearts(2)
         pl:AddHearts(2)
     end

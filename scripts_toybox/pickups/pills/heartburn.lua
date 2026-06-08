@@ -81,7 +81,7 @@ local function renderFireEffect(_, player, offset)
     local renderPos = Isaac.WorldToRenderPosition(player.Position)-Vector(0,25)+offset
     BURN_SPRITE:Render(renderPos)
 
-    if(not Game():IsPaused()) then
+    if(not ToyboxMod.GAME:IsPaused()) then
         UPDATE_BURN_FRAME = (UPDATE_BURN_FRAME+1)%3
         if(UPDATE_BURN_FRAME==0) then
             BURN_SPRITE:Update()

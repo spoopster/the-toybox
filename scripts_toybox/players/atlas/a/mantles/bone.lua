@@ -14,7 +14,7 @@ local MISSINGMANTLES_TEARS = 0.6
 local function spawnBoney(_, player, mantle)
     if(not ToyboxMod:isAtlasA(player)) then return end
 
-    local bone = Isaac.Spawn(227,0,0,Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 0, true),Vector.Zero,player):ToNPC()
+    local bone = Isaac.Spawn(227,0,0,ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position, 0, true),Vector.Zero,player):ToNPC()
     bone:AddCharmed(EntityRef(player),-1)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ATLAS_LOSE_MANTLE, spawnBoney, ToyboxMod.MANTLE_DATA.BONE.ID)
@@ -33,7 +33,7 @@ local function mantleKill(_, entity)
         numTransformations = numTransformations+ToyboxMod:getNumMantlesByType(p:ToPlayer(), ToyboxMod.MANTLE_DATA.BONE.ID)/ToyboxMod:getAtlasAData(p:ToPlayer(), "HP_CAP")
     end
 
-    if(rng:RandomFloat()<BONESPUR_SPAWNCHANCE*numTransformations/Game():GetNumPlayers()) then
+    if(rng:RandomFloat()<BONESPUR_SPAWNCHANCE*numTransformations/ToyboxMod.GAME:GetNumPlayers()) then
         randAtlas:AddBoneOrbital(entity.Position)
     end
 end

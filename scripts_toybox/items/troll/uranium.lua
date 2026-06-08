@@ -16,7 +16,7 @@ local destrucibleGrids = {
     [GridEntityType.GRID_POOP] = true,
 }
 local function isDestructibleGrid(index)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     local grid = room:GetGridEntity(index)
     if(not grid) then return false end
@@ -52,7 +52,7 @@ local function decayRocks(_, pl)
 
 
     ---GRID SMOG
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local gridsRadius = math.ceil(ROCK_DECAY_RADIUS/40)
     local gridAlignedPos = room:GetGridPosition(room:GetGridIndex(pl.Position))
 
@@ -95,7 +95,7 @@ local function postGridUpdate(_, grid)
 
     local decayColor = Color.Lerp(Color.Default, Color(0.7,1,0.7,1,0.1,0.3,0.1,0,0.5,0,1), decayIntensity)
     local pulseFreq = 4
-    if(Game():GetFrameCount()%pulseFreq<pulseFreq/2) then
+    if(ToyboxMod.GAME:GetFrameCount()%pulseFreq<pulseFreq/2) then
         decayColor = Color.Lerp(decayColor, Color(1,1,1,0,0,0,0,0,0,0,0), 0.25*decayIntensity)
     end
 

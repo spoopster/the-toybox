@@ -116,7 +116,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateAscension, 0)
 local function postNewRoom()
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_ASCENSION)) then return end
 
-    for i=0, Game():GetNumPlayers() do
+    for i=0, ToyboxMod.GAME:GetNumPlayers() do
         local pl = Isaac.GetPlayer(i)
         ToyboxMod:setEntityData(pl, "ASCENSION_ORIGINALPOS", nil)
         stopAscension(pl)
@@ -162,7 +162,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, getShaderParams)
 ---@param player EntityPlayer
 local function initRemoveAscension(_, player)
     if(player:GetPlayerType()==PlayerType.PLAYER_THELOST or player:GetPlayerType()==PlayerType.PLAYER_THELOST_B) then
-        Game():GetItemPool():RemoveCollectible(ToyboxMod.COLLECTIBLE_ASCENSION)
+        ToyboxMod.GAME:GetItemPool():RemoveCollectible(ToyboxMod.COLLECTIBLE_ASCENSION)
     end
 end
 --ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, initRemoveAscension, 0)

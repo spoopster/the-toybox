@@ -22,7 +22,7 @@ local function getGraveyardChance()
 end
 
 local function addNewBossRoom(_)
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     local stage = level:GetAbsoluteStage()--+(level:GetStageType()>=StageType.STAGETYPE_REPENTANCE and 1 or 0)
     if(stage%2==0) then return end -- only odd stages
     local rng = level:GetGenerationRNG()
@@ -69,15 +69,15 @@ local function spawnMist(pos, dir, instant)
 end
 
 local function makeChoiceCollectibles(_)
-    if(not ToyboxMod:isCustomSpecialRoom(Game():GetLevel():GetCurrentRoomDesc(), "GRAVEYARD_ROOM")) then
-        local curmodifier = Game():GetCurrentColorModifier()
+    if(not ToyboxMod:isCustomSpecialRoom(ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc(), "GRAVEYARD_ROOM")) then
+        local curmodifier = ToyboxMod.GAME:GetCurrentColorModifier()
         if(curmodifier==GRAVEYARD_COLOR_MOD) then
-            Game():SetColorModifier(Game():GetTargetColorModifier(),true,0.08)
+            ToyboxMod.GAME:SetColorModifier(ToyboxMod.GAME:GetTargetColorModifier(),true,0.08)
         end
         return
     end
 
-    Game():SetColorModifier(GRAVEYARD_COLOR_MOD,false)
+    ToyboxMod.GAME:SetColorModifier(GRAVEYARD_COLOR_MOD,false)
 
     local optionsIdx
     for _, ent in ipairs(Isaac.FindByType(5,100)) do
@@ -90,7 +90,7 @@ local function makeChoiceCollectibles(_)
         end
     end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     for i=-1,1,2 do
         local rng = ToyboxMod:generateRng()
         local tlpos = room:GetTopLeftPos()
@@ -114,9 +114,9 @@ end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_NEW_ROOM, CallbackPriority.IMPORTANT, makeChoiceCollectibles)
 
 local function spawnScrollingMist(_)
-    if(not ToyboxMod:isCustomSpecialRoom(Game():GetLevel():GetCurrentRoomDesc(), "GRAVEYARD_ROOM")) then return end
+    if(not ToyboxMod:isCustomSpecialRoom(ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc(), "GRAVEYARD_ROOM")) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(room:GetFrameCount()%140==20) then
         local rng = ToyboxMod:generateRng()
         local pos = Vector(0,rng:RandomInt(room:GetTopLeftPos().Y, room:GetBottomRightPos().Y))

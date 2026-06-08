@@ -55,7 +55,7 @@ HudHelper.RegisterHUDElement({
 	OnRender = function(player, _, layout, position, alpha, scale)
         local id = player:GetCard(0)
         local conf = Isaac.GetItemConfig():GetCard(id)
-        local sin = (1 + math.sin(Game():GetFrameCount() * 0.2)) / 2
+        local sin = (1 + math.sin(ToyboxMod.GAME:GetFrameCount() * 0.2)) / 2
 
         local sprite = conf.ModdedCardFront
         sprite:Play(conf.HudAnim, true)

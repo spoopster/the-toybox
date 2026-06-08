@@ -2,7 +2,7 @@
 
 ---@param poop GridEntityPoop
 local function updatePoopGrid(_, poop)
-    if(Game():IsPaused()) then return end
+    if(ToyboxMod.GAME:IsPaused()) then return end
     if(poop:GetVariant()==GridPoopVariant.RED) then return end
     local data = ToyboxMod:getGridEntityDataTable(poop)
 

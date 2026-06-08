@@ -15,7 +15,7 @@ end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE, evalCache, CacheFlag.CACHE_DAMAGE)
 
 local function increaseLionMark(_)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasTrinket(ToyboxMod.TRINKET_INSIDE_JOKE)) then
             local data = ToyboxMod:getEntityDataTable(pl)

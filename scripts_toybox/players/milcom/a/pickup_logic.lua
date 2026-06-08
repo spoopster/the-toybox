@@ -4,7 +4,7 @@ local function postUpdate(_)
     if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
 
     local pl
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local tempPl = Isaac.GetPlayer(i)
         if(tempPl:GetPlayerType()==ToyboxMod.PLAYER_MILCOM_A) then
             pl = tempPl

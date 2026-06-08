@@ -7,9 +7,9 @@ local function postUpdate(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)) then return end
     if(ToyboxMod:isRoomClear()) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)) then
             local cnt = ToyboxMod:getEntityData(pl, "METEOR_SHOWER_COOLDOWN") or 0
@@ -35,7 +35,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)
 
 local function resetCooldown(_)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         ToyboxMod:setEntityData(pl, "METEOR_SHOWER_COOLDOWN", 0)
     end

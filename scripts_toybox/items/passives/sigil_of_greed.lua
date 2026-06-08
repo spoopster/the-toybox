@@ -57,7 +57,7 @@ local function playerUpdate(_, p)
             isFull = true
             sfx:Play(SoundEffect.SOUND_CASH_REGISTER, 0.7)
             sfx:Play(SoundEffect.SOUND_GOLD_HEART, 0.3)
-            Game():ShakeScreen(5)
+            ToyboxMod.GAME:ShakeScreen(5)
             local rng = p:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_SIGIL_OF_GREED)
 
             local eff = Isaac.Spawn(1000, ToyboxMod.EFFECT_GOLDMANTLE_BREAK,0,p.Position,Vector.Zero,p):ToEffect()

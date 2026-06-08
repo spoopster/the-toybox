@@ -8,7 +8,7 @@ local ORBIT_LAYERS = {
 
 ---@param player EntityPlayer
 local function useReliquary(_, _, rng, player, flags)
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
     local conf = Isaac.GetItemConfig()
 
     local removedBefore = {}
@@ -27,7 +27,7 @@ local function useReliquary(_, _, rng, player, flags)
     end
 
     ToyboxMod:addTrinketWisp(player, trinket, player.Position)
-    Game():GetHUD():ShowItemText(player, conf:GetTrinket(trinket))
+    ToyboxMod.GAME:GetHUD():ShowItemText(player, conf:GetTrinket(trinket))
 
     return {
         Discharge = true,

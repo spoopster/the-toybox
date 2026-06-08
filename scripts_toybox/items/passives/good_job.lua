@@ -26,7 +26,7 @@ local function enterBossRoom(_, pl)
     ToyboxMod:setEntityData(pl, "GOOD_JOB_FLAWLESS", nil)
     pl:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(room:GetType()==RoomType.ROOM_BOSS and not room:IsClear()) then
         ToyboxMod:setEntityData(pl, "GOOD_JOB_FLAWLESS", true)
     else
@@ -69,7 +69,7 @@ local function clearRoomFlawless(_, pl)
     if(data.GOOD_JOB_FLAWLESS) then
         pl:AnimateHappy()
 
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local spawnPos = room:FindFreePickupSpawnPosition(pl.Position, 40)
         local chest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_CHEST, 0, spawnPos, Vector.Zero, nil):ToPickup()
 

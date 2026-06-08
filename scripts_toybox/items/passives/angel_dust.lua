@@ -12,7 +12,7 @@ local function postPeffectUpdate(_, pl)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_ANGEL_DUST)) then return end
     if(ToyboxMod:isRoomClear()) then return end
     
-    local roomFreqMod = Game():GetRoom():GetFrameCount()%FEAR_FREQ
+    local roomFreqMod = ToyboxMod.GAME:GetRoom():GetFrameCount()%FEAR_FREQ
     if(roomFreqMod==FEAR_INIT_OFFSET) then
         pl:AddFear(EntityRef(nil), FEAR_DURATION)
         if(pl:GetFearCountdown()>FEAR_FREQ*0.7) then

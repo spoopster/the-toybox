@@ -9,7 +9,7 @@ local function useLaurel(_, _, player, _)
     sfx:Play(SoundEffect.SOUND_LIGHTBOLT_CHARGE)
     sfx:Play(SoundEffect.SOUND_LIGHTBOLT)
 
-    Game():ShakeScreen(10)
+    ToyboxMod.GAME:ShakeScreen(10)
 
     local eff = player:GetEffects()
     local shEff = eff:GetCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS)

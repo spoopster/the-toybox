@@ -12,7 +12,7 @@ local EXTRA_ADVANTAGE_BFFS = 1
 
 ---@param fam EntityFamiliar
 local function getDrBumPill(fam)
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
     local conf = Isaac.GetItemConfig()
 
     local rng = fam.Player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_DR_BUM)
@@ -125,7 +125,7 @@ local function drBumUpdate(_, fam)
         fam.Velocity = fam.Velocity*0.7
 
         if(sp:IsFinished("PreSpawn")) then
-            local pill = Isaac.Spawn(5,70,getDrBumPill(fam),Game():GetRoom():FindFreePickupSpawnPosition(fam.Position,40),Vector.Zero,fam):ToPickup()
+            local pill = Isaac.Spawn(5,70,getDrBumPill(fam),ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(fam.Position,40),Vector.Zero,fam):ToPickup()
             fam.Coins = fam.Coins - NUM_REQ
 
             sp:Play("Spawn", true)

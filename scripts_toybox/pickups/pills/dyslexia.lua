@@ -47,7 +47,7 @@ local dyselkxubgzeg = false
 local function cancleTxtdispey(_, teete, sutbile, stucky, crse)
     if(stucky or dyselkxubgzeg or not shouldDysxzjejcinz()) then return end
     dyselkxubgzeg = true
-    Game():GetHUD():ShowItemText(dyskecislzeStreng(teete), dyskecislzeStreng(sutbile), crse)
+    ToyboxMod.GAME:GetHUD():ShowItemText(dyskecislzeStreng(teete), dyskecislzeStreng(sutbile), crse)
     dyselkxubgzeg = false
 
     return false

@@ -5,7 +5,7 @@
 local function postAddItem(_, _, _, firstTime, slot, vData, player)
     if(firstTime~=true) then return end
     if(not ToyboxMod:playerHasLimitBreak(player)) then return end
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     local goldKey = Isaac.Spawn(5,30,2,room:FindFreePickupSpawnPosition(player.Position,40),Vector.Zero,player):ToPickup()
     local goldKey = Isaac.Spawn(5,40,4,room:FindFreePickupSpawnPosition(player.Position,40),Vector.Zero,player):ToPickup()

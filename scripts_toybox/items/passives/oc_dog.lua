@@ -24,8 +24,10 @@ local function setTwinsRemove(_, pl)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, setTwinsRemove, ToyboxMod.COLLECTIBLE_OC_DOG)
 
----@param baseTear EntityTear
+---@param baseTear EntityTear?
 local function familiarFireProj(_, baseTear)
+    if(not baseTear) then return end
+
     local fam = baseTear.SpawnerEntity and baseTear.SpawnerEntity:ToFamiliar()
     if(not (fam and fam.Player and fam.Player:HasCollectible(ToyboxMod.COLLECTIBLE_OC_DOG))) then return end
 

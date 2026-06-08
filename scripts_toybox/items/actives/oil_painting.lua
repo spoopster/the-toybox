@@ -32,7 +32,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useOilPainting, ToyboxMod.COLLECTIBLE_OIL_PAINTING)
 
 local function increasePaintingValue(_)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_OIL_PAINTING)
         for _, slot in pairs(ActiveSlot) do

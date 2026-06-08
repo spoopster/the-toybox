@@ -22,7 +22,7 @@ local function pickRandomWallPos(fam)
     local rng = fam:GetDropRNG()
 
     local validIndexes = {}
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     for i=0, room:GetGridSize()-1 do
         local pos = room:GetGridPosition(i)
         local coll = room:GetGridCollision(i)
@@ -134,7 +134,7 @@ local function updatePaperPlate(_, fam)
     local vDir = dirToVector(fam.ShootDirection)
 
     fam.Velocity = Vector.Zero
-    fam.Position = Game():GetRoom():GetGridPosition(fam.MoveDirection)-vDir*WALL_CENTER_OFFSET
+    fam.Position = ToyboxMod.GAME:GetRoom():GetGridPosition(fam.MoveDirection)-vDir*WALL_CENTER_OFFSET
     fam.SpriteRotation = vDir:GetAngleDegrees()-90
 
     local sp = fam:GetSprite()
@@ -167,7 +167,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, updatePaperPlate, ToyboxM
 
 local function rendertest()
     for _=1, 1000 do
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
 
         local margin1 = 0
         local margin2 = 20

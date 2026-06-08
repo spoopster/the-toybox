@@ -28,7 +28,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useApocalypse, ToyboxMod.CARD_AP
 ---@param effect EntityEffect
 local function horsemanInit(_, effect)
     local rng = effect:GetDropRNG()
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local pos = Vector(-ENTRY_ROOMBOUND, rng:RandomInt(room:GetTopLeftPos().Y+40, room:GetBottomRightPos().Y-40))
 
     effect.Position = pos
@@ -77,7 +77,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, horsemanInit, ToyboxMod.
 local function horsemanUpdate(_, effect)
     local sp = effect:GetSprite()
     local rng = effect:GetDropRNG()
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     if(effect.Position.X>=room:GetBottomRightPos().X+EXIT_ROOMBOUND) then
         local neweff = Isaac.Spawn(effect.Type, effect.Variant, (effect.SubType+1)%4, Vector.Zero, Vector.Zero, effect.SpawnerEntity):ToEffect()
@@ -208,7 +208,7 @@ local function projectileUpdate(_, proj)
 
         sp.PlaybackSpeed = math.min(proj.Velocity:Length()/5, 1)
 
-        if(proj.Position:Distance(Game():GetRoom():GetClampedPosition(proj.Position,0))>300) then
+        if(proj.Position:Distance(ToyboxMod.GAME:GetRoom():GetClampedPosition(proj.Position,0))>300) then
             proj:Die()
         end
     end

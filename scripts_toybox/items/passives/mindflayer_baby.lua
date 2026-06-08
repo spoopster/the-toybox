@@ -77,7 +77,7 @@ local function mindflayerBabyUpdate(_, fam)
 
     local aura = ToyboxMod:getEntityData(fam, "MINDFLAYER_AURA")
     if(not (aura and aura:Exists())) then
-        if(Game():GetRoom():GetFrameCount()<(desiredAuraScale/fam.Velocity:Length())*0.5+5) then return end
+        if(ToyboxMod.GAME:GetRoom():GetFrameCount()<(desiredAuraScale/fam.Velocity:Length())*0.5+5) then return end
         aura = Isaac.Spawn(1000,ToyboxMod.EFFECT_AURA,ToyboxMod.EFFECT_AURA_MINDFLAYER,fam.Position,Vector.Zero,pl):ToEffect()
         aura.DepthOffset = -1000
         aura:FollowParent(fam)

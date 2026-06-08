@@ -1,7 +1,7 @@
 local sfx = SFXManager()
 
 local TEMPLE_ROOM_COUNT = 3
-local TEMPLE_CHANCE = 0.05
+local TEMPLE_CHANCE = 10.05
 
 ---@param rng RNG
 local function shouldMakeTemple(rng)
@@ -180,7 +180,7 @@ local function canPlaceRoomAtIndex(room, vectorPos, unplacedRooms)
     if(vectorPos.X<0 or vectorPos.Y<0) then return false end
     if((vectorPos.X+room.Width//13)>13 or (vectorPos.Y+room.Height//7)>13) then return false end
     
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     local doors = getDoorSlotIndexes(room, vectorPos.X+vectorPos.Y*13)
 
     local validCorners = {}
@@ -306,7 +306,7 @@ end
 local function placeRooms(currentRoom, chosenStb, rooms)
     if(currentRoom>TEMPLE_ROOM_COUNT) then return {rooms} end
 
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
 
     local returns = {}
 
@@ -354,13 +354,13 @@ local function placeRooms(currentRoom, chosenStb, rooms)
 end
 
 local function addNewBossRoom(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
 
     local tb = ToyboxMod:getExtraDataTable()
     tb.TEMPLE_TRIAL_ROOMS = nil
     tb.TEMPLE_MAIN_ROOMS = nil
 
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     local rng = ToyboxMod:generateRng(level:GetGenerationRNG():GetSeed())
 
     local changed = false
@@ -484,9 +484,9 @@ local function addNewBossRoom(_)
 
     local data = ToyboxMod.ROOM_TYPE_DATA.TEMPLE_ROOM
     for slot, room in pairs(level:GetCurrentRoomDesc():GetNeighboringRooms()) do
-        if(ToyboxMod:isCustomSpecialRoom(room, "TEMPLE_ROOM") and Game():GetRoom():GetDoor(slot)) then
-            local door = Game():GetRoom():GetDoor(slot)
-            door:SetRoomTypes(Game():GetRoom():GetType(), (room.Data and room.Data.Type or RoomType.ROOM_TELEPORTER))
+        if(ToyboxMod:isCustomSpecialRoom(room, "TEMPLE_ROOM") and ToyboxMod.GAME:GetRoom():GetDoor(slot)) then
+            local door = ToyboxMod.GAME:GetRoom():GetDoor(slot)
+            door:SetRoomTypes(ToyboxMod.GAME:GetRoom():GetType(), (room.Data and room.Data.Type or RoomType.ROOM_TELEPORTER))
             if(data.DoorGfx) then
                 local sp = door:GetSprite()
                 for i, _ in pairs(sp:GetAllLayers()) do
@@ -500,7 +500,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, addNewBossRoom)
 
 local function setRoomBackdrops(_)
-    local room = Game():GetLevel():GetCurrentRoomDesc()
+    local room = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
     local templeExtraData = ToyboxMod:getExtraData("TEMPLE_TRIAL_ROOMS") or {}
     if(templeExtraData[tostring(room.SafeGridIndex)]) then
         return templeExtraData[tostring(room.SafeGridIndex)].Backdrop
@@ -509,7 +509,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_BACKDROP_CHANGE, setRoomBackdrops)
 
 local function enterTrialRoom(_)
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     local room = level:GetCurrentRoomDesc()
     local templeMainData = ToyboxMod:getExtraData("TEMPLE_MAIN_ROOMS") or {}
     local templeExtraData = ToyboxMod:getExtraData("TEMPLE_TRIAL_ROOMS") or {}
@@ -523,22 +523,22 @@ local function enterTrialRoom(_)
             end
         end
 
-        local pos = Game():GetRoom():GetCenterPos()
+        local pos = ToyboxMod.GAME:GetRoom():GetCenterPos()
 
         if(unclearRooms==0 and templeMainData[tostring(room.SafeGridIndex)]~=2) then
             templeMainData[tostring(room.SafeGridIndex)] = 2
 
             local rng = ToyboxMod:generateRng(room.SpawnSeed)
 
-            local curPool = Game():GetRoom():GetItemPool(rng:Next())
-            local id = Game():GetItemPool():GetCollectible(curPool, true, rng:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
+            local curPool = ToyboxMod.GAME:GetRoom():GetItemPool(rng:Next())
+            local id = ToyboxMod.GAME:GetItemPool():GetCollectible(curPool, true, rng:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
             local item = Isaac.Spawn(5,100,id,pos,Vector.Zero,nil)
         end
 
         if(templeMainData[tostring(room.SafeGridIndex)]==0) then
             for slot, otherRoom in pairs(room:GetNeighboringRooms()) do
                 if(templeExtraData[tostring(otherRoom.SafeGridIndex)] and templeExtraData[tostring(otherRoom.SafeGridIndex)].Parent==room.SafeGridIndex) then
-                    local door = Game():GetRoom():GetDoor(slot)
+                    local door = ToyboxMod.GAME:GetRoom():GetDoor(slot)
                     if(door) then
                         door:SetVariant(150)
                         door:Close(true)
@@ -555,12 +555,12 @@ local function enterTrialRoom(_)
     end
 
     if(templeExtraData[tostring(room.SafeGridIndex)]) then
-        if(Game():GetRoom():IsFirstVisit()) then
-            --Game():ShakeScreen(15)
+        if(ToyboxMod.GAME:GetRoom():IsFirstVisit()) then
+            --ToyboxMod.GAME:ShakeScreen(15)
         end
     end
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         local changeStats = true
 
@@ -582,16 +582,36 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, enterTrialRoom)
 ---@param room Room
 ---@param desc RoomDescriptor
 local function preEnterTrialRoom(_, room, desc)
-    local templeExtraData = ToyboxMod:getExtraData("TEMPLE_TRIAL_ROOMS") or {}
-    if(templeExtraData[tostring(desc.SafeGridIndex)] and desc.Clear) then
-        desc.Flags = desc.Flags & (~RoomDescriptor.FLAG_CURSED_MIST)
+    local extradata = ToyboxMod:getExtraDataTable()
+    extradata.TEMPLE_TRIAL_ROOMS = extradata.TEMPLE_TRIAL_ROOMS or {}
+
+    local idx = tostring(desc.SafeGridIndex)
+    if(extradata.TEMPLE_TRIAL_ROOMS[idx] and desc.Clear and (desc.Flags & RoomDescriptor.FLAG_CURSED_MIST ~= 0)) then
+        local parIdx = extradata.TEMPLE_TRIAL_ROOMS[idx].Parent
+        local unclearRooms = 0
+        for otherIdx, otherData in pairs(extradata.TEMPLE_TRIAL_ROOMS) do
+            if(otherData.Parent==parIdx) then
+                if(not ToyboxMod.GAME:GetLevel():GetRoomByIdx(tonumber(otherIdx)).Clear) then
+                    unclearRooms = unclearRooms+1
+                end
+            end
+        end
+
+        if(unclearRooms==0) then
+            for otherIdx, otherData in pairs(extradata.TEMPLE_TRIAL_ROOMS) do
+                if(otherData.Parent==parIdx) then
+                    local trialRoomDesc = ToyboxMod.GAME:GetLevel():GetRoomByIdx(tonumber(otherIdx))
+                    trialRoomDesc.Flags = trialRoomDesc.Flags & (~RoomDescriptor.FLAG_CURSED_MIST)
+                end
+            end
+        end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NEW_ROOM, preEnterTrialRoom)
 
 local function clearTrialRoom(_)
     local templeExtraData = ToyboxMod:getExtraData("TEMPLE_TRIAL_ROOMS") or {}
-    local desc = Game():GetLevel():GetCurrentRoomDesc()
+    local desc = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
     if(templeExtraData[desc.SafeGridIndex] and desc.Flags & RoomDescriptor.FLAG_CURSED_MIST ~= 0) then
         
     end
@@ -603,7 +623,7 @@ end
 local function evalTrialCache(_, pl, flag)
     if(flag & (CacheFlag.CACHE_SPEED | CacheFlag.CACHE_RANGE) == 0) then return end
 
-    local room = Game():GetLevel():GetCurrentRoomDesc()
+    local room = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
     local templeExtraData = ToyboxMod:getExtraData("TEMPLE_TRIAL_ROOMS") or {}
     if(templeExtraData[tostring(room.SafeGridIndex)] and (room.Flags & RoomDescriptor.FLAG_CURSED_MIST ~= 0)) then
         if(flag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED) then
@@ -621,7 +641,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalTrialCache)
 local function evalTrialStats(_, pl, stat, val)
     if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
 
-    local room = Game():GetLevel():GetCurrentRoomDesc()
+    local room = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
     local templeExtraData = ToyboxMod:getExtraData("TEMPLE_TRIAL_ROOMS") or {}
     if(templeExtraData[tostring(room.SafeGridIndex)] and (room.Flags & RoomDescriptor.FLAG_CURSED_MIST ~= 0)) then
         if(stat==EvaluateStatStage.TEARS_UP) then
@@ -659,7 +679,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, initSlab, ToyboxMod.EFFE
 
 ---@param effect EntityEffect
 local function updateSlab(_, effect)
-    local idx = tostring(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex)
+    local idx = tostring(ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().SafeGridIndex)
     local data = ToyboxMod:getExtraDataTable()
     if(not (data.TEMPLE_MAIN_ROOMS and data.TEMPLE_MAIN_ROOMS[idx])) then return end
 
@@ -680,16 +700,16 @@ local function updateSlab(_, effect)
         end
     elseif(effect.SubType==1) then
         if(sp:IsEventTriggered("shake")) then
-            Game():ShakeScreen(100)
+            ToyboxMod.GAME:ShakeScreen(100)
 
             sfx:Play(SoundEffect.SOUND_GROUND_TREMOR)
         end
 
         if(sp:IsFinished("Activate")) then
-            local room = Game():GetLevel():GetCurrentRoomDesc()
+            local room = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
             for slot, otherRoom in pairs(room:GetNeighboringRooms()) do
                 if(data.TEMPLE_TRIAL_ROOMS[tostring(otherRoom.SafeGridIndex)] and data.TEMPLE_TRIAL_ROOMS[tostring(otherRoom.SafeGridIndex)].Parent==room.SafeGridIndex) then
-                    local door = Game():GetRoom():GetDoor(slot)
+                    local door = ToyboxMod.GAME:GetRoom():GetDoor(slot)
                     if(door) then
                         door:SetVariant(DoorVariant.DOOR_UNSPECIFIED)
                         door:SetLocked(false)
@@ -708,14 +728,14 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateSlab, ToyboxMod.
 
 local function playEpicSound(_)
     local extradata = ToyboxMod:getExtraDataTable()
-    local idx = tostring(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex)
+    local idx = tostring(ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().SafeGridIndex)
     if(not (extradata.TEMPLE_TRIAL_ROOMS and extradata.TEMPLE_TRIAL_ROOMS[idx])) then return end
 
     local parIdx = extradata.TEMPLE_TRIAL_ROOMS[idx].Parent
     local unclearRooms = 0
     for otherIdx, otherData in pairs(extradata.TEMPLE_TRIAL_ROOMS) do
         if(otherData.Parent==parIdx) then
-            if(not Game():GetLevel():GetRoomByIdx(tonumber(otherIdx)).Clear) then
+            if(not ToyboxMod.GAME:GetLevel():GetRoomByIdx(tonumber(otherIdx)).Clear) then
                 unclearRooms = unclearRooms+1
             end
         end
@@ -733,6 +753,6 @@ local function playEpicSound(_)
     else
 
     end
-    Game():ShakeScreen(20)
+    ToyboxMod.GAME:ShakeScreen(20)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ROOM_CLEAR, playEpicSound)

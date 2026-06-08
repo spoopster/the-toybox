@@ -6,7 +6,7 @@ local INVALID_ROOMTYPES = {
 local function tryGetRewards(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_TRENDSETTER)) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(INVALID_ROOMTYPES[room:GetType()]) then return end
 
     local occupiedIndexes = {}
@@ -69,7 +69,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, tryGetRewards)
 
 local function resetTrendsetter(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
 
     ToyboxMod:setExtraData("TRENDSETTER_ACTIVE", false)
     ToyboxMod:setExtraData("TRENDSETTER_LIST", {})

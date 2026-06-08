@@ -29,7 +29,7 @@ local function enemyDie(_, npc)
         if(npc:ToNPC():IsBoss()) then isHorsePill=true end
 
         local spawnPos = npc.Position
-        spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(spawnPos)
+        spawnPos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(spawnPos)
 
         if(PILL_DROP_RNG:RandomFloat()<cardReplaceChance/cardReplaceTotal) then
             local card = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, spawnPos, Vector.Zero, nil):ToPickup()

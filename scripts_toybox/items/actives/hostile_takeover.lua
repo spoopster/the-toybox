@@ -20,7 +20,7 @@ local TEARS_UP = 1
 --local LUCK_UP = 1
 
 local function firstHostileTakeoverPlayer()
-    for i=0,Game():GetNumPlayers()-1 do
+    for i=0,ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
             return pl, pl:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)
@@ -171,3 +171,63 @@ local function consumeTarPuddle(_, effect)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, consumeTarPuddle, EffectVariant.PLAYER_CREEP_BLACK)
+
+
+
+-- < BOOK OF VIRTUES > --
+
+local MAX_DMG_MULT = 1.5
+local MAX_SCALE_MULT = 1.5
+local MAX_FIREDELAY_MULT = 2
+
+---@param baseTear EntityTear?
+local function virtuesWispFire(_, baseTear)
+    if(not baseTear) then return end
+
+    local fam = baseTear.SpawnerEntity and baseTear.SpawnerEntity:ToFamiliar()
+    if(not (fam.Variant==FamiliarVariant.WISP and fam.SubType==ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)) then return end
+
+    local pl = fam.Player
+    local timerVal = (pl and ToyboxMod:getEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER") or 0)/STAT_DECREASE_TIMER
+    if(timerVal<=0) then return end
+
+    baseTear.CollisionDamage = baseTear.CollisionDamage*ToyboxMod:lerp(1, MAX_DMG_MULT, timerVal)
+    baseTear.Scale = baseTear.Scale*ToyboxMod:lerp(1, MAX_SCALE_MULT, timerVal)
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, CallbackPriority.IMPORTANT, virtuesWispFire, FamiliarVariant.WISP)
+
+---@param fam EntityFamiliar
+local function virtuesWispUpdate(_, fam)
+    if(not (fam.Variant==FamiliarVariant.WISP and fam.SubType==ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)) then return end
+
+    local data = ToyboxMod:getEntityDataTable(fam)
+
+    local pl = fam.Player
+    if(not pl) then return end
+
+    if(pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER)) then
+        if(not data.TAKEOVER_ACTIVE) then
+            --<color name="core_yellow" r="300" g="290" b="10"/>
+            fam:GetSprite():GetLayer(0):SetColor(Color(300/255,290/255,10/255))
+            data.TAKEOVER_ACTIVE = true
+            data.PREV_FIREDELAY = fam.FireCooldown
+        end
+    else
+        if(data.TAKEOVER_ACTIVE) then
+            --<color name="core_black" r="710" g="710" b="710" or="-512" og="-512" ob="-512"/>
+            fam:GetSprite():GetLayer(0):SetColor(Color(710/255,710/255,710/255,1,-512/255,-512/255,-512/255))
+            data.TAKEOVER_ACTIVE = nil
+            data.PREV_FIREDELAY = nil
+        end
+    end
+
+    local timerVal = (pl and ToyboxMod:getEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER") or 0)/STAT_DECREASE_TIMER
+    if(timerVal>0) then
+        if(data.PREV_FIREDELAY<fam.FireCooldown) then
+            fam.FireCooldown = fam.FireCooldown//ToyboxMod:lerp(1,MAX_FIREDELAY_MULT,timerVal)
+        end
+    end
+
+    data.PREV_FIREDELAY = fam.FireCooldown
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_FAMILIAR_UPDATE, CallbackPriority.EARLY, virtuesWispUpdate, FamiliarVariant.WISP)

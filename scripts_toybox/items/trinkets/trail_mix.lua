@@ -16,7 +16,7 @@ end
 local function giveHeartsOnPickup(_, pl, _, firstTime)
     if(not firstTime) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     local rng = pl:GetTrinketRNG(ToyboxMod.TRINKET_TRAIL_MIX)
 
@@ -29,10 +29,10 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_ADDED, giveHeartsOnPickup, ToyboxMod.TRINKET_TRAIL_MIX)
 
 local function giveHeartsOnNewLevel(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
     if(not PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_TRAIL_MIX)) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     local pl = PlayerManager.FirstTrinketOwner(ToyboxMod.TRINKET_TRAIL_MIX)
     local rng = pl:GetTrinketRNG(ToyboxMod.TRINKET_TRAIL_MIX)

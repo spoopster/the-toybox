@@ -453,7 +453,7 @@ enums.FUNCTIONS.AddItem({
     Modifiers = {
         {
             Condition = function(descObj)
-                return (Game().Difficulty==Difficulty.DIFFICULTY_GREED or Game().Difficulty==Difficulty.DIFFICULTY_GREEDIER)
+                return (ToyboxMod.GAME.Difficulty==Difficulty.DIFFICULTY_GREED or ToyboxMod.GAME.Difficulty==Difficulty.DIFFICULTY_GREEDIER)
             end,
             ToModify = {
                 "{{GreedMode}} In Greed Mode, replaces deals with {{GreedTreasureRoom}} Silver Treasure rooms",
@@ -599,7 +599,7 @@ enums.FUNCTIONS.AddItem({
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = function(descObj)
-                local lastPool = Game():GetItemPool():GetLastPool()
+                local lastPool = ToyboxMod.GAME:GetItemPool():GetLastPool()
                 local poolName = EID:getDescriptionEntry("itemPoolNames")[lastPool]
                 local poolIcon = (EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")
 
@@ -623,6 +623,15 @@ enums.FUNCTIONS.AddItem({
                 {"+0.7 Tears", "+1 Tears"},
             }
         },
+    },
+    WispProperties = {
+        Layer = 1,
+        Amount = 1,
+        HP = 6,
+        Damage = 2,
+        Description = {
+            "Fires twice as often",
+        }
     }
 })
 enums.FUNCTIONS.AddItem({
@@ -640,6 +649,12 @@ enums.FUNCTIONS.AddItem({
                 {"1 familiar", "2 familiars"},
             }
         },
+    },
+    WispProperties = {
+        Layer = 0,
+        Amount = 3,
+        HP = 1,
+        Damage = 3,
     }
 })
 enums.FUNCTIONS.AddItem({
@@ -655,6 +670,15 @@ enums.FUNCTIONS.AddItem({
             ToModify = {
                 {"+0.7 Tears", "+1 Tears"},
             }
+        },
+    },
+    WispProperties = {
+        Layer = 1,
+        Amount = 1,
+        HP = 2,
+        Damage = 3,
+        Description = {
+            "Tears have a 15% chance to turn enemies to gold"
         },
     }
 })
@@ -687,6 +711,15 @@ enums.FUNCTIONS.AddItem({
             ToModify = {
                 {"+1 Golden Heart", "+2 Golden Hearts"},
             }
+        },
+    },
+    WispProperties = {
+        Layer = 1,
+        Amount = 1,
+        HP = 4,
+        Damage = 3,
+        Description = {
+            "When destroyed, drops 1-3 coins and turns nearby enemies to gold"
         },
     }
 })
@@ -754,6 +787,15 @@ enums.FUNCTIONS.AddItem({
                 {"+1", "+1.5"},
             }
         },
+    },
+    WispProperties = {
+        Layer = 1,
+        Amount = 1,
+        HP = 3,
+        Damage = 3,
+        Description = {
+            "While {{Collectible"..ToyboxMod.COLLECTIBLE_HOSTILE_TAKEOVER.."}} is active, the wisp's damage and firerate scales with the effect's temporary stats"
+        },
     }
 })
 enums.FUNCTIONS.AddItem({
@@ -771,6 +813,15 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{Timer}} Adds anywhere from +3 minutes to -3 minutes to the game's timer",
     },
+    WispProperties = {
+        Layer = 2,
+        Amount = 1,
+        HP = 2,
+        Damage = 3,
+        Description = {
+            "Rewinds the timer by 15 seconds when destroyed"
+        },
+    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_ASTEROID_BELT,
@@ -912,7 +963,7 @@ enums.FUNCTIONS.AddItem({
     Modifiers = {
         {
             Condition = function(descObj)
-                return (Game():GetNumPlayers()>1)
+                return (ToyboxMod.GAME:GetNumPlayers()>1)
             end,
             ToModify = {
                 "Heals other players for half a heart",
@@ -1143,7 +1194,7 @@ enums.FUNCTIONS.AddItem({
         {
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             Condition = function(descObj)
-                return (Game():GetNumPlayers()>1)
+                return (ToyboxMod.GAME:GetNumPlayers()>1)
             end,
             ToModify = {
                 {"Heal 1 Red Heart", "All players heal 1 Red Heart"},
@@ -1295,6 +1346,16 @@ enums.FUNCTIONS.AddItem({
         "The number of waves scales with the price of the item",
         "The extra Challenge room will not charge active items or spawn any clear rewards"
     },
+    WispProperties = {
+        Layer = 1,
+        Amount = 0,
+        HP = 2,
+        Damage = 3,
+        Description = {
+            "Grants wisps equal to the amount of waves in the extra Challenge Room",
+            "Devil deals/expensive items will grant stronger wisps"
+        },
+    }
 })
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_LOOSE_BOWELS,
@@ -3740,7 +3801,7 @@ enums.FUNCTIONS.AddGlobalModifier({
         {
             Condition = function(descObj)
                 if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
-                if(not (Game():GetRoom():GetType()==RoomType.ROOM_BOSS)) then return false end
+                if(not (ToyboxMod.GAME:GetRoom():GetType()==RoomType.ROOM_BOSS)) then return false end
 
                 return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
             end,

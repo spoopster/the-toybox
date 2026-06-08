@@ -13,7 +13,7 @@ local function npcInit(_, npc)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_MALICE)) then return end
 
     local conf = EntityConfig.GetEntity(npc.Type, npc.Variant, npc.SubType)
-    local shouldMalice = (not conf:CanBeChampion()) or (Game():GetRoom():GetFrameCount()>1)
+    local shouldMalice = (not conf:CanBeChampion()) or (ToyboxMod.GAME:GetRoom():GetFrameCount()>1)
 
     if(not shouldMalice) then return end
 

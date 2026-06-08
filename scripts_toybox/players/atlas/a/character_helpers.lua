@@ -29,7 +29,7 @@ function ToyboxMod:isAtlasA(player)
     return (pt==ToyboxMod.PLAYER_ATLAS_A or pt==ToyboxMod.PLAYER_ATLAS_A_TAR)
 end
 function ToyboxMod:isAnyPlayerAtlasA()
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         if(ToyboxMod:isAtlasA(Isaac.GetPlayer(i))) then
             return true
         end
@@ -39,7 +39,7 @@ end
 
 function ToyboxMod:getAllAtlasA()
     local t = {}
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local p = Isaac.GetPlayer(i):ToPlayer()
         if(ToyboxMod:isAtlasA(p)) then t[#t+1] = p end
     end
@@ -48,7 +48,7 @@ function ToyboxMod:getAllAtlasA()
 end
 
 function ToyboxMod:areAllPlayersAtlasA()
-    return #ToyboxMod:getAllAtlasA()==Game():GetNumPlayers()
+    return #ToyboxMod:getAllAtlasA()==ToyboxMod.GAME:GetNumPlayers()
 end
 function ToyboxMod:isAnybodyNotAtlasA()
     return not ToyboxMod:areAllPlayersAtlasA()
@@ -110,7 +110,7 @@ function ToyboxMod:addMantleHp(player, hpToAdd)
 
     local oldMantles = ToyboxMod:cloneTable(data.MANTLES)
 
-    if(hpToAdd<0 and Game():GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
+    if(hpToAdd<0 and ToyboxMod.GAME:GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
         local rIdx = ToyboxMod:getRightmostMantleIdx(player)
         data.MANTLES[rIdx].HP = data.MANTLES[rIdx].HP+hpToAdd
         ToyboxMod:spawnShardsForMantle(player, rIdx, 5)

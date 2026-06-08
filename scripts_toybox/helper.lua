@@ -3,7 +3,7 @@
 function ToyboxMod:unlock(unlock, force)
     local pgd = Isaac.GetPersistentGameData()
     if(not force) then
-        if(not Game():AchievementUnlocksDisallowed()) then
+        if(not ToyboxMod.GAME:AchievementUnlocksDisallowed()) then
             if(not pgd:Unlocked(unlock)) then
                 pgd:TryUnlock(unlock)
             end
@@ -154,28 +154,28 @@ end
 ---@param player EntityPlayer
 ---@return number num
 function ToyboxMod:getPlayerNumFromPlayerEnt(player)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         if(GetPtrHash(player)==GetPtrHash(Isaac.GetPlayer(i))) then return i end
     end
     return 0
 end
 
 function ToyboxMod:getScreenCenter()
-    return (Game():GetRoom():GetRenderSurfaceTopLeft()*2+Vector(442,286))/2
+    return (ToyboxMod.GAME:GetRoom():GetRenderSurfaceTopLeft()*2+Vector(442,286))/2
 end
 function ToyboxMod:getScreenBottomRight()
-    return Game():GetRoom():GetRenderSurfaceTopLeft()*2+Vector(442,286)
+    return ToyboxMod.GAME:GetRoom():GetRenderSurfaceTopLeft()*2+Vector(442,286)
 end
 
 function ToyboxMod:addCustomStrawman(playerType, cIndex)
     playerType=playerType or 0
     cIndex=cIndex or 0
-    local LastPlayerIndex=Game():GetNumPlayers()-1
+    local LastPlayerIndex=ToyboxMod.GAME:GetNumPlayers()-1
     if LastPlayerIndex>=63 then return nil else
         Isaac.ExecuteCommand('addplayer '..playerType..' '..cIndex)
         local strawman=Isaac.GetPlayer(LastPlayerIndex+1)
         strawman.Parent=Isaac.GetPlayer(0)
-        Game():GetHUD():AssignPlayerHUDs()
+        ToyboxMod.GAME:GetHUD():AssignPlayerHUDs()
         return strawman
     end
 end
@@ -196,7 +196,7 @@ end
 function ToyboxMod:getTruePlayers()
     local idx = 0
     local p = {}
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local player = Isaac.GetPlayer(i)
         if(ToyboxMod:isTruePlayer(player)) then
             p[idx] = player
@@ -273,7 +273,7 @@ function ToyboxMod:addTps(player, n)
 end
 
 function ToyboxMod:renderingAboveWater()
-    local rmode = Game():GetRoom():GetRenderMode()
+    local rmode = ToyboxMod.GAME:GetRoom():GetRenderMode()
     return rmode==RenderMode.RENDER_NORMAL or rmode==RenderMode.RENDER_WATER_ABOVE or rmode==RenderMode.RENDER_WATER_REFRACT
 end
 
@@ -426,7 +426,7 @@ function ToyboxMod:closestVisibleEnemy(pos)
 	local closestDist = 2^32
 
 	for i = 1, #entities do
-		if(ToyboxMod:isValidEnemy(entities[i]) and Game():GetRoom():CheckLine(pos, entities[i].Position, 1)) then
+		if(ToyboxMod:isValidEnemy(entities[i]) and ToyboxMod.GAME:GetRoom():CheckLine(pos, entities[i].Position, 1)) then
 			local dist = (entities[i].Position - pos):LengthSquared()
 			if dist < closestDist then
 				closestDist = dist
@@ -497,7 +497,7 @@ end
 function ToyboxMod:getRandomFreePos(margin)
     margin = margin or 80
 
-    local r = Game():GetRoom()
+    local r = ToyboxMod.GAME:GetRoom()
     local p
     local failsafe = 1000
 
@@ -510,7 +510,7 @@ function ToyboxMod:getRandomFreePos(margin)
 end
 
 function ToyboxMod:isRoomClear()
-    return (Game():GetRoom():IsClear() and not Game():GetRoom():IsAmbushActive())
+    return (ToyboxMod.GAME:GetRoom():IsClear() and not ToyboxMod.GAME:GetRoom():IsAmbushActive())
 end
 
 function ToyboxMod:isTearCopyingFamiliar(fam)
@@ -773,7 +773,7 @@ function ToyboxMod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldC
             newPos = entity.Position+(entity.Position-targetPos)
         elseif(isConfused) then
             if(not newPos or entity:IsFrame(25, 0)) then
-                newPos = Game():GetRoom():GetRandomPosition(0)
+                newPos = ToyboxMod.GAME:GetRoom():GetRandomPosition(0)
             end
         else
             newPos = target.Position
@@ -785,7 +785,7 @@ function ToyboxMod:pathfindingEnemyLogic(entity, target, speed, lerpVal, shouldC
             local distCheck = true
             if(shouldCheckDist) then
                 local dist = newPos:Distance(entity.Position)
-                distCheck=((dist>=100) or (dist<100 and not Game():GetRoom():CheckLine(entity.Position, newPos, 0, 0, false, false)))
+                distCheck=((dist>=100) or (dist<100 and not ToyboxMod.GAME:GetRoom():CheckLine(entity.Position, newPos, 0, 0, false, false)))
             end
 
             if((entity:CollidesWithGrid() or gridCountdown>0) and distCheck) then
@@ -951,7 +951,7 @@ local gridEntityGroups = {
 
 ---@param roomDesc RoomDescriptor
 function ToyboxMod:getNumPickupGroupsInRoom(roomDesc)
-    roomDesc = roomDesc or Game():GetLevel():GetCurrentRoomDesc()
+    roomDesc = roomDesc or ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
 
     local numgroups = 0
     local seenGroups = {}

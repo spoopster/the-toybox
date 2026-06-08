@@ -14,7 +14,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted)
 
 local function postRender(_)
     local isMilcomExist = PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)
-    local sp = Game():GetHUD():GetPickupsHUDSprite()
+    local sp = ToyboxMod.GAME:GetHUD():GetPickupsHUDSprite()
     if(isMilcomExist and not WAS_MILCOM_EXIST) then
         sp:ReplaceSpritesheet(0, "gfx_tb/ui/ui_milcom_hud.png", true)
     elseif(WAS_MILCOM_EXIST and not isMilcomExist) then
@@ -22,12 +22,12 @@ local function postRender(_)
     end
     WAS_MILCOM_EXIST = isMilcomExist
 
-    if(not Game():GetHUD():IsVisible()) then return end
+    if(not ToyboxMod.GAME:GetHUD():IsVisible()) then return end
 
     local pl = PlayerManager.FirstPlayerByType(ToyboxMod.PLAYER_MILCOM_A)
     if(not pl) then return end
 
-    local renderPos = Vector(20,12)*Options.HUDOffset + Vector(16,45) + Game().ScreenShakeOffset
+    local renderPos = Vector(20,12)*Options.HUDOffset + Vector(16,45) + ToyboxMod.GAME.ScreenShakeOffset
     if(REPENTANCE_PLUS) then
         renderPos = renderPos+Vector(0,2)
     end

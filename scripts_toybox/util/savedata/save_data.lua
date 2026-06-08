@@ -133,7 +133,7 @@ function ToyboxMod:dataSaveInit(player)
         ToyboxMod.GridEntityData = {}
     end
 
-    if(Game():GetFrameCount()~=0 and ToyboxMod:HasData()) then
+    if(ToyboxMod.GAME:GetFrameCount()~=0 and ToyboxMod:HasData()) then
         local save = json.decode(ToyboxMod:LoadData())
         local pSeed = tostring(player:GetCollectibleRNG(rngItem):GetSeed())
 
@@ -152,7 +152,7 @@ function ToyboxMod:dataSaveInit(player)
             if(save.gridData) then ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod.GridEntityData, convertSaveDataToTable(save.gridData)) end
         end
     else
-        if(Game():GetFrameCount()==0 and ToyboxMod:HasData() and #Isaac.FindByType(1)==0) then
+        if(ToyboxMod.GAME:GetFrameCount()==0 and ToyboxMod:HasData() and #Isaac.FindByType(1)==0) then
             local save = json.decode(ToyboxMod:LoadData())
             if(save.persistentData) then ToyboxMod:cloneTableWithoutDeleteing(ToyboxMod:getPersistentDataTable(), convertSaveDataToTable(save.persistentData)) end
         end

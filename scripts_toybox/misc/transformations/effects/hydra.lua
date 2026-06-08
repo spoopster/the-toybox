@@ -107,7 +107,7 @@ local function updateHeads(_, pl)
     for i, hData in pairs(data.HYDRA_HEAD_DATA) do
         hData = hData or initHydraHeadData(pl)
 
-        if(Game():GetRoom():GetFrameCount()==0) then
+        if(ToyboxMod.GAME:GetRoom():GetFrameCount()==0) then
             hData.Pos = pl.Position+hData.PosOffset
         end
 
@@ -187,7 +187,7 @@ local function renderHeads(_, pl)
         local step = 7*(1+0.5*(pl:GetSprite().Scale.Y-1))
 
         while(bdist>=0) do
-            beamSprite:Render(bpos1+Game():GetRoom():GetRenderScrollOffset())
+            beamSprite:Render(bpos1+ToyboxMod.GAME:GetRoom():GetRenderScrollOffset())
             bpos1 = bpos1+bdir*step
             bdist = bdist-step
         end
@@ -196,7 +196,7 @@ local function renderHeads(_, pl)
     for _, headYDat in ipairs(headY) do
         local headData = data.HYDRA_HEAD_DATA[headYDat[1]] or {initHydraHeadData(pl, (i==0 and BASE_HEAD_MASS or REG_HEAD_MASS))}
 
-        pl:RenderHead(Isaac.WorldToRenderPosition(headData.Pos)+Game():GetRoom():GetRenderScrollOffset())
+        pl:RenderHead(Isaac.WorldToRenderPosition(headData.Pos)+ToyboxMod.GAME:GetRoom():GetRenderScrollOffset())
     end
     data.ALLOW_RENDER_HYDRA_HEADS = false
 end

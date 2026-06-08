@@ -62,7 +62,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postInkUpdate, PickupV
 
 local function cancelRoomSpawns()
     if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
-    if(not INVALID_ROOMTYPES[Game():GetRoom():GetType()]) then
+    if(not INVALID_ROOMTYPES[ToyboxMod.GAME:GetRoom():GetType()]) then
         return true
     end
 end

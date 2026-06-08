@@ -2,7 +2,7 @@
 
 ---@param pickup EntityPickup
 local function replaceCollectibleInCloset(_, pickup)
-    local roomConfig = Game():GetLevel():GetCurrentRoomDesc().Data
+    local roomConfig = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().Data
 
     if(roomConfig.Type==1 and roomConfig.Variant==6 and roomConfig.Subtype==11) then
         if(Isaac.GetPlayer():GetPlayerType()==ToyboxMod.PLAYER_MILCOM_A and Isaac.GetPersistentGameData():Unlocked(ToyboxMod.ACHIEVEMENT_MILCOM_B)==false) then
@@ -15,7 +15,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, replaceCollectibleInClos
 
 ---@param npc EntityNPC
 local function replaceShopkeeperInCloset(_, npc)
-    local roomConfig = Game():GetLevel():GetCurrentRoomDesc().Data
+    local roomConfig = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().Data
 
     if(roomConfig.Type==1 and roomConfig.Variant==6 and roomConfig.Subtype==11) then
         if(Isaac.GetPlayer():GetPlayerType()==ToyboxMod.PLAYER_MILCOM_A and Isaac.GetPersistentGameData():Unlocked(ToyboxMod.ACHIEVEMENT_MILCOM_B)==false) then

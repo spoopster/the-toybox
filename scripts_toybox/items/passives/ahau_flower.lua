@@ -51,7 +51,7 @@ ToyboxMod:addCustomRoomIcon("ToyboxAhauFlowerUpgrade",
 local function getRoomSubtype(roomIdx, rng)
     if((ToyboxMod:getExtraData("AHAU_ROOM_SUBS") or {})[tostring(roomIdx)]) then return end
 
-    local desc = Game():GetLevel():GetRoomByIdx(roomIdx, dim)
+    local desc = ToyboxMod.GAME:GetLevel():GetRoomByIdx(roomIdx, dim)
     if(not desc.Data) then return end
     if(desc.VisitedCount>0) then return -1 end
 
@@ -82,8 +82,8 @@ local function getRoomSubtype(roomIdx, rng)
 end
 
 local function markRoomSubtypes(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
-    if(ToyboxMod:getExtraData("AHAU_LEVEL_CHECK")==Game():GetLevel():GetDungeonPlacementSeed()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
+    if(ToyboxMod:getExtraData("AHAU_LEVEL_CHECK")==ToyboxMod.GAME:GetLevel():GetDungeonPlacementSeed()) then return end
 
     local data = ToyboxMod:getExtraDataTable()
 
@@ -92,9 +92,9 @@ local function markRoomSubtypes(_)
     data.AHAU_ROOM_UPGR = {}
 
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_AHAU_FLOWER)) then return end
-    data.AHAU_LEVEL_CHECK = Game():GetLevel():GetDungeonPlacementSeed()
+    data.AHAU_LEVEL_CHECK = ToyboxMod.GAME:GetLevel():GetDungeonPlacementSeed()
 
-    local pl = PlayerManager.GetRandomCollectibleOwner(ToyboxMod.COLLECTIBLE_AHAU_FLOWER, Game():GetLevel():GetDungeonPlacementSeed())
+    local pl = PlayerManager.GetRandomCollectibleOwner(ToyboxMod.COLLECTIBLE_AHAU_FLOWER, ToyboxMod.GAME:GetLevel():GetDungeonPlacementSeed())
     local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_AHAU_FLOWER)
 
     for i=0, 13^2-1 do
@@ -104,20 +104,51 @@ local function markRoomSubtypes(_)
         end
     end
 
-    Game():GetLevel():UpdateVisibility()
+    ToyboxMod.GAME:GetLevel():UpdateVisibility()
     if(MinimapAPI) then
         MinimapAPI:CheckForNewRedRooms()
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, markRoomSubtypes)
 
----@param first boolean
-local function hfhfhfhf(_, _, _, first)
-    if(first) then
-        markRoomSubtypes()
+---@param door GridEntityDoor
+local function trySpawnFlowersAtDoor(door)
+    if(not door) then return end
+
+    local data = ToyboxMod:getExtraDataTable()
+
+    local shouldSpawnFlowers = false
+    if((data.AHAU_ROOM_UPGR or {})[tostring(door.TargetRoomIndex)]) then
+        shouldSpawnFlowers = true
+    else
+        local maxNum = PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_AHAU_FLOWER)
+        if((data.AHAU_TRIGGERED or 0)<maxNum and (ToyboxMod.GAME:GetLevel():GetRoomByIdx(door.TargetRoomIndex).VisitedCount==0)) then
+            if(((data.AHAU_ROOM_SUBS or {})[tostring(door.TargetRoomIndex)] or -1)~=-1) then
+                shouldSpawnFlowers = true
+            end
+        end
+    end
+
+    if(shouldSpawnFlowers) then
+        local pos = ToyboxMod.GAME:GetRoom():GetClampedPosition(door.Position, 20)
+        local flowers = Isaac.Spawn(1000, ToyboxMod.EFFECT_FLOWER_PATCH, 0, pos, Vector.Zero, nil):ToEffect()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, hfhfhfhf, ToyboxMod.COLLECTIBLE_AHAU_FLOWER)
+
+---@param first boolean
+---@param pl EntityPlayer
+local function onPickupStuff(_, _, _, first, _, _, pl)
+    if(first and pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_AHAU_FLOWER)==1) then
+        markRoomSubtypes()
+
+        local room = ToyboxMod.GAME:GetRoom()
+        for _, slot in pairs(DoorSlot) do
+            local door = room:GetDoor(slot)
+            trySpawnFlowersAtDoor(door)
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, onPickupStuff, ToyboxMod.COLLECTIBLE_AHAU_FLOWER)
 
 ---@param ent GridEntity
 local function tryGetSubtype(_, ent)
@@ -133,22 +164,7 @@ local function tryGetSubtype(_, ent)
         data.AHAU_ROOM_SUBS[tostring(door.TargetRoomIndex)] = idx
     end
 
-    local shouldSpawnFlowers = false
-    if((data.AHAU_ROOM_UPGR or {})[tostring(door.TargetRoomIndex)]) then
-        shouldSpawnFlowers = true
-    else
-        local maxNum = PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_AHAU_FLOWER)
-        if((data.AHAU_TRIGGERED or 0)<maxNum and (Game():GetLevel():GetRoomByIdx(door.TargetRoomIndex).VisitedCount==0)) then
-            if(((data.AHAU_ROOM_SUBS or {})[tostring(door.TargetRoomIndex)] or -1)~=-1) then
-                shouldSpawnFlowers = true
-            end
-        end
-    end
-
-    if(shouldSpawnFlowers) then
-        local pos = Game():GetRoom():GetClampedPosition(ent.Position, 20)
-        local flowers = Isaac.Spawn(1000, ToyboxMod.EFFECT_FLOWER_PATCH, 0, pos, Vector.Zero, nil):ToEffect()
-    end
+    trySpawnFlowersAtDoor(door)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, tryGetSubtype, GridEntityType.GRID_DOOR)
 
@@ -156,7 +172,7 @@ local function tryUpgradeRoom(_, roomidx, dim)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_AHAU_FLOWER)) then return end
 
     local data = ToyboxMod:getExtraDataTable()
-    local desc = Game():GetLevel():GetRoomByIdx(roomidx, dim)
+    local desc = ToyboxMod.GAME:GetLevel():GetRoomByIdx(roomidx, dim)
 
     local pl = PlayerManager.GetRandomCollectibleOwner(ToyboxMod.COLLECTIBLE_AHAU_FLOWER, desc.SpawnSeed)
     local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_AHAU_FLOWER)
@@ -187,14 +203,14 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_CHANGE_ROOM, tryUpgradeRoom)
 
 local function spawnFlowersInUpgradedRoom()
-    local idx = Game():GetLevel():GetCurrentRoomIndex()
+    local idx = ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex()
     if((ToyboxMod:getExtraData("AHAU_ROOM_UPGR") or {})[tostring(idx)]) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local rng = ToyboxMod:generateRng(room:GetDecorationSeed())
 
         local possibleIndexes = {}
         for i=0, room:GetGridSize()-1 do
-            if(not room:GetGridEntity(i)) then
+            if(not room:GetGridEntity(i) and room:IsPositionInRoom(room:GetGridPosition(i), 0)) then
                 table.insert(possibleIndexes, i)
             end
         end
@@ -229,7 +245,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, flowerPatchInit, ToyboxM
 
 ---@param effect EntityEffect
 local function flowerPatchUpdate(_, effect)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(room:GetGridEntity(room:GetGridIndex(effect.Position))) then
         effect:Remove()
     end

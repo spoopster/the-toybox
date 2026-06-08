@@ -24,7 +24,7 @@ end
 ---@param idx integer? Default: current room
 ---@return integer tints, integer centers
 function ToyboxMod:getTintedRoomTint(idx)
-    idx = tostring(idx or Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex)
+    idx = tostring(idx or ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().SafeGridIndex)
     local data = (ToyboxMod:getExtraData("TINTED_ROOM_POSITIONS") or {})[idx] or {Tints=0, Centers=0}
 
     --print(data.Tints, data.Centers)
@@ -92,7 +92,7 @@ function ToyboxMod:makeTintedRoom(roomPos, tintedType, radius)
     end
     radius = radius or TINT_AURA_SIZE
 
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
 
     local alreadyAddedToTintedAura = {}
     local idx = 1
@@ -160,7 +160,7 @@ local function workTintedRoomGradient(_)
     local buffer = ToyboxMod:getExtraData("TINTED_ROOM_GRADIENT")
     if(not (buffer and #buffer>0)) then return end
 
-    local frames = Game():GetRoom():GetFrameCount()
+    local frames = ToyboxMod.GAME:GetRoom():GetFrameCount()
     if(frames%TINT_GRADIENT_DURATION==3) then
         local idx = (frames//TINT_GRADIENT_DURATION)%(#buffer)+1
 
@@ -172,7 +172,7 @@ local function workTintedRoomGradient(_)
             modif.B = modif.B+0.5
         end
 
-        Game():SetColorModifier(modif, true, 0.02)
+        ToyboxMod.GAME:SetColorModifier(modif, true, 0.02)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, workTintedRoomGradient)
@@ -184,9 +184,9 @@ local function test(_, _, rng, player, flags)
     for _, _ in pairs(ToyboxMod.TINTED_ROOM) do numblablabla = numblablabla+1 end
 
     local sel = ToyboxMod.TINTED_ROOM_PICKER:PickOutcome(rng)
-    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, sel, 8)
+    ToyboxMod:makeTintedRoom(ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().SafeGridIndex, sel, 8)
 
     local sel = ToyboxMod.TINTED_ROOM_PICKER:PickOutcome(rng)
-    ToyboxMod:makeTintedRoom(Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex, sel, 8)
+    ToyboxMod:makeTintedRoom(ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().SafeGridIndex, sel, 8)
 end
 --ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, test)

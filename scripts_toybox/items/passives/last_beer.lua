@@ -3,7 +3,7 @@
 local CHANCE_PER_KILL = 0.1
 
 local function postNpcDeath(_, npc)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         local data = ToyboxMod:getEntityDataTable(pl)
 
@@ -35,7 +35,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, beerTea
 local function postNewRoom(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_LAST_BEER)) then return end
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
 
         ToyboxMod:setEntityData(pl, "LAST_BEER_COUNTER", 0)

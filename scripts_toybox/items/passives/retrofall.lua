@@ -190,7 +190,7 @@ local function renderRetrofallDesc(_)
     if(not ToyboxMod.CONFIG.SUPER_RETROFALL_BROS) then return end
 
     if(RENDER_RETROFALL>=0) then
-        local streakSprite = Game():GetHUD():GetStreakSprite()
+        local streakSprite = ToyboxMod.GAME:GetHUD():GetStreakSprite()
         local baseCenterPos = Vector(Isaac.GetScreenWidth()/2, 40)
 
         local frameData = streakSprite:GetNullFrame("Center")
@@ -215,7 +215,7 @@ local function replaceRetrofallDesc(_, title, subtitle, sticky, curse)
         RENDER_RETROFALL = 0
 
         if(subtitle~="") then
-            Game():GetHUD():ShowItemText("RETROFALL", "", curse)
+            ToyboxMod.GAME:GetHUD():ShowItemText("RETROFALL", "", curse)
             return false
         end
     else

@@ -73,7 +73,7 @@ local function toggleAutofire(_, player)
         end
 
         if(DO_EFFECT) then
-            Game():ShakeScreen(5)
+            ToyboxMod.GAME:ShakeScreen(5)
             for i=1, NUM_DUST do
                 local vel = Vector.FromAngle(360*i/NUM_DUST+rng:RandomInt(180/NUM_DUST))*(3+rng:RandomFloat()*2)
 

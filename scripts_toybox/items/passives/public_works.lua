@@ -56,7 +56,7 @@ local roomSizes = {
 local function mapUpdateBuffer()
     aurabuffer = {}
 
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
 
     for _, data in ipairs(auraPositions) do
         local x,y = data[1].X, data[1].Y
@@ -95,7 +95,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_MINIMAP_UPDATE, mapUpdateBuffer)
 local function tryRenderAuraAtLevelIdxSmall(idx, centerPos, centerSize)
     if(not aurabuffer[idx]) then return end
 
-    local renderedRoom = Game():GetLevel():GetRoomByIdx(idx)
+    local renderedRoom = ToyboxMod.GAME:GetLevel():GetRoomByIdx(idx)
     if(renderedRoom.DisplayFlags & (RoomDescriptor.DISPLAY_BOX | RoomDescriptor.DISPLAY_ICON) == RoomDescriptor.DISPLAY_NONE) then return end
 
     local safeIdxToPos = Vector(renderedRoom.SafeGridIndex%13, renderedRoom.SafeGridIndex//13)
@@ -155,7 +155,7 @@ end
 local function tryRenderAuraAtLevelIdxBig(idx, centerPos, bounds)
     if(not aurabuffer[idx]) then return end
 
-    local renderedRoom = Game():GetLevel():GetRoomByIdx(idx)
+    local renderedRoom = ToyboxMod.GAME:GetLevel():GetRoomByIdx(idx)
     if(renderedRoom.DisplayFlags & (RoomDescriptor.DISPLAY_BOX | RoomDescriptor.DISPLAY_ICON) == RoomDescriptor.DISPLAY_NONE) then return end
 
     local safeIdxToPos = Vector(renderedRoom.SafeGridIndex%13, renderedRoom.SafeGridIndex//13)
@@ -190,7 +190,7 @@ local function tryRenderAuraAtLevelIdxBig(idx, centerPos, bounds)
 end
 
 local function mapRenderAuras()
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     if(level:GetCurses() & LevelCurse.CURSE_OF_THE_LOST == LevelCurse.CURSE_OF_THE_LOST) then return end
 
     

@@ -15,7 +15,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, meteorTearUpdate, ToyboxMod.TEAR_METEOR)
 
 local function meteorTearSplat(_, tear)
-    if(Game():IsPaused()) then return end
+    if(ToyboxMod.GAME:IsPaused()) then return end
 
     if(tear.Variant==ToyboxMod.TEAR_METEOR) then
         tear = tear:ToTear()
@@ -59,7 +59,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, bulletTearUpdate, ToyboxMod.TEAR_BULLET)
 
 local function bulletTearSplat(_, tear)
-    if(Game():IsPaused()) then return end
+    if(ToyboxMod.GAME:IsPaused()) then return end
 
     if(tear.Variant==ToyboxMod.TEAR_BULLET) then
         tear = tear:ToTear()
@@ -108,7 +108,7 @@ local function soundwaveTearRender(_, tear, offset)
     local rng = tear:GetDropRNG()
 
     for i=1,1 do
-        s:Render(Isaac.WorldToScreen(tear.Position+Vector(rng:RandomFloat()-0.5,rng:RandomFloat()-0.5)*13+offset+Vector(0,tear.Height)-Game():GetRoom():GetRenderScrollOffset()))
+        s:Render(Isaac.WorldToScreen(tear.Position+Vector(rng:RandomFloat()-0.5,rng:RandomFloat()-0.5)*13+offset+Vector(0,tear.Height)-ToyboxMod.GAME:GetRoom():GetRenderScrollOffset()))
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_RENDER, soundwaveTearRender, ToyboxMod.TEAR_SOUNDWAVE)
@@ -137,7 +137,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, paperTearUpdate, ToyboxMod.TEAR_PAPER)
 
 local function paperTearSplat(_, tear)
-    if(Game():IsPaused()) then return end
+    if(ToyboxMod.GAME:IsPaused()) then return end
 
     if(tear.Variant==ToyboxMod.TEAR_PAPER) then
         tear = tear:ToTear()

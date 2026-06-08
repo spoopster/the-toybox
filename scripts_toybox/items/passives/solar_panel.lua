@@ -21,10 +21,10 @@ end
 --ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SPEED)
 
 local function addChargeOnNewRoom(_)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(not (room:IsClear() and room:IsFirstVisit())) then return end
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         local numCharges = CHARGES_ON_ROOM*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_SOLAR_PANEL)
 

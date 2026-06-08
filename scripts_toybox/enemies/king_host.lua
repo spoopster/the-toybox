@@ -47,7 +47,7 @@ local function kingHostUpdate(_, npc)
         end
 
         if(npc.ProjectileCooldown==0) then
-            local room = Game():GetRoom()
+            local room = ToyboxMod.GAME:GetRoom()
             local screenpos = room:WorldToScreenPosition(npc.Position)
             local screenbounds = Vector(Isaac.GetScreenWidth(), Isaac.GetScreenHeight())
             if(screenpos.X>0 and screenpos.X<screenbounds.X and screenpos.Y>0 and screenpos.Y<screenbounds.Y) then
@@ -86,7 +86,7 @@ local function kingHostUpdate(_, npc)
         if(sp:IsEventTriggered("Close")) then
             npc.I2 = 0
 
-            Game():ShakeScreen(15)
+            ToyboxMod.GAME:ShakeScreen(15)
             sfx:Play(SoundEffect.SOUND_FORESTBOSS_STOMPS)
         end
         if(sp:IsEventTriggered("Windup")) then

@@ -8,7 +8,7 @@ local PERMA_CHANCE = 0.25
 local function useItem(_, item, rng, player, flags, slot, vdata)
     if(not ToyboxMod:playerHasLimitBreak(player)) then return end
 
-    for _, enemy in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
+    for _, enemy in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
         if(enemy:IsEnemy() and rng:RandomFloat()<PERMA_CHANCE) then
             ToyboxMod:setEntityData(enemy, "PERMA_FEARED", player)
         end

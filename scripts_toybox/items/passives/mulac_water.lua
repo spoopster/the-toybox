@@ -9,7 +9,7 @@ local NOT_COUNTED_ROOMTYPES = {
 }
 
 local function checkStageCleared()
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
 
     local roomQueue = {}
     local visited = {}
@@ -52,9 +52,9 @@ local function fullClearStageEffects(delayed)
     if(extraTable.MULAC_FULLCLEARED and justMarkedAsFull) then
         local function triggerAllEffects()
             sfx:Play(SoundEffect.SOUND_HOLY)
-            Game():GetHUD():ShowFortuneText("The Gods Smile Upon You!")
+            ToyboxMod.GAME:GetHUD():ShowFortuneText("The Gods Smile Upon You!")
 
-            for i=0, Game():GetNumPlayers()-1 do
+            for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local pl = Isaac.GetPlayer(i)
                 if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_MULAC_WATER)) then
                     ToyboxMod:addInnateCollectible(pl, CollectibleType.COLLECTIBLE_DEAD_DOVE, 1, "ForLevel_MulacWaterBoss", true)
@@ -79,7 +79,7 @@ local function fullClearStageEffects(delayed)
 end
 
 local function resetClearStatus(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
 
     ToyboxMod:setExtraData("MULAC_FULLCLEARED", false)
 end
@@ -88,12 +88,12 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, resetClearStatus)
 local function tryClearMapNewRoom(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_MULAC_WATER)) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(room:IsClear()) then
         fullClearStageEffects(true)
     end
 
-    if(Game():GetLevel():GetCurrentRoomIndex()==GridRooms.ROOM_DEVIL_IDX) then
+    if(ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex()==GridRooms.ROOM_DEVIL_IDX) then
         if(ToyboxMod:getExtraData("MULAC_FULLCLEARED")) then
             local owner = PlayerManager.FirstCollectibleOwner(ToyboxMod.COLLECTIBLE_MULAC_WATER) or Isaac.GetPlayer()
             owner:UseCard(Card.CARD_SOUL_ISAAC, UseFlag.USE_NOANIM | UseFlag.USE_NOHUD | UseFlag.USE_NOANNOUNCER)

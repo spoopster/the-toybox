@@ -25,11 +25,11 @@ local function mantleDestroyed(_, player, mantle)
     if(not ToyboxMod:isAtlasA(player)) then return end
     if(not (mantle==ToyboxMod.MANTLE_DATA.DARK.ID or ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.DARK.ID))) then return end
 
-    for _, enemy in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1200, EntityPartition.ENEMY)) do
+    for _, enemy in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 1200, EntityPartition.ENEMY)) do
         enemy:TakeDamage(LOSEMANTLE_DMG, 0, EntityRef(player), 30)
     end
 
-    Game():ShakeScreen(20)
+    ToyboxMod.GAME:ShakeScreen(20)
     sfx:Play(SoundEffect.SOUND_DEATH_CARD)
     local poof = Isaac.Spawn(1000,16,1,player.Position,Vector.Zero,nil):ToEffect()
     poof.Color = Color(0.1,0.1,0.1,1)

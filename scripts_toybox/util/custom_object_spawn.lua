@@ -56,9 +56,9 @@ local BAD_ROCK_TYPES = {
     [24]=true,
 }
 local function getGridColl(pos)
-    if(not Game():GetRoom():IsPositionInRoom(pos, 0)) then return 2 end
+    if(not ToyboxMod.GAME:GetRoom():IsPositionInRoom(pos, 0)) then return 2 end
 
-    local gridEnt = Game():GetRoom():GetGridEntityFromPos(pos)
+    local gridEnt = ToyboxMod.GAME:GetRoom():GetGridEntityFromPos(pos)
     if(gridEnt==nil) then return 0 end
     local eType = gridEnt:GetType()
     if(BAD_ROCK_TYPES[eType]) then return 2 end
@@ -72,7 +72,7 @@ function ToyboxMod:spawnCustomObjects(objData)
         SpawnType = objData.SpawnType or "SINGLE",
         SpawnData = objData.SpawnData or {EntityType.ENTITY_EFFECT,EffectVariant.FIRE_JET,0},
         SpawnerEntity = objData.SpawnerEntity,
-        Position = objData.Position or Game():GetRoom():GetCenterPos(),
+        Position = objData.Position or ToyboxMod.GAME:GetRoom():GetCenterPos(),
         Amount = math.max(1, objData.Amount or 1),
         Damage = math.max(0, objData.Damage or 3.5),
         Color = objData.Color or Color(1,1,1,1),
@@ -89,7 +89,7 @@ function ToyboxMod:spawnCustomObjects(objData)
 
         Index = objData.Index or 0,
         CircleIndex = objData.CircleIndex or 0,
-        OGPosition = objData.OGPosition or objData.Position or Game():GetRoom():GetCenterPos(),
+        OGPosition = objData.OGPosition or objData.Position or ToyboxMod.GAME:GetRoom():GetCenterPos(),
         OGRadius = objData.OGRadius or objData.Radius or Vector(40,40),
         CooldownFrames = objData.CooldownFrames or 0,
     }
@@ -178,7 +178,7 @@ function ToyboxMod:spawnCircleObject(objData)
     objData.Index = 0
     for i=0, objData.RadiusCount-1 do
         local pos = objData.OGPosition+objData.Radius*Vector.FromAngle(360*(objData.Index/objData.RadiusCount)+(rng:RandomFloat()-0.5)*objData.AngleVariation)
-        if(Game():GetRoom():IsPositionInRoom(pos, 0)) then
+        if(ToyboxMod.GAME:GetRoom():IsPositionInRoom(pos, 0)) then
             objData.Position = pos
             ToyboxMod:spawnSingleObject(objData)
         end
@@ -220,7 +220,7 @@ local function specialShockwaveUpdate(_, effect)
 
     if(objData.DestroyGrid and objData.DestroyGrid>=1) then
         if(getGridColl(effect.Position)==1) then
-            local room = Game():GetRoom()
+            local room = ToyboxMod.GAME:GetRoom()
             room:DestroyGrid(room:GetGridIndex(effect.Position), true)
         end
     end

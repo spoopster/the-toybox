@@ -27,7 +27,7 @@ local function familiarUpdate(_, fam)
         local rng = fam:GetDropRNG()
 
         local picked = ToyboxMod.CHEST_PICKER:PickOutcome(fam:GetDropRNG())
-        local pos = Game():GetRoom():FindFreePickupSpawnPosition(fam.Position)
+        local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(fam.Position)
         local chest = Isaac.Spawn(EntityType.ENTITY_PICKUP,picked,0,pos,Vector.Zero,nil):ToPickup()
 
         fam.RoomClearCount = rng:RandomInt(2)

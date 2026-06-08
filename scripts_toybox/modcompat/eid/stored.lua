@@ -123,7 +123,7 @@ local function MakeSwagColor(colors, maxAnimTime)
 
     return function()
         maxAnimTime = maxAnimTime or 80
-        local animTime = Game():GetFrameCount() % maxAnimTime
+        local animTime = ToyboxMod.GAME:GetFrameCount() % maxAnimTime
         local colorFractions = (maxAnimTime - 1) / #colors
         local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
         local primaryColorIndex = subAnm % (#colors + 1)
@@ -326,6 +326,19 @@ STORED.CONSTANTS = {
         CarBattery = function(descObj)
             return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
         end,
+        Virtues = function(descObj)
+            return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES)
+        end,
+        VirtuesItem = function(id)
+            return function(descObj)
+                if(id and descObj.ObjSubType==584 and not EID.InsideItemReminder) then
+                    return PlayerManager.AnyoneHasCollectible(id)
+                end
+            end
+        end,
+        Belial = function(descObj)
+            return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL_PASSIVE)
+        end,
 
         TrinketDouble = STORED.FUNCTIONS.IsTrinketDoubled,
         TrinketTriple = STORED.FUNCTIONS.IsTrinketTripled,
@@ -357,6 +370,13 @@ STORED.CONSTANTS = {
         HorseModifiers = {"PillHorse", nil, nil},
         TarotClothModifiers = {"CardTarotCloth", "{{Collectible451}}", "{{ColorShinyPurple}}"},
         ConglomerateModifiers = {"CardConglomerate", "{{Collectible"..ToyboxMod.COLLECTIBLE_CONGLOMERATE.."}}", "{{ToyboxColorConglomerate}}"},
+    },
+
+    WispRingIcons = {
+        [-1] = "{{StationaryWisp}}",
+        [0] = "{{InnerWisp}}",
+        [1] = "{{MiddleWisp}}",
+        [2] = "{{OuterWisp}}"
     }
 }
 

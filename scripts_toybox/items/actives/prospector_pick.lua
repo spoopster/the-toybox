@@ -3,14 +3,14 @@ local sfx = SFXManager()
 ---@param player EntityPlayer
 ---@param rng RNG
 local function usePick(_, _, rng, player, flags)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local pos = room:FindFreePickupSpawnPosition(player.Position,10)
 
     local grid = room:GetGridEntityFromPos(player.Position)
     if(grid and grid:GetType()==GridEntityType.GRID_DECORATION) then
         local pickup = Isaac.Spawn(5, ToyboxMod.PICKUP_RANDOM_SELECTOR, ToyboxMod.PICKUP_RANDOM_MANTLE, pos, Vector.Zero, nil):ToPickup()
     else
-        local pool = Game():GetItemPool()
+        local pool = ToyboxMod.GAME:GetItemPool()
         local sub = pool:GetCard(math.max(1, rng:Next()), false, true, true)
 
         local pickup = Isaac.Spawn(5, PickupVariant.PICKUP_TAROTCARD, sub, pos, Vector.Zero, nil):ToPickup()

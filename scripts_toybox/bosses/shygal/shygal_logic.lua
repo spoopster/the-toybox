@@ -78,7 +78,7 @@ local function pickMovementPos(npc)
     return newPos
 end
 local function getDistributedRandomPos(centerpos, amount)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local positions = {}
 
     local newPos
@@ -145,7 +145,7 @@ local function movementLogic(npc, speed, targetpos, movementLerp, failMoveFricti
         posToMove = npc.Position+(npc.Position-npc.Target.Position):Resized(10)
         forceMove = true
     elseif(ToyboxMod:isConfused(npc) and npc.FrameCount%20==0) then
-        posToMove = Game():GetRoom():GetRandomPosition(10)
+        posToMove = ToyboxMod.GAME:GetRoom():GetRandomPosition(10)
         forceMove = true
     end
 
@@ -230,7 +230,7 @@ local function shygalsLogic(_, npc)
     if(not (npc.Variant==ToyboxMod.BOSS_SHYGAL or npc.Variant==ToyboxMod.NPC_SHYGAL_CLONE or npc.Variant==ToyboxMod.NPC_SHYGAL_MASK)) then return end
 
     local data = ToyboxMod:getEntityDataTable(npc)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local sprite = npc:GetSprite()
     local rng = npc:GetDropRNG()
 

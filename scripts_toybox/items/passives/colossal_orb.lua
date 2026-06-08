@@ -16,13 +16,13 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SIZE)
 
 local function shockwaveOnEntry(_)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(room:IsClear()) then return end
 
-    local isBoss = (Game():GetRoom():GetType()==RoomType.ROOM_BOSS)
+    local isBoss = (ToyboxMod.GAME:GetRoom():GetType()==RoomType.ROOM_BOSS)
     local bossTimeMod = 5
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_COLOSSAL_ORB)) then
             if(not isBoss) then
@@ -41,7 +41,7 @@ local function shockwaveOnEntry(_)
                         return
                     end
 
-                    Game():MakeShockwave(pl.Position, 0.075, 0.05, TIMER_DUR)
+                    ToyboxMod.GAME:MakeShockwave(pl.Position, 0.075, 0.05, TIMER_DUR)
                     effect.Position = pl.Position
 
                     Isaac.CreateTimer(

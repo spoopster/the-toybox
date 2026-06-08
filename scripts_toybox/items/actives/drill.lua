@@ -34,7 +34,7 @@ local FRAMES_TO_NOVOLUME = 5
 
 ---@param player EntityPlayer
 local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
-    if(Game():GetRoom():GetType()==RoomType.ROOM_CHALLENGE) then
+    if(ToyboxMod.GAME:GetRoom():GetType()==RoomType.ROOM_CHALLENGE) then
         return {
             Discharge = false,
             Remove = false,
@@ -57,8 +57,8 @@ local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
 
         local spawnData = {nearestShopPickup.Type, nearestShopPickup.Variant, nearestShopPickup.SubType, nearestShopPickup.Position}
 
-        local prevIdx = Game():GetLevel():GetPreviousRoomIndex()
-        local ogIdx = Game():GetLevel():GetCurrentRoomIndex()
+        local prevIdx = ToyboxMod.GAME:GetLevel():GetPreviousRoomIndex()
+        local ogIdx = ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex()
 
         local isBoss = false
 
@@ -110,7 +110,7 @@ local function gildedAppleUse(_, _, rng, player, flags, slot, vdata)
         local sub = isBoss and 1 or 0
         local room = RoomConfig.GetRandomRoom(seed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_CHALLENGE, nil, nil, nil, 1, nil, nil, sub)
         Isaac.ExecuteCommand("goto s.challenge."..room.Variant)
-        Game():StartRoomTransition(GridRooms.ROOM_DEBUG_IDX, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT)
+        ToyboxMod.GAME:StartRoomTransition(GridRooms.ROOM_DEBUG_IDX, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT)
 
 
         ToyboxMod:setExtraData("DRILLDATA", {
@@ -141,25 +141,25 @@ local function postUpdate(_)
     if(data.IGNORE_RESET_DATA~=0) then
         data.IGNORE_RESET_DATA = 0
         ToyboxMod:setExtraData("DRILLDATA", data)
-    elseif(Game():GetRoom():GetType()~=RoomType.ROOM_CHALLENGE) then
+    elseif(ToyboxMod.GAME:GetRoom():GetType()~=RoomType.ROOM_CHALLENGE) then
         Ambush.SetMaxChallengeWaves(3)
         ToyboxMod:setExtraData("DRILLDATA", nil)
     end
 
-    if(Game():GetRoom():GetType()~=RoomType.ROOM_CHALLENGE) then
+    if(ToyboxMod.GAME:GetRoom():GetType()~=RoomType.ROOM_CHALLENGE) then
         return
     end
 
     if(data.FORCE_SET_AMBUSH~=0) then
         data.FORCE_SET_AMBUSH = 0
-        Game():GetRoom():SetAmbushDone(false)
+        ToyboxMod.GAME:GetRoom():SetAmbushDone(false)
     end
 
-    if(Game():GetRoom():IsAmbushDone()) then
+    if(ToyboxMod.GAME:GetRoom():IsAmbushDone()) then
         Ambush.SetMaxChallengeWaves(3)
         data.IS_ACTIVE = -1
-        Game():StartRoomTransition(data.OG_IDX, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT)
-    elseif(not Game():GetRoom():IsAmbushActive()) then
+        ToyboxMod.GAME:StartRoomTransition(data.OG_IDX, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT)
+    elseif(not ToyboxMod.GAME:GetRoom():IsAmbushActive()) then
         Ambush.StartChallenge()
     end
 
@@ -174,23 +174,23 @@ local function preNewRoom(_)
     if(data.IS_ACTIVE==-1) then
         data.IS_ACTIVE = -2
 
-        local curIdx = Game():GetLevel():GetCurrentRoomIndex()
+        local curIdx = ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex()
         if(curIdx==data.OG_IDX) then
-            Game():GetLevel():ChangeRoom(data.PRE_IDX, -1)
-            Game():GetLevel():ChangeRoom(curIdx, -1)
+            ToyboxMod.GAME:GetLevel():ChangeRoom(data.PRE_IDX, -1)
+            ToyboxMod.GAME:GetLevel():ChangeRoom(curIdx, -1)
         end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_NEW_ROOM, preNewRoom)
 
 local function preIdxUpdate(_)
-    ToyboxMod:setExtraData("DRILL_PREIDX", Game():GetLevel():GetCurrentRoomIndex())
+    ToyboxMod:setExtraData("DRILL_PREIDX", ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex())
 
     local data = ToyboxMod:getExtraDataTable().DRILLDATA
     if(not data) then return end
 
     if(data.IS_ACTIVE==1) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         if(room:GetType()~=RoomType.ROOM_CHALLENGE) then
             Ambush.SetMaxChallengeWaves(3)
             ToyboxMod:setExtraData("DRILLDATA", nil)

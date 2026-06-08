@@ -7,7 +7,7 @@ local MIDAS_DUR = 30*3
 local function postUseItem(_, item, rng, player, flags, slot, vdata)
     if(not ToyboxMod:playerHasLimitBreak(player)) then return end
     
-    for _, enemy in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
+    for _, enemy in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 1000, EntityPartition.ENEMY)) do
         if(enemy:ToNPC() and enemy:IsEnemy() and rng:RandomFloat()<MIDAS_CHANCE) then
             enemy:ToNPC():AddMidasFreeze(EntityRef(player), MIDAS_DUR)
         end

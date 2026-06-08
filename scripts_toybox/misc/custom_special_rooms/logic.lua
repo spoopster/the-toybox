@@ -53,13 +53,13 @@ end
 
 -- replace pool
 local function setRoomPool(_)
-    local desc = Game():GetLevel():GetCurrentRoomDesc()
+    local desc = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
     if(not (desc.Data and desc.Data.Type==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and ID_TO_TABLEKEY[desc.Data.Subtype])) then return end
 
     local pool = ToyboxMod.ROOM_TYPE_DATA[ID_TO_TABLEKEY[desc.Data.Subtype]].Pool
     if(pool) then
         print("Set pool", pool)
-        Game():GetRoom():SetItemPool(pool)
+        ToyboxMod.GAME:GetRoom():SetItemPool(pool)
     end
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_NEW_ROOM, CallbackPriority.IMPORTANT, setRoomPool)
@@ -73,7 +73,7 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, CallbackPri
 
 -- replace backdrop
 local function replaceBackdrop()
-    local desc = Game():GetLevel():GetCurrentRoomDesc()
+    local desc = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
     if(not (desc.Data and desc.Data.Type==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and ID_TO_TABLEKEY[desc.Data.Subtype])) then return end
     local backdrop = ToyboxMod.ROOM_TYPE_DATA[ID_TO_TABLEKEY[desc.Data.Subtype]].Backdrop
     return backdrop
@@ -83,7 +83,7 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_BACKDROP_CHANGE, CallbackPrior
 ---@param ent GridEntity
 local function makeLockedDoor(_, ent, _, first)
     local door = ent:ToDoor()
-    local room = Game():GetLevel():GetRoomByIdx(door.TargetRoomIndex)
+    local room = ToyboxMod.GAME:GetLevel():GetRoomByIdx(door.TargetRoomIndex)
     if(not (room.Data and room.Data.Type==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and ID_TO_TABLEKEY[room.Data.Subtype])) then return end
     if(string.find(string.lower(door:GetSprite():GetFilename()), "holeinwall")) then return end
 
@@ -108,7 +108,7 @@ local MINIMAP_ICON_SPRITE = Sprite("gfx_tb/ui/ui_minimap_icons.anm2", true)
 MINIMAP_ICON_SPRITE:Play("IconGraveyardRoom", true)
 
 local function roomIconRender(_, isBig, idx, pos, size, alpha, tlclamp, brclamp, brclamp2)
-    local room = Game():GetLevel():GetRoomByIdx(idx)
+    local room = ToyboxMod.GAME:GetLevel():GetRoomByIdx(idx)
     if(not (room.Data and ID_TO_TABLEKEY[room.Data.Subtype])) then return end
 
     local anim = ToyboxMod.ROOM_TYPE_DATA[ID_TO_TABLEKEY[room.Data.Subtype]].IconAnim

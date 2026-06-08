@@ -31,7 +31,7 @@ local function exorcismUse(_, _, rng, pl, flags, slot, vdata)
     end
 
     sfx:Play(SoundEffect.SOUND_SUPERHOLY)
-    Game():ShakeScreen(20)
+    ToyboxMod.GAME:ShakeScreen(20)
 
     return {
         Discharge = true,

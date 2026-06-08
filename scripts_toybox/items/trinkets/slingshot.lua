@@ -10,7 +10,7 @@ local function removeStageHP(_, npc)
         local mult = PlayerManager.GetTotalTrinketMultiplier(ToyboxMod.TRINKET_SLINGSHOT)
 
         local stageHp = conf:GetStageHP()
-        local stage = Game():GetLevel():GetAbsoluteStage()
+        local stage = ToyboxMod.GAME:GetLevel():GetAbsoluteStage()
 
         npc.MaxHitPoints = npc.MaxHitPoints-stage*stageHp
         npc.HitPoints = npc.HitPoints-stage*stageHp

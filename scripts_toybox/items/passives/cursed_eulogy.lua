@@ -30,12 +30,12 @@ local function tryReplacePool(_, pool, dec, seed)
 
     if(rng:RandomFloat()<totalEulogyNum*REPLACE_CHANCE) then
         local pickedPool = POOL_PICKER:PickOutcome(rng)
-        if(Game().Difficulty>=Difficulty.DIFFICULTY_GREED and pickedPool==ItemPoolType.POOL_CURSE) then
+        if(ToyboxMod.GAME.Difficulty>=Difficulty.DIFFICULTY_GREED and pickedPool==ItemPoolType.POOL_CURSE) then
             pickedPool = ItemPoolType.POOL_GREED_CURSE
         end
 
         CANCEL_CHECK_EFFECT = true
-        local pickedItem = Game():GetItemPool():GetCollectible(pickedPool, dec, rng:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
+        local pickedItem = ToyboxMod.GAME:GetItemPool():GetCollectible(pickedPool, dec, rng:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
         CANCEL_CHECK_EFFECT = false
 
         table.insert(MARKED_SEEDS, seed)

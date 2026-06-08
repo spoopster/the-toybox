@@ -12,11 +12,11 @@ local function tryHeal(_, npc)
     if(numFlowers==0) then return end
     numFlowers = numFlowers*NUM_BOSS_HEALS+1
 
-    local desc = Game():GetLevel():GetCurrentRoomDesc()
+    local desc = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
     local visitCount = desc.VisitedCount
     if((visitCount>REVISIT_LENIENCY+1) or (visitCount>1 and ToyboxMod:generateRng(desc.SpawnSeed):RandomFloat()<(visitCount-1)/REVISIT_LENIENCY)) then return end
 
-    local barFill = Game():GetHUD():GetBossHPBarFill()
+    local barFill = ToyboxMod.GAME:GetHUD():GetBossHPBarFill()
     local data = ToyboxMod:getExtraDataTable(npc)
 
     if(barFill<0 or not math.tointeger(barFill//1)) then
@@ -30,7 +30,7 @@ local function tryHeal(_, npc)
 
         if(curThres<lastThres) then
             local healAmount = lastThres-curThres
-            for i=0, Game():GetNumPlayers()-1 do
+            for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local pl = Isaac.GetPlayer(i)
 
                 local healGfx = 0

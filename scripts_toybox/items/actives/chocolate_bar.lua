@@ -19,7 +19,7 @@ local function chocolateUse(_, _, rng, pl, flags, slot, vdata)
     end
     pl:AddHearts(P_ADD_HP)
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local otherPl = Isaac.GetPlayer(i)
         if(GetPtrHash(pl)~=GetPtrHash(otherPl)) then
             otherPl:AddHearts(OTHERP_ADD_HP)
@@ -30,7 +30,7 @@ local function chocolateUse(_, _, rng, pl, flags, slot, vdata)
         end
     end
 
-    for _, enemy in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 800, EntityPartition.ENEMY)) do
+    for _, enemy in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 800, EntityPartition.ENEMY)) do
         if(enemy:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
             enemy:AddHealth(ENEMY_ADD_HP)
             enemy:SetColor(Color(1,1,1,1,0.5,0.1,0.1), 5, 1, true, false)

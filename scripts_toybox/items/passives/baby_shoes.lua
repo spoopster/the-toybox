@@ -9,7 +9,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SPEED)
 
 local function evalCacheOnNewRoom()
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_BABY_SHOES)) then
             pl:AddCacheFlags(CacheFlag.CACHE_SPEED, true)
@@ -21,7 +21,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, evalCacheOnNewRoom)
 local function evalCacheOnRoomClear()
     Isaac.CreateTimer(
         function()
-            for i=0, Game():GetNumPlayers()-1 do
+            for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local pl = Isaac.GetPlayer(i)
                 if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_BABY_SHOES)) then
                     pl:AddCacheFlags(CacheFlag.CACHE_SPEED, true)

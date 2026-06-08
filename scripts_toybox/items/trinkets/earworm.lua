@@ -13,7 +13,7 @@ local function postNewRoom(_)
             local willEarworm = false
             local earwormPlayer = nil
 
-            for i=0, Game():GetNumPlayers()-1 do
+            for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local p = Isaac.GetPlayer(i)
                 if(p:HasTrinket(ToyboxMod.TRINKET_EARWORM)) then
                     local mult = p:GetTrinketMultiplier(ToyboxMod.TRINKET_EARWORM)

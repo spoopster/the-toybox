@@ -4,10 +4,10 @@ local KANYE_STARTROOM_SPAWN = 30*2
 local KANYE_SPIN_FREQ = 40
 
 local function trySpawnKanye(_)
-    if(Game():GetFrameCount()>=KANYE_TIME_LIMIT) then
-        local room = Game():GetRoom()
+    if(ToyboxMod.GAME:GetFrameCount()>=KANYE_TIME_LIMIT) then
+        local room = ToyboxMod.GAME:GetRoom()
         if(room:GetFrameCount()==KANYE_STARTROOM_SPAWN) then
-            local doorpos = room:GetDoorSlotPosition(Game():GetLevel().EnterDoor)
+            local doorpos = room:GetDoorSlotPosition(ToyboxMod.GAME:GetLevel().EnterDoor)
             local kanye = Isaac.Spawn(1000, ToyboxMod.EFFECT_KANYE, 0, doorpos, Vector.Zero, nil)
         end
     end
@@ -21,14 +21,14 @@ local function kanyeInit(_, effect)
     local sp = effect:GetSprite()
     sp:SetCustomShader("shaders_tb/sphere")
     sp:Play("Idle", true)
-    sp.Color = Color(1,0,0,1,0,0,0, 20, ((Game():GetFrameCount()/KANYE_SPIN_FREQ)%1)*360, 0)
+    sp.Color = Color(1,0,0,1,0,0,0, 20, ((ToyboxMod.GAME:GetFrameCount()/KANYE_SPIN_FREQ)%1)*360, 0)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, kanyeInit, ToyboxMod.EFFECT_KANYE)
 
 ---@param effect EntityEffect
 local function kanyeUpdate(_, effect)
     local sp = effect:GetSprite()
-    sp.Color = Color(1,0,0,1,0,0,0, 20, ((Game():GetFrameCount()/KANYE_SPIN_FREQ)%1)*360, 0)
+    sp.Color = Color(1,0,0,1,0,0,0, 20, ((ToyboxMod.GAME:GetFrameCount()/KANYE_SPIN_FREQ)%1)*360, 0)
 
     for _, ent in ipairs(Isaac.FindInRadius(effect.Position, effect.Size, EntityPartition.PLAYER)) do
         if(ent:ToPlayer() and not ent:IsDead()) then

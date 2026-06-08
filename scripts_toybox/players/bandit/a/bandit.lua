@@ -11,7 +11,7 @@ local BIRTHRIGHT_BOMBS_ADD_COLLECTIBLE = 3
 ---@param pl EntityPlayer
 local function banditInit(_, pl)
     if(pl:GetPlayerType()==ToyboxMod.PLAYER_BANDIT_A and pl.FrameCount==0) then
-        Game():GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_DR_FETUS)
+        ToyboxMod.GAME:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_DR_FETUS)
         pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DR_FETUS)
         pl:RemoveCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_DR_FETUS))
     end

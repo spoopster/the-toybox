@@ -15,14 +15,14 @@ local PIPE_ARC = 10
 local function replacePipe(_, isContinued)
     if(isContinued) then return end
 
-    local rng = ToyboxMod:generateRng(Game():GetSeeds():GetStartSeed())
+    local rng = ToyboxMod:generateRng(ToyboxMod.GAME:GetSeeds():GetStartSeed())
     if(rng:RandomFloat()<REPLACE_CHANCE and Isaac.GetPersistentGameData():Unlocked(ToyboxMod.ACHIEVEMENT_DADS_PIPE)) then
         local pools = {
             {ItemPoolType.POOL_SHOP, 1},
             {ItemPoolType.POOL_OLD_CHEST, 1},
         }
 
-        local pool = Game():GetItemPool()
+        local pool = ToyboxMod.GAME:GetItemPool()
         pool:RemoveCollectible(ToyboxMod.COLLECTIBLE_DADS_PIPE)
 
         for _, pooldata in ipairs(pools) do
@@ -32,7 +32,7 @@ local function replacePipe(_, isContinued)
             })
         end
     else
-        local pool = Game():GetItemPool()
+        local pool = ToyboxMod.GAME:GetItemPool()
         pool:RemoveCollectible(ToyboxMod.COLLECTIBLE_NOT_A_PIPE)
         pool:ResetCollectible(ToyboxMod.COLLECTIBLE_DADS_PIPE)
     end

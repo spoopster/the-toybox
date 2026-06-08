@@ -71,7 +71,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, getAsteroidBelt, ToyboxMod.COLLECTIBLE_ASTEROID_BELT)
 
 local function giveAsteroidOnKill(_)
-    for plIdx=0, Game():GetNumPlayers()-1 do
+    for plIdx=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(plIdx)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_ASTEROID_BELT)) then
             addAsteroidRocks(pl, KILL_ADD)
@@ -82,7 +82,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, giveAsteroidOnKill)
 
 
 local function giveAsteroidOnClear(_)
-    for plIdx=0, Game():GetNumPlayers()-1 do
+    for plIdx=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(plIdx)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_ASTEROID_BELT)) then
             addAsteroidRocks(pl, CLEAR_ADD)
@@ -94,7 +94,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, giveAsteroidOnClear
 
 
 local function spawnAsteroidRocks(_)
-    for plIdx=0, Game():GetNumPlayers()-1 do
+    for plIdx=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(plIdx)
         local data = ToyboxMod:getEntityDataTable(pl)
         data.ASTEROID_BELT_COUNTER = data.ASTEROID_BELT_COUNTER or 0

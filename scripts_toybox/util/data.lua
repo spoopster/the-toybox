@@ -91,7 +91,7 @@ end
 --[[
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, math.huge,
     function(_, entity)
-        if(Game():IsPaused()) then return end
+        if(ToyboxMod.GAME:IsPaused()) then return end
 
         local idx = getEntIndex(entity)
         MODEntityData[idx] = nil

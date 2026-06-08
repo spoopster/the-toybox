@@ -17,7 +17,7 @@ local function retriggerClear(_, _)
     sfx:Play(ToyboxMod.SFX_MEOW)
 
     local numRetriggers = CLEAR_RETRIGGERS*PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     Isaac.CreateTimer(
         function(_)

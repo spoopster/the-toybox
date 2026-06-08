@@ -13,7 +13,7 @@ local nonSpecialRooms = {
 
 local function postPlayerNewRoom(_, player)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_DADS_PRESCRIPTION)) then return end
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(not room:IsFirstVisit()) then return end
     if(nonSpecialRooms[room:GetType()]==0) then return end
 

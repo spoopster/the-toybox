@@ -2,7 +2,7 @@
 local function replaceHelper(_, effect)
     if(effect.SubType==ToyboxMod.GRID_ENEMYONLY_BLOCK) then
         effect.Visible = false
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local idx = room:GetGridIndex(effect.Position)
 
         room:RemoveGridEntityImmediate(idx, 0, false)
@@ -28,7 +28,7 @@ local function gridInit(_, ent, _, _)
     ent:GetSprite():Load("gfx_tb/grid/grid_enemy_gate.anm2", true)
     ent:GetSprite():Play("black", true)
 
-    Game():GetRoom():SetGridPath(ent:GetGridIndex(), 0)
+    ToyboxMod.GAME:GetRoom():SetGridPath(ent:GetGridIndex(), 0)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, gridInit, GridEntityType.GRID_ROCKB)
 
@@ -54,7 +54,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PROJECTILE_GRID_COLLISION, cancelGridC
 
 ---@param npc EntityNPC
 local function postnpcrender(_, npc)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local idx = room:GetGridIndex((npc.Position))
     local ent = room:GetGridEntity(idx)
     if(not (ent and ToyboxMod:getGridEntityData(ent, "ENEMYONLY_GATE"))) then return end

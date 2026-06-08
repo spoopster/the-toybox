@@ -154,7 +154,7 @@ function ToyboxMod:getAllPillEffects(phdEffect)
 end
 function ToyboxMod:getPillColorsInRun()
     local itemConf = Isaac.GetItemConfig()
-    local itemPool = Game():GetItemPool()
+    local itemPool = ToyboxMod.GAME:GetItemPool()
 
     local pillColorsInPool = {}
     local currentpill = itemConf:GetPillEffect(0)
@@ -347,7 +347,7 @@ function ToyboxMod:getRandomPillEffect(rng, player, phdVal, baseBlacklist)
 end
 
 function ToyboxMod:unidentifyPill(color)
-    Game():GetItemPool():UnidentifyPill(color)
+    ToyboxMod.GAME:GetItemPool():UnidentifyPill(color)
     if(EID) then
         EID.UsedPillColors[tostring(color)] = nil end
     if(FiendFolio) then
@@ -544,7 +544,7 @@ end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, CallbackPriority.LATE, replacePillEffect)
 
 local function makeBaseDatas(_, player)
-    if(#Isaac.FindByType(1)==0 and Game():GetFrameCount()==0) then
+    if(#Isaac.FindByType(1)==0 and ToyboxMod.GAME:GetFrameCount()==0) then
         --print("Yea")
         ToyboxMod:calcPillPool()
     end
@@ -588,7 +588,7 @@ local isRecalc = false
 local function recalcPillColor(_, seed)
     if(isRecalc) then return end
     isRecalc = true
-    local col = Game():GetItemPool():GetPill(seed)
+    local col = ToyboxMod.GAME:GetItemPool():GetPill(seed)
 
     local isHorse = (col & PillColor.PILL_GIANT_FLAG ~= 0)
     col = col & ~PillColor.PILL_GIANT_FLAG
@@ -597,7 +597,7 @@ local function recalcPillColor(_, seed)
     local goldChance = ToyboxMod:getGoldenChance()
     local horseChance = ToyboxMod:getHorseChance()
     local rng = ToyboxMod:generateRng(math.max(1,seed))
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
 
     if(Isaac.GetPersistentGameData():Unlocked(Achievement.GOLDEN_PILLS)) then
         if(goldChance<BASE_GOLDEN_CHANCE and isGolden) then

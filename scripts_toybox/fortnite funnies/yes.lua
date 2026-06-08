@@ -4,7 +4,7 @@ local sfx = SFXManager()
 local SEL_PLAYERS = {}
 
 local function rendersYes()
-    if(Game():IsPaused()) then return end
+    if(ToyboxMod.GAME:IsPaused()) then return end
     if(not Input.IsMouseBtnPressed(MouseButton.LEFT)) then
         SEL_PLAYERS = {}
 
@@ -12,7 +12,7 @@ local function rendersYes()
     end
 
     local mousePos = Input.GetMousePosition(true)--/(Isaac.GetScreenPointScale())--*Isaac.GetScreenWidth()/Isaac.GetScreenHeight()
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         local dist = pl.Position:Distance(mousePos)
 

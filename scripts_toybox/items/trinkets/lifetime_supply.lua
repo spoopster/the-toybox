@@ -2,7 +2,7 @@ local MIN_PICKUPS = 3
 local INCR_MULT = 1
 
 local function giveMinPickups(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
     if(not PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_LIFETIME_SUPPLY)) then return end
 
     local pl = PlayerManager.FirstTrinketOwner(ToyboxMod.TRINKET_LIFETIME_SUPPLY)

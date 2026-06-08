@@ -3,7 +3,7 @@
 
 --[[] ]
 local function addNewBossRoom(_)
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     local newBossRoom = RoomConfigHolder.GetRandomRoom(Random(), true, StbType.SPECIAL_ROOMS, RoomType.ROOM_TELEPORTER)
     print(newBossRoom.Shape, newBossRoom.Height, newBossRoom.Width)
 

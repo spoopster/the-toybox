@@ -9,9 +9,9 @@ local function useYanny(_, _, player, _)
 
     sfx:Play(SoundEffect.SOUND_DEATH_CARD)
 
-    Game():ShakeScreen(10)
+    ToyboxMod.GAME:ShakeScreen(10)
 
-    for _, enemy in ipairs(Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 2000, EntityPartition.ENEMY)) do
+    for _, enemy in ipairs(Isaac.FindInRadius(ToyboxMod.GAME:GetRoom():GetCenterPos(), 2000, EntityPartition.ENEMY)) do
         enemy:TakeDamage(ENEMY_DAMAGE, 0, EntityRef(player), 0)
     end
 end

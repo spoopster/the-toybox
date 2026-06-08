@@ -21,7 +21,7 @@ local function increaseLevelClearCounts(_)
             end
         end
     end
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     PREV_LEVEL = {Stage=level:GetStage(), Type=level:GetStageType(), AbsStage=level:GetAbsoluteStage()}
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, increaseLevelClearCounts)

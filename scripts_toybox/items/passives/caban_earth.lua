@@ -7,7 +7,7 @@ local VALID_ROOMTYPES = {
 }
 
 local function resetCabanData(_)
-    if(not Game():GetRoom():IsFirstVisit()) then return end
+    if(not ToyboxMod.GAME:GetRoom():IsFirstVisit()) then return end
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CABAN_EARTH)) then return end
 
     ToyboxMod:setExtraData("CABAN_ITEMINDEXES" , {})
@@ -16,15 +16,15 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, resetCabanData)
 
 local function trySpawnCabanItem(_)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(not VALID_ROOMTYPES[room:GetType()]) then return end
 
     local anyoneHasCaban = PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CABAN_EARTH)
 
     local data = ToyboxMod:getExtraDataTable()
-    local idx = Game():GetLevel():GetCurrentRoomIndex()
+    local idx = ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex()
     if(anyoneHasCaban and not (data.CABAN_ITEMINDEXES and data.CABAN_ITEMINDEXES[tostring(idx)])) then
-        local pool = Game():GetItemPool()
+        local pool = ToyboxMod.GAME:GetItemPool()
         local pl = PlayerManager.GetRandomCollectibleOwner(ToyboxMod.COLLECTIBLE_CABAN_EARTH, ToyboxMod:generateRng(room:GetAwardSeed()):Next())
         local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CABAN_EARTH)
         local id = pool:GetCollectible(room:GetItemPool(math.max(1,rng:Next())), true, math.max(1, rng:Next()))
@@ -42,8 +42,8 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, trySpawnCabanItem)
 
 ---@param pickup EntityPickup
 local function postCabanPickupInit(_, pickup)
-    local room = Game():GetRoom()
-    local idx = Game():GetLevel():GetCurrentRoomIndex()
+    local room = ToyboxMod.GAME:GetRoom()
+    local idx = ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex()
 
     local data = ToyboxMod:getExtraDataTable()
     if(not (data.CABAN_ITEMINDEXES and data.CABAN_ITEMINDEXES[tostring(idx)])) then return end

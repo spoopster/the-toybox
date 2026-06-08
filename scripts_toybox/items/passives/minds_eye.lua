@@ -86,15 +86,15 @@ local function eyeFamiliarUpdate(_, fam)
 
     -- update logic
 
-    local invisibleDur = (Game():GetLevel().EnterDoor==-1 and 30 or 10)
-    if(fam.FrameCount<Game():GetRoom():GetFrameCount()) then
-        invisibleDur = Game():GetRoom():GetFrameCount()-fam.FrameCount+30+1
+    local invisibleDur = (ToyboxMod.GAME:GetLevel().EnterDoor==-1 and 30 or 10)
+    if(fam.FrameCount<ToyboxMod.GAME:GetRoom():GetFrameCount()) then
+        invisibleDur = ToyboxMod.GAME:GetRoom():GetFrameCount()-fam.FrameCount+30+1
     end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     if(room:GetFrameCount()<invisibleDur) then
         fam.Velocity = Vector.Zero
-        local enterdoor = Game():GetLevel().EnterDoor
+        local enterdoor = ToyboxMod.GAME:GetLevel().EnterDoor
         if(enterdoor~=-1) then
             fam.Position = room:GetClampedPosition(room:GetDoorSlotPosition(enterdoor), 0)
         else
@@ -169,7 +169,7 @@ local function eyeFamiliarUpdate(_, fam)
         newcol.A = (room:GetFrameCount()-invisibleDur)/20
         sp.Color = newcol
 
-        local enterdoor = Game():GetLevel().EnterDoor
+        local enterdoor = ToyboxMod.GAME:GetLevel().EnterDoor
         if(enterdoor~=-1) then
             local ogpos = room:GetDoorSlotPosition(enterdoor)
             local dif = (room:GetClampedPosition(ogpos, 10)-ogpos):Normalized()
@@ -240,7 +240,7 @@ local function eyeEffectRender(_, effect, offs)
 
     local rpos = Isaac.WorldToRenderPosition(effect.Position)+offs
     local posScale = 1/500
-    effect.Color = Color(1,1,1,effect.Color.A+data.DIDDY_MANGO,0,0,0,(Game():GetFrameCount()/30/5),effect.Position.X*posScale, effect.Position.Y*posScale, trueScale)
+    effect.Color = Color(1,1,1,effect.Color.A+data.DIDDY_MANGO,0,0,0,(ToyboxMod.GAME:GetFrameCount()/30/5),effect.Position.X*posScale, effect.Position.Y*posScale, trueScale)
     if(effect.FrameCount>20) then
         effect.State = 1
     end

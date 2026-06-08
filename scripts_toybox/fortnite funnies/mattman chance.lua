@@ -47,7 +47,7 @@ end
 
 local newStats = {
     function(pos) -- MATTMAN CHANCE
-        local itemPool = Game():GetItemPool():GetCollectiblesFromPool(ItemPoolType.POOL_TREASURE)
+        local itemPool = ToyboxMod.GAME:GetItemPool():GetCollectiblesFromPool(ItemPoolType.POOL_TREASURE)
         local itemConf = Isaac.GetItemConfig()
 
         local q4Weight = 0
@@ -109,7 +109,7 @@ local newStats = {
         local pl = Isaac.GetPlayer()
     
         local baseChance = 0.05+(pl:HasCollectible(CollectibleType.COLLECTIBLE_CHAMPION_BELT) and 0.15 or 0)
-        if(Game():GetLevel():GetStage()==LevelStage.STAGE7) then
+        if(ToyboxMod.GAME:GetLevel():GetStage()==LevelStage.STAGE7) then
             baseChance = 0.75
         end
 
@@ -122,7 +122,7 @@ local newStats = {
     end,
     function(pos) -- AVERAGE QUALITY STAT
         local itemConf = Isaac.GetItemConfig()
-        local itemPool = Game():GetItemPool()
+        local itemPool = ToyboxMod.GAME:GetItemPool()
 
         local qualities = {}
 
@@ -157,8 +157,8 @@ local newStats = {
     function(pos) -- TINTED SKULL CHANCE
         local chance = 0
         if(persistentData:Unlocked(Achievement.STRANGE_DOOR)) then
-            local level = Game():GetLevel()
-            if(level:GetStage()==LevelStage.STAGE3_2 and Game().Difficulty<Difficulty.DIFFICULTY_GREED) then
+            local level = ToyboxMod.GAME:GetLevel()
+            if(level:GetStage()==LevelStage.STAGE3_2 and ToyboxMod.GAME.Difficulty<Difficulty.DIFFICULTY_GREED) then
                 if(level:GetStageType()<StageType.STAGETYPE_REPENTANCE) then
                     chance = 1
                 end
@@ -190,10 +190,10 @@ local newStats = {
         return 18, tostring((persistentData:GetEventCounter(EventCounter.LAMB_KILLS)-(ToyboxMod:getExtraData("MATTMAN_CHANCE_LAMB_KILLS") or 0))*1/1)
     end,
     function(pos) -- VICTORY LAPS STAT
-        return 19, tostring(Game():GetVictoryLap()*1/1)
+        return 19, tostring(ToyboxMod.GAME:GetVictoryLap()*1/1)
     end,
     function(pos) -- HUSH TIMER STAT
-        local timeDif = math.max(0, Game().BlueWombParTime-Game().TimeCounter)
+        local timeDif = math.max(0, ToyboxMod.GAME.BlueWombParTime-ToyboxMod.GAME.TimeCounter)
 
         local frames = timeDif%30
         timeDif = timeDif//30
@@ -272,16 +272,16 @@ local newStats = {
         return 13, string.format("%.2f", num)
     end,
     function(pos) -- PLANETARIUM CHANCE
-        return 12, tostring(math.floor(Game():GetLevel():GetPlanetariumChance()*1000)/10).."%"
+        return 12, tostring(math.floor(ToyboxMod.GAME:GetLevel():GetPlanetariumChance()*1000)/10).."%"
     end,
     function(pos) -- DELIRIUM CHANCE
-        if(Game():GetLevel():GetStage()~=LevelStage.STAGE7) then return end
+        if(ToyboxMod.GAME:GetLevel():GetStage()~=LevelStage.STAGE7) then return end
 
         local numUnvisitedBossRooms = 0
         local deliriumNotVisited = 1
 
         for i=0, 168 do
-            local room = Game():GetLevel():GetRoomByIdx(i, -1)
+            local room = ToyboxMod.GAME:GetLevel():GetRoomByIdx(i, -1)
 
             if(room and room.Data and room.Data.Type==RoomType.ROOM_BOSS) then
                 if(room.VisitedCount<=0) then
@@ -304,10 +304,10 @@ local newStats = {
 
 local function postHudRender(_)
     if(not ToyboxMod.CONFIG.MORE_STATS) then return end
-    if(not Game():GetHUD():IsVisible()) then return end
+    if(not ToyboxMod.GAME:GetHUD():IsVisible()) then return end
 
     local pos = Vector(20,12)*Options.HUDOffset + Vector(0,88)
-    if(Game():GetNumPlayers()>1) then
+    if(ToyboxMod.GAME:GetNumPlayers()>1) then
         pos = pos+Vector(0,12)
 
         if(Isaac.GetPlayer():GetPlayerType()==PlayerType.PLAYER_JACOB) then
@@ -323,7 +323,7 @@ local function postHudRender(_)
     if(PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_BETHANY_B)) then
         pos = pos+Vector(0,8)
     end
-    if(Game().Difficulty==Difficulty.DIFFICULTY_NORMAL and not Game():AchievementUnlocksDisallowed()) then
+    if(ToyboxMod.GAME.Difficulty==Difficulty.DIFFICULTY_NORMAL and not ToyboxMod.GAME:AchievementUnlocksDisallowed()) then
         pos = pos-Vector(0,16)
     end
     local startPos = Vector(0,9)

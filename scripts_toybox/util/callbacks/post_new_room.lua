@@ -6,7 +6,7 @@ local function postUpdate()
         Isaac.RunCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_NEW_ROOM, Ambush.GetCurrentWave())
     end
 
-    if(not Game():GetRoom():IsAmbushDone() and not Game():GetRoom():IsAmbushActive()) then lastWaveVal = 0
+    if(not ToyboxMod.GAME:GetRoom():IsAmbushDone() and not ToyboxMod.GAME:GetRoom():IsAmbushActive()) then lastWaveVal = 0
     else lastWaveVal = Ambush.GetCurrentWave() end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)

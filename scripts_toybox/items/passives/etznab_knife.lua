@@ -19,7 +19,7 @@ function ToyboxMod:addBloodMoney(num)
     local maxNum = MAX_COUNTERS*math.max(1,(PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_ETZNAB_KNIFE)-1)*EXTRA_COUNTER_MULT+1)//1
     ToyboxMod:setExtraData("BLOOD_MONEY_COUNTERS", math.min(maxNum, (ToyboxMod:getExtraData("BLOOD_MONEY_COUNTERS") or 0)+num)//1)
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_ETZNAB_KNIFE)) then
             local eff = pl:GetEffects()

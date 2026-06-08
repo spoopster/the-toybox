@@ -18,7 +18,7 @@ local function trySpawnMicroBattery(_, player)
     end
 
     if(numUnchargedActives>0 and player:GetTrinketRNG(ToyboxMod.TRINKET_LIMIT_BREAK):RandomFloat()<BATTERY_CHANCE*numUnchargedActives) then
-        local battery = Isaac.Spawn(5,90,2,Game():GetRoom():FindFreePickupSpawnPosition(player.Position,40),Vector.Zero,player):ToPickup()
+        local battery = Isaac.Spawn(5,90,2,ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(player.Position,40),Vector.Zero,player):ToPickup()
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, trySpawnMicroBattery)

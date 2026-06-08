@@ -30,7 +30,7 @@ PICKUP_PICKER:AddOutcomeWeight(5, 3)  -- bone spurs
 local function replaceHelper(_, effect)
     if(effect.SubType>=ToyboxMod.GRID_GRAVE_EMPTY and effect.SubType<=ToyboxMod.GRID_GRAVE_RANDOM+#POSSIBLE_ENEMIES) then
         effect.Visible = false
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local idx = room:GetGridIndex(effect.Position)
 
         room:RemoveGridEntityImmediate(idx, 0, false)
@@ -63,7 +63,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, postNewRoom)
 
 local function keepDoorsClosed(_)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local enemyShutDoors = false
     for _, ent in ipairs(Isaac.GetRoomEntities()) do
         if(ent:CanShutDoors()) then
@@ -103,9 +103,9 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, keepDoorsClosed)
 local function getItemInGraveyard(_, _, _, firstTime)
     if(not firstTime) then return end
 
-    local roomdat = Game():GetLevel():GetCurrentRoomDesc().Data
+    local roomdat = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().Data
     if(roomdat and roomdat.Type==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and roomdat.Subtype==ToyboxMod.ROOM_TYPE_DATA.GRAVEYARD_ROOM.Id) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local shouldCloseDoors = false
 
         for i=0, room:GetGridSize() do
@@ -128,7 +128,7 @@ local function getItemInGraveyard(_, _, _, firstTime)
         end
 
         if(shouldCloseDoors) then
-            Game():ShakeScreen(20)
+            ToyboxMod.GAME:ShakeScreen(20)
 
             room:SetClear(false)
             for _, i in pairs(DoorSlot) do

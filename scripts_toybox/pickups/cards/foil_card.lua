@@ -26,7 +26,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, foilCardInit, PickupVari
 local function useFoilCard(_, _, pl, _)
     local outcome = PICKER:PickOutcome(pl:GetCardRNG(ToyboxMod.CARD_FOIL_CARD))
 
-    local spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
+    local spawnPos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(pl.Position, 40)
     local pickupData = POSSIBLE_SPAWNS[outcome]
     local pickup = Isaac.Spawn(pickupData.Type,pickupData.Variant,pickupData.SubType,spawnPos,Vector.Zero,pl):ToPickup()
 

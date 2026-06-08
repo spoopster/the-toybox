@@ -25,14 +25,14 @@ local function getTearVel(tear, mult)
     return 1-(((1-math.sin(math.rad(tear.FrameCount*FRAME_MULT+180))*0.5-0.5)^(mult*2)*1+0.1)*SPEED_MULT*((mult-1)*0.5+1))
 end
 local function fireVelChange(_, tear)
-    if(Game():IsPaused()) then return end
+    if(ToyboxMod.GAME:IsPaused()) then return end
     if(not ToyboxMod:getEntityData(tear, "IS_SINE_WORM_TEAR")) then return end
     local mult = getTearVel(tear, ToyboxMod:getEntityData(tear, "IS_SINE_WORM_TEAR"))
     tear.Position = tear.Position-tear.Velocity*(mult)*0.5
 end
 
 local function tearVelChange(_, tear)
-    if(Game():IsPaused()) then return end
+    if(ToyboxMod.GAME:IsPaused()) then return end
     if(not ToyboxMod:getEntityData(tear, "IS_SINE_WORM_TEAR")) then return end
     local mult = getTearVel(tear, ToyboxMod:getEntityData(tear, "IS_SINE_WORM_TEAR"))
     tear.Position = tear.Position-tear.Velocity*(mult)*0.5

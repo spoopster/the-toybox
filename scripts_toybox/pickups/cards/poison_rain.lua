@@ -14,7 +14,7 @@ local function usePoisonRain(_, _, pl, _)
     ToyboxMod:setExtraData("POISON_RAIN_TIME", 0)
     ToyboxMod:setExtraData("POISON_RAIN_PLAYER", pl)
 
-    Game():SetColorModifier(POISON_COLOR_MOD,true,0.035)
+    ToyboxMod.GAME:SetColorModifier(POISON_COLOR_MOD,true,0.035)
 
     for _, ent in ipairs(Isaac.GetRoomEntities()) do
         if(ToyboxMod:isValidEnemy(ent)) then
@@ -34,7 +34,7 @@ local function updatePoisonRain(_)
     local cnt = ToyboxMod:getExtraData("POISON_RAIN_TIME")
     if(not cnt) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     local numToSpawn = 1+(room:GetGridWidth()>15 and 1 or 0)+(room:GetGridHeight()>9 and 1 or 0)
     for _=1,numToSpawn do

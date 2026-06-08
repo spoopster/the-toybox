@@ -74,7 +74,7 @@ local function renderTearAura(_, tear, offset)
     sp.Scale = tear.Scale*7*AURA_SIZE_MULT/60*Vector(1,1)
     sp:Render(Isaac.WorldToRenderPosition(tear.Position+tear.PositionOffset)+offset)
 
-    if(not Game():IsPaused()) then
+    if(not ToyboxMod.GAME:IsPaused()) then
         sp:Update()
     end
 end
@@ -138,7 +138,7 @@ local function renderBombAura(_, bomb, offset)
     sp.Scale = bomb:GetScale()*10*AURA_SIZE_MULT/60*Vector(1,1)
     sp:Render(Isaac.WorldToRenderPosition(bomb.Position+bomb.PositionOffset)+offset)
 
-    if(not Game():IsPaused()) then
+    if(not ToyboxMod.GAME:IsPaused()) then
         sp:Update()
     end
 end
@@ -193,7 +193,7 @@ local function renderKnifeAura(_, knife, offset)
     sp.Scale = ToyboxMod:lerp(sp.Scale, 10*knife.Scale*AURA_SIZE_MULT/60*Vector(1,1), 0.33)
     sp:Render(Isaac.WorldToRenderPosition(knife.Position)+offset)
 
-    if(not Game():IsPaused()) then
+    if(not ToyboxMod.GAME:IsPaused()) then
         sp:Update()
     end
 end
@@ -241,7 +241,7 @@ local function renderEpicFetusAura(_, rocket, offset)
     sp.Scale = 10*rocket.Scale*AURA_SIZE_MULT/60*Vector(1,1)
     sp:Render(Isaac.WorldToRenderPosition(rocket.Position)+offset)
 
-    if(not Game():IsPaused()) then
+    if(not ToyboxMod.GAME:IsPaused()) then
         sp:Update()
     end
 end

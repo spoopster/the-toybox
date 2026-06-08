@@ -27,7 +27,7 @@ local function confuseNearbyEnemies(_, pl)
     end
     --]]
 
-    if(Game():GetFrameCount()%CONFUSE_FREQ==0) then
+    if(ToyboxMod.GAME:GetFrameCount()%CONFUSE_FREQ==0) then
         local plRef = EntityRef(pl)
 
         for _, ent in ipairs(Isaac.FindInRadius(pl.Position, CONFUSE_RADIUS+pl.Size, EntityPartition.ENEMY)) do
@@ -53,7 +53,7 @@ local function auraUpdate(_, effect)
         alpha = alpha*(1+0.2*math.sin(math.rad(effect.FrameCount-sp:GetAnimationData("Appear"):GetLength())*5))
     end
 
-    local time = ((Game():GetFrameCount()//5)/100)%1+0.1
+    local time = ((ToyboxMod.GAME:GetFrameCount()//5)/100)%1+0.1
     --print(time)
 
     local col = Color(1,1,1,alpha)
@@ -141,7 +141,7 @@ local function postrender(_, ent)
     local data = ToyboxMod:getEntityDataTable(ent)
     if(not (data.GLITCH_RENDERS and #data.GLITCH_RENDERS>0)) then return end
 
-    local renderOffset = Game():GetRoom():GetRenderScrollOffset()
+    local renderOffset = ToyboxMod.GAME:GetRoom():GetRenderScrollOffset()
 
     local idx=1
     while(data.GLITCH_RENDERS[idx]) do
@@ -162,7 +162,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, postrender)
 --ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, postrender)
 
 local function postNewRoom(_)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         ToyboxMod:setEntityData(pl, "GLITCH_RENDERS", nil)
     end
@@ -256,7 +256,7 @@ local function tryInflictOverflow(_, ent, amount, flags, source, frames)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_4_4)) then return end
 
     local luckMult = 0
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local p = Isaac.GetPlayer(i)
         luckMult = luckMult+p:GetCollectibleNum(ToyboxMod.COLLECTIBLE_4_4)*p.Luck
     end

@@ -6,7 +6,7 @@ local SPAWN_SPEED = 3
 
 ---@param pl EntityPlayer
 local function usePrismstone(_, _, pl, _)
-    local pool = Game():GetItemPool()
+    local pool = ToyboxMod.GAME:GetItemPool()
     local rng = pl:GetCardRNG(ToyboxMod.CARD_PRISMSTONE)
 
     local angleOffset = rng:RandomInt(math.floor(360/NUM_RUNES))

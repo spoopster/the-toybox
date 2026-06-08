@@ -2,7 +2,7 @@
 local function useTheCrypt(_, _, pl, flags)
     if(pl:HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) and flags & UseFlag.USE_CARBATTERY == 0) then return end
 
-    local level = Game():GetLevel()
+    local level = ToyboxMod.GAME:GetLevel()
     local secretidx
     for i=0, 168 do
         local room = level:GetRoomByIdx(i)
@@ -21,11 +21,11 @@ local function useTheCrypt(_, _, pl, flags)
         end
     end
     if(secretidx) then
-        Game():StartRoomTransition(secretidx, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, pl)
+        ToyboxMod.GAME:StartRoomTransition(secretidx, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, pl)
 
         if(flags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY) then
             Isaac.CreateTimer(function()
-                local room = Game():GetRoom()
+                local room = ToyboxMod.GAME:GetRoom()
                 if(room:GetType()==RoomType.ROOM_SUPERSECRET and room:IsFirstVisit()) then
                     local pos = room:FindFreePickupSpawnPosition(room:GetCenterPos())
                     local chest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_OLDCHEST, 0, pos, Vector.Zero, nil):ToPickup()

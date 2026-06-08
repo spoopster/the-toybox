@@ -79,7 +79,7 @@ local function renderEvilAfterimages(_, rock, offset)
     local sp = rock:GetSprite()
     sp.Color = Color(1,1,1,0.85,0,0,0,0,0,0,1)
 
-    local frames = Game():GetFrameCount()
+    local frames = ToyboxMod.GAME:GetFrameCount()
     local angleOffset = (360*frames/AFTERIMAGE_SPIN_DUR)%360
     local pulseIntensity = math.sin(math.rad(frames*360/AFTERIMAGE_PULSE_DUR))
     pulseIntensity = 0.1+0.9*(pulseIntensity+1)/2

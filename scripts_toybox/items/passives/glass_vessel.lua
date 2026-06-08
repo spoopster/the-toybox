@@ -10,13 +10,13 @@ end
 
 ---@param pl EntityPlayer
 local function renderVessel(_, offset, sprite, pos, x, pl)
-    if(Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then return end  
+    if(ToyboxMod.GAME:GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then return end  
     if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_GLASS_VESSEL))) then return end
     if(pl:GetPlayerIndex()==-1) then return end
 
     local playerHud = nil
     for i=0, 7 do
-        playerHud = Game():GetHUD():GetPlayerHUD(i)
+        playerHud = ToyboxMod.GAME:GetHUD():GetPlayerHUD(i)
 
         if(playerHud:GetPlayer() and playerHud:GetPlayer():GetPlayerIndex()==pl:GetPlayerIndex()) then
             break
@@ -97,7 +97,7 @@ local function cancelVesselDamage(_, pl, damage, flags, source, count)
         pl:SetMinDamageCooldown(60*(pl:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
 
         sfx:Play(SoundEffect.SOUND_HOLY_MANTLE)
-        Game():ShakeScreen(10)
+        ToyboxMod.GAME:ShakeScreen(10)
         local shatter = Isaac.Spawn(1000, ToyboxMod.EFFECT_VESSEL_BREAK, 0, pl.Position, Vector.Zero, pl):ToEffect()
         shatter.DepthOffset = 100
     end

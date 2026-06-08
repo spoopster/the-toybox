@@ -61,7 +61,7 @@ local function useEqualizer(_, _, rng, player, flags)
     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
 
     local item = Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)
-    Game():GetHUD():ShowItemText(player, item)
+    ToyboxMod.GAME:GetHUD():ShowItemText(player, item)
 
     sfx:Play(SoundEffect.SOUND_POWERUP1)
 
@@ -133,7 +133,7 @@ local function updatePickups(_)
 
     if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)) then
         if(numCoins~=extraData.EQUALIZER_COINS or numBombs~=extraData.EQUALIZER_BOMBS or numKeys~=extraData.EQUALIZER_KEYS) then
-           for i=0, Game():GetNumPlayers()-1 do
+           for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local player = Isaac.GetPlayer(i)
                 if(player:HasCollectible(ToyboxMod.COLLECTIBLE_EQUALIZER)) then
                     player:AddCacheFlags(CacheFlag.CACHE_ALL, true)

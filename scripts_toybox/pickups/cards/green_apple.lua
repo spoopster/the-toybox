@@ -111,7 +111,7 @@ local function useFoilCard(_, _, pl, _)
 
     data.GREEN_APPLE_CANCEL = false
     local numentries = #data.GREEN_APPLE_TRANSFORMATION_TABLE
-    Game():GetHUD():ShowFortuneText((numentries>0 and ""),(numentries>1 and ""),(numentries>2 and ""))
+    ToyboxMod.GAME:GetHUD():ShowFortuneText((numentries>0 and ""),(numentries>1 and ""),(numentries>2 and ""))
     data.GREEN_APPLE_CANCEL = true
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useFoilCard, ToyboxMod.CARD_GREEN_APPLE)
@@ -129,7 +129,7 @@ local function updateGreenAppleFortune(_)
     local data = ToyboxMod:getExtraDataTable()
     if(not (data.GREEN_APPLE_TRANSFORMATION_TABLE and #data.GREEN_APPLE_TRANSFORMATION_TABLE>0)) then return end
 
-    local hud = Game():GetHUD()
+    local hud = ToyboxMod.GAME:GetHUD()
     local fortunesp = hud:GetFortuneSprite()
 
     if(fortunesp:IsFinished()) then
@@ -162,7 +162,7 @@ local function updateGreenAppleFortune(_)
     for i=1, num do
         local tb = data.GREEN_APPLE_TRANSFORMATION_TABLE[i]
 
-        if(not Game():IsPaused()) then
+        if(not ToyboxMod.GAME:IsPaused()) then
             tb.Time = math.max(0, (tb.Time or 0)-1)
             if(tb.Time%DELAY_BETWEEN_ADDS==DELAY_BETWEEN_ADDS-1 and tb.Time<=DELAY_BETWEEN_ADDS*NUM_TRANSFORMATION_ADDS) then
                 tb.LastIndex = (tb.LastIndex or 0)+1

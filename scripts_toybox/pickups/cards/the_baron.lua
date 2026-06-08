@@ -89,7 +89,7 @@ end
 local function useTheBaron(_, _, pl, flags)
     --if(pl:HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) and flags & UseFlag.USE_CARBATTERY == 0) then return end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     for _, ent in ipairs(Isaac.FindByType(5)) do
         local pickup = ent:ToPickup()
 

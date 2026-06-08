@@ -76,7 +76,7 @@ local function npcDeath(_, npc)
 
     if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_MISSING_PAGE_3)) then
         if(npc:GetDropRNG():RandomFloat()<HARD_BLACK_CHANCE) then
-            local heart = Isaac.Spawn(5,10,HeartSubType.HEART_BLACK,Game():GetRoom():FindFreePickupSpawnPosition(npc.Position),Vector.Zero,nil):ToPickup()
+            local heart = Isaac.Spawn(5,10,HeartSubType.HEART_BLACK,ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(npc.Position),Vector.Zero,nil):ToPickup()
         end
     end
 end

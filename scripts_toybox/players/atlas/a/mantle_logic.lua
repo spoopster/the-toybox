@@ -55,7 +55,7 @@ function ToyboxMod:updateMantles(player)
                 local mantleDataTable = ToyboxMod.MANTLE_DATA[ToyboxMod:getMantleKeyFromId(trf)]
 
                 if(mantleDataTable.TRANSF_NAME and mantleDataTable.TRANSF_DESC) then
-                    Game():GetHUD():ShowItemText(mantleDataTable.TRANSF_NAME, mantleDataTable.TRANSF_DESC, false)
+                    ToyboxMod.GAME:GetHUD():ShowItemText(mantleDataTable.TRANSF_NAME, mantleDataTable.TRANSF_DESC, false)
                 end
 
                 player:AnimateCard(mantleDataTable.CONSUMABLE_SUBTYPE, "Pickup")
@@ -114,7 +114,7 @@ local function mantleDamage(_, player, dmg, flags, source, frames)
     end
     --]]
 
-    if(dmg>0 and Game():GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
+    if(dmg>0 and ToyboxMod.GAME:GetDebugFlags() & DebugFlag.INFINITE_HP == 0) then
         if(data.TRANSFORMATION~=ToyboxMod.MANTLE_DATA.TAR.ID) then
             ToyboxMod:addMantleHp(player, -dmg)
         else

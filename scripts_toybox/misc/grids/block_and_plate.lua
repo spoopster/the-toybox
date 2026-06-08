@@ -27,7 +27,7 @@ local SWITCH_PLATE_SUB_GROUPS = {
 ---@param effect EntityEffect
 local function replaceHelper(_, effect)
     if(SWITCH_BLOCK_SUB_GROUPS[effect.SubType]) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local idx = room:GetGridIndex(effect.Position)
 
         room:RemoveGridEntityImmediate(idx, 0, false)
@@ -48,7 +48,7 @@ local function replaceHelper(_, effect)
         effect.Visible = false
         effect:Remove()
     elseif(SWITCH_PLATE_SUB_GROUPS[effect.SubType]) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local idx = room:GetGridIndex(effect.Position)
         
         room:RemoveGridEntityImmediate(idx, 0, false)
@@ -79,7 +79,7 @@ local function getBlockNeighborhood(ent)
     local adj = {}
     local otherplates = {}
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     for i=0, room:GetGridSize()-1 do
         local grid = room:GetGridEntity(i)
         if(grid and ToyboxMod:getGridEntityData(grid, "SWITCH_GRID")==group) then
@@ -101,7 +101,7 @@ local function getBlockNeighborhood(ent)
 end
 
 local function getGridGroupsOnRoomEntry(_)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     for i=0, room:GetGridSize()-1 do
         local ent = room:GetGridEntity(i)
         if(ent and ToyboxMod:getGridEntityData(ent, "SWITCH_GRID") and not ToyboxMod:getGridEntityData(ent, "SWITCH_VISITED")) then
@@ -167,7 +167,7 @@ local function plateUpdate(_, ent)
             ent.State = 2
             sp:Play("Switched", true)
 
-            local room = Game():GetRoom()
+            local room = ToyboxMod.GAME:GetRoom()
             local adj = ToyboxMod:getGridEntityData(ent, "SWITCH_PLATE_NEIGHBORHOOD") or {}
 
             for _, grididx in ipairs(adj) do
@@ -209,7 +209,7 @@ local function blockUpdate(_, ent)
     end
 
     local sp = ent:GetSprite()
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     if(ent.State==2) then
         if(sp:GetAnimation()~="black-retract" and sp:IsFinished()) then
@@ -244,10 +244,10 @@ local function blockRender(_, ent)
 
     local sp = ent:GetSprite()
     if((sp:GetAnimation()=="black-retract" and sp:WasEventTriggered("makewalkable")) or (sp:GetAnimation()=="black" and not sp:WasEventTriggered("makeunwalkable"))) then
-        --sp:Render(Isaac.WorldToRenderPosition(ent.Position)+Game():GetRoom():GetRenderScrollOffset())
+        --sp:Render(Isaac.WorldToRenderPosition(ent.Position)+ToyboxMod.GAME:GetRoom():GetRenderScrollOffset())
     end
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     local rpos = Isaac.WorldToRenderPosition(ent.Position)+room:GetRenderScrollOffset()
     if(room:GetRenderMode()==RenderMode.RENDER_WATER_REFRACT) then
         rpos = rpos-room:GetRenderSurfaceTopLeft()

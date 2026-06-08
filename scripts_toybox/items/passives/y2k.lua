@@ -8,7 +8,7 @@ local function checkY2KTimer(_)
 
     local timerSize = TIMER_BASE_REQ
     local y2kPlayers = {}
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_Y2K)) then
             table.insert(y2kPlayers, pl)
@@ -16,7 +16,7 @@ local function checkY2KTimer(_)
         timerSize = timerSize+pl:GetEffects():GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_Y2K)*TIMER_REQ_INCREASE
     end
 
-    if(Game().TimeCounter>=timerSize) then
+    if(ToyboxMod.GAME.TimeCounter>=timerSize) then
         for _, pl in ipairs(y2kPlayers) do ---@cast pl EntityPlayer
             pl:AddSoulHearts(2)
             pl:AddCollectibleEffect(ToyboxMod.COLLECTIBLE_Y2K)
@@ -28,7 +28,7 @@ local function checkY2KTimer(_)
                 eff:SetTimeout(10+math.random(-1,3))
             end,15,3,false)
         end
-        Game().TimeCounter = 0
+        ToyboxMod.GAME.TimeCounter = 0
 
         sfx:Play(SoundEffect.SOUND_EDEN_GLITCH)
         sfx:Play(ToyboxMod.SFX_REWIND)

@@ -21,7 +21,7 @@ local function postPlayerUpdate(_, pl)
     local isUsingPocketPoop = (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, pl.ControllerIndex) and pl:GetActiveItem(ActiveSlot.SLOT_POCKET)==CollectibleType.COLLECTIBLE_POOP)
 
     if(isUsingPrimaryPoop or isUsingPocketPoop) then
-        local room = Game():GetRoom()
+        local room = ToyboxMod.GAME:GetRoom()
         local gridAlignedPos = room:GetGridPosition(room:GetGridIndex(pl.Position))
 
         ---@type GridEntityPoop|EntityNPC

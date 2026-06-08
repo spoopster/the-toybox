@@ -38,7 +38,7 @@ local function healOnBleedKill(_, npc)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH)) then return end
     if(not npc:HasEntityFlags(EntityFlag.FLAG_BLEED_OUT)) then return end
 
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH)) then
             pl:AddHearts(1)

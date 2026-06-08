@@ -9,10 +9,10 @@ local function dealKillscreenDMG(_)
 
     local dv = 1+(totalMult-1)/2
     local freq = math.max(1, KILLSCREEN_FREQ//dv)
-    if(Game():GetFrameCount()%freq~=0) then return end
+    if(ToyboxMod.GAME:GetFrameCount()%freq~=0) then return end
 
-    local room = Game():GetRoom()
-    local centerX = Game():GetRoom():GetCenterPos().X
+    local room = ToyboxMod.GAME:GetRoom()
+    local centerX = ToyboxMod.GAME:GetRoom():GetCenterPos().X
 
     local shouldSpawnGlitch = true
     if(shouldSpawnGlitch) then

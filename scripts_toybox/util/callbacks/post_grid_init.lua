@@ -12,7 +12,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_PRESSUREPLATE_UPDATE, upd
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_DOOR_UPDATE, updateGrid)
 
 local function initOnNewRoom(_)
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
     for i=0, room:GetGridSize()-1 do
         local ent = room:GetGridEntity(i)
         if(ent) then

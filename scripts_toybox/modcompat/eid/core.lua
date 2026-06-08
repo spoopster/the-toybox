@@ -64,7 +64,7 @@ local function getTypeMatchFunction(itemType, itemId)
         end
     elseif(itemType==PickupVariant.PICKUP_PILL) then
         return function(descObj)
-            return (descObj.ObjType==5 and descObj.ObjVariant==70 and Game():GetItemPool():GetPillEffect(descObj.ObjSubType)==itemId)
+            return (descObj.ObjType==5 and descObj.ObjVariant==70 and ToyboxMod.GAME:GetItemPool():GetPillEffect(descObj.ObjSubType)==itemId)
         end
     elseif(itemType==PickupVariant.PICKUP_TAROTCARD) then
         return function(descObj)
@@ -77,10 +77,21 @@ local function getTypeMatchFunction(itemType, itemId)
     end
 end
 
-local function formatModifier(modifier, icon, color)
+---@param modifier table
+---@param icon string?
+---@param color string?
+---@param baseCondition function?
+local function formatModifier(modifier, icon, color, baseCondition)
     local newModifier = ToyboxMod:cloneTable(modifier)
     newModifier.Type = newModifier.Type or STORED.CONSTANTS.DescriptionModifier.APPEND
-    newModifier.Condition = newModifier.Condition or function(descObj) return true end
+    --newModifier.Condition = newModifier.Condition or function(descObj) return true end
+    if(baseCondition) then
+        newModifier.Condition = newModifier.Condition
+                                and function(descObj) return newModifier.Condition(descObj) and baseCondition(descObj) end
+                                or baseCondition
+    else
+        newModifier.Condition = newModifier.Condition or function(descObj) return true end
+    end
 
     if((icon or color) and not newModifier.IgnoreMarkup) then
         if(type(newModifier.ToModify)~="function") then
@@ -163,6 +174,8 @@ local function addDescriptionModifiers(itemType, itemId, modifiers)
     )
 end
 
+local BOVModifiers = {}
+
 for id, data in pairs(STORED.ITEMS) do
     if(data.Description) then
         EID:addCollectible(id, STORED.FUNCTIONS.StringTableToDescription(data.Description), data.Name or "", "en_us")
@@ -177,22 +190,52 @@ for id, data in pairs(STORED.ITEMS) do
     for modifierName, modifierData in pairs(STORED.CONSTANTS.ModifierFunctionKey) do
         if(data[modifierName]) then
             for _, modifier in ipairs(data[modifierName]) do
-                local tempNewMod = formatModifier(modifier, modifierData[2], modifierData[3])
-
-                local newModifier = ToyboxMod:cloneTable(tempNewMod)
-                newModifier.Condition = function(descObj)
-                    return STORED.CONSTANTS.ModifierCondition[modifierData[1]](descObj) and tempNewMod.Condition(descObj)
-                end
-
-                table.insert(modifiersToAdd, newModifier)
+                table.insert(
+                    modifiersToAdd,
+                    formatModifier(modifier, modifierData[2], modifierData[3], STORED.CONSTANTS.ModifierCondition[modifierData[1]])
+                )
             end
         end
+    end
+
+    if(data.WispProperties) then
+        local layer = ToyboxMod:clamp(data.WispProperties.Layer, -1, 2)
+        local amount = data.WispProperties.Amount or 1
+        local health = data.WispProperties.HP or 2
+        local dmg = data.WispProperties.Damage
+
+        local ringIcon = STORED.CONSTANTS.WispRingIcons[layer] or STORED.CONSTANTS.WispRingIcons[1]
+
+        local baseDataText = "{{VirtuesCollectible"..id.."}} "..ringIcon.."{{Wisp}} "..(amount~=0 and tostring(amount) or "").."|{{Heart}} "..tostring(health).."|{{Damage}} "..tostring(dmg)
+
+        local wispText = {
+            Type = STORED.CONSTANTS.DescriptionModifier.APPEND,
+            Condition = nil,
+            ToModify = {
+                baseDataText,
+            }
+        }
+
+        if(data.WispProperties.Description) then
+            for _, str in ipairs(data.WispProperties.Description) do
+                table.insert(wispText.ToModify, str)
+            end
+        end
+
+        table.insert(
+            modifiersToAdd, formatModifier(wispText, nil, "{{ColorPastelBlue}}", STORED.CONSTANTS.ModifierCondition.Virtues)
+        )
+        table.insert(
+            BOVModifiers, formatModifier(wispText, nil, "{{ColorPastelBlue}}", STORED.CONSTANTS.ModifierCondition.VirtuesItem(id))
+        )
     end
 
     if(modifiersToAdd[1]) then
         addDescriptionModifiers(PickupVariant.PICKUP_COLLECTIBLE, id, modifiersToAdd)
     end
 end
+
+addDescriptionModifiers(PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, BOVModifiers)
 
 for id, data in pairs(STORED.TRINKETS) do
     if(data.Description) then
@@ -208,14 +251,10 @@ for id, data in pairs(STORED.TRINKETS) do
     for modifierName, modifierData in pairs(STORED.CONSTANTS.ModifierFunctionKey) do
         if(data[modifierName]) then
             for _, modifier in ipairs(data[modifierName]) do
-                local tempNewMod = formatModifier(modifier, modifierData[2], modifierData[3])
-
-                local newModifier = ToyboxMod:cloneTable(tempNewMod)
-                newModifier.Condition = function(descObj)
-                    return STORED.CONSTANTS.ModifierCondition[modifierData[1]](descObj) and tempNewMod.Condition(descObj)
-                end
-
-                table.insert(modifiersToAdd, newModifier)
+                table.insert(
+                    modifiersToAdd,
+                    formatModifier(modifier, modifierData[2], modifierData[3], STORED.CONSTANTS.ModifierCondition[modifierData[1]])
+                )
             end
         end
     end
@@ -242,14 +281,10 @@ for id, data in pairs(STORED.PILLS) do
     for modifierName, modifierData in pairs(STORED.CONSTANTS.ModifierFunctionKey) do
         if(data[modifierName]) then
             for _, modifier in ipairs(data[modifierName]) do
-                local tempNewMod = formatModifier(modifier, modifierData[2], modifierData[3])
-
-                local newModifier = ToyboxMod:cloneTable(tempNewMod)
-                newModifier.Condition = function(descObj)
-                    return STORED.CONSTANTS.ModifierCondition[modifierData[1]](descObj) and tempNewMod.Condition(descObj)
-                end
-
-                table.insert(modifiersToAdd, newModifier)
+                table.insert(
+                    modifiersToAdd,
+                    formatModifier(modifier, modifierData[2], modifierData[3], STORED.CONSTANTS.ModifierCondition[modifierData[1]])
+                )
             end
         end
     end
@@ -276,14 +311,10 @@ for id, data in pairs(STORED.CARDS) do
     for modifierName, modifierData in pairs(STORED.CONSTANTS.ModifierFunctionKey) do
         if(data[modifierName]) then
             for _, modifier in ipairs(data[modifierName]) do
-                local tempNewMod = formatModifier(modifier, modifierData[2], modifierData[3])
-
-                local newModifier = ToyboxMod:cloneTable(tempNewMod)
-                newModifier.Condition = function(descObj)
-                    return STORED.CONSTANTS.ModifierCondition[modifierData[1]](descObj) and tempNewMod.Condition(descObj)
-                end
-
-                table.insert(modifiersToAdd, newModifier)
+                table.insert(
+                    modifiersToAdd,
+                    formatModifier(modifier, modifierData[2], modifierData[3], STORED.CONSTANTS.ModifierCondition[modifierData[1]])
+                )
             end
         end
     end

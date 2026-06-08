@@ -12,15 +12,15 @@ local isShowingTrinketName = false
 local function usePill(_, effect, player, flags, color)
     local isHorse = (color & PillColor.PILL_GIANT_FLAG ~= 0)
 
-    local tr = Game():GetItemPool():GetTrinket()
+    local tr = ToyboxMod.GAME:GetItemPool():GetTrinket()
     if(isHorse) then tr = tr | TrinketType.TRINKET_GOLDEN_FLAG end
     player:AddSmeltedTrinket(tr, true)
 
     isShowingTrinketName = true
-    Game():GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetTrinket(tr))
+    ToyboxMod.GAME:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetTrinket(tr))
     isShowingTrinketName = false
 
-    Game():GetHUD():ShowItemText("Capsule!", "You got... "..tostring(trueName)..((tr & TrinketType.TRINKET_GOLDEN_FLAG~=0) and "!!!!!" or "!"))
+    ToyboxMod.GAME:GetHUD():ShowItemText("Capsule!", "You got... "..tostring(trueName)..((tr & TrinketType.TRINKET_GOLDEN_FLAG~=0) and "!!!!!" or "!"))
 
     sfx:Play((isHorse and SoundEffect.SOUND_POWERUP_SPEWER_AMPLIFIED or SoundEffect.SOUND_POWERUP_SPEWER))
     player:AnimateHappy()

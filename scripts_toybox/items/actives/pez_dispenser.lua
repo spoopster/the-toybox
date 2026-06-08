@@ -53,7 +53,7 @@ local function getSpriteDataForConsumable(id, isPill, isSmall)
                 Frame = 0,
             }
         else
-            local cardPillSprite = Game():GetHUD():GetCardsPillsSprite()
+            local cardPillSprite = ToyboxMod.GAME:GetHUD():GetCardsPillsSprite()
 
             local pickupConfig = Isaac.GetItemConfig():GetCard(id)
             local pickupId = pickupConfig.PickupSubtype
@@ -147,7 +147,7 @@ local function dropDispenserConsumable(player, index, shouldSpawnPickup)
     local spawnedPickup
     if(shouldSpawnPickup) then
         local spawnPos = player.Position
-        spawnPos = Game():GetRoom():FindFreePickupSpawnPosition(spawnPos, 0)
+        spawnPos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(spawnPos, 0)
 
         if(toRemove.IsPill) then
             spawnedPickup = Isaac.Spawn(EntityType.ENTITY_PICKUP,PickupVariant.PICKUP_PILL,toRemove.ID,spawnPos,Vector.Zero,player):ToPickup()
@@ -192,11 +192,12 @@ local function takeDispenserConsumable(_, _, rng, player, flags)
 
     if(toRemove.IsPill) then
         player:AddPill(toRemove.ID)
-        --player:UsePill(Game():GetItemPool():GetPillEffect(toRemove.ID, player), toRemove.ID)
+        --player:UsePill(ToyboxMod.GAME:GetItemPool():GetPillEffect(toRemove.ID, player), toRemove.ID, UseFlag.USE_OWNED)
     else
         player:AddCard(toRemove.ID)
-        --player:UseCard(toRemove.ID)
+        --player:UseCard(toRemove.ID, UseFlag.USE_OWNED)
     end
+
     sfx:Play(SoundEffect.SOUND_PLOP)
 
     return {
@@ -351,7 +352,7 @@ local function renderInventory()
 
         if(i==selectedIndex) then
             local name
-            local itemPool = Game():GetItemPool()
+            local itemPool = ToyboxMod.GAME:GetItemPool()
             if(consData.IsPill) then
                 if(itemPool:IsPillIdentified(consData.ID)) then
                     name = Isaac.GetItemConfig():GetPillEffect(itemPool:GetPillEffect(consData.ID, player)).Name
@@ -375,6 +376,6 @@ local function renderInventory()
     end
     INVENTORY_CROSSSPRITE:Render(renderPos+(selectedIndex-1)*renderOffset)
 
-    Game():GetHUD():GetCardsPillsSprite().Scale = Vector(1,1)
+    ToyboxMod.GAME:GetHUD():GetCardsPillsSprite().Scale = Vector(1,1)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderInventory)

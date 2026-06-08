@@ -40,7 +40,7 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postNewRoom)
 
 local function postNpcDeath(_, npc)
-    for i=0, Game():GetNumPlayers()-1 do
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         local rng = pl:GetCardRNG(ToyboxMod.CARD_MANTLE_BONE)
         local data = ToyboxMod:getEntityDataTable(pl)

@@ -29,7 +29,7 @@ end
 
 ---@param player EntityPlayer
 local function useBloodyWhistle(_, _, rng, player, flags)
-    local pos = Game():GetRoom():GetGridPosition(0)+Vector(20,20)
+    local pos = ToyboxMod.GAME:GetRoom():GetGridPosition(0)+Vector(20,20)
     local creep = Isaac.Spawn(1000, EffectVariant.PLAYER_CREEP_LEMON_PARTY, 0, player.Position, Vector.Zero, player):ToEffect()
     creep.Scale = CREEP_SCALE
     creep.Color = CREEP_COLOR

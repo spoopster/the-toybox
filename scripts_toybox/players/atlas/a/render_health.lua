@@ -29,7 +29,7 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     local isStrawman = (player.Parent~=nil)
 
     local hasCurseOfTheUnknown = false
-    if(Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then hasCurseOfTheUnknown=true end
+    if(ToyboxMod.GAME:GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0) then hasCurseOfTheUnknown=true end
     local selHealthIndex = ToyboxMod:getSelMantleIdToDestroy(player, ToyboxMod:getHeldMantle(player))
 
     HP_SPRITE.Color = Color(1,1,1,1)

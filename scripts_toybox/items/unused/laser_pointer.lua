@@ -25,7 +25,7 @@ local function postProjectileRender(_, p)
     if(alpha==0) then return end
     --]]
 
-    local room = Game():GetRoom()
+    local room = ToyboxMod.GAME:GetRoom()
 
     local pos1 = p.Position
     local pos2 = Vector.Zero
