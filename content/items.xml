@@ -1320,6 +1320,13 @@
     tags="offensive"
     cache=""
 />
+<passive id="145" name="Chuen"
+    description="The paw curls"
+    gfx="chuen_monkey.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+/>
 
 <active id="491" name="Cursed D6"
     description="High-quality destiny"

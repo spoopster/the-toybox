@@ -14,6 +14,7 @@ local translations = {
     [ToyboxMod.COLLECTIBLE_MANIK_DEER] = {"Manik", "The Deer"},
     [ToyboxMod.COLLECTIBLE_IX_JAGUAR] = {"Ix", "The Jaguar"},
     [ToyboxMod.COLLECTIBLE_AHAU_FLOWER] = {"Ahau", "The Flower"},
+    [ToyboxMod.COLLECTIBLE_CHUEN_MONKEY] = {"Chuen", "The Monkey"},
 }
 
 local function mynameisdrakeandilikepenis(_, slot)

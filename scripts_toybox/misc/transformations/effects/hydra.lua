@@ -114,7 +114,7 @@ local function updateHeads(_, pl)
         hData.Pos = hData.Pos+hData.Vel*1
         hData.PosOffset = hData.Pos-pl.Position
 
-        local posDif = (pl.Position+HEAD_BASE_POS_OFFS*pl.SpriteScale+pl.TearsOffset+pl:GetFlyingOffset()-hData.Pos)
+        local posDif = (pl.Position+HEAD_BASE_POS_OFFS*pl.SpriteScale+pl:GetFlyingOffset()-hData.Pos)
         local len = posDif:Length()
         if(len>10) then
             posDif = posDif:Resized(len)
@@ -122,10 +122,10 @@ local function updateHeads(_, pl)
 
         hData.Vel = ToyboxMod:lerp(hData.Vel, posDif*0.1+Vector.FromAngle(math.random()*360)*0.7, 0.5)
 
-        local dist = hData.Pos:Distance(pl.Position+pl.TearsOffset+pl:GetFlyingOffset())
+        local dist = hData.Pos:Distance(pl.Position+pl:GetFlyingOffset())
         local dEps = (dist-MAX_HEAD_DISTANCE)
         if(dEps>0) then
-            hData.Vel = hData.Vel+(pl.Position+pl.TearsOffset+pl:GetFlyingOffset()-hData.Pos):Normalized()*dEps*0.3
+            hData.Vel = hData.Vel+(pl.Position+pl:GetFlyingOffset()-hData.Pos):Normalized()*dEps*0.3
         end
     end
 
@@ -153,60 +153,57 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, updateHeads)
 
 local beamSprite = Sprite()
-beamSprite:Load("gfx_tb/effects/effect_poison_beam.anm2", true)
+beamSprite:Load("gfx_tb/effects/effect_hydra_neck.anm2", true)
 beamSprite:Play("Idle", true)
 
 ---@param pl EntityPlayer
-local function renderHeads(_, pl)
-    if(not ToyboxMod:hasCustomTransformation(pl, "HYDRA")) then return end
-
-    local data = ToyboxMod:getEntityDataTable(pl)
-    data.HYDRA_HEADS = data.HYDRA_HEADS or 0
-    data.HYDRA_HEAD_DATA = data.HYDRA_HEAD_DATA or {[0]=initHydraHeadData(pl, BASE_HEAD_MASS)}
-
-    local headY = {}
-    for i=0, data.HYDRA_HEADS do
-        local headData = data.HYDRA_HEAD_DATA[i] or {initHydraHeadData(pl, (i==0 and BASE_HEAD_MASS or REG_HEAD_MASS))}
-
-        table.insert(headY, {i, headData.Pos})
-    end
-    table.sort(headY, function(a,b)
-        return (a[2].Y<b[2].Y)
-    end)
-
-    beamSprite.Scale = pl:GetSprite().Scale
-
-    data.ALLOW_RENDER_HYDRA_HEADS = true
-    for _, headYDat in ipairs(headY) do
-        local headData = data.HYDRA_HEAD_DATA[headYDat[1]] or {initHydraHeadData(pl, (i==0 and BASE_HEAD_MASS or REG_HEAD_MASS))}
-
-        local bpos1 = Isaac.WorldToRenderPosition(pl.Position+pl.TearsOffset+pl:GetFlyingOffset()+Vector(0,-15)*pl.SpriteScale)
-        local bpos2 = Isaac.WorldToRenderPosition(headData.Pos+Vector(0,-20)*pl.SpriteScale)
-        local bdir = (bpos2-bpos1):Normalized()
-        local bdist = bpos1:Distance(bpos2)
-        local step = 7*(1+0.5*(pl:GetSprite().Scale.Y-1))
-
-        while(bdist>=0) do
-            beamSprite:Render(bpos1+ToyboxMod.GAME:GetRoom():GetRenderScrollOffset())
-            bpos1 = bpos1+bdir*step
-            bdist = bdist-step
-        end
-    end
-    
-    for _, headYDat in ipairs(headY) do
-        local headData = data.HYDRA_HEAD_DATA[headYDat[1]] or {initHydraHeadData(pl, (i==0 and BASE_HEAD_MASS or REG_HEAD_MASS))}
-
-        pl:RenderHead(Isaac.WorldToRenderPosition(headData.Pos)+ToyboxMod.GAME:GetRoom():GetRenderScrollOffset())
-    end
-    data.ALLOW_RENDER_HYDRA_HEADS = false
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, renderHeads)
-
----@param pl EntityPlayer
-local function cancelHeadRender(_, pl)
+---@param headPos Vector
+local function cancelHeadRender(_, pl, headPos)
     if(not ToyboxMod:hasCustomTransformation(pl, "HYDRA")) then return end
 
     if(not ToyboxMod:getEntityData(pl, "ALLOW_RENDER_HYDRA_HEADS")) then
+        local data = ToyboxMod:getEntityDataTable(pl)
+        data.HYDRA_HEADS = data.HYDRA_HEADS or 0
+        data.HYDRA_HEAD_DATA = data.HYDRA_HEAD_DATA or {[0]=initHydraHeadData(pl, BASE_HEAD_MASS)}
+
+        local headOffset = Isaac.RenderToWorld(headPos)-pl.Position
+
+        local headY = {}
+        for i=0, data.HYDRA_HEADS do
+            local headData = data.HYDRA_HEAD_DATA[i] or {initHydraHeadData(pl, (i==0 and BASE_HEAD_MASS or REG_HEAD_MASS))}
+
+            table.insert(headY, {i, headData.Pos})
+        end
+        table.sort(headY, function(a,b)
+            return (a[2].Y<b[2].Y)
+        end)
+
+        beamSprite.Scale = pl:GetSprite().Scale
+        
+        data.ALLOW_RENDER_HYDRA_HEADS = true
+        for _, headYDat in ipairs(headY) do
+            local headData = data.HYDRA_HEAD_DATA[headYDat[1] ] or {initHydraHeadData(pl, (i==0 and BASE_HEAD_MASS or REG_HEAD_MASS))}
+
+            local bpos1 = Isaac.WorldToRenderPosition(pl.Position+pl:GetFlyingOffset()+Vector(0,-15)*pl.SpriteScale+headOffset)
+            local bpos2 = Isaac.WorldToRenderPosition(headData.Pos+Vector(0,-20)*pl.SpriteScale+headOffset)
+            local bdir = (bpos2-bpos1):Normalized()
+            local bdist = bpos1:Distance(bpos2)
+            local step = 7*(1+0.5*(pl:GetSprite().Scale.Y-1))
+
+            while(bdist>=0) do
+                beamSprite:Render(bpos1+ToyboxMod.GAME:GetRoom():GetRenderScrollOffset())
+                bpos1 = bpos1+bdir*step
+                bdist = bdist-step
+            end
+        end
+
+        for _, headYDat in ipairs(headY) do
+            local headData = data.HYDRA_HEAD_DATA[headYDat[1] ] or {initHydraHeadData(pl, (i==0 and BASE_HEAD_MASS or REG_HEAD_MASS))}
+
+            pl:RenderHead(Isaac.WorldToRenderPosition(headData.Pos+headOffset)+ToyboxMod.GAME:GetRoom():GetRenderScrollOffset())
+        end
+        data.ALLOW_RENDER_HYDRA_HEADS = false
+
         return false
     end
 end

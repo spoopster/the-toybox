@@ -189,7 +189,7 @@ local function virtuesWispFire(_, baseTear)
 
     local pl = fam.Player
     local timerVal = (pl and ToyboxMod:getEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER") or 0)/STAT_DECREASE_TIMER
-    if(timerVal<=0) then return end
+    if(not (ToyboxMod:getEntityData(fam, "TAKEOVER_ACTIVE") and timerVal>0)) then return end
 
     baseTear.CollisionDamage = baseTear.CollisionDamage*ToyboxMod:lerp(1, MAX_DMG_MULT, timerVal)
     baseTear.Scale = baseTear.Scale*ToyboxMod:lerp(1, MAX_SCALE_MULT, timerVal)
@@ -222,8 +222,8 @@ local function virtuesWispUpdate(_, fam)
     end
 
     local timerVal = (pl and ToyboxMod:getEntityData(pl, "HOSTILETAKEOVER_STAT_TIMER") or 0)/STAT_DECREASE_TIMER
-    if(timerVal>0) then
-        if(data.PREV_FIREDELAY<fam.FireCooldown) then
+    if(data.TAKEOVER_ACTIVE and timerVal>0) then
+        if((data.PREV_FIREDELAY or 0)<fam.FireCooldown) then
             fam.FireCooldown = fam.FireCooldown//ToyboxMod:lerp(1,MAX_FIREDELAY_MULT,timerVal)
         end
     end

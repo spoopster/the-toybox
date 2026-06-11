@@ -12,6 +12,7 @@ ToyboxMod.PLAYER_ATLAS_B = Isaac.GetPlayerTypeByName("Atlas", true)
 ToyboxMod.PLAYER_JONAS_B = Isaac.GetPlayerTypeByName("Jonas", true)
 
 ToyboxMod.PLAYER_BANDIT_A = Isaac.GetPlayerTypeByName("Bandit", false)
+ToyboxMod.PLAYER_NOWHERE_A = Isaac.GetPlayerTypeByName("Nowhere", false)
 
 --- ACHIEVEMENTS - Players
 ToyboxMod.ACHIEVEMENT_MILCOM_B = Isaac.GetAchievementIdByName("Tainted Milcom")
@@ -218,6 +219,7 @@ ToyboxMod.COLLECTIBLE_KAN_LIZARD = Isaac.GetItemIdByName("Kan")
 ToyboxMod.COLLECTIBLE_MANIK_DEER = Isaac.GetItemIdByName("Manik")
 ToyboxMod.COLLECTIBLE_IX_JAGUAR = Isaac.GetItemIdByName("Ix")
 ToyboxMod.COLLECTIBLE_AHAU_FLOWER = Isaac.GetItemIdByName("Ahau")
+ToyboxMod.COLLECTIBLE_CHUEN_MONKEY = Isaac.GetItemIdByName("Chuen")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -381,6 +383,7 @@ ToyboxMod.EFFECT_TEMPLE_SLAB = Isaac.GetEntityVariantByName("Temple Slab") ---@t
 ToyboxMod.EFFECT_BLOOD_COLLECT = Isaac.GetEntityVariantByName("Blood Coin Collect") ---@type EffectVariant
 ToyboxMod.EFFECT_MINDS_EYE = Isaac.GetEntityVariantByName("Watching Eye") ---@type EffectVariant
 ToyboxMod.EFFECT_FLOWER_PATCH = Isaac.GetEntityVariantByName("Flower Patch") ---@type EffectVariant
+ToyboxMod.EFFECT_NOWHERE_RIFT = Isaac.GetEntityVariantByName("Nowhere Tears Rift") ---@type EffectVariant
 
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant

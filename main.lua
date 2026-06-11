@@ -173,6 +173,9 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
 -- BANDIT
 include("scripts_toybox.players.bandit.a.bandit")
 
+-- NOWHERE
+--include("scripts_toybox.players.nowhere.a.nowhere")
+
 -- ITEMS
 --PASSIVES
     include("scripts_toybox.items.passives.coconut_oil")
@@ -290,6 +293,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.manik_deer")
     include("scripts_toybox.items.passives.ix_jaguar")
     include("scripts_toybox.items.passives.ahau_flower")
+    include("scripts_toybox.items.passives.chuen_monkey")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

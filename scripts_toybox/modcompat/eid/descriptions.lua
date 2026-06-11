@@ -1607,7 +1607,8 @@ enums.FUNCTIONS.AddItem({
         "{{Weakness}} Has an aura that weakens enemies",
         "!!! While standing in the aura:",
         "\2 -0.3 Speed",
-        "\2 x0.6 Damage multiplier"
+        "\2 x0.6 Damage multiplier",
+        "The aura shrinks in inactive rooms"
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -1834,6 +1835,22 @@ enums.FUNCTIONS.AddItem({
         {
             ToModify = {
                 "Each stack allows for an additional upgraded room",
+            }
+        }
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CHUEN_MONKEY,
+    Name = "Chuen",
+    Description = {
+        "Item pedestals cycle between 4 random items",
+        "Each time you collect an item, all other item pedestals on the floor have their highest quality item removed",
+        "This effect doesn't work if a pedestal has only 1 item"
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Adds an additional item to each cycle",
             }
         }
     }

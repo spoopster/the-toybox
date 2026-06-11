@@ -58,7 +58,7 @@ local function dupeItem(_, pickup)
     local iConf = conf:GetCollectible(pickup.SubType)
     if(not (iConf and not iConf:HasTags(ItemConfig.TAG_QUEST))) then return end
 
-    Isaac.CreateTimer(function()
+    --Isaac.CreateTimer(function()
         NO_DUPE = true
 
         local rng = pickup:GetDropRNG()
@@ -75,17 +75,20 @@ local function dupeItem(_, pickup)
         end
 
         NO_DUPE = false
-    end,2,1,false)
+    --end,2,1,false)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, dupeItem, PickupVariant.PICKUP_COLLECTIBLE)
 
 ---@param pickup EntityPickup
-local function invalidateMorphedItem(_, pickup)
+local function invalidateMorphedItem(_, pickup, _, _, _, keepPrice, keepSeed, keepModifiers)
     if(pickup.Variant~=PickupVariant.PICKUP_COLLECTIBLE) then return end
-    MORPHED_ITEMS[GetPtrHash(pickup)] = true
-    Isaac.CreateTimer(function ()
-        MORPHED_ITEMS[GetPtrHash(pickup)] = nil
-    end,0,1,false)
+
+    if(keepModifiers) then
+        MORPHED_ITEMS[GetPtrHash(pickup)] = true
+        Isaac.CreateTimer(function ()
+            MORPHED_ITEMS[GetPtrHash(pickup)] = nil
+        end,0,1,false)
+    end
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_MORPH, CallbackPriority.LATE, invalidateMorphedItem)
 
