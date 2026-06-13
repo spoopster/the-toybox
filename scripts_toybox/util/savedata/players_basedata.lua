@@ -94,6 +94,14 @@ local BASEDATA = {
         LUCK = 0,
     },
     MANIK_FLAGS = {},
+    CIMI_STATS = {
+        SPEED = 0,
+        TEARS = 0,
+        DAMAGE = 0,
+        RANGE = 0,
+        SHOTSPEED = 0,
+        LUCK = 0,
+    },
 
     TEMPORARY_ITEMS = {},
     TEMPORARY_ITEMS_ROOM = {},

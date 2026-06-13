@@ -22,6 +22,7 @@ local UPGRADED_VARIANTS = {
             return sub+7
         end
     end,
+    [RoomType.ROOM_SACRIFICE] = 10,
     --[RoomType.ROOM_ANGEL] = 1, -- makes angel stairways but idk
 }
 

@@ -1855,6 +1855,15 @@ enums.FUNCTIONS.AddItem({
         }
     }
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CIMI_DEATH,
+    Name = "Cimi",
+    Description = {
+        "{{SacrificeRoom}} Guarantees a Sacrifice Room generates each floor",
+        "Improves Sacrifice Room layouts and modifies their rewards",
+        "{{Heart}} Sacrifice Room spikes prioritize removing Red Hearts"
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 
@@ -3919,3 +3928,46 @@ enums.FUNCTIONS.AddItem({
         "{{Coin}} Spend 1 coin to display a fortune or a chance to spawn a trinket, card or soul heart",
     },
 })
+
+enums.MISC.death_sacrifice = {
+    {
+        "{{Coin}} 67% chance for a coin",
+        "{{SoulHeart}} 33% chance for a Soul Heart",
+    },
+    {
+        "{{Coin}} 20% chance for 1-3 coins",
+        "{{Key}} 40% chance for 1 key",
+        "{{Bomb}} 40% chance for 1 bomb",
+    },
+    {
+        "{{GrabBag}} 100% chance for a sack",
+    },
+    {
+        "\1 Permanent increase to a random stat",
+    },
+    {
+        "33% chance for 3 random pickups",
+        "{{Chest}} 67% chance for a chest",
+    },
+    {
+        "{{Card}} 50% chance for a random card",
+        "{{Rune}} 50% chance for a random rune or soul stone",
+    },
+    {
+        "{{GoldenChest}} 75% chance for a locked chest",
+        "{{Chest}} 25% chance for a chest"
+    },
+    {
+        "\1 Permanent increase to a random stat",
+    },
+}
+enums.MISC.death_sacrifice_endless = {
+    {
+        "{{GoldenChest}} 25% chance for a locked chest",
+        "50% chance for 3 random non-heart pickups",
+        "{{SoulHeart}} 25% chance for a Soul Heart",
+    },
+    {
+        "\1 Permanent increase to a random stat",
+    },
+}

@@ -1327,6 +1327,36 @@
     tags="offensive"
     cache=""
 />
+<passive id="146" name="Akbal"
+    description="Homecoming"
+    gfx="akbal_house.png"
+    quality="4"
+    tags="offensive"
+    cache=""
+/>
+<passive id="147" name="Cimi"
+    description="Blood for the blood god"
+    gfx="cimi_death.png"
+    quality="2"
+    tags=""
+    cache=""
+
+    maxhearts="2" hearts="2"
+/>
+<passive id="148" name="Ben"
+    description=" "
+    gfx="ben_reed.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+/>
+<passive id="149" name="Cauac"
+    description=" "
+    gfx="cauac_storm.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+/>
 
 <active id="491" name="Cursed D6"
     description="High-quality destiny"

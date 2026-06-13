@@ -220,6 +220,10 @@ ToyboxMod.COLLECTIBLE_MANIK_DEER = Isaac.GetItemIdByName("Manik")
 ToyboxMod.COLLECTIBLE_IX_JAGUAR = Isaac.GetItemIdByName("Ix")
 ToyboxMod.COLLECTIBLE_AHAU_FLOWER = Isaac.GetItemIdByName("Ahau")
 ToyboxMod.COLLECTIBLE_CHUEN_MONKEY = Isaac.GetItemIdByName("Chuen")
+ToyboxMod.COLLECTIBLE_AKBAL_HOUSE = Isaac.GetItemIdByName("Akbal")
+ToyboxMod.COLLECTIBLE_CIMI_DEATH = Isaac.GetItemIdByName("Cimi")
+ToyboxMod.COLLECTIBLE_BEN_REED = Isaac.GetItemIdByName("Ben")
+ToyboxMod.COLLECTIBLE_CAUAC_STORM = Isaac.GetItemIdByName("Cauac")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -471,6 +475,7 @@ end
 
 ToyboxMod.BACKDROOP_GRAVEYARD = Isaac.GetBackdropIdByName("Graveyard")
 ToyboxMod.BACKDROOP_TEMPLE = Isaac.GetBackdropIdByName("Temple")
+ToyboxMod.BACKDROOP_DEATH_SACRIFICE = Isaac.GetBackdropIdByName("Death Sacrifice")
 
 ToyboxMod.GIANTBOOK_BIG_BANG = Isaac.GetGiantBookIdByName("Big Bang (TOYBOX)")
 ToyboxMod.GIANTBOOK_MOMS_PHOTOBOOK = Isaac.GetGiantBookIdByName("Mom's Photobook")
@@ -515,6 +520,7 @@ ToyboxMod.GRID_SWITCH_PLATE_3 = Isaac.GetEntitySubTypeByName("Switch Plate (3)")
 ToyboxMod.GRID_SWITCH_PLATE_4 = Isaac.GetEntitySubTypeByName("Switch Plate (4)")
 ToyboxMod.GRID_GRAVE_EMPTY = Isaac.GetEntitySubTypeByName("Tombstone (Empty)")
 ToyboxMod.GRID_GRAVE_RANDOM = Isaac.GetEntitySubTypeByName("Tombstone (Random)")
+--ToyboxMod.GRID_DEATH_SPIKES_HELPER = Isaac.GetEntitySubTypeByName("Death Sacrifice Spike Helper")
 
 ToyboxMod.SHADER_EMPTY = "ToyboxEmptyShader" ---@type ShaderType
 ToyboxMod.SHADER_BLOOM = "ToyboxBloomShader" ---@type ShaderType

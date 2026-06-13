@@ -58,7 +58,6 @@ local function setRoomPool(_)
 
     local pool = ToyboxMod.ROOM_TYPE_DATA[ID_TO_TABLEKEY[desc.Data.Subtype]].Pool
     if(pool) then
-        print("Set pool", pool)
         ToyboxMod.GAME:GetRoom():SetItemPool(pool)
     end
 end

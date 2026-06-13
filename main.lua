@@ -294,6 +294,10 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.ix_jaguar")
     include("scripts_toybox.items.passives.ahau_flower")
     include("scripts_toybox.items.passives.chuen_monkey")
+    include("scripts_toybox.items.passives.akbal_house")
+    include("scripts_toybox.items.passives.cimi_death")
+    include("scripts_toybox.items.passives.ben_reed")
+    include("scripts_toybox.items.passives.cauac_storm")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

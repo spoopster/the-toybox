@@ -194,6 +194,9 @@
         <entity Name="Tombstone (Safe)"/>
         <entity Name="Tombstone (Dangerous)"/>
     </group>
+    <group Label="Special Grids">
+        <entity Name="Death Sacrifice Spike Helper" />
+    </group>
     <group Label="Events">
         <entity Name="Switch Block - Group 1"/>
         <entity Name="Switch Block - Group 2"/>

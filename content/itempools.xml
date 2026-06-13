@@ -545,5 +545,9 @@
         <Item Name="Ix"/>
         <Item Name="Ahau"/>
         <Item Name="Chuen"/>
+        <Item Name="Akbal"/>
+        <Item Name="Cimi"/>
+        <Item Name="Ben"/>
+        <Item Name="Cauac"/>
     </Pool>
 </ItemPools>

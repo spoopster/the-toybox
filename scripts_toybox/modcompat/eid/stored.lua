@@ -10,6 +10,7 @@ local STORED = {
     PILLS = {},
     CARDS = {},
     PLAYERS = {},
+    MISC = {},
 
     GLOBAL_MODIFIERS = {},
 

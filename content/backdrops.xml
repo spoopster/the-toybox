@@ -19,4 +19,15 @@
         door        = "temple_door.png"
         holeinwall  = "temple_doorhole.png"
     />
+    <backdrop name="Death Sacrifice" reftype="30" gfx="deathsacrifice.png" walls="1" wallvariants="2" floors="1" floorvariants="6"
+        nfloorgfx	    = "deathsacrifice_nfloor.png"
+        watergfx	    = "deathsacrifice_water_blood.png"
+		props		    = "deathsacrifice_props.anm2"
+		rocks		    = "deathsacrifice_rocks.png"
+		pit			    = "deathsacrifice_pit.png"
+		waterpit	    = "deathsacrifice_pit_blood.png"
+		bridge		    = "deathsacrifice_bridge.png"
+		holeinwall	    = "deathsacrifice_doorhole.png"
+        waterpitsmode	= "2"
+    />
 </backdrops>
