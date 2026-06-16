@@ -277,6 +277,7 @@ ToyboxMod.TRINKET_CATNIP = Isaac.GetTrinketIdByName("Catnip")
 ToyboxMod.TRINKET_TRAIL_MIX = Isaac.GetTrinketIdByName("Trail Mix")
 ToyboxMod.TRINKET_EARWORM = Isaac.GetTrinketIdByName("Earworm")
 ToyboxMod.TRINKET_7TH_PAGE = Isaac.GetTrinketIdByName("The 7th Page")
+ToyboxMod.TRINKET_POWER_WORD = Isaac.GetTrinketIdByName("Power Word")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED

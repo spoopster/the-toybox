@@ -368,6 +368,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.trinkets.trail_mix")
     include("scripts_toybox.items.trinkets.earworm")
     include("scripts_toybox.items.trinkets.7th_page")
+    include("scripts_toybox.items.trinkets.power_word")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")

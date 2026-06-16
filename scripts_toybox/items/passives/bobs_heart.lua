@@ -13,7 +13,7 @@ local function applyMarkPenalties(_, player, _, flags, source)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_BOBS_HEART)) then return end
     
     if(source.Type==6) then return end
-    if(flags & (DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
+    if(flags & (DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
 
     local cloud = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SMOKE_CLOUD, 0, player.Position, Vector.Zero, player):ToEffect()
     cloud.SpriteScale = Vector(1,1)*1.5

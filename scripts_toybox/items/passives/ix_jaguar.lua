@@ -140,7 +140,7 @@ local function applyMarkPenalties(_, player, _, flags, source)
     if((ToyboxMod:getExtraData("IX_REVEALED_ROOM") or -1)==-1) then return end
 
     if(source.Type==6) then return end
-    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
+    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
 
     local room = ToyboxMod.GAME:GetLevel():GetRoomByIdx(ToyboxMod:getExtraData("IX_REVEALED_ROOM"), -1)
     if(room.VisitedCount>0) then return end

@@ -54,7 +54,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 local function increaseDamage(_, player, dmg, flags, source)
     player = player:ToPlayer()
     if(source.Type==6) then return end
-    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
+    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
 
     local data = ToyboxMod:getEntityDataTable(player)
     if(data.MANTLEGLASS_ACTIVE and data.MANTLEGLASS_ACTIVE>0 and dmg>0) then
@@ -73,7 +73,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, increaseDamage, EntityTyp
 local function spawnBloodPoof(_, player, dmg, flags, source)
     player = player:ToPlayer()
     if(source.Type==6) then return end
-    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
+    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
 
     local data = ToyboxMod:getEntityDataTable(player)
     if(data.MANTLEGLASS_ACTIVE and data.MANTLEGLASS_ACTIVE>0 and dmg>0) then

@@ -14,7 +14,7 @@ local function familiarUpdate(_, fam)
 
         pl:TakeDamage(totalMantleHp, DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(fam), 30)
         fam.Hearts = fam.Hearts+totalMantleHp
-        
+
         return true
     end
 end

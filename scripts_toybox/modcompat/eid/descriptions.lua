@@ -2692,6 +2692,30 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_POWER_WORD,
+    Name = "Power Word",
+    Description = {
+        "The first tear fired each room will have homing and will {{Collectible503}} instantly kill non-boss enemies",
+        "Boss enemies will instead take 36 damage"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"tear", "2 tears"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"tear", "3 tears"},
+            }
+        },
+    },
+})
 
 
 enums.FUNCTIONS.AddCard({
