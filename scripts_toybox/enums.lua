@@ -225,6 +225,8 @@ ToyboxMod.COLLECTIBLE_CIMI_DEATH = Isaac.GetItemIdByName("Cimi")
 ToyboxMod.COLLECTIBLE_BEN_REED = Isaac.GetItemIdByName("Ben")
 ToyboxMod.COLLECTIBLE_CAUAC_STORM = Isaac.GetItemIdByName("Cauac")
 
+ToyboxMod.COLLECTIBLE_TAMMYS_BODY = Isaac.GetItemIdByName("Tammy's Body")
+
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
 ToyboxMod.COLLECTIBLE_EQUALIZER = Isaac.GetItemIdByName("Equalizer")

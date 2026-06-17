@@ -252,6 +252,7 @@
         <Item Name="Pythagoras' Cup"/>
         <Item Name="The Good Juice"/>
         <Item Name="Reliquary"/>
+        <Item Name="Tammy's Body"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
@@ -263,6 +264,7 @@
         <Item Name="Pythagoras' Cup"/>
         <Item Name="The Good Juice"/>
         <Item Name="Reliquary"/>
+        <Item Name="Tammy's Body"/>
     </Pool>
 
     <Pool Name="curse">
@@ -367,6 +369,7 @@
         <Item Name="D"/>
         <Item Name="Paper Plate"/>
         <Item Name="Surprise Egg"/>
+        <Item Name="Tammy's Body"/>
     </Pool>
 
     <Pool Name="woodenChest">

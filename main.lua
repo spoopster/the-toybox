@@ -299,6 +299,8 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.passives.ben_reed")
     include("scripts_toybox.items.passives.cauac_storm")
 
+    
+
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
     include("scripts_toybox.items.actives.pliers")
@@ -334,6 +336,7 @@ include("scripts_toybox.players.bandit.a.bandit")
     include("scripts_toybox.items.actives.dads_pipe")
     include("scripts_toybox.items.actives.not_a_pipe")
     include("scripts_toybox.items.actives.prospector_pick")
+    include("scripts_toybox.items.actives.tammys_body")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

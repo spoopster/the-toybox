@@ -1865,6 +1865,17 @@ enums.FUNCTIONS.AddItem({
     },
 })
 
+
+
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_TAMMYS_BODY,
+    Name = "Tammy's Body",
+    Description = {
+        "{{Collectible198}} Converts 1 heart container into a random coin, heart, bomb, key, card, pill, and trinket",
+        "Also triggers on-hit effects 3 times",
+    },
+})
+
 --- OTHER ITEM MODIFIERS ---
 
 enums.FUNCTIONS.AddItem({
