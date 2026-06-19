@@ -3804,19 +3804,16 @@ enums.FUNCTIONS.AddPlayer({
         enums.CONSTANTS.Icon_Ink .. " Keys cost 5 Ink",
     }
 })
-
 enums.FUNCTIONS.AddPlayer({
-    ID = ToyboxMod.PLAYER_BANDIT_A,
-    Name = "Bandit",
+    ID = ToyboxMod.PLAYER_HOMUNCULUS_A,
+    Name = "Homunculus",
     Description = {
-        "{{Bomb}} If you have bombs, shooting will consume a bomb and increase the damage and radius of the fired bomb",
-        "Bombs may replace coins, hearts, and keys",
-        "{{Collectible40}} Kamikaze! damages red hearts first"
+        "{{Heart}} While at full red HP, gain the effects of a random item from the current room's item pool",
+        "The item is lost when your HP is no longer full, and is different each time you reach full HP",
     },
     BirthrightDescription = {
-        "{{Bomb}} +3 Bombs",
-        "{{Bomb}} All items grant +3 Bombs on pickup",
-        "{{Collectible563}} Bomb-buffed shots will have random bomb modifiers"
+        "{{SoulHeart}} Soul/Black Hearts count towards having full red HP",
+        "Taking damage no longer incurs any penalties, such as losing deal chance",
     }
 })
 

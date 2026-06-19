@@ -41,7 +41,7 @@ local function renderVessel(_, offset, sprite, pos, x, pl)
     if(pl:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)) then
         numHearts = numHearts+1
     end
-
+    
     local mult = Vector(12,10)
     if(playerHud:GetPlayer()) then
         if(pos.X>Isaac.GetScreenWidth()/2) then mult.X = -mult.X end
@@ -49,10 +49,11 @@ local function renderVessel(_, offset, sprite, pos, x, pl)
 
     local posOffset = Vector(0,0)
     if(hpLimit>=12) then
-        posOffset = math.max(0, numHearts-hpLimit+1)*Vector(0.5, 0)
+        posOffset = Vector(math.max(0, (numHearts+1-hpLimit))*0.5+(numHearts>=hpLimit and 1 or 0), 0)
         numHearts = math.min(numHearts, hpLimit-1)
     end
-    local heartPos = Vector(numHearts%heartsPerLine, numHearts//heartsPerLine)
+    numHearts = math.max(0, numHearts-0.5)
+    local heartPos = Vector((numHearts)%heartsPerLine, (numHearts)//heartsPerLine)
     
     local vesselState = (pl:GetEffects():HasCollectibleEffect(ToyboxMod.COLLECTIBLE_GLASS_VESSEL) and 0 or 1)
     heartSprite:SetFrame(vesselState+((pl:GetHealthType()==HealthType.COIN) and 2 or 0))

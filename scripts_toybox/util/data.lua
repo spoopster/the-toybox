@@ -1,7 +1,7 @@
 
 local MODEntityData = {}
-local MODExtraData = {}             --! ONE=RUN ONLY, NOT ENTITY DEPENDENT
-local MODPersistentData = {}        --! PERSISTS ACROSS RUNS
+local MODExtraData = {}                     --! ONE=RUN ONLY, NOT ENTITY DEPENDENT
+local MODPersistentData = {}                --! PERSISTS ACROSS RUNS
 ToyboxMod.GridEntityData = {}
 
 local function getGridEntSeed(ent)

@@ -49,7 +49,7 @@ local function applyMarkPenalties(_, player, _, flags, source)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_LION_SKULL)) then return end
 
     if(source.Type==6) then return end
-    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
+    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_NO_PENALTIES)~=0) then return end
 
     local wasPositive = false
 

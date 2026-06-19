@@ -37,7 +37,7 @@ local function applyPenalty(_, ent, _, flags, source)
     if((ToyboxMod:getEntityData(player, "INSIDE_JOKE_ROOMS") or 0)~=0) then return end
 
     if(source.Type==6) then return end
-    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end
+    if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_NO_PENALTIES)~=0) then return end
 
     local mult = player:GetTrinketMultiplier(ToyboxMod.TRINKET_INSIDE_JOKE)
 

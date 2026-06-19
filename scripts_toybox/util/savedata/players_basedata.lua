@@ -4,6 +4,9 @@ local BASEDATA = {
     ATLAS_A_DATA = 0,
     JONAS_A_DATA = 0,
 
+    HOMUNCULUS_A_ITEM = -1,
+    HOMUNCULUS_B_ITEMS = {},
+
     CONDENSED_MILK_BONUS = 1,
     NOSE_CANDY_STATBONUSES = {
         SPEED = 0,

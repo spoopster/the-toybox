@@ -1,6 +1,7 @@
 ---@param key string
 ---@param amount number?
 function ToyboxMod:incrementEventCounter(key, amount)
+    print("Did it", key) 
     ToyboxMod:setPersistentData(key, (ToyboxMod:getPersistentData(key) or 0)+(amount or 1))
     ToyboxMod:checkUnlocks(false)
 end
@@ -30,3 +31,32 @@ local function resetPrevLevel(_)
     PREV_LEVEL = nil
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, resetPrevLevel)
+
+---@param ent Entity
+---@param flags DamageFlag
+---@param source EntityRef
+local function checkIfSuicideDmg(_, ent, dmg, flags, source, _, extraSource)
+    if(ToyboxMod.GAME:GetLevel():GetAbsoluteStage()<LevelStage.STAGE4_1) then return end
+    if(not (ent:IsDead() or ent:HasMortalDamage())) then return end
+
+    if(source and source.Entity and GetPtrHash(source.Entity)==GetPtrHash(ent)) then
+        ToyboxMod:incrementEventCounter("COMMITED_SUICIDE_IN_WOMB")
+    elseif(source.Type==EntityType.ENTITY_SLOT) then
+        ToyboxMod:incrementEventCounter("COMMITED_SUICIDE_IN_WOMB")
+    elseif(flags & (DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CURSED_DOOR | DamageFlag.DAMAGE_NO_PENALTIES) ~= 0) then
+        ToyboxMod:incrementEventCounter("COMMITED_SUICIDE_IN_WOMB")
+    elseif(flags & (DamageFlag.DAMAGE_SPIKES) ~= 0 and ToyboxMod.GAME:GetRoom():GetType()==RoomType.ROOM_SACRIFICE) then
+        ToyboxMod:incrementEventCounter("COMMITED_SUICIDE_IN_WOMB")
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, checkIfSuicideDmg, EntityType.ENTITY_PLAYER)
+
+---@param pl EntityPlayer
+local function checkIfSuicideUseItem(_, _, _, pl)
+    if(ToyboxMod.GAME:GetLevel():GetAbsoluteStage()<LevelStage.STAGE4_1) then return end
+
+    if(pl:IsDead()) then
+        ToyboxMod:incrementEventCounter("COMMITED_SUICIDE_IN_WOMB")
+    end
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.LATE+2, checkIfSuicideUseItem)

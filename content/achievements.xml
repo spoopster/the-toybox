@@ -7,9 +7,12 @@
 	<achievement name="Bob's Thesis" text="" gfx="ach_bobs_thesis.png" />
 
 	<!-- characters -->
-	<achievement name="Tainted Atlas" text="" gfx="ach_blank.png" />
-	<achievement name="Tainted Jonas" text="" gfx="ach_blank.png" />
-	<achievement name="Tainted Milcom" text="" gfx="ach_blank.png" />
+	<achievement name="Homunculus" text="" gfx="ach_homunculus.png" />
+
+	<achievement name="The Fractured (Tainted Atlas)" text="" gfx="ach_atlas_b.png" gfxback="achpaper_atlas.png" />
+	<achievement name="The Demented (Tainted Jonas)" text="" gfx="ach_blank.png" gfxback="achpaper_jonas.png" />
+	<achievement name="The Drawn (Tainted Milcom)" text="" gfx="ach_milcom_b.png" gfxback="achpaper_milcom.png" />
+	<achievement name="The Flayed (Tainted Homunculus)" text="" gfx="ach_blank.png" />
 
 	<!-- challanges -->
 	<achievement name="Scientology Challenge" text="" gfx="ach_challenge_scientology.png" />

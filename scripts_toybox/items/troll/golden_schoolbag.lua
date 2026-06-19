@@ -1,6 +1,6 @@
 
 
-local itemAnm2 = "gfx_tb/ui/ui_goldenschoolbag_item.anm2"
+local itemAnm2 = "gfx_tb/ui/ui_item_render.anm2"
 
 local ITEMS_PER_ROW = 6
 

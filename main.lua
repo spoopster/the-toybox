@@ -131,6 +131,7 @@ include("scripts_toybox.players.milcom.a.hud_replacement")
 --include("scripts_toybox.players.milcom.b.milcom")
 --include("scripts_toybox.players.milcom.b.stats")
 --include("scripts_toybox.players.milcom.b.closet_unlock")
+include("scripts_toybox.players.milcom.b.menu")
 
 -- ATLAS
 include("scripts_toybox.players.atlas.a.atlas")
@@ -170,8 +171,13 @@ include("scripts_toybox.players.jonas.a.monster_pilldrop")
 --include("scripts_toybox.players.jonas.b.jonas")
 --include("scripts_toybox.players.jonas.b.closet_unlock")
 
+-- HOMUNCULUS
+include("scripts_toybox.players.homunculus.a.main")
+include("scripts_toybox.players.homunculus.a.hp_item")
+include("scripts_toybox.players.homunculus.a.render_item")
+
 -- BANDIT
-include("scripts_toybox.players.bandit.a.bandit")
+--include("scripts_toybox.players.bandit.a.bandit")
 
 -- NOWHERE
 --include("scripts_toybox.players.nowhere.a.nowhere")

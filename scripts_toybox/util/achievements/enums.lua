@@ -12,8 +12,13 @@ ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_INSIDE_JOKE, function(d, p)
     return (p.LION_SKULL_CAPPED_OUT or 0)>0
 end, false)
 
+-- characters
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_HOMUNCULUS, function(d, p)
+    return (p.COMMITED_SUICIDE_IN_WOMB or 0)>0
+end, false)
+
 -- challenges
-ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CH_SCIENTOLOGY, function(d)
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_SCIENTOLOGY, function(d)
     return d:Unlocked(ToyboxMod.ACHIEVEMENT_ATHEISM)
 end, false)
 
