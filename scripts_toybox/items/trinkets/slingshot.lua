@@ -12,11 +12,13 @@ local function removeStageHP(_, npc)
         local stageHp = conf:GetStageHP()
         local stage = ToyboxMod.GAME:GetLevel():GetAbsoluteStage()
 
+        stage = math.min(4, stage)+0.8*ToyboxMod:clamp(stage-5,0,5)
+
         npc.MaxHitPoints = npc.MaxHitPoints-stage*stageHp
         npc.HitPoints = npc.HitPoints-stage*stageHp
         if(mult>0 and npc.MaxHitPoints>1) then
-            npc.MaxHitPoints = math.max(1, npc.MaxHitPoints-(mult-1)*stageHp)
-            npc.HitPoints = math.max(1, npc.HitPoints-(mult-1)*stageHp)
+            npc.MaxHitPoints = math.max(1, npc.MaxHitPoints-(mult-1)*stageHp*STAGEHP_DEC_MULT)
+            npc.HitPoints = math.max(1, npc.HitPoints-(mult-1)*stageHp*STAGEHP_DEC_MULT)
         end
     end
 end
