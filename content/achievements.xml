@@ -6,14 +6,6 @@
 	<achievement name="Inside Joke" text="" gfx="ach_inside_joke_alt.png" />
 	<achievement name="Bob's Thesis" text="" gfx="ach_bobs_thesis.png" />
 
-	<!-- characters -->
-	<achievement name="Homunculus" text="" gfx="ach_homunculus.png" />
-
-	<achievement name="The Fractured (Tainted Atlas)" text="" gfx="ach_atlas_b.png" gfxback="achpaper_atlas.png" />
-	<achievement name="The Demented (Tainted Jonas)" text="" gfx="ach_blank.png" gfxback="achpaper_jonas.png" />
-	<achievement name="The Drawn (Tainted Milcom)" text="" gfx="ach_milcom_b.png" gfxback="achpaper_milcom.png" />
-	<achievement name="The Flayed (Tainted Homunculus)" text="" gfx="ach_blank.png" />
-
 	<!-- challanges -->
 	<achievement name="Scientology Challenge" text="" gfx="ach_challenge_scientology.png" />
 
@@ -29,8 +21,10 @@
 	<achievement name="Amber Fossil" text="" gfx="ach_amber_fossil.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Bone Boy!" text="" gfx="ach_bone_boy.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Ascension" text="" gfx="ach_ascension.png" gfxback="achpaper_atlas.png" />
-	<achievement name="Miracle Mantle" text="" gfx="ach_miracle_mantle.png" gfxback="achpaper_atlas.png" />
 	<achievement name="Conglomerate" text="" gfx="ach_conglomerate.png" gfxback="achpaper_atlas.png" />
+	<achievement name="Miracle Mantle" text="" gfx="ach_miracle_mantle.png" gfxback="achpaper_atlas.png" />
+
+	<achievement name="The Fractured (Tainted Atlas)" text="" gfx="ach_atlas_b.png" gfxback="achpaper_atlas.png" />
 
 	<!-- Jonas unlocks -->
 	<achievement name="Giant Capsule" text="" gfx="ach_giant_capsule.png" gfxback="achpaper_jonas.png" />
@@ -46,6 +40,8 @@
 	<achievement name="Drill" text="" gfx="ach_drill.png" gfxback="achpaper_jonas.png" />
 	<achievement name="Dad's Pipe" text="" gfx="ach_dads_pipe.png" gfxback="achpaper_jonas.png" />
 
+	<achievement name="The Demented (Tainted Jonas)" text="" gfx="ach_blank.png" gfxback="achpaper_jonas.png" />
+
 	<!-- Milcom unlocks -->
 	<achievement name="Delivery Box" text="" gfx="ach_delivery_box.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Oil Painting" text="" gfx="ach_oil_painting.png" gfxback="achpaper_milcom.png" />
@@ -59,5 +55,25 @@
 	<achievement name="Cutout" text="" gfx="ach_cutout.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Misprint" text="" gfx="ach_misprint.png" gfxback="achpaper_milcom.png" />
 	<achievement name="Coloring Book" text="" gfx="ach_coloring_book.png" gfxback="achpaper_milcom.png" />
+
+	<achievement name="The Drawn (Tainted Milcom)" text="" gfx="ach_milcom_b.png" gfxback="achpaper_milcom.png" />
+
+	<!-- Homunculus unlocks -->
+	<achievement name="Homunculus" text="" gfx="ach_homunculus.png" />
+	
+	<achievement name="Unstable DNA" text="" gfx="ach_unstable_dna.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Lab Meat" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Infestation 3" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Twisted Heart" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Elephant's Foot" text="" gfx="ach_elephants_foot.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Krokodil" text="" gfx="ach_krokodil.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Mutagen" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Frankencat" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Xenotransfusion" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Clone" text="" gfx="ach_clone.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="New Card!" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Bath Water/Spiteful Penny" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+
+	<achievement name="The Flayed (Tainted Homunculus)" text="" gfx="ach_blank.png" gfxback="achpaper_homunculus.png" />
 	
 </achievements>

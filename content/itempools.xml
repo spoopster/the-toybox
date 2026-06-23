@@ -64,6 +64,7 @@
         <Item Name="Gimp Baby"/>
         <Item Name="Psycho Baby"/>
         <Item Name="RETROFALL"/>
+        <Item Name="Krokodil"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -127,6 +128,7 @@
         <Item Name="Gimp Baby"/>
         <Item Name="Psycho Baby"/>
         <Item Name="RETROFALL"/>
+        <Item Name="Krokodil"/>
     </Pool>
 
     <Pool Name="boss">
@@ -143,6 +145,7 @@
         <Item Name="Surprise Egg"/>
         <Item Name="Loose Bowels"/>
         <Item Name="Bodybag"/>
+        <Item Name="Krokodil"/>
     </Pool>
     <Pool Name="greedBoss">
         <Item Name="Caramel Apple"/>
@@ -158,6 +161,7 @@
         <Item Name="Surprise Egg"/>
         <Item Name="Loose Bowels"/>
         <Item Name="Bodybag"/>
+        <Item Name="Krokodil"/>
     </Pool>
 
     <Pool Name="shop">

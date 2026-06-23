@@ -1,5 +1,7 @@
 local sfx = SFXManager()
 
+-- FIX IT DOUBLING DROPPED CONSUMABLES
+
 local PICKUP_DOUBLE_CHANCE = 1/7
 
 local VAR_WHITELIST = {

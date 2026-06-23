@@ -45,13 +45,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, postUpdate)
 local function postEvaluateCustomCache(_, pl, flag, val)
     if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
 
-    local birthrightEffect = false
-    for _, milc in ipairs(Isaac.FindByType(1,0,ToyboxMod.PLAYER_MILCOM_A)) do
-        if(milc:ToPlayer():HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
-            birthrightEffect = true
-            break
-        end
-    end
+    local birthrightEffect = PlayerManager.AnyPlayerTypeHasCollectible(ToyboxMod.PLAYER_MILCOM_A, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 
     local maxCoins = (PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_DEEP_POCKETS) and 999 or 99)
     if(flag=="maxcoins") then

@@ -105,6 +105,16 @@ local BASEDATA = {
         SHOTSPEED = 0,
         LUCK = 0,
     },
+    BEN_STATS = {
+        COIN = 0,
+        BOMB = 0,
+        KEY = 0,
+    },
+    BEN_COUNTERS = {
+        COIN = 0,
+        BOMB = 0,
+        KEY = 0,
+    },
 
     TEMPORARY_ITEMS = {},
     TEMPORARY_ITEMS_ROOM = {},

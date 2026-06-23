@@ -991,6 +991,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_TOAST,
     Name = "Toast",
     Description = {
+        "{{Heart}} +1 Health",
         "{{BlackHeart}} +1 Black Heart",
 
     },
@@ -1864,6 +1865,24 @@ enums.FUNCTIONS.AddItem({
         "{{Heart}} Sacrifice Room spikes prioritize removing Red Hearts"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CAUAC_STORM,
+    Name = "Cauac",
+    Description = {
+        "On hit, consume 2 bars of active charge, block the damage, and gain \1 +0.8 Tears for the room",
+        "Only works if you have at least 2 bars of active charge",
+        "{{Collectible63}} At the start of every floor, your active items are fully overcharged",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_BEN_REED,
+    Name = "Ben",
+    Description = {
+        "Coins, bombs, and keys each grant a random stat boost that scales with their amount",
+        "Whenever you use a coin, bomb, or key, changes its respective boost to a different stat",
+        "Each pickup can boost either {{ColorYellow}}speed{{CR}}, {{ColorBlue}}tears{{CR}}, {{ColorRed}}damage{{CR}}, or {{ColorOrange}}range{{CR}}"
+    },
+})
 
 
 
@@ -1873,6 +1892,15 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "{{Collectible198}} Converts 1 heart container into a random coin, heart, bomb, key, card, pill, and trinket",
         "Also triggers on-hit effects 3 times",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_KROKODIL,
+    Name = "Krokodil",
+    Description = {
+        "\1 +0.7 Tears",
+        "\1 +0.15 Shotspeed",
+        "{{RottenHeart}} Turns all of your Red Hearts into Rotten Hearts",
     },
 })
 

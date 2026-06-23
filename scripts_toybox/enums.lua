@@ -230,6 +230,7 @@ ToyboxMod.COLLECTIBLE_BEN_REED = Isaac.GetItemIdByName("Ben")
 ToyboxMod.COLLECTIBLE_CAUAC_STORM = Isaac.GetItemIdByName("Cauac")
 
 ToyboxMod.COLLECTIBLE_TAMMYS_BODY = Isaac.GetItemIdByName("Tammy's Body")
+ToyboxMod.COLLECTIBLE_KROKODIL = Isaac.GetItemIdByName("Krokodil")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")

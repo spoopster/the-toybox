@@ -54,7 +54,7 @@ function ToyboxMod:checkUnlocks(completionUnlocks, blockPaper)
         if(unlockData.Condition(persistentdata, toyboxpersistentdata)) then
             persistentdata:TryUnlock(unlockData.Achievement, blockPaper)
         else
-            Isaac.ExecuteCommand("lockachievement " .. unlockData.Achievement)
+            --Isaac.ExecuteCommand("lockachievement " .. unlockData.Achievement)
         end
     end
 end

@@ -1351,11 +1351,13 @@
     cache=""
 />
 <passive id="149" name="Cauac"
-    description=" "
+    description="Static shield"
     gfx="cauac_storm.png"
     quality="2"
     tags="offensive summonable"
     cache=""
+
+    effecttears="0.8"
 />
 <active id="150" name="Tammy's Body"
     description="Stuff converter"
@@ -1365,6 +1367,15 @@
     cache=""
 
     maxcharges="0"
+/>
+<passive id="151" name="Krokodil"
+    description="Tears + shot speed up"
+    gfx="krokodil.png"
+    quality="3"
+    tags="offensive summonable syringe"
+    cache=""
+
+    tears="0.7" shotspeed="0.15"
 />
 
 <active id="491" name="Cursed D6"

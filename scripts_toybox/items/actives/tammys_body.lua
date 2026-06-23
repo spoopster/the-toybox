@@ -1,3 +1,5 @@
+-- Code by: split
+
 local sfx = SFXManager()
 local pickups = {
     PickupVariant.PICKUP_HEART,

@@ -1,7 +1,6 @@
 ---@param key string
 ---@param amount number?
 function ToyboxMod:incrementEventCounter(key, amount)
-    print("Did it", key) 
     ToyboxMod:setPersistentData(key, (ToyboxMod:getPersistentData(key) or 0)+(amount or 1))
     ToyboxMod:checkUnlocks(false)
 end

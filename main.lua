@@ -305,7 +305,7 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.passives.ben_reed")
     include("scripts_toybox.items.passives.cauac_storm")
 
-    
+    include("scripts_toybox.items.passives.krokodil")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
