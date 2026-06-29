@@ -1903,6 +1903,15 @@ enums.FUNCTIONS.AddItem({
         "{{RottenHeart}} Turns all of your Red Hearts into Rotten Hearts",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_WOODEN_ARM,
+    Name = "Wooden Arm",
+    Description = {
+        "Swings arm in the chosen direction, the arm deals damage and consumes projectiles",
+        "Consuming projectiles adds a charge to the item, at full charge can be used to shoot out a volley of tears",
+        "The fired tears destroy projectiles they pass through",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

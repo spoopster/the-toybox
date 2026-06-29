@@ -343,6 +343,7 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.actives.not_a_pipe")
     include("scripts_toybox.items.actives.prospector_pick")
     include("scripts_toybox.items.actives.tammys_body")
+    include("scripts_toybox.items.actives.wooden_arm")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

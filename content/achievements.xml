@@ -67,7 +67,7 @@
 	<achievement name="Twisted Heart" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Elephant's Foot" text="" gfx="ach_elephants_foot.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Krokodil" text="" gfx="ach_krokodil.png" gfxback="achpaper_homunculus.png" />
-	<achievement name="Mutagen" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Mutagen" text="" gfx="ach_mutagen.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Frankencat" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Xenotransfusion" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Clone" text="" gfx="ach_clone.png" gfxback="achpaper_homunculus.png" />

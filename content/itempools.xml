@@ -65,6 +65,7 @@
         <Item Name="Psycho Baby"/>
         <Item Name="RETROFALL"/>
         <Item Name="Krokodil"/>
+        <Item Name="Wooden Arm"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -129,6 +130,7 @@
         <Item Name="Psycho Baby"/>
         <Item Name="RETROFALL"/>
         <Item Name="Krokodil"/>
+        <Item Name="Wooden Arm"/>
     </Pool>
 
     <Pool Name="boss">
@@ -316,6 +318,7 @@
         <Item Name="Reliquary"/>
         <Item Name="Y2K"/>
         <Item Name="Mind's Eye"/>
+        <Item Name="Wooden Arm"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -338,6 +341,7 @@
         <Item Name="Reliquary"/>
         <Item Name="Y2K"/>
         <Item Name="Mind's Eye"/>
+        <Item Name="Wooden Arm"/>
     </Pool>
 
     <Pool Name="library">
@@ -373,12 +377,12 @@
         <Item Name="D"/>
         <Item Name="Paper Plate"/>
         <Item Name="Surprise Egg"/>
-        <Item Name="Tammy's Body"/>
     </Pool>
 
     <Pool Name="woodenChest">
         <Item Name="Alphabet Box"/>
         <Item Name="Effigy"/>
+        <Item Name="Wooden Arm"/>
     </Pool>
 
     <Pool Name="oldChest">
@@ -526,6 +530,7 @@
         <Item Name="Isaac's Tomb"/>
         <Item Name="Vengeful Spirit"/>
         <Item Name="Ghost Bombs"/>
+
         <Item Name="Lion Skull"/>
         <Item Name="Bone Boy"/>
         <Item Name="Haemorrhage"/>
@@ -533,6 +538,7 @@
         <Item Name="Tammy's Tail"/>
         <Item Name="Puggy's Claw"/>
         <Item Name="Cricket's Tail"/>
+        <Item Name="Tammy's Body"/>
     </Pool>
 
     <Pool Name="temple">
