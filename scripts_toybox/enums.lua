@@ -206,8 +206,6 @@ ToyboxMod.COLLECTIBLE_MINDFLAYER_BABY = Isaac.GetItemIdByName("Flayer Baby")
 ToyboxMod.COLLECTIBLE_YES_BABY = Isaac.GetItemIdByName("Yes Baby")
 ToyboxMod.COLLECTIBLE_PSYCHO_BABY = Isaac.GetItemIdByName("Psycho Baby")
 ToyboxMod.COLLECTIBLE_GIMP_BABY = Isaac.GetItemIdByName("Gimp Baby")
-
---- MAYAN SIGNS
 ToyboxMod.COLLECTIBLE_CHICCHAN_SERPENT = Isaac.GetItemIdByName("Chicchan")
 ToyboxMod.COLLECTIBLE_ETZNAB_KNIFE = Isaac.GetItemIdByName("Etznab")
 ToyboxMod.COLLECTIBLE_OC_DOG = Isaac.GetItemIdByName("Oc")
@@ -228,10 +226,10 @@ ToyboxMod.COLLECTIBLE_AKBAL_HOUSE = Isaac.GetItemIdByName("Akbal")
 ToyboxMod.COLLECTIBLE_CIMI_DEATH = Isaac.GetItemIdByName("Cimi")
 ToyboxMod.COLLECTIBLE_BEN_REED = Isaac.GetItemIdByName("Ben")
 ToyboxMod.COLLECTIBLE_CAUAC_STORM = Isaac.GetItemIdByName("Cauac")
-
 ToyboxMod.COLLECTIBLE_TAMMYS_BODY = Isaac.GetItemIdByName("Tammy's Body")
 ToyboxMod.COLLECTIBLE_KROKODIL = Isaac.GetItemIdByName("Krokodil")
 ToyboxMod.COLLECTIBLE_WOODEN_ARM = Isaac.GetItemIdByName("Wooden Arm")
+ToyboxMod.COLLECTIBLE_RHUBARB = Isaac.GetItemIdByName("Rhubarb")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")

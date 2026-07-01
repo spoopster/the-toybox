@@ -283,7 +283,6 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.passives.yes_baby")
     include("scripts_toybox.items.passives.psycho_baby")
     include("scripts_toybox.items.passives.gimp_baby")
-
     include("scripts_toybox.items.passives.chicchan_serpent")
     include("scripts_toybox.items.passives.oc_dog")
     include("scripts_toybox.items.passives.etznab_knife")
@@ -304,8 +303,8 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.passives.cimi_death")
     include("scripts_toybox.items.passives.ben_reed")
     include("scripts_toybox.items.passives.cauac_storm")
-
     include("scripts_toybox.items.passives.krokodil")
+    include("scripts_toybox.items.passives.rhubarb")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

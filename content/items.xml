@@ -1330,8 +1330,8 @@
 <passive id="146" name="Akbal"
     description="Homecoming"
     gfx="akbal_house.png"
-    quality="4"
-    tags="offensive summonable"
+    quality="3"
+    tags="summonable nolostbr"
     cache=""
 />
 <passive id="147" name="Cimi"

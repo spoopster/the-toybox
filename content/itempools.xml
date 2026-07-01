@@ -66,6 +66,7 @@
         <Item Name="RETROFALL"/>
         <Item Name="Krokodil"/>
         <Item Name="Wooden Arm"/>
+        <Item Name="Rhubarb"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -131,6 +132,7 @@
         <Item Name="RETROFALL"/>
         <Item Name="Krokodil"/>
         <Item Name="Wooden Arm"/>
+        <Item Name="Rhubarb"/>
     </Pool>
 
     <Pool Name="boss">
@@ -430,6 +432,7 @@
         <Item Name="Bob's Heart"/>
         <Item Name="Bob's Thesis"/>
         <Item Name="Fish"/>
+        <Item Name="Rhubarb"/>
     </Pool>
 
     <Pool Name="babyShop">
@@ -472,6 +475,7 @@
         <Item Name="Cricket's Tail"/>
         <Item Name="MP3 Player"/>
         <Item Name="Yes Baby"/>
+        <Item Name="Rhubarb"/>
     </Pool>
 
     <Pool Name="ultraSecret">

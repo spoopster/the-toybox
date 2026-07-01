@@ -1884,9 +1884,13 @@ enums.FUNCTIONS.AddItem({
         "Each pickup can boost either {{ColorYellow}}speed{{CR}}, {{ColorBlue}}tears{{CR}}, {{ColorRed}}damage{{CR}}, or {{ColorOrange}}range{{CR}}"
     },
 })
-
-
-
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_AKBAL_HOUSE,
+    Name = "Akbal",
+    Description = {
+        "{{IsaacsRoom}} The starting room of each floor is replaced with a Bedroom",
+    },
+})
 enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_TAMMYS_BODY,
     Name = "Tammy's Body",
@@ -1911,6 +1915,15 @@ enums.FUNCTIONS.AddItem({
         "Swings arm in the chosen direction, the arm deals damage and consumes projectiles",
         "Consuming projectiles adds a charge to the item, at full charge can be used to shoot out a volley of tears",
         "The fired tears destroy projectiles they pass through",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_RHUBARB,
+    Name = "Rhubarb",
+    Description = {
+        "\2 x0.75 Damage",
+        "On hit, enemies take an additional 15% of their maximum HP as damage",
+        "Bosses take 2% instead of 15%"
     },
 })
 
