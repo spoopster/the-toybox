@@ -36,12 +36,11 @@ local function replaceHelper(_, effect)
             local block = room:GetGridEntity(idx)
             if(block) then
                 local data = ToyboxMod:getGridEntityDataTable(block)
-                data.GRID_INIT = nil
                 data.SWITCH_BLOCK = true
                 data.SWITCH_GRID = SWITCH_BLOCK_SUB_GROUPS[effect.SubType]
                 block.State = (SWITCH_BLOCK_SUB_INACTIVE[effect.SubType] and 2 or 1)
 
-                block:Update()
+                block:Init(block.Desc.SpawnSeed)
             end
         end
 
@@ -57,12 +56,11 @@ local function replaceHelper(_, effect)
             local block = room:GetGridEntity(idx)
             if(block) then
                 local data = ToyboxMod:getGridEntityDataTable(block)
-                data.GRID_INIT = nil
                 data.SWITCH_PLATE = true
                 data.SWITCH_GRID = SWITCH_PLATE_SUB_GROUPS[effect.SubType]
                 block.State = 0
 
-                block:Update()
+                block:Init(block.Desc.SpawnSeed)
             end
         end
 
@@ -202,7 +200,6 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_PRESSUREPLATE_UPDATE, plat
 ---@param ent GridEntityRock
 local function blockUpdate(_, ent)
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_BLOCK")) then return end
-    if(not ToyboxMod:getGridEntityData(ent, "GRID_INIT")) then return end
 
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_VISITED")) then
         getBlockNeighborhood(ent)
@@ -238,7 +235,6 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_UPDATE, blockUpdate, 
 
 ---@param ent GridEntityRock
 local function blockRender(_, ent)
-    
     if(not ToyboxMod:renderingAboveWater()) then return end
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_BLOCK")) then return end
 

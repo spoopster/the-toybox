@@ -1,4 +1,4 @@
-local FIRE_DMG = 20
+local FIRE_DMG = 12
 
 ---@param player EntityPlayer
 local function useMeltedCandle(_, _, rng, player, flags)

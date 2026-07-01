@@ -98,7 +98,7 @@ local function useTheBaron(_, _, pl, flags)
             local newqual = ogqual
             while(newqual<=ogqual) do
                 pickup.FlipX = false
-                pickup:Morph(5,0,NullPickupSubType.NO_COLLECTIBLE_TRINKET_CHEST)
+                pickup:Morph(5,0,NullPickupSubType.NO_COLLECTIBLE_TRINKET_CHEST,true)
                 newqual = getPickupQuality(pickup)
             end
         end

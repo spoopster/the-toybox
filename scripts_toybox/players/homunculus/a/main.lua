@@ -24,9 +24,9 @@ end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.IMPORTANT, tryAddNoPenalties, EntityType.ENTITY_PLAYER)
 
 ---@param pl EntityPlayer
-local function homunculusSetColor(_, pl)
+local function evalColorCache(_, pl)
     if(pl:GetPlayerType()~=ToyboxMod.PLAYER_HOMUNCULUS_A) then return end
 
-    pl.Color = HOMUNCULUS_COLOR
+    pl.Color = pl.Color*HOMUNCULUS_COLOR
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, homunculusSetColor, PlayerVariant.PLAYER)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalColorCache, CacheFlag.CACHE_COLOR)

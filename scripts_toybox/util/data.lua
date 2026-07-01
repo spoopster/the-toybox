@@ -16,9 +16,8 @@ function ToyboxMod:getGridEntityDataTable(entity)
 end
 function ToyboxMod:getGridEntityData(entity, key)
     local seed = getGridEntSeed(entity)
-    if(not ToyboxMod.GridEntityData[seed]) then ToyboxMod.GridEntityData[seed]={} end
 
-    return ToyboxMod.GridEntityData[seed][key]
+    return (ToyboxMod.GridEntityData[seed] or {})[key]
 end
 function ToyboxMod:setGridEntityData(entity, key, val)
     local seed = getGridEntSeed(entity)
@@ -32,11 +31,10 @@ function ToyboxMod:setGridEntityData(entity, key, val)
 
     return exists
 end
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, math.huge,
-    function()
-        --ToyboxMod.GridEntityData = {}
-    end
-)
+local function preNewLevel(_)
+    ToyboxMod.GridEntityData = {}
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_LEVEL_INIT, preNewLevel)
 
 local function getEntIndex(ent)
     return tostring(ent.InitSeed)

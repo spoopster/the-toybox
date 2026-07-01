@@ -4,8 +4,8 @@
 local function updatePoopGrid(_, poop)
     if(ToyboxMod.GAME:IsPaused()) then return end
     if(poop:GetVariant()==GridPoopVariant.RED) then return end
+    
     local data = ToyboxMod:getGridEntityDataTable(poop)
-
     data.POOP_DMG = (data.POOP_DMG or poop:GetSaveState().State)
     if(data.POOP_DMG and poop.State~=data.POOP_DMG) then
         Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DAMAGE, poop:GetVariant(), poop, poop:GetVariant())

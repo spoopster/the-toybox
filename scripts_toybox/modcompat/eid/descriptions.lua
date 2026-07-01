@@ -494,13 +494,14 @@ enums.FUNCTIONS.AddItem({
     Name = "Saltpeter",
     Description = {
         "\1 +1.5 Range",
+        "\2 x0.7 Range",
         "When enemies take damage, nearby enemies take 50% of that damage",
         "The radius of this effect scales with your range"
     },
     StackModifiers = {
         {
             ToModify = {
-                "+50% AOE damage",
+                "+40% AOE damage",
             },
         },
     }

@@ -11,10 +11,9 @@ local function replaceHelper(_, effect)
             local block = room:GetGridEntity(idx)
             if(block) then
                 local data = ToyboxMod:getGridEntityDataTable(block)
-                data.GRID_INIT = nil
                 data.PLAYERONLY_GATE = true
 
-                block:Update()
+                block:Init(block.Desc.SpawnSeed)
             end
         end
         effect:Remove()

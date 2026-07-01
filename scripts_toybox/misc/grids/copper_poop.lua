@@ -20,10 +20,9 @@ local function replaceHelper(_, effect)
             local poop = room:GetGridEntity(idx)
             if(poop) then
                 local data = ToyboxMod:getGridEntityDataTable(poop)
-                data.GRID_INIT = nil
                 data.COPPER_POOP = true
 
-                poop:Update()
+                poop:Init(poop.Desc.SpawnSeed)
 
                 local sp = poop:GetSprite()
                 if(ToyboxMod.GAME:GetRoom():GetFrameCount()~=0) then
@@ -38,13 +37,14 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, replaceHelper, ToyboxMod
 
 ---@param poop GridEntityPoop
 local function initSprite(_, poop, _, firstinit)
-    if(firstinit and not ToyboxMod:getGridEntityData(poop, "COPPER_POOP")) then
-        if(poop:GetRNG():RandomFloat()<COPPER_POOP_CHANCE) then
+    if(not ToyboxMod:getGridEntityData(poop, "COPPER_POOP")) then
+        if(ToyboxMod:generateRng(poop.Desc.SpawnSeed):RandomFloat()<COPPER_POOP_CHANCE) then
             ToyboxMod:setGridEntityData(poop, "COPPER_POOP", true)
         end
     end
 
     if(not ToyboxMod:getGridEntityData(poop, "COPPER_POOP")) then return end
+    
     poop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/grid_copper_poop.png", true)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_INIT, initSprite, GridPoopVariant.NORMAL)

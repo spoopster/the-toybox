@@ -1010,21 +1010,23 @@ end
 ---@param tbl T
 ---@param deeperCopy? boolean
 ---@param seen? table<table, table>
+---@param initTable? T
 ---@return T
-function ToyboxMod:deepCopy(tbl, deeperCopy, seen)
+function ToyboxMod:deepCopy(tbl, deeperCopy, seen, initTable)
     seen = seen or {}
 
     if seen[tbl] then
         return seen[tbl]
     end
 
-    local copy = {}
+    initTable = initTable or {}
+    local copy = initTable
 
     seen[tbl] = copy
 
     for k, v in pairs(tbl) do
         local newK = deeperCopy and type(k) == "table" and ToyboxMod:deepCopy(k, true, seen) or k
-        local newV = deeperCopy and type(v) == "table" and ToyboxMod:deepCopy(v, true, seen) or v
+        local newV = deeperCopy and type(v) == "table" and ToyboxMod:deepCopy(v, true, seen, initTable[k]) or v
 
         copy[newK] = newV
     end

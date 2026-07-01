@@ -11,16 +11,6 @@ local function useSunkCosts(_, _, rng, player, flags)
         player:AddCoins(-TEARS_PRICE)
         sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
 
-        local mult = 0
-        if(player:GetEffects():GetCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS)) then
-            mult = player:GetEffects():GetCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS).Count
-        end
-        mult = mult+1
-
-        local col = player.Color
-        col:SetColorize(1,1,0,math.min(1, mult*0.2))
-        player.Color = col
-
         return {
             Discharge = true,
             Remove = false,
@@ -36,13 +26,14 @@ local function useSunkCosts(_, _, rng, player, flags)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useSunkCosts, ToyboxMod.COLLECTIBLE_SUNK_COSTS)
 
----@param player EntityPlayer
-local function postNewRoom(_, player)
-    local col = player.Color
-    col:SetColorize(1,1,1,0)
-    player.Color = col
+---@param pl EntityPlayer
+local function evalColorCache(_, pl)
+    local eff = pl:GetEffects()
+    if(not eff:HasCollectibleEffect(ToyboxMod.COLLECTIBLE_SUNK_COSTS)) then return end
+    local mult = eff:GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_SUNK_COSTS)
+    pl.Color = pl.Color*Color(1,1,1,1,0,0,0,1,1,0,math.min(1,mult*0.2))
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, postNewRoom)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalColorCache, CacheFlag.CACHE_COLOR)
 
 
 local itemSprite = Sprite("gfx_tb/ui/custom_active_renders.anm2", false)

@@ -5,6 +5,8 @@ local AOE_DMG_MULT = 0.5
 local AOE_RANGE_MULT = 0.25
 local AOE_DMG_COLOR = Color(1.25,1.25,1.2,1,0.12,0.12,0.09)
 
+local RANGE_MULT = 0.7
+
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
@@ -30,10 +32,18 @@ local function dealAOEdmg(_, ent, dmg, flags, source, cooldown)
     local damage = dmg*AOE_DMG_MULT*mult
     local radius = AOE_RANGE_MULT*pl.TearRange*mult
     for _, near in ipairs(Isaac.FindInRadius(ent.Position, radius, EntityPartition.ENEMY)) do
-        if(GetPtrHash(near)~=GetPtrHash(ent)) then
+        if(GetPtrHash(near)~=GetPtrHash(ent) and ToyboxMod:isValidEnemy(near)) then
             near:TakeDamage(damage, flags | DamageFlag.DAMAGE_CLONES, source, cooldown)
             near:SetColor(AOE_DMG_COLOR, 10, 5, true, false)
         end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, dealAOEdmg)
+
+---@param pl EntityPlayer
+local function saltpeterRangeMult(_, pl)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_SALTPETER)) then return end
+
+    pl.TearRange = pl.TearRange*RANGE_MULT
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, saltpeterRangeMult, CacheFlag.CACHE_RANGE)

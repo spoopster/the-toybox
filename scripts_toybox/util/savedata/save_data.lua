@@ -103,7 +103,7 @@ function ToyboxMod:saveProgress()
 end
 
 function ToyboxMod:saveNewFloor()
-    if(ToyboxMod.IS_DATA_LOADED) then ToyboxMod:saveProgress(); ToyboxMod.GridEntityData = {} end
+    if(ToyboxMod.IS_DATA_LOADED) then ToyboxMod:saveProgress() end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, ToyboxMod.saveNewFloor)
 function ToyboxMod:saveGameExit(save)
@@ -111,7 +111,7 @@ function ToyboxMod:saveGameExit(save)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, ToyboxMod.saveGameExit)
 
-local function loadImportantData(_, slot)
+local function loadImportantData(_, slot, selected, rawslot)
     ToyboxMod.IS_DATA_LOADED = false
     if(ToyboxMod:HasData()) then
         local sd = json.decode(Isaac.LoadModData(ToyboxMod))

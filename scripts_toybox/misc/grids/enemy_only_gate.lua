@@ -11,10 +11,9 @@ local function replaceHelper(_, effect)
             local block = room:GetGridEntity(idx)
             if(block) then
                 local data = ToyboxMod:getGridEntityDataTable(block)
-                data.GRID_INIT = nil
                 data.ENEMYONLY_GATE = true
 
-                block:Update()
+                block:Init(block.Desc.SpawnSeed)
             end
         end
         effect:Remove()
@@ -25,6 +24,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, replaceHelper, ToyboxMod
 ---@param ent GridEntity
 local function gridInit(_, ent, _, _)
     if(not ToyboxMod:getGridEntityData(ent, "ENEMYONLY_GATE")) then return end
+    
     ent:GetSprite():Load("gfx_tb/grid/grid_enemy_gate.anm2", true)
     ent:GetSprite():Play("black", true)
 

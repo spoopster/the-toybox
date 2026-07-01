@@ -39,10 +39,8 @@ local function replaceHelper(_, effect)
             local rock = room:GetGridEntity(idx)
             if(rock) then
                 local data = ToyboxMod:getGridEntityDataTable(rock)
-                data.GRID_INIT = nil
                 data.GRAVE_SUB = effect.SubType
-
-                rock:Update()
+                rock:Init(rock.Desc.SpawnSeed)
             end
         end
         effect:Remove()
@@ -164,7 +162,6 @@ ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, switchBlockInit
 ---@param ent GridEntityPressurePlate
 local function graveUpdate(_, ent)
     if(not ToyboxMod:getGridEntityData(ent, "GRAVE_SUB")) then return end
-    if(not ToyboxMod:getGridEntityData(ent, "GRID_INIT")) then return end
 
     return false
 end

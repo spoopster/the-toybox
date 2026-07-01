@@ -2,7 +2,8 @@ local sfx = SFXManager()
 
 local TIMED_UNFILLED_RECHARGE = 30*2.5
 
-local ARM_DAMAGE = 15
+local ARM_DAMAGE = 12
+local ARM_SWING_SIZE = 27
 
 local FILLED_TEARS_NUM = 6
 local FILLED_TEARS_ARC = 90
@@ -91,9 +92,9 @@ local function woodenArmUpdate(_, eff)
         return
     end
 
-    if(eff.FrameCount>7) then return end
-    local capRad = 24*eff.SpriteScale.X
-    local capPos = eff.Position-(eff.SpawnerEntity or eff).Velocity+Vector(1,0):Rotated(eff.SpriteRotation+90)*capRad
+    if(eff.FrameCount>8) then return end
+    local capRad = ARM_SWING_SIZE*eff.SpriteScale.X
+    local capPos = eff.Position-(eff.SpawnerEntity or eff).Velocity+Vector(0.9,0):Rotated(eff.SpriteRotation+90)*capRad
 
     local shouldCharge = false
 
@@ -101,27 +102,35 @@ local function woodenArmUpdate(_, eff)
 
     local data = ToyboxMod:getEntityDataTable(eff)
 
-    for _, ent in ipairs(Isaac.FindInRadius(capPos, capRad, EntityPartition.BULLET | EntityPartition.ENEMY)) do
-        if(eff.FrameCount<=7 and ToyboxMod:isValidEnemy(ent) and not (data.WOODENARM_HITLIST or {})[tostring(ent.InitSeed)]) then
+    for _, ent in ipairs(Isaac.FindInRadius(capPos, capRad, EntityPartition.ENEMY)) do
+        if(not (data.WOODENARM_HITLIST or {})[tostring(ent.InitSeed)]) then
             ent:TakeDamage(ARM_DAMAGE, 0, EntityRef(pl), 0)
-            ent:AddVelocity((ent.Position-eff.Position):Resized(14))
+            ent:AddVelocity((ent.Position-eff.Position):Resized(17))
 
-            ent:BloodExplode()
+            if(ent:IsVulnerableEnemy()) then
+                ent:BloodExplode()
+            end
 
             data.WOODENARM_HITLIST = data.WOODENARM_HITLIST or {}
             data.WOODENARM_HITLIST[tostring(ent.InitSeed)] = true
-        elseif(eff.FrameCount<=4 and ent:ToProjectile() and not ent:IsDead()) then
-            ent:Die()
-            shouldCharge = true
         end
     end
-
-    if(shouldCharge and data.WOODENARM_SHOULD_CHARGE and pl) then
-        for _, slot in pairs(ActiveSlot) do
-            pl:AddActiveCharge(1, slot, true, false, true)
+    if(eff.FrameCount<=5) then -- proj parry
+        for _, ent in ipairs(Isaac.FindInRadius(capPos, capRad, EntityPartition.BULLET)) do
+            if(not ent:IsDead()) then
+                ent:Die()
+                shouldCharge = true
+            end
         end
 
-        sfx:Play(868)
+        if(shouldCharge and data.WOODENARM_SHOULD_CHARGE and pl) then
+            for _, slot in pairs(ActiveSlot) do
+                pl:AddActiveCharge(1, slot, true, false, true)
+            end
+            data.WOODENARM_SHOULD_CHARGE = nil -- makes it only charge once per arm
+
+            sfx:Play(868)
+        end
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, woodenArmUpdate, ToyboxMod.EFFECT_WOODEN_ARM)

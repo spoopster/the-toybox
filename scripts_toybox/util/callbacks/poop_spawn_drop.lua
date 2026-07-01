@@ -11,8 +11,6 @@ local function checkPoopPickup(_, poop, poopVar)
     if(poop.State~=1000) then return end
     if(POOPS_WITH_DROPS[poopVar]~=1) then return end
 
-    local data = ToyboxMod:getGridEntityDataTable(poop)
-
     local selPickup
     for _, pickup in ipairs(Isaac.FindByType(5)) do
         if(pickup.Position:Distance(poop.Position)<2) then

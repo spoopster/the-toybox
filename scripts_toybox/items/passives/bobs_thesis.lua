@@ -3,15 +3,16 @@ local sfx = SFXManager()
 
 local STACK_PLACEHOLDER_REROLLS = 1
 
-local PLACEHOLDER_GIVING_ITEM = false
 local PLACEHOLDER_GIVE_ITEM_FREQ = 15
 local PLACEHOLDER_FAST_THRESHOLD = 3*30
+
+ToyboxMod.DISABLE_BOBS_THESIS = false
 
 ---@param poolType ItemPoolType
 ---@param dec boolean
 ---@param seed integer
 local function getCollectibleSpawn(_, poolType, dec, seed)
-    if(PLACEHOLDER_GIVING_ITEM) then return end
+    if(ToyboxMod.DISABLE_BOBS_THESIS) then return end
 
     if(PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_BOBS_THESIS)) then
         return ToyboxMod.COLLECTIBLE_PLACEHOLDER
@@ -54,7 +55,7 @@ local function giveThePlaces(_, pl)
 
     local conf = Isaac.GetItemConfig()
 
-    PLACEHOLDER_GIVING_ITEM = true
+    ToyboxMod.DISABLE_BOBS_THESIS = true
     local numRolls = math.max(0, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_BOBS_THESIS)-1)*STACK_PLACEHOLDER_REROLLS
 
     local chosenItem = ToyboxMod.GAME:GetItemPool():GetCollectible(poolType, false)
@@ -71,7 +72,7 @@ local function giveThePlaces(_, pl)
     end
     
     ToyboxMod.GAME:GetItemPool():RemoveCollectible(chosenItem)
-    PLACEHOLDER_GIVING_ITEM = false
+    ToyboxMod.DISABLE_BOBS_THESIS = false
 
     if(conf:GetCollectible(chosenItem).Type==ItemType.ITEM_ACTIVE and pl:GetActiveItem(ActiveSlot.SLOT_PRIMARY)~=0) then
         pl:DropCollectible(pl:GetActiveItem(ActiveSlot.SLOT_PRIMARY))

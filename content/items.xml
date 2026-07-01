@@ -257,7 +257,7 @@
     quality="1"
     tags="tearsup"
     customtags="combat"
-    cache=""
+    cache="color"
     
     maxcharges="0"
     coins="5"
@@ -595,7 +595,7 @@
     description="TODO"
     gfx="no_sprite.png"
     quality="3"
-    tags="offensive"
+    tags="offensive summonable"
     
     speed="0.15" tears="0.5" damage="0.5" range="1" shotspeed="0.1" luck="1"
 />
@@ -1344,7 +1344,7 @@
     maxhearts="2" hearts="2"
 />
 <passive id="148" name="Ben"
-    description=" "
+    description="Hoarding = power"
     gfx="ben_reed.png"
     quality="2"
     tags="offensive summonable"
@@ -1387,6 +1387,13 @@
     maxcharges="4"
     chargetype="special"
     initcharge="0"
+/>
+<passive id="153" name="Rhubarb"
+    description="The taste of death"
+    gfx="rhubarb.png"
+    quality="3"
+    tags="offensive summonable"
+    cache="damage"
 />
 
 <active id="491" name="Cursed D6"
