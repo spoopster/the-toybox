@@ -107,3 +107,22 @@ local function postEntityTakeDmg(_, ent, amount, flags, source, countdown)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, postEntityTakeDmg)
+
+---@param player EntityPlayer
+---@param flag CacheFlag
+local function evalCache(_, player, flag)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_RHUBARB)) then return end
+
+    player.TearColor = player.TearColor*Color.Lerp(Color.TearHoming, Color(1.2,0.9,1.5,1,0.1,0,0.1), 0.66)
+    player.LaserColor = player.LaserColor*Color.Lerp(Color.LaserHoming, Color(1.2,0.9,1.5,1,0.1,0,0.1), 0.66)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_TEARCOLOR)
+
+-- for the cosutme
+---@param pl EntityPlayer
+local function evalColorCache(_, pl)
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_RHUBARB)) then return end
+
+    pl.Color = pl.Color*Color(2, 1.15, 1.35, 1)
+end
+--ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalColorCache, CacheFlag.CACHE_COLOR)

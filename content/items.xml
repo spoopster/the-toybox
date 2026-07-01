@@ -1393,7 +1393,7 @@
     gfx="rhubarb.png"
     quality="3"
     tags="offensive summonable"
-    cache="damage"
+    cache="damage tearcolor color"
 />
 
 <active id="491" name="Cursed D6"

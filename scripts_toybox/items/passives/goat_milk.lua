@@ -31,7 +31,7 @@ ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_PLAYER_ATTACK, playerAttac
 local function evalCache(_, player, flag)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_GOAT_MILK)) then return end
 
-    player.TearColor = GOAT_MILK_COLOR
-    player.LaserColor = GOAT_MILK_LASERCOLOR
+    player.TearColor = player.TearColor*GOAT_MILK_COLOR
+    player.LaserColor = player.LaserColor*GOAT_MILK_LASERCOLOR
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_TEARCOLOR)
