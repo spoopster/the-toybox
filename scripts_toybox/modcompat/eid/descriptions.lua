@@ -1923,7 +1923,7 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "\2 x0.75 Damage",
         "On hit, enemies take an additional 15% of their maximum HP as damage",
-        "Bosses take 2% instead of 15%"
+        "Bosses take 1.5% instead of 15%"
     },
 })
 

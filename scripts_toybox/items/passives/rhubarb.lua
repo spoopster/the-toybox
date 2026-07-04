@@ -3,7 +3,7 @@ local sfx = SFXManager()
 local DMG_MULT = 0.75
 
 local HP_PERCENT_DMG = 0.15
-local BOSS_PERCENT_DMG = 0.02
+local BOSS_PERCENT_DMG = 0.015
 
 
 ---@param pl EntityPlayer
@@ -85,13 +85,12 @@ local function postEntityTakeDmg(_, ent, amount, flags, source, countdown)
         sfx:Play(SoundEffect.SOUND_MEAT_JUMPS, nil, nil, nil, 0.95+math.random()*0.1)
         sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 0.4, nil, nil, 0.95+math.random()*0.1)
 
-        print(ent.Size)
         local scale = 0.2*(ent.Size^(0.9-ToyboxMod:clamp(0, (ent.Size-50)/50, 0.25)))/10
         local poof = Isaac.Spawn(1000,16,5,ent.Position,Vector.Zero,nil):ToEffect()
         poof.SpriteScale = Vector(1,1)*scale
         poof.SpriteOffset = Vector(0,-5*scale*10)+Vector(ent.Size*0.5, ent.Size*0.5)*RandomVector()*math.random()
         poof.Rotation = math.random(1,360)
-        poof.Color = Color(0,0,0,0.5,200/255,70/255,230/255,1/scale)
+        poof.Color = Color(0,0,0,0.4,200/255,70/255,230/255,1/scale)
         poof:GetSprite().PlaybackSpeed = 1.65+math.random()*0.2
         poof:GetSprite():SetCustomShader("shaders_tb/pixelate")
 
@@ -113,16 +112,16 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, postEntityTakeDmg)
 local function evalCache(_, player, flag)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_RHUBARB)) then return end
 
-    player.TearColor = player.TearColor*Color.Lerp(Color.TearHoming, Color(1.2,0.9,1.5,1,0.1,0,0.1), 0.66)
-    player.LaserColor = player.LaserColor*Color.Lerp(Color.LaserHoming, Color(1.2,0.9,1.5,1,0.1,0,0.1), 0.66)
+    player.TearColor = player.TearColor*Color(1.12, 1, 1.3, 1, 0, 0, 0, 0.95, 0.34, 1.2, 0.5)
+    player.LaserColor = player.LaserColor*Color(1.12, 0.93, 1.33, 1, 0.05, 0, 0.05, 1.02, 0.34, 1.19, 0.34)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_TEARCOLOR)
 
 -- for the cosutme
 ---@param pl EntityPlayer
 local function evalColorCache(_, pl)
-    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_RHUBARB)) then return end
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_RHUBARB)) then return end
 
     pl.Color = pl.Color*Color(2, 1.15, 1.35, 1)
 end
---ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalColorCache, CacheFlag.CACHE_COLOR)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalColorCache, CacheFlag.CACHE_COLOR)
