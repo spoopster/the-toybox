@@ -320,7 +320,7 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.
 local function mangosteen2(_, familiar)
     familiar.SubType = ToyboxMod:getTypeCol(4)
 end
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_FAMILIAR_INIT, CallbackPriority.IMPORTANT, mangosteen2, FamiliarVariant.BLUE_SPIDER)
+--ToyboxMod:AddPriorityCallback(ModCallbacks.MC_FAMILIAR_INIT, CallbackPriority.IMPORTANT, mangosteen2, FamiliarVariant.BLUE_SPIDER)
 
 ---@param fam EntityFamiliar
 local function specialSpiderInit(_, fam)

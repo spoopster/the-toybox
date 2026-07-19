@@ -65,7 +65,7 @@ local function isValidRoom()
     if(INVALID_ROOMTYPES[type]) then
         return false
     end
-    if(type==RoomType.ROOM_DUNGEON and ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().SubType==666) then
+    if(type==RoomType.ROOM_DUNGEON and ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().Data.Variant==666) then
         return false
     end
     return true
@@ -73,7 +73,7 @@ end
 
 local function cancelRoomSpawns(_, rng, spawnPos)
     if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
-    if(not isValidRoom()) then
+    if(isValidRoom()) then
         return true
     end
 end
