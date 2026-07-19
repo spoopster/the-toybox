@@ -18,7 +18,7 @@ local function resetShots(_)
     for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(pl:HasTrinket(ToyboxMod.TRINKET_POWER_WORD)) then
-            print(ToyboxMod:getEntityData(pl, "POWER_WORD_SHOTS"))
+            --print(ToyboxMod:getEntityData(pl, "POWER_WORD_SHOTS"))
             ToyboxMod:setEntityData(pl, "POWER_WORD_SHOTS", pl:GetTrinketMultiplier(ToyboxMod.TRINKET_POWER_WORD)*SHOTS_PER_MULT+1)
         end
     end

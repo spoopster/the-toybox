@@ -5900,7 +5900,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="0" name="necropolis - tumor room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="15" weight="1.0" lastTestTime="2026-01-01T02:35+00:00">
+	<room variant="0" name="sheol - tumor room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="15" weight="1.0" lastTestTime="2026-01-01T02:35+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -7016,9 +7016,6 @@
 		<spawn x="0" y="0">
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="3" y="0">
-			<entity type="783" variant="1" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="12" y="0">
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
@@ -7039,6 +7036,9 @@
 		</spawn>
 		<spawn x="3" y="2">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="2">
+			<entity type="783" variant="1" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="9" y="2">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
@@ -9009,7 +9009,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="0" name="basement - you wont ever know" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2026-01-21T00:44+00:00">
+	<room variant="0" name="basement - you wont ever know" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0" lastTestTime="2026-07-09T21:44+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>

@@ -60,9 +60,20 @@ local function postInkUpdate(_, pickup)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, postInkUpdate, PickupVariant.PICKUP_COIN)
 
-local function cancelRoomSpawns()
+local function isValidRoom()
+    local type = ToyboxMod.GAME:GetRoom():GetType()
+    if(INVALID_ROOMTYPES[type]) then
+        return false
+    end
+    if(type==RoomType.ROOM_DUNGEON and ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().SubType==666) then
+        return false
+    end
+    return true
+end
+
+local function cancelRoomSpawns(_, rng, spawnPos)
     if(not PlayerManager.AnyoneIsPlayerType(ToyboxMod.PLAYER_MILCOM_A)) then return end
-    if(not INVALID_ROOMTYPES[ToyboxMod.GAME:GetRoom():GetType()]) then
+    if(not isValidRoom()) then
         return true
     end
 end

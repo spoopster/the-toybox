@@ -10,10 +10,21 @@ local function usePill(_, effect, player, flags, color)
     local numSouls = player:GetSoulHearts()
 
     local numConverted = 0
-    for i=0, math.ceil(numSouls/2)-1 do
-        if((blackHearts>>i)%2==0) then numConverted = numConverted+1 end
-        player:SetBlackHeart(i*2)
+
+    if(CustomHealthAPI) then
+        for i=0, math.ceil(numSouls/2)-1 do
+            if((blackHearts>>i)%2==0) then numConverted = numConverted+1 end
+        end
+
+        player:AddSoulHearts(-player:GetSoulHearts())
+        player:AddBlackHearts(numSouls)
+    else
+        for i=0, math.ceil(numSouls/2)-1 do
+            if((blackHearts>>i)%2==0) then numConverted = numConverted+1 end
+            player:SetBlackHeart(i*2)
+        end
     end
+
 
     if(numConverted==0) then player:AddBlackHearts(2) end
 

@@ -7,7 +7,7 @@ local PROJ_COOLDOWN = 30*1.5
 local PROJ_TARGETRANGE = 40*5
 
 local JUMP_PROJCOOLDOWN = 30
-local JUMP_MINDIST = 40*4
+local JUMP_MINDIST = 40*3
 
 local TARCREEP_TIMEOUT = 30*5
 
@@ -243,7 +243,7 @@ local function tarBabyUpdate(_, npc)
                     finalpos = result[1].Position+(result[1].SpriteScale*15)*Vector(rng:RandomFloat()*2-1, rng:RandomFloat()*2-1)
                 end
             else
-                finalpos = room:GetRandomPosition(30)
+                finalpos = room:GetGridPosition(npc.I2==-1 and room:GetGridIndex(npc.Position) or npc.I2)
             end
             npc.Position = finalpos
         end

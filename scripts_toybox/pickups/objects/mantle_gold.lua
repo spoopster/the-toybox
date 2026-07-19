@@ -25,7 +25,7 @@ local function useMantle(_, _, player, flags)
 
             if(flags & UseFlag.USE_OWNED == UseFlag.USE_OWNED) then
                 if(rng:RandomFloat()<1-(flags & UseFlag.USE_CARBATTERY ~= 0 and CARBATTERY_REMOVE_CHANCE or REMOVE_CHANCE)) then
-                    player:Add(ToyboxMod.CARD_MANTLE_GOLD)
+                    player:AddCard(ToyboxMod.CARD_MANTLE_GOLD)
                 end
             end
 
@@ -35,22 +35,35 @@ local function useMantle(_, _, player, flags)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_GOLD)
 
----@param player EntityPlayer
----@param flags UseFlag
-local function preUseMantle(_, _, player, flags)
-    if(not ToyboxMod:isAtlasA(player)) then
-        if(player:GetNumCoins()<COINS_REMOVE) then
-            if(flags & UseFlag.USE_OWNED == UseFlag.USE_OWNED) then
-                player:SetCard(1, player:GetCard(0))
-                player:SetCard(0, ToyboxMod.CARD_MANTLE_GOLD)
-            end
+---@param ent Entity?
+---@param hook InputHook
+---@param action ButtonAction
+local function cancelCardInput(_, ent, hook, action)
+    if(hook==InputHook.IS_ACTION_TRIGGERED) then
+        if(action==ButtonAction.ACTION_ITEM) then
+            local pl = ent and ent:ToPlayer()
+            if(not (pl and pl:GetCard(0)==ToyboxMod.CARD_MANTLE_GOLD and pl:GetNumCoins()<COINS_REMOVE)) then return end
 
-            return false
+            if(pl:GetPlayerType()==PlayerType.PLAYER_JACOB and Options.JacobEsauControls~=1) then
+                if(Input.IsActionPressed(ButtonAction.ACTION_DROP, pl.ControllerIndex)) then
+                    return false
+                end
+            end
+        elseif(action==ButtonAction.ACTION_PILLCARD) then
+            local pl = ent and ent:ToPlayer()
+            if(not (pl and pl:GetCard(0)==ToyboxMod.CARD_MANTLE_GOLD and pl:GetNumCoins()<COINS_REMOVE)) then return end
+
+            if(pl:GetPlayerType()==PlayerType.PLAYER_ESAU) then
+                if(Input.IsActionPressed(ButtonAction.ACTION_DROP, pl.ControllerIndex)) then
+                    return false
+                end
+            else
+                return false
+            end
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_PRE_USE_CARD, preUseMantle, ToyboxMod.CARD_MANTLE_GOLD)
-
+ToyboxMod:AddCallback(ModCallbacks.MC_INPUT_ACTION, cancelCardInput)
 
 
 if(ToyboxMod.ATLAS_A_MANTLESUBTYPES) then ToyboxMod.ATLAS_A_MANTLESUBTYPES[ToyboxMod.CARD_MANTLE_GOLD] = true end

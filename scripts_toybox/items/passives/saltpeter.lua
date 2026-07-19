@@ -28,6 +28,8 @@ local function dealAOEdmg(_, ent, dmg, flags, source, cooldown)
     local pl = ToyboxMod:getPlayerFromEnt(source.Entity)
     if(not (pl and pl:HasCollectible(ToyboxMod.COLLECTIBLE_SALTPETER))) then return end
 
+    if(not ToyboxMod:isValidEnemy(ent)) then return end
+
     local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_SALTPETER)
     local damage = dmg*AOE_DMG_MULT*mult
     local radius = AOE_RANGE_MULT*pl.TearRange*mult
@@ -38,7 +40,7 @@ local function dealAOEdmg(_, ent, dmg, flags, source, cooldown)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, dealAOEdmg)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, dealAOEdmg)
 
 ---@param pl EntityPlayer
 local function saltpeterRangeMult(_, pl)

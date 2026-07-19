@@ -18,7 +18,7 @@ local function tryMakeChampionsInGreed(_, npc)
 
     if(not shouldMakeChampion) then return end
 
-    local champChance = ToyboxMod:getChampionChance()+1
+    local champChance = ToyboxMod:getChampionChance()
     local rng = npc:GetDropRNG()
 
     if(rng:RandomFloat()<champChance) then

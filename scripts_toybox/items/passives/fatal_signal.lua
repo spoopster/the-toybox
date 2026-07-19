@@ -16,7 +16,7 @@ local function tryReplacePool(_, sel, pool, dec, seed)
 
     local rng = ToyboxMod:generateRng(seed)
     local itempool = ToyboxMod.GAME:GetItemPool()
-    print(itempool:HasCollectible(sel), sel, pool, dec, seed)
+    --print(itempool:HasCollectible(sel), sel, pool, dec, seed)
 
     pool = itempool:GetLastPool()
 

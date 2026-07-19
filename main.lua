@@ -110,6 +110,7 @@ include("scripts_toybox.enemies.tar_baby")
 include("scripts_toybox.misc.entities.meteor")
 include("scripts_toybox.misc.entities.flame_breath_helper")
 include("scripts_toybox.misc.entities.sleepy_troll_bomb")
+include("scripts_toybox.misc.entities.blue_insect_upgrades")
 
 -- GRIDS
 include("scripts_toybox.misc.grids.copper_poop")

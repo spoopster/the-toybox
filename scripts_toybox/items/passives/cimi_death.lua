@@ -57,10 +57,10 @@ local REWARD_RESULTS = {
             local room = ToyboxMod.GAME:GetRoom()
             for _=1, 3 do
                 local fPos = room:FindFreePickupSpawnPosition(pos,39)
-                local pickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, 0, 0, fPos, Vector.Zero, nil):ToPickup()
+                local pickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, 0, NullPickupSubType.NO_COLLECTIBLE, fPos, Vector.Zero, nil):ToPickup()
                 local failSafe = 50
                 while(failSafe>0 and pickup.Variant==PickupVariant.PICKUP_HEART) do
-                    pickup:Morph(EntityType.ENTITY_PICKUP,0,0)
+                    pickup:Morph(EntityType.ENTITY_PICKUP, 0, NullPickupSubType.NO_COLLECTIBLE)
                 end
             end
         end},
