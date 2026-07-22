@@ -354,6 +354,55 @@ for id, data in pairs(STORED.GLOBAL_MODIFIERS) do
     )
 end
 
+local function createEIDCategory(data)
+    local descGen = function(player)
+        if(data.Condition(player)) then
+            local desc = data.Description(player)
+
+            for _, descData in ipairs(desc) do
+                EID:ItemReminderAddTempDescriptionEntry(
+                    descData.Icon,
+                    descData.Title,
+                    type(descData.Desc)=="table" and STORED.FUNCTIONS.StringTableToDescription(descData.Desc) or descData.Desc,
+                    descData.ObjID
+                )
+            end
+        end
+    end
+
+    return {
+        id = data.ID,
+        entryGenerators = {descGen},
+        hideInOverview = function ()
+            return not data.ShowInOverview
+        end,
+    }
+end
+
+local categoryPriority = {}
+for id, data in pairs(STORED.CATEGORIES) do
+    table.insert(categoryPriority, {ID=id, Priority=(data.Priority or 0)})
+end
+table.sort(categoryPriority, function(a,b) return a.Priority>b.Priority end)
+
+for _, data in ipairs(categoryPriority) do
+    local catData = STORED.CATEGORIES[data.ID]
+
+    local created
+
+    for k, v in ipairs(EID.ItemReminderCategories) do
+        if v.id == catData.ID then
+            EID.ItemReminderCategories[k] = createEIDCategory(catData)
+            created = true
+            break
+        end
+    end
+
+    if not created then
+        EID.ItemReminderCategories[#EID.ItemReminderCategories + 1] = createEIDCategory(catData)
+    end
+end
+EID:ResetItemReminderSelectedItems()
 
 
 if(EID) then

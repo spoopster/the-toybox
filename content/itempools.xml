@@ -67,6 +67,7 @@
         <Item Name="Krokodil"/>
         <Item Name="Wooden Arm"/>
         <Item Name="Rhubarb"/>
+        <Item Name="Tammy's Body"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -133,6 +134,7 @@
         <Item Name="Krokodil"/>
         <Item Name="Wooden Arm"/>
         <Item Name="Rhubarb"/>
+        <Item Name="Tammy's Body"/>
     </Pool>
 
     <Pool Name="boss">
@@ -260,7 +262,6 @@
         <Item Name="Pythagoras' Cup"/>
         <Item Name="The Good Juice"/>
         <Item Name="Reliquary"/>
-        <Item Name="Tammy's Body"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
@@ -272,7 +273,6 @@
         <Item Name="Pythagoras' Cup"/>
         <Item Name="The Good Juice"/>
         <Item Name="Reliquary"/>
-        <Item Name="Tammy's Body"/>
     </Pool>
 
     <Pool Name="curse">
@@ -286,6 +286,7 @@
         <Item Name="Angel Dust"/>
         <Item Name="Mind's Eye"/>
         <Item Name="Gimp Baby"/>
+        <Item Name="Tammy's Body"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
@@ -297,6 +298,7 @@
         <Item Name="Angel Dust"/>
         <Item Name="Mind's Eye"/>
         <Item Name="Gimp Baby"/>
+        <Item Name="Tammy's Body"/>
     </Pool>
 
     <Pool Name="secret">

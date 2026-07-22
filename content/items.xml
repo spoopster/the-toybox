@@ -1686,6 +1686,28 @@
     gfx="power_word.png"
     cache=""
 />
+<trinket id="34" name="Tungsten Key"
+    description="Use wisely"
+    gfx="tungsten_key.png"
+    cache=""
+/>
+<trinket id="35" name="Swallowed D10"
+    description="Back to the past"
+    gfx="swallowed_d10.png"
+    cache=""
+/>
+<trinket id="36" name="Monocle"
+    description="Indubitably"
+    gfx="monocle.png"
+    cache=""
+
+    luck="-1"
+/>
+<trinket id="37" name="Pink Donut"
+    description="Food fight!"
+    gfx="no_sprite.png"
+    cache=""
+/>
 
 <trinket id="100" name="Citrusberry "
     description="Emergency heal"

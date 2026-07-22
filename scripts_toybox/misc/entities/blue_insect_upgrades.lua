@@ -13,7 +13,7 @@ local SPIDER_SUB_BITMASK = (1<<0 | 1<<1 | 1<<2)
 -- 1: dummy spider, for morphing into a regular spider
 -- 2: big spider
 -- 3: lvl2 spider
--- 4: swarm spider
+-- 4: swarm spider (spawns in groups of 1-4)
 -- 5: small crazy long legs
 
 
@@ -167,13 +167,13 @@ local flyFunctions = {
                 if(locustColor==1) then
                     local bomb = Isaac.Spawn(4,BombVariant.BOMB_SMALL,0,fam.Position-fam.Velocity:Resized(15)+vel*15,vel,fam):ToBomb()
                     bomb.RadiusMultiplier = bomb.RadiusMultiplier*0.5
-                    bomb.ExplosionDamage = fam.Player.Damage+10
+                    bomb.ExplosionDamage = (fam.Player.Damage+10)*fam:GetMultiplier()
                     bomb:SetLoadCostumes(true)
                     bomb:SetExplosionCountdown(12)
                     bomb.Velocity = vel*10
                 else
                     local tear = fam:FireProjectile(vel)
-                    tear.CollisionDamage = fam.Player.Damage
+                    tear.CollisionDamage = fam.Player.Damage*fam:GetMultiplier()
 
                     if(locustColor==2) then
                         tear:AddTearFlags(TearFlags.TEAR_POISON)
@@ -231,13 +231,13 @@ local flyFunctions = {
                     if(locustColor==1) then
                         local bomb = Isaac.Spawn(4,BombVariant.BOMB_SMALL,0,fam.Position,vel,fam):ToBomb()
                         bomb.RadiusMultiplier = bomb.RadiusMultiplier*0.5
-                        bomb.ExplosionDamage = fam.Player.Damage+10
+                        bomb.ExplosionDamage = (fam.Player.Damage+10)*fam:GetMultiplier()
                         bomb:SetLoadCostumes(true)
                         bomb:SetExplosionCountdown(12)
                         bomb.Velocity = vel*8.5
                     else
                         local tear = fam:FireProjectile(vel)
-                        tear.CollisionDamage = fam.Player.Damage
+                        tear.CollisionDamage = fam.Player.Damage*fam:GetMultiplier()
 
                         if(locustColor==2) then
                             tear:AddTearFlags(TearFlags.TEAR_POISON)

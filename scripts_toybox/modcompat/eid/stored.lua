@@ -13,6 +13,7 @@ local STORED = {
     MISC = {},
 
     GLOBAL_MODIFIERS = {},
+    CATEGORIES = {},
 
     CONSTANTS = {},
     FUNCTIONS = {},
@@ -58,6 +59,13 @@ local functions = {
         STORED.GLOBAL_MODIFIERS[itemData.ID] = {}
         for key, val in pairs(itemData) do
             STORED.GLOBAL_MODIFIERS[itemData.ID][key] = val
+        end
+    end,
+
+    AddCategory = function(categoryData)
+        STORED.CATEGORIES[categoryData.ID] = {}
+        for key, val in pairs(categoryData) do
+            STORED.CATEGORIES[categoryData.ID][key] = val
         end
     end,
 

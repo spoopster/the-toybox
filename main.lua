@@ -1,6 +1,7 @@
 ToyboxMod = RegisterMod("toyboxMod", 1) ---@type ModReference
 
 ToyboxMod.GAME = Game()
+ToyboxMod.SFX = SFXManager()
 
 --[[] ]
 local ogfunc = ToyboxMod.AddCallback
@@ -379,6 +380,10 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.trinkets.earworm")
     include("scripts_toybox.items.trinkets.7th_page")
     include("scripts_toybox.items.trinkets.power_word")
+    include("scripts_toybox.items.trinkets.tungsten_key")
+    include("scripts_toybox.items.trinkets.swallowed_d10")
+    include("scripts_toybox.items.trinkets.monocle")
+    include("scripts_toybox.items.trinkets.pink_donut")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")

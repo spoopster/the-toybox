@@ -116,6 +116,9 @@
 	<sound name="(TOYBOX) Arm Attack">
 		<sample weight="1" path="arm_attack.wav" />
 	</sound>
+	<sound name="(TOYBOX) Crunch">
+		<sample weight="1" path="crunch.wav" />
+	</sound>
 
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />

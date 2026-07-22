@@ -79,6 +79,10 @@ local BASEDATA = {
 
     MINDS_EYE_POSITIONS = {},
 
+    MONOCLE_SPAWNS = {
+        {5,20,1,0},
+    },
+
     SUPER_RETROFALL_ID = 3,
     MATTMAN_CHANCE_LAMB_KILLS = 0,
 

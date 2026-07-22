@@ -116,6 +116,8 @@ local BASEDATA = {
         KEY = 0,
     },
 
+    PINK_DONUT_DAMAGE = 0,
+
     TEMPORARY_ITEMS = {},
     TEMPORARY_ITEMS_ROOM = {},
     TEMPORARY_ITEMS_LEVEL = {},

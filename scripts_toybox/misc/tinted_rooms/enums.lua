@@ -9,7 +9,7 @@ ToyboxMod.TINTED_ROOM = {
     CYAN = 1<<5,
     WHITE = 1<<6,
     BLACK = 1<<7,
-    
+
     BROWN = 1<<8,
     PINK = 1<<9,
 }
@@ -32,13 +32,18 @@ for key, val in pairs(ToyboxMod.TINTED_ROOM_COLOR) do
     ToyboxMod.TINTED_ROOM_COLOR_BITWISE[ToyboxMod.TINTED_ROOM[key]] = val
 end
 
+ToyboxMod.TINTED_ROOM_BITWISE = {}
+for key, val in pairs(ToyboxMod.TINTED_ROOM) do
+    ToyboxMod.TINTED_ROOM_BITWISE[ToyboxMod.TINTED_ROOM[key]] = key
+end
+
 ToyboxMod.TINTED_ROOM_PICKER = WeightedOutcomePicker()
     ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.RED, 1)
     ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.BLUE, 1)
     ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.GREEN, 1)
     ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.YELLOW, 1)
     ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.PURPLE, 1)
-    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.CYAN, 100)
+    ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.CYAN, 1)
     ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.WHITE, 1)
     ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.BLACK, 1)
     ToyboxMod.TINTED_ROOM_PICKER:AddOutcomeFloat(ToyboxMod.TINTED_ROOM.BROWN, 1)

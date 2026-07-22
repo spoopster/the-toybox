@@ -284,6 +284,10 @@ ToyboxMod.TRINKET_TRAIL_MIX = Isaac.GetTrinketIdByName("Trail Mix")
 ToyboxMod.TRINKET_EARWORM = Isaac.GetTrinketIdByName("Earworm")
 ToyboxMod.TRINKET_7TH_PAGE = Isaac.GetTrinketIdByName("The 7th Page")
 ToyboxMod.TRINKET_POWER_WORD = Isaac.GetTrinketIdByName("Power Word")
+ToyboxMod.TRINKET_TUNGSTEN_KEY = Isaac.GetTrinketIdByName("Tungsten Key")
+ToyboxMod.TRINKET_SWALLOWED_D10 = Isaac.GetTrinketIdByName("Swallowed D10")
+ToyboxMod.TRINKET_MONOCLE = Isaac.GetTrinketIdByName("Monocle")
+ToyboxMod.TRINKET_PINK_DONUT = Isaac.GetTrinketIdByName("Pink Donut")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED
@@ -476,6 +480,7 @@ ToyboxMod.SFX_REWIND = Isaac.GetSoundIdByName("(TOYBOX) Rewind")
 ToyboxMod.SFX_BELL = Isaac.GetSoundIdByName("(TOYBOX) Bell")
 ToyboxMod.SFX_ARM_ABSORB = Isaac.GetSoundIdByName("(TOYBOX) Arm Absorb")
 ToyboxMod.SFX_ARM_ATTACK = Isaac.GetSoundIdByName("(TOYBOX) Arm Attack")
+ToyboxMod.SFX_CRUNCH = Isaac.GetSoundIdByName("(TOYBOX) Crunch")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then

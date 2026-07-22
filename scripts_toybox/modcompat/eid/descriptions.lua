@@ -2778,7 +2778,101 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
-
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_TUNGSTEN_KEY,
+    Name = "Tungsten Key",
+    Description = {
+        "{{GoldenKey}} Grants infinite keys while held",
+        "On new floor, 50% chance to break"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"50%%", "25%%"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"On new floor, 50%% chance to break", "Does not break"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_SWALLOWED_D10,
+    Name = "Swallowed D10",
+    Description = {
+        "{{Collectible285}} Upon taking damage, devolve all enemies in the room",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"room", "{{ColorWhite}}room{{CR}} twice"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"room", "{{ColorWhite}}room{{CR}} thrice"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_MONOCLE,
+    Name = "Monocle",
+    Description = {
+        "\2 -1 Luck",
+        "If clearing a room would yield no reward, spawns a copy of the last room clear reward",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"a copy", "2 copies"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"a copy", "3 copies"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_PINK_DONUT,
+    Name = "Pink Donut",
+    Description = {
+        "{{EmptyHeart}} Items that grant max health on pickup instead grant +0.5 Damage per heart that would be granted",
+        "The damage granted by this trinket is permanent"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"+0.5", "+0.75"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"+0.5", "+1"},
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_PRISMSTONE,
@@ -3869,6 +3963,156 @@ enums.FUNCTIONS.AddPlayer({
 })
 
 
+
+--- CATEGORIES ---
+
+enums.FUNCTIONS.AddCategory({
+    Priority = 10,
+    ID = "Mantle Hearts",
+    ShowInOverview = false,
+    Condition = function()
+        return ToyboxMod:isAnyPlayerAtlasA()
+    end,
+    Description = function(player)
+        local toreturn = {}
+
+        local data = ToyboxMod:getAtlasATable(player)
+        local mantles = data.MANTLES
+        local rIdx = ToyboxMod:getRightmostMantleIdx(player)
+        for i=1,rIdx do
+            if(mantles[i].TYPE~=ToyboxMod.MANTLE_DATA.NONE.ID) then
+                local cardSub = -1
+                for _, dt in pairs(ToyboxMod.MANTLE_DATA) do
+                    if(dt.ID==mantles[i].TYPE) then
+                        cardSub = dt.CONSUMABLE_SUBTYPE
+                        break
+                    end
+                end
+
+                if(cardSub~=-1) then
+                    local descObj = EID:getDescriptionObj(5,300,cardSub)
+
+                    local desc = descObj.Description
+                    local descPreTransf = ""
+                    while((string.find(desc, "Transformation") or -1)>(string.find(desc, "#") or -1)) do
+                        local hashtagFound = (string.find(desc, "#") or 0)
+
+                        descPreTransf = descPreTransf..string.sub(desc, 1, hashtagFound)
+                        desc = string.sub(desc, hashtagFound+1, -1)
+                    end
+                    descPreTransf = string.sub(descPreTransf, 1, -2)
+                    descPreTransf = string.sub(descPreTransf, (string.find(descPreTransf, "#") or 0)+1, -1)
+
+                    table.insert(toreturn, {
+                        Icon = "{{Card"..tostring(cardSub).."}}",
+                        Title = descObj.Name,
+                        Desc = descPreTransf,
+                        ObjID = tostring(5)..tostring(300)..tostring(cardSub)
+                    })
+                end
+            end
+        end
+
+        return toreturn
+    end,
+})
+enums.FUNCTIONS.AddCategory({
+    Priority = 9,
+    ID = "Mantle Transformations",
+    ShowInOverview = false,
+    Condition = function()
+        return ToyboxMod:isAnyPlayerAtlasA()
+    end,
+    Description = function(player)
+        local toreturn = {}
+
+        local data = ToyboxMod:getAtlasATable(player)
+        local transfToCheck = {"TRANSFORMATION", "BIRTHRIGHT_TRANSFORMATION"}
+        for _, tr in ipairs(transfToCheck) do
+            if(data[tr]~=ToyboxMod.MANTLE_DATA.NONE.ID) then
+                local cardSub = -1
+                for _, dt in pairs(ToyboxMod.MANTLE_DATA) do
+                    if(dt.ID==data[tr]) then
+                        cardSub = dt.CONSUMABLE_SUBTYPE
+                        break
+                    end
+                end
+
+                if(cardSub~=-1) then
+                    local descObj = EID:getDescriptionObj(5,300,cardSub)
+
+                    local desc = descObj.Description
+                    local descPreTransf = ""
+                    while((string.find(desc, "Transformation") or 0)>(string.find(desc, "#") or 0)) do
+                        local hashtagFound = (string.find(desc, "#") or 0)
+                        desc = string.sub(desc, hashtagFound+1, -1)
+                    end
+
+                    local icon = string.sub(desc, 1, (string.find(desc, "}") or 0)+1)
+                    desc = string.sub(desc, (string.find(desc, "#") or 0), -1)
+
+                    table.insert(toreturn, {
+                        Icon = icon,
+                        Title = string.gsub(descObj.Name, "Mantle", "Transformation"),
+                        Desc = desc,
+                        ObjID = tostring(5)..tostring(300)..tostring(cardSub)
+                    })
+                end
+            end
+        end
+
+        return toreturn
+    end,
+})
+enums.FUNCTIONS.AddCategory({
+    ID = "Tinted Rooms",
+    ShowInOverview = false,
+    Condition = function()
+        return ToyboxMod:isTintedRoom(ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex())
+    end,
+    Description = function(player)
+        local toreturn = {}
+
+        local tints = ToyboxMod:getTintedRoomTint(ToyboxMod.GAME:GetLevel():GetCurrentRoomIndex())
+        local startIdx = (1<<0)
+
+        local presentTints = {}
+
+        while(ToyboxMod.TINTED_ROOM_BITWISE[startIdx]) do
+            if(tints & startIdx ~= 0) then
+                table.insert(presentTints, ToyboxMod.TINTED_ROOM_BITWISE[startIdx])
+            end
+
+            startIdx = (startIdx<<1)
+        end
+
+        local finalTintData = {}
+        for _, tint in ipairs(presentTints) do
+            local descText = enums.MISC.tinted_rooms[tint]
+
+
+            --local foundPos = string.find(descText, "}") and (string.find(descText, "}")+2) or (string.find(descText, " ")==2 and string.find(descText, " ")) or 0
+
+            local name = string.sub(tint, 1, 1)..string.lower(string.sub(tint, 2, -1))
+            local start = ""--string.sub(descText, 1, foundPos)
+            local fin = descText--string.sub(descText, foundPos+1, -1)
+
+            local color = "{{ColorObjName}}"
+            descText = start..color..name.."{{CR}}".." - "..fin
+
+            table.insert(finalTintData, descText)
+        end
+
+        table.insert(toreturn, {
+            Icon = "{{Blank}}",
+            Title = "",
+            Desc = finalTintData,
+        })
+
+        return toreturn
+    end,
+})
+
 --- GLOBALS ---
 
 enums.FUNCTIONS.AddGlobalModifier({
@@ -4053,4 +4297,18 @@ enums.MISC.death_sacrifice_endless = {
     {
         "\1 Permanent increase to a random stat",
     },
+}
+
+enums.MISC.tinted_rooms = {
+    RED = "\1 +1.2 Damage",
+    BLUE = "\1 +1 Tears",
+    GREEN = "\1 +5 Luck",
+    YELLOW = "On death, enemies drop coins that disappear",
+    PURPLE = "{{Collectible3}} Homing shots",
+    CYAN = "Every 2 seconds, spawn 1 blue fly, up to 3",
+    WHITE = "{{Collectible108}} Wafer effect",
+    BLACK = "Room clear effects are triggered 2 additional times",
+
+    BROWN = "\1 Major size down",
+    PINK = "On death, enemies have a 15% chance to respawn as a friendly copy",
 }
