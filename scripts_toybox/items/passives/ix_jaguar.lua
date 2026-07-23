@@ -124,7 +124,7 @@ local function addNewBossRoom(_)
         MinimapAPI:CheckForNewRedRooms()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, addNewBossRoom)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.LATE+100, addNewBossRoom)
 
 local function addNewBossRoomMango(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_IX_JAGUAR)) then return end

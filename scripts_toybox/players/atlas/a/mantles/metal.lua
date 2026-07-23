@@ -57,8 +57,13 @@ local function cancelAtlasAMetalMantleDamage(_, player, dmg, flags, source, fram
     player = player:ToPlayer()
 
     if(dmg>0) then
+        if(not source.Entity and source.Variant==10003) then
+            return
+        end
+
         local blockChance = getBlockChance(player)
         if(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.METAL.ID)) then
+            if(flags & DamageFlag.DAMAGE_CURSED_DOOR~=0) then blockChance = 1 end
             if(flags & DamageFlag.DAMAGE_SPIKES~=0 and ToyboxMod.GAME:GetRoom():GetType()~=RoomType.ROOM_SACRIFICE) then blockChance = 1
             elseif(flags & DamageFlag.DAMAGE_ACID~=0) then blockChance = 1 end
         end

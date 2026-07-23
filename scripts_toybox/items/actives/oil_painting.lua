@@ -31,19 +31,17 @@ local function useOilPainting(_, _, rng, player, _, slot, vdata)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useOilPainting, ToyboxMod.COLLECTIBLE_OIL_PAINTING)
 
-local function increasePaintingValue(_)
-    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
-        local pl = Isaac.GetPlayer(i)
-        local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_OIL_PAINTING)
-        for _, slot in pairs(ActiveSlot) do
-            local data = pl:GetActiveItemDesc(slot)
-            if(data.Item==ToyboxMod.COLLECTIBLE_OIL_PAINTING) then
-                data.VarData = data.VarData+VALUE_ADD_PICKER:PickOutcome(rng)
-            end
+---@param pl EntityPlayer
+local function increasePaintingValue(_, pl)
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_OIL_PAINTING)
+    for _, slot in pairs(ActiveSlot) do
+        local data = pl:GetActiveItemDesc(slot)
+        if(data.Item==ToyboxMod.COLLECTIBLE_OIL_PAINTING) then
+            data.VarData = data.VarData+VALUE_ADD_PICKER:PickOutcome(rng)
         end
     end
 end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_ROOM_CLEAR, increasePaintingValue)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, increasePaintingValue)
 
 local priceSprite = Sprite("gfx_tb/ui/ui_active_price.anm2", true)
 priceSprite:Play("Basic", true)

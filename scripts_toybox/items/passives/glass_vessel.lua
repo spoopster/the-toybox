@@ -27,15 +27,17 @@ local function renderVessel(_, offset, sprite, pos, x, pl)
     local hpLimit = (pl:GetHeartLimit()+1)//2
     local numHearts = 0
 
-    if(playerHud:GetPlayer()) then
-        for i, heart in ipairs(playerHud:GetHearts()) do
-            if(heart:IsVisible()) then
-                numHearts = i
+    if(not pl:HasInstantDeathCurse()) then
+        if(playerHud:GetPlayer()) then
+            for i, heart in ipairs(playerHud:GetHearts()) do
+                if(heart:IsVisible()) then
+                    numHearts = i
+                end
             end
+        else
+            heartsPerLine = 3
+            numHearts = (pl:GetMaxHearts()+1)//2+(pl:GetBoneHearts()+1)//2+(pl:GetSoulHearts()+1)//2
         end
-    else
-        heartsPerLine = 3
-        numHearts = (pl:GetMaxHearts()+1)//2+(pl:GetBoneHearts()+1)//2+(pl:GetSoulHearts()+1)//2
     end
 
     if(pl:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)) then

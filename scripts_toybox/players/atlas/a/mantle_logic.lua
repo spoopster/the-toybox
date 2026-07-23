@@ -103,9 +103,11 @@ local function timeInTransfUpdate(_, player)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, timeInTransfUpdate)
 
-local function mantleDamage(_, player, dmg, flags, source, frames)
-    player = player:ToPlayer()
-    if(not ToyboxMod:isAtlasA(player)) then return end
+---@param ent Entity
+local function mantleDamage(_, ent, dmg, flags, source, frames)
+    local player = ent:ToPlayer()
+    if(not (player and ToyboxMod:isAtlasA(player))) then return end
+    if(player:HasInstantDeathCurse()) then return end
     local data = ToyboxMod:getAtlasATable(player)
     local ridx = ToyboxMod:getRightmostMantleIdx(player)
 

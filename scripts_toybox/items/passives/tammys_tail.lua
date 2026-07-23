@@ -14,18 +14,17 @@ local function retriggerClear(_, _)
     if(CANCEL_RETRIGGER) then return end
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)) then return end
 
+    local room = ToyboxMod.GAME:GetRoom()
+    if(INVALID_ROOMTYPES[room:GetType()]) then return end
+
     sfx:Play(ToyboxMod.SFX_MEOW)
 
     local numRetriggers = CLEAR_RETRIGGERS*PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)
-    local room = ToyboxMod.GAME:GetRoom()
-
     Isaac.CreateTimer(
         function(_)
             CANCEL_RETRIGGER = true
 
-            if(not INVALID_ROOMTYPES[room:GetType()]) then
-                room:TriggerClear(true)
-            end
+            room:TriggerClear(true)
 
             CANCEL_RETRIGGER = false
         end,
@@ -40,6 +39,9 @@ local function playerRetriggerClear(_, pl)
     if(CANCEL_RETRIGGER) then return end
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)) then return end
 
+    local room = ToyboxMod.GAME:GetRoom()
+    if(not (ToyboxMod.GAME:IsGreedMode() or INVALID_ROOMTYPES[room:GetType()])) then return end
+
     sfx:Play(ToyboxMod.SFX_MEOW)
 
     local numRetriggers = CLEAR_RETRIGGERS*PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_TAMMYS_TAIL)
@@ -48,9 +50,7 @@ local function playerRetriggerClear(_, pl)
         function(_)
             CANCEL_RETRIGGER = true
 
-            if(INVALID_ROOMTYPES[room:GetType()]) then
-                pl:TriggerRoomClear()
-            end
+            pl:TriggerRoomClear()
 
             CANCEL_RETRIGGER = false
         end,

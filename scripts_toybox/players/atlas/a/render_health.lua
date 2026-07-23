@@ -19,9 +19,7 @@ f:Load("font/pftempestasevencondensed.fnt")
 ---@param sprite Sprite
 ---@param pos Vector
 ---@param player EntityPlayer
-local function renderMantles(_, offset, sprite, pos, u, player)
-    if(not ToyboxMod:isAtlasA(player)) then return end
-
+local function renderMantles(offset, sprite, pos, u, player)
     player = player:ToPlayer()
     local renderPos = pos+Vector(0,0)
     local data = ToyboxMod:getAtlasATable(player)
@@ -41,7 +39,7 @@ local function renderMantles(_, offset, sprite, pos, u, player)
     local alphaMult = (isStrawman and 0.5 or 0.75)
 
     TRANSF_SPRITE.Scale = Vector(1,1)
-    TRANSF_SPRITE.Color = Color(1,1,1,alphaMult)
+    TRANSF_SPRITE.Color = Color(1,1,1,alphaMult)*Color(1,1,1,(player:HasInstantDeathCurse() and 0.5 or 1))
     TRANSF_SPRITE:Play(ToyboxMod.MANTLE_DATA[ToyboxMod:getMantleKeyFromId(data.TRANSFORMATION) or "NONE"].ANIM or ToyboxMod.MANTLE_DATA.NONE.ANIM, true)
     if(hasCurseOfTheUnknown) then TRANSF_SPRITE:Play(ToyboxMod.MANTLE_DATA.UNKNOWN.ANIM) end
     local trfRenderPos = heartRenderPos+heartPosOffsets*(0.5+data.HP_CAP/2)+Vector(-0.5,0)--+(heartRenderPos-renderPos)/2+Vector(-5,0)
@@ -77,13 +75,6 @@ local function renderMantles(_, offset, sprite, pos, u, player)
 
         HP_SPRITE:SetFrame(spriteToRender, hpToRender)
 
-        if(data.MANTLES[i].COLOR and i==1) then
-            local s = ""
-            if(type(data.MANTLES[i].COLOR)=="table") then 
-                for key, val in pairs(data.MANTLES[i].COLOR) do s=s..tostring(key)..": "..tostring(val).." | " end
-            else s=(data.MANTLES[i].COLOR) end
-        end
-
         local updatedColor=false
         if(selHealthIndex==i and not hasCurseOfTheUnknown) then
             updatedColor=true
@@ -97,7 +88,8 @@ local function renderMantles(_, offset, sprite, pos, u, player)
 
         if(not updatedColor) then data.MANTLES[i].COLOR = Color.Lerp(data.MANTLES[i].COLOR or Color(1,1,1,1), Color(1,1,1,1), 0.15) end
         
-        HP_SPRITE.Color = data.MANTLES[i].COLOR or Color(1,1,1,1)
+        local finalColor = Color.Lerp((data.MANTLES[i].COLOR or Color(1,1,1,1)), Color.Default, 0)*sprite.Color*Color(1,1,1,(player:HasInstantDeathCurse() and 0.33 or 1))
+        HP_SPRITE.Color = finalColor
         HP_SPRITE:Render(heartRenderPos)
 
         if(ToyboxMod:getMantleHeartData(player, i, "SOUL_SHIELD")==1 and not hasCurseOfTheUnknown) then
@@ -105,4 +97,34 @@ local function renderMantles(_, offset, sprite, pos, u, player)
         end
     end
 end
-ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, -1e6, renderMantles)
+
+---@param player EntityPlayer
+local function postRenderHearts(_, offset, sprite, pos, u, player)
+    if(not ToyboxMod:isAtlasA(player)) then return end
+
+    if(not player:HasInstantDeathCurse()) then
+        renderMantles(offset, sprite, pos, u, player)
+    else
+        ToyboxMod.GAME:GetHUD():GetHeartsSprite():GetLayer(0):SetColor(Color(1,1,1,1))
+    end
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, -1e6, postRenderHearts)
+
+---@param sprite Sprite
+---@param player EntityPlayer
+local function preRenderMangos(_, offset, sprite, pos, u, player)
+    if(not ToyboxMod:isAtlasA(player)) then return end
+
+    if(player:HasInstantDeathCurse()) then
+        renderMantles(offset, sprite, pos, u, player)
+
+        local sp = ToyboxMod.GAME:GetHUD():GetHeartsSprite()
+        if(player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)) then
+            sp:SetFrame("HolyMantle", 0)
+            sp:Render(pos)
+        end
+
+        sp:GetLayer(0):SetColor(Color(1,1,1,0.0))
+    end
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_HEARTS, CallbackPriority.LATE+100, preRenderMangos)
