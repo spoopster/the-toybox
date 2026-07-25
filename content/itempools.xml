@@ -68,6 +68,9 @@
         <Item Name="Wooden Arm"/>
         <Item Name="Rhubarb"/>
         <Item Name="Tammy's Body"/>
+        <Item Name="Unstable DNA"/>
+        <Item Name="Lab Meat"/>
+        <Item Name="Anaphylaxis"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -135,6 +138,9 @@
         <Item Name="Wooden Arm"/>
         <Item Name="Rhubarb"/>
         <Item Name="Tammy's Body"/>
+        <Item Name="Unstable DNA"/>
+        <Item Name="Lab Meat"/>
+        <Item Name="Anaphylaxis"/>
     </Pool>
 
     <Pool Name="boss">
@@ -287,6 +293,7 @@
         <Item Name="Mind's Eye"/>
         <Item Name="Gimp Baby"/>
         <Item Name="Tammy's Body"/>
+        <Item Name="Lab Meat"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
@@ -299,6 +306,7 @@
         <Item Name="Mind's Eye"/>
         <Item Name="Gimp Baby"/>
         <Item Name="Tammy's Body"/>
+        <Item Name="Lab Meat"/>
     </Pool>
 
     <Pool Name="secret">
@@ -381,6 +389,7 @@
         <Item Name="D"/>
         <Item Name="Paper Plate"/>
         <Item Name="Surprise Egg"/>
+        <Item Name="Anaphylaxis"/>
     </Pool>
 
     <Pool Name="woodenChest">
@@ -478,6 +487,7 @@
         <Item Name="MP3 Player"/>
         <Item Name="Yes Baby"/>
         <Item Name="Rhubarb"/>
+        <Item Name="Anaphylaxis"/>
     </Pool>
 
     <Pool Name="ultraSecret">
