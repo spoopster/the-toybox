@@ -46,3 +46,30 @@ local function checkItemLogic(_, pl)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, checkItemLogic, ToyboxMod.PLAYER_HOMUNCULUS_A)
+
+---@param pickup EntityPickup
+---@param pl Entity
+local function consumeHeart(_, pickup, pl)
+    if(not ToyboxMod.RED_HEART_SUBTYPES[pickup.SubType]) then return end
+    if(pickup:IsShopItem()) then return end
+    if(not (pl and pl:ToPlayer() and pl:ToPlayer():GetPlayerType()==ToyboxMod.PLAYER_HOMUNCULUS_A)) then return end
+    pl = pl:ToPlayer() ---@cast pl EntityPlayer
+
+    if(pl:GetHearts()<pl:GetEffectiveMaxHearts()) then return end
+
+    local data = ToyboxMod:getEntityDataTable(pl)
+    data.HOMUNCULUS_A_ITEM = getRandomItem(pl:GetDropRNG())
+    pl:SetInnateCollectibleGroup("ToyboxHomunculusAItems", {[data.HOMUNCULUS_A_ITEM]=1}, true)
+
+    sfx:Play(SoundEffect.SOUND_THUMBSUP)
+    pl:AnimateCollectible(data.HOMUNCULUS_A_ITEM, "UseItem")
+    ToyboxMod.GAME:GetHUD():ShowItemText(pl, Isaac.GetItemConfig():GetCollectible(data.HOMUNCULUS_A_ITEM), false)
+
+    pickup:GetSprite():Play("Collect", true)
+    pickup:Die()
+
+    sfx:Play(SoundEffect.SOUND_VAMP_GULP)
+
+    return true
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.IMPORTANT, consumeHeart, PickupVariant.PICKUP_HEART)

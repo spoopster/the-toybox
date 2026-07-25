@@ -111,6 +111,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, cancelVesselDamage, 0
 ---@param pl Entity
 local function consumeHeart(_, pickup, pl)
     if(not ToyboxMod.RED_HEART_SUBTYPES[pickup.SubType]) then return end
+    if(pickup:IsShopItem()) then return end
     if(not (pl and pl:ToPlayer() and pl:ToPlayer():HasCollectible(ToyboxMod.COLLECTIBLE_GLASS_VESSEL))) then return end
     pl = pl:ToPlayer() ---@cast pl EntityPlayer
 

@@ -13,13 +13,13 @@ local function blueFlyInit(_, familiar)
         local numLocusts = 1
         if(sub==LocustSubtypes.LOCUST_OF_CONQUEST) then numLocusts = rng:RandomInt(4)+1 end
 
-        for i=1, numLocusts do
+        for _=1, numLocusts do
             local locust = Isaac.Spawn(EntityType.ENTITY_FAMILIAR,FamiliarVariant.BLUE_FLY,sub,familiar.Position,familiar.Velocity,familiar.SpawnerEntity):ToFamiliar()
             locust.Player = familiar.Player
             locust.Target = familiar.Target
             locust:ClearEntityFlags(locust:GetEntityFlags())
             locust:AddEntityFlags(familiar:GetEntityFlags())
-            locust:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+            --locust:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
         end
 
         familiar:Remove()

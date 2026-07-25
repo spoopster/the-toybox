@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="trtv" CreatedOn="7/7/2026 11:35:10 PM" Version="9" Fps="30"/>
+	<Info CreatedBy="trtv" CreatedOn="7/25/2026 3:03:52 PM" Version="10" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="swarm spider.png" Id="0"/>

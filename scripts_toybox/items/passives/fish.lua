@@ -6,7 +6,7 @@ local copyingFamiliar
 ---@param fam EntityFamiliar
 local function familiarCopy(_, fam)
     if(Isaac.GetPlayer().FrameCount==0) then return end
-    if(not fam.Player:HasCollectible(ToyboxMod.COLLECTIBLE_FISH)) then return end
+    if(not (fam and fam:Exists() and fam.Player:HasCollectible(ToyboxMod.COLLECTIBLE_FISH))) then return end
 
     if(copyingFamiliar) then return end
     copyingFamiliar = true
@@ -14,22 +14,27 @@ local function familiarCopy(_, fam)
     local famCopy = Isaac.Spawn(fam.Type,fam.Variant,fam.SubType,fam.Position,fam.Velocity,fam.SpawnerEntity):ToFamiliar()
     famCopy.Player = fam.Player
     famCopy.Target = fam.Target
+    famCopy.Hearts = fam.Hearts
     famCopy:ClearEntityFlags(famCopy:GetEntityFlags())
     famCopy:AddEntityFlags(fam:GetEntityFlags())
     famCopy:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 
     copyingFamiliar = false
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarCopy, FamiliarVariant.BLUE_SPIDER)
-ToyboxMod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, familiarCopy, FamiliarVariant.BLUE_FLY)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_FAMILIAR_INIT, 2, familiarCopy, FamiliarVariant.BLUE_SPIDER)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_FAMILIAR_INIT, 2, familiarCopy, FamiliarVariant.BLUE_FLY)
 
 ---@param pl Entity
 local function playerHurtAddBlueFam(_, pl, _, flags, source)
     pl = pl:ToPlayer()
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_FISH)) then return end
 
-    pl:AddBlueFlies(1, pl.Position, nil)
-    pl:AddBlueSpider(pl.Position)
+    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_FISH)
+
+    pl:AddBlueFlies(mult, pl.Position, nil)
+    for _=1, mult do
+        pl:AddBlueSpider(pl.Position)
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, playerHurtAddBlueFam, EntityType.ENTITY_PLAYER)
 

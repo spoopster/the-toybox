@@ -119,6 +119,9 @@
 	<sound name="(TOYBOX) Crunch">
 		<sample weight="1" path="crunch.wav" />
 	</sound>
+	<sound name="(TOYBOX) Deflate">
+		<sample weight="1" path="deflate.wav" />
+	</sound>
 
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />

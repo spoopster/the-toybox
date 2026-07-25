@@ -1926,6 +1926,32 @@ enums.FUNCTIONS.AddItem({
         "Bosses take 1.5% instead of 15%"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_UNSTABLE_DNA,
+    Name = "Unstable DNA",
+    Description = {
+        "50% chance to upgrade blue flies and blue spiders into stronger variants:",
+        "Fly -> Moter, Lvl.2 Fly, Sucker, or Pooter",
+        "Spider -> Big Spider, Lvl.2 Spider, 1-4 Swarm Spiders, Small Crazy Long Legs"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_LAB_MEAT,
+    Name = "Lab Meat",
+    Description = {
+        "Spawns 4-7 blue flies/spiders",
+        "{{Collectible"..ToyboxMod.COLLECTIBLE_UNSTABLE_DNA.."}} Blue flies/spiders are upgraded into stronger variants (e.g blue fly -> moter)",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_ANAPHYLAXIS,
+    Name = "Anaphylaxis",
+    Description = {
+        "If a projectile or enemy gets close, blows it away and puffs up your head for 7 seconds",
+        "While head is puffed up, grants \1 +1 Tears and \2 -0.2 Shotspeed",
+        "This effect has a 12 second cooldown"
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

@@ -1,5 +1,7 @@
 local sfx = SFXManager()
 
+local INACTIVE_COSTUME = Isaac.GetCostumeIdByPath("gfx_tb/characters/costume_ix_jaguar_inactive.anm2")
+
 local function revealAdjacentDoors()
     local desIdx = ToyboxMod:getExtraData("IX_REVEALED_ROOM")
     if((desIdx or -1)==-1) then return end
@@ -119,6 +121,14 @@ local function addNewBossRoom(_)
         revealAdjacentDoors()
     end
 
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
+        local pl = Isaac.GetPlayer(i)
+        if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_IX_JAGUAR)) then
+            pl:TryRemoveNullCostume(INACTIVE_COSTUME)
+            pl:AddCostume(Isaac.GetItemConfig():GetCollectible(ToyboxMod.COLLECTIBLE_IX_JAGUAR))
+        end
+    end
+
     level:UpdateVisibility()
     if(MinimapAPI) then
         MinimapAPI:CheckForNewRedRooms()
@@ -152,6 +162,15 @@ local function applyMarkPenalties(_, player, _, flags, source)
     end
     ToyboxMod:setExtraData("IX_FAILED", (ToyboxMod:getExtraData("IX_FAILED") or 0)+1)
     revealAdjacentDoors()
+
+    if(ToyboxMod:getExtraData("IX_FAILED")>=PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_IX_JAGUAR)) then
+        for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
+            local pl = Isaac.GetPlayer(i)
+            if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_IX_JAGUAR)) then
+                pl:AddNullCostume(INACTIVE_COSTUME)
+            end
+        end
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, applyMarkPenalties, EntityType.ENTITY_PLAYER)
 
@@ -164,3 +183,18 @@ local function doorupdate(_, door)
     door:Close(true)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_DOOR_UPDATE, doorupdate)
+
+---@param pl EntityPlayer
+local function removeMangoCostume(_, pl)
+    pl:TryRemoveNullCostume(INACTIVE_COSTUME)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, removeMangoCostume, ToyboxMod.COLLECTIBLE_IX_JAGUAR)
+
+---@param firstTime boolean
+---@param pl EntityPlayer
+local function tryAddMangoCostume(_, _, _, firstTime, _, _, pl)
+    if((ToyboxMod:getExtraData("IX_FAILED") or 0)>=PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_IX_JAGUAR)) then
+        pl:AddNullCostume(INACTIVE_COSTUME)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, tryAddMangoCostume, ToyboxMod.COLLECTIBLE_IX_JAGUAR)

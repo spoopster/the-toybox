@@ -230,6 +230,16 @@ ToyboxMod.COLLECTIBLE_TAMMYS_BODY = Isaac.GetItemIdByName("Tammy's Body")
 ToyboxMod.COLLECTIBLE_KROKODIL = Isaac.GetItemIdByName("Krokodil")
 ToyboxMod.COLLECTIBLE_WOODEN_ARM = Isaac.GetItemIdByName("Wooden Arm")
 ToyboxMod.COLLECTIBLE_RHUBARB = Isaac.GetItemIdByName("Rhubarb")
+ToyboxMod.COLLECTIBLE_UNSTABLE_DNA = Isaac.GetItemIdByName("Unstable DNA")
+ToyboxMod.COLLECTIBLE_LAB_MEAT = Isaac.GetItemIdByName("Lab Meat")
+ToyboxMod.COLLECTIBLE_ANAPHYLAXIS = Isaac.GetItemIdByName("Anaphylaxis")
+
+ToyboxMod.COLLECTIBLE_CLONE = Isaac.GetItemIdByName("Clone")
+ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT = Isaac.GetItemIdByName("Elephant's Foot")
+ToyboxMod.COLLECTIBLE_MUTAGEN = Isaac.GetItemIdByName("Mutagen")
+ToyboxMod.COLLECTIBLE_TWISTED_HEART = Isaac.GetItemIdByName("Twisted Heart")
+ToyboxMod.COLLECTIBLE_FRANKENCAT = Isaac.GetItemIdByName("Frankencat")
+ToyboxMod.COLLECTIBLE_XENOTRANSFUSION = Isaac.GetItemIdByName("Xenotransfusion")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")
@@ -481,6 +491,7 @@ ToyboxMod.SFX_BELL = Isaac.GetSoundIdByName("(TOYBOX) Bell")
 ToyboxMod.SFX_ARM_ABSORB = Isaac.GetSoundIdByName("(TOYBOX) Arm Absorb")
 ToyboxMod.SFX_ARM_ATTACK = Isaac.GetSoundIdByName("(TOYBOX) Arm Attack")
 ToyboxMod.SFX_CRUNCH = Isaac.GetSoundIdByName("(TOYBOX) Crunch")
+ToyboxMod.SFX_DEFLATE = Isaac.GetSoundIdByName("(TOYBOX) Deflate")
 
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then
