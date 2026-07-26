@@ -131,7 +131,7 @@ local function eyeFamiliarUpdate(_, fam)
                 if(ToyboxMod:isValidEnemy(ent)) then
                     local npc = ent:ToNPC()
 
-                    npc:TakeDamage(fam.CollisionDamage, 0, EntityRef(fam), 10)
+                    npc:TakeDamage(fam.CollisionDamage*fam:GetMultiplier(), 0, EntityRef(fam), 10)
                     npc:AddBleeding(EntityRef(fam.Player), math.max(0, BLEED_DURATION-npc:GetBleedingCountdown()))
 
                     if(npc:HasMortalDamage()) then

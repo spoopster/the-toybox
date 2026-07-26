@@ -1947,8 +1947,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_ANAPHYLAXIS,
     Name = "Anaphylaxis",
     Description = {
-        "If a projectile or enemy gets close, blows it away and puffs up your head for 7 seconds",
-        "While head is puffed up, grants \1 +1 Tears and \2 -0.2 Shotspeed",
+        "If a projectile or enemy gets close, blows it away, and grants \1 +1 Tears and \2 -0.2 Shotspeed for the next 7 seconds",
         "This effect has a 12 second cooldown"
     },
 })

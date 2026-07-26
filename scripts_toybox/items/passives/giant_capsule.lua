@@ -153,7 +153,7 @@ local function familiarFireProj(_, tear)
     local virusData = VIRUS_INFO[tear.SpawnerEntity and tear.SpawnerEntity.SubType] or VIRUS_INFO[0]
     if(not virusData) then return end
 
-    tear.CollisionDamage = BASE_DMG*(virusData.DMGMULT or 1)
+    tear.CollisionDamage = BASE_DMG*(virusData.DMGMULT or 1)*(tear.SpawnerEntity and tear.SpawnerEntity:ToFamiliar() and tear.SpawnerEntity:ToFamiliar():GetMultiplier() or 1)
     tear.Velocity:Resize(BASE_VEL*(virusData.SHOTSPEEDMULT or 1))
     if(virusData.COLOR) then
         tear.Color = virusData.COLOR

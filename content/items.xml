@@ -975,7 +975,7 @@
 <active id="104" name="Coloring Book"
     description="Stay within the lines"
     gfx="coloring_book.png"
-    quality="2"
+    quality="1"
     tags="offensive book"
     cache=""
 
@@ -1418,7 +1418,7 @@
     tags="offensive summonable"
     cache=""
 
-    effecttears="1" effectshotspeed="-0.2"
+    effecttears="1" effectshotspeed="-0.2" persistent="true" cooldown="210"
 />
 
 <active id="491" name="Cursed D6"

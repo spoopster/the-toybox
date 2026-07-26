@@ -3,7 +3,7 @@ local PUFFED_SCALE = 1.4
 local PUFF_DURATION = 30*7
 local PUFF_COOLDOWN = 30*5
 
-local PUFF_DANGER_DISTANCE = 40*1
+local PUFF_DANGER_DISTANCE = 40*0.8
 
 local PUFF_COSTUME = Isaac.GetCostumeIdByPath("gfx_tb/characters/costume_anaphylaxis_puffed.anm2")
 
@@ -36,7 +36,8 @@ local function puffUpdate(_, pl)
         data.ANAPHYLAXIS_COOLDOWN = math.max((data.ANAPHYLAXIS_COOLDOWN or 0)-1, 0)
 
         if(data.ANAPHYLAXIS_COOLDOWN==0 and data.ANAPHYLAXIS_SCALE<1.05) then
-            local toCheck = Isaac.FindInRadius(pl.Position, PUFF_DANGER_DISTANCE, EntityPartition.BULLET | EntityPartition.ENEMY)
+            local dist = PUFF_DANGER_DISTANCE+pl.Size
+            local toCheck = Isaac.FindInRadius(pl.Position, dist, EntityPartition.BULLET | EntityPartition.ENEMY)
             local shouldPuff = false
 
             for _, ent in ipairs(toCheck) do
@@ -54,7 +55,7 @@ local function puffUpdate(_, pl)
                 eff:GetCollectibleEffect(ToyboxMod.COLLECTIBLE_ANAPHYLAXIS).Cooldown = PUFF_DURATION
                 pl:AddNullCostume(PUFF_COSTUME)
 
-                ToyboxMod.GAME:ButterBeanFart(pl.Position, PUFF_DANGER_DISTANCE+10, pl, true,false)
+                ToyboxMod.GAME:ButterBeanFart(pl.Position, dist+10, pl, true, true)
 
                 ToyboxMod.SFX:Play(SoundEffect.SOUND_INFLATE, nil, nil, nil, 1.2)
             end
