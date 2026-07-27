@@ -1775,6 +1775,13 @@
     gfx="pink_donut.png"
     cache=""
 />
+<trinket id="38" name="Infestation 3"
+    description="Infested foes"
+    gfx="infestation_3.png"
+    cache=""
+
+    achievement="Infestation 3"
+/>
 
 <trinket id="100" name="Citrusberry "
     description="Emergency heal"

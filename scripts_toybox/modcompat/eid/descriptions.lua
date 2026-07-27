@@ -2930,6 +2930,29 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_INFESTATION_3,
+    Name = "Infestation 3",
+    Description = {
+        "Enemies spawned by other enemies are turned into spiders",
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"spiders", "1 HP {{ColorWhite}}spiders{{CR}}"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"spiders", "1 HP {{ColorWhite}}spiders{{CR}}"},
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_PRISMSTONE,

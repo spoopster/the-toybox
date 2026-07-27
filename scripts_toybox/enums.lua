@@ -300,6 +300,7 @@ ToyboxMod.TRINKET_TUNGSTEN_KEY = Isaac.GetTrinketIdByName("Tungsten Key")
 ToyboxMod.TRINKET_SWALLOWED_D10 = Isaac.GetTrinketIdByName("Swallowed D10")
 ToyboxMod.TRINKET_MONOCLE = Isaac.GetTrinketIdByName("Monocle")
 ToyboxMod.TRINKET_PINK_DONUT = Isaac.GetTrinketIdByName("Pink Donut")
+ToyboxMod.TRINKET_INFESTATION_3 = Isaac.GetTrinketIdByName("Infestation 3")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED

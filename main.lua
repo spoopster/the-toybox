@@ -390,6 +390,7 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.trinkets.swallowed_d10")
     include("scripts_toybox.items.trinkets.monocle")
     include("scripts_toybox.items.trinkets.pink_donut")
+    include("scripts_toybox.items.trinkets.infestation_3")
 --UNUSED
     --include("scripts_toybox.items.unused.btrain")
     --include("scripts_toybox.items.unused.laser_pointer")
