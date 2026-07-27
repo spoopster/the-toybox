@@ -29,5 +29,12 @@
 * secretpath = force Repentance alt path
 -->
 <challenges version="1">
-	<challenge name="I - Scientology" achievements="Scientology Challenge" lockeddesc="Unlock Atheism" endstage="10" altpath="true" startingitems="Atheism,Pythagoras' Cup " playertype="2" roomfilter="4"/>
+	<challenge 	name="I - Scientology" achievements="Scientology Challenge" 
+				lockeddesc="Unlock Atheism & Cain" endstage="10" altpath="true" 
+				startingitems="Atheism,Pythagoras' Cup " playertype="2" roomfilter="4"
+	/>
+	<challenge 	name="II - Heart to Heart" achievements="Heart to Heart Challenge" 
+				lockeddesc="Unlock Glass Vessel & The Lost" endstage="8" altpath="true" 
+				startingitems="" playertype="10" roomfilter=""
+	/>
 </challenges>

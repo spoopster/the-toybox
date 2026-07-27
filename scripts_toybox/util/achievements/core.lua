@@ -69,3 +69,9 @@ local function checkUnlocksOnCompletion(_, mark)
     ToyboxMod:checkUnlocks(true)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_COMPLETION_EVENT, checkUnlocksOnCompletion)
+
+local function checkUnlocksOnChallenge(_, mark)
+    ToyboxMod:checkUnlocks(true)
+    ToyboxMod:checkUnlocks(false)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_CHALLENGE_DONE, checkUnlocksOnChallenge)

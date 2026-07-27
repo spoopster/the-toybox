@@ -1148,6 +1148,8 @@
     quality="2"
     tags="offensive summonable"
     cache="tearflag"
+
+    achievement="Vampire Teeth"
 />
 <active id="123" name="Prospector Pick"
     description="There's gold in them thar hills"
@@ -1460,6 +1462,7 @@
 
     effectdamage="0.3" persistent="true"
 />
+
 
 
 

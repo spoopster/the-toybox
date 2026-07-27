@@ -184,6 +184,9 @@ include("scripts_toybox.players.homunculus.a.render_item")
 -- NOWHERE
 --include("scripts_toybox.players.nowhere.a.nowhere")
 
+-- CHALLENGES
+include("scripts_toybox.challenges.heart_to_heart")
+
 -- ITEMS
 --PASSIVES
     include("scripts_toybox.items.passives.coconut_oil")

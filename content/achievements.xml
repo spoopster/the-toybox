@@ -5,9 +5,11 @@
 	<achievement name="Gasoline" text="" gfx="ach_gasoline.png" />
 	<achievement name="Inside Joke" text="" gfx="ach_inside_joke_alt.png" />
 	<achievement name="Bob's Thesis" text="" gfx="ach_bobs_thesis.png" />
+	<achievement name="Vampire Teeth" text="" gfx="ach_vampire_teeth.png" />
 
 	<!-- challanges -->
 	<achievement name="Scientology Challenge" text="" gfx="ach_challenge_scientology.png" />
+	<achievement name="Heart to Heart Challenge" text="" gfx="ach_challenge_heart_to_heart.png" />
 
 	<!-- Atlas unlocks -->
 	<achievement name="Prismstone" text="" gfx="ach_prismstone.png" gfxback="achpaper_atlas.png" />

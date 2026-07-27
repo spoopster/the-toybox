@@ -24,11 +24,13 @@ ToyboxMod.ACHIEVEMENT_JONAS_B = Isaac.GetAchievementIdByName("The Demented (Tain
 ToyboxMod.ACHIEVEMENT_HOMUNCULUS_B = Isaac.GetAchievementIdByName("The Flayed (Tainted Homunculus)")
 --- ACHIEVEMENTS - Challenges
 ToyboxMod.ACHIEVEMENT_SCIENTOLOGY = Isaac.GetAchievementIdByName("Scientology Challenge")
+ToyboxMod.ACHIEVEMENT_HEART_TO_HEART = Isaac.GetAchievementIdByName("Heart to Heart Challenge")
 --- ACHIEVEMENTS - Misc.
 ToyboxMod.ACHIEVEMENT_WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug")
 ToyboxMod.ACHIEVEMENT_HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer")
 ToyboxMod.ACHIEVEMENT_GASOLINE = Isaac.GetAchievementIdByName("Gasoline")
 ToyboxMod.ACHIEVEMENT_INSIDE_JOKE = Isaac.GetAchievementIdByName("Inside Joke")
+ToyboxMod.ACHIEVEMENT_VAMPIRE_TEETH = Isaac.GetAchievementIdByName("Vampire Teeth")
 --- ACHIEVEMENTS - Atlas
 ToyboxMod.ACHIEVEMENT_PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone")
 ToyboxMod.ACHIEVEMENT_GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel")
@@ -72,6 +74,9 @@ ToyboxMod.ACHIEVEMENT_CUTOUT = Isaac.GetAchievementIdByName("Cutout")
 ToyboxMod.ACHIEVEMENT_MALICE = Isaac.GetAchievementIdByName("Malice")
 --ToyboxMod.ACHIEVEMENT_CHAMPIONS = Isaac.GetAchievementIdByName("More Champions!")
 ToyboxMod.ACHIEVEMENT_COLORING_BOOK = Isaac.GetAchievementIdByName("Coloring Book")
+
+ToyboxMod.CHALLENGE_SCIENTOLOGY = Isaac.GetChallengeIdByName("I - Scientology")
+ToyboxMod.CHALLENGE_HEART_TO_HEART = Isaac.GetChallengeIdByName("II - Heart to Heart")
 
 ToyboxMod.POOL_GRAVEYARD = Isaac.GetPoolIdByName("graveyard")
 ToyboxMod.POOL_TEMPLE = Isaac.GetPoolIdByName("temple")

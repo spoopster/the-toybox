@@ -1,7 +1,7 @@
 local PUFFED_SCALE = 1.4
 
 local PUFF_DURATION = 30*7
-local PUFF_COOLDOWN = 30*5
+local PUFF_COOLDOWN = 30*5*2
 
 local PUFF_DANGER_DISTANCE = 40*0.8
 

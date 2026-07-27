@@ -11,6 +11,9 @@ end, false)
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_INSIDE_JOKE, function(d, p)
     return (p.LION_SKULL_CAPPED_OUT or 0)>0
 end, false)
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_VAMPIRE_TEETH, function(d, p)
+    return d:IsChallengeCompleted(ToyboxMod.CHALLENGE_HEART_TO_HEART)
+end, false)
 
 -- characters
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_HOMUNCULUS, function(d, p)
@@ -19,7 +22,10 @@ end, false)
 
 -- challenges
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_SCIENTOLOGY, function(d)
-    return d:Unlocked(ToyboxMod.ACHIEVEMENT_ATHEISM)
+    return d:Unlocked(ToyboxMod.ACHIEVEMENT_ATHEISM) and d:Unlocked(Achievement.CAIN)
+end, false)
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_HEART_TO_HEART, function(d)
+    return d:Unlocked(ToyboxMod.ACHIEVEMENT_GLASS_VESSEL) and d:Unlocked(Achievement.LOST)
 end, false)
 
 -- atlas
