@@ -135,7 +135,7 @@
     cache=""
     
     maxcharges="3"
-    devilprice="1"
+    devilprice="2"
 />
 <passive id="15" name="Laser Brain"
     description="Laser aura"
@@ -1449,6 +1449,16 @@
     maxcharges="60"
 
     effectdamage="1.5" effectluck="3" persistent="true"
+/>
+<passive id="159" name="Silver Pieces"
+    description="Sinner's reward"
+    gfx="silver_pieces.png"
+    quality="2"
+    tags="offensive summonable"
+    customtags=""
+    cache=""
+
+    effectdamage="0.3" persistent="true"
 />
 
 

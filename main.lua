@@ -310,6 +310,7 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.passives.unstable_dna")
     include("scripts_toybox.items.passives.anaphylaxis")
     include("scripts_toybox.items.passives.clone")
+    include("scripts_toybox.items.passives.silver_pieces")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

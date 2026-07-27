@@ -71,6 +71,8 @@
         <Item Name="Unstable DNA"/>
         <Item Name="Lab Meat"/>
         <Item Name="Anaphylaxis"/>
+        <Item Name="Clone" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Hand Pump"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -141,6 +143,8 @@
         <Item Name="Unstable DNA"/>
         <Item Name="Lab Meat"/>
         <Item Name="Anaphylaxis"/>
+        <Item Name="Clone" Weight="0.5" DecreaseBy="0.5"/>
+        <Item Name="Hand Pump"/>
     </Pool>
 
     <Pool Name="boss">
@@ -242,6 +246,7 @@
         <Item Name="Vampire Teeth"/>
         <Item Name="Flayer Baby"/>
         <Item Name="Psycho Baby"/>
+        <Item Name="Silver Pieces"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -256,6 +261,7 @@
         <Item Name="Vampire Teeth"/>
         <Item Name="Flayer Baby"/>
         <Item Name="Psycho Baby"/>
+        <Item Name="Silver Pieces"/>
     </Pool>
 
     <Pool Name="angel">
@@ -294,6 +300,7 @@
         <Item Name="Gimp Baby"/>
         <Item Name="Tammy's Body"/>
         <Item Name="Lab Meat"/>
+        <Item Name="Silver Pieces"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
@@ -307,6 +314,7 @@
         <Item Name="Gimp Baby"/>
         <Item Name="Tammy's Body"/>
         <Item Name="Lab Meat"/>
+        <Item Name="Silver Pieces"/>
     </Pool>
 
     <Pool Name="secret">
@@ -331,6 +339,7 @@
         <Item Name="Y2K"/>
         <Item Name="Mind's Eye"/>
         <Item Name="Wooden Arm"/>
+        <Item Name="Clone"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -354,6 +363,7 @@
         <Item Name="Y2K"/>
         <Item Name="Mind's Eye"/>
         <Item Name="Wooden Arm"/>
+        <Item Name="Clone"/>
     </Pool>
 
     <Pool Name="library">
@@ -377,6 +387,7 @@
         <Item Name="Snake Ring"/>
         <Item Name="Vampire Teeth"/>
         <Item Name="Flayer Baby"/>
+        <Item Name="Silver Pieces"/>
     </Pool>
 
     <Pool Name="goldenChest">
@@ -390,6 +401,7 @@
         <Item Name="Paper Plate"/>
         <Item Name="Surprise Egg"/>
         <Item Name="Anaphylaxis"/>
+        <Item Name="Hand Pump"/>
     </Pool>
 
     <Pool Name="woodenChest">
@@ -414,6 +426,7 @@
         <Item Name="Dr. Bum"/>
         <Item Name="Surprise Egg"/>
         <Item Name="A Spoonful of Mayonnaise"/>
+        <Item Name="Hand Pump"/>
     </Pool>
 
     <Pool Name="demonBeggar">

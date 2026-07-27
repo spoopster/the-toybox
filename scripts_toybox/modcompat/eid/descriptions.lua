@@ -1967,6 +1967,22 @@ enums.FUNCTIONS.AddItem({
         "Removes 1 stack of the stat increases each time you fire",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_SILVER_PIECES,
+    Name = "Silver Pieces",
+    Description = {
+        "{{DevilChance}} +15% Devil deal chance",
+        "{{AngelChance}} Angel Rooms can no longer spawn",
+        "Taking a devil deal grants \1 +0.3 Damage and 1 nickel per heart container paid",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Taking a devil deal grants an additional \1 +0.3 Damage and 1 nickel",
+            }
+        }
+    }
+})
 
 --- OTHER ITEM MODIFIERS ---
 
