@@ -7,6 +7,7 @@ local PICKER_WEIGHT_MULTS = {
     [CollectibleType.COLLECTIBLE_DELIRIOUS] = 0,
     [CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = 0,
     [CollectibleType.COLLECTIBLE_LARYNX] = 0,
+    [CollectibleType.COLLECTIBLE_MEGA_MUSH] = 0.25,
     [CollectibleType.COLLECTIBLE_ERASER] = 0,
     [CollectibleType.COLLECTIBLE_URN_OF_SOULS] = 0,
     [CollectibleType.COLLECTIBLE_FRIEND_FINDER] = 0,
@@ -20,6 +21,8 @@ local PICKER_WEIGHT_MULTS = {
     [ToyboxMod.COLLECTIBLE_BIG_RED_BUTTON] = 0.5,
     [ToyboxMod.COLLECTIBLE_PUGGYS_CLAW] = 0, -- removed because it takes a while to startup?
     [ToyboxMod.COLLECTIBLE_SNAKE_RING] = 0, -- removed because it takes a while to startup?
+    [ToyboxMod.COLLECTIBLE_LAB_MEAT] = 0.1,
+    [ToyboxMod.COLLECTIBLE_HAND_PUMP] = 0, -- removed because its basically useless
 
     --[ToyboxMod.COLLECTIBLE_MELTED_CANDLE] = 10000,
     --[CollectibleType.COLLECTIBLE_CANDLE] = 10000,

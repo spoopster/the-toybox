@@ -43,4 +43,8 @@
     <costume id="1201" anm2path="costume_anaphylaxis_puffed.anm2" type="none" priority="10"/>
     <costume id="1202" anm2path="costume_ix_jaguar_inactive.anm2" type="none" hasSkinAlt="true" priority="1"/>
     <costume id="1203" anm2path="costume_chicchan_serpent_active.anm2" type="none" skinColor="4" overwriteColor="true" priority="1" />
+    <costume id="1204" anm2path="costume_clone.anm2" type="none" skinColor="4" overwriteColor="true" />
+    <costume id="1205" anm2path="costume_pump_1.anm2" type="none" hasSkinAlt="true" priority="1"/>
+    <costume id="1206" anm2path="costume_pump_2.anm2" type="none" hasSkinAlt="true" priority="1"/>
+    <costume id="1207" anm2path="costume_pump_3.anm2" type="none" hasSkinAlt="true" priority="1"/>
 </costumes>

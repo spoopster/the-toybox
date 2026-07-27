@@ -1951,6 +1951,22 @@ enums.FUNCTIONS.AddItem({
         "This effect has a 12 second cooldown"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CLONE,
+    Name = "Clone",
+    Description = {
+        "On death, revive with an extra player that copies half of your items",
+        "!!! If the clone player dies, you also die"
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_HAND_PUMP,
+    Name = "Hand Pump",
+    Description = {
+        "\1 Grants +1.5 Damage and +3 Luck, up to 3 times",
+        "Removes 1 stack of the stat increases each time you fire",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

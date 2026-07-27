@@ -233,8 +233,9 @@ ToyboxMod.COLLECTIBLE_RHUBARB = Isaac.GetItemIdByName("Rhubarb")
 ToyboxMod.COLLECTIBLE_UNSTABLE_DNA = Isaac.GetItemIdByName("Unstable DNA")
 ToyboxMod.COLLECTIBLE_LAB_MEAT = Isaac.GetItemIdByName("Lab Meat")
 ToyboxMod.COLLECTIBLE_ANAPHYLAXIS = Isaac.GetItemIdByName("Anaphylaxis")
-
 ToyboxMod.COLLECTIBLE_CLONE = Isaac.GetItemIdByName("Clone")
+ToyboxMod.COLLECTIBLE_HAND_PUMP = Isaac.GetItemIdByName("Hand Pump")
+
 ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT = Isaac.GetItemIdByName("Elephant's Foot")
 ToyboxMod.COLLECTIBLE_MUTAGEN = Isaac.GetItemIdByName("Mutagen")
 ToyboxMod.COLLECTIBLE_TWISTED_HEART = Isaac.GetItemIdByName("Twisted Heart")

@@ -309,6 +309,7 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.passives.rhubarb")
     include("scripts_toybox.items.passives.unstable_dna")
     include("scripts_toybox.items.passives.anaphylaxis")
+    include("scripts_toybox.items.passives.clone")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -348,6 +349,7 @@ include("scripts_toybox.players.homunculus.a.render_item")
     include("scripts_toybox.items.actives.tammys_body")
     include("scripts_toybox.items.actives.wooden_arm")
     include("scripts_toybox.items.actives.lab_meat")
+    include("scripts_toybox.items.actives.hand_pump")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

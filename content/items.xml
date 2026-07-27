@@ -1376,6 +1376,8 @@
     cache=""
 
     tears="0.7" shotspeed="0.15"
+
+    achievement="Krokodil"
 />
 <active id="152" name="Wooden Arm"
     description="Projectile infuser"
@@ -1401,15 +1403,20 @@
     quality="3"
     tags="offensive summonable"
     cache=""
+
+    achievement="Unstable DNA"
 />
 <active id="155" name="Lab Meat"
     description="Not for human consumption"
     gfx="lab_meat.png"
     quality="2"
     tags="offensive"
+    customtags="combat"
     cache=""
 
     maxcharges="2"
+
+    achievement="Lab Meat"
 />
 <passive id="156" name="Anaphylaxis"
     description="Puff puff pass"
@@ -1420,6 +1427,31 @@
 
     effecttears="1" effectshotspeed="-0.2" persistent="true" cooldown="210"
 />
+<passive id="157" name="Clone"
+    description="The better you"
+    gfx="clone.png"
+    quality="0"
+    tags="offensive summonable"
+    customtags="revive"
+    cache=""
+
+    achievement="Clone"
+/>
+<active id="158" name="Hand Pump"
+    description="DMG + luck up"
+    gfx="hand_pump.png"
+    quality="1"
+    tags="offensive"
+    customtags="combat"
+    cache=""
+
+    chargetype="timed"
+    maxcharges="60"
+
+    effectdamage="1.5" effectluck="3" persistent="true"
+/>
+
+
 
 <active id="491" name="Cursed D6"
     description="High-quality destiny"
