@@ -1983,6 +1983,13 @@ enums.FUNCTIONS.AddItem({
         }
     }
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_TWISTED_HEART,
+    Name = "Twisted Heart",
+    Description = {
+        "{{Heart}} Drains all but 1 heart container, then spawns a random heart pickup for every heart drained, along with 1 additional heart pickup",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

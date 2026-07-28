@@ -1,5 +1,3 @@
-print(ToyboxMod.CHALLENGE_HEART_TO_HEART)
-
 ---@param pl EntityPlayer
 local function playerInit(_, pl)
     if(ToyboxMod.GAME.Challenge==ToyboxMod.CHALLENGE_HEART_TO_HEART) then

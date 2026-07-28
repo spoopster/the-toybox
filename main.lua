@@ -354,6 +354,7 @@ include("scripts_toybox.challenges.heart_to_heart")
     include("scripts_toybox.items.actives.wooden_arm")
     include("scripts_toybox.items.actives.lab_meat")
     include("scripts_toybox.items.actives.hand_pump")
+    include("scripts_toybox.items.actives.twisted_heart")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

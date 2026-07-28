@@ -42,7 +42,7 @@
 	/>
 
 	<player birthright="Tougher dermis" name="Homunculus"
-		nameimage="jonas_name.png" portrait="jonas_portrait.png" skin="character_homunculus.png"
+		nameimage="jonas_name.png" portrait="homunculus_portrait.png" skin="character_homunculus.png"
 		costumeSuffix="homunculus_a" skinColor="-1"
 		modcostume="1101"
 

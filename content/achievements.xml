@@ -74,7 +74,7 @@
 	<achievement name="Xenotransfusion" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Clone" text="" gfx="ach_clone.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="New Card!" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
-	<achievement name="Bath Water/Spiteful Penny" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Spiteful Penny" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
 
 	<achievement name="The Flayed (Tainted Homunculus)" text="" gfx="ach_blank.png" gfxback="achpaper_homunculus.png" />
 	

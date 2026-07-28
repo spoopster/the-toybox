@@ -1462,7 +1462,16 @@
 
     effectdamage="0.3" persistent="true"
 />
+<active id="160" name="Twisted Heart"
+    description="Full body cleanse"
+    gfx="twisted_heart.png"
+    quality="2"
+    tags="offensive"
+    customtags=""
+    cache=""
 
+    maxcharges="3"
+/>
 
 
 
@@ -1698,6 +1707,8 @@
     description="Wealth of hatred"
     gfx="spited_penny.png"
     cache=""
+
+    achievement="Spiteful Penny"
 />
 <trinket id="23" name="Library Card"
     description="Accessible knowledge"

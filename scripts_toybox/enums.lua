@@ -241,10 +241,10 @@ ToyboxMod.COLLECTIBLE_ANAPHYLAXIS = Isaac.GetItemIdByName("Anaphylaxis")
 ToyboxMod.COLLECTIBLE_CLONE = Isaac.GetItemIdByName("Clone")
 ToyboxMod.COLLECTIBLE_HAND_PUMP = Isaac.GetItemIdByName("Hand Pump")
 ToyboxMod.COLLECTIBLE_SILVER_PIECES = Isaac.GetItemIdByName("Silver Pieces")
+ToyboxMod.COLLECTIBLE_TWISTED_HEART = Isaac.GetItemIdByName("Twisted Heart")
 
 ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT = Isaac.GetItemIdByName("Elephant's Foot")
 ToyboxMod.COLLECTIBLE_MUTAGEN = Isaac.GetItemIdByName("Mutagen")
-ToyboxMod.COLLECTIBLE_TWISTED_HEART = Isaac.GetItemIdByName("Twisted Heart")
 ToyboxMod.COLLECTIBLE_FRANKENCAT = Isaac.GetItemIdByName("Frankencat")
 ToyboxMod.COLLECTIBLE_XENOTRANSFUSION = Isaac.GetItemIdByName("Xenotransfusion")
 
