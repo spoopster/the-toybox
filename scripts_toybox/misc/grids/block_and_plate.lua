@@ -109,17 +109,39 @@ local function getGridGroupsOnRoomEntry(_)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, getGridGroupsOnRoomEntry)
 
+local SWITCH_BLOCK_EFFECTS = {}
+
+local function getGridEntSeed(ent)
+    return tostring(ent:GetSaveState().SpawnSeed)..tostring(ent:GetGridIndex())
+end
+
+local function preExitRoom(_)
+    SWITCH_BLOCK_EFFECTS = {}
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_EXIT, preExitRoom)
+
 ---@param ent GridEntity
 local function switchBlockInit(_, ent, _, _)
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_BLOCK")) then return end
 
-    local sp = ent:GetSprite()
+    ent:GetSprite().Color = Color(1,1,1,0)
+
+    local seed = getGridEntSeed(ent)
+    if(SWITCH_BLOCK_EFFECTS[seed]) then
+        SWITCH_BLOCK_EFFECTS[seed]:Remove()
+    end
+
+    local helperEffect = Isaac.Spawn(1000,ToyboxMod.EFFECT_SWITCH_BLOCK_RENDER_HELPER,0,ent.Position,Vector.Zero,nil):ToEffect()
+    local sp = helperEffect:GetSprite()
     sp:Load("gfx_tb/grid/grid_switch_block.anm2", false)
     sp:ReplaceSpritesheet(0, "gfx_tb/grid/grid_switch_block_"..tostring(ToyboxMod:getGridEntityData(ent, "SWITCH_GRID") or 1)..".png", true)
     sp:Play((ent.State==2 and "black-retract" or "black"), true)
     while(not sp:IsFinished()) do
         sp:Update()
     end
+    --helperEffect.Visible = false
+
+    SWITCH_BLOCK_EFFECTS[seed] = helperEffect
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, switchBlockInit, GridEntityType.GRID_PILLAR)
 
@@ -205,7 +227,8 @@ local function blockUpdate(_, ent)
         getBlockNeighborhood(ent)
     end
 
-    local sp = ent:GetSprite()
+    local eff = SWITCH_BLOCK_EFFECTS[getGridEntSeed(ent)]
+    local sp = eff:GetSprite()
     local room = ToyboxMod.GAME:GetRoom()
 
     if(ent.State==2) then
@@ -222,12 +245,14 @@ local function blockUpdate(_, ent)
     end
 
     if((sp:GetAnimation()=="black-retract" and sp:WasEventTriggered("makewalkable")) or (sp:GetAnimation()=="black" and not sp:WasEventTriggered("makeunwalkable"))) then
+        eff.DepthOffset = -1000
         ent.CollisionClass = GridCollisionClass.COLLISION_NONE
         room:SetGridPath(ent:GetGridIndex(), 0)
         sp:Update()
 
         return false
     else
+        eff.DepthOffset = 0
         room:SetGridPath(ent:GetGridIndex(), 1000)
     end
 end
@@ -238,19 +263,13 @@ local function blockRender(_, ent)
     if(not ToyboxMod:renderingAboveWater()) then return end
     if(not ToyboxMod:getGridEntityData(ent, "SWITCH_BLOCK")) then return end
 
-    local sp = ent:GetSprite()
-    if((sp:GetAnimation()=="black-retract" and sp:WasEventTriggered("makewalkable")) or (sp:GetAnimation()=="black" and not sp:WasEventTriggered("makeunwalkable"))) then
-        --sp:Render(Isaac.WorldToRenderPosition(ent.Position)+ToyboxMod.GAME:GetRoom():GetRenderScrollOffset())
-    end
-
-    local room = ToyboxMod.GAME:GetRoom()
-    local rpos = Isaac.WorldToRenderPosition(ent.Position)+room:GetRenderScrollOffset()
-    if(room:GetRenderMode()==RenderMode.RENDER_WATER_REFRACT) then
-        rpos = rpos-room:GetRenderSurfaceTopLeft()
-    end
-
-    sp:Render(rpos)
+    ent:GetSprite().Color = Color(1,1,1,0)
 
     return false
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, blockRender, GridEntityType.GRID_PILLAR)
+
+local function postRender(_)
+
+end
+--ToyboxMod:AddCallback(ModCallbacks.MC_NPC_UPDATE)

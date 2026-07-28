@@ -418,6 +418,7 @@ ToyboxMod.EFFECT_MINDS_EYE = Isaac.GetEntityVariantByName("Watching Eye") ---@ty
 ToyboxMod.EFFECT_FLOWER_PATCH = Isaac.GetEntityVariantByName("Flower Patch") ---@type EffectVariant
 ToyboxMod.EFFECT_NOWHERE_RIFT = Isaac.GetEntityVariantByName("Nowhere Tears Rift") ---@type EffectVariant
 ToyboxMod.EFFECT_WOODEN_ARM = Isaac.GetEntityVariantByName("Wooden Arm") ---@type EffectVariant
+ToyboxMod.EFFECT_SWITCH_BLOCK_RENDER_HELPER = Isaac.GetEntityVariantByName("Switch Block Render Helper") ---@type EffectVariant
 
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant
