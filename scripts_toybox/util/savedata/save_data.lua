@@ -71,8 +71,8 @@ local extraBaseData = include("scripts_toybox.util.savedata.extras_basedata")   
 local persistentBaseData = include("scripts_toybox.util.savedata.persistent_basedata")      --! PERSISTS THROUGHOUT ALL RUNS
 
 function ToyboxMod:saveProgress()
-    local svstart = (Isaac.GetNanoTime()//1000000)/1000
-    print(svstart, "START SAVE")
+    --local svstart = (Isaac.GetNanoTime()//1000000)/1000
+    --print(svstart, "START SAVE")
     local save = {}
 
     --save.milcomData = {}
@@ -97,9 +97,9 @@ function ToyboxMod:saveProgress()
 
 	ToyboxMod:SaveData(json.encode(save))
 
-    local svend = (Isaac.GetNanoTime()//1000000)/1000
-    print(svend, "END SAVE")
-    print(math.floor((svend-svstart)*10000)/10000, "SAVE TIME DURATION")
+    --local svend = (Isaac.GetNanoTime()//1000000)/1000
+    --print(svend, "END SAVE")
+    --print(math.floor((svend-svstart)*10000)/10000, "SAVE TIME DURATION")
 end
 
 function ToyboxMod:saveNewFloor()
