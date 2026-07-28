@@ -1955,8 +1955,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_CLONE,
     Name = "Clone",
     Description = {
-        "On death, revive with an extra player that copies half of your items",
-        "!!! If the clone player dies, you also die"
+        "+1 Life",
+        "On death, revive with an extra clone player that copies half of your passive items",
     },
 })
 enums.FUNCTIONS.AddItem({

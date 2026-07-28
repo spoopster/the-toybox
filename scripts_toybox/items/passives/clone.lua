@@ -16,8 +16,13 @@ local function triggerRevives(_, player)
         player:AddSoulHearts(math.max(0, TOTAL_HEALTH_TO_ADD-player:GetHearts()))
         player:RemoveCollectible(ToyboxMod.COLLECTIBLE_CLONE)
 
-        local newPlayer = player:InitTwin(PlayerType.PLAYER_ESAU)
-        newPlayer:TryRemoveNullCostume(NullItemID.ID_ESAU)
+        player:SetMinDamageCooldown(60*3)
+
+        if(player:GetOtherTwin()) then return end
+
+        local newPlayer = PlayerManager.SpawnCoPlayer2(player:GetPlayerType())
+        newPlayer.Parent = player
+        newPlayer.Position = player.Position+RandomVector()
         newPlayer:AddNullCostume(CLONE_COSTUME)
 
         newPlayer:AddHearts(-99)
@@ -26,6 +31,8 @@ local function triggerRevives(_, player)
         newPlayer:AddMaxHearts(player:GetMaxHearts())
         newPlayer:AddHearts(player:GetHearts())
         newPlayer:AddSoulHearts(player:GetSoulHearts())
+
+        newPlayer:SetMinDamageCooldown(60*3)
 
         local history = player:GetHistory():GetCollectiblesHistory()
         local conf = Isaac.GetItemConfig()
@@ -78,14 +85,14 @@ local function plUpdate(_, pl)
         sp:LoadGraphics()
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, plUpdate)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, plUpdate)
 
 local function postNewRoom(_)
     for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
         local pl = Isaac.GetPlayer(i)
         if(EntitySaveStateManager.GetEntityData(ToyboxMod, pl).CLONE_PLAYER) then
             local ogPos = pl.Position
-            pl.Position = pl:GetMainTwin().Position+RandomVector()
+            pl.Position = pl.Parent.Position+RandomVector()
             for _, ent in ipairs(Isaac.FindByType(3)) do
                 local fam = ent:ToFamiliar()
                 if(fam and GetPtrHash(fam.Player)==GetPtrHash(pl)) then
