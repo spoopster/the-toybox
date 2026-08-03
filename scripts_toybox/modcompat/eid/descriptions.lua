@@ -698,6 +698,16 @@ enums.FUNCTIONS.AddItem({
                 {"3 seconds", "6 seconds"},
             }
         },
+    },
+    WispProperties = {
+        Layer = 2,
+        Amount = 1,
+        HP = 3,
+        Damage = 1,
+        Description = {
+            "Wisps deal 5x damage while Ascension is active",
+            "Wisps disappear on new room",
+        },
     }
 })
 enums.FUNCTIONS.AddItem({
@@ -749,6 +759,17 @@ enums.FUNCTIONS.AddItem({
             ToModify = {
                 "Can store an extra consumable",
             }
+        },
+    },
+    WispProperties = {
+        Layer = 1,
+        Amount = 1,
+        HP = 2,
+        Damage = 3,
+        Description = {
+            "Instantly uses stored consumable",
+            "Wisp depends on the consumable used: poison tears, variable damage, homing tears, or confusing tears",
+            "When destroyed, 33% chance to drop a consumable of the same type as the wisp"
         },
     }
 })
@@ -3177,21 +3198,6 @@ enums.FUNCTIONS.AddCard({
                 "Also grants {{Collectible182}} Sacred Heart for the room"
             }
         }
-    },
-})
-
-enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CARD_LAUREL,
-    Name = "Laurel",
-    Description = {
-        "Gives 5 seconds of invincibility when used",
-    },
-})
-enums.FUNCTIONS.AddCard({
-    ID = ToyboxMod.CARD_YANNY,
-    Name = "Yanny",
-    Description = {
-        "Deals 30 damage to all enemies in the room when used",
     },
 })
 

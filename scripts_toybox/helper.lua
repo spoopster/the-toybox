@@ -1071,3 +1071,9 @@ function ToyboxMod:getBloodTearVariant(tear)
 	}
 	return bloodVariant[type(tear) == "number" and tear or tear.Variant] -- You can either just put the tear entity there or get the variant from a number
 end
+
+---@param col Color
+function ToyboxMod:colorInverse(col)
+    local colorize = col:GetColorize()
+    return Color(1/col.R, 1/col.G, 1/col.B, 1/col.A, -col.RO, -col.GO, -col.BO, -colorize.R, -colorize.G, -colorize.B, -colorize.A)
+end

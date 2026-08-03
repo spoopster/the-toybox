@@ -26,7 +26,7 @@ function ToyboxMod:addTearFlag(ent, flag, chance, sourceItem, flagKey)
         resultTable = {
             Flag = flag,
             Chance = chance,
-            RNG = (sourceItem and ent:ToPlayer() and ent:ToPlayer():GetCollectibleRNG(sourceItem) or ToyboxMod:generateRng())
+            --RNG = (sourceItem and ent:ToPlayer() and ent:ToPlayer():GetCollectibleRNG(sourceItem) or ToyboxMod:generateRng())
         }
     end
 
@@ -37,39 +37,22 @@ function ToyboxMod:addTearFlag(ent, flag, chance, sourceItem, flagKey)
     return true
 end
 
-function ToyboxMod:getFinalFlags(source)
+function ToyboxMod:getFinalFlags(source, rngSeed)
+    local rng = ToyboxMod:generateRng(rngSeed)
+    
     local flags = {}
     if(source and ToyboxMod:getEntityData(source, TEARFLAG_TABLE_KEY)) then
         local numLamatRerolls = ToyboxMod:getLamatRabbitRerollsNum(source)
 
         local cFlags = ToyboxMod:getEntityData(source, TEARFLAG_TABLE_KEY)
         for _, flag in ipairs(cFlags) do
---[[
-            local s = ""
-            for key, val in pairs(flag) do
-                s = s.."{"..tostring(key)..","
-
-                if(type(val)=="table") then
-                    s = s.."["
-                    for key2, val2 in pairs(val) do
-                        s = s.."{"..tostring(key2)..","..tostring(val2).."};"
-                    end
-                    s = s.."] "
-                else
-                    s = s..tostring(val)
-                end
-
-                s = s.."} "
-            end
-            print(s)
---]]
             local flagKey = flag.Key
             local flagData = flag.Data
             local fT = type(flagData)
             if(fT~="table") then
                 table.insert(flags, {Flag=flagData, Key=flagKey})
             elseif(fT=="table") then
-                local rng = flagData.RNG
+                --local rng = flagData.RNG
                 local chance = flagData.Chance
                 if(type(flagData.Chance)=="function") then
                     if(source:ToPlayer()) then
@@ -97,7 +80,38 @@ function ToyboxMod:getFinalFlags(source)
             end
         end
     end
-    return flags
+    return flags, rng:PhantomNext()
+end
+
+---@param npc EntityNPC
+---@param source Entity?
+---@param pos Vector
+---@param dmg number
+---@param flags TearFlags
+---@param modFlags table
+---@param applyDirectly boolean?
+---@return modifiedFlags? TearFlags
+function ToyboxMod:applyTearFlags(npc, source, pos, dmg, flags, modFlags, applyDirectly)
+    local vanillaFlags = TearFlags.TEAR_NORMAL
+
+    for _, flag in ipairs(modFlags) do
+        if(type(flag.Flag)=="userdata") then
+            vanillaFlags = vanillaFlags | flag.Flag
+        else
+            if(flag.Key and ToyboxMod.CUSTOM_TEARFLAGS[flag.Key].ApplyFunction) then
+                ToyboxMod.CUSTOM_TEARFLAGS[flag.Key].ApplyFunction(npc, flag.Flag, source, pos, dmg, flag.Key)
+            end
+            Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.APPLY_CUSTOM_TEARFLAG, flag.Flag, npc, flag.Flag, source, pos, dmg, flag.Key)
+        end
+    end
+
+    if(vanillaFlags~=TearFlags.TEAR_NORMAL) then
+        if(applyDirectly) then
+            npc:ApplyTearflagEffects(pos, flags | vanillaFlags, source, dmg)
+        else
+            return flags | vanillaFlags
+        end
+    end
 end
 
 ---@param ent Entity
@@ -107,7 +121,9 @@ local function giveCustomFlags(ent, source)
     data[TEARFLAG_TABLE_KEY] = data[TEARFLAG_TABLE_KEY] or {}
 
     local finalFlag = nil
-    local cFlags = ToyboxMod:getFinalFlags(source)
+    local startSeed = ToyboxMod:getEntityData(source, "CUSTOM_FLAG_RNGSEED")
+    local cFlags, seed = ToyboxMod:getFinalFlags(source, ((startSeed==-1 or not startSeed) and source:GetDropRNG():Next() or startSeed))
+    ToyboxMod:setEntityData(source, "CUSTOM_FLAG_RNGSEED", seed)
     for _, flag in ipairs(cFlags) do
         if(type(flag.Flag)=="string") then
             table.insert(data[TEARFLAG_TABLE_KEY], {Data=flag.Flag, Key=flag.Key})
@@ -135,24 +151,13 @@ end
 ---@param source Entity?
 ---@param dmg number
 local function applyTearflags(_, npc, pos, flags, source, dmg)
-    local vanillaFlags = TearFlags.TEAR_NORMAL
+    --print(source.Type, flags)
+    local modifiedFlags = ToyboxMod:applyTearFlags(npc, source, pos, dmg, flags, ToyboxMod:getFinalFlags(source), false)
 
-    local cFlags = ToyboxMod:getFinalFlags(source)
-    for _, flag in ipairs(cFlags) do
-        if(type(flag.Flag)=="userdata") then
-            vanillaFlags = vanillaFlags | flag.Flag
-        else
-            if(flag.Key and ToyboxMod.CUSTOM_TEARFLAGS[flag.Key].ApplyFunction) then
-                ToyboxMod.CUSTOM_TEARFLAGS[flag.Key].ApplyFunction(npc, flag.Flag, source, pos, dmg, flag.Key)
-            end
-            Isaac.RunCallbackWithParam(ToyboxMod.CUSTOM_CALLBACKS.APPLY_CUSTOM_TEARFLAG, flag.Flag, npc, flag.Flag, source, pos, dmg, flag.Key)
-        end
-    end
-
-    if(vanillaFlags~=TearFlags.TEAR_NORMAL) then
+    if(modifiedFlags~=flags) then
         return {
             Position = pos,
-            TearFlags = flags | vanillaFlags,
+            TearFlags = modifiedFlags,
             Damage = dmg,
         }
     end
@@ -168,9 +173,13 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.I
 ---@param pl EntityPlayer
 ---@param params TearParams
 local function evalParams(_, pl, params, weap, dmg, tearDisp, source)
+    local startSeed = ToyboxMod:getEntityData(pl, "CUSTOM_FLAG_RNGSEED")
+    startSeed = ((startSeed==-1 or not startSeed) and pl:GetDropRNG():Next() or startSeed)
+    ToyboxMod:setEntityData(pl, "CUSTOM_FLAG_RNGSEED", startSeed)
+
     local vanillaFlags = TearFlags.TEAR_NORMAL
     local finalFlag = nil
-    local cFlags = ToyboxMod:getFinalFlags(source)
+    local cFlags = ToyboxMod:getFinalFlags(source, startSeed)
     for _, flag in ipairs(cFlags) do
         if(type(flag.Flag)=="userdata") then
             vanillaFlags = vanillaFlags | flag.Flag
@@ -180,11 +189,11 @@ local function evalParams(_, pl, params, weap, dmg, tearDisp, source)
 
     if(vanillaFlags~=TearFlags.TEAR_NORMAL) then
         params.TearFlags = params.TearFlags | vanillaFlags
-        if(finalFlag and ToyboxMod.CUSTOM_TEARFLAGS[finalFlag]) then
-            params.TearVariant = ToyboxMod.CUSTOM_TEARFLAGS[finalFlag].TearVariant or params.TearVariant
-            params.TearColor = ToyboxMod.CUSTOM_TEARFLAGS[finalFlag].TearColor or params.TearColor
-            params.BombVariant = ToyboxMod.CUSTOM_TEARFLAGS[finalFlag].BombVariant or params.BombVariant
-        end
+    end
+    if(finalFlag and ToyboxMod.CUSTOM_TEARFLAGS[finalFlag]) then
+        params.TearVariant = ToyboxMod.CUSTOM_TEARFLAGS[finalFlag].TearVariant or params.TearVariant
+        params.TearColor = ToyboxMod.CUSTOM_TEARFLAGS[finalFlag].TearColor or params.TearColor
+        params.BombVariant = ToyboxMod.CUSTOM_TEARFLAGS[finalFlag].BombVariant or params.BombVariant
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, evalParams)

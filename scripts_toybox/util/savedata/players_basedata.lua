@@ -33,7 +33,7 @@ local BASEDATA = {
         LUCK = 0,
     },
     GLASS_VESSEL_MANTLESTATE = 0,
-    ASCENSION_ISACTIVE = 0,
+    ASCENSION_ISACTIVE = false,
     ASCENSION_LENGTH = 0,
     ASCENSION_ORIGINALPOS = 0,
     BIG_BLIND_COUNTER = 0,
@@ -157,6 +157,7 @@ local BASEDATA = {
         FANCY = {true, false, 0},
         HYDRA = {true, false, 0},
     },
+    CUSTOM_FLAG_RNGSEED = -1,
 
     --! MISC
     MATTMAN_CHANCE_TEARS_HIT = 0,

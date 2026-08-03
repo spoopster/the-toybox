@@ -1,188 +1,25 @@
 
 
---! finish rest of synergys im so bored
-
-local SHOTSPEED_UP = -0.2
-
-local DMG_MULT = 0.25
-
-local LASER_DURATION = 2
-local LASER_FREQ = 7
-local LASER_FIRE_DIST = 80
-
----@param ent Entity
----@return EntityPlayer?
-local function getPlayerForEnt(ent)
-    local check = {ent.SpawnerEntity, ent.Parent}
-
-    for _, cEnt in ipairs(check) do
-        if(cEnt) then
-            if(cEnt:ToPlayer()) then
-                return cEnt:ToPlayer()
-            elseif(cEnt:ToFamiliar()) then
-                if(ToyboxMod.TEAR_COPYING_FAMILIARS[cEnt.Variant] or cEnt.Variant==FamiliarVariant.FATES_REWARD) then
-                    return cEnt:ToFamiliar().Player
-                end
-            end
-        end
-    end
-
-    return nil
-end
-
-local function spawnSpark(startPos, endPos, player, dmg, offset)
-    local dir = (endPos-startPos)
-    local distToFire = dir:Length()
-    local angleToFire = dir:GetAngleDegrees()
-
-    local arc = EntityLaser.ShootAngle(LaserVariant.ELECTRIC, startPos, angleToFire, LASER_DURATION, offset, player)
-    arc.DisableFollowParent = true
-    arc.CollisionDamage = dmg*DMG_MULT
-    arc.MaxDistance = distToFire+5
-    arc.OneHit = true
-    arc.Mass = 0
-    ToyboxMod:setEntityData(arc, "DISABLE_PLASMA_TRIGGER", 0)
-
-    return arc
-end
-
-
+---@param entity Entity
 ---@param player EntityPlayer
----@param flag CacheFlag
-local function evalCache(_, player, flag)
+local function pollTearflags(_, entity, player, weapon)
+    if(player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE)) then
+        TearFlagsLib.AddTearFlags(entity, ToyboxMod.TEARFLAGS.PLASMA)
+    end
+end
+ToyboxMod:AddCallback(TearFlagsLib.Callback.POLL_TEARFLAGS, pollTearflags)
+ToyboxMod:AddCallback(TearFlagsLib.Callback.POLL_CHANCELESS_TEARFLAGS, pollTearflags)
+
+---@param entity Entity
+---@param player EntityPlayer
+local function cancelRemovePlasma(_, entity, player, _)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE)) then return end
 
-    local mult = player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE)
-    player.ShotSpeed = player.ShotSpeed+SHOTSPEED_UP*mult
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache, CacheFlag.CACHE_SHOTSPEED)
-
----@param tear EntityTear
-local function electricTearUpdate(_, tear)
-    local player = getPlayerForEnt(tear)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE))) then return end
-
-    local laserCountdown = (ToyboxMod:getEntityData(tear, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
-    if(laserCountdown>0) then
-        laserCountdown = laserCountdown-1
-    else
-        local closestEnemy = ToyboxMod:closestEnemy(tear.Position) ---@cast closestEnemy EntityNPC?
-        if(not (closestEnemy)) then return end
-        if(closestEnemy.Position:DistanceSquared(tear.Position)>LASER_FIRE_DIST*LASER_FIRE_DIST) then return end
-
-        spawnSpark(closestEnemy.Position, tear.Position, player, tear.CollisionDamage, Vector(0, tear.Height))
-
-        laserCountdown = LASER_FREQ
+    if(not ToyboxMod:getEntityData(entity, "PLASMA_BLACKLIST")) then
+        return true
     end
-
-    ToyboxMod:setEntityData(tear, "PLASMAGLOBE_LASER_COUNTDOWN", laserCountdown)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, electricTearUpdate)
-
----@param laser EntityLaser
-local function electricLaserUpdate(_, laser)
-    if(ToyboxMod:getEntityData(laser, "DISABLE_PLASMA_TRIGGER")==0) then return end
-    if(not laser:IsSampleLaser()) then return end
-
-    local player = getPlayerForEnt(laser)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE))) then return end
-
-    local laserCountdown = (ToyboxMod:getEntityData(laser, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
-    if(laserCountdown>0) then
-        laserCountdown = laserCountdown-1
-    else
-        local closestEnemy
-        local spawnPos
-
-        local samples = laser:GetNonOptimizedSamples()
-        for i=0, #samples-1, 2 do
-            local pos = samples:Get(i)
-
-            local tryClosestEnemy = ToyboxMod:closestEnemy(pos)
-
-            if(tryClosestEnemy and tryClosestEnemy.Position:Distance(pos)<=LASER_FIRE_DIST) then
-                closestEnemy = tryClosestEnemy
-                spawnPos = pos
-            end
-        end
-        if(not closestEnemy) then return end
-
-        spawnSpark(closestEnemy.Position, spawnPos, player, laser.CollisionDamage, laser.PositionOffset)
-
-        laserCountdown = LASER_FREQ
-    end
-
-    ToyboxMod:setEntityData(laser, "PLASMAGLOBE_LASER_COUNTDOWN", laserCountdown)
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, electricLaserUpdate)
-
----@param knife EntityKnife
-local function electricKnifeUpdate(_, knife)
-    local player = getPlayerForEnt(knife)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE))) then return end
-
-    if(not (knife:IsFlying() or knife:GetIsSwinging() or knife:GetIsSpinAttack())) then return end
-
-    local laserCountdown = (ToyboxMod:getEntityData(knife, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
-    if(laserCountdown>0) then
-        laserCountdown = laserCountdown-1
-    else
-        local closestEnemy = ToyboxMod:closestEnemy(knife.Position) ---@cast closestEnemy EntityNPC?
-        if(not (closestEnemy)) then return end
-        if(closestEnemy.Position:DistanceSquared(knife.Position)>LASER_FIRE_DIST*LASER_FIRE_DIST) then return end
-
-        spawnSpark(closestEnemy.Position, knife.Position, player, knife.CollisionDamage, Vector(0, -knife.PathOffset))
-
-        laserCountdown = LASER_FREQ
-    end
-
-    ToyboxMod:setEntityData(knife, "PLASMAGLOBE_LASER_COUNTDOWN", laserCountdown)
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, electricKnifeUpdate)
-
----@param bomb EntityBomb
-local function electricBombUpdate(_, bomb)
-    local player = getPlayerForEnt(bomb)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE))) then return end
-
-    local laserCountdown = (ToyboxMod:getEntityData(bomb, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
-    if(laserCountdown>0) then
-        laserCountdown = laserCountdown-1
-    else
-        local closestEnemy = ToyboxMod:closestEnemy(bomb.Position) ---@cast closestEnemy EntityNPC?
-        if(not (closestEnemy)) then return end
-        if(closestEnemy.Position:DistanceSquared(bomb.Position)>LASER_FIRE_DIST*LASER_FIRE_DIST) then return end
-
-        spawnSpark(closestEnemy.Position, bomb.Position, player, bomb.ExplosionDamage*0.33, Vector(0, 0))
-
-        laserCountdown = LASER_FREQ
-    end
-
-    ToyboxMod:setEntityData(bomb, "PLASMAGLOBE_LASER_COUNTDOWN", laserCountdown)
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, electricBombUpdate)
-
----@param rocket EntityEffect
-local function electricRocketUpdate(_, rocket)
-    local player = getPlayerForEnt(rocket)
-    if(not (player and player:HasCollectible(ToyboxMod.COLLECTIBLE_PLASMA_GLOBE))) then return end
-
-    local laserCountdown = (ToyboxMod:getEntityData(rocket, "PLASMAGLOBE_LASER_COUNTDOWN") or 0)
-    if(laserCountdown>0) then
-        laserCountdown = laserCountdown-1
-    else
-        local closestEnemy = ToyboxMod:closestEnemy(rocket.Position) ---@cast closestEnemy EntityNPC?
-        if(not (closestEnemy)) then return end
-        if(closestEnemy.Position:DistanceSquared(rocket.Position)>LASER_FIRE_DIST*LASER_FIRE_DIST) then return end
-
-        spawnSpark(closestEnemy.Position, rocket.Position, player, 70/3, Vector(0, 0))
-
-        laserCountdown = LASER_FREQ
-    end
-
-    ToyboxMod:setEntityData(rocket, "PLASMAGLOBE_LASER_COUNTDOWN", laserCountdown)
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, electricRocketUpdate, EffectVariant.TARGET)
+ToyboxMod:AddCallback(TearFlagsLib.Callback.PRE_REMOVE_TEARFLAG, cancelRemovePlasma, ToyboxMod.TEARFLAGS.PLASMA)
 
 --[[] poopy trinket forme
 local ELECTRIFIED_DURATION = 120
@@ -296,7 +133,7 @@ local function electricTearUpdate(_, tear)
         arc.MaxDistance = distToFire+5
         arc.OneHit = true
         arc.Mass = 0
-        ToyboxMod:setEntityData(arc, "DISABLE_PLASMA_TRIGGER", 0)
+        ToyboxMod:setEntityData(arc, "PLASMA_BLACKLIST", 0)
 
         arc.Color = Color(0,0,0,1,0,1,0.8)
 

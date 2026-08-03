@@ -1472,6 +1472,16 @@
 
     maxcharges="3"
 />
+<passive id="161" name="Carrion"
+    description="The rot consumes all"
+    gfx="carrion.png"
+    quality="2"
+    tags="offensive summonable"
+    customtags=""
+    cache=""
+
+    speed="-0.2" shotspeed="-0.2"
+/>
 
 
 

@@ -58,6 +58,7 @@ include("scripts_toybox.util.custom_tearflags")
 include("scripts_toybox.util.throwables")
 include("scripts_toybox.util.statuseffects")
 include("scripts_toybox.util.overlay_effects")
+include("scripts_toybox.util.tearflagslib.main")
 -- DATA ( entity / extra / persistent )
 include("scripts_toybox.util.data")
 -- ACHIEVEMENTS
@@ -68,6 +69,7 @@ include("scripts_toybox.misc.transformations.core")
     include("scripts_toybox.misc.transformations.effects.fancy")
     include("scripts_toybox.misc.transformations.effects.hydra")
 
+-- STATUS EFFECTS
 include("scripts_toybox.misc.status_effects.earworm")
 
 -- TEMPORARY ITEMS
@@ -81,6 +83,11 @@ include("scripts_toybox.misc.champions.mod_champion_logic")
     include("scripts_toybox.misc.champions.champion_effects.drowned")
     include("scripts_toybox.misc.champions.champion_effects.fear")
 include("scripts_toybox.misc.champions.champions_in_greed")
+-- CUSTOM TEARFLAGS
+    include("scripts_toybox.misc.tearflags.plasma")
+    include("scripts_toybox.misc.tearflags.langton")
+    include("scripts_toybox.misc.tearflags.musical")
+    include("scripts_toybox.misc.tearflags.bloody")
 -- TINTED ROOMS
 include("scripts_toybox.misc.tinted_rooms.enums")
 include("scripts_toybox.misc.tinted_rooms.tinted_room_logic")
@@ -314,6 +321,7 @@ include("scripts_toybox.challenges.heart_to_heart")
     include("scripts_toybox.items.passives.anaphylaxis")
     include("scripts_toybox.items.passives.clone")
     include("scripts_toybox.items.passives.silver_pieces")
+    include("scripts_toybox.items.passives.carrion")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -449,8 +457,8 @@ include("scripts_toybox.challenges.heart_to_heart")
     include("scripts_toybox.pickups.objects.mantle_glass")
     include("scripts_toybox.pickups.objects.mantle_metal")
     include("scripts_toybox.pickups.objects.mantle_gold")
-    include("scripts_toybox.pickups.objects.laurel")
-    include("scripts_toybox.pickups.objects.yanny")
+    --include("scripts_toybox.pickups.objects.laurel")
+    --include("scripts_toybox.pickups.objects.yanny")
 --PILLS
     include("scripts_toybox.pickups.pills.i_believe_i_can_fly")
     include("scripts_toybox.pickups.pills.dyslexia")

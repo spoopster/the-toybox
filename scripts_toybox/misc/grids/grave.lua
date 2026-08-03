@@ -98,48 +98,6 @@ local function keepDoorsClosed(_)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_UPDATE, keepDoorsClosed)
 
-local function getItemInGraveyard(_, _, _, firstTime)
-    if(not firstTime) then return end
-
-    local roomdat = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().Data
-    if(roomdat and roomdat.Type==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and roomdat.Subtype==ToyboxMod.ROOM_TYPE_DATA.GRAVEYARD_ROOM.Id) then
-        local room = ToyboxMod.GAME:GetRoom()
-        local shouldCloseDoors = false
-
-        for i=0, room:GetGridSize() do
-            local ent = room:GetGridEntity(i)
-            if(ent and ent:IsBreakableRock() and ent.State~=2 and ToyboxMod:getGridEntityData(ent, "GRAVE_SUB") and ToyboxMod:getGridEntityData(ent, "GRAVE_SUB")>ToyboxMod.GRID_GRAVE_EMPTY) then
-                ToyboxMod:setGridEntityData(ent, "GRAVE_NO_PICKUPS", true)
-                if(not ToyboxMod:getGridEntityData(ent, "ALREADY_QUEUE_FOR_DESTROY")) then
-                    ToyboxMod:setGridEntityData(ent, "ALREADY_QUEUE_FOR_DESTROY", true)
-                    Isaac.CreateTimer(function ()
-                        if(ent) then
-                            ent:Destroy(true)
-                        end
-                    end, math.random(1, 7)*2+15, 1, false)
-                end
-
-                if(ToyboxMod:getGridEntityData(ent, "GRAVE_SUB")>ToyboxMod.GRID_GRAVE_EMPTY) then
-                    shouldCloseDoors = true
-                end
-            end
-        end
-
-        if(shouldCloseDoors) then
-            ToyboxMod.GAME:ShakeScreen(20)
-
-            room:SetClear(false)
-            for _, i in pairs(DoorSlot) do
-                if(room:GetDoor(i)) then
-                    room:GetDoor(i):Close(true)
-                end
-            end
-            room:KeepDoorsClosed()
-        end
-    end
-end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, getItemInGraveyard)
-
 ---@param ent GridEntity
 local function switchBlockInit(_, ent, _, _)
     if(not ToyboxMod:getGridEntityData(ent, "GRAVE_SUB")) then return end
@@ -219,3 +177,74 @@ local function graveDestroy(_, rock, type, immediate)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_ROCK_DESTROY, graveDestroy, GridEntityType.GRID_ROCK)
+
+local function triggerGraveAmbush()
+    local roomdat = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().Data
+    if(roomdat and roomdat.Type==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and roomdat.Subtype==ToyboxMod.ROOM_TYPE_DATA.GRAVEYARD_ROOM.Id) then
+        local room = ToyboxMod.GAME:GetRoom()
+        local shouldCloseDoors = false
+
+        for i=0, room:GetGridSize() do
+            local ent = room:GetGridEntity(i)
+            if(ent and ent:IsBreakableRock() and ent.State~=2 and ToyboxMod:getGridEntityData(ent, "GRAVE_SUB") and ToyboxMod:getGridEntityData(ent, "GRAVE_SUB")>ToyboxMod.GRID_GRAVE_EMPTY) then
+                ToyboxMod:setGridEntityData(ent, "GRAVE_NO_PICKUPS", true)
+                if(not ToyboxMod:getGridEntityData(ent, "ALREADY_QUEUE_FOR_DESTROY")) then
+                    ToyboxMod:setGridEntityData(ent, "ALREADY_QUEUE_FOR_DESTROY", true)
+                    Isaac.CreateTimer(function ()
+                        if(ent) then
+                            ent:Destroy(true)
+                        end
+                    end, math.random(1, 7)*2+15, 1, false)
+                end
+
+                if(ToyboxMod:getGridEntityData(ent, "GRAVE_SUB")>ToyboxMod.GRID_GRAVE_EMPTY) then
+                    shouldCloseDoors = true
+                end
+            end
+        end
+
+        if(shouldCloseDoors) then
+            ToyboxMod.GAME:ShakeScreen(20)
+
+            room:SetClear(false)
+            for _, i in pairs(DoorSlot) do
+                if(room:GetDoor(i)) then
+                    room:GetDoor(i):Close(true)
+                end
+            end
+            room:KeepDoorsClosed()
+        end
+    end
+end
+
+local function getItemInGraveyard(_, _, _, firstTime)
+    if(not firstTime) then return end
+
+    triggerGraveAmbush()
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, getItemInGraveyard)
+
+---@param pickup EntityPickup
+---@param coll Entity
+local function prePedestalCollection(_, pickup, coll, low)
+    if(coll and coll:ToPlayer()) then
+        local pl = coll:ToPlayer()
+        if(pl:IsItemQueueEmpty() and pickup.SubType~=0) then
+            ToyboxMod:setEntityData(pickup, "WAIT_FOR_QUEUE", true)
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, prePedestalCollection, PickupVariant.PICKUP_COLLECTIBLE)
+
+---@param pickup EntityPickup
+---@param coll Entity
+local function postPedestalCollection(_, pickup, coll, low)
+    if(coll and coll:ToPlayer()) then
+        local pl = coll:ToPlayer()
+        if(ToyboxMod:getEntityData(pickup, "WAIT_FOR_QUEUE") and not pl:IsItemQueueEmpty()) then
+            triggerGraveAmbush()
+        end
+        ToyboxMod:setEntityData(pickup, "WAIT_FOR_QUEUE", nil)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_COLLISION, postPedestalCollection, PickupVariant.PICKUP_COLLECTIBLE)

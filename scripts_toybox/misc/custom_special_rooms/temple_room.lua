@@ -481,21 +481,6 @@ local function addNewBossRoom(_)
             end
         end
     end
-
-    local data = ToyboxMod.ROOM_TYPE_DATA.TEMPLE_ROOM
-    for slot, room in pairs(level:GetCurrentRoomDesc():GetNeighboringRooms()) do
-        if(ToyboxMod:isCustomSpecialRoom(room, "TEMPLE_ROOM") and ToyboxMod.GAME:GetRoom():GetDoor(slot)) then
-            local door = ToyboxMod.GAME:GetRoom():GetDoor(slot)
-            door:SetRoomTypes(ToyboxMod.GAME:GetRoom():GetType(), (room.Data and room.Data.Type or RoomType.ROOM_TELEPORTER))
-            if(data.DoorGfx) then
-                local sp = door:GetSprite()
-                for i, _ in pairs(sp:GetAllLayers()) do
-                    sp:ReplaceSpritesheet(i-1, data.DoorGfx, false)
-                end
-                sp:LoadGraphics()
-            end
-        end
-    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, addNewBossRoom)
 

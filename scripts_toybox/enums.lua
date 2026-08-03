@@ -242,6 +242,7 @@ ToyboxMod.COLLECTIBLE_CLONE = Isaac.GetItemIdByName("Clone")
 ToyboxMod.COLLECTIBLE_HAND_PUMP = Isaac.GetItemIdByName("Hand Pump")
 ToyboxMod.COLLECTIBLE_SILVER_PIECES = Isaac.GetItemIdByName("Silver Pieces")
 ToyboxMod.COLLECTIBLE_TWISTED_HEART = Isaac.GetItemIdByName("Twisted Heart")
+ToyboxMod.COLLECTIBLE_CARRION = Isaac.GetItemIdByName("Carrion")
 
 ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT = Isaac.GetItemIdByName("Elephant's Foot")
 ToyboxMod.COLLECTIBLE_MUTAGEN = Isaac.GetItemIdByName("Mutagen")
@@ -319,6 +320,7 @@ ToyboxMod.CARD_FOUR_STARRED_LADYBUG = Isaac.GetCardIdByName("4-Starred Ladybug")
 ToyboxMod.CARD_DARK_EXPLOSION = Isaac.GetCardIdByName("Dark Explosion")
 ToyboxMod.CARD_ENDLESS_CHAOS = Isaac.GetCardIdByName("Endless Chaos")
 ToyboxMod.CARD_CHAIN_REACTION = Isaac.GetCardIdByName("Chain Reaction")
+--[[
 ToyboxMod.CARD_TALISMAN = Isaac.GetCardIdByName("Talisman")
 ToyboxMod.CARD_GRIM = Isaac.GetCardIdByName("Grim")
 ToyboxMod.CARD_FAMILIAR = Isaac.GetCardIdByName("Familiar")
@@ -326,6 +328,7 @@ ToyboxMod.CARD_SIGIL = Isaac.GetCardIdByName("Sigil")
 ToyboxMod.CARD_ECTOPLASM = Isaac.GetCardIdByName("Ectoplasm")
 ToyboxMod.CARD_TRANCE = Isaac.GetCardIdByName("Trance")
 ToyboxMod.CARD_DEJA_VU = Isaac.GetCardIdByName("Deja Vu")
+]]
 ToyboxMod.CARD_GREEN_APPLE = Isaac.GetCardIdByName("Green Apple")
 ToyboxMod.CARD_MANTLE_ROCK = Isaac.GetCardIdByName("Mantle - Rock")
 ToyboxMod.CARD_MANTLE_POOP = Isaac.GetCardIdByName("Mantle - Poop")
@@ -336,8 +339,8 @@ ToyboxMod.CARD_MANTLE_SALT = Isaac.GetCardIdByName("Mantle - Salt")
 ToyboxMod.CARD_MANTLE_GLASS = Isaac.GetCardIdByName("Mantle - Glass")
 ToyboxMod.CARD_MANTLE_METAL = Isaac.GetCardIdByName("Mantle - Metal")
 ToyboxMod.CARD_MANTLE_GOLD = Isaac.GetCardIdByName("Mantle - Gold")
-ToyboxMod.CARD_LAUREL = Isaac.GetCardIdByName("Laurel")
-ToyboxMod.CARD_YANNY = Isaac.GetCardIdByName("Yanny")
+--ToyboxMod.CARD_LAUREL = Isaac.GetCardIdByName("Laurel")
+--ToyboxMod.CARD_YANNY = Isaac.GetCardIdByName("Yanny")
 ToyboxMod.CARD_THE_WISE_MEN = Isaac.GetCardIdByName("S - The Wise Men")
 ToyboxMod.CARD_THE_ANGEL = Isaac.GetCardIdByName("IS - The Angel")
 ToyboxMod.CARD_THE_GATE = Isaac.GetCardIdByName("IIS - The Gate")
@@ -347,6 +350,17 @@ ToyboxMod.CARD_THE_REAPER = Isaac.GetCardIdByName("VS - The Reaper")
 ToyboxMod.CARD_THE_DRAGON = Isaac.GetCardIdByName("VIS - The Dragon")
 ToyboxMod.CARD_DUALITY = Isaac.GetCardIdByName("VIIS - Duality")
 ToyboxMod.CARD_THE_BARON = Isaac.GetCardIdByName("VIIIS - The Baron")
+
+ToyboxMod.CARD_THE_TRICKSTER = Isaac.GetCardIdByName("IXS - The Trickster")
+ToyboxMod.CARD_MEMORY = Isaac.GetCardIdByName("XS - Memory")
+ToyboxMod.CARD_THE_CARAVAN = Isaac.GetCardIdByName("XIS - The Caravan")
+ToyboxMod.CARD_EXCALIBUR = Isaac.GetCardIdByName("XIIS - Excalibur")
+ToyboxMod.CARD_FATE = Isaac.GetCardIdByName("XIIIS - Fate")
+ToyboxMod.CARD_THE_PHANTOM = Isaac.GetCardIdByName("XIVS - The Phantom")
+ToyboxMod.CARD_MIRAGE = Isaac.GetCardIdByName("XVS - Mirage")
+ToyboxMod.CARD_THE_IDOL = Isaac.GetCardIdByName("XVIS - The Idol")
+
+
 
 ToyboxMod.PILL_I_BELIEVE = Isaac.GetPillEffectByName("I Believe I Can Fly!")
 ToyboxMod.PILL_DYSLEXIA = Isaac.GetPillEffectByName("Dyslexia")
@@ -450,11 +464,13 @@ ToyboxMod.PICKUP_RANDOM_ALT_TAROT = Isaac.GetEntitySubTypeByName("Toybox Random 
 ToyboxMod.PICKUP_RANDOM_YU_GI_OH = Isaac.GetEntitySubTypeByName("Toybox Random Yu-Gi-Oh! Card")
 
 ToyboxMod.TEARFLAGS = {
-    PLASMA = 1<<0,
-    LOVE_CHARM = 1<<1,
+    MUSICAL = TearFlagsLib.RegisterTearFlag("TOYBOX_MUSICAL"),
+    PLASMA = TearFlagsLib.RegisterTearFlag("TOYBOX_PLASMA"),
+    LANGTON = TearFlagsLib.RegisterTearFlag("TOYBOX_LANGTON"),
+    BLOODY = TearFlagsLib.RegisterTearFlag("TOYBOX_BLOODY"),
 
-    BOMB_QUAKE = 1<<32,
-    BOMB_BLESSED = 1<<33,
+    BOMB_QUAKE = TearFlagsLib.RegisterTearFlag("TOYBOX_BOMB_QUAKE"),
+    BOMB_BLESSED = TearFlagsLib.RegisterTearFlag("TOYBOX_BOMB_BLESSED"),
 }
 
 ToyboxMod.SFX_ATLASA_ROCKCRACK = Isaac.GetSoundIdByName("(TOYBOX) Rock Crack")
@@ -736,6 +752,15 @@ for key, id in pairs(ToyboxMod) do
         end
     end
 end
+
+
+ToyboxMod.WEAPONFLAGS_NO_COLOR = {
+    [TearFlagsLib.WeaponFlag.LASER] = true,
+    [TearFlagsLib.WeaponFlag.KNIFE] = true,
+    [TearFlagsLib.WeaponFlag.BRIMSTONE_BALL] = true,
+    [TearFlagsLib.WeaponFlag.ANTI_GRAV_LASER] = true,
+    [TearFlagsLib.WeaponFlag.UMBILICAL_WHIP] = true,
+}
 
 --#endregion
 --#region --!ATLAS_A

@@ -8,6 +8,16 @@ local ALT_TAROT_DATA = {
     {ToyboxMod.CARD_THE_DRAGON, 1.0},
     {ToyboxMod.CARD_DUALITY, 1.0},
     {ToyboxMod.CARD_THE_BARON, 1.0},
+    --[[] ]
+    {ToyboxMod.CARD_THE_TRICKSTER, 1.0},
+    {ToyboxMod.CARD_MEMORY, 1.0},
+    {ToyboxMod.CARD_THE_CARAVAN, 1.0},
+    {ToyboxMod.CARD_EXCALIBUR, 1.0},
+    {ToyboxMod.CARD_FATE, 1.0},
+    {ToyboxMod.CARD_THE_PHANTOM, 1.0},
+    {ToyboxMod.CARD_MIRAGE, 1.0},
+    {ToyboxMod.CARD_THE_IDOL, 1.0},
+    --]]
 }
 local ALT_TAROT_PICKER = WeightedOutcomePicker()
 for _, data in ipairs(ALT_TAROT_DATA) do

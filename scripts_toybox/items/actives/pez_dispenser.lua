@@ -158,6 +158,7 @@ local function dropDispenserConsumable(player, index, shouldSpawnPickup)
 
     dispenserInventory[index or 1] = nil
     ToyboxMod:setEntityData(player, "PILLCRUSHER_INVENTORY", validateDispenserInventory(dispenserInventory))
+    ToyboxMod:setEntityData(player, "PILLCRUSHER_SELECTED", ToyboxMod:clamp(ToyboxMod:getEntityData(player, "PILLCRUSHER_SELECTED") or 1, 1, math.max(1, #dispenserInventory)))
 
     return spawnedPickup
 end
@@ -190,12 +191,35 @@ local function takeDispenserConsumable(_, _, rng, player, flags)
     local toRemove = ToyboxMod:cloneTable(dispenserInventory[selIndex])
     dropDispenserConsumable(player, selIndex, false)
 
+    local virtuesLogic = player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES)
+    local wispToSpawn = ToyboxMod.COLLECTIBLE_PEZ_DISPENSER
+
     if(toRemove.IsPill) then
-        player:AddPill(toRemove.ID)
-        --player:UsePill(ToyboxMod.GAME:GetItemPool():GetPillEffect(toRemove.ID, player), toRemove.ID, UseFlag.USE_OWNED)
+        if(virtuesLogic) then
+            player:UsePill(ToyboxMod.GAME:GetItemPool():GetPillEffect(toRemove.ID, player), toRemove.ID, 0)
+            wispToSpawn = ToyboxMod.COLLECTIBLE_STEEL_SOUL
+        else
+            player:AddPill(toRemove.ID)
+        end
     else
-        player:AddCard(toRemove.ID)
-        --player:UseCard(toRemove.ID, UseFlag.USE_OWNED)
+        if(virtuesLogic) then
+            player:UseCard(toRemove.ID, 0)
+
+            local conf = Isaac.GetItemConfig():GetCard(toRemove.ID)
+            if(conf) then
+                if(conf.CardType==ItemConfig.CARDTYPE_RUNE) then
+                    wispToSpawn = ToyboxMod.COLLECTIBLE_GIANT_CAPSULE
+                elseif(conf.CardType~=ItemConfig.CARDTYPE_SPECIAL_OBJECT) then
+                    wispToSpawn = ToyboxMod.COLLECTIBLE_ROCK_CANDY
+                end
+            end
+        else
+            player:AddCard(toRemove.ID)
+        end
+    end
+
+    if(virtuesLogic) then
+        player:AddWisp(wispToSpawn, player.Position)
     end
 
     sfx:Play(SoundEffect.SOUND_PLOP)
@@ -379,3 +403,59 @@ local function renderInventory()
     ToyboxMod.GAME:GetHUD():GetCardsPillsSprite().Scale = Vector(1,1)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderInventory)
+
+
+-- < BOOK OF VIRTUES > --
+
+local VALID_WISPS = {
+    [ToyboxMod.COLLECTIBLE_STEEL_SOUL] = 0, -- pill
+    [ToyboxMod.COLLECTIBLE_ROCK_CANDY] = 1, -- card
+    [ToyboxMod.COLLECTIBLE_GIANT_CAPSULE] = 2, -- rune
+    [ToyboxMod.COLLECTIBLE_PEZ_DISPENSER] = 3, -- object
+}
+
+local DROP_CHANCE = 0.33
+
+---@param fam EntityFamiliar
+local function virtuesWispDeath(_, fam)
+    if(not (fam.Variant==FamiliarVariant.WISP and VALID_WISPS[fam.SubType])) then return end
+
+    if(not (fam:GetDropRNG():RandomFloat()<DROP_CHANCE)) then return end
+
+    local id = VALID_WISPS[fam.SubType]
+    local pos = ToyboxMod.GAME:GetRoom():FindFreePickupSpawnPosition(fam.Position)
+    if(id==0) then
+        local pill = Isaac.Spawn(5,PickupVariant.PICKUP_PILL,0,pos,Vector.Zero,nil):ToPickup()
+    else
+        local pool = ToyboxMod.GAME:GetItemPool()
+        local conf = Isaac.GetItemConfig()
+
+        local desiredTypes = {}
+        if(id==1) then
+            desiredTypes = {
+                [ItemConfig.CARDTYPE_TAROT] = true,
+                [ItemConfig.CARDTYPE_TAROT_REVERSE] = true,
+                [ItemConfig.CARDTYPE_SUIT] = true,
+                [ItemConfig.CARDTYPE_SPECIAL] = true,
+            }
+        elseif(id==2) then
+            desiredTypes = {
+                [ItemConfig.CARDTYPE_RUNE] = true,
+            }
+        else
+            desiredTypes = {
+                [ItemConfig.CARDTYPE_SPECIAL_OBJECT] = true,
+            }
+        end
+
+        local cardId
+        local failsafe = 150
+        repeat
+            cardId = pool:GetCard(fam:GetDropRNG():Next(), true, true, false)
+            failsafe = failsafe-1
+        until((cardId and conf:GetCard(cardId) and desiredTypes[conf:GetCard(cardId).CardType]) or failsafe<=0)
+
+        local card = Isaac.Spawn(5,PickupVariant.PICKUP_TAROTCARD,cardId,pos,Vector.Zero,nil):ToPickup()
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, virtuesWispDeath, EntityType.ENTITY_FAMILIAR)

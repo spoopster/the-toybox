@@ -48,7 +48,7 @@ local function useAscenson(_, _, rng, player, flags)
         local isCarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
 
         local data = ToyboxMod:getEntityDataTable(player)
-        if(data.ASCENSION_ISACTIVE~=true) then
+        if(not data.ASCENSION_ISACTIVE) then
             data.ASCENSION_ISACTIVE = true
             data.ASCENSION_LENGTH = ASCENSION_DURATION*(isCarbattery and 2 or 1)
             data.ASCENSION_ORIGINALPOS = player.Position
@@ -59,13 +59,19 @@ local function useAscenson(_, _, rng, player, flags)
             data.ASCENSION_EFFECT:GetSprite():ReplaceSpritesheet(12, EntityConfig.GetPlayer(player:GetPlayerType()):GetSkinPath(), true)
             data.ASCENSION_EFFECT:GetSprite():GetLayer("ghost"):SetVisible(false)
             data.ASCENSION_EFFECT:GetSprite():Play("Death", true)
-            
+  
             local soulEffect = Isaac.Spawn(1000,16,10,player.Position,Vector.Zero,player)
             player:SetColor(Color(1,1,1,1,0.5,0.5,0.5),5,99,true,false)
             sfx:Play(SoundEffect.SOUND_LAZARUS_FLIP_ALIVE, 0.5)
 
             SHADER_PLAYER = player
             GRAYING_VAL = 1
+        else
+            return {
+                Discharge = false,
+                Remove = false,
+                ShowAnim = false,
+            }
         end
     end
 
@@ -155,6 +161,66 @@ local function getShaderParams(_, name)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, getShaderParams)
+
+
+-- < BOOK OF VIRTUES > --
+
+local WISP_DMG_MULT = 5
+
+---@param baseTear EntityTear?
+local function virtuesWispFire(_, baseTear)
+    if(not baseTear) then return end
+
+    local fam = baseTear.SpawnerEntity and baseTear.SpawnerEntity:ToFamiliar()
+    if(not (fam.Variant==FamiliarVariant.WISP and fam.SubType==ToyboxMod.COLLECTIBLE_ASCENSION)) then return end
+
+    if(not ToyboxMod:getEntityData(fam, "EFFECT_ACTIVE")) then return end
+
+    baseTear.CollisionDamage = baseTear.CollisionDamage*WISP_DMG_MULT
+    baseTear.Scale = baseTear.Scale*1.5
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, CallbackPriority.IMPORTANT, virtuesWispFire, FamiliarVariant.WISP)
+
+---@param fam EntityFamiliar
+local function virtuesWispUpdate(_, fam)
+    if(not (fam.Variant==FamiliarVariant.WISP and fam.SubType==ToyboxMod.COLLECTIBLE_ASCENSION)) then return end
+
+    local data = ToyboxMod:getEntityDataTable(fam)
+
+    local pl = fam.Player
+    if(not pl) then return end
+
+    if(ToyboxMod:getEntityData(pl, "ASCENSION_ISACTIVE")) then
+        if(not data.EFFECT_ACTIVE) then
+            --<color name="core_yellow" r="300" g="290" b="10"/>
+            fam:GetSprite():GetLayer(1):SetColor(Color(320/255,300/255,60/255))
+            fam:GetSprite():GetLayer(0):SetColor(Color(300/255,290/255,10/255))
+            fam:GetSprite():ReplaceSpritesheet(0, "gfx_tb/familiars/wisps/smiley.png", true)
+            data.EFFECT_ACTIVE = true
+        end
+    else
+        if(data.EFFECT_ACTIVE) then
+            --[[
+                <color name="flame_blue" r="152" g="330" b="458"/>
+	            <color name="core_blue" r="255" g="356" b="510"/>
+            ]]
+
+            --<color name="core_black" r="710" g="710" b="710" or="-512" og="-512" ob="-512"/>
+            fam:GetSprite():GetLayer(1):SetColor(Color(152/255,330/255,458/255))
+            fam:GetSprite():GetLayer(0):SetColor(Color(255/255,356/255,510/255))
+            fam:GetSprite():ReplaceSpritesheet(0, "gfx_tb/familiars/wisps/core.png", true)
+            data.EFFECT_ACTIVE = nil
+        end
+    end
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_FAMILIAR_UPDATE, CallbackPriority.EARLY, virtuesWispUpdate, FamiliarVariant.WISP)
+
+local function removeWisps()
+    for _, ent in ipairs(Isaac.FindByType(3,FamiliarVariant.WISP,ToyboxMod.COLLECTIBLE_ASCENSION)) do
+        ent:Remove()
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, removeWisps)
 
 --! removes ascension from the pool when anyone is playing as the losts!!
 --* not rlly needed

@@ -20,6 +20,7 @@ local SUB_TO_CARD = {
     [45] = ToyboxMod.CARD_ENDLESS_CHAOS,
     [46] = ToyboxMod.CARD_CHAIN_REACTION,
 
+    --[[
     [61] = ToyboxMod.CARD_TALISMAN,
     [62] = ToyboxMod.CARD_GRIM,
     [63] = ToyboxMod.CARD_FAMILIAR,
@@ -27,6 +28,27 @@ local SUB_TO_CARD = {
     [65] = ToyboxMod.CARD_ECTOPLASM,
     [66] = ToyboxMod.CARD_TRANCE,
     [67] = ToyboxMod.CARD_DEJA_VU,
+    --]]
+    
+    [61] = ToyboxMod.CARD_THE_WISE_MEN,
+    [62] = ToyboxMod.CARD_THE_ANGEL,
+    [63] = ToyboxMod.CARD_THE_GATE,
+    [64] = ToyboxMod.CARD_APOCALYPSE,
+    [65] = ToyboxMod.CARD_THE_CRYPT,
+    [66] = ToyboxMod.CARD_THE_REAPER,
+    [67] = ToyboxMod.CARD_THE_DRAGON,
+    [68] = ToyboxMod.CARD_DUALITY,
+    [69] = ToyboxMod.CARD_THE_BARON,
+    [70] = ToyboxMod.CARD_THE_TRICKSTER,
+    [71] = ToyboxMod.CARD_MEMORY,
+    [72] = ToyboxMod.CARD_THE_CARAVAN,
+    [73] = ToyboxMod.CARD_EXCALIBUR,
+    [74] = ToyboxMod.CARD_FATE,
+    [75] = ToyboxMod.CARD_THE_PHANTOM,
+    [76] = ToyboxMod.CARD_MIRAGE,
+    [77] = ToyboxMod.CARD_THE_IDOL,
+
+    --[101] = science cards
 }
 
 ---@param pickup EntityPickup

@@ -62,3 +62,21 @@ local function evalParams(_, pl, params, weap, dmg, tearDisp, source)
     return params
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, evalParams)
+
+local cancelEvalModded = false
+
+---@param entity Entity
+---@param player EntityPlayer
+local function postPollTearflags(_, entity, player, weapon)
+    if(cancelEvalModded) then return end
+    if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_LAMAT_RABBIT)) then return end
+
+    cancelEvalModded = true
+    for _=1, ToyboxMod:getLamatRabbitRerollsNum(player) do
+        TearFlagsLib.PollTearFlags(entity, player, weapon)
+    end
+    cancelEvalModded = false
+
+    return params
+end
+ToyboxMod:AddCallback(TearFlagsLib.Callback.POST_POLL_TEARFLAGS, postPollTearflags)

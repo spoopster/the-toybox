@@ -58,77 +58,7 @@
         mimiccharge="1"
         weight="0"
     />
-    <card id="5" name="Talisman"
-        description="---"
-        hud="Talisman"
-        type="special"
-        pickup="2803"
-
-        mimiccharge="1"
-        weight="0"
-        hidden="true"
-    />
-    <card id="6" name="Grim"
-        description="---"
-        hud="Grim"
-        type="special"
-        pickup="2803"
-
-        mimiccharge="1"
-        weight="0"
-        hidden="true"
-    />
-    <card id="7" name="Familiar"
-        description="---"
-        hud="Familiar"
-        type="special"
-        pickup="2803"
-
-        mimiccharge="1"
-        weight="0"
-        hidden="true"
-    />
-    <card id="8" name="Sigil"
-        description="---"
-        hud="Sigil"
-        type="special"
-        pickup="2803"
-
-        mimiccharge="1"
-        weight="0"
-        hidden="true"
-    />
-    <card id="9" name="Ectoplasm"
-        description="---"
-        hud="Ectoplasm"
-        type="special"
-        pickup="2803"
-
-        mimiccharge="1"
-        weight="0"
-        hidden="true"
-    />
-    <card id="10" name="Trance"
-        description="---"
-        hud="Trance"
-        type="special"
-        pickup="2803"
-
-        mimiccharge="1"
-        weight="0"
-        hidden="true"
-    />
-    <card id="11" name="Deja Vu"
-        description="---"
-        hud="Deja Vu"
-        type="special"
-        pickup="2803"
-
-        mimiccharge="1"
-        weight="0"
-        hidden="true"
-    />
-    <card id="12" name="Dark Explosion"
+    <card id="5" name="Dark Explosion"
         description="---"
         hud="Dark Explosion"
         type="special"
@@ -138,7 +68,7 @@
         weight="0"
         hidden="true"
     />
-    <card id="13" name="Endless Chaos"
+    <card id="6" name="Endless Chaos"
         description="---"
         hud="Endless Chaos"
         type="special"
@@ -148,7 +78,7 @@
         weight="0"
         hidden="true"
     />
-    <card id="14" name="Chain Reaction"
+    <card id="7" name="Chain Reaction"
         description="---"
         hud="Chain Reaction"
         type="special"
@@ -158,8 +88,7 @@
         weight="0"
         hidden="true"
     />
-
-    <card id="15" name="Green Apple"
+    <card id="8" name="Green Apple"
         description="Transformation booster"
         hud="Green Apple"
         type="special"
@@ -169,8 +98,7 @@
 
         achievement="Green Apple"
     />
-
-    <card id="16" name="S - The Wise Men"
+    <card id="9" name="S - The Wise Men"
         description="Follow the star"
         hud="S - The Wise Men"
         type="tarot"
@@ -179,7 +107,7 @@
         mimiccharge="12"
         weight="0"
     />
-    <card id="17" name="IS - The Angel"
+    <card id="10" name="IS - The Angel"
         description="Soar above the clouds"
         hud="IS - The Angel"
         type="tarot"
@@ -188,7 +116,7 @@
         mimiccharge="12"
         weight="0"
     />
-    <card id="18" name="IIS - The Gate"
+    <card id="11" name="IIS - The Gate"
         description="Master key"
         hud="IIS - The Gate"
         type="tarot"
@@ -197,7 +125,7 @@
         mimiccharge="12"
         weight="0"
     />
-    <card id="19" name="IIIS - Apocalypse"
+    <card id="12" name="IIIS - Apocalypse"
         description="The end is nigh"
         hud="IIIS - Apocalypse"
         type="tarot"
@@ -206,7 +134,7 @@
         mimiccharge="12"
         weight="0"
     />
-    <card id="20" name="IVS - The Crypt"
+    <card id="13" name="IVS - The Crypt"
         description="Beyond the veil"
         hud="IVS - The Crypt"
         type="tarot"
@@ -215,7 +143,7 @@
         mimiccharge="12"
         weight="0"
     />
-    <card id="21" name="VS - The Reaper"
+    <card id="14" name="VS - The Reaper"
         description="Black death"
         hud="VS - The Reaper"
         type="tarot"
@@ -224,7 +152,7 @@
         mimiccharge="12"
         weight="0"
     />
-    <card id="22" name="VIS - The Dragon"
+    <card id="15" name="VIS - The Dragon"
         description="There be treasure"
         hud="VIS - The Dragon"
         type="tarot"
@@ -233,7 +161,7 @@
         mimiccharge="12"
         weight="0"
     />
-    <card id="23" name="VIIS - Duality"
+    <card id="16" name="VIIS - Duality"
         description="Pick and choose"
         hud="VIIS - Duality"
         type="tarot"
@@ -242,9 +170,81 @@
         mimiccharge="12"
         weight="0"
     />
-    <card id="24" name="VIIIS - The Baron"
+    <card id="17" name="VIIIS - The Baron"
         description="A capital investment"
         hud="VIIIS - The Baron"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+    <card id="18" name="IXS - The Trickster"
+        description="Sleight of hand"
+        hud="IXS - The Trickster"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+    <card id="19" name="XS - Memory"
+        description="Do you remember?"
+        hud="XS - Memory"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+    <card id="20" name="XIS - The Caravan"
+        description="Wandering trader"
+        hud="XIS - The Caravan"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+    <card id="21" name="XIIS - Excalibur"
+        description="For the worthy"
+        hud="XIIS - Excalibur"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+    <card id="22" name="XIIIS - Fate"
+        description="Ancient doom"
+        hud="XIIIS - Fate"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+    <card id="23" name="XIVS - The Phantom"
+        description="Possessor mode"
+        hud="XIVS - The Phantom"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+    <card id="24" name="XVS - Mirage"
+        description="Over and over and over and"
+        hud="XVS - Mirage"
+        type="tarot"
+        pickup="2805"
+
+        mimiccharge="12"
+        weight="0"
+    />
+    <card id="25" name="XVIS - The Idol"
+        description="Risky reward"
+        hud="XVIS - The Idol"
         type="tarot"
         pickup="2805"
 
@@ -325,23 +325,6 @@
         hud="Mantle - Gold"
         type="object"
         pickup="2845"
-
-        weight="0"
-    />
-
-    <card id="209" name="Laurel"
-        description="Limited invincibility"
-        hud="Laurel"
-        type="object"
-        pickup="2846"
-
-        weight="0"
-    />
-    <card id="210" name="Yanny"
-        description="Punish them all"
-        hud="Yanny"
-        type="object"
-        pickup="6482"
 
         weight="0"
     />

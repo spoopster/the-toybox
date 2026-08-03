@@ -4,34 +4,20 @@ local BLEED_CHANCE = 0.10
 local BLEED_MAXCHANCE = 0.5
 local BLEED_MAXLUCK = 20
 
-local BLEED_DURATION = 3*30
+---@param entity Entity
+---@param player EntityPlayer
+local function pollTearflags(_, entity, player, weapon)
+    if(player:HasCollectible(ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH)) then
+        local rng = player:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH)
+        local chance = TearFlagsLib.GetChance(TearFlagsLib.GetRealLuck(player, entity), BLEED_CHANCE, BLEED_MAXCHANCE, BLEED_MAXLUCK, 1)
+        chance = math.min(chance*player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH), BLEED_MAXCHANCE)
 
-ToyboxMod:addTearFlagEnum(
-    "VAMPIRETEETH_BLEED",
-    ---@param npc EntityNPC
-    ---@param source Entity
-    function(npc, flag, source, pos, dmg, key)
-        npc:AddBleeding(EntityRef(ToyboxMod:getPlayerFromEnt(source)), math.max(0, BLEED_DURATION-npc:GetBleedingCountdown()))
-    end,
-    TearVariant.BLOOD,
-    Color(1.3,0.9,0.9,1,0.1,0,0)
-)
-
----@param pl EntityPlayer
-local function giveTearflag(_, pl, _)
-    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH)) then return end
-
-    ToyboxMod:addTearFlag(
-        pl,
-        "VAMPIRETEETH_BLEED",
-        ---@param player EntityPlayer
-        function(player)
-            return ToyboxMod:getLuckAffectedChance(player.Luck, BLEED_CHANCE, BLEED_MAXLUCK, BLEED_MAXCHANCE)
-        end,
-        ToyboxMod.COLLECTIBLE_VAMPIRE_TEETH
-    )
+        if(rng:RandomFloat()<chance) then
+            TearFlagsLib.AddTearFlags(entity, ToyboxMod.TEARFLAGS.BLOODY)
+        end
+    end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, giveTearflag, CacheFlag.CACHE_TEARFLAG)
+ToyboxMod:AddCallback(TearFlagsLib.Callback.POLL_TEARFLAGS, pollTearflags)
 
 ---@param npc EntityNPC
 local function healOnBleedKill(_, npc)

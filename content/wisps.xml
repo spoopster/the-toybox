@@ -205,7 +205,7 @@
     />
     <!-- D -->
 	<wisp id="26"   count="1" layer="2"    hp="2" damage="3"
-        flameColor="flame_grey" coreColor="core_grey"
+        flameColor="flame_grey" coreColor="core_grey" coreGfx="dice.png"
     />
     <!-- Sunk Costs -->
 	<wisp id="28"   count="1" layer="1"    hp="2" damage="3"
@@ -220,5 +220,29 @@
 	<wisp id="37"   count="1" layer="1"    hp="3" damage="3"
         flameColor="flame_black" coreColor="core_black" 
     />
-
+	<!-- Candy Dispenser - Real ID is 41, other 3 are passive items -->
+		<!-- Pill --> <!-- Steel Soul -->
+		<wisp id="38" count="0" layer="1"    hp="2" damage="3"
+			flameColor="flame_blue" coreColor="core_blue" coreGfx="pill.png" tearColor="tear_green"
+			tearFlags="4"
+		/>
+		<!-- Card --> <!-- Rock Candy -->
+		<wisp id="39" count="0" layer="1"    hp="2" damage="4"
+			flameColor="flame_brown" coreColor="core_brown" coreGfx="card.png" tearVariant="1"
+			tearFlags="70"
+		/>
+		<!-- Rune --> <!-- Giant Capsule -->
+		<wisp id="40" count="0" layer="1"    hp="2" damage="3"
+			flameColor="flame_purple" coreColor="core_purple" tearColor="tear_purple" coreGfx="rune.png"
+			tearFlags="2"
+		/>
+		<!-- Misc --> <!-- Real ID! -->
+		<wisp id="41" count="0" layer="1"    hp="2" damage="3"
+			flameColor="flame_grey" coreColor="core_beige" coreGfx="dice.png"
+			tearFlags2="14" procChance="0.25" tearVariant2="24"
+		/>
+	<!-- Ascension -->
+	<wisp id="43"   count="1" layer="2"    hp="3" damage="1"
+        flameColor="flame_beige" coreColor="core_beige"
+    />
 </wisps>

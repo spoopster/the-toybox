@@ -80,7 +80,7 @@ end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_PRE_BACKDROP_CHANGE, CallbackPriority.IMPORTANT, replaceBackdrop)
 
 ---@param ent GridEntity
-local function makeLockedDoor(_, ent, _, first)
+local function makeSpecialRoomDoor(_, ent, _, first)
     local door = ent:ToDoor()
     local room = ToyboxMod.GAME:GetLevel():GetRoomByIdx(door.TargetRoomIndex)
     if(not (room.Data and room.Data.Type==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and ID_TO_TABLEKEY[room.Data.Subtype])) then return end
@@ -99,7 +99,19 @@ local function makeLockedDoor(_, ent, _, first)
         door:SetLocked(true)
     end
 end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, makeLockedDoor, GridEntityType.GRID_DOOR)
+ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_GRID_INIT, makeSpecialRoomDoor, GridEntityType.GRID_DOOR)
+
+local function makeSpecialRoomDoorsLate(_)
+    local level = ToyboxMod.GAME:GetLevel()
+    local room = ToyboxMod.GAME:GetRoom()
+    for slot, _ in pairs(level:GetCurrentRoomDesc():GetNeighboringRooms()) do
+        if(room:GetDoor(slot)) then
+            local door = room:GetDoor(slot)
+            makeSpecialRoomDoor(_, door)
+        end
+    end
+end
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.LATE+1, makeSpecialRoomDoorsLate)
 
 -- room icon rendering
 

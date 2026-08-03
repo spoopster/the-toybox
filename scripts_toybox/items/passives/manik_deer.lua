@@ -69,35 +69,47 @@ local function addStatsAndFlags(_, pl)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, addStatsAndFlags)
 
+---@param pl EntityPlayer
+---@param params TearParams
+local function addCharmFlag(_, pl, params, weap, dmg, tearDisp, source)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_MANIK_DEER)) then return end
+
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_MANIK_DEER)
+    local chance = TEAR_FLAG_CHANCE*pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_MANIK_DEER)
+
+    local flags = ToyboxMod:getEntityData(pl, "MANIK_FLAGS") or {}
+
+    local addedFlag = 0
+    for _, tearflag in ipairs(flags) do
+        if(rng:RandomFloat()<chance) then
+            params.TearFlags = params.TearFlags | tearflag
+            addedFlag = addedFlag+1
+        end
+    end
+
+    if(addedFlag) then
+        local mul = addedFlag^0.5
+
+        params.TearColor = params.TearColor*Color(0.9^mul,1.2^mul,1.2^mul,1,0,0.2*mul,0.2*mul)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, addCharmFlag)
+
 ---@param player EntityPlayer
 ---@param flag CacheFlag
 local function evalCache(_, player, flag)
     if(not player:HasCollectible(ToyboxMod.COLLECTIBLE_MANIK_DEER)) then return end
 
-    if(flag==CacheFlag.CACHE_TEARFLAG) then
-        local flags = ToyboxMod:getEntityData(player, "MANIK_FLAGS") or {}
+    local statTable = ToyboxMod:getEntityData(player, "MANIK_STATS") or {}
 
-        local chance = TEAR_FLAG_CHANCE*player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_MANIK_DEER)
-        for _, tearflag in ipairs(flags) do
-            ToyboxMod:addTearFlag(
-                player,
-                tearflag,
-                chance,
-                ToyboxMod.COLLECTIBLE_MANIK_DEER
-            )
-        end
-    else
-        local statTable = ToyboxMod:getEntityData(player, "MANIK_STATS") or {}
-
-        if(flag==CacheFlag.CACHE_SPEED) then
-            player.MoveSpeed = player.MoveSpeed+(statTable.SPEED or 0)
-        elseif(flag==CacheFlag.CACHE_RANGE) then
-            player.TearRange = player.TearRange+(statTable.RANGE or 0)*40
-        elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
-            player.ShotSpeed = player.ShotSpeed+(statTable.SHOTSPEED or 0)
-        elseif(flag==CacheFlag.CACHE_LUCK) then
-            player.Luck = player.Luck+(statTable.LUCK or 0)
-        end
+    if(flag==CacheFlag.CACHE_SPEED) then
+        player.MoveSpeed = player.MoveSpeed+(statTable.SPEED or 0)
+    elseif(flag==CacheFlag.CACHE_RANGE) then
+        player.TearRange = player.TearRange+(statTable.RANGE or 0)*40
+    elseif(flag==CacheFlag.CACHE_SHOTSPEED) then
+        player.ShotSpeed = player.ShotSpeed+(statTable.SHOTSPEED or 0)
+    elseif(flag==CacheFlag.CACHE_LUCK) then
+        player.Luck = player.Luck+(statTable.LUCK or 0)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)

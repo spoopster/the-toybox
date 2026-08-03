@@ -1,43 +1,34 @@
 local sfx = SFXManager()
 
-local CHARM_CHANCE = 0.1
-local CHARM_STACKCHANCE = 0.05
-local CHARM_MAXCHANCE = 0.25
-
-local CHARM_DURATION = 5*30
-local CHARM_COLOR = Color(0.9,0.7,1,1,0.25,0,0.2,1.5,0,1.5,1)
---local 
+local CHARM_DODGE_COLOR = Color(0.9,0.7,1,1,0.25,0,0.2,1.5,0,1.5,1)
 
 local CHARM_DMGMULT = 0.5
 local CHARM_STACKMULT = 0.25
 
 local CHARM_INVINCIBILITY = 60
+ 
+local CHARM_CHANCE = 0.1
+local CHARM_STACKCHANCE = 0.05
+local CHARM_MAXCHANCE = 0.25
 
-ToyboxMod:addTearFlagEnum(
-    "LOVELETTER_CHARM",
-    ---@param npc EntityNPC
-    ---@param source Entity
-    function(npc, flag, source, pos, dmg, key)
-        npc:AddCharmed(EntityRef(ToyboxMod:getPlayerFromEnt(source)), math.max(0, CHARM_DURATION-npc:GetCharmedCountdown()))
-    end,
-    nil,
-    CHARM_COLOR
-)
+local CHARM_COLOR = Color(0.9,0.7,1,1,0.25,0,0.2,1.5,0,1.5,1)
 
 ---@param pl EntityPlayer
-local function giveTearflag(_, pl, _)
+---@param params TearParams
+local function addCharmFlag(_, pl, params, weap, dmg, tearDisp, source)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_LOVE_LETTER)) then return end
 
-    ToyboxMod:addTearFlag(
-        pl,
-        "LOVELETTER_CHARM",
-        function(player)
-            return math.min(CHARM_MAXCHANCE, CHARM_CHANCE+player:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LOVE_LETTER)*CHARM_STACKCHANCE)
-        end,
-        ToyboxMod.COLLECTIBLE_LOVE_LETTER
-    )
+    local mult = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LOVE_LETTER)
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_LOVE_LETTER)
+    local chance = math.min(CHARM_CHANCE+CHARM_STACKCHANCE*(mult-1), CHARM_MAXCHANCE)
+
+    if(rng:RandomFloat()<chance) then
+        params.TearFlags = params.TearFlags | TearFlags.TEAR_CHARM
+        params.TearColor = params.TearColor*CHARM_COLOR
+    end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, giveTearflag, CacheFlag.CACHE_TEARFLAG)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, addCharmFlag)
+
 
 ---@param ent Entity
 local function postCharmedTakeDMG(_, ent, dmg, flags, source, cooldown)
@@ -67,7 +58,7 @@ local function playerTakeDMGFromCharm(_, p, dmg, flags, source, cooldown)
         if(p:GetDamageCooldown()==0) then
             p:SetMinDamageCooldown(CHARM_INVINCIBILITY)
             sfx:Play(SoundEffect.SOUND_KISS_LIPS1)
-            p:SetColor(CHARM_COLOR,10,2,true,false)
+            p:SetColor(CHARM_DODGE_COLOR,10,2,true,false)
         end
 
         return false
@@ -78,7 +69,7 @@ local function playerTakeDMGFromCharm(_, p, dmg, flags, source, cooldown)
         if(p:GetDamageCooldown()==0) then
             p:SetMinDamageCooldown(CHARM_INVINCIBILITY)
             sfx:Play(SoundEffect.SOUND_KISS_LIPS1)
-            p:SetColor(CHARM_COLOR,10,2,true,false)
+            p:SetColor(CHARM_DODGE_COLOR,10,2,true,false)
         end
 
         return false
