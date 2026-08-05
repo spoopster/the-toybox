@@ -2011,6 +2011,78 @@ enums.FUNCTIONS.AddItem({
         "{{Heart}} Drains all but 1 heart container, then spawns a random heart pickup for every heart drained, along with 1 additional heart pickup",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_CARRION,
+    Name = "Carrion",
+    Description = {
+        "\2 -0.1 Speed",
+        "\2 -0.2 Shotspeed",
+        "{{RottenHeart}} +1 Rotten Heart",
+        "Enemies take x0.45 damage from all sources, but they take 2 additional delayed hits that deal the same amount of damage",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Enemies take +1 additional delayed hit",
+            }
+        }
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_FERTILIZER,
+    Name = "Fertilizer",
+    Description = {
+        "Every 2 seconds, spawns 1 blue fly, up to 3",
+        "Standing still spawns flies 0.6 seconds faster",
+        "Not shooting spawns flies 0.6 seconds faster",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Can spawn up to 2 additional flies",
+            }
+        }
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_GUNPOWDER,
+    Name = "Gunpowder",
+    Description = {
+        "\1 +1 Damage",
+        "\1 +0.3 Shotspeed",
+        "Shooting recoils you backwards a short distance",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Recoil is more intense",
+            }
+        }
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_INSTANT_GRATIFICATION,
+    Name = "Instant Gratification",
+    Description = {
+        "Spawns a reward plate",
+    },
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_MUTAGEN,
+    Name = "Mutagen",
+    Description = {
+        "{{Collectible418}} Chooses a random tear effect, grants a 15% chance for fired tears to have that effect (100% at 17 Luck)",
+        "The chosen tear effect is rerolled on room clear",
+        "Tear velocity is slightly randomized"
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "Chooses an additional random tear effect, may also fire tears with this effect independently of the first effect",
+            }
+        }
+    }
+})
 
 --- OTHER ITEM MODIFIERS ---
 

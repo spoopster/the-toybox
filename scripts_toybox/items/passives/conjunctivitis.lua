@@ -8,10 +8,28 @@ PUSSY_COLOR:SetOffset(0.1,0.1,0)
 local DMG_UP = 0.5
 local POISON_CHANCE = 0.25
 local SPEED_UP = -0.2
-local SCALE_UP = 0.1
+local SCALE_UP = 0.2
 
-local BOMB_DMG_UP = DMG_UP*10
+---@param pl EntityPlayer
+---@param params TearParams
+local function tryAddFlags(_, pl, params, weap, dmg, tearDisp, source)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS)) then return end
+    if(tearDisp~=1) then return end
 
+    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_CONJUNCTIVITIS)
+
+    if(rng:RandomFloat()<POISON_CHANCE) then
+        params.TearFlags = params.TearFlags | TearFlags.TEAR_POISON
+    end
+
+    params.TearColor = PUSSY_COLOR
+    params.TearDamage = params.TearDamage+DMG_UP
+    params.TearScale = params.TearScale*(1+SCALE_UP)
+    params.SpeedMultiplier = params.SpeedMultiplier*(1+SPEED_UP)
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, tryAddFlags)
+
+--[[] ]
 ---@param pl EntityPlayer
 ---@param isTears boolean
 local function canFireRightEye(pl, isTears)
@@ -113,3 +131,4 @@ local function onFireBomb(_, bomb)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB, onFireBomb)
+--]]

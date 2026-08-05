@@ -73,6 +73,11 @@
         <Item Name="Anaphylaxis"/>
         <Item Name="Clone" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Hand Pump"/>
+        <Item Name="Carrion"/>
+        <Item Name="Fertilizer"/>
+        <Item Name="Instant Gratification"/>
+        <Item Name="Mutagen"/>
+        <Item Name="Gunpowder"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -145,6 +150,11 @@
         <Item Name="Anaphylaxis"/>
         <Item Name="Clone" Weight="0.5" DecreaseBy="0.5"/>
         <Item Name="Hand Pump"/>
+        <Item Name="Carrion"/>
+        <Item Name="Fertilizer"/>
+        <Item Name="Instant Gratification"/>
+        <Item Name="Mutagen"/>
+        <Item Name="Gunpowder"/>
     </Pool>
 
     <Pool Name="boss">
@@ -205,6 +215,7 @@
         <Item Name="MP3 Player"/>
         <Item Name="Dad's Pipe"/>
         <Item Name="Y2K"/>
+        <Item Name="Instant Gratification" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
     <Pool Name="greedShop">
         <Item Name="Dad's Prescription"/>
@@ -230,6 +241,7 @@
         <Item Name="MP3 Player"/>
         <Item Name="Dad's Pipe"/>
         <Item Name="Y2K"/>
+        <Item Name="Instant Gratification" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="devil">
@@ -301,6 +313,7 @@
         <Item Name="Tammy's Body"/>
         <Item Name="Lab Meat"/>
         <Item Name="Silver Pieces"/>
+        <Item Name="Twisted Heart"/>
     </Pool>
     <Pool Name="greedCurse">
         <Item Name="Pliers"/>
@@ -314,7 +327,7 @@
         <Item Name="Gimp Baby"/>
         <Item Name="Tammy's Body"/>
         <Item Name="Lab Meat"/>
-        <Item Name="Silver Pieces"/>
+        <Item Name="Twisted Heart"/>
     </Pool>
 
     <Pool Name="secret">
@@ -340,6 +353,7 @@
         <Item Name="Mind's Eye"/>
         <Item Name="Wooden Arm"/>
         <Item Name="Clone"/>
+        <Item Name="Mutagen"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -364,6 +378,7 @@
         <Item Name="Mind's Eye"/>
         <Item Name="Wooden Arm"/>
         <Item Name="Clone"/>
+        <Item Name="Mutagen"/>
     </Pool>
 
     <Pool Name="library">
@@ -388,6 +403,7 @@
         <Item Name="Vampire Teeth"/>
         <Item Name="Flayer Baby"/>
         <Item Name="Silver Pieces"/>
+        <Item Name="Twisted Heart"/>
     </Pool>
 
     <Pool Name="goldenChest">
@@ -452,11 +468,16 @@
         <Item Name="Laser Brain"/>
     </Pool>
     
+    <Pool Name="shellGame">
+		<Item Name="Fertilizer"/>
+	</Pool>
+
     <Pool Name="rottenBeggar">
         <Item Name="Bob's Heart"/>
         <Item Name="Bob's Thesis"/>
         <Item Name="Fish"/>
         <Item Name="Rhubarb"/>
+        <Item Name="Carrion"/>
     </Pool>
 
     <Pool Name="babyShop">
@@ -501,6 +522,7 @@
         <Item Name="Yes Baby"/>
         <Item Name="Rhubarb"/>
         <Item Name="Anaphylaxis"/>
+        <Item Name="Instant Gratification"/>
     </Pool>
 
     <Pool Name="ultraSecret">
@@ -516,6 +538,8 @@
         <Item Name="AIDS"/>
         <Item Name="Y2K"/>
         <Item Name="Vampire Teeth"/>
+        <Item Name="Twisted Heart"/>
+        <Item Name="Carrion"/>
     </Pool>
 
     <Pool Name="graveyard">
@@ -568,6 +592,8 @@
         <Item Name="Puggy's Claw"/>
         <Item Name="Cricket's Tail"/>
         <Item Name="Tammy's Body"/>
+        <Item Name="Twisted Heart"/>
+        <Item Name="Carrion"/>
     </Pool>
 
     <Pool Name="temple">

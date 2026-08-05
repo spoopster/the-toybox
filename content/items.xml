@@ -907,7 +907,7 @@
     customtags="combat"
     cache=""
 
-    maxcharges="6"
+    maxcharges="8"
 />
 <active id="97" name="Oil Painting"
     description="Masterpiece"
@@ -1471,18 +1471,59 @@
     cache=""
 
     maxcharges="3"
+
+    achievement="Twisted Heart"
 />
 <passive id="161" name="Carrion"
     description="The rot consumes all"
     gfx="carrion.png"
     quality="2"
+    tags="offensive summonable dead"
+    customtags=""
+    cache=""
+
+    speed="-0.1" shotspeed="-0.2"
+/>
+<passive id="162" name="Fertilizer"
+    description="Fly generator"
+    gfx="fertilizer.png"
+    quality="2"
     tags="offensive summonable"
     customtags=""
     cache=""
 
-    speed="-0.2" shotspeed="-0.2"
+    achievement="Fertilizer"
 />
+<active id="163" name="Instant Gratification"
+    description="Reusable reward spawner"
+    gfx="instant_gratification.png"
+    quality="1"
+    tags="offensive"
+    customtags=""
+    cache=""
 
+    maxcharges="4"
+/>
+<passive id="164" name="Mutagen"
+    description="Chaos tears"
+    gfx="mutagen.png"
+    quality="2"
+    tags="offensive summonable"
+    customtags=""
+    cache=""
+
+    achievement="Mutagen"
+/>
+<passive id="165" name="Gunpowder"
+    description="Recoil shot"
+    gfx="gunpowder.png"
+    quality="3"
+    tags="offensive summonable"
+    customtags=""
+    cache=""
+
+    damage="1" shotspeed="0.3"
+/>
 
 
 <active id="491" name="Cursed D6"

@@ -53,13 +53,21 @@ local function playerUpdate(_, pl)
         local numflies = 0
         local plhash = GetPtrHash(pl)
         for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR,FamiliarVariant.BLUE_FLY)) do
-            if(GetPtrHash(ent:ToFamiliar().Player)==plhash and ToyboxMod:getEntityData(ent, "CYANROOM_FLY")) then
-                numflies = numflies+1
+            if(GetPtrHash(ent:ToFamiliar().Player)==plhash) then
+                if(EntitySaveStateManager.GetEntityData(ToyboxMod, ent).CYANROOM_FLY) then
+                    numflies = numflies+1
+                end
             end
         end
         if(numflies<CYAN_MAXFLIES) then
             local fly = pl:AddBlueFlies(1, pl.Position, nil)
-            ToyboxMod:setEntityData(fly, "CYANROOM_FLY", true)
+
+            for _, ent in ipairs(Isaac.FindByType(3,FamiliarVariant.BLUE_FLY)) do
+                if(ent.FrameCount==0 and GetPtrHash(ent:ToFamiliar().Player)==plhash) then
+                    local flyData = EntitySaveStateManager.GetEntityData(ToyboxMod, ent)
+                    flyData.CYANROOM_FLY = true
+                end
+            end
         end
     end
 end

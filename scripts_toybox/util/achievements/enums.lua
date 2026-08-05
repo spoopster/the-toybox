@@ -14,6 +14,9 @@ end, false)
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_VAMPIRE_TEETH, function(d, p)
     return d:IsChallengeCompleted(ToyboxMod.CHALLENGE_HEART_TO_HEART)
 end, false)
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_FERTILIZER, function(d, p)
+    return d:IsChallengeCompleted(ToyboxMod.CHALLENGE_REDUCE_REUSE_RECYCLE)
+end, false)
 
 -- characters
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_HOMUNCULUS, function(d, p)

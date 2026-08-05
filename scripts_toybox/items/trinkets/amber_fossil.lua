@@ -19,7 +19,7 @@ local function blueFlyInit(_, familiar)
             locust.Target = familiar.Target
             locust:ClearEntityFlags(locust:GetEntityFlags())
             locust:AddEntityFlags(familiar:GetEntityFlags())
-            --locust:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+            locust:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
         end
 
         familiar:Remove()

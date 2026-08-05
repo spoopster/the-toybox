@@ -219,7 +219,7 @@ local function epicFetusPoisonAura(_, rocket)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, epicFetusPoisonAura)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, epicFetusPoisonAura, EffectVariant.TARGET)
 
 ---@param rocket EntityEffect
 ---@param offset Vector

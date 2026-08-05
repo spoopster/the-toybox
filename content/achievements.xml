@@ -6,6 +6,7 @@
 	<achievement name="Inside Joke" text="" gfx="ach_inside_joke_alt.png" />
 	<achievement name="Bob's Thesis" text="" gfx="ach_bobs_thesis.png" />
 	<achievement name="Vampire Teeth" text="" gfx="ach_vampire_teeth.png" />
+	<achievement name="Fertilizer" text="" gfx="ach_vampire_teeth.png" />
 
 	<!-- challanges -->
 	<achievement name="Scientology Challenge" text="" gfx="ach_challenge_scientology.png" />

@@ -65,7 +65,6 @@ local function addStatsAndFlags(_, pl)
     pl:EvaluateItems()
 
     pl:AnimateHappy()
-    
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, addStatsAndFlags)
 
@@ -88,7 +87,7 @@ local function addCharmFlag(_, pl, params, weap, dmg, tearDisp, source)
     end
 
     if(addedFlag) then
-        local mul = addedFlag^0.5
+        local mul = addedFlag^0.75
 
         params.TearColor = params.TearColor*Color(0.9^mul,1.2^mul,1.2^mul,1,0,0.2*mul,0.2*mul)
     end

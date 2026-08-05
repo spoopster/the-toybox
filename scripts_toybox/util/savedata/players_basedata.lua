@@ -115,6 +115,7 @@ local BASEDATA = {
         BOMB = 0,
         KEY = 0,
     },
+    MUTAGEN_FLAGS = {},
 
     PINK_DONUT_DAMAGE = 0,
 

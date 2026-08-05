@@ -13,6 +13,9 @@ end
 --]]
 
 --! INCLUDE SHIT
+-- "external" libraries
+include("scripts_toybox.util.tearflagslib.main")
+
 include("scripts_toybox.enums")
 
 include("scripts_toybox.custom.data")
@@ -58,7 +61,6 @@ include("scripts_toybox.util.custom_tearflags")
 include("scripts_toybox.util.throwables")
 include("scripts_toybox.util.statuseffects")
 include("scripts_toybox.util.overlay_effects")
-include("scripts_toybox.util.tearflagslib.main")
 -- DATA ( entity / extra / persistent )
 include("scripts_toybox.util.data")
 -- ACHIEVEMENTS
@@ -193,6 +195,7 @@ include("scripts_toybox.players.homunculus.a.render_item")
 
 -- CHALLENGES
 include("scripts_toybox.challenges.heart_to_heart")
+include("scripts_toybox.challenges.reduce_reuse_recycle")
 
 -- ITEMS
 --PASSIVES
@@ -322,6 +325,9 @@ include("scripts_toybox.challenges.heart_to_heart")
     include("scripts_toybox.items.passives.clone")
     include("scripts_toybox.items.passives.silver_pieces")
     include("scripts_toybox.items.passives.carrion")
+    include("scripts_toybox.items.passives.fertilizer")
+    include("scripts_toybox.items.passives.gunpowder")
+    include("scripts_toybox.items.passives.mutagen")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -363,6 +369,7 @@ include("scripts_toybox.challenges.heart_to_heart")
     include("scripts_toybox.items.actives.lab_meat")
     include("scripts_toybox.items.actives.hand_pump")
     include("scripts_toybox.items.actives.twisted_heart")
+    include("scripts_toybox.items.actives.instant_gratification")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

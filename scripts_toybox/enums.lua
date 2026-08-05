@@ -31,6 +31,7 @@ ToyboxMod.ACHIEVEMENT_HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse T
 ToyboxMod.ACHIEVEMENT_GASOLINE = Isaac.GetAchievementIdByName("Gasoline")
 ToyboxMod.ACHIEVEMENT_INSIDE_JOKE = Isaac.GetAchievementIdByName("Inside Joke")
 ToyboxMod.ACHIEVEMENT_VAMPIRE_TEETH = Isaac.GetAchievementIdByName("Vampire Teeth")
+ToyboxMod.ACHIEVEMENT_FERTILIZER = Isaac.GetAchievementIdByName("Fertilizer")
 --- ACHIEVEMENTS - Atlas
 ToyboxMod.ACHIEVEMENT_PRISMSTONE = Isaac.GetAchievementIdByName("Prismstone")
 ToyboxMod.ACHIEVEMENT_GLASS_VESSEL = Isaac.GetAchievementIdByName("Glass Vessel")
@@ -77,6 +78,7 @@ ToyboxMod.ACHIEVEMENT_COLORING_BOOK = Isaac.GetAchievementIdByName("Coloring Boo
 
 ToyboxMod.CHALLENGE_SCIENTOLOGY = Isaac.GetChallengeIdByName("I - Scientology")
 ToyboxMod.CHALLENGE_HEART_TO_HEART = Isaac.GetChallengeIdByName("II - Heart to Heart")
+ToyboxMod.CHALLENGE_REDUCE_REUSE_RECYCLE = Isaac.GetChallengeIdByName("III - Reduce Reuse Recycle")
 
 ToyboxMod.POOL_GRAVEYARD = Isaac.GetPoolIdByName("graveyard")
 ToyboxMod.POOL_TEMPLE = Isaac.GetPoolIdByName("temple")
@@ -243,9 +245,12 @@ ToyboxMod.COLLECTIBLE_HAND_PUMP = Isaac.GetItemIdByName("Hand Pump")
 ToyboxMod.COLLECTIBLE_SILVER_PIECES = Isaac.GetItemIdByName("Silver Pieces")
 ToyboxMod.COLLECTIBLE_TWISTED_HEART = Isaac.GetItemIdByName("Twisted Heart")
 ToyboxMod.COLLECTIBLE_CARRION = Isaac.GetItemIdByName("Carrion")
+ToyboxMod.COLLECTIBLE_FERTILIZER = Isaac.GetItemIdByName("Fertilizer")
+ToyboxMod.COLLECTIBLE_GUNPOWDER = Isaac.GetItemIdByName("Gunpowder")
+ToyboxMod.COLLECTIBLE_INSTANT_GRATIFICATION = Isaac.GetItemIdByName("Instant Gratification")
+ToyboxMod.COLLECTIBLE_MUTAGEN = Isaac.GetItemIdByName("Mutagen")
 
 ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT = Isaac.GetItemIdByName("Elephant's Foot")
-ToyboxMod.COLLECTIBLE_MUTAGEN = Isaac.GetItemIdByName("Mutagen")
 ToyboxMod.COLLECTIBLE_FRANKENCAT = Isaac.GetItemIdByName("Frankencat")
 ToyboxMod.COLLECTIBLE_XENOTRANSFUSION = Isaac.GetItemIdByName("Xenotransfusion")
 

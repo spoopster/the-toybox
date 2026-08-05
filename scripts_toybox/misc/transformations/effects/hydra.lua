@@ -86,7 +86,9 @@ local function evalMultishotParams(_, pl, params)
         if(not invalidWeaps[weap]) then
             local tearspereye = params:GetNumTears()/params:GetNumEyesActive()
             local oldAngle = params:GetSpreadAngle(weap)*(tearspereye-data.HYDRA_HEADS)
-            if(oldAngle<5) then oldAngle = 120 end
+            if(oldAngle<5) then
+                oldAngle = 6*tearspereye
+            end
             params:SetSpreadAngle(weap, oldAngle/tearspereye)
         end
 

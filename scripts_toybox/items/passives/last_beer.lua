@@ -15,22 +15,33 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, postNpcDeath)
 
 ---@param pl EntityPlayer
-local function beerTearParams(_, pl)
+---@param params MultiShotParams
+local function evalMultishotParams(_, pl, params)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_LAST_BEER)) then return end
     local data = ToyboxMod:getEntityDataTable(pl)
 
     local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_LAST_BEER)
     if(rng:RandomFloat()<(data.LAST_BEER_COUNTER or 0)*CHANCE_PER_KILL) then
-        local params = pl:GetMultiShotParams(pl:GetWeapon(1):GetWeaponType())
         local tearsToAdd = pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_LAST_BEER)
 
         params:SetNumLanesPerEye(params:GetNumLanesPerEye()+tearsToAdd)
         params:SetNumTears(params:GetNumTears()+params:GetNumEyesActive()*tearsToAdd)
 
+        local invalidWeaps = {[15]=true, [6]=true, [13]=true, [12]=true, [8]=true, [7]=true, [WeaponType.WEAPON_TEARS]=true}
+        local weap = pl:GetWeapon(1):GetWeaponType()
+        if(not invalidWeaps[weap]) then
+            local tearspereye = params:GetNumTears()/params:GetNumEyesActive()
+            local oldAngle = params:GetSpreadAngle(weap)*(tearspereye-tearsToAdd)
+            if(oldAngle<5) then
+                oldAngle = 6*tearspereye
+            end
+            params:SetSpreadAngle(weap, oldAngle/tearspereye)
+        end
+
         return params
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_GET_MULTI_SHOT_PARAMS, beerTearParams)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_MULTI_SHOT_PARAMS, evalMultishotParams)
 
 local function postNewRoom(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_LAST_BEER)) then return end
