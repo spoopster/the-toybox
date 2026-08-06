@@ -454,6 +454,16 @@ include("scripts_toybox.challenges.reduce_reuse_recycle")
     include("scripts_toybox.pickups.cards.the_reaper")
     include("scripts_toybox.pickups.cards.the_baron")
     include("scripts_toybox.pickups.cards.the_angel")
+
+    include("scripts_toybox.pickups.cards.the_trickster") -- done
+    include("scripts_toybox.pickups.cards.memory")
+    include("scripts_toybox.pickups.cards.the_caravan")
+    include("scripts_toybox.pickups.cards.excalibur") -- done
+    include("scripts_toybox.pickups.cards.fate") -- done
+    include("scripts_toybox.pickups.cards.the_phantom")
+    include("scripts_toybox.pickups.cards.mirage")
+    include("scripts_toybox.pickups.cards.the_idol") -- done???
+    
 --OBJECTS
     include("scripts_toybox.pickups.objects.mantle_rock")
     include("scripts_toybox.pickups.objects.mantle_poop")

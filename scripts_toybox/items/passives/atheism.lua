@@ -73,7 +73,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, renderAtheismDealIcon)
 
 ---@param pl EntityPlayer
 local function addAtheism(_, _, _, firstTime, _, _, pl)
-    pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, 1)
+    pl:SetInnateCollectibleGroup("ToyboxAtheismDuality", {[CollectibleType.COLLECTIBLE_DUALITY]=1}, false)
     local data = ToyboxMod:getEntityDataTable(pl)
     data.ATHEISM_JUST_GOT = (data.ATHEISM_JUST_GOT or 0)+1
 
@@ -86,7 +86,9 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addAtheism, ToyboxMo
 
 ---@param pl EntityPlayer
 local function removeAtheism(_, pl)
-    pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, -1)
+    if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_ATHEISM)) then
+        pl:ClearInnateItemGroup("ToyboxAtheismDuality")
+    end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, removeAtheism, ToyboxMod.COLLECTIBLE_ATHEISM)
 
@@ -98,10 +100,11 @@ local function addDualitiesOnInit(_, pl)
     if(atheismNum==0) then return end
 
     local data = ToyboxMod:getEntityDataTable(pl)
+
     pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DUALITY, atheismNum-(data.ATHEISM_JUST_GOT or 0))
     data.ATHEISM_JUST_GOT = nil
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, addDualitiesOnInit)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, addDualitiesOnInit)
 
 ---@param pl EntityPlayer
 local function checkInnateDuality(_, pl)
@@ -112,4 +115,4 @@ local function checkInnateDuality(_, pl)
         end
     end
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, checkInnateDuality, 0)
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, checkInnateDuality, 0)

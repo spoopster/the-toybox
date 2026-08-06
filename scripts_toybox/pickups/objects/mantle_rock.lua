@@ -1,5 +1,4 @@
-
-local sfx = SFXManager()
+ToyboxMod:registerInnateKey("ForRoom_RockMantleCard")
 
 local SHOCKWAVE_DMG = 10
 
@@ -24,9 +23,9 @@ local function useMantle(_, _, player, flags)
             player:AddCacheFlags(CacheFlag.CACHE_SIZE)
         end
 
-        ToyboxMod:addInnateCollectible(player, CollectibleType.COLLECTIBLE_TERRA, 1, "ForRoom_RockMantleCard", true)
+        pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_TERRA, 1, "ForRoom_RockMantleCard")
 
-        sfx:Play(SoundEffect.SOUND_ROCK_CRUMBLE)
+        ToyboxMod.SFX:Play(SoundEffect.SOUND_ROCK_CRUMBLE)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_ROCK)
@@ -108,7 +107,7 @@ local function fireShockwaves(_, player, dmg, flags, source)
 
         local poof = Isaac.Spawn(1000,16,2,player.Position,Vector.Zero,player):ToEffect()
         poof.Color = Color(0.75,0.75,0.75,0.65)
-        sfx:Play(ToyboxMod.SFX_ATLASA_ROCKBREAK)
+        ToyboxMod.SFX:Play(ToyboxMod.SFX_ATLASA_ROCKBREAK)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, fireShockwaves, EntityType.ENTITY_PLAYER)

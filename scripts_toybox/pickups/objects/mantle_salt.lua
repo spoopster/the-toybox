@@ -1,4 +1,5 @@
-local sfx = SFXManager()
+ToyboxMod:registerInnateKey("ForRoom_SaltMantleCard")
+ToyboxMod:registerInnateKey("ForLevel_SaltMantleCard")
 
 local CARBATTERY_ITEMS = 2
 
@@ -37,14 +38,14 @@ local function useMantle(_, _, player, flags)
             end
 
             if(flags & UseFlag.USE_CARBATTERY ~= 0) then
-                ToyboxMod:addInnateCollectible(player, finalItem, 1, "ForLevel_SaltMantleCard", true)
+                player:AddInnateCollectible(finalItem, 1, "ForLevel_SaltMantleCard")
             else
-                ToyboxMod:addInnateCollectible(player, finalItem, 1, "ForRoom_SaltMantleCard", true)
+                player:AddInnateCollectible(finalItem, 1, "ForRoom_SaltMantleCard")
             end
             
             Isaac.CreateTimer(function()
                 player:AnimateCollectible(finalItem)
-                sfx:Play(SoundEffect.SOUND_POWERUP1)
+                ToyboxMod.SFX:Play(SoundEffect.SOUND_POWERUP1)
             end, 20*(i-1), 1, true)
         end
     end

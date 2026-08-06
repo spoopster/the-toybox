@@ -1821,7 +1821,7 @@ enums.FUNCTIONS.AddItem({
     Description = {
         "On room clear:",
         "\1 Increases a random stat",
-        "{{Collectible418}} Chooses a random tear effect, grants a 10% chance for fired tears to have that effect",
+        "{{Collectible418}} Grants a 10% chance to fire tears with a tear effect chosen at random",
         "These bonuses reset at the start of the next floor"
     },
     StackModifiers = {
@@ -2071,8 +2071,8 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_MUTAGEN,
     Name = "Mutagen",
     Description = {
-        "{{Collectible418}} Chooses a random tear effect, grants a 15% chance for fired tears to have that effect (100% at 17 Luck)",
-        "The chosen tear effect is rerolled on room clear",
+        "{{Collectible418}} Grants a 15% chance for fired tears to have a tear effect chosen at random (100% at 17 Luck)",
+        "The chosen tear effect is different every room",
         "Tear velocity is slightly randomized"
     },
     StackModifiers = {
@@ -3155,6 +3155,7 @@ enums.FUNCTIONS.AddCard({
     Name = "IVS - The Crypt",
     Description = {
         "{{SuperSecretRoom}} Teleports Isaac to the Super Secret Room",
+        enums.CONSTANTS.Icon_RoomGraveyard.." If there is a Graveyard, teleports to it instead"
     },
     TarotClothModifiers = {
         {
@@ -3271,6 +3272,78 @@ enums.FUNCTIONS.AddCard({
             }
         }
     },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_TRICKSTER,
+    Name = "IXS - The Trickster",
+    Description = {
+        "{{Beggar}} Spawns a Shell Game",
+        "{{DemonBeggar}} 2% chance for it to be a Hell Game"
+    },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"a Shell Game", "2 {{ColorWhite}}Shell Games{{CR}}"}
+            }
+        },
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            IgnoreMarkup = true,
+            ToModify = {
+                {"for it", "{{ColorWhite}}for each{{CR}}"}
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_EXCALIBUR,
+    Name = "XIIS - Excalibur",
+    Description = {
+        "{{Collectible"..ToyboxMod.COLLECTIBLE_ART_OF_WAR.."}} Grants a random tear replacement item for the room",
+    },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"a random tear replacement item", "2 {{ColorWhite}}random tear replacement items{{CR}}"}
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_FATE,
+    Name = "XIIIS - Fate",
+    Description = {
+        "{{Collectible"..ToyboxMod.COLLECTIBLE_METEOR_SHOWER.."}} For the rest of the room, meteors will fall from the sky every 0.5 seconds",
+        "The meteors explode, dealing 35 damage and burning enemies",
+        "!!! Meteors can also hurt you",
+    },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"0.5", "0.25"}
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_THE_IDOL,
+    Name = "XVIS - The Idol",
+    Description = {
+        "{{CurseRoom}} Teleports Isaac to the Curse Room",
+        enums.CONSTANTS.Icon_RoomTemple.." If there is a Temple, teleports to it instead"
+    },
+    TarotClothModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            ColorOverride = false,
+            ToModify = {
+                "If the Curse Room hasn't been entered yet, spawns a coin and 4 random pickups in the room"
+            }
+        },
+    }
 })
 
 enums.FUNCTIONS.AddCard({

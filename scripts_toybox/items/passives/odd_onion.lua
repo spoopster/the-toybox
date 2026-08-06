@@ -1,4 +1,4 @@
-local DMG_UP = 0.7
+ToyboxMod:registerInnateKey("ForRoom_OddOnion")
 
 local REPLACE_CHANCE = 0.333
 local REPLACABLE_ITEMS = {
@@ -27,7 +27,7 @@ local function addTempTearsUp(_, pl)
             isOk = (itemConf and itemConf:IsAvailable() and itemConf:HasTags(ItemConfig.TAG_SUMMONABLE) and itemConf:HasTags(ItemConfig.TAG_TEARS_UP))
         until(isOk)
 
-        ToyboxMod:addInnateCollectible(pl, finalItem, 1, "ForRoom_OddOnion", true)
+        pl:AddInnateCollectible(finalItem, 1, "ForRoom_OddOnion")
 
         --ToyboxMod.HiddenItemManager:AddForRoom(pl, finalItem, nil, 1, "TOYBOX")
         --pl:AnimateCollectible(finalItem, "UseItem")

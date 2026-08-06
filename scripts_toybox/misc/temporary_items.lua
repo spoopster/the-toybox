@@ -1,7 +1,24 @@
 local seenGroups = {}
 
+local forRoomGroups = {}
+local forLevelGroups = {}
+
 ToyboxMod.ITEMGROUP_ROOM = "ToyboxRoom"
 ToyboxMod.ITEMGROUP_LEVEL = "ToyboxLevel"
+
+---@param key string
+function ToyboxMod:registerInnateKey(key)
+    if(not seenGroups[key]) then
+        seenGroups[key] = true
+
+        if(string.find(key, "ForRoom")) then
+            table.insert(forRoomGroups, key)
+        end
+        if(string.find(key, "ForLevel")) then
+            table.insert(forLevelGroups, key)
+        end
+    end
+end
 
 ---@param pl EntityPlayer
 ---@param id CollectibleType
@@ -37,12 +54,8 @@ end
 
 ---@param player EntityPlayer
 local function removeTempRoomItems(_, player)
-    if(not (player.ClearInnateItemGroup)) then return end
-
-    for group, _ in pairs(seenGroups) do
-        if(string.find(group, "ForRoom")) then
-            player:ClearInnateItemGroup(group)
-        end
+    for _, group in ipairs(forRoomGroups) do
+        player:ClearInnateItemGroup(group)
     end
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, CallbackPriority.IMPORTANT, removeTempRoomItems)
@@ -50,12 +63,9 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS,
 ---@param player EntityPlayer
 local function removeTempLevelItems(_, player)
     if(player.FrameCount==0) then return end
-    if(not (player.ClearInnateItemGroup)) then return end
 
-    for group, _ in pairs(seenGroups) do
-        if(string.find(group, "ForLevel")) then
-            player:ClearInnateItemGroup(group)
-        end
+    for _, group in ipairs(forLevelGroups) do
+        player:ClearInnateItemGroup(group)
     end
 end
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, CallbackPriority.IMPORTANT, removeTempLevelItems)

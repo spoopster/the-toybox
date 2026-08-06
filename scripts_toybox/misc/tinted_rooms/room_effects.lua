@@ -3,6 +3,9 @@ Tint effects (WIP)
 
 ]]
 
+ToyboxMod:registerInnateKey("ForRoom_TintedWhite")
+ToyboxMod:registerInnateKey("ForRoom_TintedPurple")
+
 local RED_DMG = 1.2
 local BLUE_TEARS = 1
 local GREEN_LUCK = 5
@@ -76,10 +79,10 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, playerUpdate)
 local function newRoom(_)
     for _, pl in ipairs(PlayerManager.GetPlayers()) do
         if(ToyboxMod:hasTintedRoomTint("WHITE")) then
-            ToyboxMod:addInnateCollectible(pl, CollectibleType.COLLECTIBLE_WAFER, 1, "ForRoom_TintedWhite", true)
+            pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_WAFER, 1, "ForRoom_TintedWhite")
         end
         if(ToyboxMod:hasTintedRoomTint("PURPLE")) then
-            ToyboxMod:addInnateCollectible(pl, CollectibleType.COLLECTIBLE_SPOON_BENDER, 1, "ForRoom_TintedPurple", true)
+            pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_SPOON_BENDER, 1, "ForRoom_TintedPurple")
         end
     end
 end

@@ -1,6 +1,8 @@
 
 local sfx = SFXManager()
 
+ToyboxMod:registerInnateKey("ForRoom_ArtOfWar")
+
 ToyboxMod.TEAR_REPLACEMENT_ITEMS = {
     {CollectibleType.COLLECTIBLE_TECH_X, 1},
     {CollectibleType.COLLECTIBLE_BRIMSTONE, 1},
@@ -25,16 +27,7 @@ end
 ---@param pl EntityPlayer
 local function artOfWarUse(_, _, rng, pl, flags, slot, vdata)
     local pickedItem = REPLACEMENT_ITEM_PICKER:PickOutcome(rng)
-
-    --[[
-    pl:AddInnateCollectible(pickedItem, 1)
-
-    local data = ToyboxMod:getEntityDataTable(pl)
-    data.ART_OF_WAR_ITEMS = data.ART_OF_WAR_ITEMS or {}
-    data.ART_OF_WAR_ITEMS[pickedItem] = (data.ART_OF_WAR_ITEMS[pickedItem] or 0)+1
-    --]]
-
-    ToyboxMod:addInnateCollectible(pl, pickedItem, 1, "ForRoom_ArtOfWar", true)
+    pl:AddInnateCollectible(pickedItem, 1, "ForRoom_ArtOfWar")
 
     pl:AnimateCollectible(pickedItem, "UseItem")
     sfx:Play(SoundEffect.SOUND_MONSTER_YELL_A)

@@ -1,11 +1,11 @@
 local METEOR_DMG = 35
 
 local METEOR_FREQUENCY = {30*2, 30*4}
-local METEOR_MIN_FREQ = 15
+local METEOR_MIN_FREQ = 1
 
 local function postUpdate(_)
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_METEOR_SHOWER)) then return end
-    if(ToyboxMod:isRoomClear()) then return end
+    if(ToyboxMod:isRoomClear() and not ToyboxMod:getExtraData("FATE_ACTIVE")) then return end
 
     local room = ToyboxMod.GAME:GetRoom()
 
@@ -24,6 +24,9 @@ local function postUpdate(_)
                 mult = mult+(room:GetGridWidth()>15 and 0.5 or 0)+(room:GetGridHeight()>9 and 0.5 or 0)
 
                 cnt = math.max(METEOR_MIN_FREQ, rng:RandomInt(METEOR_FREQUENCY[1], METEOR_FREQUENCY[2])//mult)
+                if(ToyboxMod:getExtraData("FATE_ACTIVE")) then
+                    cnt = math.max(METEOR_MIN_FREQ, METEOR_FREQUENCY[1]//mult)
+                end
             else
                 cnt = cnt-1
             end

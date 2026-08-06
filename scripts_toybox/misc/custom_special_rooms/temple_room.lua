@@ -649,6 +649,19 @@ local function initSlab(_, effect)
         sp:Play("Idle", true)
     elseif(effect.SubType==1) then
         sp:Play("IdleActive", true)
+
+        local data = ToyboxMod:getExtraDataTable()
+        local room = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
+        for slot, otherRoom in pairs(room:GetNeighboringRooms()) do
+            if(data.TEMPLE_TRIAL_ROOMS[tostring(otherRoom.SafeGridIndex)] and data.TEMPLE_TRIAL_ROOMS[tostring(otherRoom.SafeGridIndex)].Parent==room.SafeGridIndex) then
+                local door = ToyboxMod.GAME:GetRoom():GetDoor(slot)
+                if(door) then
+                    door:SetVariant(DoorVariant.DOOR_UNSPECIFIED)
+                    door:SetLocked(false)
+                    door:Open()
+                end
+            end
+        end
     elseif(effect.SubType==2) then
         sp:Play("IdleInactive", true)
     end

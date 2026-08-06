@@ -28,7 +28,7 @@ end
 
 ---@param pl EntityPlayer
 local function getMutagenFlags(pl)
-    local rng = pl:GetCollectibleRNG(ToyboxMod.COLLECTIBLE_MUTAGEN)
+    local rng = ToyboxMod:generateRng(ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc().SpawnSeed)
 
     local flags = {}
     for _=1, pl:GetCollectibleNum(ToyboxMod.COLLECTIBLE_MUTAGEN) do
@@ -45,7 +45,7 @@ local function rerollFlags(_, pl)
     local data = ToyboxMod:getEntityDataTable(pl)
     data.MUTAGEN_FLAGS = getMutagenFlags(pl)
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_TRIGGER_ROOM_CLEAR, rerollFlags)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, rerollFlags)
 
 ---@param firstTime boolean
 ---@param pl EntityPlayer

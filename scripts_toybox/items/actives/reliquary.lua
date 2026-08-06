@@ -98,7 +98,7 @@ local function trinketWispInit(_, familiar)
     local conf = Isaac.GetItemConfig():GetTrinket(familiar.SubType)
     if(conf) then
         if(familiar.Player.FrameCount>0) then
-            ToyboxMod:addInnateTrinket(familiar.Player, familiar.SubType, 1, "TrinketWisp", true)
+            familiar.Player:AddInnateTrinket(familiar.SubType, 1, "Toybox_TrinketWisp")
         end
 
         local collectionSpr = ToyboxMod:getTrinketCollectionSprite(conf.ID)
@@ -195,7 +195,7 @@ local function trinketWispRemoveTrinket(_, ent)
         local fam = ent:ToFamiliar()
         local conf = Isaac.GetItemConfig():GetTrinket(fam.SubType)
         if(conf) then
-            fam.Player:RemoveInnateTrinket(fam.SubType, 1, "ToyboxTrinketWisp")
+            fam.Player:RemoveInnateTrinket(fam.SubType, 1, "Toybox_TrinketWisp")
         end
     end
 end

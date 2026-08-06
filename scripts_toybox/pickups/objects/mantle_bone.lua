@@ -1,5 +1,4 @@
-
-local sfx = SFXManager()
+ToyboxMod:registerInnateKey("ForLevel_BoneMantleCard")
 
 local SPUR_CHANCE = 0.67
 
@@ -14,7 +13,7 @@ local function useMantle(_, _, player, flags)
         ToyboxMod:giveMantle(player, ToyboxMod.MANTLE_DATA.BONE.ID)
     else
         if(flags & UseFlag.USE_CARBATTERY ~= 0) then
-            ToyboxMod:addInnateCollectible(player, ToyboxMod.COLLECTIBLE_BONE_BOY, 1, "ForLevel_BoneMantleCard", true)
+            player:AddInnateCollectible(ToyboxMod.COLLECTIBLE_BONE_BOY, 1, "ForLevel_BoneMantleCard")
         else
             local bone = Isaac.Spawn(227,0,0,player.Position,Vector.Zero,player):ToNPC()
             bone:AddCharmed(EntityRef(player),-1)
@@ -27,7 +26,7 @@ local function useMantle(_, _, player, flags)
                 data.MANTLEBONE_ACTIVE = data.MANTLEBONE_ACTIVE+0.5
             end
         end
-        sfx:Play(SoundEffect.SOUND_DEATH_BURST_BONE)
+        ToyboxMod.SFX:Play(SoundEffect.SOUND_DEATH_BURST_BONE)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useMantle, ToyboxMod.CARD_MANTLE_BONE)

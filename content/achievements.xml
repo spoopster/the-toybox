@@ -6,7 +6,7 @@
 	<achievement name="Inside Joke" text="" gfx="ach_inside_joke_alt.png" />
 	<achievement name="Bob's Thesis" text="" gfx="ach_bobs_thesis.png" />
 	<achievement name="Vampire Teeth" text="" gfx="ach_vampire_teeth.png" />
-	<achievement name="Fertilizer" text="" gfx="ach_vampire_teeth.png" />
+	<achievement name="Fertilizer" text="" gfx="ach_fertilizer.png" />
 
 	<!-- challanges -->
 	<achievement name="Scientology Challenge" text="" gfx="ach_challenge_scientology.png" />
@@ -75,7 +75,7 @@
 	<achievement name="Xenotransfusion" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Clone" text="" gfx="ach_clone.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="New Card!" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
-	<achievement name="Spiteful Penny" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Spiteful Penny" text="" gfx="ach_spiteful_penny.png" gfxback="achpaper_homunculus.png" />
 
 	<achievement name="The Flayed (Tainted Homunculus)" text="" gfx="ach_blank.png" gfxback="achpaper_homunculus.png" />
 	

@@ -11,12 +11,14 @@ end, false)
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_INSIDE_JOKE, function(d, p)
     return (p.LION_SKULL_CAPPED_OUT or 0)>0
 end, false)
+--[[] ]
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_VAMPIRE_TEETH, function(d, p)
     return d:IsChallengeCompleted(ToyboxMod.CHALLENGE_HEART_TO_HEART)
 end, false)
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_FERTILIZER, function(d, p)
     return d:IsChallengeCompleted(ToyboxMod.CHALLENGE_REDUCE_REUSE_RECYCLE)
 end, false)
+--]]
 
 -- characters
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_HOMUNCULUS, function(d, p)

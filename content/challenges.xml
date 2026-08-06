@@ -35,10 +35,12 @@
 	/>
 	<challenge 	name="II - Heart to Heart" achievements="Heart to Heart Challenge" 
 				lockeddesc="Unlock Glass Vessel & The Lost" endstage="8" altpath="true" 
-				startingitems="" playertype="10" roomfilter=""
+				startingitems="Glass Vessel" playertype="10" roomfilter=""
+				unlockachievement="Vampire Teeth"
 	/>
 	<challenge 	name="III - Reduce Reuse Recycle"
 				endstage="8" secretpath="true" 
 				startingitems="480" playertype="0" roomfilter=""
+				unlockachievement="Fertilizer"
 	/>
 </challenges>

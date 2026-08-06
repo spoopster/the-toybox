@@ -1205,7 +1205,6 @@
     tags="offensive baby summonable"
     cache=""
 />
-
 <passive id="130" name="Chicchan"
     description="Survival instinct"
     gfx="chicchan_serpent.png"

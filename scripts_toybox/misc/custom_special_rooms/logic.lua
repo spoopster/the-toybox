@@ -88,6 +88,8 @@ local function makeSpecialRoomDoor(_, ent, _, first)
 
     local data = ToyboxMod.ROOM_TYPE_DATA[ID_TO_TABLEKEY[room.Data.Subtype]]
 
+    door:SetVariant(DoorVariant.DOOR_UNLOCKED)
+    door:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_DEFAULT)
     if(data.DoorGfx) then
         local sp = door:GetSprite()
         for i, _ in pairs(sp:GetAllLayers()) do
@@ -96,6 +98,7 @@ local function makeSpecialRoomDoor(_, ent, _, first)
         sp:LoadGraphics()
     end
     if(data.Locked and room.VisitedCount==0) then
+        door:SetVariant(DoorVariant.DOOR_LOCKED)
         door:SetLocked(true)
     end
 end

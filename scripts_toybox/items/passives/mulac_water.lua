@@ -1,5 +1,7 @@
 local sfx = SFXManager()
 
+ToyboxMod:registerInnateKey("ForLevel_MulacWaterBoss")
+
 local NOT_COUNTED_ROOMTYPES = {
     [RoomType.ROOM_SECRET] = true,
     [RoomType.ROOM_SUPERSECRET] = true,
@@ -57,7 +59,7 @@ local function fullClearStageEffects(delayed)
             for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
                 local pl = Isaac.GetPlayer(i)
                 if(pl:HasCollectible(ToyboxMod.COLLECTIBLE_MULAC_WATER)) then
-                    ToyboxMod:addInnateCollectible(pl, CollectibleType.COLLECTIBLE_DEAD_DOVE, 1, "ForLevel_MulacWaterBoss", true)
+                    pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_DEAD_DOVE, 1, "ForLevel_MulacWaterBoss")
 
                     --pl:AnimateHappy()
                 end
