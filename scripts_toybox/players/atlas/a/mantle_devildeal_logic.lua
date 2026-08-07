@@ -29,7 +29,7 @@ local function pickupRenderAtlasPrice(_, pickup, offset)
     local mantlePrice = PICKUP_PRICE_TO_MANTLE_PRICE[pickup.Price] or 1
     if(mantlePrice<=0) then return end
 
-    local renderPos = Isaac.WorldToScreen(pickup.Position)+Vector(0,28)
+    local renderPos = Isaac.WorldToScreen(pickup.Position)+Vector(0,28)-ToyboxMod.GAME.ScreenShakeOffset
     for i=0, mantlePrice do
         local o = Vector(PRICE_WIDTH*(i-(mantlePrice+1)/2)+1,0)
 

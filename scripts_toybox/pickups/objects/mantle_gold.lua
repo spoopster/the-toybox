@@ -42,7 +42,7 @@ local function cancelCardInput(_, ent, hook, action)
     if(hook==InputHook.IS_ACTION_TRIGGERED) then
         if(action==ButtonAction.ACTION_ITEM) then
             local pl = ent and ent:ToPlayer()
-            if(not (pl and pl:GetCard(0)==ToyboxMod.CARD_MANTLE_GOLD and pl:GetNumCoins()<COINS_REMOVE)) then return end
+            if(ToyboxMod:isAtlasA(pl) or not (pl and pl:GetCard(0)==ToyboxMod.CARD_MANTLE_GOLD and pl:GetNumCoins()<COINS_REMOVE)) then return end
 
             if(pl:GetPlayerType()==PlayerType.PLAYER_JACOB and Options.JacobEsauControls~=1) then
                 if(Input.IsActionPressed(ButtonAction.ACTION_DROP, pl.ControllerIndex)) then
@@ -51,7 +51,7 @@ local function cancelCardInput(_, ent, hook, action)
             end
         elseif(action==ButtonAction.ACTION_PILLCARD) then
             local pl = ent and ent:ToPlayer()
-            if(not (pl and pl:GetCard(0)==ToyboxMod.CARD_MANTLE_GOLD and pl:GetNumCoins()<COINS_REMOVE)) then return end
+            if(ToyboxMod:isAtlasA(pl) or not (pl and pl:GetCard(0)==ToyboxMod.CARD_MANTLE_GOLD and pl:GetNumCoins()<COINS_REMOVE)) then return end
 
             if(pl:GetPlayerType()==PlayerType.PLAYER_ESAU) then
                 if(Input.IsActionPressed(ButtonAction.ACTION_DROP, pl.ControllerIndex)) then

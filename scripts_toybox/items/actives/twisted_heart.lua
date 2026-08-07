@@ -5,6 +5,13 @@ local function useTwistedHeart(_, _, rng, player, flags, slot)
     player:AddHearts(-player:GetHearts())
     player:AddHearts(2)
 
+    if(ToyboxMod:isAtlasA(player)) then
+        local totalHp = ToyboxMod:getTotalMantleHP(player)
+        if(totalHp>1) then
+            ToyboxMod:addMantleHp(player, -(totalHp-1))
+        end
+    end
+
     local room = ToyboxMod.GAME:GetRoom()
     for i=1, numHearts do
         local pos = room:FindFreePickupSpawnPosition(player.Position, 40)

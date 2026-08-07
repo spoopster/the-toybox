@@ -342,3 +342,13 @@ function ToyboxMod:setMantleHeartData(pl, idx, key, val)
     data.MANTLES[idx].DATA = data.MANTLES[idx].DATA or {}
     data.MANTLES[idx].DATA[key] = val
 end
+
+function ToyboxMod:getTotalMantleHP(pl)
+    local totalMantleHp = 0
+    local data = ToyboxMod:getAtlasATable(pl)
+    for i=1, data.HP_CAP do
+        totalMantleHp = totalMantleHp+data.MANTLES[i].HP
+    end
+
+    return totalMantleHp
+end

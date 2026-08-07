@@ -7,24 +7,24 @@ local TEARS_PRICE = 5
 
 ---@param player EntityPlayer
 local function useSunkCosts(_, _, rng, player, flags)
-    if(player:GetNumCoins()>=TEARS_PRICE) then
-        player:AddCoins(-TEARS_PRICE)
-        sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
+    player:AddCoins(-TEARS_PRICE)
+    sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
 
-        return {
-            Discharge = true,
-            Remove = false,
-            ShowAnim = true,
-        }
-    else
-        return {
-            Discharge = false,
-            Remove = false,
-            ShowAnim = false,
-        }
-    end
+    return {
+        Discharge = true,
+        Remove = false,
+        ShowAnim = true,
+    }
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useSunkCosts, ToyboxMod.COLLECTIBLE_SUNK_COSTS)
+
+---@param player EntityPlayer
+local function preUseSunkCosts(_, _, rng, player, flags)
+    if(player:GetNumCoins()<TEARS_PRICE) then
+        return true
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, preUseSunkCosts, ToyboxMod.COLLECTIBLE_SUNK_COSTS)
 
 ---@param pl EntityPlayer
 local function evalColorCache(_, pl)
