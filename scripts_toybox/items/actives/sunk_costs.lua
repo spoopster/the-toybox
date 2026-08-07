@@ -7,6 +7,8 @@ local TEARS_PRICE = 5
 
 ---@param player EntityPlayer
 local function useSunkCosts(_, _, rng, player, flags)
+    if(flags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY) then return end
+
     player:AddCoins(-TEARS_PRICE)
     sfx:Play(SoundEffect.SOUND_CASH_REGISTER)
 

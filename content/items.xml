@@ -69,7 +69,7 @@
     cache=""
 
     maxcharges="0"
-    effectflattears="0.7"
+    effectflattears="1"
 />
 <passive id="8" name="Nose Candy"
     description="Sugar rush!"
@@ -262,7 +262,7 @@
     maxcharges="0"
     coins="5"
 
-    effectflattears="0.7"
+    effectflattears="1"
 />
 <active id="29" name="Gilded Apple"
     description="Reusable money"

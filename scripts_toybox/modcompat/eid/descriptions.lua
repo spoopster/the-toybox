@@ -613,15 +613,16 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_PLIERS,
     Name = "Pliers",
     Description = {
-        "\1 +0.7 Tears for the room",
+        "\1 +1 Fire rate for the room",
         "!!! Deals half a heart of damage to Isaac",
         "{{Heart}} Removes Red Hearts first",
     },
     CarBatteryModifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            IgnoreMarkup = true,
             ToModify = {
-                {"+0.7 Tears", "+1 Tears"},
+                "{{Collectible356}} No effect for Car Battery"
             }
         },
     },
@@ -663,13 +664,14 @@ enums.FUNCTIONS.AddItem({
     Name = "Sunk Costs",
     Description = {
         "{{Coin}} +5 coins",
-        "\1 Pay 5 {{Coin}} coins and get +0.7 Tears for the room",
+        "\1 Pay 5 {{Coin}} coins and get +1 Fire rate for the room",
     },
     CarBatteryModifiers = {
         {
-            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            Type = enums.CONSTANTS.DescriptionModifier.APPEND,
+            IgnoreMarkup = true,
             ToModify = {
-                {"+0.7 Tears", "+1 Tears"},
+                "{{Collectible356}} No effect for Car Battery"
             }
         },
     },

@@ -1,5 +1,7 @@
 ---@param player EntityPlayer
 local function usePliers(_, _, rng, player, flags)
+    if(flags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY) then return end
+
     player:ResetDamageCooldown()
     player:TakeDamage(1, DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_RED_HEARTS, EntityRef(nil), 30)
 
