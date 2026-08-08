@@ -64,7 +64,7 @@ ToyboxMod:AddCallback(TearFlagsLib.Callback.POST_REMOVE_TEARFLAG, postRemoveTear
 ---@param entity Entity
 ---@param player EntityPlayer
 local function cancelAddTearFlag(_, entity, player, _, _, tearFlag)
-    if(TearFlagsLib.HasTearFlags(entity, tearFlag)) then return true end
+    --if(TearFlagsLib.HasTearFlags(entity, tearFlag)) then return true end
 
     if(ToyboxMod:getEntityData(entity, "LANGTON_BLACKLIST")) then
         return true

@@ -6,7 +6,7 @@ local TEARFLAG_COLOR = Color(0.90,0.77,1,1,0.27,0.23,0.3,0.9,0.77,1,1)
 local function preAddTearFlag(_, entity, player, _, weaponFlag, tearFlag)
     if(TearFlagsLib.HasTearFlags(entity, tearFlag)) then return true end
 end
-ToyboxMod:AddCallback(TearFlagsLib.Callback.PRE_ADD_TEARFLAG, preAddTearFlag, ToyboxMod.TEARFLAGS.MUSICAL)
+--ToyboxMod:AddCallback(TearFlagsLib.Callback.PRE_ADD_TEARFLAG, preAddTearFlag, ToyboxMod.TEARFLAGS.MUSICAL)
 
 ---@param entity Entity
 ---@param player EntityPlayer

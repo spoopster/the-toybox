@@ -1,8 +1,8 @@
 local MIN_SPEED_MULT = 0.9
 local MAX_SPEED_MULT = 1.2
 
-local FLAG_CHANCE = 0.15
-local FLAG_CHANCE_PER_LUCK = 0.05
+local FLAG_CHANCE = 0.2
+local FLAG_CHANCE_PER_LUCK = 0.04
 local STACK_MULT = 1
 
 local function TEARFLAG(x)
@@ -52,7 +52,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, rerollF
 local function getAsteroidBelt(_, _, _, firstTime, _, _, pl)
     if(firstTime) then
         local data = ToyboxMod:getEntityDataTable(pl)
-    data.MUTAGEN_FLAGS = getMutagenFlags(pl)
+        data.MUTAGEN_FLAGS = getMutagenFlags(pl)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, getAsteroidBelt, ToyboxMod.COLLECTIBLE_MUTAGEN)

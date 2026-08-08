@@ -2073,7 +2073,7 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_MUTAGEN,
     Name = "Mutagen",
     Description = {
-        "{{Collectible418}} Grants a 15% chance for fired tears to have a tear effect chosen at random (100% at 17 Luck)",
+        "{{Collectible418}} Grants a 20% chance for fired tears to have a tear effect chosen at random (100% at 20 Luck)",
         "The chosen tear effect is different every room",
         "Tear velocity is slightly randomized"
     },

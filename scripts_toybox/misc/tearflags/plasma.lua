@@ -12,7 +12,7 @@ local LASER_FIRE_DIST = 80
 local function preAddTearFlag(_, entity, player, _, weaponFlag, tearFlag)
     if(TearFlagsLib.HasTearFlags(entity, tearFlag)) then return true end
 end
-ToyboxMod:AddCallback(TearFlagsLib.Callback.PRE_ADD_TEARFLAG, preAddTearFlag, ToyboxMod.TEARFLAGS.PLASMA)
+--ToyboxMod:AddCallback(TearFlagsLib.Callback.PRE_ADD_TEARFLAG, preAddTearFlag, ToyboxMod.TEARFLAGS.PLASMA)
 
 ---@param ent Entity
 ---@return EntityPlayer?

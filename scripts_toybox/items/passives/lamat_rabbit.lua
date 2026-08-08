@@ -45,23 +45,24 @@ local function evalParams(_, pl, params, weap, dmg, tearDisp, source)
 
     cancelEval = true
     for _=1, ToyboxMod:getLamatRabbitRerollsNum(pl) do
-        local otherParams = pl:GetTearHitParams(weap, dmg, tearDisp, source)
+        local otherParams = Isaac.RunCallbackWithParam(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, pl:GetPlayerType(), pl, params, weap, dmg, tearDisp, source)
+        if(otherParams) then
+            if((params.TearFlags | otherParams.TearFlags) ~= params.TearFlags) then
+                if(not colorEqual(otherParams.TearColor, Color.Default)) then
+                    params.TearColor = otherParams.TearColor
+                end
+                params.TearVariant = otherParams.TearVariant
+                params.BombVariant = otherParams.BombVariant
+            end
 
-        if((params.TearFlags ~ otherParams.TearFlags) & otherParams.TearFlags ~= TearFlags.TEAR_NORMAL) then
-            params.TearColor = otherParams.TearColor
-            params.TearVariant = otherParams.TearVariant
-            params.BombVariant = otherParams.BombVariant
+            params.TearFlags = params.TearFlags | otherParams.TearFlags
+            params.TearDamage = math.max(params.TearDamage, otherParams.TearDamage)
+            params.TearScale = math.max(params.TearScale, otherParams.TearScale)
         end
-
-        params.TearFlags = params.TearFlags | otherParams.TearFlags
-        params.TearDamage = math.max(params.TearDamage, otherParams.TearDamage)
-        params.TearScale = math.max(params.TearScale, otherParams.TearScale)
     end
     cancelEval = false
-
-    return params
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, evalParams)
+ToyboxMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_TEAR_HIT_PARAMS, CallbackPriority.LATE+1, evalParams)
 
 local cancelEvalModded = false
 
