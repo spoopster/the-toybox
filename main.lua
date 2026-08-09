@@ -1223,3 +1223,130 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, dkjdjs)
 --]]
 
+--[[] ]
+local forceNonCollectible = false
+
+local function preGetCollectible()
+    if(forceNonCollectible) then
+        return 0
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, preGetCollectible)
+
+---@param pickup EntityPickup
+local function giveExtraOption(pickup)
+    forceNonCollectible = true
+
+    pickup:Morph(5,150,0,true,false,true)
+end
+--]]
+
+--[[ PERHAPS for a future shop Options item (i loooove the idea of an item that cycles the whole shop between 2 stocks)
+
+
+local cancelPickupInit = false
+
+local function getRandomShopItemData()
+    local roomDesc = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
+    local prevIdx = roomDesc.ShopItemIdx
+
+    roomDesc.ShopItemIdx = -1
+
+    cancelPickupInit = true
+
+    local pickup = Isaac.Spawn(5,150,0,Vector.Zero,Vector.Zero,nil):ToPickup()
+    pickup:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+
+    cancelPickupInit = false
+
+    roomDesc.ShopItemIdx = prevIdx
+
+    local data = {
+        pickup.Variant,
+        pickup.SubType,
+    }
+    pickup:Remove()
+
+    return data
+end
+
+---@param pickup EntityPickup
+local function pickupInit(_, pickup)
+    if(cancelPickupInit) then return end
+    if(not pickup:IsShopItem()) then return end
+
+    local data = ToyboxMod:getExtraDataTable()
+    data.SHOP_ALT_STOCK = data.SHOP_ALT_STOCK or {}
+
+    if(not data.SHOP_ALT_STOCK[tostring(pickup.ShopItemId)]) then
+        local idData = getRandomShopItemData(pickup.InitSeed)
+        data.SHOP_ALT_STOCK[tostring(pickup.ShopItemId)] = {
+            Variant = idData[1],
+            Subtype = idData[2],
+        }
+    end
+end
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, pickupInit)
+
+---@param pickup EntityPickup
+local function pickupUpdate(_, pickup)
+    if(not pickup:IsShopItem()) then return end
+
+    local data = ToyboxMod:getExtraDataTable()
+    data.SHOP_ALT_STOCK = data.SHOP_ALT_STOCK or {}
+
+    local idData = data.SHOP_ALT_STOCK[tostring(pickup.ShopItemId)]
+    local cycleLen = 41
+    if(ToyboxMod.GAME:GetRoom():GetFrameCount()%cycleLen==(cycleLen-1) and idData) then
+        cancelPickupInit = true
+
+        local oldData = {
+            pickup.Variant,
+            pickup.SubType
+        }
+
+        pickup:Morph(5,idData.Variant,idData.Subtype,true,true,true)
+
+        data.SHOP_ALT_STOCK[tostring(pickup.ShopItemId)] = {
+            Variant = oldData[1],
+            Subtype = oldData[2],
+        }
+
+        cancelPickupInit = false
+    end
+end
+--ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, pickupUpdate)
+
+
+
+local mango = false
+
+---@param pickup EntityPickup
+local function pickupInit(_, pickup)
+    if(mango) then return end
+    if(not pickup:IsShopItem()) then return end
+
+    mango = true
+
+    local roomDesc = ToyboxMod.GAME:GetLevel():GetCurrentRoomDesc()
+    local prevIdx = roomDesc.ShopItemIdx
+
+    roomDesc.ShopItemIdx = -1
+
+    cancelPickupInit = true
+
+    local newPickup = Isaac.Spawn(5,150,0,pickup.Position-Vector(0,40),Vector.Zero,nil):ToPickup()
+    newPickup:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+    newPickup.Price = 0
+    newPickup.ShopItemId = 0
+    newPickup:MakeShopItem(pickup.ShopItemId)
+
+    cancelPickupInit = false
+
+    roomDesc.ShopItemIdx = prevIdx
+
+    mango = false
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, pickupInit)
+
+]]
