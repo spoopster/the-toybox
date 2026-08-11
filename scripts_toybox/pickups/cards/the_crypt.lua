@@ -1,27 +1,15 @@
 ---@param pl EntityPlayer
-local function useTheCrypt(_, _, pl, flags)
+---@param id Card
+local function useTheCrypt(_, id, pl, flags)
     if(pl:HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) and flags & UseFlag.USE_CARBATTERY == 0) then return end
 
-    local level = ToyboxMod.GAME:GetLevel()
-    local secretidx
-    for i=0, 168 do
-        local room = level:GetRoomByIdx(i)
-        if(ToyboxMod:isCustomSpecialRoom(room, "GRAVEYARD_ROOM")) then
-            secretidx = room.SafeGridIndex
-            break
-        end
+    local rng = pl:GetCardRNG(id)
+    local destIdx = ToyboxMod:getRandomSpecialRoom("GRAVEYARD_ROOM", rng)
+    if(not destIdx) then
+        destIdx = ToyboxMod:getRandomSpecialRoom(RoomType.ROOM_SUPERSECRET, rng)
     end
-    if(not secretidx) then
-        for i=0, 168 do
-            local room = level:GetRoomByIdx(i)
-            if(room.Data and room.Data.Type==RoomType.ROOM_SUPERSECRET) then
-                secretidx = room.SafeGridIndex
-                break
-            end
-        end
-    end
-    if(secretidx) then
-        ToyboxMod.GAME:StartRoomTransition(secretidx, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, pl)
+    if(destIdx) then
+        ToyboxMod.GAME:StartRoomTransition(destIdx, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, pl)
 
         if(flags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY) then
             Isaac.CreateTimer(function()
@@ -33,7 +21,7 @@ local function useTheCrypt(_, _, pl, flags)
             end, 1,1,true)
         end
     else
-        pl:UseActiveItem(CollectibleType.COLLECTIBLE_TELEPORT, UseFlag.USE_NOANIM, -1)
+        ToyboxMod.GAME:MoveToRandomRoom(false, rng:Next(), pl)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useTheCrypt, ToyboxMod.CARD_THE_CRYPT)

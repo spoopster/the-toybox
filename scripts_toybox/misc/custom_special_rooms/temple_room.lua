@@ -3,6 +3,8 @@ local sfx = SFXManager()
 local TEMPLE_ROOM_COUNT = 3
 local TEMPLE_CHANCE = 0.05
 
+local TEMPLE_GROUP = RoomDescriptor.CreateGroup("TempleTrialRooms")
+
 ---@param rng RNG
 local function shouldMakeTemple(rng)
     return rng:RandomFloat()<TEMPLE_CHANCE
@@ -426,6 +428,8 @@ local function addNewBossRoom(_)
                         Items = statsToAdd,
                         Parent = room.SafeGridIndex,
                     }
+
+                    placed:SetGroup(TEMPLE_GROUP)
                 end
             end
 

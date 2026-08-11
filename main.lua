@@ -463,6 +463,8 @@ include("scripts_toybox.challenges.reduce_reuse_recycle")
     include("scripts_toybox.pickups.cards.the_phantom")
     include("scripts_toybox.pickups.cards.mirage")
     include("scripts_toybox.pickups.cards.the_idol") -- done???
+
+    include("scripts_toybox.pickups.cards.greyhound")
     
 --OBJECTS
     include("scripts_toybox.pickups.objects.mantle_rock")

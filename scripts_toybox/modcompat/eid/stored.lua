@@ -213,11 +213,12 @@ EID:addIcon("Card"..tostring(ToyboxMod.CARD_FATE), "Cards", 31, 16, 16, 0, 0, ic
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_PHANTOM), "Cards", 32, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_MIRAGE), "Cards", 33, 16, 16, 0, 0, iconSprite)
 EID:addIcon("Card"..tostring(ToyboxMod.CARD_THE_IDOL), "Cards", 34, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Card"..tostring(ToyboxMod.CARD_GREYHOUND), "Cards", 35, 16, 16, 0, 0, iconSprite)
 
 --- ROOMS
-EID:addIcon("Graveyard", "RoomIcons", 0, 16, 16, 0, 0, iconSprite)
-EID:addIcon("TempleRoom", "RoomIcons", 1, 16, 16, 0, 0, iconSprite)
-EID:addIcon("LibraryTreasureRoom", "RoomIcons", 2, 16, 16, 0, 0, iconSprite)
+EID:addIcon("Graveyard", "RoomIcons", 0, 10, 9, 0, 0, iconSprite)
+EID:addIcon("TempleRoom", "RoomIcons", 1, 10, 9, 0, 0, iconSprite)
+EID:addIcon("LibraryTreasureRoom", "RoomIcons", 2, 8, 9, 0, 0, iconSprite)
 
 --- POOLS
 EID:addIcon("ItemPoolGraveyard", "PoolIcons", 0, 11, 11, 0, 0, iconSprite)
@@ -286,6 +287,15 @@ STORED.CONSTANTS = {
     Icon_CardTheDragon = "{{Card" .. tostring(ToyboxMod.CARD_THE_DRAGON) .. "}}",
     Icon_CardDuality = "{{Card" .. tostring(ToyboxMod.CARD_DUALITY) .. "}}",
     Icon_CardTheBaron = "{{Card" .. tostring(ToyboxMod.CARD_THE_BARON) .. "}}",
+    Icon_CardTheTrickster = "{{Card" .. tostring(ToyboxMod.CARD_THE_TRICKSTER) .. "}}",
+    Icon_CardMemory = "{{Card" .. tostring(ToyboxMod.CARD_MEMORY) .. "}}",
+    Icon_CardTheCaravan = "{{Card" .. tostring(ToyboxMod.CARD_THE_CARAVAN) .. "}}",
+    Icon_CardExcalibur = "{{Card" .. tostring(ToyboxMod.CARD_EXCALIBUR) .. "}}",
+    Icon_CardFate = "{{Card" .. tostring(ToyboxMod.CARD_FATE) .. "}}",
+    Icon_CardThePhantom = "{{Card" .. tostring(ToyboxMod.CARD_THE_PHANTOM) .. "}}",
+    Icon_CardMirage = "{{Card" .. tostring(ToyboxMod.CARD_MIRAGE) .. "}}",
+    Icon_CardTheIdol = "{{Card" .. tostring(ToyboxMod.CARD_THE_IDOL) .. "}}",
+    Icon_CardGreyhound = "{{Card" .. tostring(ToyboxMod.CARD_GREYHOUND) .. "}}",
 
     Icon_RoomGraveyard = "{{Graveyard}}",
     Icon_RoomTemple = "{{TempleRoom}}",

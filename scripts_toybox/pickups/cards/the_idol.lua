@@ -1,24 +1,12 @@
 ---@param pl EntityPlayer
-local function useTheIdol(_, _, pl, flags)
+---@param id Card
+local function useTheIdol(_, id, pl, flags)
     if(pl:HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) and flags & UseFlag.USE_CARBATTERY == 0) then return end
 
-    local level = ToyboxMod.GAME:GetLevel()
-    local desiredIdx
-    for i=0, 168 do
-        local room = level:GetRoomByIdx(i)
-        if(ToyboxMod:isCustomSpecialRoom(room, "TEMPLE_ROOM")) then
-            desiredIdx = room.SafeGridIndex
-            break
-        end
-    end
-    if(not desiredIdx) then
-        for i=0, 168 do
-            local room = level:GetRoomByIdx(i)
-            if(room.Data and room.Data.Type==RoomType.ROOM_CURSE) then
-                desiredIdx = room.SafeGridIndex
-                break
-            end
-        end
+    local rng = pl:GetCardRNG(id)
+    local destIdx = ToyboxMod:getRandomSpecialRoom("TEMPLE_ROOM", rng)
+    if(not destIdx) then
+        destIdx = ToyboxMod:getRandomSpecialRoom(RoomType.ROOM_CURSE, rng)
     end
     if(desiredIdx) then
         ToyboxMod.GAME:StartRoomTransition(desiredIdx, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, pl)
@@ -36,7 +24,7 @@ local function useTheIdol(_, _, pl, flags)
             end, 1,1,true)
         end
     else
-        pl:UseActiveItem(CollectibleType.COLLECTIBLE_TELEPORT, UseFlag.USE_NOANIM, -1)
+        ToyboxMod.GAME:MoveToRandomRoom(false, rng:Next(), pl)
     end
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_CARD, useTheIdol, ToyboxMod.CARD_THE_IDOL)

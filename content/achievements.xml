@@ -66,15 +66,15 @@
 	
 	<achievement name="Unstable DNA" text="" gfx="ach_unstable_dna.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Lab Meat" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
-	<achievement name="Infestation 3" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
-	<achievement name="Twisted Heart" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Infestation 3" text="" gfx="ach_infestation_3.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Twisted Heart" text="" gfx="ach_twisted_heart.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Elephant's Foot" text="" gfx="ach_elephants_foot.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Krokodil" text="" gfx="ach_krokodil.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Mutagen" text="" gfx="ach_mutagen.png" gfxback="achpaper_homunculus.png" />
-	<achievement name="Frankencat" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
-	<achievement name="Xenotransfusion" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Frankencat" text="" gfx="ach_frankencat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Xenotransfusion" text="" gfx="ach_xenotransfusion.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Clone" text="" gfx="ach_clone.png" gfxback="achpaper_homunculus.png" />
-	<achievement name="New Card!" text="" gfx="ach_lab_meat.png" gfxback="achpaper_homunculus.png" />
+	<achievement name="Greyhound" text="" gfx="ach_greyhound.png" gfxback="achpaper_homunculus.png" />
 	<achievement name="Spiteful Penny" text="" gfx="ach_spiteful_penny.png" gfxback="achpaper_homunculus.png" />
 
 	<achievement name="The Flayed (Tainted Homunculus)" text="" gfx="ach_blank.png" gfxback="achpaper_homunculus.png" />

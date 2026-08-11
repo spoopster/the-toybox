@@ -39,6 +39,7 @@ local juiceFrameThresholds = {
     [100] = 1,
     [200] = 0,
 }
+local MAX_JUICE_SIZE = 200
 
 ---@param num number
 local function addJuice(num)
@@ -107,7 +108,8 @@ local function spawnJuiceParticle(pos, num, sp)
             rng = sp:GetDropRNG()
         end
 
-        local juice = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_JUICE_TRAIL,num,pos,Vector.Zero,sp):ToEffect()
+        local juice = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_JUICE_TRAIL,math.min(num, MAX_JUICE_SIZE),pos,Vector.Zero,sp):ToEffect()
+        juice.State = num
         juice.Velocity = (pos-sp.Position):Resized(JUICE_PARTICLE_INITSPEED):Rotated(ToyboxMod:randomRange(rng, -1, 1)*JUICE_PARTICLE_INITARC)
         juice:GetSprite():Stop()
 
@@ -134,11 +136,16 @@ local function juiceParticleInit(_, effect)
     local sp = effect:GetSprite()
 
     local selFrame = 0
+    local minFrame = nil
     for i, val in pairs(juiceFrameThresholds) do
-        if(effect.SubType>i) then
+        if(effect.SubType>=i and val<=(minFrame or val)) then
             selFrame = val
+            minFrame = val
         end
     end
+
+    effect.State = effect.SubType
+    effect.SubType = 0
 
     sp:Play("IdleOutline", true)
     sp:SetFrame(selFrame)
@@ -172,7 +179,7 @@ local function juiceParticleUpdate(_, effect)
         if(effect.FrameCount%(ToyboxMod.CONFIG.GOOD_JUICE_LESSLAG==1 and 3 or 2)==0) then
             local rng = effect:GetDropRNG()
             for _=1, (ToyboxMod.CONFIG.GOOD_JUICE_LESSLAG==1 and 1 or 2) do
-                local newSub = math.ceil(ToyboxMod:randomRange(rng, 0.2, 0.7)*effect.SubType)
+                local newSub = math.min(math.ceil(ToyboxMod:randomRange(rng, 0.2, 0.7)*effect.State), MAX_JUICE_SIZE)
                 local vel = (-effect.Velocity):Resized(4):Rotated(rng:RandomInt(360))
 
                 local newParticle = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_JUICE_TRAIL,newSub,effect.Position,vel,nil):ToEffect()
@@ -183,14 +190,14 @@ local function juiceParticleUpdate(_, effect)
         if(effect.FrameCount>10 and effect.Position:DistanceSquared(effect.SpawnerEntity.Position)<(effect.SpawnerEntity.Size+8)^2) then
             local rng = effect:GetDropRNG()
             for _=1, (ToyboxMod.CONFIG.GOOD_JUICE_LESSLAG==1 and 2 or 4) do
-                local newSub = math.ceil(ToyboxMod:randomRange(rng, 0.3, 0.8)*effect.SubType)
+                local newSub = math.min(math.ceil(ToyboxMod:randomRange(rng, 0.3, 0.8)*effect.State), MAX_JUICE_SIZE)
                 local vel = (effect.Velocity):Resized(15):Rotated(rng:RandomInt(-25, 25))
 
                 local newParticle = Isaac.Spawn(EntityType.ENTITY_EFFECT,ToyboxMod.EFFECT_JUICE_TRAIL,newSub,effect.Position,vel,nil):ToEffect()
                 newParticle.SpriteRotation = effect.SpriteRotation
             end
 
-            evaluateJuiceCollision(effect.Position-effect.Velocity*3, effect.SubType, effect.SpawnerEntity)
+            evaluateJuiceCollision(effect.Position-effect.Velocity*3, effect.State, effect.SpawnerEntity)
 
             sfx:Play(SoundEffect.SOUND_MEAT_JUMPS, 1, 0, false, 1)
             effect:Remove()
@@ -213,7 +220,7 @@ local function turnToJuiceOnRoomChange(_, _, newLevel)
 
     for _, ent in ipairs(Isaac.FindByType(1000, ToyboxMod.EFFECT_JUICE_TRAIL)) do
         if(ent.SpawnerEntity) then
-            evaluateJuiceCollision(ent.Position-ent.Velocity, ent.SubType, ent.SpawnerEntity)
+            evaluateJuiceCollision(ent.Position-ent.Velocity, ent:ToEffect().State, ent.SpawnerEntity)
         end
     end
 

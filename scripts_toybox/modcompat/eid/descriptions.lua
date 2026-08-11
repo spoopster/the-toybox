@@ -3347,6 +3347,16 @@ enums.FUNCTIONS.AddCard({
         },
     }
 })
+enums.FUNCTIONS.AddCard({
+    ID = ToyboxMod.CARD_GREYHOUND,
+    Name = "Greyhound",
+    Description = {
+        "{{Collectible419}} Teleports Isaac to a room that hasn't been visited yet",
+        "Has a 66% chance to respawn in the destination room",
+        "Hierarchy:",
+        "{{Blank}} {{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}>{{DiceRoom}}>{{Library}}>"..enums.CONSTANTS.Icon_RoomGraveyard..">{{CurseRoom}}>"..enums.CONSTANTS.Icon_RoomTemple.."> {{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{ErrorRoom}}"
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_MANTLE_ROCK,

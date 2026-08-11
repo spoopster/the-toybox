@@ -25,6 +25,11 @@ for key, val in pairs(ToyboxMod.ROOM_TYPE_DATA) do
     ID_TO_TABLEKEY[val.Id] = key
 end
 
+---@param id integer
+function ToyboxMod:getSpecialRoomKeyFromId(id)
+    return ID_TO_TABLEKEY[id]
+end
+
 for _, data in pairs(ToyboxMod.ROOM_TYPE_DATA) do
     ToyboxMod:addCustomRoomIcon(
         data.MinimapIcon,
@@ -49,6 +54,15 @@ function ToyboxMod:isCustomSpecialRoom(roomDesc, key)
         return true
     end
     return false
+end
+
+function ToyboxMod:isAnyCustomSpecialRoom(roomDesc)
+    local dat = roomDesc and roomDesc.Data
+    if(not dat) then return false end
+
+    if(dat.Type==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and ID_TO_TABLEKEY[dat.Subtype]) then
+        return true
+    end
 end
 
 -- replace pool

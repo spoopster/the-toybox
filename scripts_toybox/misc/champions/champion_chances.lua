@@ -33,7 +33,7 @@ local function tryMakeModChampion(npc)
 
     local vanillaChance = ToyboxMod:getVanillaChampionChance()
     local chanceDif = ToyboxMod:getChampionChance()-vanillaChance
-    if(npc:GetDropRNG():RandomFloat()<chanceDif/(1-vanillaChance)) then
+    if(vanillaChance<1 and npc:GetDropRNG():RandomFloat()<chanceDif/(1-vanillaChance)) then
         npc:MakeChampion(math.max(Random(),1), -1, true)
     end
 end

@@ -1077,3 +1077,36 @@ function ToyboxMod:colorInverse(col)
     local colorize = col:GetColorize()
     return Color(1/col.R, 1/col.G, 1/col.B, 1/col.A, -col.RO, -col.GO, -col.BO, -colorize.R, -colorize.G, -colorize.B, -colorize.A)
 end
+
+---@param roomType RoomType|string
+---@param roomVariant integer?
+---@param rng RNG
+---@param visited boolean? If `nil`, ignores whether the destination room should be visited or not
+---@param ignoreGroup boolean?
+function ToyboxMod:getRandomSpecialRoom(roomType, rng, roomVariant, visited, ignoreGroup)
+    if(roomType==ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE and type(roomVariant)=="string") then
+        roomVariant = ToyboxMod.ROOM_TYPE_DATA[roomVariant].Id
+    elseif(type(roomType)=="string") then
+        roomVariant = ToyboxMod.ROOM_TYPE_DATA[roomType].Id
+        roomType = ToyboxMod.SPECIAL_ROOM_TYPE_TEMPLATE
+    end
+
+    local level = ToyboxMod.GAME:GetLevel()
+
+    local currentGroup = level:GetCurrentRoomDesc():GetGroup()
+    local foundRooms = {}
+    for i=0, 168 do
+        local room = level:GetRoomByIdx(i)
+        if(room.Data and room.Data.Type==roomType and (roomVariant==nil or room.Data.Subtype==roomVariant)) then
+            if(ignoreGroup or room:GetGroup()==currentGroup) then
+                if((visited==nil) or (room.VisitedCount~=0)==(visited or false)) then
+                    table.insert(foundRooms, room.SafeGridIndex)
+                end
+            end
+        end
+    end
+
+    if(#foundRooms>0) then
+        return foundRooms[rng:RandomInt(1,#foundRooms)]
+    end
+end

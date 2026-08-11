@@ -1,22 +1,12 @@
 <pocketitems>
 <!-- CARDS -->
-    <card id="300" name="Toybox Consumable Picker"
-        description="You probably shouldn't have this"
-        hud="VIIIS - The Baron"
-        type="otherstuff"
-        pickup="2805"
-
-        mimiccharge="12"
-        weight="0"
-    />
-
     <card id="0" name="Prismstone"
         description="Draw 3, discard 2"
         hud="Prismstone"
         type="special"
         pickup="8"
 
-        mimiccharge="8"
+        mimiccharge="6"
 
         achievement="Prismstone"
     />
@@ -26,7 +16,7 @@
         type="special"
         pickup="2801"
 
-        mimiccharge="8"
+        mimiccharge="1"
 
         achievement="Foil Card"
     />
@@ -37,7 +27,7 @@
         type="special"
         pickup="2802"
 
-        mimiccharge="1"
+        mimiccharge="5"
         weight="0"
     />
     <card id="3" name="Poison Rain"
@@ -46,7 +36,7 @@
         type="special"
         pickup="2802"
 
-        mimiccharge="1"
+        mimiccharge="4"
         weight="0"
     />
     <card id="4" name="4-Starred Ladybug"
@@ -55,7 +45,7 @@
         type="special"
         pickup="2802"
 
-        mimiccharge="1"
+        mimiccharge="6"
         weight="0"
     />
     <card id="5" name="Dark Explosion"
@@ -104,7 +94,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="4"
         weight="0"
     />
     <card id="10" name="IS - The Angel"
@@ -113,7 +103,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="3"
         weight="0"
     />
     <card id="11" name="IIS - The Gate"
@@ -122,7 +112,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="3"
         weight="0"
     />
     <card id="12" name="IIIS - Apocalypse"
@@ -131,7 +121,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="6"
         weight="0"
     />
     <card id="13" name="IVS - The Crypt"
@@ -140,7 +130,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="2"
         weight="0"
     />
     <card id="14" name="VS - The Reaper"
@@ -149,7 +139,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="4"
         weight="0"
     />
     <card id="15" name="VIS - The Dragon"
@@ -158,7 +148,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="8"
         weight="0"
     />
     <card id="16" name="VIIS - Duality"
@@ -167,7 +157,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="8"
         weight="0"
     />
     <card id="17" name="VIIIS - The Baron"
@@ -185,7 +175,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="6"
         weight="0"
     />
     <card id="19" name="XS - Memory"
@@ -212,7 +202,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="3"
         weight="0"
     />
     <card id="22" name="XIIIS - Fate"
@@ -221,7 +211,7 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="6"
         weight="0"
     />
     <card id="23" name="XIVS - The Phantom"
@@ -248,8 +238,18 @@
         type="tarot"
         pickup="2805"
 
-        mimiccharge="12"
+        mimiccharge="2"
         weight="0"
+    />
+    <card id="26" name="Greyhound"
+        description="Have a good trip!"
+        hud="Greyhound"
+        type="special"
+        pickup="2806"
+
+        mimiccharge="4"
+
+        achievement="Greyhound"
     />
 
 <!-- RUNES / SOUL STONES -->

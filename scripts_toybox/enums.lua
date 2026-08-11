@@ -365,6 +365,8 @@ ToyboxMod.CARD_THE_PHANTOM = Isaac.GetCardIdByName("XIVS - The Phantom")
 ToyboxMod.CARD_MIRAGE = Isaac.GetCardIdByName("XVS - Mirage")
 ToyboxMod.CARD_THE_IDOL = Isaac.GetCardIdByName("XVIS - The Idol")
 
+ToyboxMod.CARD_GREYHOUND = Isaac.GetCardIdByName("Greyhound")
+
 
 
 ToyboxMod.PILL_I_BELIEVE = Isaac.GetPillEffectByName("I Believe I Can Fly!")
