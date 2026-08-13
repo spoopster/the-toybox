@@ -127,6 +127,13 @@
 		<sample weight="1" path="water_loop_copy.wav" />
 	</sound>
 
+	<sound name="(TOYBOX) Slide Whistle">
+		<sample weight="1" path="slide_whistle.wav" />
+	</sound>
+	<sound name="(TOYBOX) Mr Krabs Walk">
+		<sample weight="1" path="mr_krabs_walk.wav" />
+	</sound>
+
 	<sound name="(TOYBOX) Rock Crack">
 		<sample weight="1" path="atlas_rockcrack1.wav" />
         <sample weight="1" path="atlas_rockcrack2.wav" />

@@ -525,6 +525,9 @@ ToyboxMod.SFX_ARM_ATTACK = Isaac.GetSoundIdByName("(TOYBOX) Arm Attack")
 ToyboxMod.SFX_CRUNCH = Isaac.GetSoundIdByName("(TOYBOX) Crunch")
 ToyboxMod.SFX_DEFLATE = Isaac.GetSoundIdByName("(TOYBOX) Deflate")
 
+ToyboxMod.SFX_SLIDE_WHISTLE = Isaac.GetSoundIdByName("(TOYBOX) Slide Whistle")
+ToyboxMod.SFX_MR_KRABS_WALK = Isaac.GetSoundIdByName("(TOYBOX) Mr Krabs Walk")
+
 for name, soundEffect in pairs(ToyboxMod) do
     if(string.sub(name, 1,4)=="SFX_") then
         sfx:Preload(soundEffect)

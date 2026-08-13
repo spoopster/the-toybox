@@ -1847,7 +1847,7 @@
     achievement="Infestation 3"
 />
 
-<trinket id="100" name="Citrusberry "
+<trinket id="300" name="Citrusberry "
     description="Emergency heal"
     gfx="citrusberry_consumed.png"
     cache=""
