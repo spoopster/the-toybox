@@ -19,6 +19,13 @@ local COMMANDS = {
             end
         end
     },
+    {
+        Name = "lionskull",
+        Description = "Spawns a special Lion Skull",
+        Function = function()
+            
+        end
+    }
 }
 
 for _, data in ipairs(COMMANDS) do
@@ -28,7 +35,7 @@ end
 local function executeCmd(_, cmd, params)
     for _, data in ipairs(COMMANDS) do
         if(cmd==data.Name) then
-            data.Function()
+            data.Function(params)
             return
         end
     end

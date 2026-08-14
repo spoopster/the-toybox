@@ -259,6 +259,8 @@
         <Item Name="Flayer Baby"/>
         <Item Name="Psycho Baby"/>
         <Item Name="Silver Pieces"/>
+        <Item Name="Leatherface"/>
+        <Item Name="Frankencat"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -274,6 +276,8 @@
         <Item Name="Flayer Baby"/>
         <Item Name="Psycho Baby"/>
         <Item Name="Silver Pieces"/>
+        <Item Name="Leatherface"/>
+        <Item Name="Frankencat"/>
     </Pool>
 
     <Pool Name="angel">
@@ -478,6 +482,7 @@
         <Item Name="Fish"/>
         <Item Name="Rhubarb"/>
         <Item Name="Carrion"/>
+        <Item Name="Frankencat"/>
     </Pool>
 
     <Pool Name="babyShop">
@@ -594,6 +599,7 @@
         <Item Name="Tammy's Body"/>
         <Item Name="Twisted Heart"/>
         <Item Name="Carrion"/>
+        <Item Name="Frankencat"/>
     </Pool>
 
     <Pool Name="temple">

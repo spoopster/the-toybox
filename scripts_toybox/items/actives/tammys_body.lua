@@ -26,7 +26,7 @@ local function useTammysBody(_, _,_,player,_)
 
     player:AddMaxHearts(-2)
     for _=1, ONHIT_TRIGGERS do
-        player:TakeDamage(1, DamageFlag.DAMAGE_FAKE, EntityRef(player), 0)
+        player:TakeDamage(1, DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_RED_HEARTS, EntityRef(player), 0)
     end
 
     local room = ToyboxMod.GAME:GetRoom()
@@ -39,3 +39,4 @@ local function useTammysBody(_, _,_,player,_)
     return true
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_USE_ITEM, useTammysBody, ToyboxMod.COLLECTIBLE_TAMMYS_BODY)
+

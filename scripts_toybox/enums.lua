@@ -249,10 +249,13 @@ ToyboxMod.COLLECTIBLE_FERTILIZER = Isaac.GetItemIdByName("Fertilizer")
 ToyboxMod.COLLECTIBLE_GUNPOWDER = Isaac.GetItemIdByName("Gunpowder")
 ToyboxMod.COLLECTIBLE_INSTANT_GRATIFICATION = Isaac.GetItemIdByName("Instant Gratification")
 ToyboxMod.COLLECTIBLE_MUTAGEN = Isaac.GetItemIdByName("Mutagen")
+ToyboxMod.COLLECTIBLE_LEATHERFACE = Isaac.GetItemIdByName("Leatherface")
+ToyboxMod.COLLECTIBLE_FRANKENCAT = Isaac.GetItemIdByName("Frankencat")
 
 ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT = Isaac.GetItemIdByName("Elephant's Foot")
-ToyboxMod.COLLECTIBLE_FRANKENCAT = Isaac.GetItemIdByName("Frankencat")
 ToyboxMod.COLLECTIBLE_XENOTRANSFUSION = Isaac.GetItemIdByName("Xenotransfusion")
+
+ToyboxMod.COLLECTIBLE_TMTAMER = Isaac.GetItemIdByName("TMTAMER")
 
 ToyboxMod.COLLECTIBLE_CATHARSIS = Isaac.GetItemIdByName("Catharsis")
 ToyboxMod.COLLECTIBLE_URANIUM = Isaac.GetItemIdByName("Uranium")

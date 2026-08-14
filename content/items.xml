@@ -1523,6 +1523,37 @@
 
     damage="1" shotspeed="0.3"
 />
+<passive id="166" name="Leatherface"
+    description="Bloody murder!"
+    gfx="leatherface.png"
+    quality="3"
+    tags="offensive summonable"
+    customtags=""
+    cache=""
+/>
+<passive id="167" name="Frankencat"
+    description="One looooong life"
+    gfx="frankencat.png"
+    quality="3"
+    tags="offensive summonable dead"
+    customtags="revive"
+    cache=""
+
+    devilprice="2"
+
+    achievement="Frankencat"
+/>
+
+<passive id="450" name="TMTAMER"
+    description="In the lion's den"
+    gfx="tmtamer.png"
+    quality="0"
+    tags="nolostbr noeden"
+    customtags=""
+    cache=""
+
+    hidden="true"
+/>
 
 
 <active id="491" name="Cursed D6"

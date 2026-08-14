@@ -83,6 +83,9 @@ local BASEDATA = {
         {5,20,1,0},
     },
 
+
+    TMTAMER_IDS = {},
+
     SUPER_RETROFALL_ID = 3,
     MATTMAN_CHANCE_LAMB_KILLS = 0,
 

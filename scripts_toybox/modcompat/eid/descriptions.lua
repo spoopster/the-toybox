@@ -2085,6 +2085,40 @@ enums.FUNCTIONS.AddItem({
         }
     }
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_FRANKENCAT,
+    Name = "Frankencat",
+    Description = {
+        "+1 Life",
+        "Isaac can no longer revive, extra lives instead grant 3 free hits (up to 9 hits max) that replenish at the start of every floor",
+        "The free hits count as fake damage and block any form of damage"
+    },
+    Modifiers = {
+        {
+            Condition = function(descObj)
+                return PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_COLLAR)
+            end,
+            ToModify = {
+                "{{Collectible212}} Chance revives grant 0-3 free hits at random",
+            }
+        },
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_LEATHERFACE,
+    Name = "Leatherface",
+    Description = {
+        "{{Collectible313}} Every 20 enemies killed grants a shield that prevents one hit",
+        "Enemies leave behind creep on death that deals 3 damage per tick (30 per second)",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "-5 kills required for a shield per stack, to a minimum of 5",
+            }
+        },
+    }
+})
 
 --- OTHER ITEM MODIFIERS ---
 

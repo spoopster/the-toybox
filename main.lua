@@ -197,6 +197,8 @@ include("scripts_toybox.players.homunculus.a.render_item")
 include("scripts_toybox.challenges.heart_to_heart")
 include("scripts_toybox.challenges.reduce_reuse_recycle")
 
+include("scripts_toybox.challenges.safari_zone")
+
 -- ITEMS
 --PASSIVES
     include("scripts_toybox.items.passives.coconut_oil")
@@ -328,6 +330,8 @@ include("scripts_toybox.challenges.reduce_reuse_recycle")
     include("scripts_toybox.items.passives.fertilizer")
     include("scripts_toybox.items.passives.gunpowder")
     include("scripts_toybox.items.passives.mutagen")
+    include("scripts_toybox.items.passives.leatherface")
+    include("scripts_toybox.items.passives.frankencat")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
