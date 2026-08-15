@@ -24,6 +24,9 @@ local function entityTakeDmg(_, ent, amount, flags, source, countdown)
     if(flags & DamageFlag.DAMAGE_CLONES ~= 0) then return end
     if(not PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_CARRION)) then return end
 
+    local npc = ent and ent:ToNPC()
+    if(not (npc and npc:IsEnemy() and npc:IsActiveEnemy(false))) then return end
+
     return {
         Damage = amount * DAMAGE_MULT,
         DamageFlags = flags,
