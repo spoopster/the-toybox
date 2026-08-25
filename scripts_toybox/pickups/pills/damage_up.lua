@@ -23,4 +23,4 @@ local function evaluateDamage(_, pl, _, val)
     local stacks = (ToyboxMod:getEntityData(pl, "DAMAGE_UP_STACKS") or 0)
     return val+stacks*DMG_UP
 end
-ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evaluateDamage, EvaluateStatStage.DAMAGE_UP)
+ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, evaluateDamage, EvaluateStatStage.FLAT_DAMAGE)

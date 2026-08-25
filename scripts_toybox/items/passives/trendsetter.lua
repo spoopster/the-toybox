@@ -27,7 +27,7 @@ local function tryGetRewards(_)
                     nextindex = nextindex+1
                 end
             end
-            table.insert(pickups, {pickup.Type, pickup.Variant, pickup.SubType, idx})
+            table.insert(pickups, {pickup.Type, pickup.Variant, (pickup.Variant==PickupVariant.PICKUP_TRINKET and 0 or pickup.SubType), idx})
             table.insert(todel, ent)
         end
     end

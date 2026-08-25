@@ -332,6 +332,8 @@ include("scripts_toybox.challenges.safari_zone")
     include("scripts_toybox.items.passives.mutagen")
     include("scripts_toybox.items.passives.leatherface")
     include("scripts_toybox.items.passives.frankencat")
+    include("scripts_toybox.items.passives.nanomachines")
+    include("scripts_toybox.items.passives.frankincense")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES
@@ -374,6 +376,7 @@ include("scripts_toybox.challenges.safari_zone")
     include("scripts_toybox.items.actives.hand_pump")
     include("scripts_toybox.items.actives.twisted_heart")
     include("scripts_toybox.items.actives.instant_gratification")
+    include("scripts_toybox.items.actives.breakthrough")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

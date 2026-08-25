@@ -2119,6 +2119,44 @@ enums.FUNCTIONS.AddItem({
         },
     }
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_NANOMACHINES,
+    Name = "Nanomachines",
+    Description = {
+        "{{HolyMantle}} Grants a one-use Holy Mantle shield",
+        "{{Timer}} Every 60 seconds, grants a one-use Holy Mantle shield",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "-10 seconds required for a shield per stack, to a minimum of 15s",
+            }
+        },
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_FRANKINCENSE,
+    Name = "Frankincense",
+    Description = {
+        "\1 +0.33 Damage for every enemy in the room, up to +2 Damage",
+    },
+    StackModifiers = {
+        {
+            ToModify = {
+                "+50% Damage granted per stack",
+            }
+        },
+    }
+})
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_BREAKTHROUGH,
+    Name = "Breakthrough",
+    Description = {
+        "Can be used at any active charge above 0",
+        "For every charge pip consumed, grants the effects of a random passive item from the current room's item pool",
+        "The item effects granted last for 45 seconds"
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 
@@ -4148,7 +4186,7 @@ enums.FUNCTIONS.AddPill({
     ID = ToyboxMod.PILL_DMG_UP,
     Name = "Damage Up",
     Description = {
-        "\1 +0.5 Damage",
+        "\1 +0.5 flat Damage",
     },
     HorseModifiers = {
         {
@@ -4163,7 +4201,7 @@ enums.FUNCTIONS.AddPill({
     ID = ToyboxMod.PILL_DMG_DOWN,
     Name = "Damage Down",
     Description = {
-        "\2 -0.4 Damage",
+        "\2 -0.4 flat Damage",
     },
     HorseModifiers = {
         {

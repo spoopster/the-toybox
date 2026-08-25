@@ -16,7 +16,10 @@ local function tryGiveMantle(_, npc)
     data.LEATHERFACE_KILLS = (data.LEATHERFACE_KILLS or 0)+1
     if(data.LEATHERFACE_KILLS>=killsReq) then
         data.LEATHERFACE_KILLS = 0
-        pl:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+        if(not pl:GetEffects():HasNullEffect(NullItemID.ID_HOLY_CARD)) then
+            pl:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, true)
+            pl:AddNullItemEffect(NullItemID.ID_HOLY_CARD, true)
+        end
 
         local maxdist = npc.Position:Distance(pl.Position)
         local dir = (pl.Position-npc.Position):Normalized()

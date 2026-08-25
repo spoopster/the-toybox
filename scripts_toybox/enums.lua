@@ -251,6 +251,9 @@ ToyboxMod.COLLECTIBLE_INSTANT_GRATIFICATION = Isaac.GetItemIdByName("Instant Gra
 ToyboxMod.COLLECTIBLE_MUTAGEN = Isaac.GetItemIdByName("Mutagen")
 ToyboxMod.COLLECTIBLE_LEATHERFACE = Isaac.GetItemIdByName("Leatherface")
 ToyboxMod.COLLECTIBLE_FRANKENCAT = Isaac.GetItemIdByName("Frankencat")
+ToyboxMod.COLLECTIBLE_NANOMACHINES = Isaac.GetItemIdByName("Nanomachines")
+ToyboxMod.COLLECTIBLE_BREAKTHROUGH = Isaac.GetItemIdByName("Breakthrough")
+ToyboxMod.COLLECTIBLE_FRANKINCENSE = Isaac.GetItemIdByName("Frankincense")
 
 ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT = Isaac.GetItemIdByName("Elephant's Foot")
 ToyboxMod.COLLECTIBLE_XENOTRANSFUSION = Isaac.GetItemIdByName("Xenotransfusion")
@@ -443,6 +446,7 @@ ToyboxMod.EFFECT_FLOWER_PATCH = Isaac.GetEntityVariantByName("Flower Patch") ---
 ToyboxMod.EFFECT_NOWHERE_RIFT = Isaac.GetEntityVariantByName("Nowhere Tears Rift") ---@type EffectVariant
 ToyboxMod.EFFECT_WOODEN_ARM = Isaac.GetEntityVariantByName("Wooden Arm") ---@type EffectVariant
 ToyboxMod.EFFECT_SWITCH_BLOCK_RENDER_HELPER = Isaac.GetEntityVariantByName("Switch Block Render Helper") ---@type EffectVariant
+ToyboxMod.EFFECT_ITEM_AFTERIMAGE = Isaac.GetEntityVariantByName("Item Afterimage") ---@type EffectVariant
 
 ToyboxMod.EFFECT_ZERO_GRAV_CROSSHAIR = Isaac.GetEntityVariantByName("Zero-Gravity Crosshair") ---@type EffectVariant
 ToyboxMod.EFFECT_KANYE = Isaac.GetEntityVariantByName("Kanye West") ---@type EffectVariant
@@ -527,6 +531,9 @@ ToyboxMod.SFX_ARM_ABSORB = Isaac.GetSoundIdByName("(TOYBOX) Arm Absorb")
 ToyboxMod.SFX_ARM_ATTACK = Isaac.GetSoundIdByName("(TOYBOX) Arm Attack")
 ToyboxMod.SFX_CRUNCH = Isaac.GetSoundIdByName("(TOYBOX) Crunch")
 ToyboxMod.SFX_DEFLATE = Isaac.GetSoundIdByName("(TOYBOX) Deflate")
+ToyboxMod.SFX_SHATTER_REVERSE = Isaac.GetSoundIdByName("(TOYBOX) Shield Shatter Reversed")
+ToyboxMod.SFX_EUREKA = Isaac.GetSoundIdByName("(TOYBOX) Eureka")
+ToyboxMod.SFX_EUREKA_DISCHARGE = Isaac.GetSoundIdByName("(TOYBOX) Eureka Discharge")
 
 ToyboxMod.SFX_SLIDE_WHISTLE = Isaac.GetSoundIdByName("(TOYBOX) Slide Whistle")
 ToyboxMod.SFX_MR_KRABS_WALK = Isaac.GetSoundIdByName("(TOYBOX) Mr Krabs Walk")

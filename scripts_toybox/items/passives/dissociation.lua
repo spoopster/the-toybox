@@ -34,13 +34,13 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, evalCache)
 ---@param pl EntityPlayer
 ---@param val number
 local function evalStat(_, pl, stat, val)
-    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.DAMAGE_UP)) then return end
+    if(not (stat==EvaluateStatStage.TEARS_UP or stat==EvaluateStatStage.FLAT_DAMAGE)) then return end
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_DISSOCIATION)) then return end
     local statTable = ToyboxMod:getEntityData(pl, "DISSOCIATION_STATS") or {}
 
     if(stat==EvaluateStatStage.TEARS_UP) then
         return val+(statTable.TEARS or 0)
-    elseif(stat==EvaluateStatStage.DAMAGE_UP) then
+    elseif(stat==EvaluateStatStage.FLAT_DAMAGE) then
         return val+(statTable.DAMAGE or 0)
     end
 end

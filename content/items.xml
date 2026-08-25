@@ -533,8 +533,8 @@
     cache="firedelay damage range luck"
     passivecache="true"
 
-    speed="0.2" tears="0.5" damage="-1" luck="-2"
-    effecttears="2" effectdamage="2.5" effectrange="60" effectluck="4"
+    speed="0.2" tears="0.5" flatdamage="-1" luck="-2"
+    effecttears="2" effectflatdamage="1" effectdamage="1.5" effectrange="60" effectluck="4"
 
     maxcharges="1"
     activegfx="activegfx/white_daisy.png"
@@ -1041,7 +1041,7 @@
     customtags="combat"
     cache="damage"
 
-    maxcharges="4"
+    maxcharges="3"
 />
 <passive id="112" name="Bodybag"
     description="HP up?"
@@ -1542,6 +1542,33 @@
     devilprice="2"
 
     achievement="Frankencat"
+/>
+<passive id="168" name="Nanomachines"
+    description="Self-defense system"
+    gfx="nanomachines.png"
+    quality="0"
+    tags="summonable nolostbr"
+    customtags=""
+    cache=""
+/>
+<active id="169" name="Breakthrough"
+    description="Eureka!"
+    gfx="breakthrough.png"
+    quality="3"
+    tags="offensive summonable"
+    customtags=""
+    cache=""
+
+    maxcharges="6"
+    activegfx="activegfx/breakthrough.png"
+/>
+<passive id="170" name="Frankincense"
+    description="An offering to Him"
+    gfx="frankincense.png"
+    quality="3"
+    tags="offensive summonable"
+    customtags=""
+    cache=""
 />
 
 <passive id="450" name="TMTAMER"

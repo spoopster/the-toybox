@@ -6,7 +6,7 @@ ToyboxMod.ABOX_ITEMS_INDEX = {}
 local function alphabeticalSort(sortA, sortB)
     return string.lower(sortA[1])<string.lower(sortB[1])
 end
-local function gameLoaded(_, isCont)
+local function gameLoaded(_, _)
     ToyboxMod.ABOX_ITEMS_ALPHABETICAL = {}
     ToyboxMod.ABOX_ITEMS_INDEX = {}
 
@@ -55,7 +55,7 @@ function ToyboxMod:getNextAlphabetItem(val, reverseOrder)
 end
 
 ---@param player EntityPlayer
-local function useAlphabetBox(_, _, rng, player, flags)
+local function useAlphabetBox(_, id, rng, player, flags)
     local itemConfig = Isaac.GetItemConfig()
 
     for _, item in ipairs(Isaac.FindByType(5,100)) do

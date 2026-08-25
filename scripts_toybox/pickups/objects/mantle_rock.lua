@@ -23,7 +23,7 @@ local function useMantle(_, _, player, flags)
             player:AddCacheFlags(CacheFlag.CACHE_SIZE)
         end
 
-        pl:AddInnateCollectible(CollectibleType.COLLECTIBLE_TERRA, 1, "ForRoom_RockMantleCard")
+        player:AddInnateCollectible(CollectibleType.COLLECTIBLE_TERRA, 1, "ForRoom_RockMantleCard")
 
         ToyboxMod.SFX:Play(SoundEffect.SOUND_ROCK_CRUMBLE)
     end

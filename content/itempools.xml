@@ -78,6 +78,8 @@
         <Item Name="Instant Gratification"/>
         <Item Name="Mutagen"/>
         <Item Name="Gunpowder"/>
+        <Item Name="Nanomachines"/>
+        <Item Name="Breakthrough"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -155,6 +157,8 @@
         <Item Name="Instant Gratification"/>
         <Item Name="Mutagen"/>
         <Item Name="Gunpowder"/>
+        <Item Name="Nanomachines"/>
+        <Item Name="Breakthrough"/>
     </Pool>
 
     <Pool Name="boss">
@@ -290,6 +294,7 @@
         <Item Name="Pythagoras' Cup"/>
         <Item Name="The Good Juice"/>
         <Item Name="Reliquary"/>
+        <Item Name="Frankincense"/>
     </Pool>
     <Pool Name="greedAngel">
         <Item Name="Silk Bag"/>
@@ -301,6 +306,7 @@
         <Item Name="Pythagoras' Cup"/>
         <Item Name="The Good Juice"/>
         <Item Name="Reliquary"/>
+        <Item Name="Frankincense"/>
     </Pool>
 
     <Pool Name="curse">
@@ -358,6 +364,7 @@
         <Item Name="Wooden Arm"/>
         <Item Name="Clone"/>
         <Item Name="Mutagen"/>
+        <Item Name="Breakthrough" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
     <Pool Name="greedSecret">
         <Item Name="Fatal Signal"/>
@@ -383,6 +390,7 @@
         <Item Name="Wooden Arm"/>
         <Item Name="Clone"/>
         <Item Name="Mutagen"/>
+        <Item Name="Breakthrough" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="library">

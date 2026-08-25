@@ -122,6 +122,18 @@
 	<sound name="(TOYBOX) Deflate">
 		<sample weight="1" path="deflate.wav" />
 	</sound>
+	<sound name="(TOYBOX) Shield Shatter Reversed">
+		<sample weight="1" path="shield_shatter_reverse.wav" />
+	</sound>
+	<sound name="(TOYBOX) Eureka">
+		<sample weight="1" path="eureka.wav" />
+	</sound>
+	<sound name="(TOYBOX) Eureka Discharge">
+		<sample weight="1" path="eureka_discharge_1.wav" />
+		<sample weight="1" path="eureka_discharge_2.wav" />
+		<sample weight="1" path="eureka_discharge_3.wav" />
+		<sample weight="1" path="eureka_discharge_4.wav" />
+	</sound>
 
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />
