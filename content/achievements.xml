@@ -11,6 +11,7 @@
 	<!-- challanges -->
 	<achievement name="Scientology Challenge" text="" gfx="ach_challenge_scientology.png" />
 	<achievement name="Heart to Heart Challenge" text="" gfx="ach_challenge_heart_to_heart.png" />
+	<achievement name="Reduce Reuse Recycle Challenge" text="" gfx="ach_challenge_reduce_reuse_recycle.png" />
 
 	<!-- Atlas unlocks -->
 	<achievement name="Prismstone" text="" gfx="ach_prismstone.png" gfxback="achpaper_atlas.png" />

@@ -25,6 +25,7 @@ ToyboxMod.ACHIEVEMENT_HOMUNCULUS_B = Isaac.GetAchievementIdByName("The Flayed (T
 --- ACHIEVEMENTS - Challenges
 ToyboxMod.ACHIEVEMENT_SCIENTOLOGY = Isaac.GetAchievementIdByName("Scientology Challenge")
 ToyboxMod.ACHIEVEMENT_HEART_TO_HEART = Isaac.GetAchievementIdByName("Heart to Heart Challenge")
+ToyboxMod.ACHIEVEMENT_REDUCE_REUSE_RECYCLE = Isaac.GetAchievementIdByName("Reduce Reuse Recycle Challenge")
 --- ACHIEVEMENTS - Misc.
 ToyboxMod.ACHIEVEMENT_WONDER_DRUG = Isaac.GetAchievementIdByName("Wonder Drug")
 ToyboxMod.ACHIEVEMENT_HORSE_TRANQUILIZER = Isaac.GetAchievementIdByName("Horse Tranquilizer")

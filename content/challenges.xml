@@ -38,8 +38,8 @@
 				startingitems="Glass Vessel" playertype="10" roomfilter=""
 				unlockachievement="Vampire Teeth"
 	/>
-	<challenge 	name="III - Reduce Reuse Recycle"
-				endstage="8" secretpath="true" 
+	<challenge 	name="III - Reduce Reuse Recycle" achievements="Reduce Reuse Recycle Challenge" 
+				lockeddesc="Defeat Mother" endstage="8" secretpath="true" 
 				startingitems="480" playertype="0" roomfilter=""
 				unlockachievement="Fertilizer"
 	/>

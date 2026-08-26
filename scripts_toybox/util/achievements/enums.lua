@@ -32,6 +32,9 @@ end, false)
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_HEART_TO_HEART, function(d)
     return d:Unlocked(ToyboxMod.ACHIEVEMENT_GLASS_VESSEL) and d:Unlocked(Achievement.LOST)
 end, false)
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_REDUCE_REUSE_RECYCLE, function(d)
+    return d:GetEventCounter(EventCounter.MOTHER_KILLS)>0
+end, false)
 
 -- atlas
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_ROCK_CANDY, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_ATLAS_A, CompletionType.BOSS_RUSH))

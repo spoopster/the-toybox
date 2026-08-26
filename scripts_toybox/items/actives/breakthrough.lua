@@ -122,7 +122,7 @@ local function afterimageEffectUpdate(_, eff)
         rng:Next()
     end
 
-    eff.Color = Color(0.8-blue*0.1,0.8-blue*0.1,0.9+blue*0.3,alpha,0,0,blue*0.3)
+    eff.Color = Color(0.8-blue*0.1,0.8+blue*0.1,0.9+blue*0.3,alpha,0,blue*0.15,blue*0.3)
     eff.Velocity = eff.Velocity*0.97
 
     if(eff.Child) then

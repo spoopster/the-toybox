@@ -20,7 +20,7 @@ function ToyboxMod:allMarkCondition(playerType, threshold)
 end
 
 ---@param achievement Achievement
----@param condition function
+---@param condition fun(pgd: PersistentGameData, pdt: table): boolean
 ---@param completionMarkUnlock boolean?
 function ToyboxMod:addAchievement(achievement, condition, completionMarkUnlock)
     local achData = {
