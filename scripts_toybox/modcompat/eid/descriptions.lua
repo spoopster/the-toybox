@@ -922,12 +922,12 @@ enums.FUNCTIONS.AddItem({
     Name = "Food Stamps",
     Description = {
         "{{Heart}} All future Boss Room items give +1 Health",
-        "{{HealingRed}} All future items fully heal you",
+        "{{HealingRed}} All future items heal 3 hearts",
     },
     StackModifiers = {
         {
             ToModify = {
-                "Multiple copies have no additional effect"
+                "Boss Room items grant +1 Health and all items heal +3 hearts per stack"
             }
         }
     },
@@ -4480,9 +4480,10 @@ enums.FUNCTIONS.AddGlobalModifier({
 
                 return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
             end,
-            ToModify = {
-                "{{Collectible"..ToyboxMod.COLLECTIBLE_FOOD_STAMPS.."}} {{Heart}} +1 Health",
-            }
+            ToModify = function(descObj)
+                local mult = PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
+                return "#{{Collectible"..ToyboxMod.COLLECTIBLE_FOOD_STAMPS.."}} {{Heart}} +"..tostring(mult).." Health"
+            end
         },
         {
             Condition = function(descObj)
@@ -4490,10 +4491,11 @@ enums.FUNCTIONS.AddGlobalModifier({
 
                 return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
             end,
-            ToModify = {
-                "{{Collectible"..ToyboxMod.COLLECTIBLE_FOOD_STAMPS.."}} {{HealingRed}} Full health",
-            }
-        }
+            ToModify = function(descObj)
+                local mult = PlayerManager.GetNumCollectibles(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
+                return "#{{Collectible"..ToyboxMod.COLLECTIBLE_FOOD_STAMPS.."}} {{HealingRed}} Heals "..tostring(mult*3).." hearts"
+            end
+        },
     }
 })
 enums.FUNCTIONS.AddGlobalModifier({
