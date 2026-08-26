@@ -6,7 +6,6 @@ local emptyShaderName = ""
 local VERSION = 1.12 -- (v1.1.2) do not modify
 local game = ToyboxMod.GAME
 
--- debug
 local FORCE_VERSION_UPDATE = false
 
 local CACHED_CALLBACKS

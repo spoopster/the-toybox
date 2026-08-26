@@ -1,4 +1,4 @@
-
+--IDEA Turn it into a library tear flag
 
 local GRID_SIZE = 40
 

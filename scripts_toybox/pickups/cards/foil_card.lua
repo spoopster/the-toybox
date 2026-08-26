@@ -1,0 +1,1 @@
+--TODO Implement effect! (Given to beggar for them to repeatedly payout until they leave?)

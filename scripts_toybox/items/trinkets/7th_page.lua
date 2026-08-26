@@ -1,6 +1,6 @@
 local sfx = SFXManager()
 
--- FIX IT DOUBLING DROPPED CONSUMABLES
+-- FIX Doubles dropped consumables
 
 local PICKUP_DOUBLE_CHANCE = 1/7
 

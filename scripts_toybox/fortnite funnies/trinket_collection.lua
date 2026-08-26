@@ -1,8 +1,3 @@
---- todo:
---- add png + name + desc
---- 
---- finish icons
-
 local TRINKET_MENU_ACTIVE = false
 local SEL_IDX = 0
 

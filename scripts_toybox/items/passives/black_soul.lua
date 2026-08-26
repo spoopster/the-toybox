@@ -1,7 +1,5 @@
 local sfx = SFXManager()
 
---- TODO : MAKE THEM NOT TWEAK OUT done!
-
 local SHADOW_CAP = 5
 local CAP_INCREASE_STACK = 1
 

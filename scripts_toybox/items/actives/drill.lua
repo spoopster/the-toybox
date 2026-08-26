@@ -1,10 +1,5 @@
 local sfx = SFXManager()
 
---TODO:
---  the "drill" effect in the challenge rooms
-
----fucking dumb
-
 local FREE_PICKUP_ID = 12841
 local MIN_DRILL_DIST = 60
 

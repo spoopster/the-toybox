@@ -1,6 +1,4 @@
-
-
--- FUCK THIS SHIT! Fuck you caligulas
+--IDEA Turn it into a library tear flag
 
 local EXPLOSION_TIME_MULT = 2
 local BASE_AURA_RADIUS = 80

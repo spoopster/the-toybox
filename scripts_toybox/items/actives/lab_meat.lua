@@ -19,8 +19,8 @@ ToyboxMod:AddPriorityCallback(ModCallbacks.MC_FAMILIAR_INIT, 1, blueInsectInit, 
 ToyboxMod:AddPriorityCallback(ModCallbacks.MC_FAMILIAR_INIT, 1, blueInsectInit, FamiliarVariant.BLUE_SPIDER)
 ]]
 
-local MIN_SPAWN_NUM = 4
-local MAX_SPAWN_NUM = 7
+local MIN_SPAWN_NUM = 2
+local MAX_SPAWN_NUM = 4
 
 ---@param rng RNG
 ---@param player EntityPlayer

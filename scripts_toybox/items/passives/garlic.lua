@@ -1,3 +1,5 @@
+--TODO Turn it into a library tear flag
+
 local RANGE_DOWN = 1
 local RANGE_MULT = 0.9
 

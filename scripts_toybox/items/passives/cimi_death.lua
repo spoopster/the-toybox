@@ -69,7 +69,6 @@ local REWARD_RESULTS = {
 }
 
 -- ITEM LOGIC
--- todo: replace drops, EID
 
 ---@param slot LevelGeneratorRoom
 ---@param conf RoomConfigRoom

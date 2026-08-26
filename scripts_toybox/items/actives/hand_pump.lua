@@ -1,3 +1,6 @@
+--TODO Make item give 3 stacks per use, up to 9, stacks are 1/3rd as effective
+--TODO Make bonus clear itself on new room/room clear
+
 local MAX_BONUSES = 3
 
 local PUMP_COSTUMES = {

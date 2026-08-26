@@ -1,12 +1,3 @@
---- make knifes
---- make bombs
---- make epic fetus? (intermediary rockets on ground)
---- 
---- make it copy hitlists (when it eventually gets added RGON)
---- 
---- TODO: - copy hitlists
----       - turn it into a tear effect
-
 local LOOP_INTERVAL = 40*3
 local LOOP_INTERVAL_START = 40*1.5
 

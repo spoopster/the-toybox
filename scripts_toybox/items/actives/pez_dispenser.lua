@@ -1,7 +1,4 @@
-
 local sfx = SFXManager()
-
---TODO: coop compat, maybe? against it because its an inventory thing so it shouldnt have coop support (awesome)
 
 local DROP_REQ_FRAMES = 60*2
 
