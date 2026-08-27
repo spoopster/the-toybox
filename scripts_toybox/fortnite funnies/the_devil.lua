@@ -1,6 +1,6 @@
 
 
---[[] ] SCARY RENDERING
+-- [[] ] SCARY RENDERING
 local img = nil
 
 local baseImg = nil

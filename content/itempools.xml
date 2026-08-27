@@ -555,7 +555,7 @@
         <Item Name="Carrion"/>
     </Pool>
 
-    <Pool Name="graveyard">
+    <Pool Name="toybox-graveyard">
         <Item Name="Cricket's Head"/>
         <Item Name="Tammy's Head"/>
         <Item Name="Bob's Rotten Head"/>
@@ -610,7 +610,7 @@
         <Item Name="Frankencat"/>
     </Pool>
 
-    <Pool Name="temple">
+    <Pool Name="toybox-temple">
         <Item Name="Chicchan"/>
         <Item Name="Etznab"/>
         <Item Name="Oc"/>

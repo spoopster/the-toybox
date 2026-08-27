@@ -81,8 +81,8 @@ ToyboxMod.CHALLENGE_SCIENTOLOGY = Isaac.GetChallengeIdByName("I - Scientology")
 ToyboxMod.CHALLENGE_HEART_TO_HEART = Isaac.GetChallengeIdByName("II - Heart to Heart")
 ToyboxMod.CHALLENGE_REDUCE_REUSE_RECYCLE = Isaac.GetChallengeIdByName("III - Reduce Reuse Recycle")
 
-ToyboxMod.POOL_GRAVEYARD = Isaac.GetPoolIdByName("graveyard")
-ToyboxMod.POOL_TEMPLE = Isaac.GetPoolIdByName("temple")
+ToyboxMod.POOL_GRAVEYARD = Isaac.GetPoolIdByName("toybox-graveyard")
+ToyboxMod.POOL_TEMPLE = Isaac.GetPoolIdByName("toybox-temple")
 
 ToyboxMod.COLLECTIBLE_COCONUT_OIL = Isaac.GetItemIdByName("Coconut Oil")
 ToyboxMod.COLLECTIBLE_CONDENSED_MILK = Isaac.GetItemIdByName("Condensed Milk")
