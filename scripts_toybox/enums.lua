@@ -255,8 +255,8 @@ ToyboxMod.COLLECTIBLE_FRANKENCAT = Isaac.GetItemIdByName("Frankencat")
 ToyboxMod.COLLECTIBLE_NANOMACHINES = Isaac.GetItemIdByName("Nanomachines")
 ToyboxMod.COLLECTIBLE_BREAKTHROUGH = Isaac.GetItemIdByName("Breakthrough")
 ToyboxMod.COLLECTIBLE_FRANKINCENSE = Isaac.GetItemIdByName("Frankincense")
-
 ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT = Isaac.GetItemIdByName("Elephant's Foot")
+
 ToyboxMod.COLLECTIBLE_XENOTRANSFUSION = Isaac.GetItemIdByName("Xenotransfusion")
 
 ToyboxMod.COLLECTIBLE_TMTAMER = Isaac.GetItemIdByName("TMTAMER")
@@ -592,6 +592,7 @@ ToyboxMod.GRID_SWITCH_PLATE_3 = Isaac.GetEntitySubTypeByName("Switch Plate (3)")
 ToyboxMod.GRID_SWITCH_PLATE_4 = Isaac.GetEntitySubTypeByName("Switch Plate (4)")
 ToyboxMod.GRID_GRAVE_EMPTY = Isaac.GetEntitySubTypeByName("Tombstone (Empty)")
 ToyboxMod.GRID_GRAVE_RANDOM = Isaac.GetEntitySubTypeByName("Tombstone (Random)")
+ToyboxMod.GRID_NUCLEAR_POOP = Isaac.GetEntitySubTypeByName("Nuclear Poop")
 --ToyboxMod.GRID_DEATH_SPIKES_HELPER = Isaac.GetEntitySubTypeByName("Death Sacrifice Spike Helper")
 
 ToyboxMod.SHADER_EMPTY = "ToyboxEmptyShader" ---@type ShaderType

@@ -80,6 +80,7 @@
         <Item Name="Gunpowder"/>
         <Item Name="Nanomachines"/>
         <Item Name="Breakthrough"/>
+        <Item Name="Elephant's Foot"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -128,6 +129,7 @@
         <Item Name="Angel Dust"/>
         <Item Name="Blockchain"/>
         <Item Name="Nose Candy"/>
+        <Item Name="Saltpeter"/>
         <Item Name="Giant Capsule"/>
         <Item Name="Dr. Bum"/>
         <Item Name="Ascension"/>

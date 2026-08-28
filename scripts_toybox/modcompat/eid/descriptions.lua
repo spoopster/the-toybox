@@ -2157,6 +2157,14 @@ enums.FUNCTIONS.AddItem({
         "The item effects granted last for 45 seconds"
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_ELEPHANTS_FOOT,
+    Name = "Elephant's Foot",
+    Description = {
+        "In uncleared new rooms spawns a nuclear poop",
+        "The poop poisons and damages nearby enemies, deals more damage to closer enemies",
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

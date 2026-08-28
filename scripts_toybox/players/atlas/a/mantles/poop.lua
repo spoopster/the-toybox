@@ -64,34 +64,41 @@ end
 ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_GRID_ENTITY_SPAWN, replaceRockSpawn, GridEntityType.GRID_ROCK)
 
 --! TRANSF
+
 ---@param poop GridEntityPoop
-local function poopHeal(_, poop)
+---@param source EntityRef
+local function tryHealWhenDestroyedPoop(_, poop, _, source)
     if(poop.State~=1000) then return end
+    if(poop:GetVariant()==GridPoopVariant.RED) then return end
 
-    local shouldDoTransfEffect = nil
-    for _, player in ipairs(ToyboxMod:getAllAtlasA()) do
-        player = player:ToPlayer()
-        if(ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.POOP.ID)) then
-            local didHeal = ToyboxMod:addMantleHp(player, 1)
-            shouldDoTransfEffect = {player, didHeal}
+    local player = source and source.Entity and ToyboxMod:getPlayerFromEnt(source.Entity)
+    if(not (player and ToyboxMod:isAtlasA(player) and ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.POOP.ID))) then return end
 
-            if(didHeal) then
-                local gulpEffect = Isaac.Spawn(1000, 49, 0, player.Position, Vector.Zero, nil):ToEffect()
-                gulpEffect.SpriteOffset = Vector(0, -35)
-                gulpEffect.DepthOffset = 1000
-                gulpEffect:FollowParent(player)
+    local didHeal = ToyboxMod:addMantleHp(player, 1)
+    if(didHeal) then
+        local gulpEffect = Isaac.Spawn(1000, 49, 0, player.Position, Vector.Zero, nil):ToEffect()
+        gulpEffect.SpriteOffset = Vector(0, -35)
+        gulpEffect.DepthOffset = 1000
+        gulpEffect:FollowParent(player)
+        gulpEffect:GetSprite():Load("gfx_tb/effects/effect_notify.anm2", true)
+        gulpEffect:GetSprite():Play("PoopHeal", true)
 
-                sfx:Play(SoundEffect.SOUND_VAMP_GULP)
-            end
-        end
+        sfx:Play(SoundEffect.SOUND_VAMP_GULP)
     end
-    if(shouldDoTransfEffect) then
-        if(shouldDoTransfEffect[2]) then
-            ToyboxMod.GAME:Fart(poop.Position, nil, shouldDoTransfEffect[1], 0.8)
-        end
-    end
+    ToyboxMod.GAME:Fart(poop.Position, nil, player, 0.8)
 end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DAMAGE, poopHeal)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_HURT, tryHealWhenDestroyedPoop, GridEntityType.GRID_POOP)
+
+---@param poop GridEntityPoop
+---@param dmg integer
+---@param source EntityRef
+local function instabreakPoop(_, poop, dmg, source)
+    local player = source and source.Entity and ToyboxMod:getPlayerFromEnt(source.Entity)
+    if(not (player and ToyboxMod:isAtlasA(player) and ToyboxMod:atlasHasTransformation(player, ToyboxMod.MANTLE_DATA.POOP.ID))) then return end
+
+    return dmg+100
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_GRID_HURT, instabreakPoop, GridEntityType.GRID_POOP)
 
 local function changePoopPickupPool(_, pickup, poop)
     local isAtlasPoop = false

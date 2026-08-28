@@ -25,7 +25,7 @@ local function replaceHelper(_, effect)
                 poop:Init(poop.Desc.SpawnSeed)
 
                 local sp = poop:GetSprite()
-                if(ToyboxMod.GAME:GetRoom():GetFrameCount()~=0) then
+                if(ToyboxMod.GAME:GetRoom():GetFrameCount()<=0) then
                     sp:SetFrame(sp:GetCurrentAnimationData():GetLength()-1)
                 end
             end

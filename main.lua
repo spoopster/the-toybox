@@ -128,6 +128,7 @@ include("scripts_toybox.misc.grids.player_only_gate")
 include("scripts_toybox.misc.grids.enemy_only_gate")
 include("scripts_toybox.misc.grids.block_and_plate")
 include("scripts_toybox.misc.grids.grave")
+include("scripts_toybox.misc.grids.nuclear_poop")
 
 -- MILCOM
 include("scripts_toybox.players.milcom.a.milcom")
@@ -334,6 +335,7 @@ include("scripts_toybox.challenges.safari_zone")
     include("scripts_toybox.items.passives.frankencat")
     include("scripts_toybox.items.passives.nanomachines")
     include("scripts_toybox.items.passives.frankincense")
+    include("scripts_toybox.items.passives.elephants_foot")
 
     include("scripts_toybox.items.passives.the_elder_scroll") -- just the shader fo now
 --ACTIVES

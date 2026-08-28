@@ -820,7 +820,7 @@
     tags="offensive summonable"
     cache=""
 
-    devilprice="2"
+    devilprice="1"
 
     achievement="Effigy"
 />
@@ -1568,6 +1568,14 @@
     gfx="frankincense.png"
     quality="3"
     tags="offensive summonable"
+    customtags=""
+    cache=""
+/>
+<passive id="171" name="Elephant's Foot"
+    description="Nuclear waste"
+    gfx="elephants_foot.png"
+    quality="1"
+    tags="offensive summonable nogreed"
     customtags=""
     cache=""
 />

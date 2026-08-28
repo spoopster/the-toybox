@@ -7,14 +7,14 @@ local POOPS_WITH_DROPS = {
 }
 
 ---@param poop GridEntityPoop
-local function checkPoopPickup(_, poop, poopVar)
+local function checkPoopPickup(_, poop)
     if(poop.State~=1000) then return end
-    if(POOPS_WITH_DROPS[poopVar]~=1) then return end
+    if(POOPS_WITH_DROPS[poop:GetVariant()]~=1) then return end
 
     local selPickup
     for _, pickup in ipairs(Isaac.FindByType(5)) do
         if(pickup.Position:Distance(poop.Position)<2) then
-            if(pickup.FrameCount==1) then
+            if(pickup.FrameCount==0) then
                 selPickup = pickup:ToPickup()
                 break
             end
@@ -40,4 +40,4 @@ local function checkPoopPickup(_, poop, poopVar)
         end
     end
 end
-ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_DAMAGE, checkPoopPickup)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_GRID_HURT, checkPoopPickup, GridEntityType.GRID_POOP)

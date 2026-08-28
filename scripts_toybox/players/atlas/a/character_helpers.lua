@@ -24,8 +24,9 @@ function ToyboxMod:setAtlasAData(player, key, val)
 end
 
 --#endregion
-function ToyboxMod:isAtlasA(player)
-    local pt = player:GetPlayerType()
+---@param ent Entity
+function ToyboxMod:isAtlasA(ent)
+    local pt = ent:ToPlayer() and ent:ToPlayer():GetPlayerType() or -1
     return (pt==ToyboxMod.PLAYER_ATLAS_A or pt==ToyboxMod.PLAYER_ATLAS_A_TAR)
 end
 function ToyboxMod:isAnyPlayerAtlasA()
