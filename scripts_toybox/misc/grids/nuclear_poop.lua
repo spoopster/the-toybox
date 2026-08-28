@@ -51,7 +51,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, replaceHelper, ToyboxMod
 local function initSprite(_, poop, _, firstinit)
     if(not ToyboxMod:getGridEntityData(poop, "ELEPHANT_FOOT")) then return end
 
-    poop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/grid_nuclear_poop.png", true)
+    poop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/grid_nuclear_poop_"..ToyboxMod:generateRng(poop.Desc.SpawnSeed):RandomInt(1,3)..".png", true)
 
     local data = {}
     if(poop.State<1000) then

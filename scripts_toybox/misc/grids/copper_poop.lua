@@ -45,7 +45,7 @@ local function initSprite(_, poop, _, firstinit)
 
     if(not ToyboxMod:getGridEntityData(poop, "COPPER_POOP")) then return end
     
-    poop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/grid_copper_poop.png", true)
+    poop:GetSprite():ReplaceSpritesheet(0, "gfx_tb/grid/grid_copper_poop_"..ToyboxMod:generateRng(poop.Desc.SpawnSeed):RandomInt(1,3)..".png", true)
 end
 ToyboxMod:AddCallback(ToyboxMod.CUSTOM_CALLBACKS.POST_POOP_INIT, initSprite, GridPoopVariant.NORMAL)
 
