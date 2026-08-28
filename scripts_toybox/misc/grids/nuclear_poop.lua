@@ -102,10 +102,14 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, gibUpdate, EffectVaria
 ---@param source EntityRef
 local function reduceDamage(_, poop, dmg, source)
     if(ToyboxMod:getGridEntityData(poop, "ELEPHANT_FOOT")) then
-        if(poop:GetRNG():RandomFloat()<0.5) then
-            return 0
+        if(source and source.Entity and ToyboxMod:getPlayerFromEnt(source.Entity)) then
+            if(poop:GetRNG():RandomFloat()<0.5) then
+                return 0
+            else
+                poop.State = poop.State-250
+            end
         else
-            poop.State = poop.State-250
+            return false
         end
     end
 end
