@@ -1574,10 +1574,12 @@
 <passive id="171" name="Elephant's Foot"
     description="Nuclear waste"
     gfx="elephants_foot.png"
-    quality="1"
+    quality="2"
     tags="offensive summonable nogreed"
     customtags=""
     cache=""
+
+    achievement="Elephant's Foot"
 />
 
 <passive id="450" name="TMTAMER"
