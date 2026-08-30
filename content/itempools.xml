@@ -81,7 +81,7 @@
         <Item Name="Nanomachines"/>
         <Item Name="Breakthrough"/>
         <Item Name="Elephant's Foot"/>
-        <Item Name="Xenotransfusion"/>
+        <Item Name="Xenotransfusion" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -162,7 +162,7 @@
         <Item Name="Gunpowder"/>
         <Item Name="Nanomachines"/>
         <Item Name="Breakthrough"/>
-        <Item Name="Xenotransfusion"/>
+        <Item Name="Xenotransfusion" Weight="0.5" DecreaseBy="0.5"/>
     </Pool>
 
     <Pool Name="boss">
