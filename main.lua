@@ -379,6 +379,7 @@ include("scripts_toybox.challenges.safari_zone")
     include("scripts_toybox.items.actives.twisted_heart")
     include("scripts_toybox.items.actives.instant_gratification")
     include("scripts_toybox.items.actives.breakthrough")
+    include("scripts_toybox.items.actives.xenotransfusion")
 --TRINKETS
     include("scripts_toybox.items.trinkets.wonder_drug")
     include("scripts_toybox.items.trinkets.antibiotics")

@@ -19,6 +19,7 @@
         mimiccharge="1"
 
         achievement="Foil Card"
+        hidden="true"
     />
 
     <card id="2" name="Alien Mind"

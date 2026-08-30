@@ -2165,6 +2165,18 @@ enums.FUNCTIONS.AddItem({
         "The poop poisons and damages nearby enemies, deals more damage to closer enemies",
     },
 })
+enums.FUNCTIONS.AddItem({
+    ID = ToyboxMod.COLLECTIBLE_XENOTRANSFUSION,
+    Name = "Xenotransfusion",
+    Description = {
+        "{{Battery}} Charges with damage dealt",
+        "When used:",
+        "{{HealingRed}} Heals 1 heart",
+        "\1 Grants 2 random stat ups",
+        "\2 Grants 1 random stat down",
+        "Charging becomes less effective if too much damage is dealt in one room"
+    },
+})
 
 --- OTHER ITEM MODIFIERS ---
 

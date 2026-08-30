@@ -83,6 +83,7 @@ local BASEDATA = {
         {5,20,1,0},
     },
 
+    XENOTRANSFUSION_DAMAGE_COUNTER = {},
 
     TMTAMER_IDS = {},
 

@@ -82,3 +82,18 @@ ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_MALICE, ToyboxMod:completionMarkC
 --ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CHAMPIONS, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_MILCOM_A, CompletionType.MEGA_SATAN))
 ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_COLORING_BOOK, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_MILCOM_A, CompletionType.MEGA_SATAN))
 --ToyboxMod:addAchievement(???, ToyboxMod:allMarkCondition(ToyboxMod.PLAYER_MILCOM_A, Difficulty.DIFFICULTY_HARD))
+
+-- homunculus
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_UNSTABLE_DNA, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.BOSS_RUSH))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_LAB_MEAT, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.HUSH))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_INFESTATION_3, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.ISAAC))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_ELEPHANTS_FOOT, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.BLUE_BABY))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_TWISTED_HEART, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.SATAN))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_KROKODIL, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.LAMB))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_CLONE, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.ULTRA_GREED))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_GREYHOUND, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.ULTRA_GREED, Difficulty.DIFFICULTY_HARD))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_FRANKENCAT, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.MOTHER))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_MUTAGEN, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.BEAST))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_SPITEFUL_PENNY, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.DELIRIUM))
+ToyboxMod:addAchievement(ToyboxMod.ACHIEVEMENT_XENOTRANSFUSION, ToyboxMod:completionMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, CompletionType.MEGA_SATAN))
+--ToyboxMod:addAchievement(???, ToyboxMod:allMarkCondition(ToyboxMod.PLAYER_HOMUNCULUS_A, Difficulty.DIFFICULTY_HARD))

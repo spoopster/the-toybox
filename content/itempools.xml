@@ -81,6 +81,7 @@
         <Item Name="Nanomachines"/>
         <Item Name="Breakthrough"/>
         <Item Name="Elephant's Foot"/>
+        <Item Name="Xenotransfusion"/>
     </Pool>
     <Pool Name="greedTreasure">
         <Item Name="4 4"/>
@@ -161,6 +162,7 @@
         <Item Name="Gunpowder"/>
         <Item Name="Nanomachines"/>
         <Item Name="Breakthrough"/>
+        <Item Name="Xenotransfusion"/>
     </Pool>
 
     <Pool Name="boss">
@@ -267,6 +269,7 @@
         <Item Name="Silver Pieces"/>
         <Item Name="Leatherface"/>
         <Item Name="Frankencat"/>
+        <Item Name="Xenotransfusion"/>
     </Pool>
     <Pool Name="greedDevil">
         <Item Name="Blood Ritual"/>
@@ -284,6 +287,7 @@
         <Item Name="Silver Pieces"/>
         <Item Name="Leatherface"/>
         <Item Name="Frankencat"/>
+        <Item Name="Xenotransfusion"/>
     </Pool>
 
     <Pool Name="angel">
@@ -469,6 +473,7 @@
         <Item Name="Angel Dust"/>
         <Item Name="Nose Candy"/>
         <Item Name="Hemolymph"/>
+        <Item Name="Xenotransfusion"/>
     </Pool>
 
     <Pool Name="bombBum">

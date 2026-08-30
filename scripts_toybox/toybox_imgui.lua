@@ -300,7 +300,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 			[CompletionType.BLUE_BABY] = "\"Glass Vessel\"",
 			[CompletionType.SATAN] = "\"Missing Page 3\"",
 			[CompletionType.LAMB] = "\"Bone Boy\"!",
-			[CompletionType.MEGA_SATAN] = "Mantles may appear for other characters.",
+			[CompletionType.MEGA_SATAN] = "\"Conglomerate\"",
 			[CompletionType.ULTRA_GREED] = "Normal: \"Gilded Apple\" / Hard: \"Prismstone\"",
 			[CompletionType.DELIRIUM] = "\"Hostile Takeover\"",
 			[CompletionType.MOTHER] = "\"Amber Fossil\"",
@@ -318,7 +318,7 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 			[CompletionType.BLUE_BABY] = "\"Food Stamps\"",
 			[CompletionType.SATAN] = "\"Dr. Bum\"",
 			[CompletionType.LAMB] = "\"Clown PHD\"",
-			[CompletionType.MEGA_SATAN] = "Jonas' new pill effects may appear while playing as other characters.",
+			[CompletionType.MEGA_SATAN] = "\"Dad's Pipe\"",
 			[CompletionType.ULTRA_GREED] = "Normal: \"Drill\" / Hard: \"Foil Card\"",
 			[CompletionType.DELIRIUM] = "\"Giant Capsule\"",
 			[CompletionType.MOTHER] = "\"Candy Dispenser\"",
@@ -336,11 +336,29 @@ if(not ImGui.ElementExists("ToyboxMenu")) then
 			[CompletionType.BLUE_BABY] = "\"Paper Plate\"",
 			[CompletionType.SATAN] = "\"Misprint\"",
 			[CompletionType.LAMB] = "\"Atheism\"",
-			[CompletionType.MEGA_SATAN] = "Milcom's new champion colors may appear while playing as other characters.",
+			[CompletionType.MEGA_SATAN] = "\"Coloring Book\"",
 			[CompletionType.ULTRA_GREED] = "Normal: \"Golden Calf\" / Hard: \"Green Apple\"",
 			[CompletionType.DELIRIUM] = "\"Malice\"",
 			[CompletionType.MOTHER] = "\"Effigy\"",
 			[CompletionType.BEAST] = "\"Cutout\"",
+			ALL_MARKS = "Nothing.",
+		}
+	)
+
+	addPlayerUnlocks(ToyboxMod.PLAYER_HOMUNCULUS_A, "HOMUNCULUS",
+		{
+			[CompletionType.BOSS_RUSH] = "\"Unstable DNA\"",
+			[CompletionType.MOMS_HEART] = "Nothing.",
+			[CompletionType.HUSH] = "\"Lab Meat\"",
+			[CompletionType.ISAAC] = "\"Infestation 3\"",
+			[CompletionType.BLUE_BABY] = "\"Elephant's Foot\"",
+			[CompletionType.SATAN] = "\"Twisted Heart\"",
+			[CompletionType.LAMB] = "\"Krokodil\"",
+			[CompletionType.MEGA_SATAN] = "\"Xenotransfusion\"",
+			[CompletionType.ULTRA_GREED] = "Normal: \"Clone\" / Hard: \"Greyhound\"",
+			[CompletionType.DELIRIUM] = "\"Spiteful Penny\"",
+			[CompletionType.MOTHER] = "\"Frankencat\"",
+			[CompletionType.BEAST] = "\"Mutagen\"",
 			ALL_MARKS = "Nothing.",
 		}
 	)

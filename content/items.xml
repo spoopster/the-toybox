@@ -1581,6 +1581,19 @@
 
     achievement="Elephant's Foot"
 />
+<active id="172" name="Xenotransfusion"
+    description="Cross-species contamination"
+    gfx="xenotransfusion.png"
+    quality="2"
+    tags="offensive"
+    cache=""
+
+    maxcharges="10000"
+    chargetype="special"
+    initcharge="3333"
+
+    achievement="Xenotransfusion"
+/>
 
 <passive id="450" name="TMTAMER"
     description="In the lion's den"

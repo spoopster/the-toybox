@@ -1,11 +1,19 @@
 local ITEMS_DELAY = 17
+local FASTER_DELAY = 10
 
 local ITEM_DURATION = 45*30
 
 local function useBreakthrough(_, _, rng, player, flags, slot)
+    if(flags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY) then return end
+
+    local isCarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+
     local itemsToGive = 2
     if(slot~=-1) then
         itemsToGive = player:GetActiveCharge(slot)
+    end
+    if(isCarbattery) then
+        itemsToGive = itemsToGive*2
     end
 
     local pool = ToyboxMod.GAME:GetItemPool()
@@ -37,7 +45,7 @@ local function useBreakthrough(_, _, rng, player, flags, slot)
         local data = ToyboxMod:getEntityDataTable(player)
         data.BREAKTHROUGH_TIMERS = data.BREAKTHROUGH_TIMERS or {}
         table.insert(data.BREAKTHROUGH_TIMERS, {ToyboxMod.GAME:GetFrameCount()+ITEM_DURATION, id})
-    end, ITEMS_DELAY, itemsToGive, true)
+    end, (isCarbattery and FASTER_DELAY or ITEMS_DELAY), itemsToGive, true)
 
     ToyboxMod.SFX:Play(ToyboxMod.SFX_EUREKA)
 
