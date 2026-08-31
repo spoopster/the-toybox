@@ -3147,6 +3147,30 @@ enums.FUNCTIONS.AddTrinket({
         },
     },
 })
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_FAKE_BEARD,
+    Name = "Fake Beard",
+    Description = {
+        "{{Collectible147}} When you kill an enemy, 20% chance to get a one-use axe swing",
+        "The axe damages enemies, and breaks rocks and secret room entrances"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"20%%", "40%%"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"20%%", "60%%"},
+            }
+        },
+    },
+})
 
 enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_PRISMSTONE,

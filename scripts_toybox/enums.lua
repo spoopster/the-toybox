@@ -331,6 +331,7 @@ ToyboxMod.TRINKET_SWALLOWED_D10 = Isaac.GetTrinketIdByName("Swallowed D10")
 ToyboxMod.TRINKET_MONOCLE = Isaac.GetTrinketIdByName("Monocle")
 ToyboxMod.TRINKET_PINK_DONUT = Isaac.GetTrinketIdByName("Pink Donut")
 ToyboxMod.TRINKET_INFESTATION_3 = Isaac.GetTrinketIdByName("Infestation 3")
+ToyboxMod.TRINKET_FAKE_BEARD = Isaac.GetTrinketIdByName("Fake Beard")
 
 --ToyboxMod.TRINKET_LIMIT_BREAK = Isaac.GetTrinketIdByName("LIMIT BREAK")               --*UNUSED
 --ToyboxMod.TRINKET_FOAM_BULLET = Isaac.GetTrinketIdByName("Foam Bullet")               --*UNUSED
@@ -547,6 +548,7 @@ ToyboxMod.SFX_DEFLATE = Isaac.GetSoundIdByName("(TOYBOX) Deflate")
 ToyboxMod.SFX_SHATTER_REVERSE = Isaac.GetSoundIdByName("(TOYBOX) Shield Shatter Reversed")
 ToyboxMod.SFX_EUREKA = Isaac.GetSoundIdByName("(TOYBOX) Eureka")
 ToyboxMod.SFX_EUREKA_DISCHARGE = Isaac.GetSoundIdByName("(TOYBOX) Eureka Discharge")
+ToyboxMod.SFX_EQUIP = Isaac.GetSoundIdByName("(TOYBOX) Equip")
 
 ToyboxMod.SFX_SLIDE_WHISTLE = Isaac.GetSoundIdByName("(TOYBOX) Slide Whistle")
 ToyboxMod.SFX_MR_KRABS_WALK = Isaac.GetSoundIdByName("(TOYBOX) Mr Krabs Walk")

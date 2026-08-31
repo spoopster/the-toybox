@@ -28,6 +28,8 @@
 
     <costume id="153" anm2path="costume_rhubarb.anm2" type="passive" priority="1" skinColor="2" overwriteColor="true" />
 
+    <costume id="39" anm2path="costume_fake_beard.anm2" type="trinket"/>
+
     <costume id="500" anm2path="costume_fancy.anm2" type="none" hasSkinAlt="true"/>
     <costume id="501" anm2path="costume_hydra.anm2" type="none" skinColor="4" overwriteColor="true" />
 

@@ -1928,6 +1928,11 @@
 
     achievement="Infestation 3"
 />
+<trinket id="39" name="Fake Beard"
+    description="Diggy diggy hole"
+    gfx="fake_beard.png"
+    cache=""
+/>
 
 <trinket id="300" name="Citrusberry "
     description="Emergency heal"

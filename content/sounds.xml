@@ -134,6 +134,11 @@
 		<sample weight="1" path="eureka_discharge_3.wav" />
 		<sample weight="1" path="eureka_discharge_4.wav" />
 	</sound>
+	<sound name="(TOYBOX) Equip">
+		<sample weight="1" path="equip1.wav" />
+		<sample weight="1" path="equip2.wav" />
+		<sample weight="1" path="equip3.wav" />
+	</sound>
 
 	<sound name="(TOYBOX) Water Loop (Copy)">
 		<sample weight="1" path="water_loop_copy.wav" />

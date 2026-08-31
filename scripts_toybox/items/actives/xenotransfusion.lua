@@ -2,7 +2,7 @@ local INTERNAL_ACTIVE_CHARGE = 10000
 
 local DMG_TO_CHARGE = 300
 local DMG_SOFT_CAP = 50
-local SOFT_CAP_POW = 1--0.5
+local SOFT_CAP_POW = 0.5
 
 local DMG_MULT_PER_FLOOR = 0.2
 --[[] ]
