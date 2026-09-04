@@ -59,7 +59,7 @@ local function postEntityTakeDmg(_, ent, amount, flags, source, countdown)
         local ogSplatColor = Color.Lerp(ent.SplatColor, ent.SplatColor, 0)
 
         ent.Color = Color(0.7,0.35,1,1)
-        ent.SplatColor = Color(0.86,0.7,1,0.2,0.1,0,0.3)
+        ent.SplatColor = Color(0.86,0.7,1,0.1,0.1,0,0.3)
 
         local isAlive = not (ent:HasMortalDamage() or ent:IsDead())
 
@@ -82,8 +82,8 @@ local function postEntityTakeDmg(_, ent, amount, flags, source, countdown)
             if(true or stopBone) then sfx:Stop(SoundEffect.SOUND_DEATH_BURST_BONE) end
         end
 
-        sfx:Play(SoundEffect.SOUND_MEAT_JUMPS, nil, nil, nil, 0.95+math.random()*0.1)
-        sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 0.4, nil, nil, 0.95+math.random()*0.1)
+        sfx:Play(SoundEffect.SOUND_MEAT_JUMPS, 0.6, nil, nil, 0.95+math.random()*0.1)
+        sfx:Play(SoundEffect.SOUND_BOSS2_BUBBLES, 0.3, nil, nil, 0.95+math.random()*0.1)
 
         local scale = 0.2*(ent.Size^(0.9-ToyboxMod:clamp(0, (ent.Size-50)/50, 0.25)))/10
         local poof = Isaac.Spawn(1000,16,5,ent.Position,Vector.Zero,nil):ToEffect()

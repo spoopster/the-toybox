@@ -13,7 +13,7 @@ local function giveAxeOnKill(_, npc)
         Isaac.CreateTimer(function()
             local weap = pl and pl:GetWeapon(0)
             if(weap and weap:GetWeaponType()==WeaponType.WEAPON_NOTCHED_AXE) then
-                weap:SetFireDelay(5)
+                weap:SetFireDelay(11)
             end
         end, 0, 1, false)
         

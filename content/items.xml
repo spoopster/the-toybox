@@ -1447,9 +1447,9 @@
     cache=""
 
     chargetype="timed"
-    maxcharges="60"
+    maxcharges="75"
 
-    effectdamage="1.5" effectluck="3" persistent="true"
+    effectdamage="0.5" effectluck="1"
 />
 <passive id="159" name="Silver Pieces"
     description="Sinner's reward"
@@ -1931,6 +1931,16 @@
 <trinket id="39" name="Fake Beard"
     description="Diggy diggy hole"
     gfx="fake_beard.png"
+    cache=""
+/>
+<trinket id="40" name="Sugar Cube"
+    description="Tasty consumables"
+    gfx="sugar_cube.png"
+    cache=""
+/>
+<trinket id="41" name="Interest"
+    description="To the moon"
+    gfx="interest.png"
     cache=""
 />
 

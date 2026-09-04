@@ -10,8 +10,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, function(_, command)
     if command ~= "sloprating" then
         return
     end
-    ---@diagnostic disable-next-line: undefined-field
-    local MAX_ITEM = Isaac.GetItemConfig():GetCollectibles().Size - 1
+    local MAX_ITEM = Isaac.GetItemConfig():GetCollectibles().Size-1
     local MAX_VANILLA_ITEM = CollectibleType.NUM_COLLECTIBLES - 1
     local mods = {}
 
@@ -39,7 +38,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, function(_, command)
         ::continue::
     end
 
-    print("Vanilla contains:")
+    print("Vanilla's contents:")
     for quality, count in pairs(vanillaItemQualities) do
         local qualityNum = tonumber(quality)
         if qualityNum >= 3 then
@@ -50,8 +49,11 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, function(_, command)
         elseif qualityNum == 0 then
             vanillaPeakItems = vanillaPeakItems + (count * 2)
         end
-        print(count, "items of", quality, "quality")
         vanillaTotalItems = vanillaTotalItems + count
+    end
+    for quality = 0, 4 do
+        local count = vanillaItemQualities[quality]
+        print(string.format("Quality %d: %d items (%d%% of game's items)", quality, count, math.floor(100*count/vanillaTotalItems)))
     end
     print("a total of", vanillaTotalItems, "items")
     print("SLOP-O-METER-3000 reading:", vanillaSlopItems / vanillaPeakItems)
@@ -67,19 +69,18 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, function(_, command)
         if not mods[mod] then
             mods[mod] = {}
         end
-        local quality = item.quality or -1 --Because some mods ommit that apparently
+        local quality = tonumber(item.quality) or -1 --Because some mods ommit that apparently
         mods[mod][quality] = (mods[mod][quality] or 0) + 1
 
         ::continue::
     end
 
     for id, items in pairs(mods) do
-        ---@diagnostic disable-next-line: undefined-field
         local name = XMLData.GetModById(id).name
         local totalItems = 0
         local peakItems = 1
         local slopItems = 1
-        print(name, "contains:")
+        print(string.format("%s's contents:", name))
         for quality, count in pairs(items) do
             local qualityNum = tonumber(quality)
             if qualityNum >= 3 then
@@ -90,9 +91,27 @@ ToyboxMod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, function(_, command)
             elseif qualityNum == 0 then
                 peakItems = peakItems + (count * 2)
             end
-            print(count, "items of", quality, "quality")
             totalItems = totalItems + count
         end
+
+        local stuffToPrint = {}
+        for quality, count in pairs(items) do
+            local vanillaQualityCount = vanillaItemQualities[quality]
+            if not vanillaQualityCount then
+                vanillaQualityCount = math.huge
+            end
+            local vanillaRatioComparison = (count/totalItems)/(vanillaQualityCount/vanillaTotalItems)
+            local line = string.format("Quality %d: %d items (%d%% of mod's items)(%fx of vanilla ratio)", quality, count, math.floor(100*count/totalItems), vanillaRatioComparison)
+            table.insert(stuffToPrint, {quality, line})
+        end
+
+        table.sort(stuffToPrint, function (a, b)
+            return a[1] < b[1]
+        end)
+        for _, line in ipairs(stuffToPrint) do
+            print(line[2])
+        end
+
         print("a total of", totalItems, "items")
         print("SLOP-O-METER-3000 reading:", slopItems / peakItems)
         print("Normalised value: " .. (slopItems / peakItems)/vanillaSlopRating )

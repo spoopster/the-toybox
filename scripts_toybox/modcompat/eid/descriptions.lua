@@ -1986,8 +1986,9 @@ enums.FUNCTIONS.AddItem({
     ID = ToyboxMod.COLLECTIBLE_HAND_PUMP,
     Name = "Hand Pump",
     Description = {
-        "\1 Grants +1.5 Damage and +3 Luck, up to 3 times",
+        "\1 Grants 3 stacks of +0.5 Damage and +1 Luck, up to 9 stacks total",
         "Removes 1 stack of the stat increases each time you fire",
+        "All stacks of the stat increases are removed on room clear",
     },
 })
 enums.FUNCTIONS.AddItem({
@@ -3167,6 +3168,56 @@ enums.FUNCTIONS.AddTrinket({
             Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
             ToModify = {
                 {"20%%", "60%%"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_SUGAR_CUBE,
+    Name = "Sugar Cube",
+    Description = {
+        "{{HealingRed}} Upon using a consumable, heal 1 Red Heart",
+        "{{SoulHeart}} If your HP is full, heal half a Soul Heart instead"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"1 Red Heart", "1 and a half {{ColorWhite}}Red Hearts{{CR}}"},
+                {"half a Soul Heart", "1 {{ColorWhite}}Soul Heart"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"1 Red Heart", "2 {{ColorWhite}}Red Hearts{{CR}}"},
+                {"half a Soul Heart", "1 and a half {{ColorWhite}}Soul Hearts{{CR}}"},
+            }
+        },
+    },
+})
+enums.FUNCTIONS.AddTrinket({
+    ID = ToyboxMod.TRINKET_INTEREST,
+    Name = "Interest",
+    Description = {
+        "{{Coin}} At the start of every floor, multiplies Isaac's coins by x1.33",
+        "Always grants at least 3 coins"
+    },
+    DoubleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"x1.33", "x1.67"},
+            }
+        },
+    },
+    TripleModifiers = {
+        {
+            Type = enums.CONSTANTS.DescriptionModifier.REPLACE,
+            ToModify = {
+                {"multiplies Isaac's coins by x1.33", "doubles {{ColorWhite}}Isaac's coins{{CR}}"},
             }
         },
     },

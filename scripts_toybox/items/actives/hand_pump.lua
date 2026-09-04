@@ -1,7 +1,9 @@
 --TODO Make item give 3 stacks per use, up to 9, stacks are 1/3rd as effective
 --TODO Make bonus clear itself on new room/room clear
 
-local MAX_BONUSES = 3
+local MAX_BONUSES = 9
+
+local STACKS_PER_USE = 3
 
 local PUMP_COSTUMES = {
     [1] = Isaac.GetCostumeIdByPath("gfx_tb/characters/costume_pump_1.anm2"),
@@ -26,12 +28,13 @@ end
 ---@param item CollectibleType
 local function handPumpUse(_, item, rng, player, flags, slot, vdata)
     local eff = player:GetEffects()
-    
+
+    eff:AddCollectibleEffect(item, false, STACKS_PER_USE-1)
     if(eff:GetCollectibleEffectNum(item)>=MAX_BONUSES) then
         eff:RemoveCollectibleEffect(item, eff:GetCollectibleEffectNum(item)-MAX_BONUSES+1)
     end
 
-    setCostume(player, eff:GetCollectibleEffectNum(item)+1)
+    setCostume(player, math.ceil((eff:GetCollectibleEffectNum(item)+1)/STACKS_PER_USE))
     ToyboxMod.SFX:Play(SoundEffect.SOUND_INFLATE, 0.65, nil, nil, 1.5)
 
     return {
@@ -54,7 +57,19 @@ local function postTriggerWeaponFired(_, dir, amount, owner, weapon)
     if(not eff:HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HAND_PUMP)) then return end
 
     eff:RemoveCollectibleEffect(ToyboxMod.COLLECTIBLE_HAND_PUMP, 1)
-    setCostume(pl, eff:GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_HAND_PUMP))
+    setCostume(pl, math.ceil(eff:GetCollectibleEffectNum(ToyboxMod.COLLECTIBLE_HAND_PUMP)/STACKS_PER_USE))
     ToyboxMod.SFX:Play(SoundEffect.SOUND_PLOP, 0.8, nil, nil, 1.2)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, postTriggerWeaponFired)
+
+local function removeStacksOnClear(_)
+    for i=0, ToyboxMod.GAME:GetNumPlayers()-1 do
+        local player = ToyboxMod.GAME:GetPlayer(i)
+        local eff = player:GetEffects()
+        if(eff:HasCollectibleEffect(ToyboxMod.COLLECTIBLE_HAND_PUMP)) then
+            eff:RemoveCollectibleEffect(ToyboxMod.COLLECTIBLE_HAND_PUMP, -1)
+            player:AddCacheFlags(CacheFlag.CACHE_LUCK, true)
+        end
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_PRE_ROOM_TRIGGER_CLEAR, removeStacksOnClear)
