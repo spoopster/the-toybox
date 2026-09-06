@@ -4574,6 +4574,7 @@ enums.FUNCTIONS.AddGlobalModifier({
             Condition = function(descObj)
                 if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
                 if(not (ToyboxMod.GAME:GetRoom():GetType()==RoomType.ROOM_BOSS)) then return false end
+                if(descObj.Entity and descObj.Entity:ToPickup() and descObj.Entity:ToPickup().Touched) then return false end
 
                 return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
             end,
@@ -4585,6 +4586,7 @@ enums.FUNCTIONS.AddGlobalModifier({
         {
             Condition = function(descObj)
                 if(not (descObj.ObjType==5 and descObj.ObjVariant==100)) then return false end
+                if(descObj.Entity and descObj.Entity:ToPickup() and descObj.Entity:ToPickup().Touched) then return false end
 
                 return PlayerManager.AnyoneHasCollectible(ToyboxMod.COLLECTIBLE_FOOD_STAMPS)
             end,

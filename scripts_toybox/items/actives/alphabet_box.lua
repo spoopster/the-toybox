@@ -45,7 +45,7 @@ function ToyboxMod:getNextAlphabetItem(val, reverseOrder)
         if(ToyboxMod.ABOX_ITEMS_ALPHABETICAL[idx]) then
             local conf = itemConfig:GetCollectible(ToyboxMod.ABOX_ITEMS_ALPHABETICAL[idx][2])
             if(not conf) then isOk = false
-            elseif(ToyboxMod.GAME.Challenge~=Challenge.CHALLENGE_NULL and conf:HasTags(ItemConfig.TAG_NO_CHALLENGE)) then isOk = false end
+            elseif(not conf:IsAvailable()) then isOk = false end
         else
             return -1
         end
