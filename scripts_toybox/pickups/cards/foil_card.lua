@@ -33,6 +33,37 @@ local function tryGiveCard(_, slot, coll, low)
 
         ToyboxMod.SFX:Play(SoundEffect.SOUND_THUMBSUP_AMPLIFIED)
 
+        slot:SetColor(Color(1,1,1,1,1,1,1), 5, 0, true, false)
+
+        Isaac.CreateTimer(function()
+            if(slot) then
+                local pos = slot.Position+Vector(0,-20)+(Vector(slot.Size*(1+math.random()*0.5)*1.2,0):Rotated(math.random(1,360)))*slot.SizeMulti
+
+                local sparkle = Isaac.Spawn(1000,104,4,pos,RandomVector()*0.2,nil):ToEffect()
+                sparkle.DepthOffset = 100
+                sparkle:SetTimeout(30*3)
+                sparkle:SetSpeedMultiplier(10)
+                
+                local r,g,b = ToyboxMod:hsl2Rgb(math.random(), 0.9, 1)
+
+                sparkle:SetColor(Color(0,0,0,1.2,r,g,b), 30*1, 0, true, false)
+                sparkle:SetColor(Color(0,0,0,0,r,g,b), 30*10, 10, false, false)
+            end
+        end, 2, (7*slot.Size/12*slot.SizeMulti.X*slot.SizeMulti.Y)//1, false)
+
+        --[[] ]
+        local numSparkels = 5
+        for i=1, numSparkels do
+            local dir = Vector.FromAngle(360*i/numSparkels+(math.random()-0.5)*360*0.7/numSparkels)*1
+            local sparkle = Isaac.Spawn(1000,104,4,slot.Position+Vector(0,-20),dir,nil):ToEffect()
+
+            local r,g,b = ToyboxMod:hsl2Rgb(math.random(1,360), 0.8, 0.95)
+            sparkle.Color = Color(r,g,b,1)
+            sparkle:SetTimeout(30*0.5)
+            sparkle.DepthOffset = 40
+        end
+        --]]
+
         return true
     end
 end

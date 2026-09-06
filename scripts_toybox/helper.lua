@@ -1110,3 +1110,49 @@ function ToyboxMod:getRandomSpecialRoom(roomType, rng, roomVariant, visited, ign
         return foundRooms[rng:RandomInt(1,#foundRooms)]
     end
 end
+
+---@param r number
+---@param g number
+---@param b number
+---@return hue number, sat number, lum number
+function ToyboxMod:rgb2Hsl(r, g, b)
+    local hue, sat, lum = 0, 0, 0
+    local colMax, colMin = math.max(r, g, b), math.min(r, g, b)
+    local colDif = colMax-colMin
+
+    lum = (colMax+colMin)/2;
+    if(math.abs(colDif)>0.01) then
+        sat = colDif/(1-math.abs(2*lum-1))
+
+        if(colMax==r) then
+            hue = ((g-b)/colDif)%6
+        elseif(colMax==g) then
+            hue = ((b-r)/colDif+2)
+        else
+            hue = ((r-g)/colDif+4)
+        end
+    end
+
+    return hue/6, sat, lum
+end
+
+---@param h number
+---@param s number
+---@param l number
+---@return red number, green number, blue number
+function ToyboxMod:hsl2Rgb(h, s, l)
+    h = h*6
+
+    local red, grn, blu = 0, 0, 0
+    local c = (1-math.abs(2*s-1))*l
+    local x = c*(1-math.abs(h%2)-1)
+
+    if(h<=1) then red = c; grn = x
+    elseif(h<=2) then red = x; grn = c
+    elseif(h<=3) then grn = c; blu = x
+    elseif(h<=4) then grn = x; blu = c
+    elseif(h<=5) then red = x; blu = c
+    else red = c; blu = x end
+
+    return red+(s-c/2), grn+(s-c/2), blu+(s-c/2)
+end
