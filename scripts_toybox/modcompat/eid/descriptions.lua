@@ -3235,7 +3235,9 @@ enums.FUNCTIONS.AddCard({
     ID = ToyboxMod.CARD_FOIL_CARD,
     Name = "Foil Card",
     Description = {
-        "{{Coin}} Spawns a golden heart, penny, key or bomb",
+        "{{Beggar}} Can be given to a beggar to donate to it 15 times in quick succession",
+        "This effect ends prematurely if Isaac exits the room",
+        "{{HardModeSmall}} Beggars affected by this do not have any Hard Mode restrictions and pay out more often",
     },
 })
 enums.FUNCTIONS.AddCard({

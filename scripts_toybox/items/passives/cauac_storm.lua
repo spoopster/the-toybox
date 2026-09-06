@@ -7,7 +7,7 @@ local SHIELD_PIPS = 2
 ---@param source EntityRef
 local function tryCancelDamage(_, pl, _, flags, source)
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_CAUAC_STORM)) then return end
-    if(pl:IsInvincible() or pl:GetDamageCooldown()>0 or pl:HasCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE)) then return end
+    if(pl:IsInvincible() or pl:GetDamageCooldown()>0 or pl:HasCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE) or pl:HasInvincibility(flags)) then return end
 
     if(source.Type==6) then return end
     if(flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CLONES | DamageFlag.DAMAGE_INVINCIBLE)~=0) then return end

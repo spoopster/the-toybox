@@ -1,7 +1,5 @@
 local sfx = SFXManager()
 
--- FIX Doubles dropped consumables
-
 local PICKUP_DOUBLE_CHANCE = 1/7
 
 local VAR_WHITELIST = {
@@ -27,6 +25,7 @@ local VAR_WHITELIST = {
 
     [PickupVariant.PICKUP_GRAB_BAG] = true,
     [PickupVariant.PICKUP_PILL] = true,
+    [PickupVariant.PICKUP_TAROTCARD] = true,
     [PickupVariant.PICKUP_LIL_BATTERY] = true,
     [PickupVariant.PICKUP_SHOPITEM] = true,
 
@@ -74,3 +73,11 @@ local function pickupUpdate(_, pickup)
     ToyboxMod:setEntityData(pickup, "ALREADY_DOUBLE_CHECKED", true)
 end
 ToyboxMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, pickupUpdate)
+
+local function dropPickup(_, player, ent)
+    if(PlayerManager.AnyoneHasTrinket(ToyboxMod.TRINKET_7TH_PAGE)) then
+        ToyboxMod:setEntityData(ent, "ALREADY_DOUBLE_CHECKED", true)
+    end
+end
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_DROP_PILL, dropPickup)
+ToyboxMod:AddCallback(ModCallbacks.MC_POST_PLAYER_DROP_CARD, dropPickup)

@@ -1,13 +1,5 @@
---FIX Breaking while invincible
-
-local sfx = SFXManager()
-
 local heartSprite, test = Sprite("gfx_tb/ui/ui_glassvessel_heart.anm2", true)
 heartSprite:Play("Idle", true)
-
-function ToyboxMod:renderGlassVesselSprite(player, pos)
-    
-end
 
 ---@param pl EntityPlayer
 local function renderVessel(_, offset, sprite, pos, x, pl)
@@ -90,7 +82,7 @@ ToyboxMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, addVessel, ToyboxMod
 
 ---@param pl EntityPlayer
 local function cancelVesselDamage(_, pl, damage, flags, source, count)
-    if(pl:GetDamageCooldown()~=0) then return end
+    if(pl:GetDamageCooldown()~=0 or pl:HasInvincibility(flags)) then return end
     if(not pl:HasCollectible(ToyboxMod.COLLECTIBLE_GLASS_VESSEL)) then return end
 
     if(source.Type==6) then return end
@@ -100,7 +92,7 @@ local function cancelVesselDamage(_, pl, damage, flags, source, count)
         pl:GetEffects():RemoveCollectibleEffect(ToyboxMod.COLLECTIBLE_GLASS_VESSEL, -1)
         pl:SetMinDamageCooldown(60*(pl:GetTrinketMultiplier(TrinketType.TRINKET_BLIND_RAGE)+1))
 
-        sfx:Play(SoundEffect.SOUND_HOLY_MANTLE)
+        ToyboxMod.SFX:Play(SoundEffect.SOUND_HOLY_MANTLE)
         ToyboxMod.GAME:ShakeScreen(10)
         local shatter = Isaac.Spawn(1000, ToyboxMod.EFFECT_VESSEL_BREAK, 0, pl.Position, Vector.Zero, pl):ToEffect()
         shatter.DepthOffset = 100
@@ -128,7 +120,7 @@ local function consumeHeart(_, pickup, pl)
         pickup:GetSprite():Play("Collect", true)
         pickup:Die()
 
-        sfx:Play(SoundEffect.SOUND_URN_OPEN)
+        ToyboxMod.SFX:Play(SoundEffect.SOUND_URN_OPEN)
 
         return true
     end
@@ -151,7 +143,7 @@ local function consumeCoin(_, pickup, pl)
         pickup:GetSprite():Play("Collect", true)
         pickup:Die()
 
-        sfx:Play(SoundEffect.SOUND_URN_OPEN)
+        ToyboxMod.SFX:Play(SoundEffect.SOUND_URN_OPEN)
         pl:GetEffects():AddCollectibleEffect(ToyboxMod.COLLECTIBLE_GLASS_VESSEL, true, 1)
 
         return true

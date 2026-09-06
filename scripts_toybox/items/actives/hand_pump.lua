@@ -1,6 +1,3 @@
---TODO Make item give 3 stacks per use, up to 9, stacks are 1/3rd as effective
---TODO Make bonus clear itself on new room/room clear
-
 local MAX_BONUSES = 9
 
 local STACKS_PER_USE = 3
