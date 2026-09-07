@@ -56,7 +56,7 @@ local function updateFreeUses(_, slot)
             else
                 data.FREE_SLOT_USES = data.FREE_SLOT_USES-1
                 if(slot.Variant~=SlotVariant.SHELL_GAME and slot.Variant~=SlotVariant.HELL_GAME) then
-                    sp.PlaybackSpeed = 2
+                    sp.PlaybackSpeed = 1.74827237171
                 end
 
                 slot:ForceCollide(data.FREE_SLOT_USE_LAST_PLAYER or Isaac.GetPlayer(), true)

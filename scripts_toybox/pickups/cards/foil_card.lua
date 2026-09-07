@@ -17,7 +17,7 @@ local function tryGiveCard(_, slot, coll, low)
     local player = coll and coll:ToPlayer()
     if(not (player and player:GetCard(0)==ToyboxMod.CARD_FOIL_CARD)) then return end
 
-    if(slot:GetState()==SlotState.IDLE) then
+    if(slot:GetState()==SlotState.IDLE and (ToyboxMod:getEntityData(slot, "FREE_SLOT_USES") or -1)<0) then
         ToyboxMod:addFreeSlotUses(slot, FREE_USES, player)
 
         ToyboxMod:setEntityData(slot, "FOIL_CARD_RENDER", true)
