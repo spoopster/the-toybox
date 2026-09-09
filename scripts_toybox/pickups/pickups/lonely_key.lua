@@ -2,6 +2,7 @@ local REPLACE_CHANCE = 1/60
 
 ---@param pickup EntityPickup
 local function replaceKeys(_, pickup, var, sub, rvar, rsub, rng)
+    if(rvar==PickupVariant.PICKUP_SHOPITEM) then return end
     if(not (var==PickupVariant.PICKUP_KEY and sub==KeySubType.KEY_NORMAL) or not (rvar==0 or rsub==0)) then return end
 
     if(rng:RandomFloat()<REPLACE_CHANCE) then
